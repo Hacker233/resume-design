@@ -1,5 +1,5 @@
 <template>
-  <div class="base-info-box">
+  <div class="base-info">
     <!-- 个人头像 -->
     <div class="avatar-box">
       <el-image style="width: 115px; height: 115px" :src="baseInfo.avatar" />
@@ -21,29 +21,20 @@
   </div>
 </template>
 <script lang="ts" setup>
-  interface IBaseInfo {
-    id: number;
-    model: string;
-    show: boolean;
-    title: string;
-    name: string;
-    age: number;
-    address: string; // 所在地址
-    avatar: string; // 头像地址
-    workService: number; // 工作年限
-    phoneNumber: string; // 联系电话
-    email: string; // 邮箱
-    abstract: string; // 简介
-    degree: string;
-  }
+  import { IBASEINFO } from '@/types/model';
   defineProps<{
-    baseInfo: IBaseInfo;
+    baseInfo: IBASEINFO;
   }>();
 </script>
 
 <style scoped lang="less">
-  .base-info-box {
+  .base-info {
     display: flex;
+    height: 200px;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 40px 45px;
+    margin-bottom: 35px;
     .avatar-box {
       width: 120px;
       height: 120px;
@@ -67,19 +58,18 @@
         font-size: 30px;
         font-weight: 500;
         margin-bottom: 20px;
+        color: @primary-title-color;
       }
       p {
-        color: #878585;
+        color: @primary-text-color;
         font-size: 14px;
         margin-bottom: 20px;
       }
       ul {
         display: flex;
-        margin: 0;
-        padding: 0;
         li {
           list-style: none;
-          font-size: 14px;
+          font-size: @primary-text-font-size;
           padding-right: 12px;
           height: 20px;
           margin-right: 10px;

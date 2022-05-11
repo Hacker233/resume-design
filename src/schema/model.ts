@@ -33,7 +33,8 @@ let TEMPLATE_JSON: IResumeJson = {
       intendedPositions: '前端开发工程师', // 意向岗位
       intendedCity: '成都', // 意向城市
       expectSalary: '8000-10000', // 期望薪资
-      jobStatus: '随时入职' // 求职状态
+      jobStatus: '随时入职', // 求职状态
+      jobSearchType: '求职类型'
     },
     {
       id: 4,
@@ -41,6 +42,13 @@ let TEMPLATE_JSON: IResumeJson = {
       show: true,
       title: '教育背景',
       LIST: [
+        {
+          date: '2015.5-2019.6',
+          schoolName: '野鸡大学', // 学校名称
+          specialized: '通信工程', // 专业
+          degree: '本科', // 学历
+          majorCourse: '主修计算机技术、Java、c++等等' // 主修课程
+        },
         {
           date: '2015.5-2019.6',
           schoolName: '野鸡大学', // 学校名称

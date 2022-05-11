@@ -6,6 +6,7 @@ import ElementPlus from 'element-plus';
 import 'element-plus/dist/index.css';
 import '@/styles/normalize.css';
 import component from '@/template/register';
+import '@/styles/global.less';
 
 // 创建vue实例
 const app = createApp(App);

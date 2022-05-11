@@ -14,7 +14,9 @@ export default defineConfig({
     preprocessorOptions: {
       less: {
         javascriptEnabled: true,
-        hack: `true; @import (reference) "${path.resolve(__dirname, 'src/styles/global.less')}";`
+        modifyVars: {
+          hack: `true; @import (reference) "${path.resolve(__dirname, 'src/styles/global.less')}";`
+        }
       }
     }
   },

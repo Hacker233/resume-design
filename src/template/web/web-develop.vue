@@ -1,18 +1,29 @@
 <template>
   <template v-for="(item, index) in componentData.LIST" :key="item.id">
     <!-- 标题 -->
-    <div class="title" v-if="item.model === 'RESUM_TITLE' && item.show">
-      <div class="left"></div>
-      <div class="editor-resume">{{ item.title }}</div>
-    </div>
+    <resume-title
+      v-if="item.model === 'RESUM_TITLE' && item.show"
+      :resumeTitlt="item"
+    ></resume-title>
     <!-- 基础资料 -->
-    <div class="base-info" v-if="item.model === 'BASE_INFO' && item.show">
-      <base-info :baseInfo="item"></base-info>
-    </div>
+    <base-info v-if="item.model === 'BASE_INFO' && item.show" :baseInfo="item"></base-info>
+    <!-- 求职意向 -->
+    <job-intention
+      v-if="item.model === 'JOB_INTENTION' && item.show"
+      :jobIntention="item"
+    ></job-intention>
+    <!-- 教育背景 -->
+    <edu-background
+      v-if="item.model === 'EDU_BACKGROUND' && item.show"
+      :eduBackground="item"
+    ></edu-background>
   </template>
 </template>
 <script setup lang="ts">
-import BaseInfo from './components/BaseInfo.vue';
+  import ResumeTitle from './components/ResumeTitle.vue'; // 简历标题
+  import BaseInfo from './components/BaseInfo.vue'; // 基础资料
+  import JobIntention from './components/JobIntention.vue';
+  import EduBackground from './components/EduBackground.vue';
   const props = defineProps({
     componentData: {
       type: Object,
@@ -23,43 +34,7 @@ import BaseInfo from './components/BaseInfo.vue';
   });
 </script>
 <script lang="ts">
-
   export default {
     name: 'web-develop'
   };
 </script>
-<style lang="less" scoped>
-  .title {
-    width: 100%;
-    min-height: 32px;
-    background-color: v-bind('componentData.THEME_color');
-    margin-top: 20px;
-    display: flex;
-
-    .left {
-      min-height: 32px;
-      width: 36px;
-      background-color: #258bb1;
-      margin-right: 18px;
-    }
-
-    .editor-resume {
-      color: #fff;
-      outline: none;
-      font-weight: 600;
-      letter-spacing: 2px;
-      word-break: break-all;
-      width: 0;
-      flex: 1;
-      display: flex;
-      align-items: center;
-      justify-content: flex-start;
-    }
-  }
-  .base-info {
-    height: 200px;
-    width: 100%;
-    padding: 40px 40px 0 40px;
-    box-sizing: border-box;
-  }
-</style>
