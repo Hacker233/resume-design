@@ -1,34 +1,33 @@
+<!-- 荣誉奖项 -->
 <template>
-  <div class="edu-background">
+  <div class="awards">
     <!-- 标题 -->
-    <model-title :title="eduBackground.title"></model-title>
-    <!-- 教育背景 -->
-    <div class="edu-list">
-      <ul v-for="(item, index) in eduBackground.LIST" :key="index">
-        <!-- 学历日期 -->
+    <model-title :title="awards.title"></model-title>
+    <!-- 荣誉奖项 -->
+    <div class="awards-list">
+      <ul v-for="(item, index) in awards.LIST" :key="index">
+        <!-- 获奖日期 -->
         <li>{{ item.date }}</li>
-        <!-- 学校名称 -->
-        <li>{{ item.schoolName }}</li>
-        <!-- 专业 -->
-        <li>{{ item.specialized }}</li>
-        <!-- 学历 -->
-        <li>{{ item.degree }}</li>
+        <!-- 奖项名称 -->
+        <li>{{ item.awardsName }}</li>
+        <!-- 奖项等级 -->
+        <li>{{ item.awardsGrade }}</li>
       </ul>
     </div>
   </div>
 </template>
 <script setup lang="ts">
-  import { IEDUBACKGROUND } from '@/types/model';
+  import { IAWARDS } from '@/types/model';
   import ModelTitle from './ModelTitle.vue';
   defineProps<{
-    eduBackground: IEDUBACKGROUND;
+    awards: IAWARDS;
   }>();
 </script>
 <style lang="less" scoped>
-  .edu-background {
+  .awards {
     padding: 0 40px;
     margin-bottom: 45px;
-    .edu-list {
+    .awards-list {
       display: flex;
       width: 100%;
       flex-direction: column;

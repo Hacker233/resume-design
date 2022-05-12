@@ -1,4 +1,4 @@
-import IResumeJson from '@/types/model';
+import { IResumeJson } from '@/types/model';
 let TEMPLATE_JSON: IResumeJson = {
   ID: '', // 模板Id
   TITLE: '我的简历',
@@ -68,6 +68,21 @@ let TEMPLATE_JSON: IResumeJson = {
           skillName: 'JavaScript', // 技能名称
           proficiency: '一般', // 熟练度
           introduce: '熟练掌握该项技术' // 介绍
+        },
+        {
+          skillName: 'JavaScript', // 技能名称
+          proficiency: '一般', // 熟练度
+          introduce: '熟练掌握该项技术熟练掌握该项技术熟练掌握该项技术熟练掌握该项技术' // 介绍
+        },
+        {
+          skillName: 'JavaScript', // 技能名称
+          proficiency: '一般', // 熟练度
+          introduce: '熟练掌握该项技术熟练掌握该项技术熟练掌握该项技术熟练掌握该项技术' // 介绍
+        },
+        {
+          skillName: 'JavaScript', // 技能名称
+          proficiency: '一般', // 熟练度
+          introduce: '熟练掌握该项技术' // 介绍
         }
       ]
     },
@@ -82,6 +97,55 @@ let TEMPLATE_JSON: IResumeJson = {
           campusBriefly: '经历简要，如社团名称',
           campusDuty: '主要职责',
           campusContent: '经历描述'
+        },
+        {
+          date: '2021.9-2022.10', // 经历时间
+          campusBriefly: '经历简要，如社团名称',
+          campusDuty: '主要职责',
+          campusContent:
+            '经历经历描述经历描述经历描经历描述经历描述经历描述经历描述经历描述述经历描述经历描述经历描述经历描述经历描述描述'
+        }
+      ]
+    },
+    {
+      id: 9,
+      model: 'INTERNSHIP_EXPERIENCE',
+      show: true,
+      title: '实习经验',
+      LIST: [
+        {
+          date: '2021.9-2022.10', // 实习时间
+          companyName: '业绩公司', // 公司名称
+          posts: '前端开发工程师', // 职位
+          jobContent: [
+            {
+              content: '主要工作内容是打杂'
+            },
+            {
+              content:
+                '主要工作内容是打杂主要工作内容是打杂主要工作内容是打杂主要工作内容是打杂主要工作内容是打杂'
+            },
+            {
+              content: '主要工作内容是打杂'
+            }
+          ]
+        },
+        {
+          date: '2021.9-2022.10', // 实习时间
+          companyName: '业绩公司', // 公司名称
+          posts: '前端开发工程师', // 职位
+          jobContent: [
+            {
+              content: '主要工作内容是打杂'
+            },
+            {
+              content:
+                '主要工作内容是打杂主要工作内容是打杂主要工作内容是打杂主要工作内容是打杂主要工作内容是打杂'
+            },
+            {
+              content: '主要工作内容是打杂'
+            }
+          ]
         }
       ]
     },
@@ -121,29 +185,12 @@ let TEMPLATE_JSON: IResumeJson = {
         }
       ]
     },
-    {
-      id: 9,
-      model: 'INTERNSHIP_EXPERIENCE',
-      show: true,
-      title: '实习经验',
-      LIST: [
-        {
-          date: '2021.9-2022.10', // 实习时间
-          companyName: '业绩公司', // 公司名称
-          posts: '前端开发工程师', // 职位
-          jobContent: [
-            {
-              content: '主要工作内容是打杂'
-            }
-          ]
-        }
-      ]
-    },
+
     {
       id: 10,
       model: 'AWARDS',
       show: true,
-      title: '所获奖项',
+      title: '荣誉奖项',
       LIST: [
         {
           date: '2021.9', // 获奖时间
@@ -157,7 +204,7 @@ let TEMPLATE_JSON: IResumeJson = {
       model: 'HOBBIES',
       show: true,
       title: '兴趣爱好',
-      content: '我喜欢打杂'
+      content: '我喜欢打杂我喜欢打杂我喜欢打杂我喜欢打杂我喜欢打杂我喜欢打杂我喜欢打杂我喜欢打杂'
     },
     {
       id: 12,
@@ -172,6 +219,11 @@ let TEMPLATE_JSON: IResumeJson = {
       show: true,
       title: '作品展示',
       LIST: [
+        {
+          worksName: '作品名称',
+          worksLink: 'https://www.baidu.com',
+          worksIntroduce: '这是一个千万级作品'
+        },
         {
           worksName: '作品名称',
           worksLink: 'https://www.baidu.com',

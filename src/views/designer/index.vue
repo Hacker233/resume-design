@@ -1,7 +1,9 @@
 <template>
   <div class="design-box">
     <!-- 导航栏 -->
-    <nav class="nav-box"> 导航栏 </nav>
+    <nav class="nav-box">
+      <el-button @click="generateReport">下载</el-button>
+    </nav>
     <!-- 内容区域 -->
     <div class="bottom">
       <!-- 左侧添加模块区域 -->
@@ -11,7 +13,7 @@
       </div>
       <!-- 预览区域 -->
       <div class="center">
-        <div class="design">
+        <div class="design" ref="html2Pdf">
           <component :is="componentName" :componentData="componentData" />
         </div>
       </div>
@@ -30,9 +32,17 @@
 
   import TEMPLATE_JSON from '@/schema/model';
   import { IResumeJson } from '@/types/model'; // JSON数据格式
+  import downloadPDF from '@/utils/html2pdf'; // 下载为pdf
 
   const componentName = ref<string>('web-develop'); // 模板名称
   const componentData = reactive<IResumeJson>(TEMPLATE_JSON); // 模板数据
+
+  const html2Pdf = ref<any>(null); // 获取元素节点
+
+  // 导出pdf
+  const generateReport = () => {
+    downloadPDF(html2Pdf.value, '个人简历');
+  };
 </script>
 
 <style lang="less" scoped>
@@ -73,6 +83,8 @@
           width: 820px;
           min-height: 1160px;
           margin: 30px 0;
+          padding-top: 20px;
+          display: table;
         }
       }
 

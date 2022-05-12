@@ -15,8 +15,8 @@
   .title {
     width: 100%;
     min-height: 32px;
+    margin-bottom: 45px;
     background-color: #000;
-    margin-top: 20px;
     display: flex;
     .left {
       min-height: 32px;

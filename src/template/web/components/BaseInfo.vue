@@ -30,11 +30,11 @@
 <style scoped lang="less">
   .base-info {
     display: flex;
-    height: 200px;
+    height: 150px;
     width: 100%;
     box-sizing: border-box;
-    padding: 40px 45px;
-    margin-bottom: 35px;
+    padding: 0 45px;
+    margin-bottom: 45px;
     .avatar-box {
       width: 120px;
       height: 120px;

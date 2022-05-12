@@ -36,6 +36,7 @@
         list-style: none;
         font-size: @primary-text-font-size;
         color: @primary-text-color;
+        letter-spacing: 2px;
       }
     }
   }

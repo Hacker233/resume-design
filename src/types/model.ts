@@ -59,6 +59,7 @@ interface ISKILLSPECIALTIES {
     introduce: string; // 介绍
   }>;
 }
+
 // 校园经历
 interface ICAMPUSEXPERIENCE {
   id: number;
@@ -72,21 +73,7 @@ interface ICAMPUSEXPERIENCE {
     campusContent: string;
   }>;
 }
-// 工作经验
-interface IWORKEXPERIENCE {
-  id: number;
-  model: string;
-  show: boolean;
-  title: string;
-  LIST: Array<{
-    date: string; // 工作时间
-    companyName: string; // 公司名称
-    posts: string; // 职位
-    jobContent: Array<{
-      content: string;
-    }>;
-  }>;
-}
+
 // 项目经验
 interface IPROJECTEXPERIENCE {
   id: number;
@@ -110,6 +97,21 @@ interface IINTERNSHIPEXPERIENCE {
   title: string;
   LIST: Array<{
     date: string; // 实习时间
+    companyName: string; // 公司名称
+    posts: string; // 职位
+    jobContent: Array<{
+      content: string;
+    }>;
+  }>;
+}
+// 工作经验
+interface IWORKEXPERIENCE {
+  id: number;
+  model: string;
+  show: boolean;
+  title: string;
+  LIST: Array<{
+    date: string; // 工作时间
     companyName: string; // 公司名称
     posts: string; // 职位
     jobContent: Array<{
@@ -169,9 +171,9 @@ interface IResumeJson {
     IEDUBACKGROUND,
     ISKILLSPECIALTIES,
     ICAMPUSEXPERIENCE,
+    IINTERNSHIPEXPERIENCE,
     IWORKEXPERIENCE,
     IPROJECTEXPERIENCE,
-    IINTERNSHIPEXPERIENCE,
     IAWARDS,
     IHOBBIES,
     ISELFEVALUATION,

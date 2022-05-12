@@ -1,5 +1,6 @@
 import { defineConfig } from 'vite';
 import vue from '@vitejs/plugin-vue';
+import { createSvgIconsPlugin } from 'vite-plugin-svg-icons';
 import * as path from 'path';
 
 // https://vitejs.dev/config/
@@ -20,7 +21,15 @@ export default defineConfig({
       }
     }
   },
-  plugins: [vue()],
+  plugins: [
+    vue(),
+    createSvgIconsPlugin({
+      // 指定需要缓存的图标文件夹
+      iconDirs: [path.resolve(__dirname, 'src/assets/icons/svg')],
+      // 指定symbolId格式
+      symbolId: 'icon-[dir]-[name]'
+    })
+  ],
   server: {
     port: 8080, //启动端口
     hmr: {
