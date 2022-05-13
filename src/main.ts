@@ -5,12 +5,11 @@ import router from './router';
 import ElementPlus from 'element-plus';
 import 'element-plus/dist/index.css';
 import '@/styles/normalize.css';
-import component from '@/template/register';
+import component from '@/utils/registerCom';
 import '@/styles/global.less';
 // 注册所有图标
 import SvgIcon from '@/components/SvgIcon/index.vue';
 import elementIcons from '@/components/SvgIcon/svgicon';
-
 
 // 创建vue实例
 const app = createApp(App);

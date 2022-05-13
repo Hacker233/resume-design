@@ -2,8 +2,8 @@
   <template v-for="(item, index) in componentData.LIST" :key="item.id">
     <!-- 标题 -->
     <resume-title
-      v-if="item.model === 'RESUM_TITLE' && item.show"
-      :resumeTitlt="item"
+      v-if="item.model === 'RESUME_TITLE' && item.show"
+      :resumeTitle="item"
     ></resume-title>
     <!-- 基础资料 -->
     <base-info v-if="item.model === 'BASE_INFO' && item.show" :baseInfo="item"></base-info>

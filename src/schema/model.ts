@@ -6,9 +6,16 @@ let TEMPLATE_JSON: IResumeJson = {
   LIST: [
     {
       id: 1,
-      model: 'RESUM_TITLE',
+      model: 'RESUME_TITLE',
       show: true,
-      title: '我的简历'
+      title: '我的简历',
+      style: {
+        color: '#fff',
+        fontSize: '16px',
+        align: 'flex-start',
+        fontWeight: 600,
+        backgroundColor: '#000',
+      }
     },
     {
       id: 2,

@@ -1,14 +1,16 @@
 <template>
   <div class="title">
     <div class="left"></div>
-    <div class="editor-resume">{{ resumeTitlt.title }}</div>
+    <div class="editor-resume">{{ resumeTitle.title }}</div>
   </div>
 </template>
 <script lang="ts" setup>
-  import { IRESUMETITLE } from '@/types/model';
-  defineProps<{
-    resumeTitlt: IRESUMETITLE;
+  import { IRESUMETITLE, ISTYLE } from '@/types/model';
+  import { reactive } from 'vue';
+  const props = defineProps<{
+    resumeTitle: IRESUMETITLE;
   }>();
+  const style = reactive<ISTYLE>(props.resumeTitle.style);
 </script>
 
 <style lang="less" scoped>
@@ -16,7 +18,7 @@
     width: 100%;
     min-height: 32px;
     margin-bottom: 45px;
-    background-color: #000;
+    background-color: v-bind('style.backgroundColor');
     display: flex;
     .left {
       min-height: 32px;
@@ -26,16 +28,17 @@
     }
 
     .editor-resume {
-      color: #fff;
+      color: v-bind('style.color');
       outline: none;
-      font-weight: 600;
+      font-weight: v-bind('style.fontWeight');
+      font-size: v-bind('style.fontSize');
       letter-spacing: 2px;
       word-break: break-all;
       width: 0;
       flex: 1;
       display: flex;
       align-items: center;
-      justify-content: flex-start;
+      justify-content: v-bind('style.align');
     }
   }
 </style>

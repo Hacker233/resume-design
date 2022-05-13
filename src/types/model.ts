@@ -1,9 +1,28 @@
+// 定义样式接口
+interface ISTYLE {
+  height?: string;
+  width?: string;
+  color?: string;
+  fontSize?: string;
+  fontWeight?: number;
+  backgroundColor?: string;
+  align?: string;
+  mTop?: string;
+  mRight?: string;
+  mLeft?: string;
+  mBottom?: string;
+  pTop?: string;
+  pRight?: string;
+  pLeft?: string;
+  pBottom?: string;
+}
 // 简历标题
 interface IRESUMETITLE {
   id: number;
   model: string;
   show: boolean;
   title: string;
+  style: ISTYLE;
 }
 // 基础资料
 interface IBASEINFO {
@@ -181,6 +200,7 @@ interface IResumeJson {
   ];
 }
 export {
+  ISTYLE,
   IResumeJson,
   IRESUMETITLE,
   IBASEINFO,
