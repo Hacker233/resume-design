@@ -12,7 +12,6 @@ let TEMPLATE_JSON: IResumeJson = {
       style: {
         titleColor: '#fff',
         titleFontSize: '16px',
-        align: 'flex-start',
         titleFontWeight: 600,
         backgroundColor: '#000',
         mBottom: '45px',
@@ -47,7 +46,6 @@ let TEMPLATE_JSON: IResumeJson = {
         titleFontSize: '30px',
         titleFontWeight: 500,
         textColor: '#7c7b7b',
-        backgroundColor: '#000',
         mBottom: '50px',
         mTop: '0px'
       }
