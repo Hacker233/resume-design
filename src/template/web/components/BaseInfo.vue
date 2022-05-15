@@ -8,7 +8,7 @@
     <div class="user-info">
       <h1>{{ baseInfo.name }}</h1>
       <!-- 一句话简介 -->
-      <p class="user-abstract">{{ baseInfo.abstract }}</p>
+      <p class="user-abstract" v-show="isShow.abstract">{{ baseInfo.abstract }}</p>
       <!-- 年龄、地点、经验等信息 -->
       <ul>
         <li class="li-border">{{ baseInfo.age }}岁</li>
@@ -22,19 +22,21 @@
 </template>
 <script lang="ts" setup>
   import { IBASEINFO } from '@/types/model';
-  defineProps<{
+  import { reactive } from 'vue';
+  const props = defineProps<{
     baseInfo: IBASEINFO;
   }>();
+  const isShow = reactive(props.baseInfo.isShow);
 </script>
 
 <style scoped lang="less">
   .base-info {
     display: flex;
-    height: 150px;
     width: 100%;
     box-sizing: border-box;
     padding: 0 45px;
-    margin-bottom: 45px;
+    margin-bottom: v-bind('baseInfo.style.mBottom');
+    margin-top: v-bind('baseInfo.style.mTop');
     .avatar-box {
       width: 120px;
       height: 120px;
@@ -55,13 +57,13 @@
       padding-top: 5px;
       h1 {
         margin: 0;
-        font-size: 30px;
-        font-weight: 500;
+        font-size: v-bind('baseInfo.style.titleFontSize');
+        color: v-bind('baseInfo.style.titleColor');
+        font-weight: v-bind('baseInfo.style.titleFontWeight');
         margin-bottom: 20px;
-        color: @primary-title-color;
       }
       p {
-        color: @primary-text-color;
+        color: v-bind('baseInfo.style.textColor');
         font-size: 14px;
         margin-bottom: 20px;
       }
@@ -76,7 +78,7 @@
           display: flex;
           align-items: center;
           justify-content: center;
-          color: #7c7b7b;
+          color: v-bind('baseInfo.style.textColor');
         }
         .li-border {
           border-right: 2px solid #b4b4b4;

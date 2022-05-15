@@ -1,8 +1,15 @@
 <template>
   <div class="model-list-box">
     <ul class="model-ul">
-      <li v-for="(item, index) in componentData.LIST" :key="item.id">
-        <el-checkbox v-model="item.show" :label="item.title" @change="changeCheck" />
+      <li
+        v-for="(item, index) in componentData.LIST"
+        :key="item.id"
+        :class="[{ active: currentIndex === index }]"
+      >
+        <!-- 是否添加模块 -->
+        <el-checkbox v-model="item.show" :label="item.title" />
+        <!-- 中间模块 -->
+        <div class="center" @click="selectModel(item, index)"></div>
         <!-- 上下移动图标 -->
         <div class="up-down-box">
           <el-icon color="#409eff" :class="['up', { 'not-allow': index === 0 }]" @click="up(index)"
@@ -21,13 +28,23 @@
 </template>
 <script setup lang="ts">
   import { IResumeJson } from '@/types/model';
-  import { computed } from '@vue/reactivity';
+  import { useResumeModelStore } from '@/store/resume';
+  import { ref } from 'vue';
   const props = defineProps<{
     componentData: IResumeJson;
   }>();
+  const resumeModel = useResumeModelStore();
 
-  const changeCheck = (value: any): void => {
-    console.log(value, props.componentData);
+  // 选中模块
+  let currentIndex = ref<number>(-1);
+  const selectModel = (item: any, index: number) => {
+    currentIndex.value = index;
+    let updateData = {
+      model: item.model,
+      title: item.title,
+      index: index
+    };
+    resumeModel.setResumeModel(updateData);
   };
 
   // 下移模块
@@ -71,15 +88,17 @@
         &:hover {
           background-color: rgb(227, 231, 234);
         }
-        .el-checkbox {
+
+        .center {
           flex: 1;
+          width: 100%;
+          height: 100%;
         }
 
         .up-down-box {
           display: flex;
           align-items: center;
-          width: 50px;
-          justify-content: space-between;
+          justify-content: flex-end;
           .up,
           .down {
             font-size: 20px;
@@ -87,12 +106,17 @@
           }
           .down {
             transform: rotate(180deg);
+            margin-left: 10px;
           }
           .not-allow {
             color: #ccc;
             cursor: not-allowed;
           }
         }
+      }
+
+      .active {
+        background-color: rgb(227, 231, 234);
       }
     }
   }

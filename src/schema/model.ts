@@ -10,11 +10,13 @@ let TEMPLATE_JSON: IResumeJson = {
       show: true,
       title: '我的简历',
       style: {
-        color: '#fff',
-        fontSize: '16px',
+        titleColor: '#fff',
+        titleFontSize: '16px',
         align: 'flex-start',
-        fontWeight: 600,
+        titleFontWeight: 600,
         backgroundColor: '#000',
+        mBottom: '45px',
+        mTop: '15px'
       }
     },
     {
@@ -30,7 +32,25 @@ let TEMPLATE_JSON: IResumeJson = {
       phoneNumber: '028-1234321', // 联系电话
       email: '12322233@qq.com', // 邮箱
       abstract: '我是一个没有感情的工作机器', // 简介
-      degree: '本科'
+      degree: '本科',
+      isShow: {
+        address: true, // 所在地址
+        avatar: true, // 头像地址
+        workService: true, // 工作年限
+        phoneNumber: true, // 联系电话
+        email: true, // 邮箱
+        abstract: true, // 简介
+        degree: true,
+      },
+      style: {
+        titleColor: '#121c26',
+        titleFontSize: '30px',
+        titleFontWeight: 500,
+        textColor: '#7c7b7b',
+        backgroundColor: '#000',
+        mBottom: '50px',
+        mTop: '0px'
+      }
     },
     {
       id: 3,
@@ -41,7 +61,8 @@ let TEMPLATE_JSON: IResumeJson = {
       intendedCity: '成都', // 意向城市
       expectSalary: '8000-10000', // 期望薪资
       jobStatus: '随时入职', // 求职状态
-      jobSearchType: '求职类型'
+      jobSearchType: '求职类型',
+      style: {}
     },
     {
       id: 4,
@@ -63,7 +84,8 @@ let TEMPLATE_JSON: IResumeJson = {
           degree: '本科', // 学历
           majorCourse: '主修计算机技术、Java、c++等等' // 主修课程
         }
-      ]
+      ],
+      style: {}
     },
     {
       id: 5,
@@ -91,7 +113,8 @@ let TEMPLATE_JSON: IResumeJson = {
           proficiency: '一般', // 熟练度
           introduce: '熟练掌握该项技术' // 介绍
         }
-      ]
+      ],
+      style: {}
     },
     {
       id: 6,
@@ -112,7 +135,8 @@ let TEMPLATE_JSON: IResumeJson = {
           campusContent:
             '经历经历描述经历描述经历描经历描述经历描述经历描述经历描述经历描述述经历描述经历描述经历描述经历描述经历描述描述'
         }
-      ]
+      ],
+      style: {}
     },
     {
       id: 9,
@@ -154,7 +178,8 @@ let TEMPLATE_JSON: IResumeJson = {
             }
           ]
         }
-      ]
+      ],
+      style: {}
     },
     {
       id: 7,
@@ -172,7 +197,8 @@ let TEMPLATE_JSON: IResumeJson = {
             }
           ]
         }
-      ]
+      ],
+      style: {}
     },
     {
       id: 8,
@@ -190,7 +216,8 @@ let TEMPLATE_JSON: IResumeJson = {
             }
           ]
         }
-      ]
+      ],
+      style: {}
     },
 
     {
@@ -204,21 +231,24 @@ let TEMPLATE_JSON: IResumeJson = {
           awardsName: '奖项名称',
           awardsGrade: '获奖等级'
         }
-      ]
+      ],
+      style: {}
     },
     {
       id: 11,
       model: 'HOBBIES',
       show: true,
       title: '兴趣爱好',
-      content: '我喜欢打杂我喜欢打杂我喜欢打杂我喜欢打杂我喜欢打杂我喜欢打杂我喜欢打杂我喜欢打杂'
+      content: '我喜欢打杂我喜欢打杂我喜欢打杂我喜欢打杂我喜欢打杂我喜欢打杂我喜欢打杂我喜欢打杂',
+      style: {}
     },
     {
       id: 12,
       model: 'SELF_EVALUATION',
       show: true,
       title: '自我评价',
-      content: '我是一个没有责任感的人'
+      content: '我是一个没有责任感的人',
+      style: {}
     },
     {
       id: 13,
@@ -236,7 +266,8 @@ let TEMPLATE_JSON: IResumeJson = {
           worksLink: 'https://www.baidu.com',
           worksIntroduce: '这是一个千万级作品'
         }
-      ]
+      ],
+      style: {}
     }
   ]
 };

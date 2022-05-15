@@ -28,6 +28,7 @@
     "@element-plus/icons-vue": "^1.1.4",
     "@vueuse/core": "^8.2.0",
     "axios": "^0.26.1",
+    "colorpicker-v3": "^2.10.2",
     "element-plus": "^2.1.11",
     "html2canvas": "^1.4.1",
     "jspdf": "^1.4.1",

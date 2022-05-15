@@ -21,7 +21,12 @@
       <!-- 参数修改区域 -->
       <div class="config">
         <Title :title="useModel.title"></Title>
-        <component is="RESUME_TITLE"></component>
+        <component
+          :is="useModel.model"
+          :componentData="componentData"
+          v-if="useModel.model"
+        />
+        <el-empty v-else description="请选择简历模块" />
       </div>
     </div>
   </div>
@@ -40,7 +45,7 @@
   const componentName = ref<string>('web-develop'); // 模板名称
   const componentData = reactive<IResumeJson>(TEMPLATE_JSON); // 模板数据
 
-  // 属性面板标题
+  // 属性设置
   const useModel = useResumeModelStore();
 
   // 导出pdf
@@ -95,7 +100,6 @@
           width: 820px;
           min-height: 1160px;
           margin: 30px 0;
-          padding-top: 20px;
           display: table;
         }
       }
@@ -104,6 +108,8 @@
         width: 350px;
         background-color: #fff;
         overflow: auto;
+        display: flex;
+        flex-direction: column;
       }
     }
   }

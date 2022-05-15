@@ -3,6 +3,7 @@ import { defineStore } from 'pinia';
 interface IResumeModel {
   model: string;
   title: string;
+  index: number;
 }
 
 export const useResumeModelStore = defineStore({
@@ -10,12 +11,13 @@ export const useResumeModelStore = defineStore({
   state: (): IResumeModel => {
     return {
       model: '',
-      title: '设置'
+      title: '设置',
+      index: -1 // 选中的索引
     };
   },
   getters: {},
   actions: {
-    setResumeModel({ model, title }: IResumeModel) {
+    setResumeModel({ model, title, index }: IResumeModel) {
       // 直接通过this修改state
       // this.name = name;
       // this.sex = sex;
@@ -23,7 +25,8 @@ export const useResumeModelStore = defineStore({
       // 批量更新
       this.$patch({
         model,
-        title
+        title,
+        index
       });
     }
   }

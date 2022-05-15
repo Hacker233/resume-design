@@ -6,4 +6,5 @@ declare module '*.vue' {
   const component: DefineComponent<{}, {}, any>;
   export default component;
 }
-declare module 'jspdf'
+declare module 'jspdf';
+declare module 'colorpicker-v3';

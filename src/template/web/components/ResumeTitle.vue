@@ -17,7 +17,8 @@
   .title {
     width: 100%;
     min-height: 32px;
-    margin-bottom: 45px;
+    margin-bottom: v-bind('style.mBottom');
+    margin-top: v-bind('style.mTop');
     background-color: v-bind('style.backgroundColor');
     display: flex;
     .left {
@@ -28,10 +29,10 @@
     }
 
     .editor-resume {
-      color: v-bind('style.color');
+      color: v-bind('style.titleColor');
       outline: none;
-      font-weight: v-bind('style.fontWeight');
-      font-size: v-bind('style.fontSize');
+      font-weight: v-bind('style.titleFontWeight');
+      font-size: v-bind('style.titleFontSize');
       letter-spacing: 2px;
       word-break: break-all;
       width: 0;

@@ -2,9 +2,12 @@
 interface ISTYLE {
   height?: string;
   width?: string;
-  color?: string;
-  fontSize?: string;
-  fontWeight?: number;
+  titleColor?: string;
+  textColor?: string;
+  titleFontSize?: string;
+  textFontSize?: string;
+  titleFontWeight?: number;
+  textFontWeight?: number;
   backgroundColor?: string;
   align?: string;
   mTop?: string;
@@ -39,6 +42,16 @@ interface IBASEINFO {
   email: string; // 邮箱
   abstract: string; // 简介
   degree: string;
+  isShow: {
+    address: boolean; // 所在地址
+    avatar: boolean; // 头像地址
+    workService: boolean; // 工作年限
+    phoneNumber: boolean; // 联系电话
+    email: boolean; // 邮箱
+    abstract: boolean; // 简介
+    degree: boolean;
+  };
+  style: ISTYLE;
 }
 // 求职意向
 interface IJOBINTENTION {
@@ -51,6 +64,7 @@ interface IJOBINTENTION {
   expectSalary: string; // 期望薪资
   jobStatus: string; // 求职状态
   jobSearchType: string; // 求职类型
+  style: ISTYLE;
 }
 // 教育背景
 interface IEDUBACKGROUND {
@@ -65,6 +79,7 @@ interface IEDUBACKGROUND {
     degree: string; // 学历
     majorCourse: string; // 主修课程
   }>;
+  style: ISTYLE;
 }
 // 技能特长
 interface ISKILLSPECIALTIES {
@@ -77,6 +92,7 @@ interface ISKILLSPECIALTIES {
     proficiency: string; // 熟练度
     introduce: string; // 介绍
   }>;
+  style: ISTYLE;
 }
 
 // 校园经历
@@ -91,6 +107,7 @@ interface ICAMPUSEXPERIENCE {
     campusDuty: string;
     campusContent: string;
   }>;
+  style: ISTYLE;
 }
 
 // 项目经验
@@ -107,6 +124,7 @@ interface IPROJECTEXPERIENCE {
       content: '该项目是一个打杂项目';
     }>;
   }>;
+  style: ISTYLE;
 }
 // 实习经验
 interface IINTERNSHIPEXPERIENCE {
@@ -122,6 +140,7 @@ interface IINTERNSHIPEXPERIENCE {
       content: string;
     }>;
   }>;
+  style: ISTYLE;
 }
 // 工作经验
 interface IWORKEXPERIENCE {
@@ -137,6 +156,7 @@ interface IWORKEXPERIENCE {
       content: string;
     }>;
   }>;
+  style: ISTYLE;
 }
 // 所获奖项
 interface IAWARDS {
@@ -149,6 +169,7 @@ interface IAWARDS {
     awardsName: string;
     awardsGrade: string;
   }>;
+  style: ISTYLE;
 }
 // 兴趣爱好
 interface IHOBBIES {
@@ -157,6 +178,7 @@ interface IHOBBIES {
   show: boolean;
   title: string;
   content: string;
+  style: ISTYLE;
 }
 // 自我评价
 interface ISELFEVALUATION {
@@ -165,18 +187,20 @@ interface ISELFEVALUATION {
   show: boolean;
   title: string;
   content: string;
+  style: ISTYLE;
 }
 // 作品展示
 interface IWORKSDISPLAY {
   id: number;
   model: string;
-  show: true;
+  show: boolean;
   title: string;
   LIST: Array<{
     worksName: string;
     worksLink: string;
     worksIntroduce: string;
   }>;
+  style: ISTYLE;
 }
 // resume格式接口
 interface IResumeJson {
