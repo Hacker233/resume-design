@@ -1,10 +1,21 @@
 import { defineStore } from 'pinia';
+import { IResumeJson } from '@/types/model';
+import TEMPLATE_JSON from '@/schema/model';
 
 interface IResumeModel {
   model: string;
   title: string;
   index: number;
 }
+
+export const useResumeJsonStore = defineStore({
+  id: 'resumeJson',
+  state: (): IResumeJson => {
+    return TEMPLATE_JSON;
+  },
+  getters: {},
+  actions: {},
+});
 
 export const useResumeModelStore = defineStore({
   id: 'resumeModel', // id必填，且需要唯一

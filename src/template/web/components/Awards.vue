@@ -2,10 +2,10 @@
 <template>
   <div class="awards">
     <!-- 标题 -->
-    <model-title :title="awards.title"></model-title>
+    <model-title :title="modelData.title"></model-title>
     <!-- 荣誉奖项 -->
     <div class="awards-list">
-      <ul v-for="(item, index) in awards.LIST" :key="index">
+      <ul v-for="(item, index) in modelData.LIST" :key="index">
         <!-- 获奖日期 -->
         <li>{{ item.date }}</li>
         <!-- 奖项名称 -->
@@ -20,7 +20,7 @@
   import { IAWARDS } from '@/types/model';
   import ModelTitle from './ModelTitle.vue';
   defineProps<{
-    awards: IAWARDS;
+    modelData: IAWARDS;
   }>();
 </script>
 <style lang="less" scoped>

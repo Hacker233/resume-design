@@ -43,6 +43,7 @@ interface IBASEINFO {
   abstract: string; // 简介
   degree: string;
   isShow: {
+    age: boolean;
     address: boolean; // 所在地址
     avatar: boolean; // 头像地址
     workService: boolean; // 工作年限
@@ -64,6 +65,13 @@ interface IJOBINTENTION {
   expectSalary: string; // 期望薪资
   jobStatus: string; // 求职状态
   jobSearchType: string; // 求职类型
+  isShow: {
+    intendedPositions: boolean,
+    intendedCity: boolean,
+    expectSalary: boolean,
+    jobStatus: boolean,
+    jobSearchType: boolean,
+  },
   style: ISTYLE;
 }
 // 教育背景
@@ -73,12 +81,18 @@ interface IEDUBACKGROUND {
   show: boolean;
   title: string;
   LIST: Array<{
-    date: string;
+    date: Array<string>;
     schoolName: string; // 学校名称
     specialized: string; // 专业
     degree: string; // 学历
     majorCourse: string; // 主修课程
   }>;
+  isShow: {
+    date: boolean,
+    schoolName: boolean,
+    specialized: boolean,
+    degree: boolean
+  },
   style: ISTYLE;
 }
 // 技能特长

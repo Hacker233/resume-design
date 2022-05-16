@@ -33,13 +33,14 @@ let TEMPLATE_JSON: IResumeJson = {
       abstract: '我是一个没有感情的工作机器', // 简介
       degree: '本科',
       isShow: {
+        age: true,
         address: true, // 所在地址
         avatar: true, // 头像地址
         workService: true, // 工作年限
         phoneNumber: true, // 联系电话
         email: true, // 邮箱
         abstract: true, // 简介
-        degree: true,
+        degree: true
       },
       style: {
         titleColor: '#121c26',
@@ -60,7 +61,20 @@ let TEMPLATE_JSON: IResumeJson = {
       expectSalary: '8000-10000', // 期望薪资
       jobStatus: '随时入职', // 求职状态
       jobSearchType: '求职类型',
-      style: {}
+      isShow: {
+        intendedPositions: true,
+        intendedCity: true,
+        expectSalary: true,
+        jobStatus: true,
+        jobSearchType: true
+      },
+      style: {
+        textColor: '#757575',
+        textFontSize: '14px',
+        textFontWeight: 500,
+        mBottom: '45px',
+        mTop: '0px'
+      }
     },
     {
       id: 4,
@@ -69,21 +83,33 @@ let TEMPLATE_JSON: IResumeJson = {
       title: '教育背景',
       LIST: [
         {
-          date: '2015.5-2019.6',
+          date: ['2015-5','2019-6'],
           schoolName: '野鸡大学', // 学校名称
           specialized: '通信工程', // 专业
           degree: '本科', // 学历
           majorCourse: '主修计算机技术、Java、c++等等' // 主修课程
         },
         {
-          date: '2015.5-2019.6',
+          date: ['2015-5','2019-6'],
           schoolName: '野鸡大学', // 学校名称
           specialized: '通信工程', // 专业
           degree: '本科', // 学历
           majorCourse: '主修计算机技术、Java、c++等等' // 主修课程
         }
       ],
-      style: {}
+      isShow: {
+        date: true,
+        schoolName: true,
+        specialized: true,
+        degree: true
+      },
+      style: {
+        textColor: '#666',
+        textFontSize: '14px',
+        textFontWeight: 600,
+        mBottom: '45px',
+        mTop: '0px'
+      }
     },
     {
       id: 5,

@@ -2,7 +2,7 @@
   <div class="model-list-box">
     <ul class="model-ul">
       <li
-        v-for="(item, index) in componentData.LIST"
+        v-for="(item, index) in LIST"
         :key="item.id"
         :class="[{ active: currentIndex === index }]"
       >
@@ -17,7 +17,7 @@
           /></el-icon>
           <el-icon
             color="#409eff"
-            :class="['down', { 'not-allow': index === componentData.LIST.length - 1 }]"
+            :class="['down', { 'not-allow': index === LIST.length - 1 }]"
             @click="down(index)"
             ><upload
           /></el-icon>
@@ -27,15 +27,13 @@
   </div>
 </template>
 <script setup lang="ts">
-  import { IResumeJson } from '@/types/model';
-  import { useResumeModelStore } from '@/store/resume';
+  import { useResumeModelStore, useResumeJsonStore } from '@/store/resume';
   import { ref } from 'vue';
-  const props = defineProps<{
-    componentData: IResumeJson;
-  }>();
-  const resumeModel = useResumeModelStore();
+  // 列表数据
+  const { LIST } = useResumeJsonStore();
 
   // 选中模块
+  const resumeModel = useResumeModelStore();
   let currentIndex = ref<number>(-1);
   const selectModel = (item: any, index: number) => {
     currentIndex.value = index;
@@ -49,23 +47,21 @@
 
   // 下移模块
   const down = (index: number): void => {
-    if (index === props.componentData.LIST.length - 1) {
+    if (index === LIST.length - 1) {
       return;
     }
-    let temp = props.componentData.LIST[index];
-    props.componentData.LIST[index] = props.componentData.LIST[index + 1];
-    props.componentData.LIST[index + 1] = temp;
-    console.log(props.componentData);
+    let temp = LIST[index];
+    LIST[index] = LIST[index + 1];
+    LIST[index + 1] = temp;
   };
   // 上移模块
   const up = (index: number): void => {
     if (index === 0) {
       return;
     }
-    let temp = props.componentData.LIST[index];
-    props.componentData.LIST[index] = props.componentData.LIST[index - 1];
-    props.componentData.LIST[index - 1] = temp;
-    console.log(props.componentData);
+    let temp = LIST[index];
+    LIST[index] = LIST[index - 1];
+    LIST[index - 1] = temp;
   };
 </script>
 <style lang="less" scoped>

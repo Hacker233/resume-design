@@ -9,23 +9,19 @@
       <!-- 左侧添加模块区域 -->
       <div class="left">
         <Title title="模块选择"></Title>
-        <model-list :componentData="componentData"></model-list>
+        <model-list></model-list>
       </div>
       <!-- 预览区域 -->
       <div class="center">
         <div class="design" ref="html2Pdf" v-resize>
-          <component :is="componentName" :componentData="componentData" />
+          <component :is="componentName" />
           <!-- <div class="lines" v-for></div> -->
         </div>
       </div>
       <!-- 参数修改区域 -->
       <div class="config">
-        <Title :title="useModel.title"></Title>
-        <component
-          :is="useModel.model"
-          :componentData="componentData"
-          v-if="useModel.model"
-        />
+        <Title></Title>
+        <component :is="useModel.model" v-if="useModel.model" />
         <el-empty v-else description="请选择简历模块" />
       </div>
     </div>
@@ -33,17 +29,14 @@
 </template>
 
 <script setup lang="ts">
-  import { reactive, ref } from 'vue';
+  import { ref } from 'vue';
   import Title from './components/Title.vue';
   import ModelList from './components/ModelList.vue';
 
-  import TEMPLATE_JSON from '@/schema/model';
-  import { IResumeJson } from '@/types/model'; // JSON数据格式
   import downloadPDF from '@/utils/html2pdf'; // 下载为pdf
   import { useResumeModelStore } from '@/store/resume';
 
   const componentName = ref<string>('web-develop'); // 模板名称
-  const componentData = reactive<IResumeJson>(TEMPLATE_JSON); // 模板数据
 
   // 属性设置
   const useModel = useResumeModelStore();
@@ -110,6 +103,7 @@
         overflow: auto;
         display: flex;
         flex-direction: column;
+        height: calc(100vh - 50px);
       }
     }
   }

@@ -2,18 +2,18 @@
 <template>
   <div class="skill-specialties">
     <!-- 标题 -->
-    <model-title :title="skillSpecialties.title"></model-title>
+    <model-title :title="modelData.title"></model-title>
     <!-- 技能特长 -->
     <ul>
       <!-- 左边部分 -->
       <div class="left">
-        <template v-for="(item, index) in skillSpecialties.LIST" :key="index">
+        <template v-for="(item, index) in modelData.LIST" :key="index">
           <li v-if="index % 2 === 0">{{ item.introduce }}</li>
         </template>
       </div>
       <!-- 右边部分 -->
       <div class="right">
-        <template v-for="(item, index) in skillSpecialties.LIST" :key="index">
+        <template v-for="(item, index) in modelData.LIST" :key="index">
           <li v-if="index % 2 != 0">{{ item.introduce }}</li>
         </template>
       </div>
@@ -24,7 +24,7 @@
   import { ISKILLSPECIALTIES } from '@/types/model';
   import ModelTitle from './ModelTitle.vue';
   defineProps<{
-    skillSpecialties: ISKILLSPECIALTIES;
+    modelData: ISKILLSPECIALTIES;
   }>();
 </script>
 <style lang="less" scoped>

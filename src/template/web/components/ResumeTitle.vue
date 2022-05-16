@@ -1,16 +1,16 @@
 <template>
   <div class="title">
     <div class="left"></div>
-    <div class="editor-resume">{{ resumeTitle.title }}</div>
+    <div class="editor-resume">{{ modelData.title }}</div>
   </div>
 </template>
 <script lang="ts" setup>
   import { IRESUMETITLE, ISTYLE } from '@/types/model';
   import { reactive } from 'vue';
   const props = defineProps<{
-    resumeTitle: IRESUMETITLE;
+    modelData: IRESUMETITLE;
   }>();
-  const style = reactive<ISTYLE>(props.resumeTitle.style);
+  const style = reactive<ISTYLE>(props.modelData.style);
 </script>
 
 <style lang="less" scoped>

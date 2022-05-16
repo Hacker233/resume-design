@@ -2,10 +2,10 @@
 <template>
   <div class="internship-experience">
     <!-- 标题 -->
-    <model-title :title="internshipExperience.title"></model-title>
+    <model-title :title="modelData.title"></model-title>
     <!-- 校园经历 -->
     <div class="internship-experience-list">
-      <div class="list" v-for="(item, index) in internshipExperience.LIST" :key="index">
+      <div class="list" v-for="(item, index) in modelData.LIST" :key="index">
         <ul>
           <!-- 经历时间 -->
           <li class="list-title">{{ item.date }}</li>
@@ -31,7 +31,7 @@
   import { IINTERNSHIPEXPERIENCE } from '@/types/model';
   import ModelTitle from './ModelTitle.vue';
   defineProps<{
-    internshipExperience: IINTERNSHIPEXPERIENCE;
+    modelData: IINTERNSHIPEXPERIENCE;
   }>();
 </script>
 <style lang="less" scoped>

@@ -2,10 +2,10 @@
 <template>
   <div class="works-display">
     <!-- 标题 -->
-    <model-title :title="worksDisplay.title"></model-title>
+    <model-title :title="modelData.title"></model-title>
     <!-- 作品展示 -->
     <ul class="works-display-list">
-      <li v-for="(item, index) in worksDisplay.LIST" :key="index">
+      <li v-for="(item, index) in modelData.LIST" :key="index">
         <h1>{{ item.worksName }}</h1>
         <a :href="item.worksLink">{{ item.worksLink }}</a>
       </li>
@@ -16,7 +16,7 @@
   import { IWORKSDISPLAY } from '@/types/model';
   import ModelTitle from './ModelTitle.vue';
   defineProps<{
-    worksDisplay: IWORKSDISPLAY;
+    modelData: IWORKSDISPLAY;
   }>();
 </script>
 <style lang="less" scoped>

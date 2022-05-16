@@ -2,10 +2,10 @@
 <template>
   <div class="self-eavluation">
     <!-- 标题 -->
-    <model-title :title="selfEvaluation.title"></model-title>
+    <model-title :title="modelData.title"></model-title>
     <!-- 兴趣爱好 -->
     <div class="self-eavluation-content">
-      <p>{{ selfEvaluation.content }}</p>
+      <p>{{ modelData.content }}</p>
     </div>
   </div>
 </template>
@@ -13,7 +13,7 @@
   import { ISELFEVALUATION } from '@/types/model';
   import ModelTitle from './ModelTitle.vue';
   defineProps<{
-    selfEvaluation: ISELFEVALUATION;
+    modelData: ISELFEVALUATION;
   }>();
 </script>
 <style lang="less" scoped>

@@ -13,6 +13,8 @@ import elementIcons from '@/components/SvgIcon/svgicon';
 // 颜色选择控件
 import ColorPicker from 'colorpicker-v3'; // 注册组件
 import 'colorpicker-v3/style.css'; // 引入样式文件
+// 日期处理
+import moment from 'moment';
 
 // 创建vue实例
 const app = createApp(App);
@@ -23,6 +25,7 @@ app.use(component);
 app.use(elementIcons);
 app.use(ColorPicker);
 app.component('SvgIcon', SvgIcon);
+app.config.globalProperties.$moment = moment;
 
 // 挂载实例
 app.mount('#app');

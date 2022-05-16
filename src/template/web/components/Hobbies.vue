@@ -2,10 +2,10 @@
 <template>
   <div class="hobbies">
     <!-- 标题 -->
-    <model-title :title="hobbies.title"></model-title>
+    <model-title :title="modelData.title"></model-title>
     <!-- 兴趣爱好 -->
     <div class="hobbies-content">
-      <p>{{ hobbies.content }}</p>
+      <p>{{ modelData.content }}</p>
     </div>
   </div>
 </template>
@@ -13,7 +13,7 @@
   import { IHOBBIES } from '@/types/model';
   import ModelTitle from './ModelTitle.vue';
   defineProps<{
-    hobbies: IHOBBIES;
+    modelData: IHOBBIES;
   }>();
 </script>
 <style lang="less" scoped>

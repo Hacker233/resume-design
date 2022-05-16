@@ -1,19 +1,19 @@
 <template>
   <div class="job-intention">
     <!-- 标题 -->
-    <model-title :title="jobIntention.title"></model-title>
+    <model-title :title="modelData.title"></model-title>
     <!-- 求职意向 -->
     <ul>
       <!-- 求职类型 -->
-      <li>{{jobIntention.jobSearchType}}</li>
+      <li v-show="modelData.isShow.jobSearchType">{{modelData.jobSearchType}}</li>
       <!-- 意向岗位 -->
-      <li>{{jobIntention.intendedPositions}}</li>
+      <li v-show="modelData.isShow.intendedPositions">{{modelData.intendedPositions}}</li>
       <!-- 意向城市 -->
-      <li>{{jobIntention.intendedCity}}</li>
+      <li v-show="modelData.isShow.intendedCity">{{modelData.intendedCity}}</li>
       <!-- 期望薪资 -->
-      <li>{{jobIntention.expectSalary}}</li>
+      <li v-show="modelData.isShow.expectSalary">{{modelData.expectSalary}}</li>
       <!-- 求职状态 -->
-      <li>{{jobIntention.jobStatus}}</li>
+      <li v-show="modelData.isShow.jobStatus">{{modelData.jobStatus}}</li>
     </ul>
   </div>
 </template>
@@ -21,21 +21,23 @@
   import { IJOBINTENTION } from '@/types/model';
   import ModelTitle from './ModelTitle.vue';
   defineProps<{
-    jobIntention: IJOBINTENTION;
+    modelData: IJOBINTENTION;
   }>();
 </script>
 <style lang="less" scoped>
   .job-intention {
     padding: 0 40px;
-    margin-bottom: 45px;
+    margin-top: v-bind('modelData.style.mTop');
+    margin-bottom: v-bind('modelData.style.mBottom');
     ul {
       display: flex;
       margin-top: 25px;
       justify-content: space-between;
       li {
         list-style: none;
-        font-size: @primary-text-font-size;
-        color: @primary-text-color;
+        font-size: v-bind('modelData.style.textFontSize');
+        color: v-bind('modelData.style.textColor');
+        font-weight: v-bind('modelData.style.textFontWeight');
         letter-spacing: 2px;
       }
     }

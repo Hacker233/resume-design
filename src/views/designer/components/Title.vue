@@ -4,15 +4,9 @@
   </div>
 </template>
 <script setup lang="ts">
-withDefaults(defineProps<{
-  title?: string
-}>(),
-  {
-    title: '模块选择'
-  }
-)
-
-
+import { useResumeModelStore } from '@/store/resume';
+import { storeToRefs } from 'pinia';
+const { title } = storeToRefs(useResumeModelStore())
 </script>
 <style lang="less" scoped>
 .title {

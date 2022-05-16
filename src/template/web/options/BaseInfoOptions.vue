@@ -38,7 +38,7 @@
       </el-form>
     </el-tab-pane>
     <el-tab-pane label="数据配置" name="data">
-      <el-form label-width="100px" label-position="left">
+      <el-form label-width="70px" label-position="left">
         <el-form-item label="姓名:">
           <el-input type="text" v-model="modelItem.name" maxlength="15" show-word-limit />
         </el-form-item>
@@ -50,7 +50,39 @@
             show-word-limit
             :rows="4"
           />
-          <el-switch v-model="modelItem.isShow.abstract"/>
+          <el-switch v-model="modelItem.isShow.abstract" />
+        </el-form-item>
+        <el-form-item label="年龄:">
+          <el-input type="text" v-model="modelItem.age" maxlength="2" show-word-limit />
+          <el-switch v-model="modelItem.isShow.age" />
+        </el-form-item>
+        <el-form-item label="地址:">
+          <el-input type="text" v-model="modelItem.address" maxlength="30" show-word-limit />
+          <el-switch v-model="modelItem.isShow.address" />
+        </el-form-item>
+        <el-form-item label="工作经验:">
+          <el-input type="text" v-model="modelItem.workService" maxlength="10" show-word-limit />
+          <el-switch v-model="modelItem.isShow.workService" />
+        </el-form-item>
+        <el-form-item label="联系方式:">
+          <el-input type="text" v-model="modelItem.phoneNumber" maxlength="11" show-word-limit />
+          <el-switch v-model="modelItem.isShow.phoneNumber" />
+        </el-form-item>
+        <el-form-item label="邮箱地址:">
+          <el-input type="text" v-model="modelItem.email" maxlength="30" show-word-limit />
+          <el-switch v-model="modelItem.isShow.email" />
+        </el-form-item>
+        <el-form-item label="头像上传:">
+          <el-upload
+            class="avatar-uploader"
+            action=""
+            :show-file-list="false"
+            :before-upload="beforeAvatarUpload"
+          >
+            <img v-if="imageUrl" :src="imageUrl" class="avatar" />
+            <el-icon v-else class="avatar-uploader-icon"><Plus /></el-icon>
+          </el-upload>
+          <el-switch v-model="modelItem.isShow.avatar" />
         </el-form-item>
       </el-form>
     </el-tab-pane>
@@ -58,17 +90,16 @@
 </template>
 <script setup lang="ts">
   import { reactive, ref } from 'vue';
-  import { IBASEINFO, IResumeJson } from '@/types/model';
-  import { useResumeModelStore } from '@/store/resume';
-  import { ISTYLE } from '../../../types/model';
-  const props = defineProps<{
-    componentData: IResumeJson;
-  }>();
+  import { IBASEINFO } from '@/types/model';
+  import { useResumeModelStore, useResumeJsonStore } from '@/store/resume';
+  import { ElMessage } from 'element-plus';
+  import type { UploadProps } from 'element-plus';
   // store
   const useModel = useResumeModelStore();
+  const useResumeJson = useResumeJsonStore();
 
   // 选中的模块
-  const modelItem = reactive<IBASEINFO>(props.componentData.LIST[useModel.index] as IBASEINFO);
+  const modelItem = reactive<IBASEINFO>(useResumeJson.LIST[useModel.index] as IBASEINFO);
   let activeName = ref('style');
 
   // 字体大小
@@ -120,6 +151,20 @@
   /**
    * 数据配置
    */
+  // 头像设置
+  const imageUrl = ref(modelItem.avatar);
+  const beforeAvatarUpload: UploadProps['beforeUpload'] = (rawFile) => {
+    if (rawFile.type !== 'image/jpeg') {
+      ElMessage.error('Avatar picture must be JPG format!');
+      return false;
+    } else if (rawFile.size / 1024 / 1024 > 2) {
+      ElMessage.error('Avatar picture size can not exceed 2MB!');
+      return false;
+    }
+    imageUrl.value = URL.createObjectURL(rawFile);
+    modelItem.avatar = imageUrl.value;
+    return false;
+  };
 </script>
 <script lang="ts">
   export default {
@@ -127,20 +172,31 @@
   };
 </script>
 <style lang="less">
-  .el-tabs {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-  }
-  .el-tabs__content {
-    flex: 1;
-    padding: 20px 30px;
+  @import '../style/options.less';
+  .avatar-uploader .el-upload {
+    border: 1px dashed var(--el-border-color);
+    border-radius: 6px;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition: var(--el-transition-duration-fast);
+    height: 150px;
+    width: 150px;
+    img {
+      width: 100%;
+      height: 100%;
+    }
   }
 
-  .zs-color-picker-panel__visible {
-    z-index: 10 !important;
+  .avatar-uploader .el-upload:hover {
+    border-color: var(--el-color-primary);
   }
-  .el-form-item__content {
-    flex-wrap: nowrap;
+
+  .el-icon.avatar-uploader-icon {
+    font-size: 28px;
+    color: #8c939d;
+    width: 178px;
+    height: 178px;
+    text-align: center;
   }
 </style>
