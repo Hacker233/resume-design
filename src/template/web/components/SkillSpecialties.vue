@@ -30,7 +30,8 @@
 <style lang="less" scoped>
   .skill-specialties {
     padding: 0 40px;
-    margin-bottom: 45px;
+    margin-top: v-bind('modelData.style.mTop');
+    margin-bottom: v-bind('modelData.style.mBottom');
     ul {
       display: flex;
       flex-wrap: wrap;
@@ -40,8 +41,9 @@
         margin-top: 25px;
         li {
           letter-spacing: 2px;
-          font-size: @primary-text-font-size;
-          color: @primary-text-color;
+          font-size: v-bind('modelData.style.textFontSize');
+          color: v-bind('modelData.style.textColor');
+          font-weight: v-bind('modelData.style.textFontWeight');
           line-height: 1.5;
           &:not(:last-child) {
             margin-bottom: 10px;

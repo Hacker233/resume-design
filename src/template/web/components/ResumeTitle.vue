@@ -29,10 +29,10 @@
     }
 
     .editor-resume {
-      color: v-bind('style.titleColor');
+      color: v-bind('style.textColor');
       outline: none;
-      font-weight: v-bind('style.titleFontWeight');
-      font-size: v-bind('style.titleFontSize');
+      font-weight: v-bind('style.textFontWeight');
+      font-size: v-bind('style.textFontSize');
       letter-spacing: 2px;
       word-break: break-all;
       width: 0;

@@ -48,7 +48,8 @@
     name: 'web-develop'
   };
 </script>
-<style lang="less" scoped>
+<style lang="less">
+@import './style/options.less';
   .model-bottom {
     height: 12px;
     background-color: #254665;

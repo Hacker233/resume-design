@@ -8,7 +8,11 @@
       <div class="list" v-for="(item, index) in modelData.LIST" :key="index">
         <ul>
           <!-- 经历时间 -->
-          <li class="list-title">{{ item.date }}</li>
+          <li class="list-title"
+            >{{ moment(new Date(item.date[0])).format('YYYY.MM').split('-').join('.') }}
+            -
+            {{ moment(new Date(item.date[1])).format('YYYY.MM').split('-').join('.') }}</li
+          >
           <!-- 公司名称 -->
           <li class="list-title">{{ item.companyName }}</li>
           <!-- 主要职责 -->
@@ -29,7 +33,11 @@
 </template>
 <script setup lang="ts">
   import { IINTERNSHIPEXPERIENCE } from '@/types/model';
+import { ComponentInternalInstance, getCurrentInstance } from 'vue';
   import ModelTitle from './ModelTitle.vue';
+  // 获取全局挂载的moment对象
+  const instance = getCurrentInstance() as ComponentInternalInstance;
+  const moment = instance.appContext.config.globalProperties.$moment;
   defineProps<{
     modelData: IINTERNSHIPEXPERIENCE;
   }>();
@@ -37,7 +45,8 @@
 <style lang="less" scoped>
   .internship-experience {
     padding: 0 40px;
-    margin-bottom: 45px;
+    margin-bottom: v-bind('modelData.style.mBottom');
+    margin-top: v-bind('modelData.style.mTop');
     .internship-experience-list {
       margin-top: 25px;
       .list {
@@ -52,9 +61,9 @@
           margin-bottom: 12px;
           .list-title {
             list-style: none;
-            font-size: @primary-text-font-size;
-            color: @primary-sub-title-color;
-            font-weight: bold;
+            font-size: v-bind('modelData.style.titleFontSize');
+            color: v-bind('modelData.style.titleColor');
+            font-weight: v-bind('modelData.style.titleFontWeight');
             letter-spacing: 2px;
           }
         }
@@ -63,8 +72,9 @@
           .left {
             width: 20%;
             letter-spacing: 2px;
-            font-size: @primary-text-font-size;
-            color: @primary-sub-title-color;
+            font-size: v-bind('modelData.style.textFontSize');
+            color: v-bind('modelData.style.textColor');
+            font-weight: v-bind('modelData.style.textFontWeight');
             font-weight: bold;
           }
           .content-list {
@@ -74,8 +84,9 @@
               flex-direction: column;
               li {
                 letter-spacing: 2px;
-                font-size: @primary-text-font-size;
-                color: @primary-text-color;
+                font-size: v-bind('modelData.style.textFontSize');
+                color: v-bind('modelData.style.textColor');
+                font-weight: v-bind('modelData.style.textFontWeight');
                 line-height: 1.5;
                 &:not(:last-child) {
                   margin-bottom: 6px;

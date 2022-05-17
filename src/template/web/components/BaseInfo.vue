@@ -64,14 +64,16 @@
       }
       p {
         color: v-bind('modelData.style.textColor');
-        font-size: 14px;
+        font-size: v-bind('modelData.style.textFontSize');
+        font-weight: v-bind('modelData.style.textFontWeight');
         margin-bottom: 20px;
       }
       ul {
         display: flex;
         li {
           list-style: none;
-          font-size: @primary-text-font-size;
+          font-size: v-bind('modelData.style.textFontSize');
+          font-weight: v-bind('modelData.style.textFontWeight');
           padding-right: 12px;
           height: 20px;
           margin-right: 10px;

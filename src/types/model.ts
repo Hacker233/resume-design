@@ -66,12 +66,12 @@ interface IJOBINTENTION {
   jobStatus: string; // 求职状态
   jobSearchType: string; // 求职类型
   isShow: {
-    intendedPositions: boolean,
-    intendedCity: boolean,
-    expectSalary: boolean,
-    jobStatus: boolean,
-    jobSearchType: boolean,
-  },
+    intendedPositions: boolean;
+    intendedCity: boolean;
+    expectSalary: boolean;
+    jobStatus: boolean;
+    jobSearchType: boolean;
+  };
   style: ISTYLE;
 }
 // 教育背景
@@ -88,11 +88,11 @@ interface IEDUBACKGROUND {
     majorCourse: string; // 主修课程
   }>;
   isShow: {
-    date: boolean,
-    schoolName: boolean,
-    specialized: boolean,
-    degree: boolean
-  },
+    date: boolean;
+    schoolName: boolean;
+    specialized: boolean;
+    degree: boolean;
+  };
   style: ISTYLE;
 }
 // 技能特长
@@ -116,11 +116,17 @@ interface ICAMPUSEXPERIENCE {
   show: boolean;
   title: string;
   LIST: Array<{
-    date: string; // 经历时间
+    date: Array<string>; // 经历时间
     campusBriefly: string;
     campusDuty: string;
     campusContent: string;
   }>;
+  isShow: {
+    date: boolean; // 经历时间
+    campusBriefly: boolean;
+    campusDuty: boolean;
+    campusContent: boolean;
+  };
   style: ISTYLE;
 }
 
@@ -147,13 +153,18 @@ interface IINTERNSHIPEXPERIENCE {
   show: boolean;
   title: string;
   LIST: Array<{
-    date: string; // 实习时间
+    date: Array<string>; // 实习时间
     companyName: string; // 公司名称
     posts: string; // 职位
     jobContent: Array<{
       content: string;
     }>;
   }>;
+  isShow: {
+    date: boolean;
+    companyName: boolean;
+    posts: boolean;
+  };
   style: ISTYLE;
 }
 // 工作经验

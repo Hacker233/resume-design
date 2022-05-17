@@ -10,9 +10,9 @@ let TEMPLATE_JSON: IResumeJson = {
       show: true,
       title: '我的简历',
       style: {
-        titleColor: '#fff',
-        titleFontSize: '16px',
-        titleFontWeight: 600,
+        textColor: '#fff',
+        textFontSize: '16px',
+        textFontWeight: 600,
         backgroundColor: '#000',
         mBottom: '45px',
         mTop: '15px'
@@ -45,7 +45,9 @@ let TEMPLATE_JSON: IResumeJson = {
       style: {
         titleColor: '#121c26',
         titleFontSize: '30px',
+        textFontSize: '14px',
         titleFontWeight: 500,
+        textFontWeight: 500,
         textColor: '#7c7b7b',
         mBottom: '50px',
         mTop: '0px'
@@ -83,14 +85,14 @@ let TEMPLATE_JSON: IResumeJson = {
       title: '教育背景',
       LIST: [
         {
-          date: ['2015-5','2019-6'],
+          date: ['2015-5', '2019-6'],
           schoolName: '野鸡大学', // 学校名称
           specialized: '通信工程', // 专业
           degree: '本科', // 学历
           majorCourse: '主修计算机技术、Java、c++等等' // 主修课程
         },
         {
-          date: ['2015-5','2019-6'],
+          date: ['2015-5', '2019-6'],
           schoolName: '野鸡大学', // 学校名称
           specialized: '通信工程', // 专业
           degree: '本科', // 学历
@@ -138,7 +140,13 @@ let TEMPLATE_JSON: IResumeJson = {
           introduce: '熟练掌握该项技术' // 介绍
         }
       ],
-      style: {}
+      style: {
+        textColor: '#757575',
+        textFontSize: '14px',
+        textFontWeight: 500,
+        mBottom: '45px',
+        mTop: '0px'
+      }
     },
     {
       id: 6,
@@ -147,20 +155,35 @@ let TEMPLATE_JSON: IResumeJson = {
       title: '校园经历',
       LIST: [
         {
-          date: '2021.9-2022.10', // 经历时间
+          date: ['2021-9', '2022-10'], // 经历时间
           campusBriefly: '经历简要，如社团名称',
           campusDuty: '主要职责',
           campusContent: '经历描述'
         },
         {
-          date: '2021.9-2022.10', // 经历时间
+          date: ['2021-9', '2022-10'], // 经历时间
           campusBriefly: '经历简要，如社团名称',
           campusDuty: '主要职责',
           campusContent:
             '经历经历描述经历描述经历描经历描述经历描述经历描述经历描述经历描述述经历描述经历描述经历描述经历描述经历描述描述'
         }
       ],
-      style: {}
+      isShow: {
+        date: true, // 经历时间
+        campusBriefly: true,
+        campusDuty: true,
+        campusContent: true
+      },
+      style: {
+        titleColor: '#666',
+        titleFontSize: '14px',
+        titleFontWeight: 600,
+        textColor: '#757575',
+        textFontSize: '14px',
+        textFontWeight: 500,
+        mBottom: '45px',
+        mTop: '0px'
+      }
     },
     {
       id: 9,
@@ -169,7 +192,7 @@ let TEMPLATE_JSON: IResumeJson = {
       title: '实习经验',
       LIST: [
         {
-          date: '2021.9-2022.10', // 实习时间
+          date: ['2021-9', '2022-10'], // 实习时间
           companyName: '业绩公司', // 公司名称
           posts: '前端开发工程师', // 职位
           jobContent: [
@@ -186,7 +209,7 @@ let TEMPLATE_JSON: IResumeJson = {
           ]
         },
         {
-          date: '2021.9-2022.10', // 实习时间
+          date: ['2021-9', '2022-10'], // 实习时间
           companyName: '业绩公司', // 公司名称
           posts: '前端开发工程师', // 职位
           jobContent: [
@@ -203,7 +226,21 @@ let TEMPLATE_JSON: IResumeJson = {
           ]
         }
       ],
-      style: {}
+      isShow: {
+        date: true,
+        companyName: true,
+        posts: true
+      },
+      style: {
+        titleColor: '#666',
+        titleFontSize: '14px',
+        titleFontWeight: 600,
+        textColor: '#757575',
+        textFontSize: '14px',
+        textFontWeight: 500,
+        mBottom: '45px',
+        mTop: '0px'
+      }
     },
     {
       id: 7,

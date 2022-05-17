@@ -5,13 +5,19 @@ import ResumeTitleOptionsVue from '@/template/web/options/ResumeTitleOptions.vue
 import BaseInfoOptionsVue from '@/template/web/options/BaseInfoOptions.vue';
 import JobIntentionOptionsVue from '@/template/web/options/JobIntentionOptions.vue';
 import EduBackgroundOptionsVue from '@/template/web/options/EduBackgroundOptions.vue';
+import SkillSpecialtiesOptionsVue from '@/template/web/options/SkillSpecialtiesOptions.vue';
+import CampusExperienceOptionsVue from '@/template/web/options/CampusExperienceOptions.vue';
+import InternshipExperienceOptionsVue from '@/template/web/options/InternshipExperienceOptions.vue';
 
 const componentList: Array<any> = [
   WEB_DEVELOP,
   ResumeTitleOptionsVue,
   BaseInfoOptionsVue,
   JobIntentionOptionsVue,
-  EduBackgroundOptionsVue
+  EduBackgroundOptionsVue,
+  SkillSpecialtiesOptionsVue,
+  CampusExperienceOptionsVue,
+  InternshipExperienceOptionsVue
 ];
 
 export default {
