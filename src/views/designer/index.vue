@@ -15,11 +15,18 @@
       <div class="center">
         <div class="design" ref="html2Pdf">
           <component :is="componentName" />
-          <div
-            class="lines"
-            v-for="(item, index) in linesNumber"
-            :style="{ top: `${(index + 1) * 1160}px` }"
-          ></div>
+          <!-- 分页线 -->
+          <template v-if="linesNumber > 0">
+            <div
+              class="lines"
+              v-for="(item, index) in linesNumber"
+              :ref="(el) => setLinesRef(el, index)"
+              :style="{ top: `${1128 + 1132 * index}px` }"
+            >
+              <p class="tips">如果分割线遮挡内容，请通过调整模块上下边距以显示内容！</p>
+              <p class="page">{{ index + 1 }}/{{ linesNumber }}</p>
+            </div>
+          </template>
         </div>
       </div>
       <!-- 参数修改区域 -->
@@ -33,7 +40,7 @@
 </template>
 
 <script setup lang="ts">
-  import { onBeforeUnmount, onMounted, ref } from 'vue';
+  import { nextTick, onBeforeUnmount, onBeforeUpdate, onMounted, ref } from 'vue';
   import Title from './components/Title.vue';
   import ModelList from './components/ModelList.vue';
 
@@ -41,11 +48,14 @@
   import { useResumeModelStore } from '@/store/resume';
 
   // 声明周期函数
-  onMounted(() => {
+  onMounted(async () => {
     resizeDOM();
   });
   onBeforeUnmount(() => {
     observer?.disconnect();
+  });
+  onBeforeUpdate(() => {
+    lineRefs = [];
   });
 
   const componentName = ref<string>('web-develop'); // 模板名称
@@ -55,8 +65,23 @@
 
   // 导出pdf
   const html2Pdf = ref<any>(null); // 获取元素节点
-  const generateReport = () => {
-    downloadPDF(html2Pdf.value, '个人简历');
+  let lineRefs: Array<any> = []; // 分割线的ref
+  const setLinesRef = (el: any, index: number) => {
+    if (el) {
+      if (linesNumber.value === index + 1) {
+        el.style.top = linesNumber.value * 1160 + 'px'; // 最后一条分割线出现在底部
+      }
+      lineRefs.push(el);
+    }
+  };
+  // 生成pdf方法
+  const generateReport = async () => {
+    let temp = linesNumber.value;
+    linesNumber.value = 0;
+    await nextTick();
+    downloadPDF(html2Pdf.value, '个人简历', () => {
+      linesNumber.value = temp;
+    });
   };
 
   // 监听元素高度变化，绘制分割线
@@ -64,10 +89,13 @@
   let height: number = 0;
   let linesNumber = ref<number>(0);
   const resizeDOM = () => {
-    observer = new ResizeObserver((entries: ResizeObserverEntry[]) => {
+    observer = new ResizeObserver(async (entries: ResizeObserverEntry[]) => {
       for (let entry of entries) {
         height = (entry.target as HTMLElement).offsetHeight;
-        linesNumber.value = Math.floor(height / 1160); // 有几条分割线
+        console.log('lines', lineRefs);
+        linesNumber.value = Math.ceil(height / 1160); // 有几条分割线
+        html2Pdf.value.style.height = 1160 * linesNumber.value + 'px';
+        console.log(html2Pdf.value);
         console.log('高度', (entry.target as HTMLElement).offsetHeight);
       }
     });
@@ -104,6 +132,7 @@
       .center {
         display: flex;
         justify-content: center;
+        align-items: flex-start;
         flex: 1;
         height: calc(100vh - 50px);
         overflow: auto;
@@ -111,15 +140,34 @@
         .design {
           background: white;
           width: 820px;
-          // min-height: 1160px;
+          min-height: 1160px;
           margin: 30px 0;
           display: table;
           position: relative;
           .lines {
-            height: 10px;
-            width: 100%;
+            z-index: 10;
+            width: 820px;
+            height: 32px;
+            background: #f3f3f3 url(@/assets/images/paging_bg.png) center top no-repeat;
+            user-select: none;
+            pointer-events: none;
             position: absolute;
-            background-image: url(@/assets/images/paging_bg.png);
+            display: flex;
+            align-items: center;
+            .tips {
+              font-size: 9px;
+              color: #c7c7c7;
+            }
+            .page {
+              font-size: 9px;
+              color: #999999;
+            }
+            .page {
+              position: absolute;
+              left: 50%;
+              top: 50%;
+              transform: translate(-50%, -50%);
+            }
           }
         }
       }

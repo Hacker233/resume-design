@@ -21,6 +21,8 @@
             @click="down(index)"
             ><upload
           /></el-icon>
+          <!-- 添加模块 -->
+          <el-icon color="#409eff" class="add" @click="add(index)"><CirclePlus /></el-icon>
         </div>
       </li>
     </ul>
@@ -63,6 +65,11 @@
     LIST[index] = LIST[index - 1];
     LIST[index - 1] = temp;
   };
+  // 添加模块
+  const add = (index: number) => {
+    let temp = JSON.parse(JSON.stringify(LIST[index]));
+    LIST.splice(index, 0, temp);
+  };
 </script>
 <style lang="less" scoped>
   .model-list-box {
@@ -96,11 +103,13 @@
           align-items: center;
           justify-content: flex-end;
           .up,
+          .add,
           .down {
             font-size: 20px;
             cursor: pointer;
           }
-          .down {
+          .down,
+          .add {
             transform: rotate(180deg);
             margin-left: 10px;
           }
