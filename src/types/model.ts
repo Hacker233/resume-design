@@ -129,23 +129,6 @@ interface ICAMPUSEXPERIENCE {
   };
   style: ISTYLE;
 }
-
-// 项目经验
-interface IPROJECTEXPERIENCE {
-  id: number;
-  model: string;
-  show: boolean;
-  title: string;
-  LIST: Array<{
-    date: string; // 项目时间
-    projectName: string; // 项目名称
-    posts: string; // 项目职责
-    projectContent: Array<{
-      content: '该项目是一个打杂项目';
-    }>;
-  }>;
-  style: ISTYLE;
-}
 // 实习经验
 interface IINTERNSHIPEXPERIENCE {
   id: number;
@@ -174,13 +157,39 @@ interface IWORKEXPERIENCE {
   show: boolean;
   title: string;
   LIST: Array<{
-    date: string; // 工作时间
+    date: Array<string>; // 工作时间
     companyName: string; // 公司名称
     posts: string; // 职位
     jobContent: Array<{
       content: string;
     }>;
   }>;
+  isShow: {
+    date: boolean;
+    companyName: boolean;
+    posts: boolean;
+  };
+  style: ISTYLE;
+}
+// 项目经验
+interface IPROJECTEXPERIENCE {
+  id: number;
+  model: string;
+  show: boolean;
+  title: string;
+  LIST: Array<{
+    date: Array<string>; // 项目时间
+    projectName: string; // 项目名称
+    posts: string; // 项目职责
+    projectContent: Array<{
+      content: string;
+    }>;
+  }>;
+  isShow: {
+    date: boolean;
+    projectName: boolean;
+    posts: boolean;
+  };
   style: ISTYLE;
 }
 // 所获奖项
@@ -194,6 +203,11 @@ interface IAWARDS {
     awardsName: string;
     awardsGrade: string;
   }>;
+  isShow: {
+    date: boolean,
+    awardsName: boolean,
+    awardsGrade: boolean,
+  },
   style: ISTYLE;
 }
 // 兴趣爱好

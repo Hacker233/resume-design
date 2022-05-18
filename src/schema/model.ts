@@ -249,7 +249,7 @@ let TEMPLATE_JSON: IResumeJson = {
       title: '工作经验',
       LIST: [
         {
-          date: '2021.9-2022.10', // 工作时间
+          date: ['2021-9', '2022-10'], // 工作时间
           companyName: '业绩公司', // 公司名称
           posts: '前端开发工程师', // 职位
           jobContent: [
@@ -259,7 +259,21 @@ let TEMPLATE_JSON: IResumeJson = {
           ]
         }
       ],
-      style: {}
+      isShow: {
+        date: true,
+        companyName: true,
+        posts: true
+      },
+      style: {
+        titleColor: '#666',
+        titleFontSize: '14px',
+        titleFontWeight: 600,
+        textColor: '#757575',
+        textFontSize: '14px',
+        textFontWeight: 500,
+        mBottom: '45px',
+        mTop: '0px'
+      }
     },
     {
       id: 8,
@@ -268,7 +282,7 @@ let TEMPLATE_JSON: IResumeJson = {
       title: '项目经验',
       LIST: [
         {
-          date: '2021.9-2022.10', // 项目时间
+          date: ['2021-9', '2022-10'], // 项目时间
           projectName: '项目名称', // 项目名称
           posts: '前端开发工程师', // 项目职责
           projectContent: [
@@ -278,7 +292,21 @@ let TEMPLATE_JSON: IResumeJson = {
           ]
         }
       ],
-      style: {}
+      isShow: {
+        date: true,
+        projectName: true,
+        posts: true
+      },
+      style: {
+        titleColor: '#666',
+        titleFontSize: '14px',
+        titleFontWeight: 600,
+        textColor: '#757575',
+        textFontSize: '14px',
+        textFontWeight: 500,
+        mBottom: '45px',
+        mTop: '0px'
+      }
     },
 
     {
@@ -288,12 +316,23 @@ let TEMPLATE_JSON: IResumeJson = {
       title: '荣誉奖项',
       LIST: [
         {
-          date: '2021.9', // 获奖时间
+          date: '2021-9', // 获奖时间
           awardsName: '奖项名称',
           awardsGrade: '获奖等级'
         }
       ],
-      style: {}
+      isShow: {
+        date: true,
+        awardsName: true,
+        awardsGrade: true
+      },
+      style: {
+        titleColor: '#666',
+        titleFontSize: '14px',
+        titleFontWeight: 600,
+        mBottom: '45px',
+        mTop: '0px'
+      }
     },
     {
       id: 11,
@@ -301,7 +340,13 @@ let TEMPLATE_JSON: IResumeJson = {
       show: true,
       title: '兴趣爱好',
       content: '我喜欢打杂我喜欢打杂我喜欢打杂我喜欢打杂我喜欢打杂我喜欢打杂我喜欢打杂我喜欢打杂',
-      style: {}
+      style: {
+        textColor: '#757575',
+        textFontSize: '14px',
+        textFontWeight: 500,
+        mBottom: '45px',
+        mTop: '0px'
+      }
     },
     {
       id: 12,
@@ -309,7 +354,13 @@ let TEMPLATE_JSON: IResumeJson = {
       show: true,
       title: '自我评价',
       content: '我是一个没有责任感的人',
-      style: {}
+      style: {
+        textColor: '#757575',
+        textFontSize: '14px',
+        textFontWeight: 500,
+        mBottom: '45px',
+        mTop: '0px'
+      }
     },
     {
       id: 13,
@@ -328,7 +379,13 @@ let TEMPLATE_JSON: IResumeJson = {
           worksIntroduce: '这是一个千万级作品'
         }
       ],
-      style: {}
+      style: {
+        textColor: '#666',
+        textFontSize: '14px',
+        textFontWeight: 600,
+        mBottom: '45px',
+        mTop: '0px'
+      }
     }
   ]
 };

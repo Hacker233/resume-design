@@ -79,27 +79,6 @@
   // 选中的模块
   const modelItem = reactive<IBASEINFO>(useResumeJson.LIST[useModel.index] as IBASEINFO);
   let activeName = ref('style');
-  // 字体大小
-  const fontSizeList = reactive<Array<string>>([
-    '10px',
-    '12px',
-    '14px',
-    '16px',
-    '18px',
-    '20px',
-    '22px',
-    '24px',
-    '26px',
-    '28px',
-    '30px',
-    '32px',
-    '34px',
-    '36px',
-    '38px',
-    '40px'
-  ]);
-  // 字体粗细
-  const fontWeightList = reactive<Array<number>>([100, 200, 300, 400, 500, 600, 700, 800, 900]);
 
   /**
    * 数据配置

@@ -22,7 +22,8 @@
 <style lang="less" scoped>
   .works-display {
     padding: 0 40px;
-    margin-bottom: 45px;
+    margin-bottom: v-bind('modelData.style.mBottom');
+    margin-top: v-bind('modelData.style.mTop');
     .works-display-list {
       margin-top: 25px;
       display: flex;
@@ -32,9 +33,9 @@
         flex-direction: column;
         list-style: none;
         h1 {
-          font-size: @primary-text-font-size;
-          color: @primary-sub-title-color;
-          font-weight: bold;
+          font-size: v-bind('modelData.style.textFontSize');
+          color: v-bind('modelData.style.textColor');
+          font-weight: v-bind('modelData.style.textFontWeight');
           letter-spacing: 2px;
         }
         a {
@@ -42,7 +43,7 @@
         }
         &:not(:last-child) {
           margin-bottom: 15px;
-        } 
+        }
       }
     }
   }

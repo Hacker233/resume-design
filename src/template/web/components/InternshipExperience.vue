@@ -8,7 +8,7 @@
       <div class="list" v-for="(item, index) in modelData.LIST" :key="index">
         <ul>
           <!-- 经历时间 -->
-          <li class="list-title"
+          <li class="list-title" v-if="modelData.isShow.date"
             >{{ moment(new Date(item.date[0])).format('YYYY.MM').split('-').join('.') }}
             -
             {{ moment(new Date(item.date[1])).format('YYYY.MM').split('-').join('.') }}</li
@@ -33,7 +33,7 @@
 </template>
 <script setup lang="ts">
   import { IINTERNSHIPEXPERIENCE } from '@/types/model';
-import { ComponentInternalInstance, getCurrentInstance } from 'vue';
+  import { ComponentInternalInstance, getCurrentInstance } from 'vue';
   import ModelTitle from './ModelTitle.vue';
   // 获取全局挂载的moment对象
   const instance = getCurrentInstance() as ComponentInternalInstance;
@@ -72,10 +72,9 @@ import { ComponentInternalInstance, getCurrentInstance } from 'vue';
           .left {
             width: 20%;
             letter-spacing: 2px;
-            font-size: v-bind('modelData.style.textFontSize');
-            color: v-bind('modelData.style.textColor');
-            font-weight: v-bind('modelData.style.textFontWeight');
-            font-weight: bold;
+            font-size: v-bind('modelData.style.titleFontSize');
+            color: v-bind('modelData.style.titleColor');
+            font-weight: v-bind('modelData.style.titleFontWeight');
           }
           .content-list {
             flex: 1;

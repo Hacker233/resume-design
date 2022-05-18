@@ -19,14 +19,16 @@
 <style lang="less" scoped>
   .self-eavluation {
     padding: 0 40px;
-    margin-bottom: 45px;
+    margin-bottom: v-bind('modelData.style.mBottom');
+    margin-top: v-bind('modelData.style.mTop');
     .self-eavluation-content {
       display: flex;
       margin-top: 25px;
       p {
         letter-spacing: 2px;
-        font-size: @primary-text-font-size;
-        color: @primary-text-color;
+        font-size: v-bind('modelData.style.textFontSize');
+        color: v-bind('modelData.style.textColor');
+        font-weight: v-bind('modelData.style.textFontWeight');
         line-height: 1.5;
       }
     }
