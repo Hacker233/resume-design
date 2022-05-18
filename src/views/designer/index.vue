@@ -92,11 +92,9 @@
     observer = new ResizeObserver(async (entries: ResizeObserverEntry[]) => {
       for (let entry of entries) {
         height = (entry.target as HTMLElement).offsetHeight;
-        console.log('lines', lineRefs);
         linesNumber.value = Math.ceil(height / 1160); // 有几条分割线
         html2Pdf.value.style.height = 1160 * linesNumber.value + 'px';
         console.log(html2Pdf.value);
-        console.log('高度', (entry.target as HTMLElement).offsetHeight);
       }
     });
     observer.observe(html2Pdf.value); // 监听元素
