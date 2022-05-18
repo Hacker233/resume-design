@@ -13,9 +13,13 @@
       </div>
       <!-- 预览区域 -->
       <div class="center">
-        <div class="design" ref="html2Pdf" v-resize>
+        <div class="design" ref="html2Pdf">
           <component :is="componentName" />
-          <!-- <div class="lines" v-for></div> -->
+          <div
+            class="lines"
+            v-for="(item, index) in linesNumber"
+            :style="{ top: `${(index + 1) * 1160}px` }"
+          ></div>
         </div>
       </div>
       <!-- 参数修改区域 -->
@@ -29,12 +33,20 @@
 </template>
 
 <script setup lang="ts">
-  import { ref } from 'vue';
+  import { onBeforeUnmount, onMounted, ref } from 'vue';
   import Title from './components/Title.vue';
   import ModelList from './components/ModelList.vue';
 
   import downloadPDF from '@/utils/html2pdf'; // 下载为pdf
   import { useResumeModelStore } from '@/store/resume';
+
+  // 声明周期函数
+  onMounted(() => {
+    resizeDOM();
+  });
+  onBeforeUnmount(() => {
+    observer?.disconnect();
+  });
 
   const componentName = ref<string>('web-develop'); // 模板名称
 
@@ -47,11 +59,19 @@
     downloadPDF(html2Pdf.value, '个人简历');
   };
 
-  // 自定义指令,监听元素高度变化
-  const vResize = {
-    updated: (el: HTMLElement) => {
-      console.log('更新了', el.offsetHeight);
-    }
+  // 监听元素高度变化，绘制分割线
+  let observer: ResizeObserver | null = null;
+  let height: number = 0;
+  let linesNumber = ref<number>(0);
+  const resizeDOM = () => {
+    observer = new ResizeObserver((entries: ResizeObserverEntry[]) => {
+      for (let entry of entries) {
+        height = (entry.target as HTMLElement).offsetHeight;
+        linesNumber.value = Math.floor(height / 1160); // 有几条分割线
+        console.log('高度', (entry.target as HTMLElement).offsetHeight);
+      }
+    });
+    observer.observe(html2Pdf.value); // 监听元素
   };
 </script>
 
@@ -91,9 +111,16 @@
         .design {
           background: white;
           width: 820px;
-          min-height: 1160px;
+          // min-height: 1160px;
           margin: 30px 0;
           display: table;
+          position: relative;
+          .lines {
+            height: 10px;
+            width: 100%;
+            position: absolute;
+            background-image: url(@/assets/images/paging_bg.png);
+          }
         }
       }
 
