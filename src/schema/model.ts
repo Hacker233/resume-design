@@ -1,7 +1,7 @@
 import { IResumeJson } from '@/types/model';
 let TEMPLATE_JSON: IResumeJson = {
-  ID: '1', // 模板Id
-  NAME: 'web-develop',
+  ID: '', // 模板Id
+  NAME: '',
   TITLE: '我的简历',
   THEME_COLOR: '#000',
   TITLE_COLOR: '#000',

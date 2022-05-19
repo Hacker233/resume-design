@@ -13,6 +13,16 @@
         <el-button type="primary" @click="globalStyleSetting">全局样式设置</el-button>
         <el-button type="primary" @click="saveDraft">保存草稿</el-button>
         <el-button type="primary" @click="generateReport">导出PDF</el-button>
+        <el-popconfirm
+          title="重置会删除所有已编辑内容，是否继续?"
+          @confirm="reset"
+          confirmButtonText="确定"
+          cancelButtonText="取消"
+        >
+          <template #reference>
+            <el-button type="primary">重置</el-button>
+          </template>
+        </el-popconfirm>
       </div>
     </nav>
     <!-- 内容区域 -->
@@ -66,6 +76,7 @@
   import ModelList from './components/ModelList.vue';
   import GlobalOptions from '@/components/CommonOptions/GlobalOptions.vue';
   import { debounce } from 'lodash'; // 防抖函数
+  import TEMPLATE_JSON from '@/schema/model';
 
   import downloadPDF from '@/utils/html2pdf'; // 下载为pdf
   import { useResumeModelStore, useResumeJsonStore } from '@/store/resume';
@@ -82,7 +93,9 @@
   // 获取本地数据
   const localData = localStorage.getItem('resumeDraft');
   const route = useRoute();
-  const { id, name } = route.query; // 模板id
+  const { id, name } = route.query; // 模板id和模板名称
+  resumeJsonStore.value.ID = id as string;
+  resumeJsonStore.value.NAME = name as string;
   const componentName = ref<string>(name as string); // 模板名称,即渲染哪个模板
   if (localData) {
     let localObj = JSON.parse(localData)[id as string];
@@ -162,6 +175,27 @@
       lineRefs.push(el);
     }
   };
+
+  // 重置数据
+  const reset = () => {
+    let resetObj = TEMPLATE_JSON; // 初始数据
+    store.changeResumeJsonData(resetObj); // 更改store的数据
+    // 删除本地该条数据
+    let localData = localStorage.getItem('resumeDraft'); // 本地缓存数据
+    if (localData) {
+      let allData = JSON.parse(localData);
+      if (Object.keys(allData).length > 1) {
+        if (allData[id as string]) {
+          delete allData[id as string]; // 删除该条数据
+          localStorage.setItem('resumeDraft', allData);
+        }
+      } else {
+        localStorage.removeItem('resumeDraft');
+      }
+    }
+    location.reload();
+  };
+
   // 生成pdf方法
   const generateReport = async () => {
     let temp = linesNumber.value;

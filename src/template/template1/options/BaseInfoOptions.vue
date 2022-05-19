@@ -87,14 +87,19 @@
   const imageUrl = ref(modelItem.avatar);
   const beforeAvatarUpload: UploadProps['beforeUpload'] = (rawFile) => {
     if (rawFile.type !== 'image/jpeg') {
-      ElMessage.error('Avatar picture must be JPG format!');
+      ElMessage.error('只支持jpg格式的图片');
       return false;
     } else if (rawFile.size / 1024 / 1024 > 2) {
       ElMessage.error('Avatar picture size can not exceed 2MB!');
       return false;
     }
-    imageUrl.value = URL.createObjectURL(rawFile);
-    modelItem.avatar = imageUrl.value;
+    // 图片转成base64
+    let reader = new FileReader();
+    reader.readAsDataURL(rawFile);
+    reader.onload = (e) => {
+      imageUrl.value = e.target?.result as string;
+      modelItem.avatar = e.target?.result as string;
+    };
     return false;
   };
 </script>

@@ -23,9 +23,9 @@
   import WorksDisplay from './components/WorksDisplay.vue'; // 作品展示
   import { useResumeJsonStore } from '@/store/resume';
   import { IResumeJson } from '@/types/model';
-import { storeToRefs } from 'pinia';
+  import { storeToRefs } from 'pinia';
 
-  const {resumeJsonStore} = storeToRefs(useResumeJsonStore());
+  const { resumeJsonStore } = storeToRefs(useResumeJsonStore());
 
   // 注册局部组件
   const components: any = {
