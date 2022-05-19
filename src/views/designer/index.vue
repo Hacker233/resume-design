@@ -2,12 +2,25 @@
   <div class="design-box">
     <!-- 导航栏 -->
     <nav class="nav-box">
-      <div class="nav-left"> 我是logo </div>
+      <div class="nav-left">
+        <img src="@/assets/logo.png" alt="logo" srcset="" @click="toHome" />
+      </div>
       <div class="nav-center">
         <span class="draft-tips">{{ draftTips }}</span>
-        <p>
+        <p v-show="!isShowIpt">
           {{ resumeJsonStore.TITLE }}
+          <el-icon :size="20" color="#409eff" @click="changeTitle">
+            <Edit />
+          </el-icon>
         </p>
+        <el-input
+          ref="titleIpf"
+          v-show="isShowIpt"
+          v-model="resumeJsonStore.TITLE"
+          autofocus
+          placeholder="请输入标题"
+          @blur="blurTitle"
+        />
       </div>
       <div class="nav-right">
         <el-button type="primary" @click="globalStyleSetting">全局样式设置</el-button>
@@ -35,7 +48,7 @@
       <!-- 预览区域 -->
       <div class="center">
         <div class="design" ref="html2Pdf">
-          <component :is="componentName" />
+          <component :is="componentName"/>
           <!-- 分页线 -->
           <template v-if="linesNumber > 0">
             <div
@@ -81,7 +94,7 @@
   import downloadPDF from '@/utils/html2pdf'; // 下载为pdf
   import { useResumeModelStore, useResumeJsonStore } from '@/store/resume';
   import { storeToRefs } from 'pinia';
-  import { useRoute } from 'vue-router';
+  import { useRoute, useRouter } from 'vue-router';
 
   const { title } = storeToRefs(useResumeModelStore());
   const store = useResumeJsonStore();
@@ -104,9 +117,27 @@
     }
   }
 
+  // 跳转到首页
+  const router = useRouter();
+  const toHome = () => {
+    router.push({
+      path: '/'
+    });
+  };
+
+  // 更改标题
+  const titleIpf = ref<any>(null);
+  const isShowIpt = ref<boolean>(false);
+  const changeTitle = () => {
+    isShowIpt.value = true;
+    titleIpf.value.focus();
+  };
+  const blurTitle = () => {
+    isShowIpt.value = false;
+  };
+
   // 生命周期函数
   onMounted(async () => {
-    console.log('onMounted');
     resizeDOM();
   });
   onBeforeUnmount(() => {
@@ -148,7 +179,6 @@
 
   // 属性设置
   const useModel = useResumeModelStore();
-
   // 全局样式设置
   const globalStyleSetting = () => {
     // 重置store选中模块
@@ -238,6 +268,14 @@
       display: flex;
       .nav-left {
         width: 300px;
+        display: flex;
+        align-items: center;
+        img {
+          width: 60px;
+          height: 60px;
+          margin-left: 30px;
+          cursor: pointer;
+        }
       }
       .nav-center {
         flex: 1;
@@ -252,6 +290,18 @@
           transform: translate(0, -50%);
           font-size: 10px;
           color: #999999;
+        }
+        p {
+          display: flex;
+          align-items: center;
+          font-size: 16px;
+          .el-icon {
+            margin-left: 10px;
+            cursor: pointer;
+          }
+        }
+        .el-input {
+          width: 200px;
         }
       }
       .nav-right {

@@ -12,17 +12,24 @@
         <div class="center" @click="selectModel(item, index)"></div>
         <!-- 上下移动图标 -->
         <div class="up-down-box">
-          <el-icon color="#409eff" :class="['up', { 'not-allow': index === 0 }]" @click="up(index)"
+          <el-icon
+            color="#409eff"
+            :size="20"
+            :class="['up', { 'not-allow': index === 0 }]"
+            @click="up(index)"
             ><upload
           /></el-icon>
           <el-icon
             color="#409eff"
+            :size="20"
             :class="['down', { 'not-allow': index === resumeJsonStore.LIST.length - 1 }]"
             @click="down(index)"
             ><upload
           /></el-icon>
           <!-- 添加模块 -->
-          <el-icon color="#409eff" class="add" @click="add(index)"><CirclePlus /></el-icon>
+          <el-icon color="#409eff" :size="20" class="add" @click="add(index)"
+            ><CirclePlus
+          /></el-icon>
         </div>
       </li>
     </ul>
@@ -30,7 +37,6 @@
 </template>
 <script setup lang="ts">
   import { useResumeModelStore, useResumeJsonStore } from '@/store/resume';
-  import { ref } from 'vue';
   // 列表数据
   const { resumeJsonStore } = useResumeJsonStore();
 
@@ -42,7 +48,6 @@
       title: item.title,
       index: index
     };
-    console.log('updateData',updateData)
     resumeModel.setResumeModel(updateData);
   };
 
@@ -104,7 +109,6 @@
           .up,
           .add,
           .down {
-            font-size: 20px;
             cursor: pointer;
           }
           .down,

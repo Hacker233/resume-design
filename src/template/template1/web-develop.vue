@@ -1,8 +1,13 @@
 <template>
   <template v-for="(item, index) in resumeJsonStore.LIST" :key="item.id">
-    <template v-if="item.show">
+    <div
+      class="model-box"
+      v-if="item.show"
+      :ref="(el) => setRefItem(el, item.model)"
+      @click="selectModel(item.model, item.title, index)"
+    >
       <component :is="components[item.model]" :modelData="item"></component>
-    </template>
+    </div>
   </template>
   <!-- 底部 -->
   <div class="model-bottom"></div>
@@ -21,9 +26,9 @@
   import Hobbies from './components/Hobbies.vue'; // 兴趣爱好
   import SelfEvaluation from './components/SelfEvaluation.vue'; // 自我评价
   import WorksDisplay from './components/WorksDisplay.vue'; // 作品展示
-  import { useResumeJsonStore } from '@/store/resume';
-  import { IResumeJson } from '@/types/model';
+  import { useResumeJsonStore, useResumeModelStore } from '@/store/resume';
   import { storeToRefs } from 'pinia';
+  import { ComponentPublicInstance, reactive, ref, watch } from 'vue';
 
   const { resumeJsonStore } = storeToRefs(useResumeJsonStore());
 
@@ -43,6 +48,37 @@
     SELF_EVALUATION: SelfEvaluation,
     WORKS_DISPLAY: WorksDisplay
   };
+
+  // 锚点定位
+  const { model } = storeToRefs(useResumeModelStore());
+  watch(
+    model,
+    (newVal, oldVal) => {
+      if (oldVal) {
+        modelObj[oldVal].style.borderColor = 'transparent';
+      }
+      // 如果选中了模块
+      if (newVal) {
+        modelObj[newVal].scrollIntoView({ behavior: 'smooth', block: 'center' }); // 该模块显示在可视区域内
+        modelObj[newVal].style.borderColor = '#7ec97e';
+      }
+    },
+    {
+      deep: true
+    }
+  );
+  const modelObj = reactive<any>({});
+  const setRefItem = (el: ComponentPublicInstance | null | Element, model: string) => {
+    if (el) {
+      modelObj[model] = el;
+    }
+  };
+
+  // 点击模块
+  const resumeModelStore = useResumeModelStore();
+  const selectModel = (model: string, title: string, index: number) => {
+    resumeModelStore.setResumeModel({ model, title, index });
+  };
 </script>
 <script lang="ts">
   export default {
@@ -51,6 +87,14 @@
 </script>
 <style lang="less">
   @import './style/options.less';
+  .model-box {
+    border: 2px dashed transparent;
+    transition: all 0.3s;
+    &:hover {
+      border-color: #7ec97e !important;
+      cursor: pointer;
+    }
+  }
   .model-bottom {
     height: 12px;
     background-color: #254665;
