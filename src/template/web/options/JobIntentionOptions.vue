@@ -70,10 +70,10 @@
   import CommonOptions from '@/components/CommonOptions/CommonOptions.vue';
   // store
   const useModel = useResumeModelStore();
-  const useResumeJson = useResumeJsonStore();
+  const {resumeJsonStore} = useResumeJsonStore();
 
   // 选中的模块
-  const modelItem = reactive<IJOBINTENTION>(useResumeJson.LIST[useModel.index] as IJOBINTENTION);
+  const modelItem = reactive<IJOBINTENTION>(resumeJsonStore.LIST[useModel.index] as IJOBINTENTION);
   let activeName = ref('style');
 
   /**

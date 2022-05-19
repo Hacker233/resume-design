@@ -22,11 +22,12 @@
 <script setup lang="ts">
   import { useResumeJsonStore, useResumeModelStore } from '@/store/resume';
   import { reactive, ref } from 'vue';
+  import { pxTonumber } from '@/utils/common';
   // store
   const useModel = useResumeModelStore();
-  const useResumeJson = useResumeJsonStore();
+  const { resumeJsonStore } = useResumeJsonStore();
   // 选中的模块
-  const modelItem = reactive(useResumeJson.LIST[useModel.index]);
+  const modelItem = reactive(resumeJsonStore.LIST[useModel.index]);
   // 字体大小
   const fontSizeList = reactive<Array<string>>([
     '10px',
@@ -49,14 +50,6 @@
   // 字体粗细
   const fontWeightList = reactive<Array<number>>([100, 200, 300, 400, 500, 600, 700, 800, 900]);
 
-  // 工具方法--px转数字
-  const pxTonumber = (value: string | undefined): number => {
-    if (value) {
-      return Number(value.split('px')[0]);
-    } else {
-      return 0;
-    }
-  };
   // 上外边距
   const defaultMtop: number = pxTonumber(modelItem.style.mTop);
   const mTop = ref<number>(defaultMtop);

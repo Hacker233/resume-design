@@ -87,11 +87,11 @@
   import { Delete,SemiSelect, Plus } from '@element-plus/icons-vue';
   // store
   const useModel = useResumeModelStore();
-  const useResumeJson = useResumeJsonStore();
+  const {resumeJsonStore} = useResumeJsonStore();
 
   // 选中的模块
   const modelItem = reactive<IINTERNSHIPEXPERIENCE>(
-    useResumeJson.LIST[useModel.index] as IINTERNSHIPEXPERIENCE
+    resumeJsonStore.LIST[useModel.index] as IINTERNSHIPEXPERIENCE
   );
   let activeName = ref('style');
 

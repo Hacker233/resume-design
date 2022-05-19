@@ -28,9 +28,9 @@
   });
   // store
   const useModel = useResumeModelStore();
-  const useResumeJson = useResumeJsonStore();
+  const {resumeJsonStore} = useResumeJsonStore();
   // 选中的模块
-  const modelItem = reactive(useResumeJson.LIST[useModel.index]);
+  const modelItem = reactive(resumeJsonStore.LIST[useModel.index]);
   // 字体大小
   const fontSizeList = reactive<Array<string>>([
     '10px',

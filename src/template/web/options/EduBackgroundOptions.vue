@@ -64,10 +64,12 @@
   import CommonOptions from '@/components/CommonOptions/CommonOptions.vue'; // 公共属性设置
   // store
   const useModel = useResumeModelStore();
-  const useResumeJson = useResumeJsonStore();
+  const { resumeJsonStore } = useResumeJsonStore();
 
   // 选中的模块
-  const modelItem = reactive<IEDUBACKGROUND>(useResumeJson.LIST[useModel.index] as IEDUBACKGROUND);
+  const modelItem = reactive<IEDUBACKGROUND>(
+    resumeJsonStore.LIST[useModel.index] as IEDUBACKGROUND
+  );
   let activeName = ref('style');
 
   /**

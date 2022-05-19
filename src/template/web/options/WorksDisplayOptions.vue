@@ -45,10 +45,10 @@
   import { Delete, Plus, SemiSelect } from '@element-plus/icons-vue';
   // store
   const useModel = useResumeModelStore();
-  const useResumeJson = useResumeJsonStore();
+  const {resumeJsonStore} = useResumeJsonStore();
 
   // 选中的模块
-  const modelItem = reactive<IWORKSDISPLAY>(useResumeJson.LIST[useModel.index] as IWORKSDISPLAY);
+  const modelItem = reactive<IWORKSDISPLAY>(resumeJsonStore.LIST[useModel.index] as IWORKSDISPLAY);
   let activeName = ref('style');
 
   /**

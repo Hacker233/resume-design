@@ -49,11 +49,11 @@
   import { Plus, SemiSelect } from '@element-plus/icons-vue';
   // store
   const useModel = useResumeModelStore();
-  const useResumeJson = useResumeJsonStore();
+  const {resumeJsonStore} = useResumeJsonStore();
 
   // 选中的模块
   const modelItem = reactive<ISKILLSPECIALTIES>(
-    useResumeJson.LIST[useModel.index] as ISKILLSPECIALTIES
+    resumeJsonStore.LIST[useModel.index] as ISKILLSPECIALTIES
   );
   let activeName = ref('style');
 

@@ -1,5 +1,5 @@
 <template>
-  <template v-for="(item, index) in useResumeJson.LIST" :key="item.id">
+  <template v-for="(item, index) in resumeJsonStore.LIST" :key="item.id">
     <template v-if="item.show">
       <component :is="components[item.model]" :modelData="item"></component>
     </template>
@@ -23,8 +23,9 @@
   import WorksDisplay from './components/WorksDisplay.vue'; // 作品展示
   import { useResumeJsonStore } from '@/store/resume';
   import { IResumeJson } from '@/types/model';
+import { storeToRefs } from 'pinia';
 
-  const useResumeJson: IResumeJson = useResumeJsonStore();
+  const {resumeJsonStore} = storeToRefs(useResumeJsonStore());
 
   // 注册局部组件
   const components: any = {
@@ -41,7 +42,7 @@
     HOBBIES: Hobbies,
     SELF_EVALUATION: SelfEvaluation,
     WORKS_DISPLAY: WorksDisplay
-  }
+  };
 </script>
 <script lang="ts">
   export default {
@@ -49,11 +50,15 @@
   };
 </script>
 <style lang="less">
-@import './style/options.less';
+  @import './style/options.less';
   .model-bottom {
     height: 12px;
     background-color: #254665;
     padding-left: 30px;
+    position: absolute;
+    bottom: 10px;
+    width: 100%;
+    box-sizing: border-box;
     &::before {
       content: '';
       float: left;

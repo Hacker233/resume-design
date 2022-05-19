@@ -2,13 +2,24 @@
   <div class="design-box">
     <!-- 导航栏 -->
     <nav class="nav-box">
-      <el-button @click="generateReport">下载</el-button>
+      <div class="nav-left"> 我是logo </div>
+      <div class="nav-center">
+        <span class="draft-tips">{{ draftTips }}</span>
+        <p>
+          {{ resumeJsonStore.TITLE }}
+        </p>
+      </div>
+      <div class="nav-right">
+        <el-button type="primary" @click="globalStyleSetting">全局样式设置</el-button>
+        <el-button type="primary" @click="saveDraft">保存草稿</el-button>
+        <el-button type="primary" @click="generateReport">导出PDF</el-button>
+      </div>
     </nav>
     <!-- 内容区域 -->
     <div class="bottom">
       <!-- 左侧添加模块区域 -->
       <div class="left">
-        <Title title="模块选择"></Title>
+        <Title></Title>
         <model-list></model-list>
       </div>
       <!-- 预览区域 -->
@@ -31,24 +42,58 @@
       </div>
       <!-- 参数修改区域 -->
       <div class="config">
-        <Title></Title>
+        <Title :title="title"></Title>
         <component :is="useModel.model" v-if="useModel.model" />
-        <el-empty v-else description="请选择简历模块" />
+        <global-options v-else></global-options>
+        <!-- <el-empty v-else description="请选择简历模块" /> -->
       </div>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-  import { nextTick, onBeforeUnmount, onBeforeUpdate, onMounted, ref } from 'vue';
+  import {
+    ComponentInternalInstance,
+    getCurrentInstance,
+    nextTick,
+    onBeforeUnmount,
+    onBeforeUpdate,
+    onMounted,
+    ref,
+    watch
+  } from 'vue';
   import Title from './components/Title.vue';
   import ModelList from './components/ModelList.vue';
+  import GlobalOptions from '@/components/CommonOptions/GlobalOptions.vue';
+  import { debounce } from 'lodash'; // 防抖函数
 
   import downloadPDF from '@/utils/html2pdf'; // 下载为pdf
-  import { useResumeModelStore } from '@/store/resume';
+  import { useResumeModelStore, useResumeJsonStore } from '@/store/resume';
+  import { storeToRefs } from 'pinia';
+  import { useRoute } from 'vue-router';
 
-  // 声明周期函数
+  const { title } = storeToRefs(useResumeModelStore());
+  const store = useResumeJsonStore();
+  let { resumeJsonStore } = storeToRefs(useResumeJsonStore()); // store里的模板数据
+  // 获取全局挂载的moment对象
+  const instance = getCurrentInstance() as ComponentInternalInstance;
+  const moment = instance.appContext.config.globalProperties.$moment;
+
+  // 获取本地数据
+  const localData = localStorage.getItem('resumeDraft');
+  const route = useRoute();
+  const { id, name } = route.query; // 模板id
+  const componentName = ref<string>(name as string); // 模板名称,即渲染哪个模板
+  if (localData) {
+    let localObj = JSON.parse(localData)[id as string];
+    if (localObj) {
+      store.changeResumeJsonData(localObj);
+    }
+  }
+
+  // 生命周期函数
   onMounted(async () => {
+    console.log('onMounted');
     resizeDOM();
   });
   onBeforeUnmount(() => {
@@ -57,11 +102,54 @@
   onBeforeUpdate(() => {
     lineRefs = [];
   });
+  // 保存数据到本地
+  let draftTips = ref<string>('');
+  const saveDataToLocal = () => {
+    let key = resumeJsonStore.value.ID; // 当前模板的id
+    let saveData: { [key: string]: object } = {}; // 需要保存的数据
+    let localData = localStorage.getItem('resumeDraft'); // 本地缓存数据
+    if (localData) {
+      saveData = JSON.parse(localData);
+      saveData[key] = resumeJsonStore.value;
+    } else {
+      saveData[key] = resumeJsonStore.value;
+    }
+    localStorage.setItem('resumeDraft', JSON.stringify(saveData));
+    const date = moment(new Date()).format('YYYY.MM.DD HH:mm:ss');
+    draftTips.value = `已自动保存草稿  ${date}`;
+  };
 
-  const componentName = ref<string>('web-develop'); // 模板名称
+  // 自动保存草稿
+  const debounced = debounce(() => {
+    saveDataToLocal();
+  }, 1000);
+  watch(
+    resumeJsonStore.value,
+    () => {
+      debounced();
+    },
+    {
+      deep: true
+    }
+  );
 
   // 属性设置
   const useModel = useResumeModelStore();
+
+  // 全局样式设置
+  const globalStyleSetting = () => {
+    // 重置store选中模块
+    useModel.setResumeModel({
+      model: '',
+      title: '全局样式设置',
+      index: -1 // 选中的索引
+    });
+  };
+
+  // 保存草稿
+  const saveDraft = () => {
+    saveDataToLocal();
+  };
 
   // 导出pdf
   const html2Pdf = ref<any>(null); // 获取元素节点
@@ -94,7 +182,6 @@
         height = (entry.target as HTMLElement).offsetHeight;
         linesNumber.value = Math.ceil(height / 1160); // 有几条分割线
         html2Pdf.value.style.height = 1160 * linesNumber.value + 'px';
-        console.log(html2Pdf.value);
       }
     });
     observer.observe(html2Pdf.value); // 监听元素
@@ -114,6 +201,35 @@
       background-color: #fff;
       position: sticky;
       top: 0;
+      display: flex;
+      .nav-left {
+        width: 300px;
+      }
+      .nav-center {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        .draft-tips {
+          position: absolute;
+          top: 50%;
+          left: 0;
+          transform: translate(0, -50%);
+          font-size: 10px;
+          color: #999999;
+        }
+      }
+      .nav-right {
+        width: 300px;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        .el-button {
+          margin-right: 20px;
+          margin-left: 0;
+        }
+      }
     }
 
     .bottom {

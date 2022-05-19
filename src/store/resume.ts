@@ -10,11 +10,17 @@ interface IResumeModel {
 
 export const useResumeJsonStore = defineStore({
   id: 'resumeJson',
-  state: (): IResumeJson => {
-    return TEMPLATE_JSON;
+  state: () => {
+    return {
+      resumeJsonStore: TEMPLATE_JSON
+    };
   },
   getters: {},
-  actions: {},
+  actions: {
+    changeResumeJsonData(obj: IResumeJson) {
+      this.resumeJsonStore = obj;
+    }
+  }
 });
 
 export const useResumeModelStore = defineStore({
@@ -22,7 +28,7 @@ export const useResumeModelStore = defineStore({
   state: (): IResumeModel => {
     return {
       model: '',
-      title: '设置',
+      title: '全局样式设置',
       index: -1 // 选中的索引
     };
   },

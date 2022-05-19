@@ -4,6 +4,9 @@
   </div>
 </template>
 <script setup lang="ts">
+  import { useResumeJsonStore } from '@/store/resume';
+  import { storeToRefs } from 'pinia';
+  const { resumeJsonStore } = storeToRefs(useResumeJsonStore());
   defineProps<{
     title: string;
   }>();
@@ -17,8 +20,8 @@
     justify-content: flex-start;
     border-bottom: 1px solid @primary-title-color;
     h1 {
-      font-size: @primary-title-font-size;
-      color: @primary-title-color;
+      font-size: v-bind('resumeJsonStore.TITLE_FONT_SIZE');
+      color: v-bind('resumeJsonStore.TITLE_COLOR');
       border-bottom: 3px solid @primary-title-color;
       display: flex;
       align-items: center;

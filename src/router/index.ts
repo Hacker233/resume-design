@@ -1,20 +1,21 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
 
 const Designer = () => import('@/views/designer/index.vue');
+const Index = () => import('@/views/index/index.vue');
 
 const routes: Array<RouteRecordRaw> = [
   {
-    path: '/login',
-    name: 'LoginPage',
+    path: '/',
+    name: 'Index',
     meta: {
-      title: '登录',
+      title: '首页',
       keepAlive: true,
       requireAuth: false
     },
-    component: () => import('@/pages/login.vue')
+    component: Index
   },
   {
-    path: '/',
+    path: '/designer',
     name: 'Designer',
     meta: {
       title: '设计',

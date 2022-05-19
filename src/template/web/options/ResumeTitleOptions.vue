@@ -26,10 +26,10 @@
   import CommonOptions from '@/components/CommonOptions/CommonOptions.vue';
   // store
   const useModel = useResumeModelStore();
-  const useResumeJson = useResumeJsonStore();
+  const {resumeJsonStore} = useResumeJsonStore();
 
   // 选中的模块
-  const modelItem = reactive<IRESUMETITLE>(useResumeJson.LIST[useModel.index] as IRESUMETITLE);
+  const modelItem = reactive<IRESUMETITLE>(resumeJsonStore.LIST[useModel.index] as IRESUMETITLE);
   let activeName = ref('style');
 </script>
 <script lang="ts">

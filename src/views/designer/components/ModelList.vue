@@ -2,9 +2,9 @@
   <div class="model-list-box">
     <ul class="model-ul">
       <li
-        v-for="(item, index) in LIST"
+        v-for="(item, index) in resumeJsonStore.LIST"
         :key="item.id"
-        :class="[{ active: currentIndex === index }]"
+        :class="[{ active: resumeModel.index === index }]"
       >
         <!-- 是否添加模块 -->
         <el-checkbox v-model="item.show" :label="item.title" />
@@ -17,7 +17,7 @@
           /></el-icon>
           <el-icon
             color="#409eff"
-            :class="['down', { 'not-allow': index === LIST.length - 1 }]"
+            :class="['down', { 'not-allow': index === resumeJsonStore.LIST.length - 1 }]"
             @click="down(index)"
             ><upload
           /></el-icon>
@@ -32,43 +32,42 @@
   import { useResumeModelStore, useResumeJsonStore } from '@/store/resume';
   import { ref } from 'vue';
   // 列表数据
-  const { LIST } = useResumeJsonStore();
+  const { resumeJsonStore } = useResumeJsonStore();
 
   // 选中模块
   const resumeModel = useResumeModelStore();
-  let currentIndex = ref<number>(-1);
   const selectModel = (item: any, index: number) => {
-    currentIndex.value = index;
     let updateData = {
       model: item.model,
       title: item.title,
       index: index
     };
+    console.log('updateData',updateData)
     resumeModel.setResumeModel(updateData);
   };
 
   // 下移模块
   const down = (index: number): void => {
-    if (index === LIST.length - 1) {
+    if (index === resumeJsonStore.LIST.length - 1) {
       return;
     }
-    let temp = LIST[index];
-    LIST[index] = LIST[index + 1];
-    LIST[index + 1] = temp;
+    let temp = resumeJsonStore.LIST[index];
+    resumeJsonStore.LIST[index] = resumeJsonStore.LIST[index + 1];
+    resumeJsonStore.LIST[index + 1] = temp;
   };
   // 上移模块
   const up = (index: number): void => {
     if (index === 0) {
       return;
     }
-    let temp = LIST[index];
-    LIST[index] = LIST[index - 1];
-    LIST[index - 1] = temp;
+    let temp = resumeJsonStore.LIST[index];
+    resumeJsonStore.LIST[index] = resumeJsonStore.LIST[index - 1];
+    resumeJsonStore.LIST[index - 1] = temp;
   };
   // 添加模块
   const add = (index: number) => {
-    let temp = JSON.parse(JSON.stringify(LIST[index]));
-    LIST.splice(index, 0, temp);
+    let temp = JSON.parse(JSON.stringify(resumeJsonStore.LIST[index]));
+    resumeJsonStore.LIST.splice(index, 0, temp);
   };
 </script>
 <style lang="less" scoped>

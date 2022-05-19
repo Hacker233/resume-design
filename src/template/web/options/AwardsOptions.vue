@@ -47,10 +47,10 @@
   import CommonTitleOptions from '@/components/CommonOptions/CommonTitleOptions.vue'; // 公共属性设置
   // store
   const useModel = useResumeModelStore();
-  const useResumeJson = useResumeJsonStore();
+  const {resumeJsonStore} = useResumeJsonStore();
 
   // 选中的模块
-  const modelItem = reactive<IAWARDS>(useResumeJson.LIST[useModel.index] as IAWARDS);
+  const modelItem = reactive<IAWARDS>(resumeJsonStore.LIST[useModel.index] as IAWARDS);
   let activeName = ref('style');
   /**
    * 数据配置

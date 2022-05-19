@@ -71,11 +71,11 @@
   import { Delete } from '@element-plus/icons-vue';
   // store
   const useModel = useResumeModelStore();
-  const useResumeJson = useResumeJsonStore();
+  const { resumeJsonStore } = useResumeJsonStore();
 
   // 选中的模块
   const modelItem = reactive<ICAMPUSEXPERIENCE>(
-    useResumeJson.LIST[useModel.index] as ICAMPUSEXPERIENCE
+    resumeJsonStore.LIST[useModel.index] as ICAMPUSEXPERIENCE
   );
   let activeName = ref('style');
   /**

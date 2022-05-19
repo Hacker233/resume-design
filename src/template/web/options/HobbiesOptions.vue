@@ -29,10 +29,10 @@
   import CommonOptions from '@/components/CommonOptions/CommonOptions.vue'; // 公共属性设置
   // store
   const useModel = useResumeModelStore();
-  const useResumeJson = useResumeJsonStore();
+  const {resumeJsonStore} = useResumeJsonStore();
 
   // 选中的模块
-  const modelItem = reactive<IHOBBIES>(useResumeJson.LIST[useModel.index] as IHOBBIES);
+  const modelItem = reactive<IHOBBIES>(resumeJsonStore.LIST[useModel.index] as IHOBBIES);
   let activeName = ref('style');
 </script>
 <script lang="ts">
