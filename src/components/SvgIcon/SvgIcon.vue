@@ -1,13 +1,13 @@
 <template>
   <svg :class="svgClass" aria-hidden="true">
-    <use :xlink:href="iconName" :fill="color" />
+    <use :xlink:href="iconClassName" :fill="color" />
   </svg>
 </template>
 
 <script setup lang="ts">
 import { computed } from 'vue';
 const props = defineProps({
-  iconClass: { // 图标名称与assets/icon/svg下使用的文件名一致
+  iconName: { // 图标名称与assets/icon/svg下使用的文件名一致
     type: String,
     required: true
   },
@@ -20,9 +20,9 @@ const props = defineProps({
     default: '#409eff'
   }
 });
-const iconName = computed(() => {
-  return `#icon-${props.iconClass}`;
-});
+const iconClassName = computed(()=>{
+  return `#${props.iconName}`;
+})
 const svgClass = computed(() => {
   if (props.className) {
     return `svg-icon ${props.className}`;
