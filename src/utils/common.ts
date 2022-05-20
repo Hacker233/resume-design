@@ -1,3 +1,4 @@
+import { uuid } from 'vue-uuid';
 // 工具方法--px转数字
 export const pxTonumber = (value: string | undefined): number => {
   if (value) {
@@ -5,4 +6,8 @@ export const pxTonumber = (value: string | undefined): number => {
   } else {
     return 0;
   }
+};
+// 生成uuid
+export const getUuid = (): string => {
+  return uuid.v4();
 };

@@ -1,5 +1,6 @@
 <template>
   <div class="template-card-box" @mouseover="mouseover" @mouseleave="mouseleave">
+    <img :src="cardData.preview" alt="" srcset="" />
     <!-- 遮罩层 -->
     <div class="mask-layer">
       <div class="design-button" @click="toDesign">立即免费制作</div>
@@ -13,6 +14,7 @@
     cardData: ITempList;
   }>();
   const emit = defineEmits(['toDesign']);
+
   // 鼠标移入显示遮罩层
   const layerOpacity = ref<number>(0);
   const mouseover = () => {

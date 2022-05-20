@@ -54,11 +54,12 @@
   watch(
     model,
     (newVal, oldVal) => {
-      if (oldVal) {
+      // 判断是否选中复选框
+      if (oldVal && modelObj[oldVal]) {
         modelObj[oldVal].style.borderColor = 'transparent';
       }
       // 如果选中了模块
-      if (newVal) {
+      if (newVal && modelObj[newVal]) {
         modelObj[newVal].scrollIntoView({ behavior: 'smooth', block: 'center' }); // 该模块显示在可视区域内
         modelObj[newVal].style.borderColor = '#7ec97e';
       }

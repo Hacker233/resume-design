@@ -3,7 +3,7 @@ const templateList: Array<ITempList> = [
   {
     id: '1',
     name: 'web-develop',
-    preview: ''
+    preview: 'template1'
   },
   {
     id: '1',

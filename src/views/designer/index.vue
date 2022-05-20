@@ -4,6 +4,7 @@
     <nav class="nav-box">
       <div class="nav-left">
         <img src="@/assets/logo.png" alt="logo" srcset="" @click="toHome" />
+        <span @click="toHome">化繁为简</span>
       </div>
       <div class="nav-center">
         <span class="draft-tips">{{ draftTips }}</span>
@@ -48,7 +49,9 @@
       <!-- 预览区域 -->
       <div class="center">
         <div class="design" ref="html2Pdf">
-          <component :is="componentName"/>
+          <div class="design-content" ref="htmlContentPdf">
+            <component :is="componentName" />
+          </div>
           <!-- 分页线 -->
           <template v-if="linesNumber > 0">
             <div
@@ -77,6 +80,7 @@
 <script setup lang="ts">
   import {
     ComponentInternalInstance,
+    computed,
     getCurrentInstance,
     nextTick,
     onBeforeUnmount,
@@ -236,7 +240,8 @@
     });
   };
 
-  // 监听元素高度变化，绘制分割线
+  // 监听内容元素高度变化，绘制分割线
+  const htmlContentPdf = ref<any>(null);
   let observer: ResizeObserver | null = null;
   let height: number = 0;
   let linesNumber = ref<number>(0);
@@ -245,10 +250,10 @@
       for (let entry of entries) {
         height = (entry.target as HTMLElement).offsetHeight;
         linesNumber.value = Math.ceil(height / 1160); // 有几条分割线
-        html2Pdf.value.style.height = 1160 * linesNumber.value + 'px';
+        html2Pdf.value.style.height = 1160 * linesNumber.value + 'px'; // 整个简历的高度
       }
     });
-    observer.observe(html2Pdf.value); // 监听元素
+    observer.observe(htmlContentPdf.value); // 监听元素
   };
 </script>
 
@@ -274,6 +279,14 @@
           width: 60px;
           height: 60px;
           margin-left: 30px;
+          cursor: pointer;
+        }
+        span {
+          letter-spacing: 4px;
+          font-size: 22px;
+          font-weight: 600;
+          font-family: cursive;
+          color: green;
           cursor: pointer;
         }
       }
