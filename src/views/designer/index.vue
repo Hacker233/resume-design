@@ -4,7 +4,7 @@
     <nav class="nav-box">
       <div class="nav-left">
         <img src="@/assets/logo.png" alt="logo" srcset="" @click="toHome" />
-        <span @click="toHome">化繁为简</span>
+        <span @click="toHome">化简</span>
       </div>
       <div class="nav-center">
         <span class="draft-tips">{{ draftTips }}</span>

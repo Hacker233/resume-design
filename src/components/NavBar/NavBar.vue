@@ -3,7 +3,7 @@
   <div class="nav-bar-box">
     <div class="logo">
       <img src="@/assets/logo.png" alt="logo" srcset="" />
-      <span>化繁为简</span>
+      <span>化简</span>
     </div>
     <!-- GitHub -->
     <div class="right">
