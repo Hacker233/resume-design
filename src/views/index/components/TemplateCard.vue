@@ -1,8 +1,11 @@
 <template>
   <div class="template-card-box" @mouseover="mouseover" @mouseleave="mouseleave">
-    <img :src="cardData.preview" alt="" srcset="" />
+    <img :src="getAssetsFile(cardData.preview)" alt="" srcset="" />
     <!-- 遮罩层 -->
     <div class="mask-layer">
+      <!-- <div class="preview-icon">
+        <svg-icon iconName="icon-yulan" className="yulan"></svg-icon>
+      </div> -->
       <div class="design-button" @click="toDesign">立即免费制作</div>
     </div>
   </div>
@@ -10,6 +13,7 @@
 <script setup lang="ts">
   import { ref } from 'vue';
   import { ITempList } from '@/template/type';
+  import { getAssetsFile } from '@/utils/common';
   const props = defineProps<{
     cardData: ITempList;
   }>();
@@ -36,13 +40,17 @@
     background-color: #fff;
     border-radius: 5px;
     position: relative;
+    z-index: 0;
     cursor: pointer;
     user-select: none;
     margin: 0 20px;
     overflow: hidden;
     &:hover {
       transition: all 0.1s;
-      box-shadow: 5px 5px 5px 0px rgba(175, 50, 50, 0.1);
+      box-shadow: 5px 5px 5px 0px rgba(175, 50, 50, 0.2);
+    }
+    img {
+      width: 100%;
     }
     .mask-layer {
       height: 100%;
@@ -57,6 +65,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      z-index: 1;
       .design-button {
         width: 100px;
         height: 30px;
@@ -71,6 +80,19 @@
         transition: all 0.3s;
         &:hover {
           background-color: rgba(#008563, 0.7);
+        }
+      }
+      .preview-icon {
+        position: absolute;
+        right: 10px;
+        top: 10px;
+        z-index: 12;
+        width: 20px;
+        height: 20px;
+        background-color: rgba(0, 0, 0, 0.7);
+        .yulan {
+          cursor: pointer;
+          font-size: 40px;
         }
       }
     }
