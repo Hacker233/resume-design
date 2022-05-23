@@ -17,6 +17,9 @@ import 'colorpicker-v3/style.css'; // 引入样式文件
 import moment from 'moment';
 // 图标
 import '@/assets/iconfont/iconfont.js';
+// 图片预览
+import 'viewerjs/dist/viewer.css'
+import VueViewer from 'v-viewer'
 
 // 创建vue实例
 const app = createApp(App);
@@ -26,6 +29,7 @@ app.use(ElementPlus, { size: 'small' });
 app.use(component);
 app.use(elementIcons);
 app.use(ColorPicker);
+app.use(VueViewer);
 app.component('SvgIcon', SvgIcon);
 app.config.globalProperties.$moment = moment;
 

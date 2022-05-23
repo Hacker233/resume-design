@@ -25,6 +25,12 @@
         >
       </li>
     </ul>
+    <!-- 访问量 -->
+    <div class="visit">
+      <span id="busuanzi_container_site_pv">
+        本站总访问量<span id="busuanzi_value_site_pv"></span>次
+      </span>
+    </div>
   </div>
 </template>
 <style lang="less" scoped>
@@ -33,7 +39,8 @@
     height: 100px;
     background-color: #242529;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    justify-content: space-evenly;
     align-items: center;
     ul {
       display: flex;
@@ -74,6 +81,11 @@
         width: 1px;
         background-color: #838799;
       }
+    }
+    .visit {
+      color: #fff;
+      font-size: 14px;
+      letter-spacing: 3px;
     }
   }
 </style>
