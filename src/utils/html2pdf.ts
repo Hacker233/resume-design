@@ -1,7 +1,12 @@
 import html2canvas from 'html2canvas';
 import JsPDF from 'jspdf';
 
-const downloadPDF = (el: HTMLElement, pdfName: string, callback: Function): void => {
+const downloadPDF = (
+  el: HTMLElement,
+  pdfName: string,
+  preview: boolean,
+  callback: Function
+): void => {
   let eleW: number = el.offsetWidth; // 获得该容器的宽
   let eleH: number = el.offsetHeight; // 获得该容器的高
 
@@ -57,6 +62,13 @@ const downloadPDF = (el: HTMLElement, pdfName: string, callback: Function): void
           pdf.addPage();
         }
       }
+    }
+    if (preview) {
+      let dataUrl = pdf.output('datauristring');
+      
+      console.log('pdf', pdf.output('datauristring'));
+      callback(dataUrl);
+      return
     }
     //可动态生成
     pdf.save(pdfName);

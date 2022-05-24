@@ -26,6 +26,7 @@
       <div class="nav-right">
         <el-button type="primary" @click="globalStyleSetting">全局样式设置</el-button>
         <el-button type="primary" @click="saveDraft">保存草稿</el-button>
+        <el-button type="primary" @click="pdfPreview">预览</el-button>
         <el-button type="primary" @click="generateReport">导出PDF</el-button>
         <el-popconfirm
           title="重置会删除所有已编辑内容，是否继续?"
@@ -75,12 +76,17 @@
       </div>
     </div>
   </div>
+
+  <!-- 预览弹窗 -->
+  <PreviewImage v-show="previewDialog" @close="close">
+  <!-- <div v-html="../../static/pdf/web/viewer.html"></div> -->
+    <!-- <iframe src="/public/static/pdf/web/viewer.html" frameborder="0"></iframe> -->
+  </PreviewImage>
 </template>
 
 <script setup lang="ts">
   import {
     ComponentInternalInstance,
-    computed,
     getCurrentInstance,
     nextTick,
     onBeforeUnmount,
@@ -94,6 +100,8 @@
   import GlobalOptions from '@/components/CommonOptions/GlobalOptions.vue';
   import { debounce } from 'lodash'; // 防抖函数
   import TEMPLATE_JSON from '@/schema/model';
+  import PreviewImage from '@/components/PreviewImage/PreviewImage.vue';
+
 
   import downloadPDF from '@/utils/html2pdf'; // 下载为pdf
   import { useResumeModelStore, useResumeJsonStore } from '@/store/resume';
@@ -235,9 +243,29 @@
     let temp = linesNumber.value;
     linesNumber.value = 0;
     await nextTick();
-    downloadPDF(html2Pdf.value, '个人简历', () => {
+    downloadPDF(html2Pdf.value, '个人简历', false, () => {
       linesNumber.value = temp;
     });
+  };
+
+  // 预览
+  const imgUrl = ref<string>('');
+  const previewDialog = ref<boolean>(false);
+  const pdfPreview = async () => {
+    // previewDialog.value = true;
+    
+    let temp = linesNumber.value;
+    linesNumber.value = 0;
+    await nextTick();
+    downloadPDF(html2Pdf.value, '个人简历', true, (dataUrl: string) => {
+      linesNumber.value = temp;
+      sessionStorage.setItem("_imgUrl",dataUrl);
+      // window.open('../../static/pdf/web/viewer.html')
+      // imgUrl.value = dataUrl
+    });
+  };
+  const close = () => {
+    previewDialog.value = false;
   };
 
   // 监听内容元素高度变化，绘制分割线
