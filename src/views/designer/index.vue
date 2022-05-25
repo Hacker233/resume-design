@@ -79,8 +79,7 @@
 
   <!-- 预览弹窗 -->
   <PreviewImage v-show="previewDialog" @close="close">
-  <!-- <div v-html="../../static/pdf/web/viewer.html"></div> -->
-    <!-- <iframe src="/public/static/pdf/web/viewer.html" frameborder="0"></iframe> -->
+    <VuePdf v-for="page in numOfPages" :key="page" :src="imgUrl" :page="page" :scale="0.5"/>
   </PreviewImage>
 </template>
 
@@ -102,11 +101,15 @@
   import TEMPLATE_JSON from '@/schema/model';
   import PreviewImage from '@/components/PreviewImage/PreviewImage.vue';
 
-
   import downloadPDF from '@/utils/html2pdf'; // 下载为pdf
   import { useResumeModelStore, useResumeJsonStore } from '@/store/resume';
   import { storeToRefs } from 'pinia';
   import { useRoute, useRouter } from 'vue-router';
+
+  // 预览
+  import { VuePdf, createLoadingTask } from 'vue3-pdfjs/esm';
+  import { VuePdfPropsType } from 'vue3-pdfjs/components/vue-pdf/vue-pdf-props'; // Prop type definitions can also be imported
+  import { PDFDocumentProxy } from 'pdfjs-dist/types/src/display/api';
 
   const { title } = storeToRefs(useResumeModelStore());
   const store = useResumeJsonStore();
@@ -249,19 +252,22 @@
   };
 
   // 预览
-  const imgUrl = ref<string>('');
+
+  const imgUrl = ref<VuePdfPropsType['src']>('');
+  const numOfPages = ref(0);
   const previewDialog = ref<boolean>(false);
   const pdfPreview = async () => {
-    // previewDialog.value = true;
-    
+    previewDialog.value = true;
     let temp = linesNumber.value;
     linesNumber.value = 0;
     await nextTick();
     downloadPDF(html2Pdf.value, '个人简历', true, (dataUrl: string) => {
+      imgUrl.value = dataUrl;
+      const loadingTask = createLoadingTask(dataUrl);
+      loadingTask.promise.then((pdf: PDFDocumentProxy) => {
+        numOfPages.value = pdf.numPages;
+      });
       linesNumber.value = temp;
-      sessionStorage.setItem("_imgUrl",dataUrl);
-      // window.open('../../static/pdf/web/viewer.html')
-      // imgUrl.value = dataUrl
     });
   };
   const close = () => {

@@ -8,3 +8,4 @@ declare module '*.vue' {
 }
 declare module 'jspdf';
 declare module 'colorpicker-v3';
+declare module 'vue3-pdfjs/esm';
