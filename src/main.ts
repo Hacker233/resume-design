@@ -30,7 +30,6 @@ app.use(ElementPlus, { size: 'small' });
 app.use(component);
 app.use(elementIcons);
 app.use(ColorPicker);
-app.use(VueViewer);
 app.use(VuePdf);
 app.component('SvgIcon', SvgIcon);
 app.config.globalProperties.$moment = moment;
