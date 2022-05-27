@@ -26,8 +26,9 @@
     overflow: auto;
     background-color: rgba(0, 0, 0, 0.5);
     z-index: 90;
+    transition: all 0.3s;
     .close {
-      position: absolute;
+      position: fixed;
       width: 40px;
       height: 40px;
       background-color: #000;

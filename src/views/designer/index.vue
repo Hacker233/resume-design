@@ -26,7 +26,7 @@
       <div class="nav-right">
         <el-button type="primary" @click="globalStyleSetting">全局样式设置</el-button>
         <el-button type="primary" @click="saveDraft">保存草稿</el-button>
-        <el-button type="primary" @click="pdfPreview">预览</el-button>
+        <!-- <el-button type="primary" @click="pdfPreview">预览</el-button> -->
         <el-button type="primary" @click="generateReport">导出PDF</el-button>
         <el-popconfirm
           title="重置会删除所有已编辑内容，是否继续?"
@@ -108,8 +108,8 @@
 
   // 预览
   import { VuePdf, createLoadingTask } from 'vue3-pdfjs/esm';
-  import { VuePdfPropsType } from 'vue3-pdfjs/components/vue-pdf/vue-pdf-props'; // Prop type definitions can also be imported
-  import { PDFDocumentProxy } from 'pdfjs-dist/types/src/display/api';
+  import type { VuePdfPropsType } from 'vue3-pdfjs/components/vue-pdf/vue-pdf-props'; // Prop type definitions can also be imported
+  import type { PDFDocumentProxy } from 'pdfjs-dist/types/src/display/api';
 
   const { title } = storeToRefs(useResumeModelStore());
   const store = useResumeJsonStore();

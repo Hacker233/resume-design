@@ -11,7 +11,7 @@
   </div>
 
   <PreviewImage v-show="dialogVisible" @close="close">
-    <img :src="getAssetsFile(cardData.preview)" alt="" srcset="" />
+    <img class="previewImg" :src="getAssetsFile(cardData.preview)" alt="" srcset="" />
   </PreviewImage>
 </template>
 <script setup lang="ts">
@@ -114,5 +114,8 @@
         }
       }
     }
+  }
+  .previewImg {
+    height: 90vh;
   }
 </style>
