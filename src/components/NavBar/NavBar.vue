@@ -39,6 +39,7 @@
     justify-content: space-between;
     background-color: v-bind('bgColor');
     z-index: 10;
+    user-select: none;
     padding: 0 40px;
     position: fixed;
     top: 0;

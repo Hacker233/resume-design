@@ -3,8 +3,8 @@
   <el-tabs v-model="activeName" type="card" class="demo-tabs" stretch>
     <el-tab-pane label="样式设置" name="style">
       <el-form label-width="100px" label-position="left">
-        <!-- 公共标题样式属性 -->
-        <common-title-options></common-title-options>
+        <!-- 公共样式属性 -->
+        <common-options></common-options>
       </el-form>
     </el-tab-pane>
     <el-tab-pane label="数据配置" name="data">
@@ -44,7 +44,7 @@
   import { IAWARDS } from '@/types/model';
   import { useResumeModelStore, useResumeJsonStore } from '@/store/resume';
   import { Delete } from '@element-plus/icons-vue';
-  import CommonTitleOptions from '@/components/CommonOptions/CommonTitleOptions.vue'; // 公共属性设置
+  import CommonOptions from '@/components/CommonOptions/CommonOptions.vue';
   // store
   const useModel = useResumeModelStore();
   const {resumeJsonStore} = useResumeJsonStore();

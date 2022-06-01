@@ -183,7 +183,7 @@
     saveDataToLocal();
   }, 1000);
   watch(
-    resumeJsonStore.value,
+    resumeJsonStore.value, // JSON数据发生变化，则保存草稿
     () => {
       debounced();
     },
@@ -309,6 +309,7 @@
         width: 300px;
         display: flex;
         align-items: center;
+        user-select: none;
         img {
           width: 60px;
           height: 60px;

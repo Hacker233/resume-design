@@ -332,9 +332,9 @@ let TEMPLATE_JSON: IResumeJson = {
         awardsGrade: true
       },
       style: {
-        titleColor: '#666',
-        titleFontSize: '14px',
-        titleFontWeight: 600,
+        textColor: '#666',
+        textFontSize: '14px',
+        textFontWeight: 600,
         mBottom: '45px',
         mTop: '0px'
       }
