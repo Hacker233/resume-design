@@ -2,11 +2,11 @@
   <template v-for="(item, index) in resumeJsonStore.LIST" :key="item.id">
     <div
       class="model-box"
-      v-if="item.show"
+      v-if="item.show && item.style"
       :ref="(el) => setRefItem(el, item.model)"
       @click="selectModel(item.model, item.title, item.id)"
     >
-      <component :is="components[item.model]" :modelData="item"></component>
+      <component v-if="item.style" :is="components[item.model]" :modelData="item"></component>
     </div>
   </template>
   <!-- 底部 -->

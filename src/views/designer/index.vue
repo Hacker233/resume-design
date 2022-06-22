@@ -53,7 +53,7 @@
           <div class="design-content" ref="htmlContentPdf">
             <component :is="componentName" />
           </div>
-          
+
           <!-- 分页线 -->
           <template v-if="linesNumber > 0">
             <div
@@ -80,7 +80,7 @@
 
   <!-- 预览弹窗 -->
   <PreviewImage v-show="previewDialog" @close="close">
-    <VuePdf v-for="page in numOfPages" :key="page" :src="imgUrl" :page="page" :scale="0.5"/>
+    <VuePdf v-for="page in numOfPages" :key="page" :src="imgUrl" :page="page" :scale="0.5" />
   </PreviewImage>
 </template>
 
@@ -106,11 +106,13 @@
   import { useResumeModelStore, useResumeJsonStore } from '@/store/resume';
   import { storeToRefs } from 'pinia';
   import { useRoute, useRouter } from 'vue-router';
+  import styles from '@/schema/style';
 
   // 预览
   import { VuePdf, createLoadingTask } from 'vue3-pdfjs/esm';
   import type { VuePdfPropsType } from 'vue3-pdfjs/components/vue-pdf/vue-pdf-props'; // Prop type definitions can also be imported
   import type { PDFDocumentProxy } from 'pdfjs-dist/types/src/display/api';
+  import { IResumeJson } from '@/types/model';
 
   const { title } = storeToRefs(useResumeModelStore());
   const store = useResumeJsonStore();
@@ -119,7 +121,18 @@
   const instance = getCurrentInstance() as ComponentInternalInstance;
   const moment = instance.appContext.config.globalProperties.$moment;
 
-  // 获取本地数据
+  // 判断每一模块是否有style属性，没有则加上
+  const addStyle = (resumeJson: IResumeJson) => {
+    resumeJson.LIST.map((item, index) => {
+      if (!item.style) {
+        item.style = styles[resumeJsonStore.value.NAME][item.model];
+      }
+      resumeJson.LIST[index] = item;
+    });
+    return resumeJson;
+  };
+
+  // 获取本地数据,初始化store里面的简历数据
   const localData = localStorage.getItem('resumeDraft');
   const route = useRoute();
   const { id, name } = route.query; // 模板id和模板名称
@@ -129,8 +142,12 @@
   if (localData) {
     let localObj = JSON.parse(localData)[id as string];
     if (localObj) {
+      localObj = addStyle(localObj);
       store.changeResumeJsonData(localObj);
     }
+  } else {
+    let resetObj = addStyle(TEMPLATE_JSON); // 初始数据
+    store.changeResumeJsonData(resetObj); // 更改store的数据
   }
 
   // 跳转到首页
@@ -201,7 +218,7 @@
     useModel.setResumeModel({
       model: '',
       title: '全局样式设置',
-      index: -1 // 选中的索引
+      id: -1 // 选中的索引
     });
   };
 
@@ -224,7 +241,7 @@
 
   // 重置数据
   const reset = () => {
-    let resetObj = TEMPLATE_JSON; // 初始数据
+    let resetObj = addStyle(TEMPLATE_JSON); // 初始数据
     store.changeResumeJsonData(resetObj); // 更改store的数据
     // 删除本地该条数据
     let localData = localStorage.getItem('resumeDraft'); // 本地缓存数据

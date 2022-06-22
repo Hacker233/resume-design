@@ -13,15 +13,7 @@ let TEMPLATE_JSON: IResumeJson = {
       id: 1,
       model: 'RESUME_TITLE',
       show: true,
-      title: '我的简历',
-      style: {
-        textColor: '#fff',
-        textFontSize: '16px',
-        textFontWeight: 600,
-        backgroundColor: '#000',
-        mBottom: '45px',
-        mTop: '15px'
-      }
+      title: '我的简历'
     },
     {
       id: 2,
@@ -47,16 +39,6 @@ let TEMPLATE_JSON: IResumeJson = {
         abstract: true, // 简介
         degree: true
       },
-      style: {
-        titleColor: '#121c26',
-        titleFontSize: '30px',
-        textFontSize: '14px',
-        titleFontWeight: 500,
-        textFontWeight: 500,
-        textColor: '#7c7b7b',
-        mBottom: '50px',
-        mTop: '0px'
-      }
     },
     {
       id: 3,
@@ -74,13 +56,6 @@ let TEMPLATE_JSON: IResumeJson = {
         expectSalary: true,
         jobStatus: true,
         jobSearchType: true
-      },
-      style: {
-        textColor: '#757575',
-        textFontSize: '14px',
-        textFontWeight: 500,
-        mBottom: '45px',
-        mTop: '0px'
       }
     },
     {
@@ -109,13 +84,6 @@ let TEMPLATE_JSON: IResumeJson = {
         schoolName: true,
         specialized: true,
         degree: true
-      },
-      style: {
-        textColor: '#666',
-        textFontSize: '14px',
-        textFontWeight: 600,
-        mBottom: '45px',
-        mTop: '0px'
       }
     },
     {
@@ -144,14 +112,7 @@ let TEMPLATE_JSON: IResumeJson = {
           proficiency: '一般', // 熟练度
           introduce: '熟练掌握该项技术' // 介绍
         }
-      ],
-      style: {
-        textColor: '#757575',
-        textFontSize: '14px',
-        textFontWeight: 500,
-        mBottom: '45px',
-        mTop: '0px'
-      }
+      ]
     },
     {
       id: 6,
@@ -178,16 +139,6 @@ let TEMPLATE_JSON: IResumeJson = {
         campusBriefly: true,
         campusDuty: true,
         campusContent: true
-      },
-      style: {
-        titleColor: '#666',
-        titleFontSize: '14px',
-        titleFontWeight: 600,
-        textColor: '#757575',
-        textFontSize: '14px',
-        textFontWeight: 500,
-        mBottom: '45px',
-        mTop: '0px'
       }
     },
     {
@@ -235,16 +186,6 @@ let TEMPLATE_JSON: IResumeJson = {
         date: true,
         companyName: true,
         posts: true
-      },
-      style: {
-        titleColor: '#666',
-        titleFontSize: '14px',
-        titleFontWeight: 600,
-        textColor: '#757575',
-        textFontSize: '14px',
-        textFontWeight: 500,
-        mBottom: '45px',
-        mTop: '0px'
       }
     },
     {
@@ -268,16 +209,6 @@ let TEMPLATE_JSON: IResumeJson = {
         date: true,
         companyName: true,
         posts: true
-      },
-      style: {
-        titleColor: '#666',
-        titleFontSize: '14px',
-        titleFontWeight: 600,
-        textColor: '#757575',
-        textFontSize: '14px',
-        textFontWeight: 500,
-        mBottom: '45px',
-        mTop: '0px'
       }
     },
     {
@@ -301,16 +232,6 @@ let TEMPLATE_JSON: IResumeJson = {
         date: true,
         projectName: true,
         posts: true
-      },
-      style: {
-        titleColor: '#666',
-        titleFontSize: '14px',
-        titleFontWeight: 600,
-        textColor: '#757575',
-        textFontSize: '14px',
-        textFontWeight: 500,
-        mBottom: '45px',
-        mTop: '0px'
       }
     },
 
@@ -330,13 +251,6 @@ let TEMPLATE_JSON: IResumeJson = {
         date: true,
         awardsName: true,
         awardsGrade: true
-      },
-      style: {
-        textColor: '#666',
-        textFontSize: '14px',
-        textFontWeight: 600,
-        mBottom: '45px',
-        mTop: '0px'
       }
     },
     {
@@ -358,14 +272,7 @@ let TEMPLATE_JSON: IResumeJson = {
       model: 'SELF_EVALUATION',
       show: true,
       title: '自我评价',
-      content: '我是一个没有责任感的人',
-      style: {
-        textColor: '#757575',
-        textFontSize: '14px',
-        textFontWeight: 500,
-        mBottom: '45px',
-        mTop: '0px'
-      }
+      content: '我是一个没有责任感的人'
     },
     {
       id: 13,
@@ -383,14 +290,7 @@ let TEMPLATE_JSON: IResumeJson = {
           worksLink: 'https://www.baidu.com',
           worksIntroduce: '这是一个千万级作品'
         }
-      ],
-      style: {
-        textColor: '#666',
-        textFontSize: '14px',
-        textFontWeight: 600,
-        mBottom: '45px',
-        mTop: '0px'
-      }
+      ]
     }
   ]
 };

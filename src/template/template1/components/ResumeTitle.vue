@@ -6,20 +6,18 @@
 </template>
 <script lang="ts" setup>
   import { IRESUMETITLE, ISTYLE } from '@/types/model';
-  import { reactive } from 'vue';
-  const props = defineProps<{
+  defineProps<{
     modelData: IRESUMETITLE;
   }>();
-  const style = reactive<ISTYLE>(props.modelData.style);
 </script>
 
 <style lang="less" scoped>
   .title {
     width: 100%;
     min-height: 32px;
-    margin-bottom: v-bind('style.mBottom');
-    margin-top: v-bind('style.mTop');
-    background-color: v-bind('style.backgroundColor');
+    margin-bottom: v-bind('modelData.style.mBottom');
+    margin-top: v-bind('modelData.style.mTop');
+    background-color: v-bind('modelData.style.backgroundColor');
     display: flex;
     .left {
       min-height: 32px;
@@ -29,17 +27,17 @@
     }
 
     .editor-resume {
-      color: v-bind('style.textColor');
+      color: v-bind('modelData.style.textColor');
       outline: none;
-      font-weight: v-bind('style.textFontWeight');
-      font-size: v-bind('style.textFontSize');
+      font-weight: v-bind('modelData.style.textFontWeight');
+      font-size: v-bind('modelData.style.textFontSize');
       letter-spacing: 2px;
       word-break: break-all;
       width: 0;
       flex: 1;
       display: flex;
       align-items: center;
-      justify-content: v-bind('style.align');
+      justify-content: v-bind('modelData.style.align');
     }
   }
 </style>

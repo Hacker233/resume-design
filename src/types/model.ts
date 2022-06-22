@@ -25,7 +25,7 @@ interface IRESUMETITLE {
   model: string;
   show: boolean;
   title: string;
-  style: ISTYLE;
+  [propNams: string]: any;
 }
 // 基础资料
 interface IBASEINFO {
@@ -52,7 +52,7 @@ interface IBASEINFO {
     abstract: boolean; // 简介
     degree: boolean;
   };
-  style: ISTYLE;
+  [propNams: string]: any;
 }
 // 求职意向
 interface IJOBINTENTION {
@@ -72,7 +72,7 @@ interface IJOBINTENTION {
     jobStatus: boolean;
     jobSearchType: boolean;
   };
-  style: ISTYLE;
+  [propNams: string]: any;
 }
 // 教育背景
 interface IEDUBACKGROUND {
@@ -93,7 +93,7 @@ interface IEDUBACKGROUND {
     specialized: boolean;
     degree: boolean;
   };
-  style: ISTYLE;
+  [propNams: string]: any;
 }
 // 技能特长
 interface ISKILLSPECIALTIES {
@@ -106,7 +106,7 @@ interface ISKILLSPECIALTIES {
     proficiency: string; // 熟练度
     introduce: string; // 介绍
   }>;
-  style: ISTYLE;
+  [propNams: string]: any;
 }
 
 // 校园经历
@@ -127,7 +127,7 @@ interface ICAMPUSEXPERIENCE {
     campusDuty: boolean;
     campusContent: boolean;
   };
-  style: ISTYLE;
+  [propNams: string]: any;
 }
 // 实习经验
 interface IINTERNSHIPEXPERIENCE {
@@ -148,7 +148,7 @@ interface IINTERNSHIPEXPERIENCE {
     companyName: boolean;
     posts: boolean;
   };
-  style: ISTYLE;
+  [propNams: string]: any;
 }
 // 工作经验
 interface IWORKEXPERIENCE {
@@ -169,7 +169,7 @@ interface IWORKEXPERIENCE {
     companyName: boolean;
     posts: boolean;
   };
-  style: ISTYLE;
+  [propNams: string]: any;
 }
 // 项目经验
 interface IPROJECTEXPERIENCE {
@@ -190,7 +190,7 @@ interface IPROJECTEXPERIENCE {
     projectName: boolean;
     posts: boolean;
   };
-  style: ISTYLE;
+  [propNams: string]: any;
 }
 // 所获奖项
 interface IAWARDS {
@@ -208,7 +208,7 @@ interface IAWARDS {
     awardsName: boolean;
     awardsGrade: boolean;
   };
-  style: ISTYLE;
+  [propNams: string]: any;
 }
 // 兴趣爱好
 interface IHOBBIES {
@@ -217,7 +217,7 @@ interface IHOBBIES {
   show: boolean;
   title: string;
   content: string;
-  style: ISTYLE;
+  [propNams: string]: any;
 }
 // 自我评价
 interface ISELFEVALUATION {
@@ -226,7 +226,7 @@ interface ISELFEVALUATION {
   show: boolean;
   title: string;
   content: string;
-  style: ISTYLE;
+  [propNams: string]: any;
 }
 // 作品展示
 interface IWORKSDISPLAY {
@@ -239,18 +239,18 @@ interface IWORKSDISPLAY {
     worksLink: string;
     worksIntroduce: string;
   }>;
-  style: ISTYLE;
+  [propNams: string]: any;
 }
 // resume格式接口
 interface IResumeJson {
   ID: string; // 模板id
-  NAME: string, // 模板名
+  NAME: string; // 模板名
   TITLE: string; // 模板名称
   THEME_COLOR: string; // 主题色
   TITLE_COLOR: string; // 模块标题颜色
   TITLE_FONT_SIZE: string; // 模块标题字体大小
-  MODEL_MARGIN_TOP: string,
-  MODEL_MARGIN_BOTTOM: string,
+  MODEL_MARGIN_TOP: string;
+  MODEL_MARGIN_BOTTOM: string;
   LIST: [
     IRESUMETITLE,
     IBASEINFO,
