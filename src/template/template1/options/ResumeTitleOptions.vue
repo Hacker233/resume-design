@@ -22,14 +22,15 @@
 <script setup lang="ts">
   import { reactive, ref } from 'vue';
   import { IRESUMETITLE } from '@/types/model';
-  import { useResumeModelStore, useResumeJsonStore } from '@/store/resume';
+  import { useResumeJsonStore } from '@/store/resume';
   import CommonOptions from '@/components/CommonOptions/CommonOptions.vue';
+  import { useModelIndex } from '@/hooks/useModelIndex';
   // store
-  const useModel = useResumeModelStore();
-  const {resumeJsonStore} = useResumeJsonStore();
+  const { resumeJsonStore } = useResumeJsonStore();
 
   // 选中的模块
-  const modelItem = reactive<IRESUMETITLE>(resumeJsonStore.LIST[useModel.index] as IRESUMETITLE);
+  const index = useModelIndex(); // 选中的索引
+  const modelItem = reactive<IRESUMETITLE>(resumeJsonStore.LIST[index] as IRESUMETITLE);
   let activeName = ref('style');
 </script>
 <script lang="ts">

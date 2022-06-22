@@ -25,14 +25,15 @@
 <script setup lang="ts">
   import { reactive, ref } from 'vue';
   import { IHOBBIES } from '@/types/model';
-  import { useResumeModelStore, useResumeJsonStore } from '@/store/resume';
+  import { useResumeJsonStore } from '@/store/resume';
   import CommonOptions from '@/components/CommonOptions/CommonOptions.vue'; // 公共属性设置
+  import { useModelIndex } from '@/hooks/useModelIndex';
   // store
-  const useModel = useResumeModelStore();
-  const {resumeJsonStore} = useResumeJsonStore();
+  const { resumeJsonStore } = useResumeJsonStore();
 
   // 选中的模块
-  const modelItem = reactive<IHOBBIES>(resumeJsonStore.LIST[useModel.index] as IHOBBIES);
+  const index = useModelIndex(); // 选中的索引
+  const modelItem = reactive<IHOBBIES>(resumeJsonStore.LIST[index] as IHOBBIES);
   let activeName = ref('style');
 </script>
 <script lang="ts">

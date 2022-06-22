@@ -14,7 +14,8 @@
   </el-form-item>
 </template>
 <script setup lang="ts">
-  import { useResumeJsonStore, useResumeModelStore } from '@/store/resume';
+  import { useModelIndex } from '@/hooks/useModelIndex';
+  import { useResumeJsonStore } from '@/store/resume';
   import { reactive } from 'vue';
   interface IProps {
     colorLabel?: string;
@@ -27,10 +28,10 @@
     fontWeightLabel: '标题字体粗细'
   });
   // store
-  const useModel = useResumeModelStore();
-  const {resumeJsonStore} = useResumeJsonStore();
+  const { resumeJsonStore } = useResumeJsonStore();
   // 选中的模块
-  const modelItem = reactive(resumeJsonStore.LIST[useModel.index]);
+  const index = useModelIndex(); // 选中的索引
+  const modelItem = reactive(resumeJsonStore.LIST[index]);
   // 字体大小
   const fontSizeList = reactive<Array<string>>([
     '10px',

@@ -59,17 +59,16 @@
 <script setup lang="ts">
   import { reactive, ref } from 'vue';
   import { IEDUBACKGROUND } from '@/types/model';
-  import { useResumeModelStore, useResumeJsonStore } from '@/store/resume';
+  import { useResumeJsonStore } from '@/store/resume';
   import { Delete } from '@element-plus/icons-vue';
   import CommonOptions from '@/components/CommonOptions/CommonOptions.vue'; // 公共属性设置
+  import { useModelIndex } from '@/hooks/useModelIndex';
   // store
-  const useModel = useResumeModelStore();
   const { resumeJsonStore } = useResumeJsonStore();
 
   // 选中的模块
-  const modelItem = reactive<IEDUBACKGROUND>(
-    resumeJsonStore.LIST[useModel.index] as IEDUBACKGROUND
-  );
+  const index = useModelIndex(); // 选中的索引
+  const modelItem = reactive<IEDUBACKGROUND>(resumeJsonStore.LIST[index] as IEDUBACKGROUND);
   let activeName = ref('style');
 
   /**

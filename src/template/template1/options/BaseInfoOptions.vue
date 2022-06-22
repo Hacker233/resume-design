@@ -67,17 +67,18 @@
 <script setup lang="ts">
   import { reactive, ref } from 'vue';
   import { IBASEINFO } from '@/types/model';
-  import { useResumeModelStore, useResumeJsonStore } from '@/store/resume';
+  import { useResumeJsonStore } from '@/store/resume';
   import { ElMessage } from 'element-plus';
   import type { UploadProps } from 'element-plus';
   import CommonOptions from '@/components/CommonOptions/CommonOptions.vue';
   import CommonTitleOptions from '@/components/CommonOptions/CommonTitleOptions.vue';
+  import { useModelIndex } from '@/hooks/useModelIndex';
   // store
-  const useModel = useResumeModelStore();
   const { resumeJsonStore } = useResumeJsonStore();
 
   // 选中的模块
-  const modelItem = reactive<IBASEINFO>(resumeJsonStore.LIST[useModel.index] as IBASEINFO);
+  const index = useModelIndex(); // 选中的索引
+  const modelItem = reactive<IBASEINFO>(resumeJsonStore.LIST[index] as IBASEINFO);
   let activeName = ref('style');
 
   /**

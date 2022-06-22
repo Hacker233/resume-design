@@ -4,7 +4,7 @@
       class="model-box"
       v-if="item.show"
       :ref="(el) => setRefItem(el, item.model)"
-      @click="selectModel(item.model, item.title, index)"
+      @click="selectModel(item.model, item.title, item.id)"
     >
       <component :is="components[item.model]" :modelData="item"></component>
     </div>
@@ -77,8 +77,8 @@
 
   // 点击模块
   const resumeModelStore = useResumeModelStore();
-  const selectModel = (model: string, title: string, index: number) => {
-    resumeModelStore.setResumeModel({ model, title, index });
+  const selectModel = (model: string, title: string, id: number) => {
+    resumeModelStore.setResumeModel({ model, title, id });
   };
 </script>
 <script lang="ts">

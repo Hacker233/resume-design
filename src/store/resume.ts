@@ -5,7 +5,7 @@ import TEMPLATE_JSON from '@/schema/model';
 interface IResumeModel {
   model: string;
   title: string;
-  index: number;
+  id: number;
 }
 
 export const useResumeJsonStore = defineStore({
@@ -29,12 +29,12 @@ export const useResumeModelStore = defineStore({
     return {
       model: '',
       title: '全局样式设置',
-      index: -1 // 选中的索引
+      id: -1 // 选中的id
     };
   },
   getters: {},
   actions: {
-    setResumeModel({ model, title, index }: IResumeModel) {
+    setResumeModel({ model, title, id }: IResumeModel) {
       // 直接通过this修改state
       // this.name = name;
       // this.sex = sex;
@@ -43,7 +43,7 @@ export const useResumeModelStore = defineStore({
       this.$patch({
         model,
         title,
-        index
+        id
       });
     }
   }

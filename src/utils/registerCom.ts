@@ -1,7 +1,9 @@
-// 注册全局组件
+// 模板组件
 import WEB_DEVELOP from '@/template/template1/web-develop.vue'; // 前端开发简历模板组件
 import ClassicVue from '@/template/template2/classic.vue';
-import ResumeTitleOptionsVue from '@/template/template1/options/ResumeTitleOptions.vue'; // 模板1属性设置组件
+
+// 模板1属性设置组件
+import ResumeTitleOptionsVue from '@/template/template1/options/ResumeTitleOptions.vue';
 import BaseInfoOptionsVue from '@/template/template1/options/BaseInfoOptions.vue';
 import JobIntentionOptionsVue from '@/template/template1/options/JobIntentionOptions.vue';
 import EduBackgroundOptionsVue from '@/template/template1/options/EduBackgroundOptions.vue';

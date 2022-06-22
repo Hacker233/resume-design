@@ -66,14 +66,15 @@
 <script setup lang="ts">
   import { reactive, ref } from 'vue';
   import { IJOBINTENTION } from '@/types/model';
-  import { useResumeModelStore, useResumeJsonStore } from '@/store/resume';
+  import { useResumeJsonStore } from '@/store/resume';
   import CommonOptions from '@/components/CommonOptions/CommonOptions.vue';
+  import { useModelIndex } from '@/hooks/useModelIndex';
   // store
-  const useModel = useResumeModelStore();
-  const {resumeJsonStore} = useResumeJsonStore();
+  const { resumeJsonStore } = useResumeJsonStore();
 
   // 选中的模块
-  const modelItem = reactive<IJOBINTENTION>(resumeJsonStore.LIST[useModel.index] as IJOBINTENTION);
+  const index = useModelIndex(); // 选中的索引
+  const modelItem = reactive<IJOBINTENTION>(resumeJsonStore.LIST[index] as IJOBINTENTION);
   let activeName = ref('style');
 
   /**
@@ -96,5 +97,4 @@
     name: 'JOB_INTENTION'
   };
 </script>
-<style lang="less">
-</style>
+<style lang="less"></style>

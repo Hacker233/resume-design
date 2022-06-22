@@ -25,14 +25,15 @@
 <script setup lang="ts">
   import { reactive, ref } from 'vue';
   import { ISELFEVALUATION } from '@/types/model';
-  import { useResumeModelStore, useResumeJsonStore } from '@/store/resume';
+  import { useResumeJsonStore } from '@/store/resume';
   import CommonOptions from '@/components/CommonOptions/CommonOptions.vue'; // 公共属性设置
+  import { useModelIndex } from '@/hooks/useModelIndex';
   // store
-  const useModel = useResumeModelStore();
-  const {resumeJsonStore} = useResumeJsonStore();
+  const { resumeJsonStore } = useResumeJsonStore();
 
   // 选中的模块
-  const modelItem = reactive<ISELFEVALUATION>(resumeJsonStore.LIST[useModel.index] as ISELFEVALUATION);
+  const index = useModelIndex(); // 选中的索引
+  const modelItem = reactive<ISELFEVALUATION>(resumeJsonStore.LIST[index] as ISELFEVALUATION);
   let activeName = ref('style');
 </script>
 <script lang="ts">

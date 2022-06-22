@@ -7,15 +7,15 @@
 <script setup lang="ts">
 import { computed } from 'vue';
 const props = defineProps({
-  iconName: { // 图标名称与assets/icon/svg下使用的文件名一致
+  iconName: {
     type: String,
     required: true
   },
-  className: { // 给图标添加class
+  className: {
     type: String,
     default: ''
   },
-  color: { // 设置图标颜色
+  color: {
     type: String,
     default: '#409eff'
   }
@@ -32,13 +32,13 @@ const svgClass = computed(() => {
 </script>
 
 <style scoped lang="less">
-.sub-el-icon,
-.nav-icon {
-  display: inline-block;
-  font-size: 15px;
-  margin-right: 12px;
-  position: relative;
-}
+// .sub-el-icon,
+// .nav-icon {
+//   display: inline-block;
+//   font-size: 15px;
+//   margin-right: 12px;
+//   position: relative;
+// }
 
 .svg-icon {
   width: 1em;

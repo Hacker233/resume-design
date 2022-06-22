@@ -81,18 +81,17 @@
 <script setup lang="ts">
   import { reactive, ref } from 'vue';
   import { IPROJECTEXPERIENCE } from '@/types/model';
-  import { useResumeModelStore, useResumeJsonStore } from '@/store/resume';
+  import { useResumeJsonStore } from '@/store/resume';
   import CommonOptions from '@/components/CommonOptions/CommonOptions.vue';
   import CommonTitleOptions from '@/components/CommonOptions/CommonTitleOptions.vue';
-  import { Delete,SemiSelect, Plus } from '@element-plus/icons-vue';
+  import { Delete, SemiSelect, Plus } from '@element-plus/icons-vue';
+  import { useModelIndex } from '@/hooks/useModelIndex';
   // store
-  const useModel = useResumeModelStore();
-  const {resumeJsonStore} = useResumeJsonStore();
+  const { resumeJsonStore } = useResumeJsonStore();
 
   // 选中的模块
-  const modelItem = reactive<IPROJECTEXPERIENCE>(
-    resumeJsonStore.LIST[useModel.index] as IPROJECTEXPERIENCE
-  );
+  const index = useModelIndex(); // 选中的索引
+  const modelItem = reactive<IPROJECTEXPERIENCE>(resumeJsonStore.LIST[index] as IPROJECTEXPERIENCE);
   let activeName = ref('style');
 
   /**

@@ -20,14 +20,15 @@
   </el-form-item>
 </template>
 <script setup lang="ts">
-  import { useResumeJsonStore, useResumeModelStore } from '@/store/resume';
+  import { useResumeJsonStore } from '@/store/resume';
   import { reactive, ref } from 'vue';
   import { pxTonumber } from '@/utils/common';
+  import { useModelIndex } from '@/hooks/useModelIndex';
   // store
-  const useModel = useResumeModelStore();
   const { resumeJsonStore } = useResumeJsonStore();
   // 选中的模块
-  const modelItem = reactive(resumeJsonStore.LIST[useModel.index]);
+  const index = useModelIndex(); // 选中的索引
+  const modelItem = reactive(resumeJsonStore.LIST[index]);
   // 字体大小
   const fontSizeList = reactive<Array<string>>([
     '10px',

@@ -40,15 +40,16 @@
 <script setup lang="ts">
   import { reactive, ref } from 'vue';
   import { IWORKSDISPLAY } from '@/types/model';
-  import { useResumeModelStore, useResumeJsonStore } from '@/store/resume';
+  import { useResumeJsonStore } from '@/store/resume';
   import CommonOptions from '@/components/CommonOptions/CommonOptions.vue';
   import { Delete, Plus, SemiSelect } from '@element-plus/icons-vue';
+  import { useModelIndex } from '@/hooks/useModelIndex';
   // store
-  const useModel = useResumeModelStore();
-  const {resumeJsonStore} = useResumeJsonStore();
+  const { resumeJsonStore } = useResumeJsonStore();
 
   // 选中的模块
-  const modelItem = reactive<IWORKSDISPLAY>(resumeJsonStore.LIST[useModel.index] as IWORKSDISPLAY);
+  const index = useModelIndex(); // 选中的索引
+  const modelItem = reactive<IWORKSDISPLAY>(resumeJsonStore.LIST[index] as IWORKSDISPLAY);
   let activeName = ref('style');
 
   /**
