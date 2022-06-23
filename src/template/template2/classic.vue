@@ -98,7 +98,7 @@
       overflow: hidden;
       // padding: 20px 30px 40px 30px;
       .model-box {
-        padding: 20px 30px 0px 30px;
+        padding: 50px 30px 0px 30px;
       }
     }
   }

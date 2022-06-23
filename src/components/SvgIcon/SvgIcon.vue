@@ -18,6 +18,10 @@ const props = defineProps({
   color: {
     type: String,
     default: '#409eff'
+  },
+  size: {
+    type: String,
+    default: '14px'
   }
 });
 const iconClassName = computed(()=>{
@@ -46,5 +50,6 @@ const svgClass = computed(() => {
   position: relative;
   fill: currentColor;
   vertical-align: -2px;
+  font-size: v-bind('props.size');
 }
 </style>

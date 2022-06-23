@@ -112,7 +112,7 @@ let styles: IStyles = {
       textFontSize: '14px',
       titleFontWeight: 500,
       textFontWeight: 500,
-      textColor: '#7c7b7b',
+      textColor: '#fff',
       mBottom: '50px',
       mTop: '0px'
     },

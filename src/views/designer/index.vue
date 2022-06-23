@@ -249,7 +249,7 @@
       if (Object.keys(allData).length > 1) {
         if (allData[id as string]) {
           delete allData[id as string]; // 删除该条数据
-          localStorage.setItem('resumeDraft', allData);
+          localStorage.setItem('resumeDraft', JSON.stringify(allData));
         }
       } else {
         localStorage.removeItem('resumeDraft');

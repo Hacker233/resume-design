@@ -11,11 +11,26 @@
       <!-- <p class="user-abstract" v-show="isShow.abstract">{{ modelData.abstract }}</p> -->
       <!-- 年龄、地点、经验等信息 -->
       <ul>
-        <li class="li-border" v-show="isShow.age">{{ modelData.age }}岁</li>
-        <li class="li-border" v-show="isShow.address">{{ modelData.address }}</li>
-        <li class="li-border" v-show="isShow.workService">{{ modelData.workService }}年经验</li>
-        <li class="li-border" v-show="isShow.phoneNumber">{{ modelData.phoneNumber }}</li>
-        <li v-show="isShow.email">{{ modelData.email }}</li>
+        <li class="li-border" v-show="isShow.age">
+          <svg-icon iconName="icon-renwu-ren" color="#fff"></svg-icon>
+          <span>{{ modelData.age }}岁</span>
+        </li>
+        <li class="li-border" v-show="isShow.address">
+          <svg-icon iconName="icon-dizhi" color="#fff" size="16px"></svg-icon>
+          <span>{{ modelData.address }}</span>
+        </li>
+        <li class="li-border" v-show="isShow.workService">
+          <svg-icon iconName="icon-gongzuojingyan" color="#fff"></svg-icon>
+          <span>{{ modelData.workService }}年经验</span>
+        </li>
+        <li class="li-border" v-show="isShow.phoneNumber">
+          <svg-icon iconName="icon-dianhua1" color="#fff"></svg-icon>
+          <span>{{ modelData.phoneNumber }}</span>
+        </li>
+        <li v-show="isShow.email">
+          <svg-icon iconName="icon-youxiang" color="#fff"></svg-icon>
+          <span>{{ modelData.email }}</span>
+        </li>
       </ul>
     </div>
   </div>
@@ -45,6 +60,29 @@
       display: flex;
       align-items: center;
       justify-content: center;
+    }
+    .user-info {
+      width: 100%;
+      margin-top: 40px;
+      ul {
+        display: flex;
+        flex-direction: column;
+        li {
+          height: 35px;
+          display: flex;
+          align-items: center;
+          list-style: none;
+          color: v-bind('modelData.style.textColor');
+          font-size: v-bind('modelData.style.textFontSize');
+          font-weight: v-bind('modelData.style.textFontWeight');
+          & :first-child {
+            margin-right: 10px;
+          }
+          span {
+            letter-spacing: 2px;
+          }
+        }
+      }
     }
   }
 </style>
