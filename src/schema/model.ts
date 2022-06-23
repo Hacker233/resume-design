@@ -10,13 +10,13 @@ let TEMPLATE_JSON: IResumeJson = {
   MODEL_MARGIN_BOTTOM: '45px',
   LIST: [
     {
-      id: 1,
+      id: '1',
       model: 'RESUME_TITLE',
       show: true,
       title: '我的简历'
     },
     {
-      id: 2,
+      id: '2',
       model: 'BASE_INFO',
       show: true,
       title: '基本资料',
@@ -41,7 +41,7 @@ let TEMPLATE_JSON: IResumeJson = {
       },
     },
     {
-      id: 3,
+      id: '3',
       model: 'JOB_INTENTION',
       show: true,
       title: '求职意向',
@@ -59,7 +59,7 @@ let TEMPLATE_JSON: IResumeJson = {
       }
     },
     {
-      id: 4,
+      id: '4',
       model: 'EDU_BACKGROUND',
       show: true,
       title: '教育背景',
@@ -87,7 +87,7 @@ let TEMPLATE_JSON: IResumeJson = {
       }
     },
     {
-      id: 5,
+      id: '5',
       model: 'SKILL_SPECIALTIES',
       show: true,
       title: '技能特长',
@@ -115,7 +115,7 @@ let TEMPLATE_JSON: IResumeJson = {
       ]
     },
     {
-      id: 6,
+      id: '6',
       model: 'CAMPUS_EXPERIENCE',
       show: true,
       title: '校园经历',
@@ -142,7 +142,7 @@ let TEMPLATE_JSON: IResumeJson = {
       }
     },
     {
-      id: 9,
+      id: '9',
       model: 'INTERNSHIP_EXPERIENCE',
       show: true,
       title: '实习经验',
@@ -189,7 +189,7 @@ let TEMPLATE_JSON: IResumeJson = {
       }
     },
     {
-      id: 7,
+      id: '7',
       model: 'WORK_EXPERIENCE',
       show: true,
       title: '工作经验',
@@ -212,7 +212,7 @@ let TEMPLATE_JSON: IResumeJson = {
       }
     },
     {
-      id: 8,
+      id: '8',
       model: 'PROJECT_EXPERIENCE',
       show: true,
       title: '项目经验',
@@ -236,7 +236,7 @@ let TEMPLATE_JSON: IResumeJson = {
     },
 
     {
-      id: 10,
+      id: '10',
       model: 'AWARDS',
       show: true,
       title: '荣誉奖项',
@@ -254,7 +254,7 @@ let TEMPLATE_JSON: IResumeJson = {
       }
     },
     {
-      id: 11,
+      id: '11',
       model: 'HOBBIES',
       show: true,
       title: '兴趣爱好',
@@ -268,14 +268,14 @@ let TEMPLATE_JSON: IResumeJson = {
       }
     },
     {
-      id: 12,
+      id: '12',
       model: 'SELF_EVALUATION',
       show: true,
       title: '自我评价',
       content: '我是一个没有责任感的人'
     },
     {
-      id: 13,
+      id: '13',
       model: 'WORKS_DISPLAY',
       show: true,
       title: '作品展示',

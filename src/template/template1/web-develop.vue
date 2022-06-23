@@ -3,7 +3,7 @@
     <div
       class="model-box"
       v-if="item.show && item.style"
-      :ref="(el) => setRefItem(el, item.model)"
+      :ref="(el) => setRefItem(el, item.model, item.id)"
       @click="selectModel(item.model, item.title, item.id)"
     >
       <component v-if="item.style" :is="components[item.model]" :modelData="item"></component>
@@ -28,7 +28,7 @@
   import WorksDisplay from './components/WorksDisplay.vue'; // 作品展示
   import { useResumeJsonStore, useResumeModelStore } from '@/store/resume';
   import { storeToRefs } from 'pinia';
-  import { ComponentPublicInstance, reactive, ref, watch } from 'vue';
+  import { ComponentPublicInstance, onMounted, reactive, ref, watch } from 'vue';
 
   const { resumeJsonStore } = storeToRefs(useResumeJsonStore());
 
@@ -50,34 +50,38 @@
   };
 
   // 锚点定位
-  const { model } = storeToRefs(useResumeModelStore());
+  const { id } = storeToRefs(useResumeModelStore());
   watch(
-    model,
+    id,
     (newVal, oldVal) => {
       // 判断是否选中复选框
       if (oldVal && modelObj[oldVal]) {
-        modelObj[oldVal].style.borderColor = 'transparent';
+        modelObj[oldVal].el.style.borderColor = 'transparent';
       }
       // 如果选中了模块
       if (newVal && modelObj[newVal]) {
-        modelObj[newVal].scrollIntoView({ behavior: 'smooth', block: 'center' }); // 该模块显示在可视区域内
-        modelObj[newVal].style.borderColor = '#7ec97e';
+        modelObj[newVal].el.scrollIntoView({ behavior: 'smooth', block: 'center' }); // 该模块显示在可视区域内
+        modelObj[newVal].el.style.borderColor = '#7ec97e';
       }
     },
     {
       deep: true
     }
   );
+  // 模块ref
   const modelObj = reactive<any>({});
-  const setRefItem = (el: ComponentPublicInstance | null | Element, model: string) => {
+  const setRefItem = (el: ComponentPublicInstance | null | Element, model: string, id: string) => {
     if (el) {
-      modelObj[model] = el;
+      modelObj[id] = {
+        id: id,
+        el: el
+      }
     }
   };
 
   // 点击模块
   const resumeModelStore = useResumeModelStore();
-  const selectModel = (model: string, title: string, id: number) => {
+  const selectModel = (model: string, title: string, id: string) => {
     resumeModelStore.setResumeModel({ model, title, id });
   };
 </script>

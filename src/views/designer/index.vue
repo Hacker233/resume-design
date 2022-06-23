@@ -71,7 +71,7 @@
       <!-- 参数修改区域 -->
       <div class="config">
         <Title :title="title"></Title>
-        <component :is="useModel.model" v-if="useModel.model" />
+        <component :is="useModel.model" v-if="useModel.model" :key="useModel.id" />
         <global-options v-else></global-options>
         <!-- <el-empty v-else description="请选择简历模块" /> -->
       </div>
@@ -218,7 +218,7 @@
     useModel.setResumeModel({
       model: '',
       title: '全局样式设置',
-      id: -1 // 选中的索引
+      id: '' // 选中的索引
     });
   };
 

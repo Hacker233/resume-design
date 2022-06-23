@@ -2,7 +2,7 @@
   <div class="base-info">
     <!-- 个人头像 -->
     <div class="avatar-box" v-show="modelData.isShow.avatar">
-      <el-image style="width: 115px; height: 115px" :src="modelData.avatar" />
+      <el-image style="width: 120px; height: 150px" :src="modelData.avatar" />
     </div>
     <!-- 基础信息 -->
     <div class="user-info">
@@ -28,3 +28,23 @@
   }>();
   const isShow = reactive(props.modelData.isShow);
 </script>
+<style lang="less" scoped>
+  .base-info {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    box-sizing: border-box;
+    align-items: center;
+    margin-bottom: v-bind('modelData.style.mBottom');
+    margin-top: v-bind('modelData.style.mTop');
+
+    .avatar-box {
+      border: 3px solid #e5e5e5;
+      overflow: hidden;
+      background-color: #eee;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+</style>

@@ -37,6 +37,7 @@
 </template>
 <script setup lang="ts">
   import { useResumeModelStore, useResumeJsonStore } from '@/store/resume';
+  import { getUuid } from '@/utils/common';
   // 列表数据
   const { resumeJsonStore } = useResumeJsonStore();
 
@@ -72,6 +73,7 @@
   // 添加模块
   const add = (index: number) => {
     let temp = JSON.parse(JSON.stringify(resumeJsonStore.LIST[index]));
+    temp.id = getUuid();
     resumeJsonStore.LIST.splice(index, 0, temp);
   };
 </script>

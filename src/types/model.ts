@@ -21,7 +21,7 @@ interface ISTYLE {
 }
 // 简历标题
 interface IRESUMETITLE {
-  id: number;
+  id: string;
   model: string;
   show: boolean;
   title: string;
@@ -29,7 +29,7 @@ interface IRESUMETITLE {
 }
 // 基础资料
 interface IBASEINFO {
-  id: number;
+  id: string;
   model: string;
   show: boolean;
   title: string;
@@ -56,7 +56,7 @@ interface IBASEINFO {
 }
 // 求职意向
 interface IJOBINTENTION {
-  id: number;
+  id: string;
   model: string;
   show: boolean;
   title: string;
@@ -76,7 +76,7 @@ interface IJOBINTENTION {
 }
 // 教育背景
 interface IEDUBACKGROUND {
-  id: number;
+  id: string;
   model: string;
   show: boolean;
   title: string;
@@ -97,7 +97,7 @@ interface IEDUBACKGROUND {
 }
 // 技能特长
 interface ISKILLSPECIALTIES {
-  id: number;
+  id: string;
   model: string;
   show: boolean;
   title: string;
@@ -111,7 +111,7 @@ interface ISKILLSPECIALTIES {
 
 // 校园经历
 interface ICAMPUSEXPERIENCE {
-  id: number;
+  id: string;
   model: string;
   show: boolean;
   title: string;
@@ -131,7 +131,7 @@ interface ICAMPUSEXPERIENCE {
 }
 // 实习经验
 interface IINTERNSHIPEXPERIENCE {
-  id: number;
+  id: string;
   model: string;
   show: boolean;
   title: string;
@@ -152,7 +152,7 @@ interface IINTERNSHIPEXPERIENCE {
 }
 // 工作经验
 interface IWORKEXPERIENCE {
-  id: number;
+  id: string;
   model: string;
   show: boolean;
   title: string;
@@ -173,7 +173,7 @@ interface IWORKEXPERIENCE {
 }
 // 项目经验
 interface IPROJECTEXPERIENCE {
-  id: number;
+  id: string;
   model: string;
   show: boolean;
   title: string;
@@ -194,7 +194,7 @@ interface IPROJECTEXPERIENCE {
 }
 // 所获奖项
 interface IAWARDS {
-  id: number;
+  id: string;
   model: string;
   show: boolean;
   title: string;
@@ -212,7 +212,7 @@ interface IAWARDS {
 }
 // 兴趣爱好
 interface IHOBBIES {
-  id: number;
+  id: string;
   model: string;
   show: boolean;
   title: string;
@@ -221,7 +221,7 @@ interface IHOBBIES {
 }
 // 自我评价
 interface ISELFEVALUATION {
-  id: number;
+  id: string;
   model: string;
   show: boolean;
   title: string;
@@ -230,7 +230,7 @@ interface ISELFEVALUATION {
 }
 // 作品展示
 interface IWORKSDISPLAY {
-  id: number;
+  id: string;
   model: string;
   show: boolean;
   title: string;

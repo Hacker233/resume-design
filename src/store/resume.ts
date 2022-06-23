@@ -5,7 +5,7 @@ import TEMPLATE_JSON from '@/schema/model';
 interface IResumeModel {
   model: string;
   title: string;
-  id: number;
+  id: string;
 }
 
 export const useResumeJsonStore = defineStore({
@@ -29,7 +29,7 @@ export const useResumeModelStore = defineStore({
     return {
       model: '',
       title: '全局样式设置',
-      id: -1 // 选中的id
+      id: '' // 选中的id
     };
   },
   getters: {},

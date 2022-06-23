@@ -89,10 +89,12 @@
     height: 100%;
     .left {
       width: 270px;
+      box-sizing: border-box;
       background-color: #254665;
       position: absolute;
       height: 100%;
       overflow: hidden;
+      padding: 20px 30px 40px 30px;
     }
   }
 </style>
