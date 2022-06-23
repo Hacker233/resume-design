@@ -4,12 +4,12 @@
       <li
         v-for="(item, index) in resumeJsonStore.LIST"
         :key="item.id"
-        :class="[{ active: resumeModel.index === index }]"
+        :class="[{ active: resumeModel.id === item.id }]"
       >
         <!-- 是否添加模块 -->
         <el-checkbox v-model="item.show" :label="item.title" />
         <!-- 中间模块 -->
-        <div class="center" @click="selectModel(item, index)"></div>
+        <div class="center" @click="selectModel(item)"></div>
         <!-- 上下移动图标 -->
         <div class="up-down-box">
           <el-icon
@@ -43,11 +43,11 @@
 
   // 选中模块
   const resumeModel = useResumeModelStore();
-  const selectModel = (item: any, index: number) => {
+  const selectModel = (item: any) => {
     let updateData = {
       model: item.model,
       title: item.title,
-      index: index
+      id: item.id
     };
     resumeModel.setResumeModel(updateData);
   };
