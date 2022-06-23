@@ -218,11 +218,7 @@
   // 全局样式设置
   const globalStyleSetting = () => {
     // 重置store选中模块
-    useModel.setResumeModel({
-      model: '',
-      title: '全局样式设置',
-      id: '' // 选中的索引
-    });
+    useModel.$reset();
   };
 
   // 保存草稿
@@ -266,6 +262,7 @@
   const generateReport = async () => {
     let temp = linesNumber.value;
     linesNumber.value = 0;
+    useModel.$reset(); // 重置选中模块
     await nextTick();
     downloadPDF(html2Pdf.value, '个人简历', false, () => {
       linesNumber.value = temp;
