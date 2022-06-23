@@ -5,10 +5,10 @@
         <div
           class="model-box"
           v-if="item.show"
-          :ref="(el) => setRefItem(el, item.model)"
+          :ref="(el) => setRefItem(el, item.model, item.id)"
           @click="selectModel(item.model, item.title, item.id)"
         >
-          <component :is="components[item.model]" :modelData="item"></component>
+          <component v-if="item.style" :is="components[item.model]" :modelData="item"></component>
         </div>
       </template>
     </div>
@@ -29,18 +29,18 @@
     BASE_INFO: BaseInfo
   };
   // 左侧锚点定位
-  const { model } = storeToRefs(useResumeModelStore());
+  const { id } = storeToRefs(useResumeModelStore());
   watch(
-    model,
+    id,
     (newVal, oldVal) => {
       // 判断是否选中复选框
       if (oldVal && modelObj[oldVal]) {
-        modelObj[oldVal].style.borderColor = 'transparent';
+        modelObj[oldVal].el.style.borderColor = 'transparent';
       }
       // 如果选中了模块
       if (newVal && modelObj[newVal]) {
-        modelObj[newVal].scrollIntoView({ behavior: 'smooth', block: 'center' }); // 该模块显示在可视区域内
-        modelObj[newVal].style.borderColor = '#7ec97e';
+        modelObj[newVal].el.scrollIntoView({ behavior: 'smooth', block: 'center' }); // 该模块显示在可视区域内
+        modelObj[newVal].el.style.borderColor = '#7ec97e';
       }
     },
     {
@@ -50,14 +50,17 @@
 
   // 获取左侧ref
   const modelObj = reactive<any>({});
-  const setRefItem = (el: ComponentPublicInstance | null | Element, model: string) => {
+  const setRefItem = (el: ComponentPublicInstance | null | Element, model: string, id: string) => {
     if (el) {
-      modelObj[model] = el;
+      modelObj[id] = {
+        id: id,
+        el: el
+      };
     }
   };
   // 获取左侧选中组件模块
   const resumeModelStore = useResumeModelStore();
-  const selectModel = (model: string, title: string, id: number) => {
+  const selectModel = (model: string, title: string, id: string) => {
     resumeModelStore.setResumeModel({ model, title, id });
   };
 
@@ -73,9 +76,8 @@
       return item.model === 'BASE_INFO' || item.model === 'SKILL_SPECIALTIES';
     });
   });
-  
+
   // 右侧组件列表
-  
 </script>
 <script lang="ts">
   export default {
@@ -94,7 +96,10 @@
       position: absolute;
       height: 100%;
       overflow: hidden;
-      padding: 20px 30px 40px 30px;
+      // padding: 20px 30px 40px 30px;
+      .model-box {
+        padding: 20px 30px 0px 30px;
+      }
     }
   }
 </style>

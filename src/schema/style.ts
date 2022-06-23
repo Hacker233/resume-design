@@ -97,7 +97,7 @@ let styles: IStyles = {
       mTop: '0px'
     }
   },
-  classic: {
+  'classic': {
     RESUME_TITLE: {
       textColor: '#fff',
       textFontSize: '16px',

@@ -144,6 +144,9 @@
     if (localObj) {
       localObj = addStyle(localObj);
       store.changeResumeJsonData(localObj);
+    } else {
+      let resetObj = addStyle(TEMPLATE_JSON); // 初始数据
+      store.changeResumeJsonData(resetObj); // 更改store的数据
     }
   } else {
     let resetObj = addStyle(TEMPLATE_JSON); // 初始数据
