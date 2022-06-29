@@ -103,7 +103,7 @@ interface ISKILLSPECIALTIES {
   title: string;
   LIST: Array<{
     skillName: string; // 技能名称
-    proficiency: string; // 熟练度
+    proficiency: number; // 熟练度
     introduce: string; // 介绍
   }>;
   [propNams: string]: any;

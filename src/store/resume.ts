@@ -3,6 +3,7 @@ import { IResumeJson } from '@/types/model';
 import TEMPLATE_JSON from '@/schema/model';
 
 interface IResumeModel {
+  name: string;
   model: string;
   title: string;
   id: string;
@@ -27,6 +28,7 @@ export const useResumeModelStore = defineStore({
   id: 'resumeModel', // id必填，且需要唯一
   state: (): IResumeModel => {
     return {
+      name: '', // 模板名称
       model: '',
       title: '全局样式设置',
       id: '' // 选中的id

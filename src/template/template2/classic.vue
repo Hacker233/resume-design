@@ -12,21 +12,25 @@
         </div>
       </template>
     </div>
-    <div class="right"></div>
+    <div class="right">
+
+    </div>
   </div>
 </template>
 <script setup lang="ts">
   import { useResumeJsonStore, useResumeModelStore } from '@/store/resume';
   import { storeToRefs } from 'pinia';
   import { ComponentPublicInstance, computed, reactive, ref, watch, watchEffect } from 'vue';
-  import BaseInfo from './components/BaseInfo.vue';
+  import BaseInfo from './components/BaseInfo.vue'; // 基础信息
+  import SkillSpecialties from './components/SkillSpecialties.vue';
 
   const { resumeJsonStore } = storeToRefs(useResumeJsonStore()); // 简历数据
   console.log('模板2json', resumeJsonStore);
 
   // 注册局部组件
   const components: any = {
-    BASE_INFO: BaseInfo
+    BASE_INFO: BaseInfo,
+    SKILL_SPECIALTIES: SkillSpecialties
   };
   // 左侧锚点定位
   const { id } = storeToRefs(useResumeModelStore());
@@ -78,6 +82,7 @@
   });
 
   // 右侧组件列表
+  // let rightList = 
 </script>
 <script lang="ts">
   export default {
@@ -98,7 +103,7 @@
       overflow: hidden;
       // padding: 20px 30px 40px 30px;
       .model-box {
-        padding: 50px 30px 0px 30px;
+        padding: 0 30px 0px 30px;
       }
     }
   }

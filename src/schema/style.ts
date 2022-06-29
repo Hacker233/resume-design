@@ -114,7 +114,7 @@ let styles: IStyles = {
       textFontWeight: 500,
       textColor: '#fff',
       mBottom: '50px',
-      mTop: '0px'
+      mTop: '50px'
     },
     JOB_INTENTION: {
       textColor: '#757575',
@@ -131,7 +131,7 @@ let styles: IStyles = {
       mTop: '0px'
     },
     SKILL_SPECIALTIES: {
-      textColor: '#757575',
+      textColor: '#fff',
       textFontSize: '14px',
       textFontWeight: 500,
       mBottom: '45px',

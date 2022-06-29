@@ -94,22 +94,22 @@ let TEMPLATE_JSON: IResumeJson = {
       LIST: [
         {
           skillName: 'JavaScript', // 技能名称
-          proficiency: '一般', // 熟练度
+          proficiency: 25, // 熟练度
           introduce: '熟练掌握该项技术' // 介绍
         },
         {
           skillName: 'JavaScript', // 技能名称
-          proficiency: '一般', // 熟练度
+          proficiency: 50, // 熟练度
           introduce: '熟练掌握该项技术熟练掌握该项技术熟练掌握该项技术熟练掌握该项技术' // 介绍
         },
         {
           skillName: 'JavaScript', // 技能名称
-          proficiency: '一般', // 熟练度
+          proficiency: 77, // 熟练度
           introduce: '熟练掌握该项技术熟练掌握该项技术熟练掌握该项技术熟练掌握该项技术' // 介绍
         },
         {
           skillName: 'JavaScript', // 技能名称
-          proficiency: '一般', // 熟练度
+          proficiency: 43, // 熟练度
           introduce: '熟练掌握该项技术' // 介绍
         }
       ]
