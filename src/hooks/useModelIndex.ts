@@ -16,6 +16,7 @@ export const useModelOptionsComName = (templateModel: string): string => {
   let optionsName:string = '';
   switch(templateModel) {
     case 'template1-BASE_INFO':
+    case 'template2-BASE_INFO':
       optionsName = 'COM_BASE_INFO_OPTIONS';
       break;
     case 'template1-RESUME_TITLE':
