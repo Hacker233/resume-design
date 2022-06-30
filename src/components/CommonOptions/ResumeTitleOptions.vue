@@ -35,6 +35,6 @@
 </script>
 <script lang="ts">
   export default {
-    name: 'RESUME_TITLE'
+    name: 'COM_RESUME_TITLE_OPTIONS'
   };
 </script>

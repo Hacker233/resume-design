@@ -2,12 +2,12 @@ import { ITempList } from './type';
 const templateList: Array<ITempList> = [
   {
     id: '1',
-    name: 'web-develop',
+    name: 'template1',
     preview: 'template1.png'
   },
   {
     id: '2',
-    name: 'classic',
+    name: 'template2',
     preview: 'template2.png'
   }
 ];

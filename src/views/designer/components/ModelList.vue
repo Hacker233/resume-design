@@ -36,6 +36,7 @@
   </div>
 </template>
 <script setup lang="ts">
+  import { useModelOptionsComName } from '@/hooks/useModelIndex';
   import { useResumeModelStore, useResumeJsonStore } from '@/store/resume';
   import { getUuid } from '@/utils/common';
   // 列表数据
@@ -44,8 +45,10 @@
   // 选中模块
   const resumeModel = useResumeModelStore();
   const selectModel = (item: any) => {
+    let optionsName: string = useModelOptionsComName(`${resumeJsonStore.NAME}-${item.model}`);
     let updateData = {
       model: item.model,
+      optionsName: optionsName,
       title: item.title,
       id: item.id
     };

@@ -1,10 +1,13 @@
 // 模板组件
-import WEB_DEVELOP from '@/template/template1/web-develop.vue'; // 前端开发简历模板组件
-import ClassicVue from '@/template/template2/classic.vue';
+import Template1Vue from '@/template/template1/template1.vue'; // 前端开发简历模板组件
+import Template2Vue from '@/template/template2/template2.vue';
+
+// 模板之间通用的属性设置面板
+import COMBaseInfoOptionsVue from '@/components/CommonOptions/BaseInfoOptions.vue'; // 基础信息属性设置面板
+import COMResumeTitleOptionsVue from '@/components/CommonOptions/ResumeTitleOptions.vue'; // 简历标题属性设置面板
 
 // 模板1属性设置组件
-import ResumeTitleOptionsVue from '@/template/template1/options/ResumeTitleOptions.vue';
-import BaseInfoOptionsVue from '@/template/template1/options/BaseInfoOptions.vue';
+
 import JobIntentionOptionsVue from '@/template/template1/options/JobIntentionOptions.vue';
 import EduBackgroundOptionsVue from '@/template/template1/options/EduBackgroundOptions.vue';
 import SkillSpecialtiesOptionsVue from '@/template/template1/options/SkillSpecialtiesOptions.vue';
@@ -18,10 +21,10 @@ import SelfEvalutionOptionsVue from '@/template/template1/options/SelfEvalutionO
 import WorksDisplayOptionsVue from '@/template/template1/options/WorksDisplayOptions.vue';
 
 const componentList: Array<any> = [
-  WEB_DEVELOP,
-  ClassicVue,
-  ResumeTitleOptionsVue,
-  BaseInfoOptionsVue,
+  Template1Vue,
+  Template2Vue,
+  COMResumeTitleOptionsVue,
+  COMBaseInfoOptionsVue,
   JobIntentionOptionsVue,
   EduBackgroundOptionsVue,
   SkillSpecialtiesOptionsVue,

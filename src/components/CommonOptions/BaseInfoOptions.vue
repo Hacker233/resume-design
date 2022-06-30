@@ -106,7 +106,7 @@
 </script>
 <script lang="ts">
   export default {
-    name: 'BASE_INFO'
+    name: 'COM_BASE_INFO_OPTIONS'
   };
 </script>
 <style lang="less">

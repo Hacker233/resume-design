@@ -12,15 +12,14 @@
         </div>
       </template>
     </div>
-    <div class="right">
-
-    </div>
+    <div class="right"> </div>
   </div>
 </template>
 <script setup lang="ts">
   import { useResumeJsonStore, useResumeModelStore } from '@/store/resume';
   import { storeToRefs } from 'pinia';
   import { ComponentPublicInstance, computed, reactive, ref, watch, watchEffect } from 'vue';
+  import { useModelOptionsComName } from '@/hooks/useModelIndex';
   import BaseInfo from './components/BaseInfo.vue'; // 基础信息
   import SkillSpecialties from './components/SkillSpecialties.vue';
 
@@ -65,7 +64,8 @@
   // 获取左侧选中组件模块
   const resumeModelStore = useResumeModelStore();
   const selectModel = (model: string, title: string, id: string) => {
-    resumeModelStore.setResumeModel({ model, title, id });
+    let optionsName: string = useModelOptionsComName(`template2-${model}`);
+    resumeModelStore.setResumeModel({ model, optionsName, title, id });
   };
 
   // 左侧组件列表
@@ -82,11 +82,11 @@
   });
 
   // 右侧组件列表
-  // let rightList = 
+  // let rightList =
 </script>
 <script lang="ts">
   export default {
-    name: 'classic'
+    name: 'template2'
   };
 </script>
 <style lang="less">

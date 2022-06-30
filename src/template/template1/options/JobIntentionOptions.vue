@@ -94,7 +94,7 @@
 </script>
 <script lang="ts">
   export default {
-    name: 'JOB_INTENTION'
+    name: 'JOB_INTENTION_OPTIONS'
   };
 </script>
 <style lang="less"></style>

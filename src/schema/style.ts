@@ -2,7 +2,7 @@ interface IStyles {
   [key: string]: any;
 }
 let styles: IStyles = {
-  'web-develop': {
+  'template1': {
     RESUME_TITLE: {
       textColor: '#fff',
       textFontSize: '16px',
@@ -97,7 +97,7 @@ let styles: IStyles = {
       mTop: '0px'
     }
   },
-  'classic': {
+  'template2': {
     RESUME_TITLE: {
       textColor: '#fff',
       textFontSize: '16px',

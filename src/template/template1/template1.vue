@@ -29,6 +29,7 @@
   import { useResumeJsonStore, useResumeModelStore } from '@/store/resume';
   import { storeToRefs } from 'pinia';
   import { ComponentPublicInstance, onMounted, reactive, ref, watch } from 'vue';
+  import { useModelOptionsComName } from '@/hooks/useModelIndex';
 
   const { resumeJsonStore } = storeToRefs(useResumeJsonStore());
 
@@ -75,19 +76,21 @@
       modelObj[id] = {
         id: id,
         el: el
-      }
+      };
     }
   };
 
   // 点击模块
   const resumeModelStore = useResumeModelStore();
   const selectModel = (model: string, title: string, id: string) => {
-    resumeModelStore.setResumeModel({ model, title, id });
+    let optionsName: string = useModelOptionsComName(`template1-${model}`);
+    console.log("optionsName",optionsName)
+    resumeModelStore.setResumeModel({ model, optionsName, title, id });
   };
 </script>
 <script lang="ts">
   export default {
-    name: 'web-develop'
+    name: 'template1'
   };
 </script>
 <style lang="less">

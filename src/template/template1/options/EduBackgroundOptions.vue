@@ -101,7 +101,7 @@
 </script>
 <script lang="ts">
   export default {
-    name: 'EDU_BACKGROUND'
+    name: 'EDU_BACKGROUND_OPTIONS'
   };
 </script>
 <style lang="less">
