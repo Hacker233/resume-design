@@ -123,13 +123,14 @@
 
   // 判断每一模块是否有style属性，没有则加上
   const addStyle = (resumeJson: IResumeJson) => {
-    resumeJson.LIST.map((item, index) => {
+    let temp: IResumeJson = JSON.parse(JSON.stringify(resumeJson));
+    temp.LIST.map((item, index) => {
       if (!item.style) {
         item.style = styles[resumeJsonStore.value.NAME][item.model];
       }
-      resumeJson.LIST[index] = item;
+      temp.LIST[index] = item;
     });
-    return resumeJson;
+    return temp;
   };
 
   // 获取本地数据,初始化store里面的简历数据
@@ -145,13 +146,19 @@
       localObj = addStyle(localObj);
       store.changeResumeJsonData(localObj);
     } else {
+      TEMPLATE_JSON.ID = id as string;
+      TEMPLATE_JSON.NAME = name as string;
       let resetObj = addStyle(TEMPLATE_JSON); // 初始数据
       store.changeResumeJsonData(resetObj); // 更改store的数据
     }
   } else {
+    TEMPLATE_JSON.ID = id as string;
+    TEMPLATE_JSON.NAME = name as string;
+    console.log('TEMPLATE_JSON', TEMPLATE_JSON);
     let resetObj = addStyle(TEMPLATE_JSON); // 初始数据
     store.changeResumeJsonData(resetObj); // 更改store的数据
   }
+  console.log('designer页面setup执行');
 
   // 跳转到首页
   const router = useRouter();

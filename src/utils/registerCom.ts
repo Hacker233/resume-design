@@ -7,7 +7,6 @@ import COMBaseInfoOptionsVue from '@/components/CommonOptions/BaseInfoOptions.vu
 import COMResumeTitleOptionsVue from '@/components/CommonOptions/ResumeTitleOptions.vue'; // 简历标题属性设置面板
 
 // 模板1属性设置组件
-
 import JobIntentionOptionsVue from '@/template/template1/options/JobIntentionOptions.vue';
 import EduBackgroundOptionsVue from '@/template/template1/options/EduBackgroundOptions.vue';
 import SkillSpecialtiesOptionsVue from '@/template/template1/options/SkillSpecialtiesOptions.vue';
@@ -19,6 +18,9 @@ import AwardsOptionsVue from '@/template/template1/options/AwardsOptions.vue';
 import HobbiesOptionsVue from '@/template/template1/options/HobbiesOptions.vue';
 import SelfEvalutionOptionsVue from '@/template/template1/options/SelfEvalutionOptions.vue';
 import WorksDisplayOptionsVue from '@/template/template1/options/WorksDisplayOptions.vue';
+
+// 模板2属性设置面板
+import Template2BaseInfoOptions from '@/template/template2/options/BaseInfoOptions.vue';
 
 const componentList: Array<any> = [
   Template1Vue,
@@ -35,7 +37,8 @@ const componentList: Array<any> = [
   AwardsOptionsVue,
   HobbiesOptionsVue,
   SelfEvalutionOptionsVue,
-  WorksDisplayOptionsVue
+  WorksDisplayOptionsVue,
+  Template2BaseInfoOptions
 ];
 
 export default {

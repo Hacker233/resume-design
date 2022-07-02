@@ -12,7 +12,10 @@
         </div>
       </template>
     </div>
-    <div class="right"> </div>
+    <div class="right"> 
+      <!-- 个人姓名与简介 -->
+      <name-abstact></name-abstact>
+    </div>
   </div>
 </template>
 <script setup lang="ts">
@@ -22,9 +25,9 @@
   import { useModelOptionsComName } from '@/hooks/useModelIndex';
   import BaseInfo from './components/BaseInfo.vue'; // 基础信息
   import SkillSpecialties from './components/SkillSpecialties.vue';
+  import NameAbstact from './components/NameAbstact.vue';
 
   const { resumeJsonStore } = storeToRefs(useResumeJsonStore()); // 简历数据
-  console.log('模板2json', resumeJsonStore);
 
   // 注册局部组件
   const components: any = {
@@ -98,13 +101,17 @@
       width: 270px;
       box-sizing: border-box;
       background-color: #254665;
+      overflow: hidden;
       position: absolute;
       height: 100%;
-      overflow: hidden;
-      // padding: 20px 30px 40px 30px;
       .model-box {
         padding: 0 30px 0px 30px;
       }
+    }
+    .right {
+      margin-left: 270px;
+      padding: 30px 30px;
+      width: 100%;
     }
   }
 </style>
