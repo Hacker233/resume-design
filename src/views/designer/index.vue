@@ -51,7 +51,7 @@
       <div class="center">
         <div class="design" ref="html2Pdf">
           <div class="design-content" ref="htmlContentPdf">
-            <component :is="componentName" />
+            <component :is="componentName" :htmlContentHeight="htmlContentHeight" />
           </div>
           <!-- 分页线 -->
           <template v-if="linesNumber > 0">
@@ -213,6 +213,7 @@
     resumeJsonStore.value, // JSON数据发生变化，则保存草稿
     () => {
       debounced();
+      // resizeDOM();
     },
     {
       deep: true
@@ -276,7 +277,6 @@
   };
 
   // 预览
-
   const imgUrl = ref<VuePdfPropsType['src']>('');
   const numOfPages = ref(0);
   const previewDialog = ref<boolean>(false);
@@ -299,6 +299,7 @@
   };
 
   // 监听内容元素高度变化，绘制分割线
+  const htmlContentHeight = ref<string>('');
   const htmlContentPdf = ref<any>(null);
   let observer: ResizeObserver | null = null;
   let height: number = 0;
@@ -309,6 +310,8 @@
         height = (entry.target as HTMLElement).offsetHeight;
         linesNumber.value = Math.ceil(height / 1160); // 有几条分割线
         html2Pdf.value.style.height = 1160 * linesNumber.value + 'px'; // 整个简历的高度
+        htmlContentHeight.value = html2Pdf.value.style.height;
+        console.log('htmlContentHeight',htmlContentHeight);
       }
     });
     observer.observe(htmlContentPdf.value); // 监听元素

@@ -40,6 +40,10 @@
 
   const { resumeJsonStore } = storeToRefs(useResumeJsonStore()); // 简历数据
 
+  const props = defineProps<{
+    htmlContentHeight: string;
+  }>();
+
   // 注册局部组件
   const components: any = {
     BASE_INFO: BaseInfo,
@@ -62,6 +66,17 @@
     },
     {
       deep: true
+    }
+  );
+  // left的高度
+  const htmlHeight = ref<string>('');
+  watch(
+    () => props.htmlContentHeight,
+    (newVal, oldVal) => {
+      if (newVal) {
+        console.log('left最新高度', newVal);
+        htmlHeight.value = newVal;
+      }
     }
   );
 
@@ -134,17 +149,16 @@
       box-sizing: border-box;
       background-color: #254665;
       overflow: hidden;
-      position: absolute;
-      height: 100%;
+      // position: absolute;
+      // height: v-bind('htmlHeight');
       padding: 50px 0 0 0;
       .model-box {
         padding: 10px 30px;
       }
     }
     .right {
-      margin-left: 270px;
       padding: 40px 0;
-      width: 100%;
+      flex: 1;
       .name-abstract-box {
         border: 2px dashed transparent;
         transition: all 0.3s;
