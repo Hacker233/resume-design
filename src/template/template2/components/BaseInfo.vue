@@ -60,10 +60,10 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      margin-bottom: 40px;
     }
     .user-info {
       width: 100%;
-      margin-top: 40px;
       ul {
         display: flex;
         flex-direction: column;

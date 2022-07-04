@@ -1,4 +1,4 @@
-<!-- 技能特长属性设置 -->
+<!-- 技能特长属性设置面板 -->
 <template>
   <el-tabs v-model="activeName" type="card" class="demo-tabs" stretch>
     <el-tab-pane label="样式设置" name="style">
@@ -13,14 +13,21 @@
           <el-input type="text" v-model="modelItem.title" maxlength="15" show-word-limit />
         </el-form-item>
         <div class="skill-list" v-for="(item, index) in modelItem.LIST">
+          <el-divider>
+            <el-icon><star-filled /></el-icon>
+          </el-divider>
           <el-form-item :label="`技能${index + 1}:`">
-            <el-input
-              type="textarea"
-              v-model="item.introduce"
-              maxlength="50"
-              show-word-limit
-              :rows="4"
-            />
+            <el-input type="text" v-model="item.skillName" maxlength="15" show-word-limit />
+          </el-form-item>
+          <el-form-item label="熟练度:">
+            <el-select v-model="item.proficiency" class="m-2" placeholder="Select">
+              <el-option
+                v-for="(item, index) in proficiencyList"
+                :key="index"
+                :label="item"
+                :value="item"
+              />
+            </el-select>
             <el-button
               :disabled="index === 0"
               type="danger"
@@ -48,6 +55,7 @@
   import CommonOptions from '@/components/CommonOptions/CommonOptions.vue';
   import { Plus, SemiSelect } from '@element-plus/icons-vue';
   import { useModelIndex } from '@/hooks/useModelIndex';
+  import { StarFilled } from '@element-plus/icons-vue';
   // store
   const { resumeJsonStore } = useResumeJsonStore();
 
@@ -71,10 +79,13 @@
       introduce: '熟练掌握该项技术' // 介绍
     });
   };
+
+  // 熟练度选择
+  const proficiencyList = reactive(['了解', '一般', '熟悉', '精通']);
 </script>
 <script lang="ts">
   export default {
-    name: 'SKILL_SPECIALTIES'
+    name: 'TEMPLATE2_SKILL_SPECIALTIES'
   };
 </script>
 <style lang="less" scoped>

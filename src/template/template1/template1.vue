@@ -93,7 +93,7 @@
     name: 'template1'
   };
 </script>
-<style lang="less">
+<style lang="less" scoped>
   @import './style/options.less';
   .model-box {
     border: 2px dashed transparent;

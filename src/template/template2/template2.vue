@@ -12,20 +12,31 @@
         </div>
       </template>
     </div>
-    <div class="right"> 
+    <div class="right">
       <!-- 个人姓名与简介 -->
-      <name-abstact></name-abstact>
+      <div class="name-abstract-box" @click="selectNameModel">
+        <name-abstact></name-abstact>
+      </div>
     </div>
   </div>
 </template>
 <script setup lang="ts">
   import { useResumeJsonStore, useResumeModelStore } from '@/store/resume';
   import { storeToRefs } from 'pinia';
-  import { ComponentPublicInstance, computed, reactive, ref, watch, watchEffect } from 'vue';
+  import {
+    ComponentPublicInstance,
+    computed,
+    onMounted,
+    reactive,
+    ref,
+    watch,
+    watchEffect
+  } from 'vue';
   import { useModelOptionsComName } from '@/hooks/useModelIndex';
   import BaseInfo from './components/BaseInfo.vue'; // 基础信息
   import SkillSpecialties from './components/SkillSpecialties.vue';
   import NameAbstact from './components/NameAbstact.vue';
+  import { IBASEINFO } from '@/types/model';
 
   const { resumeJsonStore } = storeToRefs(useResumeJsonStore()); // 简历数据
 
@@ -84,6 +95,19 @@
     });
   });
 
+  // 基础信息模块
+  const modelData: IBASEINFO = resumeJsonStore.value.LIST.find((item) => {
+    return item.model == 'BASE_INFO';
+  }) as IBASEINFO;
+  // 选择姓名简介模块
+  const selectNameModel = () => {
+    let optionsName: string = useModelOptionsComName(`template2-${modelData?.model}`);
+    let model = modelData?.model;
+    let title = modelData?.title;
+    let id = modelData?.id;
+    resumeModelStore.setResumeModel({ model, optionsName, title, id });
+  };
+
   // 右侧组件列表
   // let rightList =
 </script>
@@ -97,6 +121,14 @@
   .classic-box {
     display: flex;
     height: 100%;
+    .model-box {
+      border: 2px dashed transparent;
+      transition: all 0.3s;
+      &:hover {
+        border-color: #7ec97e !important;
+        cursor: pointer;
+      }
+    }
     .left {
       width: 270px;
       box-sizing: border-box;
@@ -104,14 +136,24 @@
       overflow: hidden;
       position: absolute;
       height: 100%;
+      padding: 50px 0 0 0;
       .model-box {
-        padding: 0 30px 0px 30px;
+        padding: 10px 30px;
       }
     }
     .right {
       margin-left: 270px;
-      padding: 30px 30px;
+      padding: 40px 0;
       width: 100%;
+      .name-abstract-box {
+        border: 2px dashed transparent;
+        transition: all 0.3s;
+        padding: 0 30px;
+        &:hover {
+          border-color: #7ec97e !important;
+          cursor: pointer;
+        }
+      }
     }
   }
 </style>

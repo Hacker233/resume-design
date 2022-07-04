@@ -20,7 +20,7 @@ import SelfEvalutionOptionsVue from '@/template/template1/options/SelfEvalutionO
 import WorksDisplayOptionsVue from '@/template/template1/options/WorksDisplayOptions.vue';
 
 // 模板2属性设置面板
-import Template2BaseInfoOptions from '@/template/template2/options/BaseInfoOptions.vue';
+import Template2SkillSpecialtiesOptions from '@/template/template2/options/SkillSpecialtiesOptions.vue'; // 技能特长
 
 const componentList: Array<any> = [
   Template1Vue,
@@ -38,7 +38,7 @@ const componentList: Array<any> = [
   HobbiesOptionsVue,
   SelfEvalutionOptionsVue,
   WorksDisplayOptionsVue,
-  Template2BaseInfoOptions
+  Template2SkillSpecialtiesOptions
 ];
 
 export default {

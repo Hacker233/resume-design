@@ -12,10 +12,11 @@
         <li>
           <p>{{ item.skillName }}</p>
           <el-slider
-            v-model="item.proficiency"
+            :model-value="vModelPro(item.proficiency)"
             :step="4"
             size="small"
             :format-tooltip="formatTooltip"
+            disabled
           />
         </li>
       </template>
@@ -24,21 +25,16 @@
 </template>
 <script setup lang="ts">
   import { ISKILLSPECIALTIES } from '@/types/model';
+  import { numberToText, textToNumber } from '@/utils/common';
   defineProps<{
     modelData: ISKILLSPECIALTIES;
   }>();
-
-  // 熟练度
-  const formatTooltip = (value: number) => {
-    if (value <= 25) {
-      return '一般';
-    } else if (value <= 50) {
-      return '掌握';
-    } else if (value <= 75) {
-      return '熟练';
-    } else {
-      return '精通';
-    }
+  const vModelPro = (text: string) => {
+    return textToNumber(text);
+  };
+  // 提示文字
+  const formatTooltip = (number: number): string => {
+    return numberToText(number);
   };
 </script>
 <style lang="less" scoped>

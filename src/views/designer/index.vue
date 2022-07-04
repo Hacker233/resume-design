@@ -53,7 +53,6 @@
           <div class="design-content" ref="htmlContentPdf">
             <component :is="componentName" />
           </div>
-
           <!-- 分页线 -->
           <template v-if="linesNumber > 0">
             <div
