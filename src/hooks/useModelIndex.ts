@@ -31,6 +31,9 @@ export const useModelOptionsComName = (templateModel: string): string => {
     case 'template1-JOB_INTENTION':
       optionsName = 'JOB_INTENTION_OPTIONS';
       break;
+    case 'template2-JOB_INTENTION':
+      optionsName = 'TEMPLATE2_JOB_INTENTION_OPTIONS';
+      break;
     case 'template1-EDU_BACKGROUND':
       optionsName = 'EDU_BACKGROUND_OPTIONS';
       break;

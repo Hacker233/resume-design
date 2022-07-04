@@ -111,7 +111,7 @@
   import { VuePdf, createLoadingTask } from 'vue3-pdfjs/esm';
   import type { VuePdfPropsType } from 'vue3-pdfjs/components/vue-pdf/vue-pdf-props'; // Prop type definitions can also be imported
   import type { PDFDocumentProxy } from 'pdfjs-dist/types/src/display/api';
-  import { IResumeJson } from '@/types/model';
+  import { IResumeJson, TModelList } from '@/types/model';
 
   const { title } = storeToRefs(useResumeModelStore());
   const store = useResumeJsonStore();
@@ -157,7 +157,19 @@
     let resetObj = addStyle(TEMPLATE_JSON); // 初始数据
     store.changeResumeJsonData(resetObj); // 更改store的数据
   }
-  console.log('designer页面setup执行');
+
+  // 过滤掉模板2不需要的模块
+  if (Number(id) == 2) {
+    let List: any = [];
+    resumeJsonStore.value.LIST.forEach((item) => {
+      if (item.model == 'RESUME_TITLE') {
+        item.show = false;
+      }
+      List.push(item);
+    });
+    resumeJsonStore.value.LIST = List;
+  }
+  console.log('designer页面setup执行', resumeJsonStore);
 
   // 跳转到首页
   const router = useRouter();
@@ -213,7 +225,6 @@
     resumeJsonStore.value, // JSON数据发生变化，则保存草稿
     () => {
       debounced();
-      // resizeDOM();
     },
     {
       deep: true
@@ -311,7 +322,7 @@
         linesNumber.value = Math.ceil(height / 1160); // 有几条分割线
         html2Pdf.value.style.height = 1160 * linesNumber.value + 'px'; // 整个简历的高度
         htmlContentHeight.value = html2Pdf.value.style.height;
-        console.log('htmlContentHeight',htmlContentHeight);
+        console.log('htmlContentHeight', htmlContentHeight.value);
       }
     });
     observer.observe(htmlContentPdf.value); // 监听元素

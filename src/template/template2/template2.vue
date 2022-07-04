@@ -1,6 +1,6 @@
 <template>
   <div class="classic-box">
-    <div class="left">
+    <div class="left" ref="leftRef">
       <template v-for="(item, index) in leftList">
         <div
           class="model-box"
@@ -17,6 +17,17 @@
       <div class="name-abstract-box" @click="selectNameModel">
         <name-abstact></name-abstact>
       </div>
+      <!-- 右侧模块列表 -->
+      <template v-for="(item, index) in rightList">
+        <div
+          class="model-box"
+          v-if="item.show"
+          :ref="(el) => setRefItem(el, item.model, item.id)"
+          @click="selectModel(item.model, item.title, item.id)"
+        >
+          <component v-if="item.style" :is="components[item.model]" :modelData="item"></component>
+        </div>
+      </template>
     </div>
   </div>
 </template>
@@ -37,6 +48,7 @@
   import SkillSpecialties from './components/SkillSpecialties.vue';
   import NameAbstact from './components/NameAbstact.vue';
   import { IBASEINFO } from '@/types/model';
+  import JobIntention from './components/JobIntention.vue';
 
   const { resumeJsonStore } = storeToRefs(useResumeJsonStore()); // 简历数据
 
@@ -47,7 +59,8 @@
   // 注册局部组件
   const components: any = {
     BASE_INFO: BaseInfo,
-    SKILL_SPECIALTIES: SkillSpecialties
+    SKILL_SPECIALTIES: SkillSpecialties,
+    JOB_INTENTION: JobIntention
   };
   // 左侧锚点定位
   const { id } = storeToRefs(useResumeModelStore());
@@ -80,7 +93,7 @@
     }
   );
 
-  // 获取左侧ref
+  // 获取左侧模块列表ref
   const modelObj = reactive<any>({});
   const setRefItem = (el: ComponentPublicInstance | null | Element, model: string, id: string) => {
     if (el) {
@@ -108,6 +121,9 @@
     leftList.value = resumeJsonStore.value.LIST.filter((item) => {
       return item.model === 'BASE_INFO' || item.model === 'SKILL_SPECIALTIES';
     });
+    rightList.value = resumeJsonStore.value.LIST.filter((item) => {
+      return item.model !== 'BASE_INFO' && item.model !== 'SKILL_SPECIALTIES';
+    });
   });
 
   // 基础信息模块
@@ -124,7 +140,12 @@
   };
 
   // 右侧组件列表
-  // let rightList =
+  let rightList = ref<any>(
+    resumeJsonStore.value.LIST.filter((item) => {
+      return item.model !== 'BASE_INFO' && item.model !== 'SKILL_SPECIALTIES';
+    })
+  );
+  console.log('右侧列表', rightList);
 </script>
 <script lang="ts">
   export default {
@@ -139,6 +160,7 @@
     .model-box {
       border: 2px dashed transparent;
       transition: all 0.3s;
+      padding: 4px 30px;
       &:hover {
         border-color: #7ec97e !important;
         cursor: pointer;
@@ -149,8 +171,8 @@
       box-sizing: border-box;
       background-color: #254665;
       overflow: hidden;
+      min-height: 1160px;
       // position: absolute;
-      // height: v-bind('htmlHeight');
       padding: 50px 0 0 0;
       .model-box {
         padding: 10px 30px;
@@ -163,6 +185,7 @@
         border: 2px dashed transparent;
         transition: all 0.3s;
         padding: 0 30px;
+        margin-bottom: 45px;
         &:hover {
           border-color: #7ec97e !important;
           cursor: pointer;
