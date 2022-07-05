@@ -92,6 +92,7 @@ interface IEDUBACKGROUND {
     schoolName: boolean;
     specialized: boolean;
     degree: boolean;
+    majorCourse: boolean;
   };
   [propNams: string]: any;
 }

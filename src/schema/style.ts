@@ -8,7 +8,7 @@ let styles: IStyles = {
       textFontSize: '16px',
       textFontWeight: 600,
       backgroundColor: '#000',
-      mBottom: '45px',
+      mBottom: '35px',
       mTop: '15px'
     },
     BASE_INFO: {
@@ -25,21 +25,21 @@ let styles: IStyles = {
       textColor: '#757575',
       textFontSize: '14px',
       textFontWeight: 500,
-      mBottom: '45px',
+      mBottom: '35px',
       mTop: '0px'
     },
     EDU_BACKGROUND: {
       textColor: '#666',
       textFontSize: '14px',
       textFontWeight: 600,
-      mBottom: '45px',
+      mBottom: '35px',
       mTop: '0px'
     },
     SKILL_SPECIALTIES: {
       textColor: '#757575',
       textFontSize: '14px',
       textFontWeight: 500,
-      mBottom: '45px',
+      mBottom: '35px',
       mTop: '0px'
     },
     CAMPUS_EXPERIENCE: {
@@ -49,7 +49,7 @@ let styles: IStyles = {
       textColor: '#757575',
       textFontSize: '14px',
       textFontWeight: 500,
-      mBottom: '45px',
+      mBottom: '35px',
       mTop: '0px'
     },
     INTERNSHIP_EXPERIENCE: {
@@ -59,7 +59,7 @@ let styles: IStyles = {
       textColor: '#757575',
       textFontSize: '14px',
       textFontWeight: 500,
-      mBottom: '45px',
+      mBottom: '35px',
       mTop: '0px'
     },
     WORK_EXPERIENCE: {
@@ -69,7 +69,7 @@ let styles: IStyles = {
       textColor: '#757575',
       textFontSize: '14px',
       textFontWeight: 500,
-      mBottom: '45px',
+      mBottom: '35px',
       mTop: '0px'
     },
     PROJECT_EXPERIENCE: {
@@ -79,21 +79,21 @@ let styles: IStyles = {
       textColor: '#757575',
       textFontSize: '14px',
       textFontWeight: 500,
-      mBottom: '45px',
+      mBottom: '35px',
       mTop: '0px'
     },
     AWARDS: {
       textColor: '#757575',
       textFontSize: '14px',
       textFontWeight: 500,
-      mBottom: '45px',
+      mBottom: '35px',
       mTop: '0px'
     },
     SELF_EVALUATION: {
       textColor: '#666',
       textFontSize: '14px',
       textFontWeight: 600,
-      mBottom: '45px',
+      mBottom: '35px',
       mTop: '0px'
     }
   },
@@ -103,7 +103,7 @@ let styles: IStyles = {
       textFontSize: '16px',
       textFontWeight: 600,
       backgroundColor: '#000',
-      mBottom: '45px',
+      mBottom: '35px',
       mTop: '15px'
     },
     BASE_INFO: {
@@ -120,21 +120,24 @@ let styles: IStyles = {
       textColor: '#757575',
       textFontSize: '14px',
       textFontWeight: 500,
-      mBottom: '45px',
+      mBottom: '35px',
       mTop: '0px'
     },
     EDU_BACKGROUND: {
-      textColor: '#666',
+      textColor: '#757575',
       textFontSize: '14px',
-      textFontWeight: 600,
-      mBottom: '45px',
+      textFontWeight: 500,
+      titleColor: '#666666',
+      titleFontSize: '14px',
+      titleFontWeight: 600,
+      mBottom: '35px',
       mTop: '0px'
     },
     SKILL_SPECIALTIES: {
       textColor: '#fff',
       textFontSize: '14px',
       textFontWeight: 500,
-      mBottom: '45px',
+      mBottom: '35px',
       mTop: '0px'
     },
     CAMPUS_EXPERIENCE: {
@@ -144,7 +147,7 @@ let styles: IStyles = {
       textColor: '#757575',
       textFontSize: '14px',
       textFontWeight: 500,
-      mBottom: '45px',
+      mBottom: '35px',
       mTop: '0px'
     },
     INTERNSHIP_EXPERIENCE: {
@@ -154,7 +157,7 @@ let styles: IStyles = {
       textColor: '#757575',
       textFontSize: '14px',
       textFontWeight: 500,
-      mBottom: '45px',
+      mBottom: '35px',
       mTop: '0px'
     },
     WORK_EXPERIENCE: {
@@ -164,7 +167,7 @@ let styles: IStyles = {
       textColor: '#757575',
       textFontSize: '14px',
       textFontWeight: 500,
-      mBottom: '45px',
+      mBottom: '35px',
       mTop: '0px'
     },
     PROJECT_EXPERIENCE: {
@@ -174,21 +177,21 @@ let styles: IStyles = {
       textColor: '#757575',
       textFontSize: '14px',
       textFontWeight: 500,
-      mBottom: '45px',
+      mBottom: '35px',
       mTop: '0px'
     },
     AWARDS: {
       textColor: '#757575',
       textFontSize: '14px',
       textFontWeight: 500,
-      mBottom: '45px',
+      mBottom: '35px',
       mTop: '0px'
     },
     SELF_EVALUATION: {
       textColor: '#666',
       textFontSize: '14px',
       textFontWeight: 600,
-      mBottom: '45px',
+      mBottom: '35px',
       mTop: '0px'
     }
   }

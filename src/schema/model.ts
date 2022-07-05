@@ -83,7 +83,8 @@ let TEMPLATE_JSON: IResumeJson = {
         date: true,
         schoolName: true,
         specialized: true,
-        degree: true
+        degree: true,
+        majorCourse: true,
       }
     },
     {

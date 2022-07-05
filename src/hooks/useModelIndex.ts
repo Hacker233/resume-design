@@ -11,10 +11,10 @@ export const useModelIndex = () => {
 
 /**
  * @description 返回选中模块所需要的属性设置面板组件
-*/
+ */
 export const useModelOptionsComName = (templateModel: string): string => {
-  let optionsName:string = '';
-  switch(templateModel) {
+  let optionsName: string = '';
+  switch (templateModel) {
     case 'template1-BASE_INFO':
     case 'template2-BASE_INFO':
       optionsName = 'COM_BASE_INFO_OPTIONS';
@@ -37,10 +37,14 @@ export const useModelOptionsComName = (templateModel: string): string => {
     case 'template1-EDU_BACKGROUND':
       optionsName = 'EDU_BACKGROUND_OPTIONS';
       break;
+    case 'template2-EDU_BACKGROUND':
+      optionsName = 'TEMPLATE2_EDU_BACKGROUND_OPTIONS';
+      break;
     case 'template1-SKILL_SPECIALTIES':
       optionsName = 'SKILL_SPECIALTIES';
       break;
     case 'template1-CAMPUS_EXPERIENCE':
+      case 'template2-CAMPUS_EXPERIENCE':
       optionsName = 'CAMPUS_EXPERIENCE';
       break;
     case 'template1-INTERNSHIP_EXPERIENCE':
@@ -66,4 +70,4 @@ export const useModelOptionsComName = (templateModel: string): string => {
       break;
   }
   return optionsName;
-}
+};

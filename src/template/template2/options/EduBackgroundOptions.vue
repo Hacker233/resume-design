@@ -3,6 +3,8 @@
   <el-tabs v-model="activeName" type="card" class="demo-tabs" stretch>
     <el-tab-pane label="样式设置" name="style">
       <el-form label-width="100px" label-position="left">
+        <!-- 标题样式属性 -->
+        <common-title-options></common-title-options>
         <!-- 公共样式属性 -->
         <common-options></common-options>
       </el-form>
@@ -48,6 +50,16 @@
           </el-select>
           <el-switch v-model="modelItem.isShow.degree" />
         </el-form-item>
+        <el-form-item label="教学经历">
+          <el-input
+            type="textarea"
+            v-model="item.majorCourse"
+            maxlength="350"
+            show-word-limit
+            :rows="4"
+          />
+          <el-switch v-model="modelItem.isShow.majorCourse" />
+        </el-form-item>
       </div>
       <!-- 添加或删除学历 -->
       <div class="addOrdelet">
@@ -62,6 +74,7 @@
   import { useResumeJsonStore } from '@/store/resume';
   import { Delete } from '@element-plus/icons-vue';
   import CommonOptions from '@/components/CommonOptions/CommonOptions.vue'; // 公共属性设置
+  import CommonTitleOptions from '@/components/CommonOptions/CommonTitleOptions.vue';
   import { useModelIndex } from '@/hooks/useModelIndex';
   // store
   const { resumeJsonStore } = useResumeJsonStore();
@@ -101,7 +114,7 @@
 </script>
 <script lang="ts">
   export default {
-    name: 'EDU_BACKGROUND_OPTIONS'
+    name: 'TEMPLATE2_EDU_BACKGROUND_OPTIONS'
   };
 </script>
 <style lang="less" scoped>
