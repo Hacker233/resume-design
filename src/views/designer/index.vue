@@ -51,7 +51,10 @@
       <div class="center">
         <div class="design" ref="html2Pdf">
           <div class="design-content" ref="htmlContentPdf">
-            <component :is="componentName" :htmlContentHeight="htmlContentHeight" />
+            <component
+              :is="componentName"
+              @contentHeightChange="contentHeightChange"
+            />
           </div>
           <!-- 分页线 -->
           <template v-if="linesNumber > 0">
@@ -309,7 +312,6 @@
   };
 
   // 监听内容元素高度变化，绘制分割线
-  const htmlContentHeight = ref<string>('');
   const htmlContentPdf = ref<any>(null);
   let observer: ResizeObserver | null = null;
   let height: number = 0;
@@ -320,11 +322,15 @@
         height = (entry.target as HTMLElement).offsetHeight;
         linesNumber.value = Math.ceil(height / 1160); // 有几条分割线
         html2Pdf.value.style.height = 1160 * linesNumber.value + 'px'; // 整个简历的高度
-        htmlContentHeight.value = html2Pdf.value.style.height;
-        console.log('htmlContentHeight', htmlContentHeight.value);
+        htmlContentPdf.value.style.height = html2Pdf.value.style.height;
       }
     });
     observer.observe(htmlContentPdf.value); // 监听元素
+  };
+
+  // 子组件内容高度发生变化---需要重新计算高度，触发resizeDOM
+  const contentHeightChange = (height: number) => {
+    htmlContentPdf.value.style.height = height + 'px';
   };
 </script>
 

@@ -1,14 +1,16 @@
 <template>
-  <template v-for="(item, index) in resumeJsonStore.LIST" :key="item.id">
-    <div
-      class="model-box"
-      v-if="item.show && item.style"
-      :ref="(el) => setRefItem(el, item.model, item.id)"
-      @click="selectModel(item.model, item.title, item.id)"
-    >
-      <component v-if="item.style" :is="components[item.model]" :modelData="item"></component>
-    </div>
-  </template>
+  <div ref="tmp1ContentHeightRef">
+    <template v-for="(item, index) in resumeJsonStore.LIST" :key="item.id">
+      <div
+        class="model-box"
+        v-if="item.show && item.style"
+        :ref="(el) => setRefItem(el, item.model, item.id)"
+        @click="selectModel(item.model, item.title, item.id)"
+      >
+        <component v-if="item.style" :is="components[item.model]" :modelData="item"></component>
+      </div>
+    </template>
+  </div>
   <!-- 底部 -->
   <div class="model-bottom"></div>
 </template>
@@ -49,6 +51,25 @@
     SELF_EVALUATION: SelfEvaluation,
     WORKS_DISPLAY: WorksDisplay
   };
+  const emit = defineEmits(['contentHeightChange']);
+
+  onMounted(() => {
+    changeHeight();
+  });
+
+  // 监听内容高度发生变化
+  const tmp1ContentHeightRef = ref<any>(null);
+  let observer: ResizeObserver | null = null;
+  let height: number = 0;
+  const changeHeight = () => {
+    observer = new ResizeObserver(async (entries: ResizeObserverEntry[]) => {
+      for (let entry of entries) {
+        height = (entry.target as HTMLElement).offsetHeight;
+        emit('contentHeightChange', height);
+      }
+    });
+    observer.observe(tmp1ContentHeightRef.value); // 监听元素
+  };
 
   // 锚点定位
   const { id } = storeToRefs(useResumeModelStore());
@@ -84,7 +105,7 @@
   const resumeModelStore = useResumeModelStore();
   const selectModel = (model: string, title: string, id: string) => {
     let optionsName: string = useModelOptionsComName(`template1-${model}`);
-    console.log("optionsName",optionsName)
+    console.log('optionsName', optionsName);
     resumeModelStore.setResumeModel({ model, optionsName, title, id });
   };
 </script>

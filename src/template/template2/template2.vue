@@ -1,5 +1,5 @@
 <template>
-  <div class="classic-box">
+  <div class="classic-box" ref="tmp2ContentHeightRef">
     <div class="left" ref="leftRef">
       <template v-for="(item, index) in leftList">
         <div
@@ -34,7 +34,7 @@
 <script setup lang="ts">
   import { useResumeJsonStore, useResumeModelStore } from '@/store/resume';
   import { storeToRefs } from 'pinia';
-  import { ComponentPublicInstance, reactive, ref, watch } from 'vue';
+  import { ComponentPublicInstance, onMounted, reactive, ref, watch } from 'vue';
   import { useModelOptionsComName } from '@/hooks/useModelIndex';
   import BaseInfo from './components/BaseInfo.vue'; // 基础信息
   import SkillSpecialties from './components/SkillSpecialties.vue';
@@ -53,9 +53,7 @@
 
   const { resumeJsonStore } = storeToRefs(useResumeJsonStore()); // 简历数据
 
-  const props = defineProps<{
-    htmlContentHeight: string;
-  }>();
+  const emit = defineEmits(['contentHeightChange']);
 
   // 注册局部组件
   const components: any = {
@@ -72,6 +70,25 @@
     SELF_EVALUATION: SelfEvaluation,
     WORKS_DISPLAY: WorksDisplay
   };
+
+  onMounted(() => {
+    changeHeight();
+  });
+
+  // 监听内容高度发生变化
+  const tmp2ContentHeightRef = ref<any>(null);
+  let observer: ResizeObserver | null = null;
+  let height: number = 0;
+  const changeHeight = () => {
+    observer = new ResizeObserver(async (entries: ResizeObserverEntry[]) => {
+      for (let entry of entries) {
+        height = (entry.target as HTMLElement).offsetHeight;
+        emit('contentHeightChange', height);
+      }
+    });
+    observer.observe(tmp2ContentHeightRef.value); // 监听元素
+  };
+
   // 左侧锚点定位
   const { id } = storeToRefs(useResumeModelStore());
   watch(
@@ -89,17 +106,6 @@
     },
     {
       deep: true
-    }
-  );
-  // left的高度
-  const htmlHeight = ref<string>('');
-  watch(
-    () => props.htmlContentHeight,
-    (newVal, oldVal) => {
-      if (newVal) {
-        console.log('left最新高度', newVal);
-        htmlHeight.value = newVal;
-      }
     }
   );
 
@@ -127,7 +133,6 @@
     })
   );
   watch(resumeJsonStore.value, () => {
-    console.log('发生变化');
     leftList.value = resumeJsonStore.value.LIST.filter((item) => {
       return item.model === 'BASE_INFO' || item.model === 'SKILL_SPECIALTIES';
     });
@@ -166,7 +171,7 @@
   @import '../template1/style/options.less';
   .classic-box {
     display: flex;
-    height: 100%;
+    // height: 100%;
     .model-box {
       border: 2px dashed transparent;
       transition: all 0.3s;
@@ -182,14 +187,15 @@
       background-color: #254665;
       overflow: hidden;
       min-height: 1160px;
-      // position: absolute;
+      position: absolute;
+      height: 100%;
       padding: 50px 0 0 0;
       .model-box {
         padding: 10px 30px;
       }
     }
     .right {
-      padding: 40px 0;
+      padding: 40px 0 40px 270px;
       flex: 1;
       .name-abstract-box {
         border: 2px dashed transparent;

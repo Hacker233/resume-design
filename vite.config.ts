@@ -12,6 +12,16 @@ export default defineConfig({
       '@': path.resolve(__dirname, 'src')
     }
   },
+  build: {
+    minify: 'terser',
+    terserOptions: {
+      compress: {
+        //生产环境时移除console.log()
+        drop_console: true,
+        drop_debugger: true
+      }
+    }
+  },
   css: {
     preprocessorOptions: {
       less: {
