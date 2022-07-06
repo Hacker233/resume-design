@@ -72,7 +72,6 @@
         <Title :title="title"></Title>
         <component :is="useModel.optionsName" v-if="useModel.model" :key="useModel.id" />
         <global-options v-else></global-options>
-        <!-- <el-empty v-else description="请选择简历模块" /> -->
       </div>
     </div>
   </div>

@@ -34,12 +34,7 @@
 <script setup lang="ts">
   import { useResumeJsonStore, useResumeModelStore } from '@/store/resume';
   import { storeToRefs } from 'pinia';
-  import {
-    ComponentPublicInstance,
-    reactive,
-    ref,
-    watch,
-  } from 'vue';
+  import { ComponentPublicInstance, reactive, ref, watch } from 'vue';
   import { useModelOptionsComName } from '@/hooks/useModelIndex';
   import BaseInfo from './components/BaseInfo.vue'; // 基础信息
   import SkillSpecialties from './components/SkillSpecialties.vue';
@@ -48,6 +43,13 @@
   import JobIntention from './components/JobIntention.vue'; // 求职意向
   import EduBackground from './components/EduBackground.vue'; // 教育背景
   import CampusExperience from './components/CampusExperience.vue'; // 校园经历
+  import InternshipExperience from './components/InternshipExperience.vue'; // 实习经验
+  import WorkExperience from './components/WorkExperience.vue'; // 工作经验
+  import ProjectExperience from './components/ProjectExperience.vue'; // 项目经验
+  import Awards from './components/Awards.vue'; // 荣誉奖项
+  import Hobbies from './components/Hobbies.vue'; // 兴趣爱好
+  import SelfEvaluation from './components/SelfEvaluation.vue'; // 自我评价
+  import WorksDisplay from './components/WorksDisplay.vue'; // 个人作品
 
   const { resumeJsonStore } = storeToRefs(useResumeJsonStore()); // 简历数据
 
@@ -61,7 +63,14 @@
     SKILL_SPECIALTIES: SkillSpecialties,
     JOB_INTENTION: JobIntention,
     EDU_BACKGROUND: EduBackground,
-    CAMPUS_EXPERIENCE: CampusExperience
+    CAMPUS_EXPERIENCE: CampusExperience,
+    INTERNSHIP_EXPERIENCE: InternshipExperience,
+    WORK_EXPERIENCE: WorkExperience,
+    PROJECT_EXPERIENCE: ProjectExperience,
+    AWARDS: Awards,
+    HOBBIES: Hobbies,
+    SELF_EVALUATION: SelfEvaluation,
+    WORKS_DISPLAY: WorksDisplay
   };
   // 左侧锚点定位
   const { id } = storeToRefs(useResumeModelStore());

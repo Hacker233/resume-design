@@ -186,7 +186,8 @@ let TEMPLATE_JSON: IResumeJson = {
       isShow: {
         date: true,
         companyName: true,
-        posts: true
+        posts: true,
+        jobContent: true,
       }
     },
     {

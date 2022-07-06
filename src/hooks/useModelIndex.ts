@@ -44,26 +44,35 @@ export const useModelOptionsComName = (templateModel: string): string => {
       optionsName = 'SKILL_SPECIALTIES';
       break;
     case 'template1-CAMPUS_EXPERIENCE':
-      case 'template2-CAMPUS_EXPERIENCE':
+    case 'template2-CAMPUS_EXPERIENCE':
       optionsName = 'CAMPUS_EXPERIENCE';
       break;
     case 'template1-INTERNSHIP_EXPERIENCE':
+    case 'template2-INTERNSHIP_EXPERIENCE':
       optionsName = 'INTERNSHIP_EXPERIENCE';
       break;
     case 'template1-WORK_EXPERIENCE':
+    case 'template2-WORK_EXPERIENCE':
       optionsName = 'WORK_EXPERIENCE';
       break;
     case 'template1-PROJECT_EXPERIENCE':
+    case 'template2-PROJECT_EXPERIENCE':
       optionsName = 'PROJECT_EXPERIENCE';
       break;
     case 'template1-AWARDS':
+    case 'template2-AWARDS':
       optionsName = 'AWARDS';
       break;
     case 'template1-HOBBIES':
+    case 'template2-HOBBIES':
       optionsName = 'HOBBIES';
       break;
     case 'template1-SELF_EVALUATION':
       optionsName = 'SELF_EVALUATION';
+      break;
+    case 'template1-WORKS_DISPLAY':
+    case 'template2-WORKS_DISPLAY':
+      optionsName = 'WORKS_DISPLAY';
       break;
     default:
       optionsName = '';

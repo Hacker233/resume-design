@@ -2,7 +2,7 @@ interface IStyles {
   [key: string]: any;
 }
 let styles: IStyles = {
-  'template1': {
+  template1: {
     RESUME_TITLE: {
       textColor: '#fff',
       textFontSize: '16px',
@@ -90,14 +90,21 @@ let styles: IStyles = {
       mTop: '0px'
     },
     SELF_EVALUATION: {
-      textColor: '#666',
+      textColor: '#757575',
       textFontSize: '14px',
-      textFontWeight: 600,
+      textFontWeight: 500,
+      mBottom: '35px',
+      mTop: '0px'
+    },
+    WORKS_DISPLAY: {
+      textColor: '#757575',
+      textFontSize: '14px',
+      textFontWeight: 500,
       mBottom: '35px',
       mTop: '0px'
     }
   },
-  'template2': {
+  template2: {
     RESUME_TITLE: {
       textColor: '#fff',
       textFontSize: '16px',
@@ -184,13 +191,23 @@ let styles: IStyles = {
       textColor: '#757575',
       textFontSize: '14px',
       textFontWeight: 500,
+      titleColor: '#666666',
+      titleFontSize: '14px',
+      titleFontWeight: 600,
       mBottom: '35px',
       mTop: '0px'
     },
     SELF_EVALUATION: {
-      textColor: '#666',
+      textColor: '#757575',
       textFontSize: '14px',
-      textFontWeight: 600,
+      textFontWeight: 500,
+      mBottom: '35px',
+      mTop: '0px'
+    },
+    WORKS_DISPLAY: {
+      textColor: '#757575',
+      textFontSize: '14px',
+      textFontWeight: 500,
       mBottom: '35px',
       mTop: '0px'
     }

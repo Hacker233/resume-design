@@ -1,4 +1,4 @@
-<!-- 实习经验 -->
+<!-- 工作经验 -->
 <template>
   <div class="work-experience">
     <!-- 标题 -->

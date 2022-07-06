@@ -21,13 +21,15 @@
 </script>
 <style lang="less" scoped>
   .works-display {
-    padding: 0 40px;
     margin-bottom: v-bind('modelData.style.mBottom');
     margin-top: v-bind('modelData.style.mTop');
     .works-display-list {
-      margin-top: 25px;
       display: flex;
       flex-direction: column;
+      display: flex;
+      width: 100%;
+      flex-direction: column;
+      margin-top: 20px;
       li {
         display: flex;
         flex-direction: column;

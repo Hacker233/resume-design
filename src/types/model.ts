@@ -148,6 +148,7 @@ interface IINTERNSHIPEXPERIENCE {
     date: boolean;
     companyName: boolean;
     posts: boolean;
+    jobContent: boolean;
   };
   [propNams: string]: any;
 }
