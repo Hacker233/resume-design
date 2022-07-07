@@ -36,7 +36,7 @@
   </div>
 </template>
 <script setup lang="ts">
-  import { useModelOptionsComName } from '@/hooks/useModelIndex';
+  import { useModelOptionsComName } from '@/hooks/useModelOptionsComName';
   import { useResumeModelStore, useResumeJsonStore } from '@/store/resume';
   import { getUuid } from '@/utils/common';
   // 列表数据
@@ -96,6 +96,7 @@
         height: 50px;
         border-bottom: 1px solid #eee;
         padding: 0 10px;
+        user-select: none;
 
         &:hover {
           background-color: rgb(227, 231, 234);

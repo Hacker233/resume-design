@@ -35,7 +35,7 @@
   import { useResumeJsonStore, useResumeModelStore } from '@/store/resume';
   import { storeToRefs } from 'pinia';
   import { ComponentPublicInstance, onMounted, reactive, ref, watch } from 'vue';
-  import { useModelOptionsComName } from '@/hooks/useModelIndex';
+  import { useModelOptionsComName } from '@/hooks/useModelOptionsComName';
   import BaseInfo from './components/BaseInfo.vue'; // 基础信息
   import SkillSpecialties from './components/SkillSpecialties.vue';
   import NameAbstact from './components/NameAbstact.vue';
@@ -109,7 +109,7 @@
     }
   );
 
-  // 获取左侧模块列表ref
+  // 模块列表ref
   const modelObj = reactive<any>({});
   const setRefItem = (el: ComponentPublicInstance | null | Element, model: string, id: string) => {
     if (el) {
@@ -119,7 +119,7 @@
       };
     }
   };
-  // 获取左侧选中组件模块
+  //选中组件模块
   const resumeModelStore = useResumeModelStore();
   const selectModel = (model: string, title: string, id: string) => {
     let optionsName: string = useModelOptionsComName(`template2-${model}`);
@@ -160,7 +160,6 @@
       return item.model !== 'BASE_INFO' && item.model !== 'SKILL_SPECIALTIES';
     })
   );
-  console.log('右侧列表', rightList);
 </script>
 <script lang="ts">
   export default {
@@ -168,10 +167,9 @@
   };
 </script>
 <style lang="less">
-  @import '../template1/style/options.less';
+  @import '../../styles/options.less';
   .classic-box {
     display: flex;
-    // height: 100%;
     .model-box {
       border: 2px dashed transparent;
       transition: all 0.3s;

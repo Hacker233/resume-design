@@ -19,29 +19,13 @@
 </template>
 <script setup lang="ts">
   import { useResumeJsonStore } from '@/store/resume';
-  import { reactive, ref } from 'vue';
+  import { ref } from 'vue';
   import { pxTonumber } from '@/utils/common';
-  const {resumeJsonStore} = useResumeJsonStore();
+  import { useFontSizeList } from '@/hooks/useFontSizeList';
+  const { resumeJsonStore } = useResumeJsonStore();
 
   // 字体大小
-  const fontSizeList = reactive<Array<string>>([
-    '10px',
-    '12px',
-    '14px',
-    '16px',
-    '18px',
-    '20px',
-    '22px',
-    '24px',
-    '26px',
-    '28px',
-    '30px',
-    '32px',
-    '34px',
-    '36px',
-    '38px',
-    '40px'
-  ]);
+  const fontSizeList = useFontSizeList();
 
   // 上外边距
   const defaultMtop: number = pxTonumber(resumeJsonStore.MODEL_MARGIN_TOP);

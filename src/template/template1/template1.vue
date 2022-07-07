@@ -31,7 +31,7 @@
   import { useResumeJsonStore, useResumeModelStore } from '@/store/resume';
   import { storeToRefs } from 'pinia';
   import { ComponentPublicInstance, onMounted, reactive, ref, watch } from 'vue';
-  import { useModelOptionsComName } from '@/hooks/useModelIndex';
+  import { useModelOptionsComName } from '@/hooks/useModelOptionsComName';
 
   const { resumeJsonStore } = storeToRefs(useResumeJsonStore());
 
@@ -115,7 +115,7 @@
   };
 </script>
 <style lang="less" scoped>
-  @import './style/options.less';
+  @import '../../styles/options.less';
   .model-box {
     border: 2px dashed transparent;
     transition: all 0.3s;
