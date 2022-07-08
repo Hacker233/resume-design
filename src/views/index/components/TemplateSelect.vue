@@ -1,5 +1,5 @@
 <template>
-  <div class="template-select-box">
+  <div class="template-select-box" ref="templateRef">
     <div class="title">
       <h1>免费模板 + 用心设计</h1>
       <p>用心设计每一套模板，适合各行各业从业者</p>
@@ -17,6 +17,7 @@
   import TemplateCard from './TemplateCard.vue';
   import { ITempList } from '@/template/type';
   import { useRouter } from 'vue-router';
+  import { ref } from 'vue';
 
   // 跳转至设计页面
   const router = useRouter();
@@ -29,6 +30,15 @@
       }
     });
   };
+
+  // 出现在可视区
+  const templateRef = ref<any>(null);
+  const scrollIntoView = () => {
+    templateRef.value.scrollIntoView({behavior: "smooth"});
+  };
+  defineExpose({
+    scrollIntoView
+  });
 </script>
 <style lang="less">
   .template-select-box {

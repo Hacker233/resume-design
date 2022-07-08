@@ -4,10 +4,10 @@
     <nav-bar :bgColor="navColor" :fontColor="fontColor" :icon-color="iconColor"></nav-bar>
     <!-- 项目介绍栏 -->
     <div ref="introduceRef">
-      <project-introduce></project-introduce>
+      <project-introduce @free-make="freeMake"></project-introduce>
     </div>
     <!-- 模板选择 -->
-    <template-select></template-select>
+    <template-select ref="templeTef"></template-select>
 
     <!-- footer -->
     <footer-com></footer-com>
@@ -46,6 +46,12 @@
       iconColor.value = '#fff';
       fontColor.value = '#fff';
     }
+  };
+
+  // 点击免费制作
+  const templeTef = ref<any>(null);
+  const freeMake = () => {
+    templeTef.value.scrollIntoView();
   };
 </script>
 <style lang="less" scoped>
