@@ -33,7 +33,7 @@
   </div>
 </template>
 <script setup lang="ts">
-  import { IJOBINTENTION } from '@/types/model';
+  import { IJOBINTENTION } from '@/interface/model';
   import ModelTitle from './ModelTitle.vue';
   defineProps<{
     modelData: IJOBINTENTION;

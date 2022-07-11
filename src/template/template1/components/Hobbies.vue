@@ -10,7 +10,7 @@
   </div>
 </template>
 <script setup lang="ts">
-  import { IHOBBIES } from '@/types/model';
+  import { IHOBBIES } from '@/interface/model';
   import ModelTitle from './ModelTitle.vue';
   defineProps<{
     modelData: IHOBBIES;

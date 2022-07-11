@@ -39,7 +39,7 @@
 </template>
 <script setup lang="ts">
   import { reactive, ref } from 'vue';
-  import { IWORKSDISPLAY } from '@/types/model';
+  import { IWORKSDISPLAY } from '@/interface/model';
   import { useResumeJsonStore } from '@/store/resume';
   import CommonOptions from '@/components/CommonOptions/CommonOptions.vue';
   import { Delete, Plus, SemiSelect } from '@element-plus/icons-vue';

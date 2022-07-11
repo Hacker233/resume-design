@@ -21,7 +21,7 @@
   </div>
 </template>
 <script lang="ts" setup>
-  import { IBASEINFO } from '@/types/model';
+  import { IBASEINFO } from '@/interface/model';
   import { reactive } from 'vue';
   const props = defineProps<{
     modelData: IBASEINFO;

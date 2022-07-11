@@ -39,7 +39,7 @@
   import BaseInfo from './components/BaseInfo.vue'; // 基础信息
   import SkillSpecialties from './components/SkillSpecialties.vue';
   import NameAbstact from './components/NameAbstact.vue';
-  import { IBASEINFO } from '@/types/model';
+  import { IBASEINFO } from '@/interface/model';
   import JobIntention from './components/JobIntention.vue'; // 求职意向
   import EduBackground from './components/EduBackground.vue'; // 教育背景
   import CampusExperience from './components/CampusExperience.vue'; // 校园经历

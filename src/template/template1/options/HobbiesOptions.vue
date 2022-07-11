@@ -24,7 +24,7 @@
 </template>
 <script setup lang="ts">
   import { reactive, ref } from 'vue';
-  import { IHOBBIES } from '@/types/model';
+  import { IHOBBIES } from '@/interface/model';
   import { useResumeJsonStore } from '@/store/resume';
   import CommonOptions from '@/components/CommonOptions/CommonOptions.vue'; // 公共属性设置
   import { useModelIndex } from '@/hooks/useModelIndex';

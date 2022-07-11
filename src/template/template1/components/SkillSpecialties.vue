@@ -21,7 +21,7 @@
   </div>
 </template>
 <script setup lang="ts">
-  import { ISKILLSPECIALTIES } from '@/types/model';
+  import { ISKILLSPECIALTIES } from '@/interface/model';
   import ModelTitle from './ModelTitle.vue';
   defineProps<{
     modelData: ISKILLSPECIALTIES;

@@ -32,7 +32,7 @@
   </div>
 </template>
 <script setup lang="ts">
-  import { IPROJECTEXPERIENCE } from '@/types/model';
+  import { IPROJECTEXPERIENCE } from '@/interface/model';
   import { ComponentInternalInstance, getCurrentInstance } from 'vue';
   import ModelTitle from './ModelTitle.vue';
   // 获取全局挂载的moment对象

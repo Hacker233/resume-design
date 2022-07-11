@@ -5,7 +5,7 @@
   </div>
 </template>
 <script lang="ts" setup>
-  import { IRESUMETITLE, ISTYLE } from '@/types/model';
+  import { IRESUMETITLE, ISTYLE } from '@/interface/model';
   defineProps<{
     modelData: IRESUMETITLE;
   }>();

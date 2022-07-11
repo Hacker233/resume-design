@@ -19,7 +19,7 @@
   </div>
 </template>
 <script setup lang="ts">
-  import { IAWARDS } from '@/types/model';
+  import { IAWARDS } from '@/interface/model';
   import ModelTitle from './ModelTitle.vue';
   import { ComponentInternalInstance, getCurrentInstance } from 'vue';
   // 获取全局挂载的moment对象

@@ -43,7 +43,7 @@
 </template>
 <script setup lang="ts">
   import { reactive, ref } from 'vue';
-  import { ISKILLSPECIALTIES } from '@/types/model';
+  import { ISKILLSPECIALTIES } from '@/interface/model';
   import { useResumeJsonStore } from '@/store/resume';
   import CommonOptions from '@/components/CommonOptions/CommonOptions.vue';
   import { Plus, SemiSelect } from '@element-plus/icons-vue';

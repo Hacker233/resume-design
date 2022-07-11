@@ -66,7 +66,7 @@
 </template>
 <script setup lang="ts">
   import { reactive, ref } from 'vue';
-  import { IBASEINFO } from '@/types/model';
+  import { IBASEINFO } from '@/interface/model';
   import { useResumeJsonStore } from '@/store/resume';
   import { ElMessage } from 'element-plus';
   import type { UploadProps } from 'element-plus';

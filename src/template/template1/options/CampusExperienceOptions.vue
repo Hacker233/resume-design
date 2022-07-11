@@ -64,7 +64,7 @@
 </template>
 <script setup lang="ts">
   import { reactive, ref } from 'vue';
-  import { ICAMPUSEXPERIENCE } from '@/types/model';
+  import { ICAMPUSEXPERIENCE } from '@/interface/model';
   import { useResumeJsonStore } from '@/store/resume';
   import CommonOptions from '@/components/CommonOptions/CommonOptions.vue';
   import CommonTitleOptions from '@/components/CommonOptions/CommonTitleOptions.vue';

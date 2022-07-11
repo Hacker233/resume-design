@@ -80,7 +80,7 @@
 </template>
 <script setup lang="ts">
   import { reactive, ref } from 'vue';
-  import { IPROJECTEXPERIENCE } from '@/types/model';
+  import { IPROJECTEXPERIENCE } from '@/interface/model';
   import { useResumeJsonStore } from '@/store/resume';
   import CommonOptions from '@/components/CommonOptions/CommonOptions.vue';
   import CommonTitleOptions from '@/components/CommonOptions/CommonTitleOptions.vue';

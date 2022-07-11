@@ -70,7 +70,7 @@
 </template>
 <script setup lang="ts">
   import { reactive, ref } from 'vue';
-  import { IEDUBACKGROUND } from '@/types/model';
+  import { IEDUBACKGROUND } from '@/interface/model';
   import { useResumeJsonStore } from '@/store/resume';
   import { Delete } from '@element-plus/icons-vue';
   import CommonOptions from '@/components/CommonOptions/CommonOptions.vue'; // 公共属性设置

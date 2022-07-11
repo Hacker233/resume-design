@@ -41,7 +41,7 @@
 </template>
 <script setup lang="ts">
   import { reactive, ref } from 'vue';
-  import { IAWARDS } from '@/types/model';
+  import { IAWARDS } from '@/interface/model';
   import { useResumeJsonStore } from '@/store/resume';
   import { Delete } from '@element-plus/icons-vue';
   import CommonOptions from '@/components/CommonOptions/CommonOptions.vue';

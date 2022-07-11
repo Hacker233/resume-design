@@ -27,7 +27,7 @@
   </div>
 </template>
 <script setup lang="ts">
-  import { IWORKEXPERIENCE } from '@/types/model';
+  import { IWORKEXPERIENCE } from '@/interface/model';
   import { ComponentInternalInstance, getCurrentInstance } from 'vue';
   import ModelTitle from './ModelTitle.vue';
   // 获取全局挂载的moment对象

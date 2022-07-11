@@ -24,7 +24,7 @@
   </div>
 </template>
 <script setup lang="ts">
-  import { ISKILLSPECIALTIES } from '@/types/model';
+  import { ISKILLSPECIALTIES } from '@/interface/model';
   import { numberToText, textToNumber } from '@/utils/common';
   defineProps<{
     modelData: ISKILLSPECIALTIES;

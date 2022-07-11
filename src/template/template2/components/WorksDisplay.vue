@@ -13,7 +13,7 @@
   </div>
 </template>
 <script setup lang="ts">
-  import { IWORKSDISPLAY } from '@/types/model';
+  import { IWORKSDISPLAY } from '@/interface/model';
   import ModelTitle from './ModelTitle.vue';
   defineProps<{
     modelData: IWORKSDISPLAY;
