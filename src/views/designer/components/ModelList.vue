@@ -1,44 +1,52 @@
 <template>
   <div class="model-list-box">
-    <ul class="model-ul">
-      <li
-        v-for="(item, index) in resumeJsonStore.LIST"
-        :key="item.id"
-        :class="[{ active: resumeModel.id === item.id }]"
+    <div class="model-ul">
+      <draggable
+        :list="resumeJsonStore.LIST"
+        itemKey="id"
+        ghost-class="ghost"
+        chosen-class="chosenClass"
+        animation="300"
+        @start="onStart"
+        @end="onEnd"
       >
-        <!-- 是否添加模块 -->
-        <el-checkbox v-model="item.show" :label="item.title" />
-        <!-- 中间模块 -->
-        <div class="center" @click="selectModel(item)"></div>
-        <!-- 上下移动图标 -->
-        <div class="up-down-box">
-          <el-icon
-            color="#409eff"
-            :size="20"
-            :class="['up', { 'not-allow': index === 0 }]"
-            @click="up(index)"
-            ><upload
-          /></el-icon>
-          <el-icon
-            color="#409eff"
-            :size="20"
-            :class="['down', { 'not-allow': index === resumeJsonStore.LIST.length - 1 }]"
-            @click="down(index)"
-            ><upload
-          /></el-icon>
-          <!-- 添加模块 -->
-          <el-icon color="#409eff" :size="20" class="add" @click="add(index)"
-            ><CirclePlus
-          /></el-icon>
-        </div>
-      </li>
-    </ul>
+        <template #item="{ element, index }">
+          <div
+            :class="['model-list-item', { active: resumeModel.id === element.id }]"
+            @click="selectModel(element)"
+          >
+            <!-- 是否添加模块 -->
+            <div class="left">
+              <div class="icon-box">
+                <svg-icon
+                  :iconName="element.iconfont"
+                  className="icon"
+                  color="#c4c4c4"
+                  size="16px"
+                ></svg-icon>
+              </div>
+              <p>{{ element.title }}</p>
+            </div>
+            <div class="right">
+              <!-- 模块开关 -->
+              <el-switch v-model="element.show" size="small" active-color="#00C091" />
+              <!-- 添加模块 -->
+              <!-- <div class="add-model-box" @click="add(index)" title="添加模块">
+                <el-icon color="#00C091" :size="20" class="add"><CirclePlus /></el-icon>
+              </div> -->
+            </div>
+          </div>
+        </template>
+      </draggable>
+    </div>
   </div>
 </template>
 <script setup lang="ts">
   import { useModelOptionsComName } from '@/hooks/useModelOptionsComName';
   import { useResumeModelStore, useResumeJsonStore } from '@/store/resume';
   import { getUuid } from '@/utils/common';
+  import draggable from 'vuedraggable';
+
   // 列表数据
   const { resumeJsonStore } = useResumeJsonStore();
 
@@ -79,58 +87,89 @@
     temp.id = getUuid();
     resumeJsonStore.LIST.splice(index, 0, temp);
   };
+  //拖拽开始的事件
+  const onStart = () => {
+    console.log('开始拖拽');
+  };
+
+  //拖拽结束的事件
+  const onEnd = () => {
+    console.log('结束拖拽');
+  };
 </script>
 <style lang="less" scoped>
   .model-list-box {
+    padding: 0 1px;
     .model-ul {
       width: 100%;
       display: flex;
       flex-direction: column;
       padding: 0;
       margin: 0;
-
-      li {
-        list-style: none;
+      .icon-box {
+        width: 24px;
+        height: 24px;
         display: flex;
         align-items: center;
-        height: 50px;
-        border-bottom: 1px solid #eee;
-        padding: 0 10px;
-        user-select: none;
-
+        justify-content: center;
+        border: 1px solid #c4c4c4;
+        border-radius: 50%;
+        margin-right: 10px;
+      }
+      .model-list-item {
+        height: 60px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        cursor: all-scroll;
+        border: 1px solid transparent;
+        padding: 0 12px;
+        position: relative;
         &:hover {
-          background-color: rgb(227, 231, 234);
+          border: 1px dashed #00c091;
         }
-
-        .center {
-          flex: 1;
-          width: 100%;
-          height: 100%;
+        &::after {
+          content: '';
+          width: 80%;
+          height: 1px;
+          background-color: #f4f4f4;
+          position: absolute;
+          bottom: 0;
+          left: 50%;
+          transform: translate(-50%, 0);
         }
-
-        .up-down-box {
+        .left {
           display: flex;
           align-items: center;
-          justify-content: flex-end;
-          .up,
-          .add,
-          .down {
+          p {
+            margin: 0;
+            padding: 0;
+            display: inline-block;
+            height: 64px;
+            max-width: 64px;
+            line-height: 64px;
+            font-size: 12px;
+            color: #666666;
             cursor: pointer;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            word-break: break-word;
+            white-space: nowrap;
           }
-          .down,
-          .add {
-            transform: rotate(180deg);
+        }
+        .right {
+          display: flex;
+          align-items: center;
+          .add-model-box {
+            cursor: pointer;
+            display: flex;
+            align-items: center;
             margin-left: 10px;
-          }
-          .not-allow {
-            color: #ccc;
-            cursor: not-allowed;
           }
         }
       }
-
       .active {
-        background-color: rgb(227, 231, 234);
+        background-color: rgba(227, 231, 234, 0.6);
       }
     }
   }

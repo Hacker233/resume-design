@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia';
-import { IResumeJson } from '@/types/model';
+import { IResumeJson } from '@/interface/model';
 import TEMPLATE_JSON from '@/schema/model';
 
 interface IResumeModel {

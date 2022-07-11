@@ -1,4 +1,4 @@
-import { IResumeJson } from '@/types/model';
+import { IResumeJson } from '@/interface/model';
 let TEMPLATE_JSON: IResumeJson = {
   ID: '', // 模板Id
   NAME: '',
@@ -11,12 +11,14 @@ let TEMPLATE_JSON: IResumeJson = {
   LIST: [
     {
       id: '1',
+      iconfont: 'icon-xiangmujingli-04',
       model: 'RESUME_TITLE',
       show: true,
       title: '我的简历'
     },
     {
       id: '2',
+      iconfont: 'icon-jibenziliao',
       model: 'BASE_INFO',
       show: true,
       title: '基本资料',
@@ -42,6 +44,7 @@ let TEMPLATE_JSON: IResumeJson = {
     },
     {
       id: '3',
+      iconfont: 'icon-yixianggangwei',
       model: 'JOB_INTENTION',
       show: true,
       title: '求职意向',
@@ -60,6 +63,7 @@ let TEMPLATE_JSON: IResumeJson = {
     },
     {
       id: '4',
+      iconfont: 'icon-jiaoyubeijing',
       model: 'EDU_BACKGROUND',
       show: true,
       title: '教育背景',
@@ -89,6 +93,7 @@ let TEMPLATE_JSON: IResumeJson = {
     },
     {
       id: '5',
+      iconfont: 'icon-zhuanyezhishijineng',
       model: 'SKILL_SPECIALTIES',
       show: true,
       title: '技能特长',
@@ -117,6 +122,7 @@ let TEMPLATE_JSON: IResumeJson = {
     },
     {
       id: '6',
+      iconfont: 'icon-jiatimianban_timu',
       model: 'CAMPUS_EXPERIENCE',
       show: true,
       title: '校园经历',
@@ -144,6 +150,7 @@ let TEMPLATE_JSON: IResumeJson = {
     },
     {
       id: '9',
+      iconfont: 'icon-gongzuojingli',
       model: 'INTERNSHIP_EXPERIENCE',
       show: true,
       title: '实习经验',
@@ -192,6 +199,7 @@ let TEMPLATE_JSON: IResumeJson = {
     },
     {
       id: '7',
+      iconfont: 'icon-gongzuojingyan2',
       model: 'WORK_EXPERIENCE',
       show: true,
       title: '工作经验',
@@ -215,6 +223,7 @@ let TEMPLATE_JSON: IResumeJson = {
     },
     {
       id: '8',
+      iconfont: 'icon-xiangmu',
       model: 'PROJECT_EXPERIENCE',
       show: true,
       title: '项目经验',
@@ -236,9 +245,9 @@ let TEMPLATE_JSON: IResumeJson = {
         posts: true
       }
     },
-
     {
       id: '10',
+      iconfont: 'icon-rongyu1',
       model: 'AWARDS',
       show: true,
       title: '荣誉奖项',
@@ -257,6 +266,7 @@ let TEMPLATE_JSON: IResumeJson = {
     },
     {
       id: '11',
+      iconfont: 'icon-xingquaihao',
       model: 'HOBBIES',
       show: true,
       title: '兴趣爱好',
@@ -271,6 +281,7 @@ let TEMPLATE_JSON: IResumeJson = {
     },
     {
       id: '12',
+      iconfont: 'icon-ziwopingjia',
       model: 'SELF_EVALUATION',
       show: true,
       title: '自我评价',
@@ -278,6 +289,7 @@ let TEMPLATE_JSON: IResumeJson = {
     },
     {
       id: '13',
+      iconfont: 'icon-zhuanyezhishijineng',
       model: 'WORKS_DISPLAY',
       show: true,
       title: '作品展示',

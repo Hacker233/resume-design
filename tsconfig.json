@@ -2,7 +2,7 @@
   "compilerOptions": {
     "typeRoots": [
       "node_modules/@types", // 默认值
-      "src/types"
+      "src/interface"
     ],
     "target": "esnext",
     "useDefineForClassFields": true,

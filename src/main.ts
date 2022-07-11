@@ -21,6 +21,8 @@ import '@/assets/iconfont/iconfont.js';
 // pdf预览
 import VuePdf from 'vue3-pdfjs'
 
+// 滚动条
+import CScrollbar from 'c-scrollbar';
 
 // 创建vue实例
 const app = createApp(App);
@@ -31,6 +33,7 @@ app.use(component);
 app.use(elementIcons);
 app.use(ColorPicker);
 app.use(VuePdf);
+app.use(CScrollbar);
 app.component('SvgIcon', SvgIcon);
 app.config.globalProperties.$moment = moment;
 

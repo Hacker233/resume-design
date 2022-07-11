@@ -43,18 +43,24 @@
     <!-- 内容区域 -->
     <div class="bottom">
       <!-- 左侧添加模块区域 -->
+
       <div class="left">
-        <Title></Title>
-        <model-list></model-list>
+        <c-scrollbar
+          trigger="hover"
+          :hThumbStyle="{
+            'background-color': 'rgba(0,0,0,0.4)'
+          }"
+        >
+          <Title></Title>
+          <model-list></model-list>
+        </c-scrollbar>
       </div>
+
       <!-- 预览区域 -->
       <div class="center">
         <div class="design" ref="html2Pdf">
           <div class="design-content" ref="htmlContentPdf">
-            <component
-              :is="componentName"
-              @contentHeightChange="contentHeightChange"
-            />
+            <component :is="componentName" @contentHeightChange="contentHeightChange" />
           </div>
           <!-- 分页线 -->
           <template v-if="linesNumber > 0">
@@ -108,12 +114,13 @@
   import { storeToRefs } from 'pinia';
   import { useRoute, useRouter } from 'vue-router';
   import styles from '@/schema/style';
+  import { CScrollbar } from 'c-scrollbar'; // 滚动条
 
   // 预览
   import { VuePdf, createLoadingTask } from 'vue3-pdfjs/esm';
   import type { VuePdfPropsType } from 'vue3-pdfjs/components/vue-pdf/vue-pdf-props'; // Prop type definitions can also be imported
   import type { PDFDocumentProxy } from 'pdfjs-dist/types/src/display/api';
-  import { IResumeJson, TModelList } from '@/types/model';
+  import { IResumeJson, TModelList } from '@/interface/model';
 
   const { title } = storeToRefs(useResumeModelStore());
   const store = useResumeJsonStore();
@@ -348,6 +355,8 @@
       position: sticky;
       top: 0;
       display: flex;
+      box-shadow: 0 5px 21px 0 rgb(78 78 78 / 5%);
+      z-index: 20;
       .nav-left {
         width: 300px;
         display: flex;
