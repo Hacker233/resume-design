@@ -13,13 +13,11 @@ import elementIcons from '@/components/SvgIcon/svgicon';
 // 颜色选择控件
 import ColorPicker from 'colorpicker-v3'; // 注册组件
 import 'colorpicker-v3/style.css'; // 引入样式文件
-// 日期处理
-import moment from 'moment';
 // 图标
 import '@/assets/iconfont/iconfont.js';
 
 // pdf预览
-import VuePdf from 'vue3-pdfjs'
+import VuePdf from 'vue3-pdfjs';
 
 // 滚动条
 import CScrollbar from 'c-scrollbar';
@@ -35,7 +33,6 @@ app.use(ColorPicker);
 app.use(VuePdf);
 app.use(CScrollbar);
 app.component('SvgIcon', SvgIcon);
-app.config.globalProperties.$moment = moment;
 
 // 挂载实例
 app.mount('#app');

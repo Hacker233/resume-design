@@ -9,9 +9,7 @@
         <!-- 日期和学校 -->
         <div class="date-school-box">
           <span v-if="modelData.isShow.date">
-            {{ moment(new Date(item.date[0])).format('YYYY.MM').split('-').join('.') }}
-            -
-            {{ moment(new Date(item.date[1])).format('YYYY.MM').split('-').join('.') }}
+            {{ formatDate(item.date) }}
           </span>
           <span v-if="modelData.isShow.schoolName">
             {{ item.schoolName }}
@@ -30,11 +28,8 @@
 </template>
 <script setup lang="ts">
   import { IEDUBACKGROUND } from '@/interface/model';
-  import { ComponentInternalInstance, getCurrentInstance } from 'vue';
   import ModelTitle from './ModelTitle.vue';
-  // 获取全局挂载的moment对象
-  const instance = getCurrentInstance() as ComponentInternalInstance;
-  const moment = instance.appContext.config.globalProperties.$moment;
+  import { formatDate } from '@/utils/common';
   defineProps<{
     modelData: IEDUBACKGROUND;
   }>();
@@ -75,7 +70,7 @@
           font-weight: v-bind('modelData.style.textFontWeight');
           line-height: 18px;
           text-align: justify;
-        font-family: '微软雅黑';
+          font-family: '微软雅黑';
         }
         .special {
           margin-bottom: 10px;

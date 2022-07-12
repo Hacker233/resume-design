@@ -8,11 +8,7 @@
       <div class="list" v-for="(item, index) in modelData.LIST" :key="index">
         <ul>
           <!-- 经历时间 -->
-          <li class="list-title" v-if="modelData.isShow.date"
-            >{{ moment(new Date(item.date[0])).format('YYYY.MM').split('-').join('.') }}
-            -
-            {{ moment(new Date(item.date[1])).format('YYYY.MM').split('-').join('.') }}</li
-          >
+          <li class="list-title" v-if="modelData.isShow.date">{{ formatDate(item.date) }}</li>
           <!-- 公司名称 -->
           <li class="list-title">{{ item.companyName }}</li>
           <!-- 主要职责 -->
@@ -33,11 +29,8 @@
 </template>
 <script setup lang="ts">
   import { IINTERNSHIPEXPERIENCE } from '@/interface/model';
-  import { ComponentInternalInstance, getCurrentInstance } from 'vue';
   import ModelTitle from './ModelTitle.vue';
-  // 获取全局挂载的moment对象
-  const instance = getCurrentInstance() as ComponentInternalInstance;
-  const moment = instance.appContext.config.globalProperties.$moment;
+  import { formatDate } from '@/utils/common';
   defineProps<{
     modelData: IINTERNSHIPEXPERIENCE;
   }>();

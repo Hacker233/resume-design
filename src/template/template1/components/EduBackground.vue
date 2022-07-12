@@ -6,11 +6,7 @@
     <div class="edu-list">
       <ul v-for="(item, index) in modelData.LIST" :key="index">
         <!-- 学历日期 -->
-        <li v-if="modelData.isShow.date"
-          >{{ moment(new Date(item.date[0])).format('YYYY.MM').split('-').join('.') }}
-          -
-          {{ moment(new Date(item.date[1])).format('YYYY.MM').split('-').join('.') }}</li
-        >
+        <li v-if="modelData.isShow.date">{{ formatDate(item.date) }}</li>
         <!-- 学校名称 -->
         <li v-if="modelData.isShow.schoolName">{{ item.schoolName }}</li>
         <!-- 专业 -->
@@ -23,11 +19,8 @@
 </template>
 <script setup lang="ts">
   import { IEDUBACKGROUND } from '@/interface/model';
-  import { ComponentInternalInstance, getCurrentInstance } from 'vue';
   import ModelTitle from './ModelTitle.vue';
-  // 获取全局挂载的moment对象
-  const instance = getCurrentInstance() as ComponentInternalInstance;
-  const moment = instance.appContext.config.globalProperties.$moment;
+  import { formatDate } from '@/utils/common';
   defineProps<{
     modelData: IEDUBACKGROUND;
   }>();

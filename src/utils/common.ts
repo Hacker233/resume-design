@@ -1,4 +1,5 @@
 import { uuid } from 'vue-uuid';
+import moment from 'moment'; // 日期处理
 // 工具方法--px转数字
 export const pxTonumber = (value: string | undefined): number => {
   if (value) {
@@ -49,4 +50,15 @@ export const getUuid = (): string => {
 // 获取assets静态资源
 export const getAssetsFile = (url: string) => {
   return new URL(`../assets/images/${url}`, import.meta.url).href;
+};
+
+// 时间格式转化：['2015-5', '2019-6'] -> 2015.05 - 2019.06
+export const formatDate = (dataArray: Array<string> | string): string => {
+  if (Array.isArray(dataArray)) {
+    let startDate = moment(new Date(dataArray[0])).format('YYYY.MM').split('-').join('.');
+    let endDate = moment(new Date(dataArray[1])).format('YYYY.MM').split('-').join('.');
+    return `${startDate}-${endDate}`;
+  } else {
+    return moment(new Date(dataArray)).format('YYYY.MM').split('-').join('.')
+  }
 };

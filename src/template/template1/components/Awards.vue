@@ -7,9 +7,7 @@
     <div class="awards-list">
       <ul v-for="(item, index) in modelData.LIST" :key="index">
         <!-- 获奖日期 -->
-        <li v-show="modelData.isShow.date">{{
-          moment(new Date(item.date)).format('YYYY.MM').split('-').join('.')
-        }}</li>
+        <li v-show="modelData.isShow.date">{{ formatDate(item.date) }}</li>
         <!-- 奖项名称 -->
         <li v-show="modelData.isShow.awardsName">{{ item.awardsName }}</li>
         <!-- 奖项等级 -->
@@ -21,10 +19,7 @@
 <script setup lang="ts">
   import { IAWARDS } from '@/interface/model';
   import ModelTitle from './ModelTitle.vue';
-  import { ComponentInternalInstance, getCurrentInstance } from 'vue';
-  // 获取全局挂载的moment对象
-  const instance = getCurrentInstance() as ComponentInternalInstance;
-  const moment = instance.appContext.config.globalProperties.$moment;
+  import { formatDate } from '@/utils/common';
   defineProps<{
     modelData: IAWARDS;
   }>();

@@ -8,11 +8,7 @@
       <ul class="list-ul">
         <!-- 经历时间和项目名称 -->
         <div class="date-name-box">
-          <span v-if="modelData.isShow.date"
-            >{{ moment(new Date(item.date[0])).format('YYYY.MM').split('-').join('.') }}
-            -
-            {{ moment(new Date(item.date[1])).format('YYYY.MM').split('-').join('.') }}</span
-          >
+          <span v-if="modelData.isShow.date">{{ formatDate(item.date) }}</span>
           <!-- 公司名称 -->
           <span v-if="modelData.isShow.projectName">{{ item.projectName }}</span>
         </div>
@@ -28,11 +24,8 @@
 </template>
 <script setup lang="ts">
   import { IPROJECTEXPERIENCE } from '@/interface/model';
-  import { ComponentInternalInstance, getCurrentInstance } from 'vue';
   import ModelTitle from './ModelTitle.vue';
-  // 获取全局挂载的moment对象
-  const instance = getCurrentInstance() as ComponentInternalInstance;
-  const moment = instance.appContext.config.globalProperties.$moment;
+  import { formatDate } from '@/utils/common';
   defineProps<{
     modelData: IPROJECTEXPERIENCE;
   }>();
