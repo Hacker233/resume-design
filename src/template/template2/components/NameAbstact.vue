@@ -6,14 +6,14 @@
   </div>
 </template>
 <script lang="ts" setup>
-  import { useResumeJsonStore, useResumeModelStore } from '@/store/resume';
+  import { useResumeJsonStore } from '@/store/resume';
   import { storeToRefs } from 'pinia';
+  import { IBASEINFO } from '@/interface/model';
   const { resumeJsonStore } = storeToRefs(useResumeJsonStore()); // 简历数据
   // 获得基础信息数据
-  const modelData = resumeJsonStore.value.LIST.find((item) => {
+  const modelData: IBASEINFO = resumeJsonStore.value.LIST.find((item) => {
     return item.model == 'BASE_INFO';
-  });
-  console.log('modelData', modelData);
+  }) as IBASEINFO;
 </script>
 <style lang="less" scoped>
   .name-introduce {
@@ -22,9 +22,9 @@
     h1 {
       height: 30px;
       line-height: 29px;
-      font-size: 30px;
-      color: #414141;
-      font-weight: 500;
+      font-size: v-bind('modelData.style.titleFontSize');
+      color: v-bind('modelData.style.titleColor');
+      font-weight: v-bind('modelData.style.titleFontWeight');
       margin: 0 0 25px 0;
     }
     p {

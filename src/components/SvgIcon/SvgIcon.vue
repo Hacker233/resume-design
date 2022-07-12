@@ -36,14 +36,6 @@ const svgClass = computed(() => {
 </script>
 
 <style scoped lang="less">
-// .sub-el-icon,
-// .nav-icon {
-//   display: inline-block;
-//   font-size: 15px;
-//   margin-right: 12px;
-//   position: relative;
-// }
-
 .svg-icon {
   width: 1em;
   height: 1em;

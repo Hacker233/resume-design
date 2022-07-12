@@ -1,7 +1,7 @@
 /**
  * @description 返回选中模块所需要的属性设置面板组件
  */
- export const useModelOptionsComName = (templateModel: string): string => {
+export const useModelOptionsComName = (templateModel: string): string => {
   let optionsName: string = '';
   switch (templateModel) {
     case 'template1-BASE_INFO':
@@ -57,6 +57,7 @@
       optionsName = 'HOBBIES';
       break;
     case 'template1-SELF_EVALUATION':
+    case 'template2-SELF_EVALUATION':
       optionsName = 'SELF_EVALUATION';
       break;
     case 'template1-WORKS_DISPLAY':

@@ -8,11 +8,18 @@
     <!-- GitHub -->
     <div class="right">
       <a
+        href="https://gitee.com/sharemore52/resume-design"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <svg-icon iconName="icon-gitee-fill-round" :color="iconColor" size="32px"></svg-icon>
+      </a>
+      <a
         href="https://github.com/Hacker233/resume-design"
         target="_blank"
         rel="noopener noreferrer"
       >
-        <svg-icon iconName="icon-github-fill" :color="iconColor"></svg-icon>
+        <svg-icon iconName="icon-github-fill" :color="iconColor" size="35px"></svg-icon>
       </a>
     </div>
   </div>
@@ -62,8 +69,10 @@
     }
     .right {
       .svg-icon {
-        font-size: 35px;
         cursor: pointer;
+      }
+      & :first-child {
+        margin-right: 10px;
       }
     }
   }

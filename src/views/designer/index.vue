@@ -92,16 +92,7 @@
 </template>
 
 <script setup lang="ts">
-  import {
-    ComponentInternalInstance,
-    getCurrentInstance,
-    nextTick,
-    onBeforeUnmount,
-    onBeforeUpdate,
-    onMounted,
-    ref,
-    watch
-  } from 'vue';
+  import { nextTick, onBeforeUnmount, onBeforeUpdate, onMounted, ref, watch } from 'vue';
   import Title from './components/Title.vue';
   import ModelList from './components/ModelList.vue';
   import GlobalOptions from '@/components/CommonOptions/GlobalOptions.vue';
@@ -115,19 +106,17 @@
   import { useRoute, useRouter } from 'vue-router';
   import styles from '@/schema/style';
   import { CScrollbar } from 'c-scrollbar'; // 滚动条
+  import moment from 'moment'; // 日期处理
 
   // 预览
   import { VuePdf, createLoadingTask } from 'vue3-pdfjs/esm';
   import type { VuePdfPropsType } from 'vue3-pdfjs/components/vue-pdf/vue-pdf-props'; // Prop type definitions can also be imported
   import type { PDFDocumentProxy } from 'pdfjs-dist/types/src/display/api';
-  import { IResumeJson, TModelList } from '@/interface/model';
+  import { IResumeJson } from '@/interface/model';
 
   const { title } = storeToRefs(useResumeModelStore());
   const store = useResumeJsonStore();
   let { resumeJsonStore } = storeToRefs(useResumeJsonStore()); // store里的模板数据
-  // 获取全局挂载的moment对象
-  const instance = getCurrentInstance() as ComponentInternalInstance;
-  const moment = instance.appContext.config.globalProperties.$moment;
 
   // 判断每一模块是否有style属性，没有则加上
   const addStyle = (resumeJson: IResumeJson) => {
@@ -202,6 +191,7 @@
   // 生命周期函数
   onMounted(async () => {
     resizeDOM();
+    initClickListen();
   });
   onBeforeUnmount(() => {
     observer?.disconnect();
@@ -339,6 +329,24 @@
   const contentHeightChange = (height: number) => {
     htmlContentPdf.value.style.height = height + 'px';
   };
+
+  // 点击其它区域，取消模块选择，即取消模块选中效果
+  const initClickListen = () => {
+    window.addEventListener('click', dealClick);
+  };
+  const dealClick = (e: MouseEvent) => {
+    const bool = getTargetNode(htmlContentPdf.value, e.target);
+    if (bool) {
+      globalStyleSetting();
+    }
+  };
+  const getTargetNode = (ele: any, target: any): boolean => {
+    if (!ele || ele === document) return false;
+    return ele === target ? true : getTargetNode(ele.parentNode, target);
+  };
+  onBeforeUnmount(() => {
+    window.removeEventListener('click', dealClick);
+  });
 </script>
 
 <style lang="less" scoped>

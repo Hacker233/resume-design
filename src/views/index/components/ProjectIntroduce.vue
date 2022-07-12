@@ -26,16 +26,16 @@
     display: flex;
     align-items: center;
     position: relative;
-    background: #f4c4f3; /* fallback for old browsers */
+    background: #3494e6; /* fallback for old browsers */
     background: -webkit-linear-gradient(
       to right,
-      #fc67fa,
-      #f4c4f3
+      #ec6ead,
+      #3494e6
     ); /* Chrome 10-25, Safari 5.1-6 */
     background: linear-gradient(
       to right,
-      #fc67fa,
-      #f4c4f3
+      #ec6ead,
+      #3494e6
     ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 
     .left {
