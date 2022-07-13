@@ -7,7 +7,27 @@
           v-if="item.show"
           :ref="(el) => setRefItem(el, item.model, item.id)"
           @click="selectModel(item.model, item.title, item.id)"
+          @mouseover="modelHover(item.id)"
+          @mouseleave="modelMouseleave"
         >
+          <!-- 模块操作区域 -->
+          <div class="edit-box" v-show="hoverCurrentId === item.id">
+            <el-tooltip class="box-item" effect="dark" content="复制当前模块">
+              <div class="copy" @click="useCopyModel(item)">
+                <svg-icon iconName="icon-jia" className="icon" color="#fff" size="16px"></svg-icon>
+              </div>
+            </el-tooltip>
+            <el-tooltip class="box-item" effect="dark" content="删除当前模块">
+              <div class="delete" @click.stop="useDeleteModel(item)">
+                <svg-icon
+                  iconName="icon-shanchu"
+                  className="icon icon-shanchu"
+                  color="#fff"
+                  size="18px"
+                ></svg-icon>
+              </div>
+            </el-tooltip>
+          </div>
           <component v-if="item.style" :is="components[item.model]" :modelData="item"></component>
         </div>
       </template>
@@ -24,7 +44,27 @@
           v-if="item.show"
           :ref="(el) => setRefItem(el, item.model, item.id)"
           @click="selectModel(item.model, item.title, item.id)"
+          @mouseover="modelHover(item.id)"
+          @mouseleave="modelMouseleave"
         >
+          <!-- 模块操作区域 -->
+          <div class="edit-box" v-show="hoverCurrentId === item.id">
+            <el-tooltip class="box-item" effect="dark" content="复制当前模块">
+              <div class="copy" @click="useCopyModel(item)">
+                <svg-icon iconName="icon-jia" className="icon" color="#fff" size="16px"></svg-icon>
+              </div>
+            </el-tooltip>
+            <el-tooltip class="box-item" effect="dark" content="删除当前模块">
+              <div class="delete" @click.stop="useDeleteModel(item)">
+                <svg-icon
+                  iconName="icon-shanchu"
+                  className="icon icon-shanchu"
+                  color="#fff"
+                  size="18px"
+                ></svg-icon>
+              </div>
+            </el-tooltip>
+          </div>
           <component v-if="item.style" :is="components[item.model]" :modelData="item"></component>
         </div>
       </template>
@@ -50,6 +90,8 @@
   import Hobbies from './components/Hobbies.vue'; // 兴趣爱好
   import SelfEvaluation from './components/SelfEvaluation.vue'; // 自我评价
   import WorksDisplay from './components/WorksDisplay.vue'; // 个人作品
+  import { useCopyModel } from '@/hooks/useCopyModel';
+  import { useDeleteModel } from '@/hooks/useDeleteModel';
 
   const { resumeJsonStore } = storeToRefs(useResumeJsonStore()); // 简历数据
 
@@ -74,6 +116,17 @@
   onMounted(() => {
     changeHeight();
   });
+
+  // 鼠标移入模块
+  const hoverCurrentId = ref<string>('');
+  const modelHover = (id: string) => {
+    hoverCurrentId.value = id;
+  };
+
+  // 鼠标移出模块
+  const modelMouseleave = () => {
+    hoverCurrentId.value = '';
+  };
 
   // 监听内容高度发生变化
   const tmp2ContentHeightRef = ref<any>(null);
@@ -171,12 +224,37 @@
   .classic-box {
     display: flex;
     .model-box {
-      border: 2px dashed transparent;
+      border: 1px dashed transparent;
       transition: all 0.3s;
       padding: 4px 30px;
+      position: relative;
       &:hover {
         border-color: #7ec97e !important;
         cursor: pointer;
+      }
+      .edit-box {
+        position: absolute;
+        right: 0px;
+        top: -35px;
+        display: flex;
+        z-index: 999;
+        .copy,
+        .delete {
+          width: 35px;
+          height: 35px;
+          background-color: #00c091;
+          border-radius: 3px;
+          cursor: pointer;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          &:hover {
+            background-color: rgba(#00c091, 0.8);
+          }
+        }
+        .delete {
+          margin-left: 6px;
+        }
       }
     }
     .left {
@@ -196,7 +274,7 @@
       padding: 40px 0 40px 270px;
       flex: 1;
       .name-abstract-box {
-        border: 2px dashed transparent;
+        border: 1px dashed transparent;
         transition: all 0.3s;
         padding: 0 30px;
         margin-bottom: 45px;

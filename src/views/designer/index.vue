@@ -43,7 +43,6 @@
     <!-- 内容区域 -->
     <div class="bottom">
       <!-- 左侧添加模块区域 -->
-
       <div class="left">
         <c-scrollbar
           trigger="hover"
@@ -235,6 +234,7 @@
   // 全局样式设置
   const globalStyleSetting = () => {
     // 重置store选中模块
+    localStorage.clear();
     useModel.$reset();
   };
 

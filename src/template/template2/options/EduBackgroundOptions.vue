@@ -76,6 +76,7 @@
   import CommonOptions from '@/components/CommonOptions/CommonOptions.vue'; // 公共属性设置
   import CommonTitleOptions from '@/components/CommonOptions/CommonTitleOptions.vue';
   import { useModelIndex } from '@/hooks/useModelIndex';
+  import { useDegreeList } from '@/hooks/useDegreeList';
   // store
   const { resumeJsonStore } = useResumeJsonStore();
 
@@ -83,20 +84,7 @@
   const index = useModelIndex(); // 选中的索引
   const modelItem = reactive<IEDUBACKGROUND>(resumeJsonStore.LIST[index] as IEDUBACKGROUND);
   let activeName = ref('style');
-
-  /**
-   * 数据配置
-   */
-  const degreeList: Array<string> = reactive([
-    '初中',
-    '高中',
-    '大专',
-    '本科',
-    '全日制本科',
-    '硕士',
-    '非全硕士',
-    '其它'
-  ]);
+  const { degreeList } = useDegreeList(); // 学历列表
   // 添加学历
   const addEdu = (): void => {
     modelItem.LIST.push({

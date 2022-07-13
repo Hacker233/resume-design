@@ -6,10 +6,6 @@
     </div>
     <!-- 基础信息 -->
     <div class="user-info">
-      <!-- <h1>{{ modelData.name }}</h1> -->
-      <!-- 一句话简介 -->
-      <!-- <p class="user-abstract" v-show="isShow.abstract">{{ modelData.abstract }}</p> -->
-      <!-- 年龄、地点、经验等信息 -->
       <ul>
         <li class="li-border" v-show="isShow.age">
           <svg-icon iconName="icon-renwu-ren" color="#fff"></svg-icon>

@@ -6,7 +6,27 @@
         v-if="item.show && item.style"
         :ref="(el) => setRefItem(el, item.model, item.id)"
         @click="selectModel(item.model, item.title, item.id)"
+        @mouseover="modelHover(item.id)"
+        @mouseleave="modelMouseleave"
       >
+        <!-- 模块操作区域 -->
+        <div class="edit-box" v-show="hoverCurrentId === item.id">
+          <el-tooltip class="box-item" effect="dark" content="复制当前模块">
+            <div class="copy" @click="useCopyModel(item)">
+              <svg-icon iconName="icon-jia" className="icon" color="#fff" size="16px"></svg-icon>
+            </div>
+          </el-tooltip>
+          <el-tooltip class="box-item" effect="dark" content="删除当前模块">
+            <div class="delete" @click.stop="useDeleteModel(item)">
+              <svg-icon
+                iconName="icon-shanchu"
+                className="icon icon-shanchu"
+                color="#fff"
+                size="18px"
+              ></svg-icon>
+            </div>
+          </el-tooltip>
+        </div>
         <component v-if="item.style" :is="components[item.model]" :modelData="item"></component>
       </div>
     </template>
@@ -31,8 +51,9 @@
   import { useResumeJsonStore, useResumeModelStore } from '@/store/resume';
   import { storeToRefs } from 'pinia';
   import { ComponentPublicInstance, onMounted, reactive, ref, watch } from 'vue';
+  import { useCopyModel } from '@/hooks/useCopyModel';
+  import { useDeleteModel } from '@/hooks/useDeleteModel';
   import { useModelOptionsComName } from '@/hooks/useModelOptionsComName';
-
   const { resumeJsonStore } = storeToRefs(useResumeJsonStore());
 
   // 注册局部组件
@@ -56,6 +77,17 @@
   onMounted(() => {
     changeHeight();
   });
+
+  // 鼠标移入模块
+  const hoverCurrentId = ref<string>('');
+  const modelHover = (id: string) => {
+    hoverCurrentId.value = id;
+  };
+
+  // 鼠标移出模块
+  const modelMouseleave = () => {
+    hoverCurrentId.value = '';
+  };
 
   // 监听内容高度发生变化
   const tmp1ContentHeightRef = ref<any>(null);
@@ -117,11 +149,35 @@
 <style lang="less" scoped>
   @import '../../styles/options.less';
   .model-box {
-    border: 2px dashed transparent;
+    border: 1px dashed transparent;
     transition: all 0.3s;
+    position: relative;
     &:hover {
       border-color: #7ec97e !important;
       cursor: pointer;
+    }
+    .edit-box {
+      position: absolute;
+      right: 0px;
+      top: -35px;
+      display: flex;
+      .copy,
+      .delete {
+        width: 35px;
+        height: 35px;
+        background-color: #00c091;
+        border-radius: 3px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        &:hover {
+          background-color: rgba(#00c091, 0.8);
+        }
+      }
+      .delete {
+        margin-left: 6px;
+      }
     }
   }
   .model-bottom {
