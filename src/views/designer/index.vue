@@ -28,6 +28,7 @@
         <el-button type="primary" @click="saveDraft">保存草稿</el-button>
         <!-- <el-button type="primary" @click="pdfPreview">预览</el-button> -->
         <el-button type="primary" @click="generateReport">导出PDF</el-button>
+        <el-button type="primary" @click="exportJSON">导出JSON数据</el-button>
         <el-popconfirm
           title="重置会删除所有已编辑内容，是否继续?"
           @confirm="reset"
@@ -43,15 +44,15 @@
     <!-- 内容区域 -->
     <div class="bottom">
       <!-- 左侧添加模块区域 -->
-      <div class="left">
+      <div class="left" ref="leftRef">
         <c-scrollbar
           trigger="hover"
           :hThumbStyle="{
             'background-color': 'rgba(0,0,0,0.4)'
           }"
         >
-          <Title></Title>
-          <model-list></model-list>
+          <Title @unflodOrCollapse="unflodOrCollapse"></Title>
+          <model-list :leftShowStatus="leftShowStatus"></model-list>
         </c-scrollbar>
       </div>
 
@@ -106,6 +107,9 @@
   import styles from '@/schema/style';
   import { CScrollbar } from 'c-scrollbar'; // 滚动条
   import moment from 'moment'; // 日期处理
+
+  // 导出JSON
+  import FileSaver from 'file-saver';
 
   // 预览
   import { VuePdf, createLoadingTask } from 'vue3-pdfjs/esm';
@@ -281,9 +285,16 @@
     linesNumber.value = 0;
     useModel.$reset(); // 重置选中模块
     await nextTick();
-    downloadPDF(html2Pdf.value, '个人简历', false, () => {
+    downloadPDF(html2Pdf.value, resumeJsonStore.value.TITLE, false, () => {
       linesNumber.value = temp;
     });
+  };
+
+  // 导出JSON
+  const exportJSON = () => {
+    const data = JSON.stringify(resumeJsonStore.value);
+    const blob = new Blob([data], { type: '' });
+    FileSaver.saveAs(blob, resumeJsonStore.value.TITLE);
   };
 
   // 预览
@@ -347,6 +358,23 @@
   onBeforeUnmount(() => {
     window.removeEventListener('click', dealClick);
   });
+
+  // 展开或收起左侧栏
+  const leftRef = ref<any>(null);
+  const leftShowStatus = ref<boolean>(true);
+  const unflodOrCollapse = (status: boolean) => {
+    if (status) {
+      setTimeout(() => {
+        leftShowStatus.value = status;
+      }, 100);
+      leftRef.value.style.width = '300px';
+    } else {
+      setTimeout(() => {
+        leftShowStatus.value = status;
+      }, 100);
+      leftRef.value.style.width = '70px';
+    }
+  };
 </script>
 
 <style lang="less" scoped>
@@ -432,6 +460,7 @@
         background-color: #fff;
         height: calc(100vh - 50px);
         overflow: auto;
+        transition: all 0.3s;
       }
 
       .center {
@@ -452,7 +481,7 @@
           .lines {
             z-index: 10;
             width: 820px;
-            height: 32px;
+            height: 24px;
             background: #f3f3f3 url(@/assets/images/paging_bg.png) center top no-repeat;
             user-select: none;
             pointer-events: none;

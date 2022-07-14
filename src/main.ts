@@ -4,9 +4,9 @@ import store from './store';
 import router from './router';
 import ElementPlus from 'element-plus';
 import 'element-plus/dist/index.css';
-import '@/styles/normalize.css';
+import '@/style/normalize.css';
 import component from '@/utils/registerCom';
-import '@/styles/global.less';
+import '@/style/global.less';
 // 注册所有图标
 import SvgIcon from '@/components/SvgIcon/SvgIcon.vue';
 import elementIcons from '@/components/SvgIcon/svgicon';

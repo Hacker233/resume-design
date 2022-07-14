@@ -220,7 +220,7 @@
   };
 </script>
 <style lang="less">
-  @import '../../styles/options.less';
+  @import '@/style/options.less';
   .classic-box {
     display: flex;
     .model-box {

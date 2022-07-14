@@ -12,28 +12,28 @@
       >
         <template #item="{ element, index }">
           <div
-            :class="['model-list-item', { active: resumeModel.id === element.id }]"
+            :class="[
+              'model-list-item',
+              { active: resumeModel.id === element.id },
+              { 'collapse-center': !leftShowStatus }
+            ]"
             @click="selectModel(element)"
           >
             <!-- 是否添加模块 -->
             <div class="left">
-              <div class="icon-box">
+              <div :class="['icon-box',{ 'collapse-size': !leftShowStatus }]">
                 <svg-icon
                   :iconName="element.iconfont"
                   className="icon"
-                  color="#c4c4c4"
+                  :color="leftShowStatus ? '#c4c4c4' : '#00c091'"
                   size="16px"
                 ></svg-icon>
               </div>
-              <p>{{ element.title }}</p>
+              <p v-show="leftShowStatus">{{ element.title }}</p>
             </div>
-            <div class="right">
+            <div class="right" v-show="leftShowStatus">
               <!-- 模块开关 -->
               <el-switch v-model="element.show" size="small" active-color="#00C091" />
-              <!-- 添加模块 -->
-              <!-- <div class="add-model-box" @click="add(index)" title="添加模块">
-                <el-icon color="#00C091" :size="20" class="add"><CirclePlus /></el-icon>
-              </div> -->
             </div>
           </div>
         </template>
@@ -46,6 +46,10 @@
   import { useResumeModelStore, useResumeJsonStore } from '@/store/resume';
   import { getUuid } from '@/utils/common';
   import draggable from 'vuedraggable';
+
+  defineProps<{
+    leftShowStatus: Boolean;
+  }>();
 
   // 列表数据
   const { resumeJsonStore } = useResumeJsonStore();
@@ -114,7 +118,9 @@
         justify-content: center;
         border: 1px solid #c4c4c4;
         border-radius: 50%;
-        margin-right: 10px;
+      }
+      .collapse-size {
+        transform: scale(1.2);
       }
       .model-list-item {
         height: 60px;
@@ -142,7 +148,7 @@
           display: flex;
           align-items: center;
           p {
-            margin: 0;
+            margin: 0 0 0 10px;
             padding: 0;
             display: inline-block;
             height: 64px;
@@ -167,6 +173,10 @@
             margin-left: 10px;
           }
         }
+      }
+
+      .collapse-center {
+        justify-content: center;
       }
       .active {
         background-color: rgba(227, 231, 234, 0.6);

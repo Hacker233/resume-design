@@ -137,7 +137,6 @@
   const resumeModelStore = useResumeModelStore();
   const selectModel = (model: string, title: string, id: string) => {
     let optionsName: string = useModelOptionsComName(`template1-${model}`);
-    console.log('optionsName', optionsName);
     resumeModelStore.setResumeModel({ model, optionsName, title, id });
   };
 </script>
@@ -147,7 +146,7 @@
   };
 </script>
 <style lang="less" scoped>
-  @import '../../styles/options.less';
+  @import '../../style/options.less';
   .model-box {
     border: 1px dashed transparent;
     transition: all 0.3s;
