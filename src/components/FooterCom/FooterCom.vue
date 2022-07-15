@@ -26,8 +26,8 @@
       </li>
     </ul>
     <!-- 访问量 -->
-    <div class="visit">
-    </div>
+    <!-- <div class="visit">
+    </div> -->
   </div>
 </template>
 <style lang="less" scoped>

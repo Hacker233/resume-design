@@ -1,5 +1,5 @@
 <template>
-  <div class="project-introduce-box">
+  <div class="project-introduce-box" @mouseover="handleMouseover">
     <div class="left">
       <h1>一款开源的、免费的简历设计神器</h1>
       <p>快速设计、无后台、确保数据不会泄露，支持一键导出PDF、JSON数据。</p>
@@ -17,6 +17,9 @@
   const emit = defineEmits(['freeMake']);
   const freeMakeResume = () => {
     emit('freeMake');
+  };
+  const handleMouseover = () => {
+    console.log('鼠标移动');
   };
 </script>
 <style lang="less" scoped>

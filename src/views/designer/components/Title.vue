@@ -1,7 +1,7 @@
 <template>
   <div :class="['title', { 'collapse-center': !status }]">
     <h1 v-show="status">{{ title }}</h1>
-    <el-tooltip class="box-item" effect="dark" :content="tooltipTitle">
+    <el-tooltip class="box-item" effect="dark" :content="tooltipTitle" v-if="showCollapse">
       <div class="unfold-collapse-box" @click="unflodOrCollapse" ref="switchRef">
         <svg-icon iconName="icon-shouqi" color="#00c091" size="24px"></svg-icon>
       </div>
@@ -13,6 +13,7 @@
 
   interface ITitle {
     title?: string;
+    showCollapse?: boolean;
   }
   withDefaults(defineProps<ITitle>(), {
     title: '模块选择'

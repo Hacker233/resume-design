@@ -51,7 +51,7 @@
             'background-color': 'rgba(0,0,0,0.4)'
           }"
         >
-          <Title @unflodOrCollapse="unflodOrCollapse"></Title>
+          <Title @unflodOrCollapse="unflodOrCollapse" showCollapse></Title>
           <model-list :leftShowStatus="leftShowStatus"></model-list>
         </c-scrollbar>
       </div>

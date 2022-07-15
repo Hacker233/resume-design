@@ -21,13 +21,15 @@
           >
             <!-- 是否添加模块 -->
             <div class="left">
-              <div :class="['icon-box',{ 'collapse-size': !leftShowStatus }]">
-                <svg-icon
-                  :iconName="element.iconfont"
-                  className="icon"
-                  :color="leftShowStatus ? '#c4c4c4' : '#00c091'"
-                  size="16px"
-                ></svg-icon>
+              <div :class="['icon-box', { 'collapse-size': !leftShowStatus }]">
+                <el-tooltip class="box-item" placement="right" effect="dark" :content="element.title" :disabled="leftShowStatus">
+                  <svg-icon
+                    :iconName="element.iconfont"
+                    className="icon"
+                    :color="leftShowStatus ? '#c4c4c4' : '#00c091'"
+                    size="16px"
+                  ></svg-icon>
+                </el-tooltip>
               </div>
               <p v-show="leftShowStatus">{{ element.title }}</p>
             </div>
