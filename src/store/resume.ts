@@ -30,7 +30,7 @@ export const useResumeModelStore = defineStore({
     return {
       model: '', // 选中的模块名称
       optionsName: '', // 需要使用的属性设置面板组件名
-      title: '全局样式设置',
+      title: '主题设置',
       id: '' // 选中的id
     };
   },
