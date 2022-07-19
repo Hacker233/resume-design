@@ -30,6 +30,7 @@ declare module '@vue/runtime-core' {
     ElUpload: typeof import('element-plus/es')['ElUpload']
     FooterCom: typeof import('./src/components/FooterCom/FooterCom.vue')['default']
     GlobalOptions: typeof import('./src/components/CommonOptions/GlobalOptions.vue')['default']
+    ModelBox: typeof import('./src/components/ModelBox/ModelBox.vue')['default']
     NavBar: typeof import('./src/components/NavBar/NavBar.vue')['default']
     PreviewImage: typeof import('./src/components/PreviewImage/PreviewImage.vue')['default']
     ResumeTitleOptions: typeof import('./src/components/CommonOptions/ResumeTitleOptions.vue')['default']

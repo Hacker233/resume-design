@@ -50,6 +50,7 @@
       justify-items: center;
       h1 {
         font-size: 2.5vw;
+        margin-bottom: 20px;
       }
       p {
         font-size: 1vw;
