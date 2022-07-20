@@ -14,7 +14,7 @@
         </el-form-item>
         <el-form-item label="求职类型:">
           <el-select v-model="modelItem.jobSearchType" class="m-2" placeholder="Select">
-            <el-switch v-model="modelItem.isShow.jobSearchType" />
+            <!-- <el-switch v-model="modelItem.isShow.jobSearchType" /> -->
             <el-option
               v-for="(item, index) in jobSearchTypeList"
               :key="index"
