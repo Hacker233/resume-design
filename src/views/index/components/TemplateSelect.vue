@@ -55,6 +55,7 @@
       h1 {
         position: relative;
         letter-spacing: 3px;
+        margin-bottom: 10px;
         &::before {
           content: '';
           width: 200px;

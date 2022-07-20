@@ -228,14 +228,14 @@ let styles: IStyles = {
       titleFontWeight: 400,
       textFontWeight: 500,
       textColor: '#757575',
-      mBottom: '50px',
+      mBottom: '40px',
       mTop: '0px'
     },
     JOB_INTENTION: {
       textColor: '#757575',
       textFontSize: '14px',
       textFontWeight: 500,
-      mBottom: '35px',
+      mBottom: '30px',
       mTop: '0px'
     },
     EDU_BACKGROUND: {
@@ -245,14 +245,14 @@ let styles: IStyles = {
       titleColor: '#666666',
       titleFontSize: '14px',
       titleFontWeight: 600,
-      mBottom: '35px',
+      mBottom: '30px',
       mTop: '0px'
     },
     SKILL_SPECIALTIES: {
       textColor: '#fff',
       textFontSize: '14px',
       textFontWeight: 500,
-      mBottom: '35px',
+      mBottom: '30px',
       mTop: '0px'
     },
     CAMPUS_EXPERIENCE: {
@@ -262,7 +262,7 @@ let styles: IStyles = {
       textColor: '#757575',
       textFontSize: '14px',
       textFontWeight: 500,
-      mBottom: '35px',
+      mBottom: '30px',
       mTop: '0px'
     },
     INTERNSHIP_EXPERIENCE: {
@@ -272,7 +272,7 @@ let styles: IStyles = {
       textColor: '#757575',
       textFontSize: '14px',
       textFontWeight: 500,
-      mBottom: '35px',
+      mBottom: '30px',
       mTop: '0px'
     },
     WORK_EXPERIENCE: {
@@ -282,7 +282,7 @@ let styles: IStyles = {
       textColor: '#757575',
       textFontSize: '14px',
       textFontWeight: 500,
-      mBottom: '35px',
+      mBottom: '30px',
       mTop: '0px'
     },
     PROJECT_EXPERIENCE: {
@@ -292,7 +292,7 @@ let styles: IStyles = {
       textColor: '#757575',
       textFontSize: '14px',
       textFontWeight: 500,
-      mBottom: '35px',
+      mBottom: '30px',
       mTop: '0px'
     },
     AWARDS: {
@@ -302,21 +302,21 @@ let styles: IStyles = {
       titleColor: '#666666',
       titleFontSize: '14px',
       titleFontWeight: 600,
-      mBottom: '35px',
+      mBottom: '30px',
       mTop: '0px'
     },
     SELF_EVALUATION: {
       textColor: '#757575',
       textFontSize: '14px',
       textFontWeight: 500,
-      mBottom: '35px',
+      mBottom: '30px',
       mTop: '0px'
     },
     WORKS_DISPLAY: {
       textColor: '#757575',
       textFontSize: '14px',
       textFontWeight: 500,
-      mBottom: '35px',
+      mBottom: '30px',
       mTop: '0px'
     }
   }

@@ -1,6 +1,5 @@
-<!-- 模块公共标题 -->
 <template>
-  <div class="template2-model-title">
+  <div class="model-title-box">
     <div class="icon-box">
       <svg-icon :iconName="iconfont" color="#fff" size="15px"></svg-icon>
     </div>
@@ -19,32 +18,23 @@
   }>();
 </script>
 <style lang="less" scoped>
-  .template2-model-title {
-    width: 100%;
+  .model-title-box {
     display: flex;
     align-items: center;
     .icon-box {
-      width: 26px;
-      height: 26px;
-      background-color: #254665;
+      background: #589bf7;
+      width: 30px;
+      height: 30px;
       border-radius: 50%;
+      margin-right: 10px;
       display: flex;
       align-items: center;
       justify-content: center;
-      margin-right: 8px;
-      .svg-icon {
-        font-size: 14px;
-      }
     }
     .right-title {
-      width: 100%;
-      border-bottom: 1px solid @primary-title-color;
-      height: 30px;
-      display: flex;
       h1 {
-        font-size: v-bind('resumeJsonStore.TITLE_FONT_SIZE');
-        color: v-bind('resumeJsonStore.TITLE_COLOR');
-        margin: 0;
+        color: #079cfa;
+        font-size: 20px;
       }
     }
   }

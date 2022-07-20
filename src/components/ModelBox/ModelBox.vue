@@ -25,6 +25,8 @@
         </div>
       </el-tooltip>
     </div>
+    <!-- 模块标题 -->
+    <slot name="model-title"></slot>
     <component v-if="item.style" :is="components[item.model]" :modelData="item"></component>
   </div>
 </template>

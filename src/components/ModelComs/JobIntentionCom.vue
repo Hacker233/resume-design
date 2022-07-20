@@ -1,14 +1,12 @@
-<!-- 求职意向 -->
 <template>
   <div class="job-intention">
-    <model-title :title="modelData.title" :iconfont="modelData.iconfont"></model-title>
     <!-- 求职意向 -->
     <ul>
       <!-- 求职类型 -->
-      <!-- <li v-show="modelData.isShow.jobSearchType">
+      <li v-show="modelData.isShow.jobSearchType">
         <svg-icon iconName="icon-gongzuoleixing" className="icon" color="#757575"></svg-icon>
         {{ modelData.jobSearchType }}</li
-      > -->
+      >
       <!-- 意向岗位 -->
       <li v-show="modelData.isShow.intendedPositions">
         <svg-icon iconName="icon-yixianggangwei" className="icon" color="#757575"></svg-icon
@@ -34,13 +32,13 @@
 </template>
 <script setup lang="ts">
   import { IJOBINTENTION } from '@/interface/model';
-  import ModelTitle from './ModelTitle.vue';
   defineProps<{
     modelData: IJOBINTENTION;
   }>();
 </script>
 <style lang="less" scoped>
   .job-intention {
+    padding: 0 40px;
     margin-top: v-bind('modelData.style.mTop');
     margin-bottom: v-bind('modelData.style.mBottom');
     ul {

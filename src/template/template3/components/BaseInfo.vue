@@ -41,6 +41,8 @@
     padding-left: 30px;
     display: flex;
     justify-content: space-between;
+    margin-bottom: v-bind('modelData.style.mBottom');
+    margin-top: v-bind('modelData.style.mTop');
     .user-info {
       display: flex;
       flex-direction: column;

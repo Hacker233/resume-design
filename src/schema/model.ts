@@ -63,7 +63,7 @@ let TEMPLATE_JSON: IResumeJson = {
     },
     {
       id: '4',
-      iconfont: 'icon-jiaoyubeijing',
+      iconfont: 'icon-education-1-copy',
       model: 'EDU_BACKGROUND',
       show: true,
       title: '教育背景',
@@ -150,7 +150,7 @@ let TEMPLATE_JSON: IResumeJson = {
     },
     {
       id: '9',
-      iconfont: 'icon-gongzuojingli',
+      iconfont: 'icon-biyeshixi',
       model: 'INTERNSHIP_EXPERIENCE',
       show: true,
       title: '实习经验',
@@ -199,7 +199,7 @@ let TEMPLATE_JSON: IResumeJson = {
     },
     {
       id: '7',
-      iconfont: 'icon-gongzuojingyan2',
+      iconfont: 'icon-gongzuojingyan',
       model: 'WORK_EXPERIENCE',
       show: true,
       title: '工作经验',

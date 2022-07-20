@@ -2,7 +2,7 @@
 <template>
   <div class="internship-experience">
     <!-- 标题 -->
-    <model-title :title="modelData.title"></model-title>
+    <model-title :title="modelData.title" :iconfont="modelData.iconfont"></model-title>
     <!-- 实习经历 -->
     <div class="list" v-for="(item, index) in modelData.LIST" :key="index">
       <ul class="list-ul">

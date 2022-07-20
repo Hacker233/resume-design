@@ -294,7 +294,7 @@
   const exportJSON = () => {
     const data = JSON.stringify(resumeJsonStore.value);
     const blob = new Blob([data], { type: '' });
-    FileSaver.saveAs(blob, resumeJsonStore.value.TITLE);
+    FileSaver.saveAs(blob, resumeJsonStore.value.TITLE + '.json');
   };
 
   // 预览

@@ -1,6 +1,6 @@
 <template>
   <div ref="tmp1ContentHeightRef">
-    <template v-for="(item, index) in resumeJsonStore.LIST" :key="item.id">
+    <template v-for="(item) in resumeJsonStore.LIST">
       <model-box-vue :item="item" :components="components"></model-box-vue>
     </template>
   </div>
