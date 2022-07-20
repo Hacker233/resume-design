@@ -7,7 +7,7 @@
     <ul class="works-display-list">
       <li v-for="(item, index) in modelData.LIST" :key="index">
         <h1>{{ item.worksName }}</h1>
-        <a :href="item.worksLink">{{ item.worksLink }}</a>
+        <a :href="item.worksLink" target="_blank">{{ item.worksLink }}</a>
       </li>
     </ul>
   </div>
@@ -42,6 +42,9 @@
         a {
           font-size: @primary-text-font-size;
           margin-top: 5px;
+          &:hover {
+            color: #00c091;
+          }
         }
         &:not(:last-child) {
           margin-bottom: 15px;
