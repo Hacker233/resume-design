@@ -27,14 +27,14 @@
 
 **图片：**
 
-<p align="center"><img width="1000" src="https://github.com/Hacker233/resume-design/blob/main/doc/screen1.png?raw=true"></p>
+<p align="center"><img width="1000" src="http://huajian-smallpig.test.upcdn.net/huajian/screen1.png?raw=true"></p>
 
 **GIF：**
 
-<p align="center"><img width="1000" src="https://github.com/Hacker233/resume-design/blob/main/doc/screen2.png?raw=true"></p>
+<p align="center"><img width="1000" src="http://huajian-smallpig.test.upcdn.net/huajian/screen2.png?raw=true"></p>
 
 
-<p align="center"><img width="1000" src="https://github.com/Hacker233/resume-design/blob/main/doc/resume.gif?raw=true"></p>
+<p align="center"><img width="1000" src="http://huajian-smallpig.test.upcdn.net/huajian/resume.gif?raw=true"></p>
 
 ## 功能介绍
 
