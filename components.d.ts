@@ -7,7 +7,6 @@ export {}
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
-    Awards: typeof import('./src/components/ModelComs/Awards.vue')['default']
     AwardsCom: typeof import('./src/components/ModelComs/AwardsCom.vue')['default']
     BaseInfoOptions: typeof import('./src/components/CommonOptions/BaseInfoOptions.vue')['default']
     CampusExperienceCom: typeof import('./src/components/ModelComs/CampusExperienceCom.vue')['default']
@@ -34,7 +33,6 @@ declare module '@vue/runtime-core' {
     ElUpload: typeof import('element-plus/es')['ElUpload']
     FooterCom: typeof import('./src/components/FooterCom/FooterCom.vue')['default']
     GlobalOptions: typeof import('./src/components/CommonOptions/GlobalOptions.vue')['default']
-    Hobbies: typeof import('./src/components/ModelComs/Hobbies.vue')['default']
     HobbiesCom: typeof import('./src/components/ModelComs/HobbiesCom.vue')['default']
     InternshipExperienceCom: typeof import('./src/components/ModelComs/InternshipExperienceCom.vue')['default']
     JobIntentionCom: typeof import('./src/components/ModelComs/JobIntentionCom.vue')['default']
@@ -42,18 +40,14 @@ declare module '@vue/runtime-core' {
     ModelBox: typeof import('./src/components/ModelBox/ModelBox.vue')['default']
     NavBar: typeof import('./src/components/NavBar/NavBar.vue')['default']
     PreviewImage: typeof import('./src/components/PreviewImage/PreviewImage.vue')['default']
-    ProjectExperience: typeof import('./src/components/ModelComs/ProjectExperience.vue')['default']
     ProjectExperienceCom: typeof import('./src/components/ModelComs/ProjectExperienceCom.vue')['default']
     ResumeTitleOptions: typeof import('./src/components/CommonOptions/ResumeTitleOptions.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
-    SelfEvaluation: typeof import('./src/components/ModelComs/SelfEvaluation.vue')['default']
     SelfEvaluationCom: typeof import('./src/components/ModelComs/SelfEvaluationCom.vue')['default']
     SkillSpecialtiesCom: typeof import('./src/components/ModelComs/SkillSpecialtiesCom.vue')['default']
     SvgIcon: typeof import('./src/components/SvgIcon/SvgIcon.vue')['default']
-    WorkExperience: typeof import('./src/components/ModelComs/WorkExperience.vue')['default']
     WorkExperienceCom: typeof import('./src/components/ModelComs/WorkExperienceCom.vue')['default']
-    WorksDisplay: typeof import('./src/components/ModelComs/WorksDisplay.vue')['default']
     WorksDisplayCom: typeof import('./src/components/ModelComs/WorksDisplayCom.vue')['default']
   }
 }
