@@ -28,7 +28,6 @@
 </template>
 <script setup lang="ts">
   import { IEDUBACKGROUND } from '@/interface/model';
-  import ModelTitle from './ModelTitle.vue';
   import { formatDate } from '@/utils/common';
   defineProps<{
     modelData: IEDUBACKGROUND;

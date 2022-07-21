@@ -280,6 +280,7 @@ interface IResumeJson {
     ISELFEVALUATION,
     IWORKSDISPLAY
   ];
+  GLOBAL_STYLE?: any;
 }
 // 列表模块接口
 type TModelList = Array<

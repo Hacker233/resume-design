@@ -18,7 +18,6 @@
 </template>
 <script setup lang="ts">
   import { IAWARDS } from '@/interface/model';
-  import ModelTitle from './ModelTitle.vue';
   import { formatDate } from '@/utils/common';
   defineProps<{
     modelData: IAWARDS;

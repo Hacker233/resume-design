@@ -102,6 +102,13 @@ let styles: IStyles = {
       textFontWeight: 500,
       mBottom: '35px',
       mTop: '0px'
+    },
+    GLOBAL_STYLE: {
+      themeColor: '#000',
+      titleColor: '#000',
+      titleFontSize: '20px',
+      modelMarginTop: '0px',
+      modelMarginBottom: '45px'
     }
   },
   template2: {
@@ -210,6 +217,13 @@ let styles: IStyles = {
       textFontWeight: 500,
       mBottom: '35px',
       mTop: '0px'
+    },
+    GLOBAL_STYLE: {
+      themeColor: '#000',
+      titleColor: '#000',
+      titleFontSize: '20px',
+      modelMarginTop: '0px',
+      modelMarginBottom: '45px'
     }
   },
   template3: {
@@ -318,6 +332,13 @@ let styles: IStyles = {
       textFontWeight: 500,
       mBottom: '30px',
       mTop: '0px'
+    },
+    GLOBAL_STYLE: {
+      themeColor: '#000',
+      titleColor: '#000',
+      titleFontSize: '20px',
+      modelMarginTop: '0px',
+      modelMarginBottom: '45px'
     }
   }
 };

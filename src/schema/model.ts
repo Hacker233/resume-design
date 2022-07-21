@@ -306,6 +306,6 @@ let TEMPLATE_JSON: IResumeJson = {
         }
       ]
     }
-  ]
+  ],
 };
 export default TEMPLATE_JSON;

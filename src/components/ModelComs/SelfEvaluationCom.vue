@@ -11,7 +11,6 @@
 </template>
 <script setup lang="ts">
   import { ISELFEVALUATION } from '@/interface/model';
-  import ModelTitle from './ModelTitle.vue';
   defineProps<{
     modelData: ISELFEVALUATION;
   }>();

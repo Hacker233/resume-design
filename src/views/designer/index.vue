@@ -26,7 +26,6 @@
       <div class="nav-right">
         <el-button type="primary" @click="globalStyleSetting">全局样式设置</el-button>
         <el-button type="primary" @click="saveDraft">保存草稿</el-button>
-        <!-- <el-button type="primary" @click="pdfPreview">预览</el-button> -->
         <el-button type="primary" @click="generateReport">导出PDF</el-button>
         <el-button type="primary" @click="exportJSON">导出JSON数据</el-button>
         <el-popconfirm
@@ -84,11 +83,6 @@
       </div>
     </div>
   </div>
-
-  <!-- 预览弹窗 -->
-  <PreviewImage v-show="previewDialog" @close="close">
-    <VuePdf v-for="page in numOfPages" :key="page" :src="imgUrl" :page="page" :scale="0.5" />
-  </PreviewImage>
 </template>
 
 <script setup lang="ts">
@@ -98,7 +92,6 @@
   import GlobalOptions from '@/components/CommonOptions/GlobalOptions.vue';
   import { debounce } from 'lodash'; // 防抖函数
   import TEMPLATE_JSON from '@/schema/model';
-  import PreviewImage from '@/components/PreviewImage/PreviewImage.vue';
 
   import downloadPDF from '@/utils/html2pdf'; // 下载为pdf
   import { useResumeModelStore, useResumeJsonStore } from '@/store/resume';
@@ -110,12 +103,10 @@
 
   // 导出JSON
   import FileSaver from 'file-saver';
-
-  // 预览
-  import { VuePdf, createLoadingTask } from 'vue3-pdfjs/esm';
-  import type { VuePdfPropsType } from 'vue3-pdfjs/components/vue-pdf/vue-pdf-props'; // Prop type definitions can also be imported
-  import type { PDFDocumentProxy } from 'pdfjs-dist/types/src/display/api';
   import { IResumeJson } from '@/interface/model';
+  import { openAndCloseLoadingByTime } from '@/utils/common';
+
+  openAndCloseLoadingByTime(1500); // 等待动画层
 
   const { title } = storeToRefs(useResumeModelStore());
   const store = useResumeJsonStore();
@@ -190,6 +181,9 @@
   const blurTitle = () => {
     isShowIpt.value = false;
   };
+
+  // 是否显示加载动画
+  const isLoading = ref<boolean>(true);
 
   // 生命周期函数
   onMounted(async () => {
@@ -295,28 +289,6 @@
     const data = JSON.stringify(resumeJsonStore.value);
     const blob = new Blob([data], { type: '' });
     FileSaver.saveAs(blob, resumeJsonStore.value.TITLE + '.json');
-  };
-
-  // 预览
-  const imgUrl = ref<VuePdfPropsType['src']>('');
-  const numOfPages = ref(0);
-  const previewDialog = ref<boolean>(false);
-  const pdfPreview = async () => {
-    previewDialog.value = true;
-    let temp = linesNumber.value;
-    linesNumber.value = 0;
-    await nextTick();
-    downloadPDF(html2Pdf.value, '个人简历', true, (dataUrl: string) => {
-      imgUrl.value = dataUrl;
-      const loadingTask = createLoadingTask(dataUrl);
-      loadingTask.promise.then((pdf: PDFDocumentProxy) => {
-        numOfPages.value = pdf.numPages;
-      });
-      linesNumber.value = temp;
-    });
-  };
-  const close = () => {
-    previewDialog.value = false;
   };
 
   // 监听内容元素高度变化，绘制分割线

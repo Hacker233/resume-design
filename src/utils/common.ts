@@ -1,5 +1,6 @@
 import { uuid } from 'vue-uuid';
 import moment from 'moment'; // 日期处理
+import { useLoadingStore } from '@/store/loading';
 // 工具方法--px转数字
 export const pxTonumber = (value: string | undefined): number => {
   if (value) {
@@ -59,6 +60,24 @@ export const formatDate = (dataArray: Array<string> | string): string => {
     let endDate = moment(new Date(dataArray[1])).format('YYYY.MM').split('-').join('.');
     return `${startDate}-${endDate}`;
   } else {
-    return moment(new Date(dataArray)).format('YYYY.MM').split('-').join('.')
+    return moment(new Date(dataArray)).format('YYYY.MM').split('-').join('.');
   }
+};
+
+// 开启全局等待层
+export const openGlobalLoading = () => {
+  const store = useLoadingStore();
+  store.isLoading = true;
+};
+// 关闭全局等待层
+export const closeGlobalLoading = () => {
+  const store = useLoadingStore();
+  store.isLoading = false;
+};
+// 先开启等待层，然后指定时间关闭等待层
+export const openAndCloseLoadingByTime = (time: number) => {
+  openGlobalLoading();
+  setTimeout(() => {
+    closeGlobalLoading();
+  }, time);
 };
