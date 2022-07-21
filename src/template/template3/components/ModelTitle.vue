@@ -21,6 +21,8 @@
   .model-title-box {
     display: flex;
     align-items: center;
+    position: relative;
+    left: -42px;
     .icon-box {
       background: #589bf7;
       width: 30px;
@@ -34,7 +36,7 @@
     .right-title {
       h1 {
         color: #079cfa;
-        font-size: 20px;
+        font-size: v-bind('resumeJsonStore.TITLE_FONT_SIZE');
       }
     }
   }

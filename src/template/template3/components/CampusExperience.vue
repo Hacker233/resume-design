@@ -1,16 +1,16 @@
 <template>
-  <job-intention-com-vue :modelData="modelData">
+  <campus-experience-com-vue :modelData="modelData">
     <!-- 标题 -->
     <template v-slot:model-title>
       <model-title-vue :title="modelData.title" :iconfont="modelData.iconfont"></model-title-vue>
     </template>
-  </job-intention-com-vue>
+  </campus-experience-com-vue>
 </template>
 <script lang="ts" setup>
-  import JobIntentionComVue from '@/components/ModelComs/JobIntentionCom.vue';
+  import CampusExperienceComVue from '@/components/ModelComs/CampusExperienceCom.vue';
   import ModelTitleVue from './ModelTitle.vue';
-  import { IJOBINTENTION } from '@/interface/model';
+  import { ICAMPUSEXPERIENCE } from '@/interface/model';
   defineProps<{
-    modelData: IJOBINTENTION;
+    modelData: ICAMPUSEXPERIENCE;
   }>();
 </script>

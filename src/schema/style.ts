@@ -249,7 +249,7 @@ let styles: IStyles = {
       mTop: '0px'
     },
     SKILL_SPECIALTIES: {
-      textColor: '#fff',
+      textColor: '#757575',
       textFontSize: '14px',
       textFontWeight: 500,
       mBottom: '30px',

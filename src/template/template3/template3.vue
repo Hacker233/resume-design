@@ -1,15 +1,11 @@
 <template>
-  <div class="template3-box">
+  <div class="template3-box" ref="tmp3ContentHeightRef">
     <!-- 简历模块 -->
     <template v-for="item in resumeJsonStore.LIST">
       <model-box-vue :item="item" :components="components" v-if="!isTitleAndBaseInfo(item)">
       </model-box-vue>
       <div class="model-box-wraper" v-else>
         <model-box-vue :item="item" :components="components" class="model-other-class">
-          <!-- 模块标题 -->
-          <template v-slot:model-title v-if="isTitleAndBaseInfo(item)">
-            <model-title :title="item.title" :iconfont="item.iconfont"></model-title>
-          </template>
         </model-box-vue>
       </div>
     </template>
@@ -18,21 +14,61 @@
 <script lang="ts" setup>
   import BaseInfoVue from './components/BaseInfo.vue';
   import JobIntentionVue from './components/JobIntention.vue';
+  import EduBackgroundComVue from './components/EduBackground.vue';
+  import SkillSpecialtiesVue from './components/SkillSpecialties.vue';
+  import CampusExperienceVue from './components/CampusExperience.vue';
+  import InternshipExperienceVue from './components/InternshipExperience.vue';
+  import WorkExperienceComVue from './components/WorkExperienceCom.vue';
+  import ProjectExperienceVue from './components/ProjectExperience.vue';
+  import SelfEvaluationVue from './components/SelfEvaluation.vue';
+  import WorksDisplayVue from './components/WorksDisplay.vue';
+  import HobbiesVue from './components/Hobbies.vue';
+  import AwardsVue from './components/Awards.vue';
   import { useResumeJsonStore } from '@/store/resume';
   import { storeToRefs } from 'pinia';
   import ModelBoxVue from '@/components/ModelBox/ModelBox.vue';
-  import ModelTitle from './components/ModelTitle.vue';
+  import { onMounted, ref } from 'vue';
 
   const { resumeJsonStore } = storeToRefs(useResumeJsonStore());
   // 注册局部组件
   const components: any = {
     BASE_INFO: BaseInfoVue,
-    JOB_INTENTION: JobIntentionVue
+    JOB_INTENTION: JobIntentionVue,
+    EDU_BACKGROUND: EduBackgroundComVue,
+    SKILL_SPECIALTIES: SkillSpecialtiesVue,
+    CAMPUS_EXPERIENCE: CampusExperienceVue,
+    INTERNSHIP_EXPERIENCE: InternshipExperienceVue,
+    WORK_EXPERIENCE: WorkExperienceComVue,
+    PROJECT_EXPERIENCE: ProjectExperienceVue,
+    AWARDS: AwardsVue,
+    HOBBIES: HobbiesVue,
+    SELF_EVALUATION: SelfEvaluationVue,
+    WORKS_DISPLAY: WorksDisplayVue
   };
 
   // 判断是否是我的简历和基础资料模块
   const isTitleAndBaseInfo = (item: { model: string }) => {
     return item.model !== 'RESUME_TITLE' && item.model !== 'BASE_INFO';
+  };
+
+  const emit = defineEmits(['contentHeightChange']);
+
+  onMounted(() => {
+    changeHeight();
+  });
+
+  // 监听内容高度发生变化
+  const tmp3ContentHeightRef = ref<any>(null);
+  let observer: ResizeObserver | null = null;
+  let height: number = 0;
+  const changeHeight = () => {
+    observer = new ResizeObserver(async (entries: ResizeObserverEntry[]) => {
+      for (let entry of entries) {
+        height = (entry.target as HTMLElement).offsetHeight;
+        emit('contentHeightChange', height);
+      }
+    });
+    observer.observe(tmp3ContentHeightRef.value); // 监听元素
   };
 </script>
 

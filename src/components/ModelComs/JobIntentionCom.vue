@@ -1,5 +1,7 @@
 <template>
   <div class="job-intention">
+    <!-- 标题 -->
+    <slot name="model-title"></slot>
     <!-- 求职意向 -->
     <ul>
       <!-- 求职类型 -->
