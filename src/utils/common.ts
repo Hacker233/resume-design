@@ -81,3 +81,16 @@ export const openAndCloseLoadingByTime = (time: number) => {
     closeGlobalLoading();
   }, time);
 };
+
+// 判断是否需要删除本地数据, 不是版本2的需要重置
+export const checkVersion = () => {
+  let version = localStorage.getItem('version');
+  if (!version) {
+    localStorage.removeItem('resumeDraft'); // 移出本地简历数据
+  } else {
+    if (Number(version) !== 2) {
+      localStorage.removeItem('resumeDraft'); // 移出本地简历数据
+    }
+  }
+  localStorage.setItem('version', '2'); // 存入版本
+};

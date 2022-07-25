@@ -335,7 +335,7 @@ let styles: IStyles = {
     },
     GLOBAL_STYLE: {
       themeColor: '#000',
-      titleColor: '#000',
+      titleColor: '#079cfa',
       titleFontSize: '20px',
       modelMarginTop: '0px',
       modelMarginBottom: '45px'

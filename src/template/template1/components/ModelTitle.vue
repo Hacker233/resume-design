@@ -20,8 +20,8 @@
     justify-content: flex-start;
     border-bottom: 1px solid @primary-title-color;
     h1 {
-      font-size: v-bind('resumeJsonStore.TITLE_FONT_SIZE');
-      color: v-bind('resumeJsonStore.TITLE_COLOR');
+      font-size: v-bind('resumeJsonStore.GLOBAL_STYLE.titleFontSize');
+      color: v-bind('resumeJsonStore.GLOBAL_STYLE.titleColor');
       border-bottom: 3px solid @primary-title-color;
       display: flex;
       align-items: center;

@@ -44,8 +44,6 @@
     "vue": "^3.2.25",
     "vue-router": "^4.0.14",
     "vue-uuid": "^3.0.0",
-    "vue3-dnd": "^2.0.1",
-    "vue3-pdfjs": "^0.1.6",
     "vuedraggable": "^4.1.0"
   },
   "devDependencies": {

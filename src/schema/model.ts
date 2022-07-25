@@ -3,11 +3,6 @@ let TEMPLATE_JSON: IResumeJson = {
   ID: '', // 模板Id
   NAME: '',
   TITLE: '我的简历',
-  THEME_COLOR: '#000',
-  TITLE_COLOR: '#000',
-  TITLE_FONT_SIZE: '20px',
-  MODEL_MARGIN_TOP: '0px',
-  MODEL_MARGIN_BOTTOM: '45px',
   LIST: [
     {
       id: '1',
@@ -40,7 +35,7 @@ let TEMPLATE_JSON: IResumeJson = {
         email: true, // 邮箱
         abstract: true, // 简介
         degree: true
-      },
+      }
     },
     {
       id: '3',
@@ -88,7 +83,7 @@ let TEMPLATE_JSON: IResumeJson = {
         schoolName: true,
         specialized: true,
         degree: true,
-        majorCourse: true,
+        majorCourse: true
       }
     },
     {
@@ -194,7 +189,7 @@ let TEMPLATE_JSON: IResumeJson = {
         date: true,
         companyName: true,
         posts: true,
-        jobContent: true,
+        jobContent: true
       }
     },
     {
@@ -306,6 +301,6 @@ let TEMPLATE_JSON: IResumeJson = {
         }
       ]
     }
-  ],
+  ]
 };
 export default TEMPLATE_JSON;

@@ -25,7 +25,7 @@
     top: 0;
     @include same-size(100%);
     display: flex;
-    z-index: 999; // fine for this demo
+    z-index: 9999; // fine for this demo
     background-color: #2c294f;
   }
 

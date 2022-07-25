@@ -260,11 +260,6 @@ interface IResumeJson {
   ID: string; // 模板id
   NAME: string; // 模板名
   TITLE: string; // 模板名称
-  THEME_COLOR: string; // 主题色
-  TITLE_COLOR: string; // 模块标题颜色
-  TITLE_FONT_SIZE: string; // 模块标题字体大小
-  MODEL_MARGIN_TOP: string;
-  MODEL_MARGIN_BOTTOM: string;
   LIST: [
     IRESUMETITLE,
     IBASEINFO,

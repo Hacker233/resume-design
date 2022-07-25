@@ -16,9 +16,6 @@ import 'colorpicker-v3/style.css'; // 引入样式文件
 // 图标
 import '@/assets/iconfont/iconfont.js';
 
-// pdf预览
-import VuePdf from 'vue3-pdfjs';
-
 // 滚动条
 import CScrollbar from 'c-scrollbar';
 
@@ -30,7 +27,6 @@ app.use(ElementPlus, { size: 'small' });
 app.use(component);
 app.use(elementIcons);
 app.use(ColorPicker);
-app.use(VuePdf);
 app.use(CScrollbar);
 app.component('SvgIcon', SvgIcon);
 

@@ -35,8 +35,8 @@
     }
     .right-title {
       h1 {
-        color: #079cfa;
-        font-size: v-bind('resumeJsonStore.TITLE_FONT_SIZE');
+        font-size: v-bind('resumeJsonStore.GLOBAL_STYLE.titleFontSize');
+        color: v-bind('resumeJsonStore.GLOBAL_STYLE.titleColor');
       }
     }
   }

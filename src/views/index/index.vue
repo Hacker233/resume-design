@@ -20,6 +20,10 @@
   import FooterCom from '@/components/FooterCom/FooterCom.vue';
   import { onBeforeUnmount, onMounted, ref } from 'vue';
   import { throttle } from 'lodash';
+  import { checkVersion } from '@/utils/common';
+
+  // 检查版本是否需要重置
+  checkVersion();
 
   // 监听元素滚动
   onMounted(() => {

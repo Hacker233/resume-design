@@ -24,7 +24,7 @@
         />
       </div>
       <div class="nav-right">
-        <el-button type="primary" @click="globalStyleSetting">全局样式设置</el-button>
+        <!-- <el-button type="primary" @click="globalStyleSetting">全局样式设置</el-button> -->
         <el-button type="primary" @click="saveDraft">保存草稿</el-button>
         <el-button type="primary" @click="generateReport">导出PDF</el-button>
         <el-button type="primary" @click="exportJSON">导出JSON数据</el-button>
@@ -51,7 +51,7 @@
           }"
         >
           <Title @unflodOrCollapse="unflodOrCollapse" showCollapse></Title>
-          <model-list :leftShowStatus="leftShowStatus"></model-list>
+          <model-list :leftShowStatus="leftShowStatus" :key="uuid"></model-list>
         </c-scrollbar>
       </div>
 
@@ -76,7 +76,7 @@
         </div>
       </div>
       <!-- 属性设置面板 -->
-      <div class="config">
+      <div class="config" :key="uuid">
         <Title :title="title"></Title>
         <component :is="useModel.optionsName" v-if="useModel.model" :key="useModel.id" />
         <global-options v-else></global-options>
@@ -100,11 +100,13 @@
   import styles from '@/schema/style';
   import { CScrollbar } from 'c-scrollbar'; // 滚动条
   import moment from 'moment'; // 日期处理
+  import { getUuid } from '@/utils/common';
 
   // 导出JSON
   import FileSaver from 'file-saver';
   import { IResumeJson } from '@/interface/model';
   import { openAndCloseLoadingByTime } from '@/utils/common';
+import { ElMessage } from 'element-plus';
 
   openAndCloseLoadingByTime(1500); // 等待动画层
 
@@ -124,6 +126,15 @@
     return temp;
   };
 
+  // 重置数据方法
+  const resetStoreAndLocal = () => {
+    TEMPLATE_JSON.ID = id as string;
+    TEMPLATE_JSON.NAME = name as string;
+    TEMPLATE_JSON.GLOBAL_STYLE = styles[resumeJsonStore.value.NAME]['GLOBAL_STYLE']; // 全局样式
+    let resetObj = addStyle(TEMPLATE_JSON); // 初始数据
+    store.changeResumeJsonData(resetObj); // 更改store的数据
+  };
+
   // 获取本地数据,初始化store里面的简历数据
   const localData = localStorage.getItem('resumeDraft');
   const route = useRoute();
@@ -137,17 +148,10 @@
       localObj = addStyle(localObj);
       store.changeResumeJsonData(localObj);
     } else {
-      TEMPLATE_JSON.ID = id as string;
-      TEMPLATE_JSON.NAME = name as string;
-      let resetObj = addStyle(TEMPLATE_JSON); // 初始数据
-      store.changeResumeJsonData(resetObj); // 更改store的数据
+      resetStoreAndLocal();
     }
   } else {
-    TEMPLATE_JSON.ID = id as string;
-    TEMPLATE_JSON.NAME = name as string;
-    console.log('TEMPLATE_JSON', TEMPLATE_JSON);
-    let resetObj = addStyle(TEMPLATE_JSON); // 初始数据
-    store.changeResumeJsonData(resetObj); // 更改store的数据
+    resetStoreAndLocal();
   }
 
   // 过滤掉模板2不需要的模块
@@ -232,13 +236,17 @@
   // 全局样式设置
   const globalStyleSetting = () => {
     // 重置store选中模块
-    localStorage.clear();
     useModel.$reset();
   };
 
   // 保存草稿
   const saveDraft = () => {
     saveDataToLocal();
+    ElMessage({
+      message: '保存本地成功!',
+      type: 'success',
+      center: true
+    });
   };
 
   // 导出pdf
@@ -254,9 +262,10 @@
   };
 
   // 重置数据
+  const uuid = ref<string>(getUuid());
   const reset = () => {
-    let resetObj = addStyle(TEMPLATE_JSON); // 初始数据
-    store.changeResumeJsonData(resetObj); // 更改store的数据
+    resetStoreAndLocal(); // 重置store数据
+    globalStyleSetting(); // 重置选中模块
     // 删除本地该条数据
     let localData = localStorage.getItem('resumeDraft'); // 本地缓存数据
     if (localData) {
@@ -270,7 +279,7 @@
         localStorage.removeItem('resumeDraft');
       }
     }
-    location.reload();
+    uuid.value = getUuid(); // 重新渲染左侧列表
   };
 
   // 生成pdf方法

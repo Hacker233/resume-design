@@ -42,9 +42,8 @@
       height: 30px;
       display: flex;
       h1 {
-        font-size: v-bind('resumeJsonStore.TITLE_FONT_SIZE');
-        color: v-bind('resumeJsonStore.TITLE_COLOR');
-        margin: 0;
+        font-size: v-bind('resumeJsonStore.GLOBAL_STYLE.titleFontSize');
+        color: v-bind('resumeJsonStore.GLOBAL_STYLE.titleColor');
       }
     }
   }
