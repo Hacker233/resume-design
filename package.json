@@ -26,6 +26,9 @@
     ]
   },
   "dependencies": {
+    "@codemirror/lang-javascript": "^6.0.2",
+    "@codemirror/lang-json": "^6.0.0",
+    "@codemirror/theme-one-dark": "^6.0.0",
     "@element-plus/icons-vue": "^1.1.4",
     "@vueuse/core": "^8.2.0",
     "axios": "^0.26.1",
@@ -42,6 +45,7 @@
     "pinia": "^2.0.12",
     "react-dnd-html5-backend": "^16.0.1",
     "vue": "^3.2.25",
+    "vue-codemirror": "^6.0.1",
     "vue-router": "^4.0.14",
     "vue-uuid": "^3.0.0",
     "vuedraggable": "^4.1.0"

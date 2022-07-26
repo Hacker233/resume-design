@@ -1,45 +1,7 @@
 <template>
   <div class="design-box">
     <!-- 导航栏 -->
-    <nav class="nav-box">
-      <div class="nav-left">
-        <img src="@/assets/logo.png" alt="logo" srcset="" @click="toHome" />
-        <span @click="toHome">化简</span>
-      </div>
-      <div class="nav-center">
-        <span class="draft-tips">{{ draftTips }}</span>
-        <p v-show="!isShowIpt">
-          {{ resumeJsonStore.TITLE }}
-          <el-icon :size="20" color="#409eff" @click="changeTitle">
-            <Edit />
-          </el-icon>
-        </p>
-        <el-input
-          ref="titleIpf"
-          v-show="isShowIpt"
-          v-model="resumeJsonStore.TITLE"
-          autofocus
-          placeholder="请输入标题"
-          @blur="blurTitle"
-        />
-      </div>
-      <div class="nav-right">
-        <!-- <el-button type="primary" @click="globalStyleSetting">全局样式设置</el-button> -->
-        <el-button type="primary" @click="saveDraft">保存草稿</el-button>
-        <el-button type="primary" @click="generateReport">导出PDF</el-button>
-        <el-button type="primary" @click="exportJSON">导出JSON数据</el-button>
-        <el-popconfirm
-          title="重置会删除所有已编辑内容，是否继续?"
-          @confirm="reset"
-          confirmButtonText="确定"
-          cancelButtonText="取消"
-        >
-          <template #reference>
-            <el-button type="primary">重置</el-button>
-          </template>
-        </el-popconfirm>
-      </div>
-    </nav>
+    <design-nav @generateReport="generateReport" @reset="reset"></design-nav>
     <!-- 内容区域 -->
     <div class="bottom">
       <!-- 左侧添加模块区域 -->
@@ -96,17 +58,14 @@
   import downloadPDF from '@/utils/html2pdf'; // 下载为pdf
   import { useResumeModelStore, useResumeJsonStore } from '@/store/resume';
   import { storeToRefs } from 'pinia';
-  import { useRoute, useRouter } from 'vue-router';
+  import { useRoute } from 'vue-router';
   import styles from '@/schema/style';
   import { CScrollbar } from 'c-scrollbar'; // 滚动条
   import moment from 'moment'; // 日期处理
   import { getUuid } from '@/utils/common';
-
-  // 导出JSON
-  import FileSaver from 'file-saver';
   import { IResumeJson } from '@/interface/model';
   import { openAndCloseLoadingByTime } from '@/utils/common';
-import { ElMessage } from 'element-plus';
+  import DesignNav from './components/DesignNav.vue';
 
   openAndCloseLoadingByTime(1500); // 等待动画层
 
@@ -167,28 +126,6 @@ import { ElMessage } from 'element-plus';
   }
   console.log('designer页面setup执行', resumeJsonStore);
 
-  // 跳转到首页
-  const router = useRouter();
-  const toHome = () => {
-    router.push({
-      path: '/'
-    });
-  };
-
-  // 更改标题
-  const titleIpf = ref<any>(null);
-  const isShowIpt = ref<boolean>(false);
-  const changeTitle = () => {
-    isShowIpt.value = true;
-    titleIpf.value.focus();
-  };
-  const blurTitle = () => {
-    isShowIpt.value = false;
-  };
-
-  // 是否显示加载动画
-  const isLoading = ref<boolean>(true);
-
   // 生命周期函数
   onMounted(async () => {
     resizeDOM();
@@ -239,16 +176,6 @@ import { ElMessage } from 'element-plus';
     useModel.$reset();
   };
 
-  // 保存草稿
-  const saveDraft = () => {
-    saveDataToLocal();
-    ElMessage({
-      message: '保存本地成功!',
-      type: 'success',
-      center: true
-    });
-  };
-
   // 导出pdf
   const html2Pdf = ref<any>(null); // 获取元素节点
   let lineRefs: Array<any> = []; // 分割线的ref
@@ -291,13 +218,6 @@ import { ElMessage } from 'element-plus';
     downloadPDF(html2Pdf.value, resumeJsonStore.value.TITLE, false, () => {
       linesNumber.value = temp;
     });
-  };
-
-  // 导出JSON
-  const exportJSON = () => {
-    const data = JSON.stringify(resumeJsonStore.value);
-    const blob = new Blob([data], { type: '' });
-    FileSaver.saveAs(blob, resumeJsonStore.value.TITLE + '.json');
   };
 
   // 监听内容元素高度变化，绘制分割线
@@ -364,74 +284,6 @@ import { ElMessage } from 'element-plus';
     width: 100%;
     box-sizing: border-box;
     overflow: hidden;
-
-    .nav-box {
-      height: 50px;
-      width: 100%;
-      background-color: #fff;
-      position: sticky;
-      top: 0;
-      display: flex;
-      box-shadow: 0 5px 21px 0 rgb(78 78 78 / 5%);
-      z-index: 20;
-      .nav-left {
-        width: 300px;
-        display: flex;
-        align-items: center;
-        user-select: none;
-        img {
-          width: 60px;
-          height: 60px;
-          margin-left: 30px;
-          cursor: pointer;
-        }
-        span {
-          letter-spacing: 4px;
-          font-size: 22px;
-          font-weight: 600;
-          font-family: cursive;
-          color: green;
-          cursor: pointer;
-        }
-      }
-      .nav-center {
-        flex: 1;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        position: relative;
-        .draft-tips {
-          position: absolute;
-          top: 50%;
-          left: 0;
-          transform: translate(0, -50%);
-          font-size: 10px;
-          color: #999999;
-        }
-        p {
-          display: flex;
-          align-items: center;
-          font-size: 16px;
-          .el-icon {
-            margin-left: 10px;
-            cursor: pointer;
-          }
-        }
-        .el-input {
-          width: 200px;
-        }
-      }
-      .nav-right {
-        display: flex;
-        align-items: center;
-        justify-content: flex-end;
-        .el-button {
-          margin-right: 20px;
-          margin-left: 0;
-        }
-      }
-    }
-
     .bottom {
       display: flex;
       width: 100%;
