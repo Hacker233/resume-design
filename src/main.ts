@@ -5,7 +5,7 @@ import router from './router';
 import ElementPlus from 'element-plus';
 import 'element-plus/dist/index.css';
 import '@/style/normalize.css';
-// import component from '@/utils/registerCom';
+import component from '@/utils/registerCom';
 import '@/style/global.less';
 // 注册所有图标
 import SvgIcon from '@/components/SvgIcon/SvgIcon.vue';
@@ -24,7 +24,7 @@ const app = createApp(App);
 app.use(store);
 app.use(router);
 app.use(ElementPlus, { size: 'small' });
-// app.use(component);
+app.use(component);
 app.use(elementIcons);
 app.use(ColorPicker);
 app.use(CScrollbar);
