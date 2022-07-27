@@ -1,5 +1,5 @@
 <template>
-  <router-view v-slot="{}"></router-view>
+  <router-view v-slot="{}" v-show="!isLoading"></router-view>
   <loading-com-vue v-show="isLoading"></loading-com-vue>
 </template>
 <script lang="ts" setup>
