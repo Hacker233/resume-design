@@ -51,7 +51,10 @@
   </nav>
 
   <!-- 上传json代码编辑器 -->
-  <import-json-dialog :dialogVisible="dialogVisible" @cancle="cancleJsonDialog"></import-json-dialog>
+  <import-json-dialog
+    :dialogVisible="dialogVisible"
+    @cancle="cancleJsonDialog"
+  ></import-json-dialog>
 </template>
 <script lang="ts" setup>
   import { useResumeJsonStore } from '@/store/resume';
@@ -59,9 +62,10 @@
   import FileSaver from 'file-saver';
   import moment from 'moment';
   import { storeToRefs } from 'pinia';
-  import { ref } from 'vue';
+  import { ref, watch } from 'vue';
   import { useRouter } from 'vue-router';
   import ImportJsonDialog from '@/components/ImportJsonDialog/ImportJsonDialog.vue';
+  import { debounce } from 'lodash';
   let { resumeJsonStore } = storeToRefs(useResumeJsonStore()); // store里的模板数据
   const emit = defineEmits(['generateReport', 'reset', 'saveDataToLocal']);
 
@@ -111,6 +115,20 @@
     });
   };
 
+  // 自动保存草稿
+  const debounced = debounce(() => {
+    saveDataToLocal();
+  }, 1000);
+  watch(
+    resumeJsonStore.value, // JSON数据发生变化，则保存草稿
+    () => {
+      debounced();
+    },
+    {
+      deep: true
+    }
+  );
+
   // 导出JSON
   const exportJSON = () => {
     const data = JSON.stringify(resumeJsonStore.value);
@@ -145,7 +163,7 @@
   // 取消上传JSON
   const cancleJsonDialog = () => {
     dialogVisible.value = false;
-  }
+  };
 </script>
 <style lang="less" scopeds>
   .nav-box {
@@ -230,5 +248,4 @@
       }
     }
   }
-  
 </style>

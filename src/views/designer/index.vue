@@ -66,6 +66,7 @@
   import { openAndCloseLoadingByTime } from '@/utils/common';
   import DesignNav from './components/DesignNav.vue';
   import { useUuidStore } from '@/store/uuid';
+import useAddStyle from '@/hooks/useAddStyle';
 
   openAndCloseLoadingByTime(1500); // 等待动画层
 
@@ -74,24 +75,11 @@
   const UuidStore = useUuidStore();
   let { resumeJsonStore } = storeToRefs(useResumeJsonStore()); // store里的模板数据
 
-  // 判断每一模块是否有style属性，没有则加上
-  const addStyle = (resumeJson: IResumeJson) => {
-    let temp: IResumeJson = JSON.parse(JSON.stringify(resumeJson));
-    temp.LIST.map((item, index) => {
-      if (!item.style) {
-        item.style = styles[resumeJsonStore.value.NAME][item.model];
-      }
-      temp.LIST[index] = item;
-    });
-    return temp;
-  };
-
   // 重置数据方法
   const resetStoreAndLocal = () => {
     TEMPLATE_JSON.ID = id as string;
     TEMPLATE_JSON.NAME = name as string;
-    TEMPLATE_JSON.GLOBAL_STYLE = styles[resumeJsonStore.value.NAME]['GLOBAL_STYLE']; // 全局样式
-    let resetObj = addStyle(TEMPLATE_JSON); // 初始数据
+    let resetObj = useAddStyle(TEMPLATE_JSON); // 初始数据
     store.changeResumeJsonData(resetObj); // 更改store的数据
   };
 
@@ -105,7 +93,6 @@
   if (localData) {
     let localObj = JSON.parse(localData)[id as string];
     if (localObj) {
-      localObj = addStyle(localObj);
       store.changeResumeJsonData(localObj);
     } else {
       resetStoreAndLocal();
@@ -138,36 +125,6 @@
   onBeforeUpdate(() => {
     lineRefs = [];
   });
-  // 保存数据到本地
-  let draftTips = ref<string>('');
-  const saveDataToLocal = () => {
-    let key = resumeJsonStore.value.ID; // 当前模板的id
-    let saveData: { [key: string]: object } = {}; // 需要保存的数据
-    let localData = localStorage.getItem('resumeDraft'); // 本地缓存数据
-    if (localData) {
-      saveData = JSON.parse(localData);
-      saveData[key] = resumeJsonStore.value;
-    } else {
-      saveData[key] = resumeJsonStore.value;
-    }
-    localStorage.setItem('resumeDraft', JSON.stringify(saveData));
-    const date = moment(new Date()).format('YYYY.MM.DD HH:mm:ss');
-    draftTips.value = `已自动保存草稿  ${date}`;
-  };
-
-  // 自动保存草稿
-  const debounced = debounce(() => {
-    saveDataToLocal();
-  }, 1000);
-  watch(
-    resumeJsonStore.value, // JSON数据发生变化，则保存草稿
-    () => {
-      debounced();
-    },
-    {
-      deep: true
-    }
-  );
 
   // 属性设置
   const useModel = useResumeModelStore();
