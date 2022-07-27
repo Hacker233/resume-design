@@ -13,12 +13,12 @@
           }"
         >
           <Title @unflodOrCollapse="unflodOrCollapse" showCollapse></Title>
-          <model-list :leftShowStatus="leftShowStatus" :key="uuid"></model-list>
+          <model-list :leftShowStatus="leftShowStatus" :key="UuidStore.refreshUuid"></model-list>
         </c-scrollbar>
       </div>
 
       <!-- 预览区域 -->
-      <div class="center">
+      <div class="center" :key="UuidStore.refreshUuid">
         <div class="design" ref="html2Pdf">
           <div class="design-content" ref="htmlContentPdf">
             <component :is="componentName" @contentHeightChange="contentHeightChange" />
@@ -38,7 +38,7 @@
         </div>
       </div>
       <!-- 属性设置面板 -->
-      <div class="config" :key="uuid">
+      <div class="config" :key="UuidStore.refreshUuid">
         <Title :title="title"></Title>
         <component :is="useModel.optionsName" v-if="useModel.model" :key="useModel.id" />
         <global-options v-else></global-options>
@@ -62,15 +62,16 @@
   import styles from '@/schema/style';
   import { CScrollbar } from 'c-scrollbar'; // 滚动条
   import moment from 'moment'; // 日期处理
-  import { getUuid } from '@/utils/common';
   import { IResumeJson } from '@/interface/model';
   import { openAndCloseLoadingByTime } from '@/utils/common';
   import DesignNav from './components/DesignNav.vue';
+  import { useUuidStore } from '@/store/uuid';
 
   openAndCloseLoadingByTime(1500); // 等待动画层
 
   const { title } = storeToRefs(useResumeModelStore());
   const store = useResumeJsonStore();
+  const UuidStore = useUuidStore();
   let { resumeJsonStore } = storeToRefs(useResumeJsonStore()); // store里的模板数据
 
   // 判断每一模块是否有style属性，没有则加上
@@ -189,7 +190,6 @@
   };
 
   // 重置数据
-  const uuid = ref<string>(getUuid());
   const reset = () => {
     resetStoreAndLocal(); // 重置store数据
     globalStyleSetting(); // 重置选中模块
@@ -206,7 +206,7 @@
         localStorage.removeItem('resumeDraft');
       }
     }
-    uuid.value = getUuid(); // 重新渲染左侧列表
+    UuidStore.setUuid(); // 重新渲染左侧列表和右侧属性面板设置
   };
 
   // 生成pdf方法

@@ -48,6 +48,7 @@ declare module '@vue/runtime-core' {
     SelfEvaluationCom: typeof import('./src/components/ModelComs/SelfEvaluationCom.vue')['default']
     SkillSpecialtiesCom: typeof import('./src/components/ModelComs/SkillSpecialtiesCom.vue')['default']
     SvgIcon: typeof import('./src/components/SvgIcon/SvgIcon.vue')['default']
+    TipJsonDialog: typeof import('./src/components/TipJsonDialog/TipJsonDialog.vue')['default']
     WorkExperienceCom: typeof import('./src/components/ModelComs/WorkExperienceCom.vue')['default']
     WorksDisplayCom: typeof import('./src/components/ModelComs/WorksDisplayCom.vue')['default']
   }
