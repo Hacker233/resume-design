@@ -30,7 +30,7 @@
 <p align="center"><img width="1000" src="https://gitee.com/sharemore52/resume-img/raw/master/%E5%B0%81%E9%9D%A2.png"></p>
 
 
-<p align="center"><img width="1000" src="https://gitee.com/sharemore52/resume-img/raw/master/images/6.png"></p>
+<p align="center"><img width="1000" src="https://gitee.com/sharemore52/resume-img/raw/master/images/4.png"></p>
 
 
 <p align="center"><img width="1000" src="https://gitee.com/sharemore52/resume-img/raw/master/images/6.png"></p>
