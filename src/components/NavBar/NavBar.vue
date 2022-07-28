@@ -7,12 +7,31 @@
     </div>
     <!-- GitHub -->
     <div class="right">
+      <el-popover :width="200" trigger="click" teleported>
+        <template #reference>
+          <span class="contact-me">
+            <svg-icon iconName="icon-lianxiwomen1" :color="iconColor" size="16px"></svg-icon>
+            联系我
+          </span>
+        </template>
+        <!-- 内容区域 -->
+        <div class="vx-box">
+          <div class="vx-title">
+            <h1>添加微信</h1>
+            <p>进入交流群，迅速解答疑问！</p>
+          </div>
+          <div class="vx-img">
+            <img class="bgc-img" src="@/assets/images/vx.jpg" alt="" />
+          </div>
+        </div>
+      </el-popover>
+
       <a
         href="https://gitee.com/sharemore52/resume-design"
         target="_blank"
         rel="noopener noreferrer"
       >
-        <svg-icon iconName="icon-gitee-fill-round" :color="iconColor" size="32px"></svg-icon>
+        <svg-icon iconName="icon-gitee-fill-round" :color="iconColor" size="31px"></svg-icon>
       </a>
       <a
         href="https://github.com/Hacker233/resume-design"
@@ -68,11 +87,41 @@
       }
     }
     .right {
+      display: flex;
+      align-items: center;
+      .contact-me {
+        cursor: pointer;
+        margin-right: 15px;
+        font-size: 14px;
+        color: v-bind('iconColor');
+      }
       .svg-icon {
         cursor: pointer;
       }
       & :first-child {
-        margin-right: 10px;
+        margin-left: 15px;
+      }
+    }
+  }
+  .vx-box {
+    .vx-title {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      h1 {
+        font-size: 14px;
+        margin-bottom: 6px;
+      }
+      p {
+        font-size: 12px;
+        color: rgb(105, 105, 105);
+      }
+    }
+    .vx-img {
+      width: 100%;
+      overflow: hidden;
+      .bgc-img {
+        width: 100%;
       }
     }
   }
