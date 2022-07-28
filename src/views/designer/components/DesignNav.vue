@@ -59,6 +59,7 @@
 <script lang="ts" setup>
   import { useResumeJsonStore } from '@/store/resume';
   import { ElMessage, ElMessageBox } from 'element-plus';
+  import 'element-plus/es/components/message-box/style/index';
   import FileSaver from 'file-saver';
   import moment from 'moment';
   import { storeToRefs } from 'pinia';

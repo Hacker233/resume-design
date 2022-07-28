@@ -60,13 +60,11 @@
   import { storeToRefs } from 'pinia';
   import { useRoute } from 'vue-router';
   import { CScrollbar } from 'c-scrollbar'; // 滚动条
-  import { openAndCloseLoadingByTime } from '@/utils/common';
   import DesignNav from './components/DesignNav.vue';
   import { useUuidStore } from '@/store/uuid';
   import useAddStyle from '@/hooks/useAddStyle';
   import { ElMessage } from 'element-plus';
 
-  openAndCloseLoadingByTime(1500); // 等待动画层
 
   const { title } = storeToRefs(useResumeModelStore());
   const store = useResumeJsonStore();

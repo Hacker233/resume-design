@@ -18,7 +18,7 @@
   import ProjectIntroduce from './components/ProjectIntroduce.vue';
   import TemplateSelect from './components/TemplateSelect.vue';
   import FooterCom from '@/components/FooterCom/FooterCom.vue';
-  import { onBeforeUnmount, onMounted, ref } from 'vue';
+  import { onBeforeUnmount, onMounted, onUnmounted, ref } from 'vue';
   import { throttle } from 'lodash';
   import { checkVersion } from '@/utils/common';
 
