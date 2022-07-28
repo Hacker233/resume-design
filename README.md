@@ -91,6 +91,7 @@ $ npm run dev
 ## 交流&贡献
 
 添加vx：LHQfighting，进入微信交流群，可方便解决和提出问题。
+<p align="center"><img width="400" src="https://github.com/Hacker233/resume-design/blob/main/src/assets/images/vx.jpg"></p>
 
 ## 维护者
 
