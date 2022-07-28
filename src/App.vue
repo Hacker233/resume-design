@@ -1,6 +1,8 @@
 <template>
-  <router-view v-slot="{}" v-show="!isLoading"></router-view>
-  <loading-com-vue v-show="isLoading"></loading-com-vue>
+  <el-config-provider size="small">
+    <router-view v-slot="{}" v-show="!isLoading"></router-view>
+    <loading-com-vue v-show="isLoading"></loading-com-vue>
+  </el-config-provider>
 </template>
 <script lang="ts" setup>
   import LoadingComVue from '@/components/Loading/LoadingCom.vue'; // 全局等待层

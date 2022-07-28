@@ -59,14 +59,12 @@
   import { useResumeModelStore, useResumeJsonStore } from '@/store/resume';
   import { storeToRefs } from 'pinia';
   import { useRoute } from 'vue-router';
-  import styles from '@/schema/style';
   import { CScrollbar } from 'c-scrollbar'; // 滚动条
-  import moment from 'moment'; // 日期处理
-  import { IResumeJson } from '@/interface/model';
   import { openAndCloseLoadingByTime } from '@/utils/common';
   import DesignNav from './components/DesignNav.vue';
   import { useUuidStore } from '@/store/uuid';
-import useAddStyle from '@/hooks/useAddStyle';
+  import useAddStyle from '@/hooks/useAddStyle';
+  import { ElMessage } from 'element-plus';
 
   openAndCloseLoadingByTime(1500); // 等待动画层
 
@@ -163,6 +161,11 @@ import useAddStyle from '@/hooks/useAddStyle';
         localStorage.removeItem('resumeDraft');
       }
     }
+    ElMessage({
+      message: '重置成功!',
+      type: 'success',
+      center: true
+    });
     UuidStore.setUuid(); // 重新渲染左侧列表和右侧属性面板设置
   };
 
