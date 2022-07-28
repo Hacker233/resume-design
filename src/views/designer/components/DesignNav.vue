@@ -110,7 +110,7 @@
   const saveDraft = () => {
     saveDataToLocal();
     ElMessage({
-      message: '保存本地成功!',
+      message: '保存草稿成功!',
       type: 'success',
       center: true
     });

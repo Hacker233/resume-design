@@ -43,6 +43,7 @@ declare module '@vue/runtime-core' {
     NavBar: typeof import('./src/components/NavBar/NavBar.vue')['default']
     PreviewImage: typeof import('./src/components/PreviewImage/PreviewImage.vue')['default']
     ProjectExperienceCom: typeof import('./src/components/ModelComs/ProjectExperienceCom.vue')['default']
+    ResumeTheme: typeof import('./src/components/ResumeTheme/ResumeTheme.vue')['default']
     ResumeTitleOptions: typeof import('./src/components/CommonOptions/ResumeTitleOptions.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']

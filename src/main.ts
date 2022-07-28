@@ -17,6 +17,10 @@ import '@/assets/iconfont/iconfont.js';
 // 滚动条
 import CScrollbar from 'c-scrollbar';
 
+// element-plus部分组件样式
+import 'element-plus/theme-chalk/src/message.scss'
+
+
 // 创建vue实例
 const app = createApp(App);
 app.use(store);

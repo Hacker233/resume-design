@@ -52,7 +52,6 @@
   import Title from './components/Title.vue';
   import ModelList from './components/ModelList.vue';
   import GlobalOptions from '@/components/CommonOptions/GlobalOptions.vue';
-  import { debounce } from 'lodash'; // 防抖函数
   import TEMPLATE_JSON from '@/schema/model';
 
   import downloadPDF from '@/utils/html2pdf'; // 下载为pdf
@@ -108,7 +107,6 @@
     });
     resumeJsonStore.value.LIST = List;
   }
-  console.log('designer页面setup执行', resumeJsonStore);
 
   // 生命周期函数
   onMounted(async () => {
