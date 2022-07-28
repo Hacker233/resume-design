@@ -187,5 +187,7 @@
 <style lang="less" scoped>
   .resume-theme-box {
     padding: 20px;
+    box-sizing: border-box;
+    overflow-x: hidden;
   }
 </style>

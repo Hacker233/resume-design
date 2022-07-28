@@ -12,4 +12,8 @@
   const { isLoading } = storeToRefs(useLoadingStore());
   openAndCloseLoadingByTime(1500); // 等待动画层
 </script>
-<style></style>
+<style>
+  #app {
+    min-width: 1500px;
+  }
+</style>
