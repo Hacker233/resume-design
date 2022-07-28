@@ -25,7 +25,7 @@ const routes: Array<RouteRecordRaw> = [
     component: Designer
   },
 ];
-const routerHistory = createWebHistory('./');
+const routerHistory = createWebHistory('/dist/');
 const router = createRouter({
   history: routerHistory,
   routes

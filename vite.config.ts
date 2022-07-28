@@ -8,7 +8,7 @@ import { ElementPlusResolver } from 'unplugin-vue-components/resolvers';
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  base: './',
+  base: '/dist/',
   resolve: {
     //设置别名
     alias: {
