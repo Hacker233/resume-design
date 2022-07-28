@@ -29,12 +29,11 @@
 
 <p align="center"><img width="1000" src="https://gitee.com/sharemore52/resume-img/raw/master/%E5%B0%81%E9%9D%A2.png"></p>
 
-**GIF：**
 
-<p align="center"><img width="1000" src="http://huajian-smallpig.test.upcdn.net/huajian/screen2.png?raw=true"></p>
+<p align="center"><img width="1000" src="https://gitee.com/sharemore52/resume-img/raw/master/images/6.png"></p>
 
 
-<p align="center"><img width="1000" src="http://huajian-smallpig.test.upcdn.net/huajian/resume.gif?raw=true"></p>
+<p align="center"><img width="1000" src="https://gitee.com/sharemore52/resume-img/raw/master/images/6.png"></p>
 
 ## 功能介绍
 
