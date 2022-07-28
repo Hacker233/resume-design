@@ -1,4 +1,4 @@
-<p align="center"><img width="200" src="https://raw.githubusercontent.com/Hacker233/resume-design/main/doc/logo.png"></p>
+<p align="center"><img width="200" src="https://gitee.com/sharemore52/resume-img/raw/master/logo.png"></p>
 
 <p align="center">
   <a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/npm/l/vue.svg" alt="License"></a>
@@ -27,7 +27,7 @@
 
 **图片：**
 
-<p align="center"><img width="1000" src="http://huajian-smallpig.test.upcdn.net/huajian/screen1.png?raw=true"></p>
+<p align="center"><img width="1000" src="https://gitee.com/sharemore52/resume-img/raw/master/%E5%B0%81%E9%9D%A2.png"></p>
 
 **GIF：**
 
