@@ -64,7 +64,6 @@
   import useAddStyle from '@/hooks/useAddStyle';
   import { ElMessage } from 'element-plus';
 
-
   const { title } = storeToRefs(useResumeModelStore());
   const store = useResumeJsonStore();
   const UuidStore = useUuidStore();
@@ -141,7 +140,7 @@
   };
 
   // 重置数据
-  const reset = () => {
+  const reset = async () => {
     resetStoreAndLocal(); // 重置store数据
     globalStyleSetting(); // 重置选中模块
     // 删除本地该条数据
@@ -163,6 +162,8 @@
       center: true
     });
     UuidStore.setUuid(); // 重新渲染左侧列表和右侧属性面板设置
+    await nextTick();
+    resizeDOM();
   };
 
   // 生成pdf方法
