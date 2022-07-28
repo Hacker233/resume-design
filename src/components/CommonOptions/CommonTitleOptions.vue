@@ -15,7 +15,7 @@
 </template>
 <script setup lang="ts">
   import { useFontSizeList } from '@/hooks/useFontSizeList';
-import { useModelIndex } from '@/hooks/useModelIndex';
+  import { useModelIndex } from '@/hooks/useModelIndex';
   import { useResumeJsonStore } from '@/store/resume';
   import { reactive } from 'vue';
   interface IProps {

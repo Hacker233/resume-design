@@ -26,7 +26,7 @@
     .icon-box {
       width: 26px;
       height: 26px;
-      background-color: #254665;
+      background-color: v-bind('resumeJsonStore.GLOBAL_STYLE.themeColor');
       border-radius: 50%;
       display: flex;
       align-items: center;
@@ -38,12 +38,12 @@
     }
     .right-title {
       width: 100%;
-      border-bottom: 1px solid @primary-title-color;
+      border-bottom: 1px solid v-bind('resumeJsonStore.GLOBAL_STYLE.themeColor');
       height: 30px;
       display: flex;
       h1 {
-        font-size: v-bind('resumeJsonStore.GLOBAL_STYLE.titleFontSize');
-        color: v-bind('resumeJsonStore.GLOBAL_STYLE.titleColor');
+        font-size: v-bind('resumeJsonStore.GLOBAL_STYLE.firstTitleFontSize');
+        color: v-bind('resumeJsonStore.GLOBAL_STYLE.themeColor');
       }
     }
   }

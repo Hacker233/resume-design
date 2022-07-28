@@ -89,7 +89,7 @@
         position: absolute;
         width: 1px;
         height: 100%;
-        background-color: #589bf7;
+        background-color: v-bind('resumeJsonStore.GLOBAL_STYLE.themeColor');
         left: 55px;
         top: 1px;
       }

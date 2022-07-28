@@ -41,7 +41,8 @@
       <div class="config" :key="UuidStore.refreshUuid">
         <Title :title="title"></Title>
         <component :is="useModel.optionsName" v-if="useModel.model" :key="useModel.id" />
-        <global-options v-else></global-options>
+        <!-- 全局主题样式设置 -->
+        <resume-theme-vue v-else></resume-theme-vue>
       </div>
     </div>
   </div>
@@ -51,7 +52,7 @@
   import { nextTick, onBeforeUnmount, onBeforeUpdate, onMounted, ref, watch } from 'vue';
   import Title from './components/Title.vue';
   import ModelList from './components/ModelList.vue';
-  import GlobalOptions from '@/components/CommonOptions/GlobalOptions.vue';
+  import ResumeThemeVue from '@/components/ResumeTheme/ResumeTheme.vue';
   import TEMPLATE_JSON from '@/schema/model';
 
   import downloadPDF from '@/utils/html2pdf'; // 下载为pdf

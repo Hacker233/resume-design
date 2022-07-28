@@ -18,11 +18,11 @@
     display: flex;
     align-items: center;
     justify-content: flex-start;
-    border-bottom: 1px solid @primary-title-color;
+    border-bottom: 1px solid v-bind('resumeJsonStore.GLOBAL_STYLE.themeColor');
     h1 {
-      font-size: v-bind('resumeJsonStore.GLOBAL_STYLE.titleFontSize');
-      color: v-bind('resumeJsonStore.GLOBAL_STYLE.titleColor');
-      border-bottom: 3px solid @primary-title-color;
+      font-size: v-bind('resumeJsonStore.GLOBAL_STYLE.firstTitleFontSize');
+      color: v-bind('resumeJsonStore.GLOBAL_STYLE.themeColor');
+      border-bottom: 3px solid v-bind('resumeJsonStore.GLOBAL_STYLE.themeColor');
       display: flex;
       align-items: center;
       height: 100%;

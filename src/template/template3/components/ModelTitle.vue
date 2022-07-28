@@ -24,7 +24,7 @@
     position: relative;
     left: -42px;
     .icon-box {
-      background: #589bf7;
+      background: v-bind('resumeJsonStore.GLOBAL_STYLE.themeColor');
       width: 30px;
       height: 30px;
       border-radius: 50%;
@@ -35,8 +35,8 @@
     }
     .right-title {
       h1 {
-        font-size: v-bind('resumeJsonStore.GLOBAL_STYLE.titleFontSize');
-        color: v-bind('resumeJsonStore.GLOBAL_STYLE.titleColor');
+        font-size: v-bind('resumeJsonStore.GLOBAL_STYLE.firstTitleFontSize');
+        color: v-bind('resumeJsonStore.GLOBAL_STYLE.themeColor');
       }
     }
   }

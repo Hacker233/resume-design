@@ -151,6 +151,7 @@
     })
       .then(() => {
         emit('reset');
+        draftTips.value = ``;
       })
       .catch(() => {});
   };
