@@ -5,6 +5,9 @@
       <img src="@/assets/logo.png" alt="logo" srcset="" />
       <span>化简</span>
     </div>
+    <div class="center">
+      <p @click="toCustom">自定义模板</p>
+    </div>
     <!-- GitHub -->
     <div class="right">
       <el-popover :width="200" trigger="click" teleported>
@@ -44,6 +47,8 @@
   </div>
 </template>
 <script setup lang="ts">
+  import { useRouter } from 'vue-router';
+
   interface IBgcColor {
     bgColor?: string;
     fontColor?: string;
@@ -54,6 +59,14 @@
     fontColor: '',
     iconColor: '#fff'
   });
+
+  // 跳转至自定义模板
+  const router = useRouter();
+  const toCustom = () => {
+    router.push({
+      path: '/custom'
+    });
+  };
 </script>
 <style lang="scss" scoped>
   .nav-bar-box {
@@ -85,6 +98,13 @@
         font-family: cursive;
         color: v-bind('fontColor');
       }
+    }
+    .center {
+      flex: 1;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
     .right {
       display: flex;
