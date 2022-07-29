@@ -4,7 +4,9 @@
     <el-tab-pane label="样式设置" name="style">
       <el-form label-width="100px" label-position="left">
         <el-form-item label="背景颜色:">
-          <color-picker v-model:rgba="modelItem.style.backgroundColor"></color-picker>
+          <color-picker-custom-vue
+            v-model="modelItem.style.backgroundColor"
+          ></color-picker-custom-vue>
         </el-form-item>
         <!-- 公共样式属性 -->
         <common-options></common-options>
@@ -25,6 +27,7 @@
   import { useResumeJsonStore } from '@/store/resume';
   import CommonOptions from '@/components/CommonOptions/CommonOptions.vue';
   import { useModelIndex } from '@/hooks/useModelIndex';
+  import ColorPickerCustomVue from '../ColorPicker/ColorPickerCustom.vue';
   // store
   const { resumeJsonStore } = useResumeJsonStore();
 

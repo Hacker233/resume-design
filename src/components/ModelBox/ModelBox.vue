@@ -37,6 +37,7 @@
   import { useCopyModel } from '@/hooks/useCopyModel';
   import { useDeleteModel } from '@/hooks/useDeleteModel';
   import { storeToRefs } from 'pinia';
+  import { useRoute } from 'vue-router';
 
   const props = defineProps<{
     item: any;
@@ -87,8 +88,11 @@
 
   // 点击模块
   const resumeModelStore = useResumeModelStore();
+  const route = useRoute();
+  const { name } = route.query; // 模板id和模板名称
   const selectModel = (model: string, title: string, id: string) => {
-    let optionsName: string = useModelOptionsComName(`template1-${model}`);
+    let optionsName: string = useModelOptionsComName(`${name}-${model}`);
+    console.log('optionsName', optionsName);
     resumeModelStore.setResumeModel({ model, optionsName, title, id });
   };
 </script>

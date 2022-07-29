@@ -5,10 +5,10 @@
     <!-- 求职意向 -->
     <ul>
       <!-- 求职类型 -->
-      <!-- <li v-show="modelData.isShow.jobSearchType">
+      <li v-show="modelData.isShow.jobSearchType">
         <svg-icon iconName="icon-gongzuoleixing" className="icon" color="#757575"></svg-icon>
         {{ modelData.jobSearchType }}</li
-      > -->
+      >
       <!-- 意向岗位 -->
       <li v-show="modelData.isShow.intendedPositions">
         <svg-icon iconName="icon-yixianggangwei" className="icon" color="#757575"></svg-icon
@@ -35,9 +35,10 @@
 <script setup lang="ts">
   import { IJOBINTENTION } from '@/interface/model';
   import ModelTitle from './ModelTitle.vue';
-  defineProps<{
+  const props = defineProps<{
     modelData: IJOBINTENTION;
   }>();
+  props.modelData.isShow.jobSearchType = false
 </script>
 <style lang="scss" scoped>
   .job-intention {
