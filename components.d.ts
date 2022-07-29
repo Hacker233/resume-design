@@ -10,6 +10,8 @@ declare module '@vue/runtime-core' {
     AwardsCom: typeof import('./src/components/ModelComs/AwardsCom.vue')['default']
     BaseInfoOptions: typeof import('./src/components/CommonOptions/BaseInfoOptions.vue')['default']
     CampusExperienceCom: typeof import('./src/components/ModelComs/CampusExperienceCom.vue')['default']
+    ColorPicker: typeof import('./src/components/ColorPicker/ColorPicker.vue')['default']
+    ColorPickerCustom: typeof import('./src/components/ColorPicker/ColorPickerCustom.vue')['default']
     CommonOptions: typeof import('./src/components/CommonOptions/CommonOptions.vue')['default']
     CommonTitleOptions: typeof import('./src/components/CommonOptions/CommonTitleOptions.vue')['default']
     EduBackgroundCom: typeof import('./src/components/ModelComs/EduBackgroundCom.vue')['default']
@@ -51,6 +53,7 @@ declare module '@vue/runtime-core' {
     SkillSpecialtiesCom: typeof import('./src/components/ModelComs/SkillSpecialtiesCom.vue')['default']
     SvgIcon: typeof import('./src/components/SvgIcon/SvgIcon.vue')['default']
     TipJsonDialog: typeof import('./src/components/TipJsonDialog/TipJsonDialog.vue')['default']
+    TopicColor: typeof import('./src/components/ColorPicker/TopicColor.vue')['default']
     WorkExperienceCom: typeof import('./src/components/ModelComs/WorkExperienceCom.vue')['default']
     WorksDisplayCom: typeof import('./src/components/ModelComs/WorksDisplayCom.vue')['default']
   }
