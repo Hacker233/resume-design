@@ -6,6 +6,9 @@
 </template>
 <script lang="ts" setup>
   import { IRESUMETITLE, ISTYLE } from '@/interface/model';
+  import { useResumeJsonStore } from '@/store/resume';
+  import { storeToRefs } from 'pinia';
+  const { resumeJsonStore } = storeToRefs(useResumeJsonStore());
   defineProps<{
     modelData: IRESUMETITLE;
   }>();
@@ -17,7 +20,7 @@
     min-height: 32px;
     margin-bottom: v-bind('modelData.style.mBottom');
     margin-top: v-bind('modelData.style.mTop');
-    background-color: v-bind('modelData.style.backgroundColor');
+    background-color: v-bind('resumeJsonStore.GLOBAL_STYLE.themeColor');
     display: flex;
     .left {
       min-height: 32px;
