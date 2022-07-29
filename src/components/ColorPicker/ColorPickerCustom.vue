@@ -1,9 +1,11 @@
 <!-- 主题色选择组件 -->
 <template>
   <div class="color-picker-box">
-    <div class="item-box">
-      <color-picker v-model:hex="modelValue" @change="changeColorPicker"></color-picker>
-    </div>
+    <el-tooltip content="自定义主题色">
+      <div class="item-box">
+        <color-picker v-model:hex="modelValue" @change="changeColorPicker"></color-picker>
+      </div>
+    </el-tooltip>
     <div :class="['item-box']" v-for="(item, index) in colorList">
       <span
         :class="['item', { active: index === curentIndex || modelValue === item.hex }]"
@@ -22,7 +24,7 @@
     modelValue: string;
   }>();
 
-  const emit = defineEmits(['update:modelValue']);
+  const emit = defineEmits(['update:modelValue','change']);
 
   // 颜色列表
   const colorList = reactive<Array<{ rgb: string; hex: string }>>([
@@ -69,12 +71,14 @@
   const changTheme = (index: number, item: { rgb: string; hex: String }) => {
     curentIndex.value = index;
     emit('update:modelValue', item.hex);
+    emit('change', item);
   };
 
   // 颜色选择器颜色改变
   const changeColorPicker = (e: any) => {
     curentIndex.value = -1;
     emit('update:modelValue', e.hex);
+    emit('change', e);
   };
 </script>
 <style lang="scss" scoped>

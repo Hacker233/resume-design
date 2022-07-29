@@ -54,16 +54,16 @@
       </el-form-item>
       <!-- 字体颜色设置 -->
       <el-form-item label="二级标题颜色:">
-        <color-picker
-          v-model:rgba="resumeJsonStore.GLOBAL_STYLE.secondTitleColor"
+        <color-picker-custom-vue
+          v-model="resumeJsonStore.GLOBAL_STYLE.secondTitleColor"
           @change="secondTitleColorChange"
-        ></color-picker>
+        ></color-picker-custom-vue>
       </el-form-item>
       <el-form-item label="正文字体颜色:">
-        <color-picker
-          v-model:rgba="resumeJsonStore.GLOBAL_STYLE.textFontColor"
+        <color-picker-custom-vue
+          v-model="resumeJsonStore.GLOBAL_STYLE.textFontColor"
           @change="textColorChange"
-        ></color-picker>
+        ></color-picker-custom-vue>
       </el-form-item>
       <!-- 字体粗细设置 -->
       <el-form-item label="二级标题字体粗细:">

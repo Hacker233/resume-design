@@ -40,9 +40,16 @@
       <!-- 属性设置面板 -->
       <div class="config" :key="UuidStore.refreshUuid">
         <Title :title="title"></Title>
-        <component :is="useModel.optionsName" v-if="useModel.model" :key="useModel.id" />
-        <!-- 全局主题样式设置 -->
-        <resume-theme-vue v-else></resume-theme-vue>
+        <c-scrollbar
+          trigger="hover"
+          :hThumbStyle="{
+            'background-color': 'rgba(0,0,0,0.4)'
+          }"
+        >
+          <component :is="useModel.optionsName" v-if="useModel.model" :key="useModel.id" />
+          <!-- 全局主题样式设置 -->
+          <resume-theme-vue v-else></resume-theme-vue>
+        </c-scrollbar>
       </div>
     </div>
   </div>
@@ -298,9 +305,9 @@
       }
 
       .config {
-        width: 350px;
+        width: 355px;
         background-color: #fff;
-        overflow: auto;
+        overflow-y: auto;
         display: flex;
         flex-direction: column;
         height: calc(100vh - 50px);

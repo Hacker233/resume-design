@@ -28,6 +28,7 @@
       margin-top: 25px;
       display: flex;
       flex-direction: column;
+      align-items: flex-start;
       li {
         display: flex;
         flex-direction: column;

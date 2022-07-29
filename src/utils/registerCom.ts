@@ -22,7 +22,6 @@ import WorksDisplayOptionsVue from '@/template/template1/options/WorksDisplayOpt
 
 // 模板2属性设置面板
 import Template2SkillSpecialtiesOptions from '@/template/template2/options/SkillSpecialtiesOptions.vue'; // 技能特长
-import Template2JobIntentionOptions from '@/template/template2/options/JobIntentionOptions.vue'; // 求职意向
 import Template2EduBackgroundOptions from '@/template/template2/options/EduBackgroundOptions.vue'; // 教育背景
 
 const componentList: Array<any> = [
@@ -43,7 +42,6 @@ const componentList: Array<any> = [
   SelfEvalutionOptionsVue,
   WorksDisplayOptionsVue,
   Template2SkillSpecialtiesOptions,
-  Template2JobIntentionOptions,
   Template2EduBackgroundOptions
 ];
 
