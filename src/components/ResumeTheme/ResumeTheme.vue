@@ -3,7 +3,9 @@
   <div class="resume-theme-box">
     <el-form label-width="120px" label-position="left">
       <el-form-item label="主题颜色:">
-        <color-picker v-model:rgba="resumeJsonStore.GLOBAL_STYLE.themeColor"></color-picker>
+        <color-picker-custom-vue
+          v-model="resumeJsonStore.GLOBAL_STYLE.themeColor"
+        ></color-picker-custom-vue>
       </el-form-item>
       <!-- 字体大小设置 -->
       <el-form-item label="模块标题字体大小:">
@@ -109,6 +111,7 @@
   import { reactive, ref } from 'vue';
   import { pxTonumber } from '@/utils/common';
   import { useFontSizeList } from '@/hooks/useFontSizeList';
+  import ColorPickerCustomVue from '../ColorPicker/ColorPickerCustom.vue';
   const { resumeJsonStore } = useResumeJsonStore();
 
   // 字体大小
@@ -188,6 +191,5 @@
   .resume-theme-box {
     padding: 20px;
     box-sizing: border-box;
-    overflow-x: hidden;
   }
 </style>
