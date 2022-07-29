@@ -167,7 +167,7 @@
     dialogVisible.value = false;
   };
 </script>
-<style lang="less" scopeds>
+<style lang="scss" scopeds>
   .nav-box {
     height: 50px;
     width: 100%;

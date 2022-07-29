@@ -15,7 +15,7 @@
     return item.model == 'BASE_INFO';
   }) as IBASEINFO;
 </script>
-<style lang="less" scoped>
+<style lang="scss" scoped>
   .name-introduce {
     width: 100%;
     cursor: pointer;

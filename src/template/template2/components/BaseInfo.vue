@@ -39,7 +39,7 @@
   }>();
   const isShow = reactive(props.modelData.isShow);
 </script>
-<style lang="less" scoped>
+<style lang="scss" scoped>
   .base-info {
     display: flex;
     flex-direction: column;

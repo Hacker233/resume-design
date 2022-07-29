@@ -236,7 +236,7 @@
   };
 </script>
 
-<style lang="less" scoped>
+<style lang="scss" scoped>
   .design-box {
     height: 100vh;
     width: 100%;

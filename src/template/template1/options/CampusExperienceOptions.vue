@@ -100,7 +100,7 @@
     name: 'CAMPUS_EXPERIENCE'
   };
 </script>
-<style lang="less" scoped>
+<style lang="scss" scoped>
   .campus-list {
     p {
       display: flex;

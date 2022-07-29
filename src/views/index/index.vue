@@ -58,7 +58,7 @@
     templeTef.value.scrollIntoView();
   };
 </script>
-<style lang="less" scoped>
+<style lang="scss" scoped>
   .index-box {
     position: relative;
     z-index: 0;

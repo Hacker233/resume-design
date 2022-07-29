@@ -74,7 +74,7 @@
     name: 'AWARDS'
   };
 </script>
-<style lang="less">
+<style lang="scss">
   .awards-list {
     p {
       display: flex;

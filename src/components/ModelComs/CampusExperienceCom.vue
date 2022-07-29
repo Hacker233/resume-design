@@ -27,7 +27,7 @@
     modelData: ICAMPUSEXPERIENCE;
   }>();
 </script>
-<style lang="less" scoped>
+<style lang="scss" scoped>
   .campus-experience {
     padding: 0 40px;
     margin-bottom: v-bind('modelData.style.mBottom');

@@ -13,7 +13,7 @@
     emit('close');
   };
 </script>
-<style lang="less" scoped>
+<style lang="scss" scoped>
   .preview-box {
     width: 100vw;
     height: 100vh;

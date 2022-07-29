@@ -37,7 +37,7 @@
     emit('unflodOrCollapse', status.value);
   };
 </script>
-<style lang="less" scoped>
+<style lang="scss" scoped>
   .title {
     height: 60px;
     width: 100%;

@@ -77,7 +77,7 @@
     name: 'template3'
   };
 </script>
-<style lang="less" scoped>
+<style lang="scss" scoped>
   .template3-box {
     background: url(../../assets/images/template3_bg_2.png);
     background-repeat: no-repeat;

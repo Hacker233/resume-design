@@ -30,7 +30,7 @@
     modelData: IAWARDS;
   }>();
 </script>
-<style lang="less" scoped>
+<style lang="scss" scoped>
   .edu-background {
     // padding: 0 40px;
     margin-bottom: v-bind('modelData.style.mBottom');

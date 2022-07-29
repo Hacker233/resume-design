@@ -22,7 +22,7 @@
     console.log('鼠标移动');
   };
 </script>
-<style lang="less" scoped>
+<style lang="scss" scoped>
   .project-introduce-box {
     width: 100%;
     height: 100vh;

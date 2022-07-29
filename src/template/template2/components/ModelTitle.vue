@@ -18,7 +18,7 @@
     iconfont: string;
   }>();
 </script>
-<style lang="less" scoped>
+<style lang="scss" scoped>
   .template2-model-title {
     width: 100%;
     display: flex;

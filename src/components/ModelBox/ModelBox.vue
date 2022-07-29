@@ -92,7 +92,7 @@
     resumeModelStore.setResumeModel({ model, optionsName, title, id });
   };
 </script>
-<style lang="less" scoped>
+<style lang="scss" scoped>
   .model-box {
     border: 1px dashed transparent;
     transition: all 0.3s;

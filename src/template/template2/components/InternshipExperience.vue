@@ -30,7 +30,7 @@
     modelData: IINTERNSHIPEXPERIENCE;
   }>();
 </script>
-<style lang="less" scoped>
+<style lang="scss" scoped>
   .internship-experience {
     margin-bottom: v-bind('modelData.style.mBottom');
     margin-top: v-bind('modelData.style.mTop');

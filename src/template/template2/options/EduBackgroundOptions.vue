@@ -105,7 +105,7 @@
     name: 'TEMPLATE2_EDU_BACKGROUND_OPTIONS'
   };
 </script>
-<style lang="less" scoped>
+<style lang="scss" scoped>
   .edu-list {
     p {
       display: flex;

@@ -103,7 +103,7 @@
     console.log('结束拖拽');
   };
 </script>
-<style lang="less" scoped>
+<style lang="scss" scoped>
   .model-list-box {
     padding: 0 1px;
     .model-ul {

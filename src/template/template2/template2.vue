@@ -116,8 +116,8 @@
     name: 'template2'
   };
 </script>
-<style lang="less">
-  @import '@/style/options.less';
+<style lang="scss">
+  @import '@/style/options.scss';
   .classic-box {
     display: flex;
     .model-box {

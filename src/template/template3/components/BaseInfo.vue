@@ -31,7 +31,7 @@
   }>();
   const isShow = reactive(props.modelData.isShow);
 </script>
-<style lang="less" scoped>
+<style lang="scss" scoped>
   .base-info {
     width: 100%;
     height: 250px;

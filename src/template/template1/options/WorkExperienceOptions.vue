@@ -137,7 +137,7 @@
     name: 'WORK_EXPERIENCE'
   };
 </script>
-<style lang="less" scoped>
+<style lang="scss" scoped>
   .work-list {
     p {
       display: flex;

@@ -30,7 +30,7 @@
     </div> -->
   </div>
 </template>
-<style lang="less" scoped>
+<style lang="scss" scoped>
   .footer-box {
     width: 100%;
     height: 100px;

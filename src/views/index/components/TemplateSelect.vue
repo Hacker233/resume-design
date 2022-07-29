@@ -47,7 +47,7 @@
     closeGlobalLoading(); // 关闭全局等待层
   });
 </script>
-<style lang="less">
+<style lang="scss">
   .template-select-box {
     display: flex;
     flex-direction: column;

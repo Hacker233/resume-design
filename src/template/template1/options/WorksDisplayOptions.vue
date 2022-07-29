@@ -73,7 +73,7 @@
     name: 'WORKS_DISPLAY'
   };
 </script>
-<style lang="less" scoped>
+<style lang="scss" scoped>
   .works-list {
     p {
       display: flex;
