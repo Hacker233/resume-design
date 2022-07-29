@@ -97,4 +97,4 @@
     name: 'JOB_INTENTION_OPTIONS'
   };
 </script>
-<style lang="less"></style>
+<style lang="scss"></style>

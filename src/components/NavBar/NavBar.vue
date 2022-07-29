@@ -55,7 +55,7 @@
     iconColor: '#fff'
   });
 </script>
-<style lang="less" scoped>
+<style lang="scss" scoped>
   .nav-bar-box {
     display: flex;
     height: 88px;

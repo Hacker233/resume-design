@@ -159,7 +159,7 @@
     emit('cancle');
   };
 </script>
-<style lang="less">
+<style lang="scss">
   .import-json {
     .header {
       display: flex;

@@ -16,7 +16,7 @@
     modelData: IHOBBIES;
   }>();
 </script>
-<style lang="less" scoped>
+<style lang="scss" scoped>
   .hobbies {
     padding: 0 40px;
     margin-bottom: v-bind('modelData.style.mBottom');

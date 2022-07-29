@@ -26,7 +26,7 @@
     modelData: ISKILLSPECIALTIES;
   }>();
 </script>
-<style lang="less" scoped>
+<style lang="scss" scoped>
   .skill-specialties {
     padding: 0 40px;
     margin-top: v-bind('modelData.style.mTop');

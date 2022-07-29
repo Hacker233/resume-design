@@ -19,7 +19,7 @@
     modelData: IWORKSDISPLAY;
   }>();
 </script>
-<style lang="less" scoped>
+<style lang="scss" scoped>
   .works-display {
     padding: 0 40px;
     margin-bottom: v-bind('modelData.style.mBottom');
@@ -40,7 +40,7 @@
           margin: 0;
         }
         a {
-          font-size: @primary-text-font-size;
+          font-size: $primary-text-font-size;
           margin-top: 5px;
           &:hover {
             color: #00c091;

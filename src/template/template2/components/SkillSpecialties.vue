@@ -37,7 +37,7 @@
     return numberToText(number);
   };
 </script>
-<style lang="less" scoped>
+<style lang="scss" scoped>
   .skill-specialties {
     display: flex;
     flex-direction: column;

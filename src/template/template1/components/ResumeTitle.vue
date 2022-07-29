@@ -14,7 +14,7 @@
   }>();
 </script>
 
-<style lang="less" scoped>
+<style lang="scss" scoped>
   .title {
     width: 100%;
     min-height: 32px;

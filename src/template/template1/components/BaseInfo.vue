@@ -29,7 +29,7 @@
   const isShow = reactive(props.modelData.isShow);
 </script>
 
-<style scoped lang="less">
+<style scoped lang="scss">
   .base-info {
     display: flex;
     width: 100%;

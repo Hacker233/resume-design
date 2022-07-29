@@ -47,7 +47,7 @@
     dialogVisible.value = false;
   };
 </script>
-<style lang="less" scoped>
+<style lang="scss" scoped>
   .template-card-box {
     width: 260px;
     height: 365px;

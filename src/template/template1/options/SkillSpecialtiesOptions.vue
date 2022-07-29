@@ -77,7 +77,7 @@
     name: 'SKILL_SPECIALTIES'
   };
 </script>
-<style lang="less" scoped>
+<style lang="scss" scoped>
   .skill-list {
     .el-button {
       margin-left: 10px;

@@ -38,7 +38,7 @@
     modelData: IJOBINTENTION;
   }>();
 </script>
-<style lang="less" scoped>
+<style lang="scss" scoped>
   .job-intention {
     padding: 0 40px;
     margin-top: v-bind('modelData.style.mTop');

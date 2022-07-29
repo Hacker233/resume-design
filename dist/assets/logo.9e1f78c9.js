@@ -1,1 +1,1 @@
-var a="/assets/logo.ea2a59ce.png";export{a as _};
+var a="./assets/logo.ea2a59ce.png";export{a as _};

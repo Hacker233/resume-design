@@ -109,7 +109,7 @@
     name: 'COM_BASE_INFO_OPTIONS'
   };
 </script>
-<style lang="less">
+<style lang="scss">
   .avatar-uploader .el-upload {
     border: 1px dashed var(--el-border-color);
     border-radius: 6px;

@@ -36,14 +36,8 @@ export default defineConfig({
   },
   css: {
     preprocessorOptions: {
-      less: {
-        javascriptEnabled: true,
-        modifyVars: {
-          hack: `true; @import (reference) "${path.resolve(__dirname, 'src/style/global.less')}";`
-        }
-      },
       scss: {
-        additionalData: `@use "@/style/element/index.scss" as *;` //关键
+        additionalData: `@use "@/style/global.scss" as *;` //关键
       }
     }
   },

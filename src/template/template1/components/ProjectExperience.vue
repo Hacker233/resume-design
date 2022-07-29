@@ -35,7 +35,7 @@
     modelData: IPROJECTEXPERIENCE;
   }>();
 </script>
-<style lang="less" scoped>
+<style lang="scss" scoped>
   .project-experience {
     padding: 0 40px;
     margin-bottom: v-bind('modelData.style.mBottom');

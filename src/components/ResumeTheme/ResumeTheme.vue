@@ -184,7 +184,7 @@
     });
   };
 </script>
-<style lang="less" scoped>
+<style lang="scss" scoped>
   .resume-theme-box {
     padding: 20px;
     box-sizing: border-box;

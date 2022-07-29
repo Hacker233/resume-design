@@ -68,8 +68,8 @@
     name: 'template1'
   };
 </script>
-<style lang="less" scoped>
-  @import '../../style/options.less';
+<style lang="scss" scoped>
+  @import '../../style/options.scss';
   .model-bottom {
     height: 12px;
     background-color: #254665;

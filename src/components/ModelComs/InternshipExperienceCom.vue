@@ -34,7 +34,7 @@
     modelData: IINTERNSHIPEXPERIENCE;
   }>();
 </script>
-<style lang="less" scoped>
+<style lang="scss" scoped>
   .internship-experience {
     padding: 0 40px;
     margin-bottom: v-bind('modelData.style.mBottom');

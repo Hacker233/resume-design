@@ -17,7 +17,7 @@
     iconfont: string;
   }>();
 </script>
-<style lang="less" scoped>
+<style lang="scss" scoped>
   .model-title-box {
     display: flex;
     align-items: center;

@@ -16,7 +16,7 @@
     modelData: ISELFEVALUATION;
   }>();
 </script>
-<style lang="less" scoped>
+<style lang="scss" scoped>
   .self-eavluation {
     margin-bottom: v-bind('modelData.style.mBottom');
     margin-top: v-bind('modelData.style.mTop');
