@@ -29,9 +29,9 @@ let styles: IStyles = {
       mTop: '0px'
     },
     EDU_BACKGROUND: {
-      textColor: '#666',
-      textFontSize: '14px',
-      textFontWeight: 600,
+      titleColor: '#666',
+      titleFontSize: '14px',
+      titleFontWeight: 600,
       mBottom: '35px',
       mTop: '0px'
     },
