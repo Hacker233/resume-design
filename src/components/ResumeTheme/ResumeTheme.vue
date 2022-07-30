@@ -3,7 +3,9 @@
   <div class="resume-theme-box">
     <el-form label-width="120px" label-position="left">
       <el-form-item label="主题颜色:">
-        <color-picker v-model:rgba="resumeJsonStore.GLOBAL_STYLE.themeColor"></color-picker>
+        <color-picker-custom-vue
+          v-model="resumeJsonStore.GLOBAL_STYLE.themeColor"
+        ></color-picker-custom-vue>
       </el-form-item>
       <!-- 字体大小设置 -->
       <el-form-item label="模块标题字体大小:">
@@ -52,16 +54,16 @@
       </el-form-item>
       <!-- 字体颜色设置 -->
       <el-form-item label="二级标题颜色:">
-        <color-picker
-          v-model:rgba="resumeJsonStore.GLOBAL_STYLE.secondTitleColor"
+        <color-picker-custom-vue
+          v-model="resumeJsonStore.GLOBAL_STYLE.secondTitleColor"
           @change="secondTitleColorChange"
-        ></color-picker>
+        ></color-picker-custom-vue>
       </el-form-item>
       <el-form-item label="正文字体颜色:">
-        <color-picker
-          v-model:rgba="resumeJsonStore.GLOBAL_STYLE.textFontColor"
+        <color-picker-custom-vue
+          v-model="resumeJsonStore.GLOBAL_STYLE.textFontColor"
           @change="textColorChange"
-        ></color-picker>
+        ></color-picker-custom-vue>
       </el-form-item>
       <!-- 字体粗细设置 -->
       <el-form-item label="二级标题字体粗细:">
@@ -109,6 +111,7 @@
   import { reactive, ref } from 'vue';
   import { pxTonumber } from '@/utils/common';
   import { useFontSizeList } from '@/hooks/useFontSizeList';
+  import ColorPickerCustomVue from '../ColorPicker/ColorPickerCustom.vue';
   const { resumeJsonStore } = useResumeJsonStore();
 
   // 字体大小
@@ -188,6 +191,5 @@
   .resume-theme-box {
     padding: 20px;
     box-sizing: border-box;
-    overflow-x: hidden;
   }
 </style>

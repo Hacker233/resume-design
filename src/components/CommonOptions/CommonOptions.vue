@@ -1,6 +1,6 @@
 <template>
   <el-form-item label="字体颜色:">
-    <color-picker v-model:rgba="modelItem.style.textColor"></color-picker>
+    <color-picker-custom-vue v-model="modelItem.style.textColor"></color-picker-custom-vue>
   </el-form-item>
   <el-form-item label="字体大小:">
     <el-select v-model="modelItem.style.textFontSize" class="m-2" placeholder="Select">
@@ -25,6 +25,7 @@
   import { pxTonumber } from '@/utils/common';
   import { useModelIndex } from '@/hooks/useModelIndex';
   import { useFontSizeList } from '@/hooks/useFontSizeList';
+  import ColorPickerCustomVue from '../ColorPicker/ColorPickerCustom.vue';
   // store
   const { resumeJsonStore } = useResumeJsonStore();
   // 选中的模块

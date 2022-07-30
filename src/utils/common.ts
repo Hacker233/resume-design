@@ -88,11 +88,11 @@ export const checkVersion = () => {
   if (!version) {
     localStorage.removeItem('resumeDraft'); // 移出本地简历数据
   } else {
-    if (Number(version) !== 2) {
+    if (Number(version) !== 3) {
       localStorage.removeItem('resumeDraft'); // 移出本地简历数据
     }
   }
-  localStorage.setItem('version', '2'); // 存入版本
+  localStorage.setItem('version', '3'); // 存入版本
 };
 
 // 判断是否是JSON格式

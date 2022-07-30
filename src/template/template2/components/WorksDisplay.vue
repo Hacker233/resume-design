@@ -28,8 +28,8 @@
       flex-direction: column;
       display: flex;
       width: 100%;
-      flex-direction: column;
       margin-top: 20px;
+      align-items: flex-start;
       li {
         display: flex;
         flex-direction: column;

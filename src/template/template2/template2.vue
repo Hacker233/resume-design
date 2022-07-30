@@ -129,7 +129,7 @@
     .left {
       width: 270px;
       box-sizing: border-box;
-      background-color: #254665;
+      background-color: v-bind('resumeJsonStore.GLOBAL_STYLE.themeColor');
       overflow: hidden;
       min-height: 1160px;
       position: absolute;

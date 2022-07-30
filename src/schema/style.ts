@@ -224,7 +224,7 @@ let styles: IStyles = {
       mTop: '0px'
     },
     GLOBAL_STYLE: {
-      themeColor: '#000', // 主题色
+      themeColor: '#254665', // 主题色
       firstTitleFontSize: '20px', // 一级标题
       secondTitleFontSize: '14px', // 二级标题
       textFontSize: '14px', // 正文

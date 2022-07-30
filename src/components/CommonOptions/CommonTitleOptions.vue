@@ -1,6 +1,6 @@
 <template>
   <el-form-item :label="`${colorLabel}:`">
-    <color-picker v-model:rgba="modelItem.style.titleColor"></color-picker>
+    <color-picker-custom-vue v-model="modelItem.style.titleColor"></color-picker-custom-vue>
   </el-form-item>
   <el-form-item :label="`${fontSizeLabel}:`">
     <el-select v-model="modelItem.style.titleFontSize" class="m-2" placeholder="Select">
@@ -17,6 +17,7 @@
   import { useFontSizeList } from '@/hooks/useFontSizeList';
   import { useModelIndex } from '@/hooks/useModelIndex';
   import { useResumeJsonStore } from '@/store/resume';
+  import ColorPickerCustomVue from '../ColorPicker/ColorPickerCustom.vue';
   import { reactive } from 'vue';
   interface IProps {
     colorLabel?: string;
