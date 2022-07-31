@@ -17,7 +17,7 @@ jobs:
       with:
         CONTRIBUTOR: '## 贡献者'
         COLUMN_PER_ROW: '6'
-        ACCESS_TOKEN: ${{secrets.GITHUB_TOKEN}}
+        ACCESS_TOKEN: ${{secrets.RESUME_TOKEN}}
         IMG_WIDTH: '100'
         FONT_SIZE: '14'
         PATH: '/README.md'

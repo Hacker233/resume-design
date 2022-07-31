@@ -116,6 +116,40 @@ pnpm build
 添加vx：LHQfighting，进入微信交流群，可方便解决和提出问题。
 <p align="center"><img width="400" src="https://github.com/huajian-pro/resume-design/blob/main/src/assets/images/vx.jpg"></p>
 
+## 贡献者
+
+<table>
+<tr>
+    <td align="center" style="word-wrap: break-word; width: 150.0; height: 150.0">
+        <a href=https://github.com/Hacker233>
+            <img src=https://avatars.githubusercontent.com/u/28037169?v=4 width="100;"  style="border-radius:50%;align-items:center;justify-content:center;overflow:hidden;padding-top:10px" alt=会飞的猪/>
+            <br />
+            <sub style="font-size:14px"><b>会飞的猪</b></sub>
+        </a>
+    </td>
+    <td align="center" style="word-wrap: break-word; width: 150.0; height: 150.0">
+        <a href=https://github.com/QC2168>
+            <img src=https://avatars.githubusercontent.com/u/82024018?v=4 width="100;"  style="border-radius:50%;align-items:center;justify-content:center;overflow:hidden;padding-top:10px" alt=山田/>
+            <br />
+            <sub style="font-size:14px"><b>山田</b></sub>
+        </a>
+    </td>
+    <td align="center" style="word-wrap: break-word; width: 150.0; height: 150.0">
+        <a href=https://github.com/daluozha>
+            <img src=https://avatars.githubusercontent.com/u/35727398?v=4 width="100;"  style="border-radius:50%;align-items:center;justify-content:center;overflow:hidden;padding-top:10px" alt=- luozha -/>
+            <br />
+            <sub style="font-size:14px"><b>- luozha -</b></sub>
+        </a>
+    </td>
+    <td align="center" style="word-wrap: break-word; width: 150.0; height: 150.0">
+        <a href=https://github.com/yunyouruoyu>
+            <img src=https://avatars.githubusercontent.com/u/79676185?v=4 width="100;"  style="border-radius:50%;align-items:center;justify-content:center;overflow:hidden;padding-top:10px" alt=yunyouruoyu/>
+            <br />
+            <sub style="font-size:14px"><b>yunyouruoyu</b></sub>
+        </a>
+    </td>
+</tr>
+</table>
 
 ## License
 
