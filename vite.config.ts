@@ -5,6 +5,7 @@ import * as path from 'path';
 import AutoImport from 'unplugin-auto-import/vite';
 import Components from 'unplugin-vue-components/vite';
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers';
+import { createBuild } from './build/vite/build';
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -15,28 +16,7 @@ export default defineConfig({
       '@': path.resolve(__dirname, 'src')
     }
   },
-  build: {
-    minify: 'terser',
-    terserOptions: {
-      compress: {
-        //生产环境时移除console.log()
-        drop_console: true,
-        drop_debugger: true
-      }
-    },
-    rollupOptions: {
-      output: {
-        manualChunks(id) {
-          if (id.includes('node_modules')) {
-            return id.toString().split('node_modules/')[1].split('/')[0].toString();
-          }
-        },
-        // chunkFileNames: 'js/[name]-[hash].js',
-        // entryFileNames: 'js/[name]-[hash].js',
-        // assetFileNames: 'static/[ext]/[name]-[hash].[ext]'
-      }
-    }
-  },
+  build: createBuild(),
   css: {
     preprocessorOptions: {
       scss: {
