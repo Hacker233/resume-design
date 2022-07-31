@@ -1,9 +1,10 @@
 import type { BuildOptions } from 'vite';
 
-export function createBuild(): BuildOptions {
+export function createBuild(viteEnv): BuildOptions {
+  const { VITE_OUTPUT_DIR } = viteEnv;
   return {
     sourcemap: false, // 是否启用
-    // outDir: ,
+    outDir: VITE_OUTPUT_DIR,
     cssCodeSplit: true, // 禁用 CSS 代码拆分,将整个项目中的所有 CSS 将被提取到一个 CSS 文件中
     reportCompressedSize: false, // 关闭打包计算
     target: 'esnext',
