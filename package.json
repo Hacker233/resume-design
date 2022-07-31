@@ -57,6 +57,7 @@
     "@typescript-eslint/eslint-plugin": "^5.16.0",
     "@typescript-eslint/parser": "^5.16.0",
     "@vitejs/plugin-vue": "^2.2.0",
+    "codemirror": "6.x",
     "commitizen": "^4.2.4",
     "commitlint-config-cz": "^0.13.3",
     "cz-conventional-changelog": "^3.3.0",
@@ -77,5 +78,8 @@
     "vite-plugin-svg-icons": "^2.0.1",
     "vite-plugin-vue-setup-extend": "^0.4.0",
     "vue-tsc": "^0.29.8"
+  },
+  "peerDependencies": {
+    "codemirror": "6.x"
   }
 }
