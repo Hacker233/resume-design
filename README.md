@@ -22,7 +22,6 @@
     - [构建项目](#构建项目)
     - [目录说明:](#目录说明)
   - [交流&贡献](#交流贡献)
-  - [维护者](#维护者)
   - [License](#license)
 
 ## 项目介绍
@@ -117,10 +116,6 @@ pnpm build
 添加vx：LHQfighting，进入微信交流群，可方便解决和提出问题。
 <p align="center"><img width="400" src="https://github.com/huajian-pro/resume-design/blob/main/src/assets/images/vx.jpg"></p>
 
-## 维护者
-
-- [会飞的猪](https://github.com/Hacker233)
-- [QC2168](https://github.com/QC2168)
 
 ## License
 
