@@ -31,9 +31,9 @@ export default defineConfig({
             return id.toString().split('node_modules/')[1].split('/')[0].toString();
           }
         },
-        chunkFileNames: 'js/[name]-[hash].js',
-        entryFileNames: 'js/[name]-[hash].js',
-        assetFileNames: 'static/[ext]/[name]-[hash].[ext]'
+        // chunkFileNames: 'js/[name]-[hash].js',
+        // entryFileNames: 'js/[name]-[hash].js',
+        // assetFileNames: 'static/[ext]/[name]-[hash].[ext]'
       }
     }
   },
