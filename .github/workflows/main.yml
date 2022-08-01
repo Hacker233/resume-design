@@ -1,4 +1,4 @@
-name: Build app and deploy to Tencent
+name: 部署化简到服务器上
 on:
   #监听push操作
   pull_request:
