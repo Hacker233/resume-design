@@ -6,7 +6,8 @@
     "deploy": "npm install && npm run build",
     "dev": "vite",
     "build": "vue-tsc --noEmit && vite build",
-    "preview": "vite preview",
+    "preview": "npm run build && vite preview",
+    "preview:dist": "vite preview",
     "eslint:comment": "使用 ESLint 检查并自动修复 src 目录下所有扩展名为 .js 和 .vue 的文件",
     "eslint": "eslint --ext .js,.vue --ignore-path .gitignore --fix src",
     "prettier:comment": "自动格式化当前目录下的所有文件",
@@ -73,10 +74,11 @@
     "typescript": "^4.5.4",
     "unplugin-auto-import": "^0.9.5",
     "unplugin-vue-components": "^0.21.2",
-    "vite": "^2.9.14",
+    "vite": "^3.0.4",
     "vite-plugin-compression": "^0.5.1",
     "vite-plugin-svg-icons": "^2.0.1",
     "vite-plugin-vue-setup-extend": "^0.4.0",
+    "vue-global-api": "^0.4.1",
     "vue-tsc": "^0.29.8"
   },
   "peerDependencies": {
