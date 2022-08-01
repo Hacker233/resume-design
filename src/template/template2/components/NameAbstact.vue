@@ -6,10 +6,10 @@
   </div>
 </template>
 <script lang="ts" setup>
-  import { useResumeJsonStore } from '@/store/resume';
+  import appStore from '@/store';
   import { storeToRefs } from 'pinia';
   import { IBASEINFO } from '@/interface/model';
-  const { resumeJsonStore } = storeToRefs(useResumeJsonStore()); // 简历数据
+  const { resumeJsonStore } = storeToRefs(appStore.useResumeJsonStore); // 简历数据
   // 获得基础信息数据
   const modelData: IBASEINFO = resumeJsonStore.value.LIST.find((item) => {
     return item.model == 'BASE_INFO';

@@ -20,14 +20,14 @@
   </el-form-item>
 </template>
 <script setup lang="ts">
-  import { useResumeJsonStore } from '@/store/resume';
+  import appStore from '@/store';
   import { reactive, ref } from 'vue';
   import { pxTonumber } from '@/utils/common';
   import { useModelIndex } from '@/hooks/useModelIndex';
   import { useFontSizeList } from '@/hooks/useFontSizeList';
   import ColorPickerCustomVue from '../ColorPicker/ColorPickerCustom.vue';
   // store
-  const { resumeJsonStore } = useResumeJsonStore();
+  const { resumeJsonStore } = appStore.useResumeJsonStore;
   // 选中的模块
   const index = useModelIndex(); // 选中的索引
   const modelItem = reactive(resumeJsonStore.LIST[index]);

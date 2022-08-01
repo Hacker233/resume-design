@@ -18,7 +18,7 @@ jobs:
         CONTRIBUTOR: '## 贡献者'
         COLUMN_PER_ROW: '6'
         ACCESS_TOKEN: ${{secrets.RESUME_TOKEN}}
-        IMG_WIDTH: '100'
+        IMG_WIDTH: '50'
         FONT_SIZE: '14'
         PATH: '/README.md'
         COMMIT_MESSAGE: 'docs(README): update contributors'

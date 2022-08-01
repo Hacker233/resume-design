@@ -13,12 +13,12 @@
           }"
         >
           <Title @unflodOrCollapse="unflodOrCollapse" showCollapse></Title>
-          <model-list :leftShowStatus="leftShowStatus" :key="UuidStore.refreshUuid"></model-list>
+          <model-list :leftShowStatus="leftShowStatus" :key="refreshUuid"></model-list>
         </c-scrollbar>
       </div>
 
       <!-- 预览区域 -->
-      <div class="center" :key="UuidStore.refreshUuid">
+      <div class="center" :key="refreshUuid">
         <div class="design" ref="html2Pdf">
           <div class="design-content" ref="htmlContentPdf">
             <component :is="componentName" @contentHeightChange="contentHeightChange" />
@@ -38,7 +38,7 @@
         </div>
       </div>
       <!-- 属性设置面板 -->
-      <div class="config" :key="UuidStore.refreshUuid">
+      <div class="config" :key="refreshUuid">
         <Title :title="title"></Title>
         <c-scrollbar
           trigger="hover"
@@ -46,7 +46,11 @@
             'background-color': 'rgba(0,0,0,0.4)'
           }"
         >
-          <component :is="useModel.optionsName" v-if="useModel.model" :key="useModel.id" />
+          <component
+            :is="appStore.useResumeModelStore.optionsName"
+            v-if="appStore.useResumeModelStore.model"
+            :key="appStore.useResumeModelStore.id"
+          />
           <!-- 全局主题样式设置 -->
           <resume-theme-vue v-else></resume-theme-vue>
         </c-scrollbar>
@@ -63,28 +67,27 @@
   import TEMPLATE_JSON from '@/schema/model';
 
   import downloadPDF from '@/utils/html2pdf'; // 下载为pdf
-  import { useResumeModelStore, useResumeJsonStore } from '@/store/resume';
+  import appStore from '@/store';
   import { storeToRefs } from 'pinia';
   import { useRoute } from 'vue-router';
   import { CScrollbar } from 'c-scrollbar'; // 滚动条
   import DesignNav from './components/DesignNav.vue';
-  import { useUuidStore } from '@/store/uuid';
   import useAddStyle from '@/hooks/useAddStyle';
   import { ElMessage } from 'element-plus';
 
-  const { title } = storeToRefs(useResumeModelStore());
-  const store = useResumeJsonStore();
-  const UuidStore = useUuidStore();
-  let { resumeJsonStore } = storeToRefs(useResumeJsonStore()); // store里的模板数据
+  const { title } = storeToRefs(appStore.useResumeModelStore);
+  const { changeResumeJsonData } = appStore.useResumeJsonStore;
+  const { refreshUuid } = storeToRefs(appStore.useUuidStore);
+  const { setUuid } = appStore.useUuidStore;
+  const { resumeJsonStore } = storeToRefs(appStore.useResumeJsonStore); // store里的模板数据
 
   // 重置数据方法
   const resetStoreAndLocal = () => {
     TEMPLATE_JSON.ID = id as string;
     TEMPLATE_JSON.NAME = name as string;
     let resetObj = useAddStyle(TEMPLATE_JSON); // 初始数据
-    store.changeResumeJsonData(resetObj); // 更改store的数据
+    changeResumeJsonData(resetObj); // 更改store的数据
   };
-
   // 获取本地数据,初始化store里面的简历数据
   const localData = localStorage.getItem('resumeDraft');
   const route = useRoute();
@@ -95,14 +98,14 @@
   if (localData) {
     let localObj = JSON.parse(localData)[id as string];
     if (localObj) {
-      store.changeResumeJsonData(localObj);
+      changeResumeJsonData(localObj);
     } else {
       resetStoreAndLocal();
     }
   } else {
     resetStoreAndLocal();
   }
-
+  console.log('resumeJsonStore', resumeJsonStore.value);
   // 过滤掉模板2不需要的模块
   if (Number(id) == 2) {
     let List: any = [];
@@ -128,11 +131,13 @@
   });
 
   // 属性设置
-  const useModel = useResumeModelStore();
+  const { storeReset } = appStore.useResumeModelStore;
   // 全局样式设置
   const globalStyleSetting = () => {
     // 重置store选中模块
-    useModel.$reset();
+    storeReset();
+    // console.log("reset",appStore)
+    
   };
 
   // 导出pdf
@@ -169,7 +174,7 @@
       type: 'success',
       center: true
     });
-    UuidStore.setUuid(); // 重新渲染左侧列表和右侧属性面板设置
+    setUuid(); // 重新渲染左侧列表和右侧属性面板设置
     await nextTick();
     resizeDOM();
   };
@@ -178,7 +183,7 @@
   const generateReport = async () => {
     let temp = linesNumber.value;
     linesNumber.value = 0;
-    useModel.$reset(); // 重置选中模块
+    storeReset(); // 重置选中模块
     await nextTick();
     downloadPDF(html2Pdf.value, resumeJsonStore.value.TITLE, false, () => {
       linesNumber.value = temp;

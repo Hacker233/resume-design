@@ -71,14 +71,14 @@
 <script setup lang="ts">
   import { reactive, ref } from 'vue';
   import { IEDUBACKGROUND } from '@/interface/model';
-  import { useResumeJsonStore } from '@/store/resume';
+  import appStore from '@/store';
   import { Delete } from '@element-plus/icons-vue';
   import CommonOptions from '@/components/CommonOptions/CommonOptions.vue'; // 公共属性设置
   import CommonTitleOptions from '@/components/CommonOptions/CommonTitleOptions.vue';
   import { useModelIndex } from '@/hooks/useModelIndex';
   import { useDegreeList } from '@/hooks/useDegreeList';
   // store
-  const { resumeJsonStore } = useResumeJsonStore();
+  const { resumeJsonStore } = appStore.useResumeJsonStore;
 
   // 选中的模块
   const index = useModelIndex(); // 选中的索引

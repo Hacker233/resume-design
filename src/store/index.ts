@@ -1,10 +1,7 @@
-// import { createPinia } from 'pinia';
+import { initResetFun } from '@/utils/storeTools';
 import { useLoadingStore } from './loading';
 import { useResumeJsonStore, useResumeModelStore } from './resume';
 import { useUuidStore } from './uuid';
-
-// const store = createPinia();
-// export default store;
 
 export interface IAppStore {
   useLoadingStore: ReturnType<typeof useLoadingStore>;
@@ -23,4 +20,7 @@ export const registerStore = () => {
   appStore.useResumeJsonStore = useResumeJsonStore();
   appStore.useResumeModelStore = useResumeModelStore();
   appStore.useUuidStore = useUuidStore();
+  // 重写reset方法
+  initResetFun(appStore);
 };
+export default appStore;
