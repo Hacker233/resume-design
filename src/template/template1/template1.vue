@@ -1,7 +1,8 @@
 <template>
   <div ref="tmp1ContentHeightRef">
     <template v-for="(item) in resumeJsonStore.LIST">
-      <model-box-vue :item="item" :components="components"></model-box-vue>
+      <model-box-vue v-if="item" :item="item" :components="components"></model-box-vue>
+      <!-- <component v-if="item" :is="components[item.model]" :modelData="item"></component> -->
     </template>
   </div>
   <!-- 底部 -->
@@ -21,11 +22,11 @@
   import Hobbies from './components/Hobbies.vue'; // 兴趣爱好
   import SelfEvaluation from './components/SelfEvaluation.vue'; // 自我评价
   import WorksDisplay from './components/WorksDisplay.vue'; // 作品展示
-  import { useResumeJsonStore } from '@/store/resume';
+  import appStore from '@/store';
   import { storeToRefs } from 'pinia';
   import { onMounted, ref } from 'vue';
   import ModelBoxVue from '@/components/ModelBox/ModelBox.vue';
-  const { resumeJsonStore } = storeToRefs(useResumeJsonStore());
+  const { resumeJsonStore } = storeToRefs(appStore.useResumeJsonStore);
 
   // 注册局部组件
   const components: any = {

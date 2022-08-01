@@ -6,9 +6,9 @@
 </template>
 <script lang="ts" setup>
   import { IRESUMETITLE, ISTYLE } from '@/interface/model';
-  import { useResumeJsonStore } from '@/store/resume';
+  import appStore from '@/store';
   import { storeToRefs } from 'pinia';
-  const { resumeJsonStore } = storeToRefs(useResumeJsonStore());
+  const { resumeJsonStore } = storeToRefs(appStore.useResumeJsonStore);
   defineProps<{
     modelData: IRESUMETITLE;
   }>();

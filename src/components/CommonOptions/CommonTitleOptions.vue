@@ -16,7 +16,7 @@
 <script setup lang="ts">
   import { useFontSizeList } from '@/hooks/useFontSizeList';
   import { useModelIndex } from '@/hooks/useModelIndex';
-  import { useResumeJsonStore } from '@/store/resume';
+  import appStore from '@/store';
   import ColorPickerCustomVue from '../ColorPicker/ColorPickerCustom.vue';
   import { reactive } from 'vue';
   interface IProps {
@@ -30,7 +30,7 @@
     fontWeightLabel: '标题字体粗细'
   });
   // store
-  const { resumeJsonStore } = useResumeJsonStore();
+  const { resumeJsonStore } = appStore.useResumeJsonStore;
   // 选中的模块
   const index = useModelIndex(); // 选中的索引
   const modelItem = reactive(resumeJsonStore.LIST[index]);

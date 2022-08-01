@@ -24,12 +24,12 @@
 <script setup lang="ts">
   import { reactive, ref } from 'vue';
   import { IRESUMETITLE } from '@/interface/model';
-  import { useResumeJsonStore } from '@/store/resume';
+  import appStore from '@/store';
   import CommonOptions from '@/components/CommonOptions/CommonOptions.vue';
   import { useModelIndex } from '@/hooks/useModelIndex';
   import ColorPickerCustomVue from '../ColorPicker/ColorPickerCustom.vue';
   // store
-  const { resumeJsonStore } = useResumeJsonStore();
+  const { resumeJsonStore } = appStore.useResumeJsonStore;
 
   // 选中的模块
   const index = useModelIndex(); // 选中的索引
