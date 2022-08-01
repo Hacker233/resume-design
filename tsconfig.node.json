@@ -7,5 +7,6 @@
   "include": [
     "vite.config.ts",
     "build/**/*.ts",
+    "types/**/*.d.ts"
   ]
 }
