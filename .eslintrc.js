@@ -13,6 +13,8 @@ module.exports = {
   extends: [
     'plugin:vue/vue3-recommended',
     'plugin:@typescript-eslint/recommended',
+    'vue-global-api',
+    './.eslintrc-auto-import.json',
     'prettier',
     'plugin:prettier/recommended'
   ],
