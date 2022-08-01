@@ -1,13 +1,13 @@
 <script lang="ts" setup>
   import { storeToRefs } from 'pinia';
-  import { useAuthStore } from '@/store/auth';
+  import appStore from '@/store';
   import { ElNotification, FormInstance } from 'element-plus';
   import { computed, onBeforeUnmount, reactive, ref } from 'vue';
   import { useCountdown } from '@/hooks/useCountdown';
   import { validateForm } from './validate';
   import 'element-plus/theme-chalk/el-notification.css';
 
-  const { isShowModal } = storeToRefs(useAuthStore());
+  const { isShowModal } = storeToRefs(appStore.useAuthStore);
 
   const formRef = ref<FormInstance>();
 
