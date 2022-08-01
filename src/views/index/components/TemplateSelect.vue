@@ -1,5 +1,5 @@
 <template>
-  <div class="template-select-box" ref="templateRef">
+  <div ref="templateRef" class="template-select-box">
     <div class="title">
       <h1>免费模板 + 用心设计</h1>
       <p>用心设计每一套模板，适合各行各业从业者</p>
@@ -7,7 +7,7 @@
     <!-- 模板列表 -->
     <div class="card-list">
       <template v-for="(item, index) in templateList">
-        <template-card :cardData="item" @toDesign="toDesign"> </template-card>
+        <template-card :card-data="item" @toDesign="toDesign"> </template-card>
       </template>
     </div>
   </div>
@@ -19,11 +19,16 @@
   import { useRouter } from 'vue-router';
   import { onUnmounted, ref } from 'vue';
   import { closeGlobalLoading, openGlobalLoading } from '@/utils/common';
+  import { useAuthStore } from '@/store/auth';
 
   // 跳转至设计页面
+  const authStore = useAuthStore();
   const router = useRouter();
   const toDesign = (item: ITempList) => {
-    openGlobalLoading(); // 等待动画层
+    if (authStore.isLogin) {
+      openGlobalLoading(); // 等待动画层
+    }
+
     router.push({
       path: '/designer',
       query: {

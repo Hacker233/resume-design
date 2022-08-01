@@ -7,6 +7,7 @@ export {}
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
+    AuthDialog: typeof import('./src/components/AuthDialog/AuthDialog.vue')['default']
     AwardsCom: typeof import('./src/components/ModelComs/AwardsCom.vue')['default']
     BaseInfoOptions: typeof import('./src/components/CommonOptions/BaseInfoOptions.vue')['default']
     CampusExperienceCom: typeof import('./src/components/ModelComs/CampusExperienceCom.vue')['default']
@@ -29,6 +30,7 @@ declare module '@vue/runtime-core' {
     ElPopover: typeof import('element-plus/es')['ElPopover']
     ElSelect: typeof import('element-plus/es')['ElSelect']
     ElSlider: typeof import('element-plus/es')['ElSlider']
+    ElSpace: typeof import('element-plus/es')['ElSpace']
     ElSwitch: typeof import('element-plus/es')['ElSwitch']
     ElTabPane: typeof import('element-plus/es')['ElTabPane']
     ElTabs: typeof import('element-plus/es')['ElTabs']

@@ -56,8 +56,8 @@ export const getAssetsFile = (url: string) => {
 // 时间格式转化：['2015-5', '2019-6'] -> 2015.05 - 2019.06
 export const formatDate = (dataArray: Array<string> | string): string => {
   if (Array.isArray(dataArray)) {
-    let startDate = moment(new Date(dataArray[0])).format('YYYY.MM').split('-').join('.');
-    let endDate = moment(new Date(dataArray[1])).format('YYYY.MM').split('-').join('.');
+    const startDate = moment(new Date(dataArray[0])).format('YYYY.MM').split('-').join('.');
+    const endDate = moment(new Date(dataArray[1])).format('YYYY.MM').split('-').join('.');
     return `${startDate}-${endDate}`;
   } else {
     return moment(new Date(dataArray)).format('YYYY.MM').split('-').join('.');
@@ -84,7 +84,7 @@ export const openAndCloseLoadingByTime = (time: number) => {
 
 // 判断是否需要删除本地数据, 不是版本2的需要重置
 export const checkVersion = () => {
-  let version = localStorage.getItem('version');
+  const version = localStorage.getItem('version');
   if (!version) {
     localStorage.removeItem('resumeDraft'); // 移出本地简历数据
   } else {
@@ -99,7 +99,7 @@ export const checkVersion = () => {
 export const isJSON = (str: string): boolean => {
   if (typeof str == 'string') {
     try {
-      let obj = JSON.parse(str);
+      const obj = JSON.parse(str);
       if (typeof obj == 'object' && obj) {
         return true;
       } else {

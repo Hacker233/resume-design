@@ -364,7 +364,6 @@ template {
 }
 
 ::-webkit-scrollbar {
-  /* display: none; */
   width: 8px;
   height: 8px;
 }
@@ -384,4 +383,3 @@ template {
   border-radius: 6px;
   background-color: rgb(159, 159, 159);
 }
-

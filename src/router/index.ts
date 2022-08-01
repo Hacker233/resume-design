@@ -1,5 +1,4 @@
-import { createRouter, createWebHashHistory, createWebHistory, RouteRecordRaw } from 'vue-router';
-
+import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router';
 const Designer = () => import('@/views/designer/index.vue');
 const Index = () => import('@/views/index/index.vue');
 
@@ -23,7 +22,7 @@ const routes: Array<RouteRecordRaw> = [
       requireAuth: true
     },
     component: Designer
-  },
+  }
 ];
 // const routerHistory = createWebHistory('/');
 const router = createRouter({

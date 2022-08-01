@@ -1,7 +1,7 @@
 <template>
-  <div class="index-box" ref="indexRef" @scroll="handleScroll">
+  <div ref="indexRef" class="index-box" @scroll="handleScroll">
     <!-- 导航栏 -->
-    <nav-bar :bgColor="navColor" :fontColor="fontColor" :icon-color="iconColor"></nav-bar>
+    <nav-bar :bg-color="navColor" :font-color="fontColor" :icon-color="iconColor"></nav-bar>
     <!-- 项目介绍栏 -->
     <div ref="introduceRef">
       <project-introduce @free-make="freeMake"></project-introduce>

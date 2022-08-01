@@ -1,27 +1,26 @@
-@forward "element-plus/theme-chalk/src/common/var.scss" with (
+@forward 'element-plus/theme-chalk/src/common/var.scss' with (
   $colors: (
-    "primary": (
-      "base": #00c091,
+    'primary': (
+      'base': #00c091
     ),
-    "success": (
-      "base": #67C23A,
+    'success': (
+      'base': #67c23a
     ),
-    "warning": (
-      "base": #E6A23C,
+    'warning': (
+      'base': #e6a23c
     ),
-    "danger": (
-      "base": #F56C6C,
+    'danger': (
+      'base': #f56c6c
     ),
-    "error": (
-      "base": #F56C6C,
+    'error': (
+      'base': #f56c6c
     ),
-    "info": (
-      "base": #909399,
-    ),
+    'info': (
+      'base': #909399
+    )
   ),
-
   $button-padding-horizontal: (
-    "default": 80px
+    'default': 80px
   )
 );
 

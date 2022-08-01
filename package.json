@@ -34,7 +34,7 @@
     "axios": "^0.26.1",
     "c-scrollbar": "^1.0.2",
     "colorpicker-v3": "^2.10.2",
-    "element-plus": "^2.1.11",
+    "element-plus": "^2.2.12",
     "file-saver": "^2.0.5",
     "html2canvas": "^1.4.1",
     "jspdf": "^1.4.1",
