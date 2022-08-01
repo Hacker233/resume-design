@@ -6,10 +6,10 @@
 </template>
 <script lang="ts" setup>
   import LoadingComVue from '@/components/Loading/LoadingCom.vue'; // 全局等待层
-  import { useLoadingStore } from '@/store/loading';
+  import appStore from './store';
   import { storeToRefs } from 'pinia';
   import { openAndCloseLoadingByTime } from './utils/common';
-  const { isLoading } = storeToRefs(useLoadingStore());
+  const { isLoading } = storeToRefs(appStore.useLoadingStore);
   openAndCloseLoadingByTime(1500); // 等待动画层
 </script>
 <style>

@@ -57,7 +57,7 @@
   ></import-json-dialog>
 </template>
 <script lang="ts" setup>
-  import { useResumeJsonStore } from '@/store/resume';
+  import appStore from '@/store';
   import { ElMessage, ElMessageBox } from 'element-plus';
   import 'element-plus/es/components/message-box/style/index';
   import FileSaver from 'file-saver';
@@ -67,7 +67,7 @@
   import { useRouter } from 'vue-router';
   import ImportJsonDialog from '@/components/ImportJsonDialog/ImportJsonDialog.vue';
   import { debounce } from 'lodash';
-  let { resumeJsonStore } = storeToRefs(useResumeJsonStore()); // store里的模板数据
+  let { resumeJsonStore } = storeToRefs(appStore.useResumeJsonStore); // store里的模板数据
   const emit = defineEmits(['generateReport', 'reset', 'saveDataToLocal']);
 
   // 跳转到首页

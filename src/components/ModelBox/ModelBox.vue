@@ -32,7 +32,7 @@
 </template>
 <script lang="ts" setup>
   import { useModelOptionsComName } from '@/hooks/useModelOptionsComName';
-  import { useResumeModelStore } from '@/store/resume';
+  import appStore from '@/store';
   import { ComponentPublicInstance, reactive, ref, watch } from 'vue';
   import { useCopyModel } from '@/hooks/useCopyModel';
   import { useDeleteModel } from '@/hooks/useDeleteModel';
@@ -43,9 +43,8 @@
     item: any;
     components: any;
   }>();
-
   // 锚点定位
-  const { id } = storeToRefs(useResumeModelStore());
+  const { id } = storeToRefs(appStore.useResumeModelStore);
   watch(
     id,
     (newVal, oldVal) => {
@@ -87,13 +86,13 @@
   };
 
   // 点击模块
-  const resumeModelStore = useResumeModelStore();
+  const { setResumeModel } = appStore.useResumeModelStore;
   const route = useRoute();
   const { name } = route.query; // 模板id和模板名称
   const selectModel = (model: string, title: string, id: string) => {
     let optionsName: string = useModelOptionsComName(`${name}-${model}`);
     console.log('optionsName', optionsName);
-    resumeModelStore.setResumeModel({ model, optionsName, title, id });
+    setResumeModel(model, optionsName, title, id);
   };
 </script>
 <style lang="scss" scoped>

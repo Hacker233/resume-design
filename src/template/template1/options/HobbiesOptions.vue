@@ -25,11 +25,11 @@
 <script setup lang="ts">
   import { reactive, ref } from 'vue';
   import { IHOBBIES } from '@/interface/model';
-  import { useResumeJsonStore } from '@/store/resume';
+  import appStore from '@/store';
   import CommonOptions from '@/components/CommonOptions/CommonOptions.vue'; // 公共属性设置
   import { useModelIndex } from '@/hooks/useModelIndex';
   // store
-  const { resumeJsonStore } = useResumeJsonStore();
+  const { resumeJsonStore } =appStore.useResumeJsonStore;
 
   // 选中的模块
   const index = useModelIndex(); // 选中的索引

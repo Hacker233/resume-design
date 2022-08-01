@@ -107,12 +107,12 @@
   </div>
 </template>
 <script lang="ts" setup>
-  import { useResumeJsonStore } from '@/store/resume';
+  import appStore from '@/store';
   import { reactive, ref } from 'vue';
   import { pxTonumber } from '@/utils/common';
   import { useFontSizeList } from '@/hooks/useFontSizeList';
   import ColorPickerCustomVue from '../ColorPicker/ColorPickerCustom.vue';
-  const { resumeJsonStore } = useResumeJsonStore();
+  const { resumeJsonStore } = appStore.useResumeJsonStore;
 
   // 字体大小
   const fontSizeList = useFontSizeList();
