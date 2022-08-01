@@ -24,12 +24,12 @@
   import WorksDisplayVue from './components/WorksDisplay.vue';
   import HobbiesVue from './components/Hobbies.vue';
   import AwardsVue from './components/Awards.vue';
-  import { useResumeJsonStore } from '@/store/resume';
+  import appStore from '@/store';
   import { storeToRefs } from 'pinia';
   import ModelBoxVue from '@/components/ModelBox/ModelBox.vue';
   import { onMounted, ref } from 'vue';
 
-  const { resumeJsonStore } = storeToRefs(useResumeJsonStore());
+  const { resumeJsonStore } = storeToRefs(appStore.useResumeJsonStore);
   // 注册局部组件
   const components: any = {
     BASE_INFO: BaseInfoVue,

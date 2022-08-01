@@ -51,13 +51,13 @@
 <script setup lang="ts">
   import { reactive, ref } from 'vue';
   import { ISKILLSPECIALTIES } from '@/interface/model';
-  import { useResumeJsonStore } from '@/store/resume';
+  import appStore from '@/store';
   import CommonOptions from '@/components/CommonOptions/CommonOptions.vue';
   import { Plus, SemiSelect } from '@element-plus/icons-vue';
   import { useModelIndex } from '@/hooks/useModelIndex';
   import { StarFilled } from '@element-plus/icons-vue';
   // store
-  const { resumeJsonStore } = useResumeJsonStore();
+  const { resumeJsonStore } = appStore.useResumeJsonStore;
 
   // 选中的模块
   const index = useModelIndex(); // 选中的索引

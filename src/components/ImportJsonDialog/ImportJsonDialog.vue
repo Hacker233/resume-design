@@ -70,8 +70,7 @@
   import { isJSON } from '@/utils/common';
   import { useRoute } from 'vue-router';
   import useAddStyle from '@/hooks/useAddStyle';
-  import { useResumeJsonStore, useResumeModelStore } from '@/store/resume';
-  import { useUuidStore } from '@/store/uuid';
+  import appStore from '@/store';
   import TipJsonDialog from '@/components/TipJsonDialog/TipJsonDialog.vue';
 
   const emit = defineEmits(['cancle']);
@@ -113,10 +112,10 @@
   };
 
   // 提交JSON
-  const UuidStore = useUuidStore();
+  const { setUuid } = appStore.useUuidStore;
   const route = useRoute();
-  const store = useResumeJsonStore();
-  const useModel = useResumeModelStore();
+  const { changeResumeJsonData } = appStore.useResumeJsonStore;
+  const { storeReset } = appStore.useResumeModelStore;
   const confirmJson = () => {
     if (!code.value) {
       ElMessage({
@@ -153,9 +152,9 @@
     // 合并样式
     const afterStyleJson = useAddStyle(importJson);
     console.log('导入的最终JSON', afterStyleJson);
-    store.changeResumeJsonData(afterStyleJson); // 更改store的数据
-    UuidStore.setUuid(); // 重新渲染左侧列表和右侧属性面板设置
-    useModel.$reset(); // 重置选中模块
+    changeResumeJsonData(afterStyleJson); // 更改store的数据
+    setUuid(); // 重新渲染左侧列表和右侧属性面板设置
+    storeReset(); // 重置选中模块
     emit('cancle');
   };
 </script>

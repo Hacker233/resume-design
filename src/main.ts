@@ -1,6 +1,6 @@
 import { createApp } from 'vue';
 import App from './App.vue';
-import store from './store';
+// import store from './store';
 import router from './router';
 import '@/style/normalize.css';
 import component from '@/utils/registerCom';
@@ -21,9 +21,17 @@ import 'element-plus/theme-chalk/src/message.scss';
 
 import './router/permission';
 
+// 注册store
+import { createPinia } from 'pinia';
+import { registerStore } from '@/store';
+
 // 创建vue实例
 const app = createApp(App);
-app.use(store);
+// app.use(store);
+app.use(createPinia());
+// 注册pinia状态管理库
+registerStore();
+
 app.use(router);
 app.use(component);
 app.use(elementIcons);

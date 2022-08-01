@@ -1,7 +1,7 @@
 <template>
   <div class="classic-box" ref="tmp2ContentHeightRef">
     <div class="left" ref="leftRef">
-      <template v-for="(item) in leftList">
+      <template v-for="item in leftList">
         <model-box-vue :item="item" :components="components"></model-box-vue>
       </template>
     </div>
@@ -11,14 +11,14 @@
         <name-abstact></name-abstact>
       </div>
       <!-- 右侧模块列表 -->
-      <template v-for="(item) in rightList">
+      <template v-for="item in rightList">
         <model-box-vue :item="item" :components="components"></model-box-vue>
       </template>
     </div>
   </div>
 </template>
 <script setup lang="ts">
-  import { useResumeJsonStore, useResumeModelStore } from '@/store/resume';
+  import appStore from '@/store';
   import { storeToRefs } from 'pinia';
   import { onMounted, ref, watch } from 'vue';
   import { useModelOptionsComName } from '@/hooks/useModelOptionsComName';
@@ -37,7 +37,7 @@
   import SelfEvaluation from './components/SelfEvaluation.vue'; // 自我评价
   import WorksDisplay from './components/WorksDisplay.vue'; // 个人作品
   import ModelBoxVue from '@/components/ModelBox/ModelBox.vue';
-  const { resumeJsonStore } = storeToRefs(useResumeJsonStore()); // 简历数据
+  const { resumeJsonStore } = storeToRefs(appStore.useResumeJsonStore); // 简历数据
 
   const emit = defineEmits(['contentHeightChange']);
 
@@ -81,7 +81,7 @@
       return item.model === 'BASE_INFO' || item.model === 'SKILL_SPECIALTIES';
     })
   );
-  watch(resumeJsonStore.value, () => {
+  watch(resumeJsonStore, () => {
     leftList.value = resumeJsonStore.value.LIST.filter((item) => {
       return item.model === 'BASE_INFO' || item.model === 'SKILL_SPECIALTIES';
     });
@@ -95,13 +95,13 @@
     return item.model == 'BASE_INFO';
   }) as IBASEINFO;
   // 选择姓名简介模块
-  const resumeModelStore = useResumeModelStore();
+  const { setResumeModel } = appStore.useResumeModelStore;
   const selectNameModel = () => {
-    let optionsName: string = useModelOptionsComName(`template2-${modelData?.model}`);
+    let optionsName: string = useModelOptionsComName(`template2-${modelData?.model}`) as string;
     let model = modelData?.model;
     let title = modelData?.title;
     let id = modelData?.id;
-    resumeModelStore.setResumeModel({ model, optionsName, title, id });
+    setResumeModel(model, optionsName, title, id);
   };
 
   // 右侧组件列表

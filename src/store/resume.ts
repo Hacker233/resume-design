@@ -1,49 +1,48 @@
 import { defineStore } from 'pinia';
 import { IResumeJson } from '@/interface/model';
 import TEMPLATE_JSON from '@/schema/model';
+import { reactive, ref } from 'vue';
 
-interface IResumeModel {
-  model: string;
-  optionsName: string;
-  title: string;
-  id: string;
-}
-
-export const useResumeJsonStore = defineStore({
-  id: 'resumeJson',
-  state: () => {
-    return {
-      resumeJsonStore: TEMPLATE_JSON
-    };
-  },
-  getters: {},
-  actions: {
-    changeResumeJsonData(obj: IResumeJson) {
-      this.resumeJsonStore = obj;
-    }
+export const useResumeJsonStore = defineStore('resumeJson', () => {
+  let resumeJsonStore = ref<IResumeJson>(TEMPLATE_JSON);
+  function changeResumeJsonData(obj: IResumeJson) {
+    resumeJsonStore.value = obj;
   }
+
+  return {
+    resumeJsonStore,
+    changeResumeJsonData
+  };
 });
 
-export const useResumeModelStore = defineStore({
-  id: 'resumeModel', // id必填，且需要唯一
-  state: (): IResumeModel => {
-    return {
-      model: '', // 选中的模块名称
-      optionsName: '', // 需要使用的属性设置面板组件名
-      title: '主题设置',
-      id: '' // 选中的id
-    };
-  },
-  getters: {},
-  actions: {
-    setResumeModel({ model, optionsName, title, id }: IResumeModel) {
-      // 批量更新
-      this.$patch({
-        model,
-        optionsName,
-        title,
-        id
-      });
-    }
+export const useResumeModelStore = defineStore('resumeModel', () => {
+  const model = ref<string>(''); // 选中的模块名称
+  const optionsName = ref<string>(''); // 需要使用的属性设置面板组件名
+  const title = ref<string>('主题设置');
+  const id = ref<string>(''); // 选中的id
+  function setResumeModel(
+    modelTxt: string,
+    optionsNameTxt: string,
+    titleTxt: string,
+    idTxt: string
+  ) {
+    model.value = modelTxt;
+    optionsName.value = optionsNameTxt;
+    title.value = titleTxt;
+    id.value = idTxt;
   }
+  function storeReset() {
+    model.value = '';
+    optionsName.value = '';
+    title.value = '主题设置';
+    id.value = '';
+  }
+  return {
+    model,
+    optionsName,
+    title,
+    id,
+    setResumeModel,
+    storeReset
+  };
 });
