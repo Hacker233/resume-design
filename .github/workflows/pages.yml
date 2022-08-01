@@ -29,6 +29,8 @@ jobs:
         uses: actions/checkout@v3
       - name: Setup Pages
         uses: actions/configure-pages@v1
+      - name: version
+        run: node -v
       - name: npm install
         run: npm install
       - name: npm run build
