@@ -1,12 +1,12 @@
 <template>
   <div ref="tmp1ContentHeightRef">
-    <template v-for="(item) in resumeJsonStore.LIST">
+    <template v-for="item in resumeJsonStore.LIST">
       <model-box-vue v-if="item" :item="item" :components="components"></model-box-vue>
       <!-- <component v-if="item" :is="components[item.model]" :modelData="item"></component> -->
     </template>
+    <!-- 底部 -->
+    <div class="model-bottom"></div>
   </div>
-  <!-- 底部 -->
-  <div class="model-bottom"></div>
 </template>
 <script setup lang="ts">
   import ResumeTitle from './components/ResumeTitle.vue'; // 简历标题
@@ -25,6 +25,7 @@
   import appStore from '@/store';
   import { storeToRefs } from 'pinia';
   import { onMounted, ref } from 'vue';
+  import { cloneDeep } from 'lodash-es';
   import ModelBoxVue from '@/components/ModelBox/ModelBox.vue';
   const { resumeJsonStore } = storeToRefs(appStore.useResumeJsonStore);
 
@@ -51,22 +52,65 @@
   });
 
   // 监听内容高度发生变化
-  const tmp1ContentHeightRef = ref<any>(null);
+  const tmp1ContentHeightRef = ref<HTMLDivElement | null>(null);
   let observer: ResizeObserver | null = null;
-  let height: number = 0;
+  // let height:number = 0;
   const changeHeight = () => {
     observer = new ResizeObserver(async (entries: ResizeObserverEntry[]) => {
       for (let entry of entries) {
-        height = (entry.target as HTMLElement).offsetHeight;
-        emit('contentHeightChange', height);
+        const el = entry.target;
+        console.log('el', el);
+        // 分割高度
+        let pageHeight = 1160;
+        // 总高度
+        const allHeight = entry.target!.getBoundingClientRect().height;
+        // 页面数量
+        let page: number = Math.ceil(allHeight / pageHeight);
+        // 高度1160就分割
+        // if(allHeight/1160)
+        // 添加div
+        const divList: HTMLDivElement[] = Array(page).fill(document.createElement('div'));
+        // 当前填充元素的索引
+        let curPageIndex = 0;
+        // 当前最后卡片的高度
+        let curPageElAllHeight = 0;
+        console.log('el', el);
+        const elChildren: HTMLDivElement[] = cloneDeep(el.children);
+        // console.log(el.firstElementChild);
+
+        console.log('elChildren', elChildren);
+
+        if (!elChildren) continue;
+        for (const child_el of Array.from(elChildren)) {
+          let elHeight = ~~child_el.getBoundingClientRect().height + 1;
+          console.log('elHeight', elHeight);
+          curPageElAllHeight += elHeight;
+          if (curPageElAllHeight < pageHeight) {
+            divList[curPageIndex].appendChild(child_el);
+          } else {
+            curPageIndex++;
+            curPageElAllHeight = elHeight;
+            divList[curPageIndex].appendChild(child_el);
+          }
+          console.log('divList', divList);
+        }
+        console.log('---------------------');
+
+        // console.log('divList', divList);
+        // tmp1ContentHeightRef.value = document.createElement('div');
+        // for (const page of divList) {
+        //   tmp1ContentHeightRef.value?.appendChild(page);
+        // }
+        // height = (entry.target as HTMLElement).offsetHeight;
+        // emit('contentHeightChange', height);
       }
     });
-    observer.observe(tmp1ContentHeightRef.value); // 监听元素
+    observer.observe(tmp1ContentHeightRef.value!); // 监听元素
   };
 </script>
 <script lang="ts">
   export default {
-    name: 'template1'
+    name: 'Template1'
   };
 </script>
 <style lang="scss" scoped>
