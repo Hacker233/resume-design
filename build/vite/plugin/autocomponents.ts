@@ -11,7 +11,7 @@ export function configAutoComponentsPlugin() {
     // dirs: ['src/components'],
     // extensions: ['vue', 'tsx'],
     // 配置文件生成位置
-    // dts: 'src/components.d.ts',
+    dts: 'src/components.d.ts',
     // 搜索子目录
     // deep: true,
     // 允许子目录作为组件的命名空间前缀。
