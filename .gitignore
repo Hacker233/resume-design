@@ -10,6 +10,10 @@ lerna-debug.log*
 node_modules
 dist
 dist-ssr
+
+auto-import.d.ts
+components.d.ts
+
 *.local
 
 # Editor directories and files
