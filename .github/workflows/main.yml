@@ -3,7 +3,7 @@ on:
   #监听push操作
   pull_request:
     branches:
-      # master分支，你也可以改成其他分支
+      # main分支，你也可以改成其他分支
       - main
 jobs:
   build:
