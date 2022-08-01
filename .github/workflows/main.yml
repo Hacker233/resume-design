@@ -1,10 +1,10 @@
 name: 部署化简到服务器上
 on:
   #监听push操作
-  push:
+  pull_request:
     branches:
       # main分支，你也可以改成其他分支
-      - deply-test
+      - main
 jobs:
   build:
     runs-on: ubuntu-latest
