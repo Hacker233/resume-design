@@ -3,7 +3,7 @@ import type { BuildOptions } from 'vite';
 export function createBuild(viteEnv): BuildOptions {
   const { VITE_ENV, VITE_OUTPUT_DIR } = viteEnv;
   return {
-    sourcemap: false, // 是否启用
+    sourcemap: VITE_ENV !== 'production', // 是否启用
     outDir: VITE_OUTPUT_DIR,
     cssCodeSplit: true, // 禁用 CSS 代码拆分,将整个项目中的所有 CSS 将被提取到一个 CSS 文件中
     reportCompressedSize: false, // 关闭打包计算
