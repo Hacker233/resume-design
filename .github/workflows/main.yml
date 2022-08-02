@@ -10,8 +10,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: npm install
-        run: npm install
+      - name: npm install -g pnpm
+        run: npm install -g pnpm
+      - name: pnpm install
+        run: pnpm install
       - name: npm run build
         env:
           NODE_OPTIONS: '--max_old_space_size=4096'
