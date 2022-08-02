@@ -1,4 +1,4 @@
-name: 部署化简到服务器上
+name: 部署化简到开发服务器上
 on:
   #监听push操作
   pull_request:
