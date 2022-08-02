@@ -65,13 +65,13 @@
 <script setup lang="ts">
   import { reactive, ref } from 'vue';
   import { ICAMPUSEXPERIENCE } from '@/interface/model';
-  import { useResumeJsonStore } from '@/store/resume';
+  import appStore from '@/store';
   import CommonOptions from '@/components/CommonOptions/CommonOptions.vue';
   import CommonTitleOptions from '@/components/CommonOptions/CommonTitleOptions.vue';
   import { Delete } from '@element-plus/icons-vue';
   import { useModelIndex } from '@/hooks/useModelIndex';
   // store
-  const { resumeJsonStore } = useResumeJsonStore();
+  const { resumeJsonStore } = appStore.useResumeJsonStore;
 
   // 选中的模块
   const index = useModelIndex(); // 选中的索引

@@ -1,6 +1,6 @@
 import { uuid } from 'vue-uuid';
 import moment from 'moment'; // 日期处理
-import { useLoadingStore } from '@/store/loading';
+import appStore from '@/store';
 // 工具方法--px转数字
 export const pxTonumber = (value: string | undefined): number => {
   if (value) {
@@ -66,13 +66,13 @@ export const formatDate = (dataArray: Array<string> | string): string => {
 
 // 开启全局等待层
 export const openGlobalLoading = () => {
-  const store = useLoadingStore();
-  store.isLoading = true;
+  const { changLoading } = appStore.useLoadingStore;
+  changLoading(true);
 };
 // 关闭全局等待层
 export const closeGlobalLoading = () => {
-  const store = useLoadingStore();
-  store.isLoading = false;
+  const { changLoading } = appStore.useLoadingStore;
+  changLoading(false);
 };
 // 先开启等待层，然后指定时间关闭等待层
 export const openAndCloseLoadingByTime = (time: number) => {

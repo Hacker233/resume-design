@@ -10,9 +10,9 @@
   </div>
 </template>
 <script setup lang="ts">
-  import { useResumeJsonStore } from '@/store/resume';
+  import appStore from '@/store';
   import { storeToRefs } from 'pinia';
-  const { resumeJsonStore } = storeToRefs(useResumeJsonStore());
+  const { resumeJsonStore } = storeToRefs(appStore.useResumeJsonStore);
   defineProps<{
     title: string;
     iconfont: string;

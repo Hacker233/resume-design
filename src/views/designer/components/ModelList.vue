@@ -14,7 +14,7 @@
           <div
             :class="[
               'model-list-item',
-              { active: resumeModel.id === element.id },
+              { active: appStore.useResumeModelStore.id == element.id },
               { 'collapse-center': !leftShowStatus }
             ]"
             @click="selectModel(element)"
@@ -22,7 +22,13 @@
             <!-- 是否添加模块 -->
             <div class="left">
               <div :class="['icon-box', { 'collapse-size': !leftShowStatus }]">
-                <el-tooltip class="box-item" placement="right" effect="dark" :content="element.title" :disabled="leftShowStatus">
+                <el-tooltip
+                  class="box-item"
+                  placement="right"
+                  effect="dark"
+                  :content="element.title"
+                  :disabled="leftShowStatus"
+                >
                   <svg-icon
                     :iconName="element.iconfont"
                     className="icon"
@@ -45,7 +51,7 @@
 </template>
 <script setup lang="ts">
   import { useModelOptionsComName } from '@/hooks/useModelOptionsComName';
-  import { useResumeModelStore, useResumeJsonStore } from '@/store/resume';
+  import appStore from '@/store';
   import { getUuid } from '@/utils/common';
   import draggable from 'vuedraggable';
 
@@ -54,10 +60,10 @@
   }>();
 
   // 列表数据
-  const { resumeJsonStore } = useResumeJsonStore();
+  const { resumeJsonStore } = appStore.useResumeJsonStore;
 
   // 选中模块
-  const resumeModel = useResumeModelStore();
+  const { setResumeModel } = appStore.useResumeModelStore;
   const selectModel = (item: any) => {
     let optionsName: string = useModelOptionsComName(`${resumeJsonStore.NAME}-${item.model}`);
     let updateData = {
@@ -66,7 +72,7 @@
       title: item.title,
       id: item.id
     };
-    resumeModel.setResumeModel(updateData);
+    setResumeModel(updateData.model, updateData.optionsName, updateData.title, updateData.id);
   };
 
   // 下移模块

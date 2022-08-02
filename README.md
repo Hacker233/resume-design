@@ -16,8 +16,12 @@
   - [功能介绍](#功能介绍)
   - [项目特性](#项目特性)
   - [如何使用](#如何使用)
+    - [拉取项目](#拉取项目)
+    - [安装项目依赖](#安装项目依赖)
+    - [运行项目](#运行项目)
+    - [构建项目](#构建项目)
+    - [目录说明:](#目录说明)
   - [交流&贡献](#交流贡献)
-  - [维护者](#维护者)
   - [License](#license)
 
 ## 项目介绍
@@ -28,13 +32,13 @@
 
 **图片：**
 
-<p align="center"><img width="1000" src="https://github.com/Hacker233/resume-design/blob/main/doc/images/1.png"></p>
+<p align="center"><img width="1000" src="https://github.com/huajian-pro/resume-design/blob/main/doc/images/1.png"></p>
 
 
-<p align="center"><img width="1000" src="https://github.com/Hacker233/resume-design/blob/main/doc/images/4.png"></p>
+<p align="center"><img width="1000" src="https://github.com/huajian-pro/resume-design/blob/main/doc/images/4.png"></p>
 
 
-<p align="center"><img width="1000" src="https://github.com/Hacker233/resume-design/blob/main/doc/images/6.png"></p>
+<p align="center"><img width="1000" src="https://github.com/huajian-pro/resume-design/blob/main/doc/images/6.png"></p>
 
 ## 功能介绍
 
@@ -58,15 +62,34 @@
 
 ## 如何使用
 
-安装：
-
+### 拉取项目
 ```bash
-$ git clone https://github.com/Hacker233/resume-design.git
-$ npm install
-$ npm run dev
+git clone https://github.com/huajian-pro/resume-design.git
+```
+- 推荐使用包管理工具[pnpm](https://pnpm.io/installation)
+- 或使用[yarn](https://yarnpkg.com/getting-started/install)、npm（node自带无需额外安装）包管理工具
+
+> pnpm全局安装方法`npm i -g pnpm`
+
+### 安装项目依赖
+```bash
+cd resume-design
+
+// 使用pnpm安装依赖（推荐）
+pnpm install
 ```
 
-目录说明:
+### 运行项目
+```bash
+pnpm dev
+```
+
+### 构建项目
+```bash
+pnpm build
+```
+
+### 目录说明:
 
 ```
 ├─ doc			  // 项目相关文档
@@ -91,11 +114,42 @@ $ npm run dev
 ## 交流&贡献
 
 添加vx：LHQfighting，进入微信交流群，可方便解决和提出问题。
-<p align="center"><img width="400" src="https://github.com/Hacker233/resume-design/blob/main/src/assets/images/vx.jpg"></p>
+<p align="center"><img width="400" src="https://github.com/huajian-pro/resume-design/blob/main/src/assets/images/vx.jpg"></p>
 
-## 维护者
+## 贡献者
 
-- [会飞的猪](https://github.com/Hacker233)
+<table>
+<tr>
+    <td align="center" style="word-wrap: break-word; width: 75.0; height: 75.0">
+        <a href=https://github.com/Hacker233>
+            <img src=https://avatars.githubusercontent.com/u/28037169?v=4 width="50;"  style="border-radius:50%;align-items:center;justify-content:center;overflow:hidden;padding-top:10px" alt=会飞的猪/>
+            <br />
+            <sub style="font-size:14px"><b>会飞的猪</b></sub>
+        </a>
+    </td>
+    <td align="center" style="word-wrap: break-word; width: 75.0; height: 75.0">
+        <a href=https://github.com/QC2168>
+            <img src=https://avatars.githubusercontent.com/u/82024018?v=4 width="50;"  style="border-radius:50%;align-items:center;justify-content:center;overflow:hidden;padding-top:10px" alt=山田/>
+            <br />
+            <sub style="font-size:14px"><b>山田</b></sub>
+        </a>
+    </td>
+    <td align="center" style="word-wrap: break-word; width: 75.0; height: 75.0">
+        <a href=https://github.com/yunyouruoyu>
+            <img src=https://avatars.githubusercontent.com/u/79676185?v=4 width="50;"  style="border-radius:50%;align-items:center;justify-content:center;overflow:hidden;padding-top:10px" alt=yunyouruoyu/>
+            <br />
+            <sub style="font-size:14px"><b>yunyouruoyu</b></sub>
+        </a>
+    </td>
+    <td align="center" style="word-wrap: break-word; width: 75.0; height: 75.0">
+        <a href=https://github.com/daluozha>
+            <img src=https://avatars.githubusercontent.com/u/35727398?v=4 width="50;"  style="border-radius:50%;align-items:center;justify-content:center;overflow:hidden;padding-top:10px" alt=- luozha -/>
+            <br />
+            <sub style="font-size:14px"><b>- luozha -</b></sub>
+        </a>
+    </td>
+</tr>
+</table>
 
 ## License
 
