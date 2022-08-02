@@ -13,7 +13,7 @@ export default defineConfig(({ command, mode }: ConfigEnv) => {
   const env = loadEnv(mode, root); // 加载env环境
   const viteEnv = wrapperEnv(env);
   return {
-    base: './',
+    // base: './',
     resolve: {
       //设置别名
       alias: {
