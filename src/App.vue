@@ -1,6 +1,6 @@
 <template>
   <el-config-provider size="small">
-    <router-view v-slot="{}" v-show="!isLoading"></router-view>
+    <router-view v-show="!isLoading" v-slot="{}"></router-view>
     <loading-com-vue v-show="isLoading"></loading-com-vue>
   </el-config-provider>
 </template>
@@ -11,6 +11,7 @@
   import { openAndCloseLoadingByTime } from './utils/common';
   const { isLoading } = storeToRefs(appStore.useLoadingStore);
   openAndCloseLoadingByTime(1500); // 等待动画层
+  console.log('测试log');
 </script>
 <style>
   #app {
