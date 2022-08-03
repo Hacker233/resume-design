@@ -5,7 +5,9 @@
   "scripts": {
     "deploy": "npm install && npm run build",
     "dev": "vite",
+    "build:dev": "vue-tsc --noEmit && vite build --mode development",
     "build": "vue-tsc --noEmit && vite build",
+    "preview:dev": "npm run build:dev && vite preview",
     "preview": "npm run build && vite preview",
     "preview:dist": "vite preview",
     "eslint:comment": "使用 ESLint 检查并自动修复 src 目录下所有扩展名为 .js 和 .vue 的文件",
@@ -72,6 +74,7 @@
     "lint-staged": "^12.3.7",
     "prettier": "^2.6.1",
     "sass": "^1.53.0",
+    "terser": "^5.14.2",
     "typescript": "^4.5.4",
     "unplugin-auto-import": "^0.9.5",
     "unplugin-vue-components": "^0.21.2",
