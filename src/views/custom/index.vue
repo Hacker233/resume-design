@@ -20,12 +20,6 @@
   import MainRight from './components/MainRight.vue'; // 右侧区域
 
   import TestCom from '@/material/testCom/index.vue';
-  import { DefineComponent } from 'vue';
-
-  // type ComsType = typeof TestCom
-  // interface IComponents {
-  //   TestCom: ComsType;
-  // }
   
   // 注册所有物料组件
   const components = {

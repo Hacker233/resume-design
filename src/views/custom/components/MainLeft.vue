@@ -7,7 +7,7 @@
 </template>
 <script lang="ts" setup>
   defineProps<{
-    components: Object;
+    components: any;
   }>();
 </script>
 <style lang="scss" scoped>
