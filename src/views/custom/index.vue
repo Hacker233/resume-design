@@ -5,7 +5,7 @@
     <!-- 主区 -->
     <div class="main-box">
       <!-- 左侧物料区 -->
-      <main-left></main-left>
+      <main-left :components="components"></main-left>
       <!-- 中间设计区 -->
       <main-center></main-center>
       <!-- 右侧属性区 -->
@@ -14,10 +14,24 @@
   </div>
 </template>
 <script lang="ts" setup>
-  import NavCom from './components/NavCom.vue';
-  import MainLeft from './components/MainLeft.vue';
-  import MainCenter from './components/MainCenter.vue';
-  import MainRight from './components/MainRight.vue';
+  import NavCom from './components/NavCom.vue'; // 导航栏
+  import MainLeft from './components/MainLeft.vue'; // 左侧区域
+  import MainCenter from './components/MainCenter.vue'; // 中间区域
+  import MainRight from './components/MainRight.vue'; // 右侧区域
+
+  import TestCom from '@/material/testCom/index.vue';
+  import { DefineComponent } from 'vue';
+
+  // type ComsType = typeof TestCom
+  // interface IComponents {
+  //   TestCom: ComsType;
+  // }
+  
+  // 注册所有物料组件
+  const components = {
+    TEST_COM: TestCom
+  };
+  console.log('components', components);
 </script>
 <style lang="scss" scoped>
   .custom-resume-box {

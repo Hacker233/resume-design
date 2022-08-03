@@ -1,9 +1,16 @@
 <template>
   <div class="main-center-box">
     <!-- 设计区域 -->
-    <div class="center-box"> 我是设计区域 </div>
+    <div class="center-box"> 
+      <template v-for="item in components" >
+        <component :is="item.cptName"></component>
+      </template>
+    </div>
   </div>
 </template>
+<script lang="ts" setup>
+  const components = reactive<any>([]); // 定义组件列表
+</script>
 <style lang="scss" scoped>
   .main-center-box {
     display: flex;
