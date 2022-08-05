@@ -1,12 +1,12 @@
 <!-- 物料测试组件 -->
 <template>
-  <div class="test-box"> 测试组件 </div>
+  <div class="test-box"> 教育背景 </div>
 </template>
 <script lang="ts" setup></script>
 
 <script lang="ts">
   export default {
-    name: 'TEST_BOX' // 组件名
+    name: 'EDU_BACKGROUND_1' // 组件名
   };
 </script>
 <style lang="scss" scoped>

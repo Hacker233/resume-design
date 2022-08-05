@@ -5,9 +5,9 @@
     <!-- 主区 -->
     <div class="main-box">
       <!-- 左侧物料区 -->
-      <main-left :components="components"></main-left>
+      <main-left></main-left>
       <!-- 中间设计区 -->
-      <main-center></main-center>
+      <main-center :components="components"></main-center>
       <!-- 右侧属性区 -->
       <main-right></main-right>
     </div>
@@ -19,11 +19,13 @@
   import MainCenter from './components/MainCenter.vue'; // 中间区域
   import MainRight from './components/MainRight.vue'; // 右侧区域
 
-  import TestCom from '@/material/testCom/index.vue';
-  
+  import EDU_BACKGROUND_1 from '@/material/EduBackground/EduBackground1/index.vue';
+  import BASE_INFO_1 from '@/material/BaseInfo/BaseInfo1/index.vue';
+
   // 注册所有物料组件
   const components = {
-    TEST_COM: TestCom
+    EDU_BACKGROUND_1: EDU_BACKGROUND_1,
+    BASE_INFO_1: BASE_INFO_1
   };
   console.log('components', components);
 </script>
