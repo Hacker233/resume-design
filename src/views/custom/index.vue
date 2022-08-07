@@ -27,6 +27,8 @@
     EDU_BACKGROUND_1: EDU_BACKGROUND_1,
     BASE_INFO_1: BASE_INFO_1
   };
+
+  // 初始化数据
   console.log('components', components);
 </script>
 <style lang="scss" scoped>

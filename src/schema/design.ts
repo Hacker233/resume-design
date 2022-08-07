@@ -1,4 +1,4 @@
-import { IMSTERIALLISTJSON } from "@/interface/material";
+import { IMSTERIALLISTJSON } from '@/interface/material';
 
 // 模板设置的JSON数据格式
 export const DESIGN_JSON = {
@@ -55,16 +55,16 @@ export const MATERIAL_JSON: IMSTERIALLISTJSON = {
       cptX: 0, // 组件x坐标
       cptY: 0, // 组件y坐标
       cptZ: 0, // 组件z坐标
-      cptHeight: '', // 组件高度
-      cptWidth: '', // 组件宽度
+      cptHeight: '100px', // 组件高度
+      cptWidth: '100%', // 组件宽度
       style: {
-        textColor: '#757575',
+        titleColor: '#121c26',
+        titleFontSize: '30px',
         textFontSize: '14px',
+        titleFontWeight: 500,
         textFontWeight: 500,
-        titleColor: '#666666',
-        titleFontSize: '14px',
-        titleFontWeight: 600,
-        mBottom: '35px',
+        textColor: '#7c7b7b',
+        mBottom: '50px',
         mTop: '0px'
       }, // 组件样式
       data: {} // 组件数据

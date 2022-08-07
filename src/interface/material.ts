@@ -1,3 +1,5 @@
+import IMODELSTYLE from "./modelStyle";
+
 interface IMATERIALITEM {
   keyId: string;
   model: string;
@@ -8,20 +10,12 @@ interface IMATERIALITEM {
   cptZ: number; // 组件z坐标
   cptHeight: string; // 组件高度
   cptWidth: string; // 组件宽度
-  style: {
-    textColor: string;
-    textFontSize: string;
-    textFontWeight: number;
-    titleColor: string;
-    titleFontSize: string;
-    titleFontWeight: number;
-    mBottom: string;
-    mTop: string;
-  };
+  style: IMODELSTYLE;
   data: any;
 }
 // 物料左侧数据
 interface IMSTERIALLISTJSON {
   [key: string]: Array<IMATERIALITEM>;
 }
+
 export { IMSTERIALLISTJSON, IMATERIALITEM };
