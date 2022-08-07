@@ -15,7 +15,7 @@ interface IMATERIALITEM {
 }
 // 物料左侧数据
 interface IMSTERIALLISTJSON {
-  [key: string]: Array<IMATERIALITEM>;
+  [propName: string]: Array<IMATERIALITEM>;
 }
 
 export { IMSTERIALLISTJSON, IMATERIALITEM };

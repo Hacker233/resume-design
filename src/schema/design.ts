@@ -24,7 +24,7 @@ export const DESIGN_JSON = {
 export const MATERIAL_JSON: IMSTERIALLISTJSON = {
   EDU_BACKGROUND: [
     {
-      keyId: '', // 组件id
+      keyId: '1', // 组件id
       model: 'EDU_BACKGROUND', // 模块
       cptName: 'EDU_BACKGROUND_1', // 组件名
       cptTitle: '教育背景', // 组件名
@@ -48,7 +48,7 @@ export const MATERIAL_JSON: IMSTERIALLISTJSON = {
   ],
   BASE_INFO: [
     {
-      keyId: '', // 组件id
+      keyId: '2', // 组件id
       model: 'BASE_INFO', // 模块
       cptName: 'BASE_INFO_1', // 组件名
       cptTitle: '基础资料', // 组件名

@@ -1,8 +1,7 @@
 <template>
   <div class="main-left-box">
-    <template v-for="(val, key) in MATERIAL_JSON">
-      <div>
-        <p>{{ key }}</p>
+    <el-collapse v-model="activeNames" @change="handleChange">
+      <el-collapse-item :title="modelCategory[key]" :name="key" v-for="(val, key) in MATERIAL_JSON">
         <template v-for="(item, index) in val">
           <div
             class="com-item"
@@ -14,14 +13,21 @@
             {{ item.cptTitle }}
           </div>
         </template>
-      </div>
-    </template>
+      </el-collapse-item>
+    </el-collapse>
   </div>
 </template>
 <script lang="ts" setup>
   import { IMATERIALITEM } from '@/interface/material.js';
   import { MATERIAL_JSON } from '@/schema/design';
   import { ComponentPublicInstance } from 'vue';
+  import modelCategory from '@/dictionary/modelOfTitle';
+
+  // 折叠面板
+  const activeNames = ref(['1']);
+  const handleChange = (val: string[]) => {
+    console.log(val);
+  };
 
   // 获取模块ref
   let cptRefs: Array<any> = []; // 分割线的ref

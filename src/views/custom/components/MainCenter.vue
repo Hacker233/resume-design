@@ -1,32 +1,35 @@
 <template>
-  <div class="main-center-box">
-    <!-- 设计区域 -->
-    <div
-      class="center-box"
-      @dragenter="handleDragenter"
-      @dragover="handleDragover"
-      @drop="handleDrop"
-    >
-      <!-- 常规布局 -->
-      <template v-for="(item, index) in designJsonStore.components">
-        <component
-          :class="['mode-item', { isHover: hoverIndex === index }]"
-          :is="components[item.cptName]"
-          :modelData="item.data"
-          :modelStyle="item.style"
-          :style="getDynamicStyle(item)"
-          @mouseover="handleMouseover(index)"
-          @mouseleave="handleMouseleave"
-        ></component>
-      </template>
+  <c-scrollbar trigger="hover">
+    <div class="main-center-box">
+      <!-- 设计区域 -->
+      <div
+        class="center-box"
+        @dragenter="handleDragenter"
+        @dragover="handleDragover"
+        @drop="handleDrop"
+      >
+        <!-- 常规布局 -->
+        <template v-for="(item, index) in designJsonStore.components">
+          <component
+            :class="['mode-item', { isHover: hoverIndex === index }]"
+            :is="components[item.cptName]"
+            :modelData="item.data"
+            :modelStyle="item.style"
+            :style="getDynamicStyle(item)"
+            @mouseover="handleMouseover(index)"
+            @mouseleave="handleMouseleave"
+          ></component>
+        </template>
+      </div>
     </div>
-  </div>
+  </c-scrollbar>
 </template>
 <script lang="ts" setup>
   import { IMATERIALITEM } from '@/interface/material.js';
   import MODEL_DATA_JSON from '@/schema/modelData';
   import appStore from '@/store';
   import { storeToRefs } from 'pinia';
+  import { CScrollbar } from 'c-scrollbar'; // 滚动条
 
   defineProps<{
     components: any;
@@ -71,7 +74,7 @@
   };
   const handleMouseleave = () => {
     hoverIndex.value = -1;
-  }
+  };
 </script>
 <style lang="scss" scoped>
   .main-center-box {
@@ -80,7 +83,6 @@
     align-items: flex-start;
     flex: 1;
     height: calc(100vh - 50px);
-    overflow: auto;
     padding: 30px 0;
     box-sizing: border-box;
     .center-box {
