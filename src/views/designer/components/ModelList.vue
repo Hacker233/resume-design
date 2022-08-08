@@ -3,7 +3,7 @@
     <div class="model-ul">
       <draggable
         :list="resumeJsonStore.LIST"
-        itemKey="id"
+        item-key="id"
         ghost-class="ghost"
         chosen-class="chosenClass"
         animation="300"
@@ -30,8 +30,8 @@
                   :disabled="leftShowStatus"
                 >
                   <svg-icon
-                    :iconName="element.iconfont"
-                    className="icon"
+                    :icon-name="element.iconfont"
+                    class-name="icon"
                     :color="leftShowStatus ? '#c4c4c4' : '#00c091'"
                     size="16px"
                   ></svg-icon>
@@ -39,7 +39,7 @@
               </div>
               <p v-show="leftShowStatus">{{ element.title }}</p>
             </div>
-            <div class="right" v-show="leftShowStatus">
+            <div v-show="leftShowStatus" class="right">
               <!-- 模块开关 -->
               <el-switch v-model="element.show" size="small" active-color="#00C091" />
             </div>

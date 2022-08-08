@@ -1,24 +1,25 @@
 <template>
+  <div v-if="item.divide" class="divide"></div>
   <div
-    class="model-box"
-    v-if="item.show && item.style"
+    v-else-if="item.show && item.style"
     :ref="(el) => setRefItem(el, item.model, item.id)"
+    class="model-box"
     @click="selectModel(item.model, item.title, item.id)"
     @mouseover="modelHover(item.id)"
     @mouseleave="modelMouseleave"
   >
     <!-- 模块操作区域 -->
-    <div class="edit-box" v-show="hoverCurrentId === item.id">
+    <div v-show="hoverCurrentId === item.id" class="edit-box">
       <el-tooltip class="box-item" effect="dark" content="复制当前模块">
         <div class="copy" @click="useCopyModel(item)">
-          <svg-icon iconName="icon-jia" className="icon" color="#fff" size="16px"></svg-icon>
+          <svg-icon icon-name="icon-jia" class-name="icon" color="#fff" size="16px"></svg-icon>
         </div>
       </el-tooltip>
       <el-tooltip class="box-item" effect="dark" content="删除当前模块">
         <div class="delete" @click.stop="useDeleteModel(item)">
           <svg-icon
-            iconName="icon-shanchu"
-            className="icon icon-shanchu"
+            icon-name="icon-shanchu"
+            class-name="icon icon-shanchu"
             color="#fff"
             size="18px"
           ></svg-icon>
@@ -27,7 +28,7 @@
     </div>
     <!-- 模块标题 -->
     <slot name="model-title"></slot>
-    <component v-if="item.style" :is="components[item.model]" :modelData="item"></component>
+    <component :is="components[item.model]" v-if="item.style" :model-data="item"></component>
   </div>
 </template>
 <script lang="ts" setup>
@@ -96,6 +97,12 @@
   };
 </script>
 <style lang="scss" scoped>
+  .divide {
+    height: 20px;
+    background-color: red;
+    width: 100%;
+    z-index: 100;
+  }
   .model-box {
     border: 1px dashed transparent;
     transition: all 0.3s;

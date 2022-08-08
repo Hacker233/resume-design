@@ -1,10 +1,10 @@
 import { defineStore } from 'pinia';
 import { IResumeJson } from '@/interface/model';
 import TEMPLATE_JSON from '@/schema/model';
-import { reactive, ref } from 'vue';
+import { ref } from 'vue';
 
 export const useResumeJsonStore = defineStore('resumeJson', () => {
-  let resumeJsonStore = ref<IResumeJson>(TEMPLATE_JSON);
+  const resumeJsonStore = ref<IResumeJson>(TEMPLATE_JSON);
   function changeResumeJsonData(obj: IResumeJson) {
     resumeJsonStore.value = obj;
   }

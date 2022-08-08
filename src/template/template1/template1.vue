@@ -1,7 +1,13 @@
 <template>
   <div ref="tmp1ContentHeightRef">
     <template v-for="item in resumeJsonStore.LIST">
-      <model-box-vue v-if="item" :item="item" :components="components"></model-box-vue>
+      <model-box-vue
+        v-if="item"
+        :key="item.id"
+        :item="item"
+        :components="components"
+      ></model-box-vue>
+
       <!-- <component v-if="item" :is="components[item.model]" :modelData="item"></component> -->
     </template>
     <!-- 底部 -->
@@ -23,12 +29,15 @@
   import SelfEvaluation from './components/SelfEvaluation.vue'; // 自我评价
   import WorksDisplay from './components/WorksDisplay.vue'; // 作品展示
   import appStore from '@/store';
+  import { cloneDeep } from 'lodash-es';
   import { storeToRefs } from 'pinia';
   import { onMounted, ref } from 'vue';
-  import { cloneDeep } from 'lodash-es';
   import ModelBoxVue from '@/components/ModelBox/ModelBox.vue';
+  import { useResumeJsonStore } from '@/store/resume';
+  import { random } from 'lodash-es';
+  import { DIVIDE, IResumeJson } from '@/interface/model';
   const { resumeJsonStore } = storeToRefs(appStore.useResumeJsonStore);
-
+  const useResumeJson = useResumeJsonStore();
   // 注册局部组件
   const components: any = {
     RESUME_TITLE: ResumeTitle,
@@ -53,59 +62,117 @@
 
   // 监听内容高度发生变化
   const tmp1ContentHeightRef = ref<HTMLDivElement | null>(null);
-  let observer: ResizeObserver | null = null;
+  // let observer: ResizeObserver | null = null;
   // let height:number = 0;
-  const changeHeight = () => {
-    observer = new ResizeObserver(async (entries: ResizeObserverEntry[]) => {
-      for (let entry of entries) {
-        const el = entry.target;
-        console.log('el', el);
-        // 分割高度
-        let pageHeight = 1160;
-        // 总高度
-        const allHeight = entry.target!.getBoundingClientRect().height;
-        // 页面数量
-        let page: number = Math.ceil(allHeight / pageHeight);
-        // 高度1160就分割
-        // if(allHeight/1160)
-        // 添加div
-        const divList: HTMLDivElement[] = Array(page).fill(document.createElement('div'));
-        // 当前填充元素的索引
-        let curPageIndex = 0;
-        // 当前最后卡片的高度
-        let curPageElAllHeight = 0;
-        console.log('el', el);
-        const elChildren: HTMLDivElement[] = cloneDeep(el.children);
-        // console.log(el.firstElementChild);
-
-        console.log('elChildren', elChildren);
-
-        if (!elChildren) continue;
-        for (const child_el of Array.from(elChildren)) {
-          let elHeight = ~~child_el.getBoundingClientRect().height + 1;
-          console.log('elHeight', elHeight);
-          curPageElAllHeight += elHeight;
-          if (curPageElAllHeight < pageHeight) {
-            divList[curPageIndex].appendChild(child_el);
-          } else {
-            curPageIndex++;
-            curPageElAllHeight = elHeight;
-            divList[curPageIndex].appendChild(child_el);
-          }
-          console.log('divList', divList);
+  watch(
+    () => resumeJsonStore.value,
+    (newVal, oldVal) => {
+      console.log(
+        'contentHeightChange',
+        tmp1ContentHeightRef.value?.getBoundingClientRect().height
+      );
+      if (!tmp1ContentHeightRef.value) return false;
+      // 分割高度
+      let pageHeight = 1160;
+      // 总高度
+      const allHeight = tmp1ContentHeightRef.value.getBoundingClientRect().height;
+      let bucket = 0;
+      const children = tmp1ContentHeightRef.value.children;
+      for (const i in children) {
+        if (typeof i === 'number') {
+          break;
         }
-        console.log('---------------------');
+        const item = children[i];
+        debugger;
+        let itemHeight = item.getBoundingClientRect().height;
+        if (bucket >= pageHeight) {
+          console.log('fully');
+          console.log(bucket);
+          // 在这里节点上插入分割item
+          const divideItem: DIVIDE = {
+            divide: true,
+            id: random(20, 50).toString()
+          };
+          console.log('index', i);
+          console.log('useResumeJson', useResumeJson);
+          // useResumeJson.changeResumeJsonData()
+          console.log('list', resumeJsonStore.value.LIST);
+          const newResumeList: IResumeJson = cloneDeep(resumeJsonStore.value);
+          newResumeList.LIST.splice(Number(i), 0, divideItem);
+          useResumeJson.changeResumeJsonData(newResumeList);
 
-        // console.log('divList', divList);
-        // tmp1ContentHeightRef.value = document.createElement('div');
-        // for (const page of divList) {
-        //   tmp1ContentHeightRef.value?.appendChild(page);
-        // }
-        // height = (entry.target as HTMLElement).offsetHeight;
-        // emit('contentHeightChange', height);
+          console.log('list', resumeJsonStore.value.LIST);
+
+          bucket = 0;
+        }
+        bucket += itemHeight;
+        console.log('itemHeight', itemHeight);
       }
-    });
-    observer.observe(tmp1ContentHeightRef.value!); // 监听元素
+
+      // 页面数量
+      let page: number = Math.ceil(allHeight / pageHeight);
+      console.log('pageHeight', pageHeight);
+      console.log('allHeight', allHeight);
+      console.log('page', page);
+    },
+    {
+      deep: true
+    }
+  );
+  const changeHeight = () => {
+    console.log('changeHeight');
+
+    emit('contentHeightChange', tmp1ContentHeightRef.value?.getBoundingClientRect().height);
+    // observer = new ResizeObserver(async (entries: ResizeObserverEntry[]) => {
+    //   for (let entry of entries) {
+    //     const el = entry.target;
+    //     console.log('el', el);
+    //     // 分割高度
+    //     let pageHeight = 1160;
+    //     // 总高度
+    //     const allHeight = entry.target!.getBoundingClientRect().height;
+    //     // 页面数量
+    //     let page: number = Math.ceil(allHeight / pageHeight);
+    //     // 高度1160就分割
+    //     // if(allHeight/1160)
+    //     // 添加div
+    //     const divList: HTMLDivElement[] = Array(page).fill(document.createElement('div'));
+    //     // 当前填充元素的索引
+    //     let curPageIndex = 0;
+    //     // 当前最后卡片的高度
+    //     let curPageElAllHeight = 0;
+    //     console.log('el', el);
+    //     const elChildren: HTMLDivElement[] = cloneDeep(el.children);
+    //     // console.log(el.firstElementChild);
+
+    //     console.log('elChildren', elChildren);
+
+    //     if (!elChildren) continue;
+    //     for (const child_el of Array.from(elChildren)) {
+    //       let elHeight = ~~child_el.getBoundingClientRect().height + 1;
+    //       console.log('elHeight', elHeight);
+    //       curPageElAllHeight += elHeight;
+    //       if (curPageElAllHeight < pageHeight) {
+    //         divList[curPageIndex].appendChild(child_el);
+    //       } else {
+    //         curPageIndex++;
+    //         curPageElAllHeight = elHeight;
+    //         divList[curPageIndex].appendChild(child_el);
+    //       }
+    //       console.log('divList', divList);
+    //     }
+    //     console.log('---------------------');
+
+    //     // console.log('divList', divList);
+    //     // tmp1ContentHeightRef.value = document.createElement('div');
+    //     // for (const page of divList) {
+    //     //   tmp1ContentHeightRef.value?.appendChild(page);
+    //     // }
+    //     // height = (entry.target as HTMLElement).offsetHeight;
+    //     // emit('contentHeightChange', height);
+    //   }
+    // });
+    // observer.observe(tmp1ContentHeightRef.value!); // 监听元素
   };
 </script>
 <script lang="ts">

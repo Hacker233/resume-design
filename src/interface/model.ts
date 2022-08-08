@@ -256,6 +256,12 @@ interface IWORKSDISPLAY {
   [propNams: string]: any;
 }
 
+// 分割展示
+interface DIVIDE {
+  id: string;
+  divide: boolean;
+}
+
 // 全局样式主题
 interface IGlobalStyle {
   themeColor: string; // 主题色
@@ -287,7 +293,8 @@ interface IResumeJson {
     IAWARDS,
     IHOBBIES,
     ISELFEVALUATION,
-    IWORKSDISPLAY
+    IWORKSDISPLAY,
+    DIVIDE
   ];
   GLOBAL_STYLE: IGlobalStyle;
 }
@@ -326,5 +333,6 @@ export {
   ISELFEVALUATION,
   IWORKSDISPLAY,
   TModelList,
-  IGlobalStyle
+  IGlobalStyle,
+  DIVIDE
 };
