@@ -20,7 +20,7 @@
     emit('freeMake');
   };
   const handleMouseover = () => {
-    console.log('鼠标移动');
+    // console.log('鼠标移动');
   };
   // 跳转至自定义模板
   const router = useRouter();

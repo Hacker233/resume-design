@@ -6,20 +6,18 @@
         class="center-box"
         @dragenter="handleDragenter"
         @dragover="handleDragover"
+        @dragleave="handleDragleave"
         @drop="handleDrop"
       >
         <!-- 常规布局 -->
         <template v-for="(item, index) in designJsonStore.components">
-          <component
-            :class="['mode-item', { isHover: hoverIndex === index }]"
-            :is="components[item.cptName]"
-            :modelData="item.data"
-            :modelStyle="item.style"
-            :style="getDynamicStyle(item)"
-            @mouseover="handleMouseover(index)"
-            @mouseleave="handleMouseleave"
-          ></component>
+          <model-box :components="components" :item="item"></model-box>
         </template>
+        <!-- 拖拽提示 -->
+        <!-- <div class="drag-tip-box" v-show="isShowDragTip">
+          <svg-icon iconName="icon-jia" className="yulan" size="50px" color="#2ddd9d"></svg-icon>
+          <p>组件将会放置在此处~</p>
+        </div> -->
       </div>
     </div>
   </c-scrollbar>
@@ -30,6 +28,7 @@
   import appStore from '@/store';
   import { storeToRefs } from 'pinia';
   import { CScrollbar } from 'c-scrollbar'; // 滚动条
+  import ModelBox from './ModelBox.vue';
 
   defineProps<{
     components: any;
@@ -40,6 +39,7 @@
   const { pushComponent } = appStore.useDesignStore;
 
   // 源对象进入目标对象时
+  const isShowDragTip = ref<boolean>(false); // 是否显示拖拽提示
   const handleDragenter = (evt: DragEvent) => {
     console.log('目标对象被源对象拖动着进入', evt);
   };
@@ -48,6 +48,11 @@
   const handleDragover = (evt: DragEvent) => {
     evt.preventDefault();
     // console.log('源对象悬停在目标对象上时', evt);
+  };
+
+  // 拖拽对象离开
+  const handleDragleave = (evt: DragEvent) => {
+    console.log('拖拽对象离开', evt);
   };
 
   // 源对象在目标对象上松手
@@ -59,24 +64,11 @@
     pushComponent(cptData); // 添加模块
     console.log('源对象在目标对象上松手', evt, cptData);
   };
-
-  // 添加样式
-  const getDynamicStyle = (item: IMATERIALITEM) => {
-    return {
-      width: item.cptWidth
-    };
-  };
-
-  // 鼠标移入效果
-  const hoverIndex = ref<number>(-1);
-  const handleMouseover = (index: number) => {
-    hoverIndex.value = index;
-  };
-  const handleMouseleave = () => {
-    hoverIndex.value = -1;
-  };
 </script>
 <style lang="scss" scoped>
+  .c-scrollbar {
+    flex: 1;
+  }
   .main-center-box {
     display: flex;
     justify-content: center;
@@ -93,27 +85,21 @@
       box-sizing: border-box;
       position: relative;
       z-index: 0;
-      .mode-item {
-        border: 1px dashed transparent;
-        position: relative;
-        border-radius: 8px;
-        overflow: hidden;
-        user-select: none;
-        &:hover {
-          border: 1px dashed #7ec97e;
-          cursor: move;
-        }
-      }
-      .isHover {
-        position: relative;
-        &::after {
-          content: '';
-          width: 100%;
-          height: 100%;
-          position: absolute;
-          top: 0;
-          left: 0;
-          background-color: rgba($color: #000000, $alpha: 0.1);
+      .drag-tip-box {
+        width: 100%;
+        height: 150px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        justify-content: center;
+        background-color: rgba(#2ddd9d, 0.2);
+        border-radius: 10px;
+        border: 2px dashed #2ddd9d;
+        p {
+          font-size: 16px;
+          color: #2ddd9d;
+          margin-top: 20px;
         }
       }
     }

@@ -1,9 +1,37 @@
 <template>
-  <div class="main-right-box"> 我是右侧属性区域 </div>
+  <div class="main-right-box">
+    <Title :title="appStore.useSelectMaterialStore.materialModelTitle"></Title>
+    <c-scrollbar trigger="hover">
+      <div class="options-box">
+        <component
+          :is="optionsComponent[appStore.useSelectMaterialStore.materialModelName]"
+          v-if="appStore.useSelectMaterialStore.materialModelName"
+          :key="appStore.useSelectMaterialStore.materialModelKeyId"
+        />
+      </div>
+    </c-scrollbar>
+  </div>
 </template>
+<script lang="ts" setup>
+  import Title from './Title.vue';
+  import appStore from '@/store';
+  import ResumeThemeVue from '@/components/ResumeTheme/ResumeTheme.vue';
+  import BaseInfoOptionsVue from '../options/BaseInfoOptions.vue';
+  // 定义属性组件列表
+  const optionsComponent: any = {
+    BASE_INFO: BaseInfoOptionsVue
+  };
+</script>
 <style lang="scss" scoped>
   .main-right-box {
-    width: 350px;
+    width: 355px;
     background-color: #fff;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    height: calc(100vh - 50px);
+    .options-box {
+      padding: 20px;
+    }
   }
 </style>

@@ -28,3 +28,25 @@ export const useDesignStore = defineStore('designStore', () => {
     pushComponent
   };
 });
+
+export const useSelectMaterialStore = defineStore('selectMaterialStore', () => {
+  const materialModelName = ref<string>(''); // 选中的模块名称
+  const materialModelTitle = ref<string>('全局主题设置'); // 选中的模块名称
+  const materialModelKeyId = ref<string>(''); // 选中的模块KeyID
+
+  function updateSelectModdel(
+    materialModelNameTxt: string,
+    materialModelTitleTxt: string,
+    materialModelKeyIdTxt: string
+  ) {
+    materialModelName.value = materialModelNameTxt;
+    materialModelTitle.value = materialModelTitleTxt;
+    materialModelKeyId.value = materialModelKeyIdTxt;
+  }
+  return {
+    materialModelName,
+    materialModelTitle,
+    materialModelKeyId,
+    updateSelectModdel
+  };
+});

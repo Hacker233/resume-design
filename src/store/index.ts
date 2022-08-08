@@ -1,5 +1,5 @@
 import { initResetFun } from '@/utils/storeTools';
-import { useDesignStore } from './design';
+import { useDesignStore, useSelectMaterialStore } from './design';
 import { useLoadingStore } from './loading';
 import { useResumeJsonStore, useResumeModelStore } from './resume';
 import { useUuidStore } from './uuid';
@@ -10,6 +10,7 @@ export interface IAppStore {
   useResumeModelStore: ReturnType<typeof useResumeModelStore>;
   useUuidStore: ReturnType<typeof useUuidStore>;
   useDesignStore: ReturnType<typeof useDesignStore>;
+  useSelectMaterialStore: ReturnType<typeof useSelectMaterialStore>;
 }
 
 const appStore: IAppStore = {} as IAppStore;
@@ -23,6 +24,7 @@ export const registerStore = () => {
   appStore.useResumeModelStore = useResumeModelStore();
   appStore.useUuidStore = useUuidStore();
   appStore.useDesignStore = useDesignStore();
+  appStore.useSelectMaterialStore = useSelectMaterialStore();
   // 重写reset方法
   initResetFun(appStore);
 };

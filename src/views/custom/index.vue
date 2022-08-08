@@ -42,6 +42,7 @@
     .main-box {
       flex: 1;
       display: flex;
+      box-sizing: border-box;
     }
   }
 </style>
