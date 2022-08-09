@@ -5,6 +5,7 @@ interface IMODELSTYLE {
   titleColor: string;
   titleFontSize: string;
   titleFontWeight: number;
+  backgroundColor: string;
   mBottom: string;
   mTop: string;
 }

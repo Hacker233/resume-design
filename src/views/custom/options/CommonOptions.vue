@@ -29,7 +29,7 @@
   const { materialModelKeyId } = storeToRefs(appStore.useSelectMaterialStore);
   const { designJsonStore } = storeToRefs(appStore.useDesignStore);
   const modelItem = reactive(
-    designJsonStore.value.components.find((item) => (item.keyId = materialModelKeyId))
+    designJsonStore.value.components.find((item) => (item.keyId === materialModelKeyId.value))
   ); // 通过keyId获取选中的模块
 
   // 字体大小

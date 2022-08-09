@@ -29,6 +29,7 @@
   import { storeToRefs } from 'pinia';
   import { CScrollbar } from 'c-scrollbar'; // 滚动条
   import ModelBox from './ModelBox.vue';
+  import { getUuid } from "@/utils/common";
 
   defineProps<{
     components: any;
@@ -41,7 +42,7 @@
   // 源对象进入目标对象时
   const isShowDragTip = ref<boolean>(false); // 是否显示拖拽提示
   const handleDragenter = (evt: DragEvent) => {
-    console.log('目标对象被源对象拖动着进入', evt);
+    console.log('目标对象被源对象拖动着进入');
   };
 
   // 源对象悬停在目标对象上时
@@ -52,7 +53,7 @@
 
   // 拖拽对象离开
   const handleDragleave = (evt: DragEvent) => {
-    console.log('拖拽对象离开', evt);
+    console.log('拖拽对象离开');
   };
 
   // 源对象在目标对象上松手
@@ -61,8 +62,10 @@
     // 处理组件数据
     // cptData.cptWidth = '100%';
     cptData.data = MODEL_DATA_JSON[cptData.model]; // 为模块添加数据
+    cptData.keyId = getUuid();
     pushComponent(cptData); // 添加模块
-    console.log('源对象在目标对象上松手', evt, cptData);
+    console.log("designJsonStore.components",designJsonStore.value.components)
+    console.log('源对象在目标对象上松手',cptData);
   };
 </script>
 <style lang="scss" scoped>

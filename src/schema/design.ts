@@ -22,33 +22,34 @@ export const DESIGN_JSON = {
 
 // 组件列表
 export const MATERIAL_JSON: IMSTERIALLISTJSON = {
-  EDU_BACKGROUND: [
+  RESUME_TITLE: [
     {
-      keyId: '1', // 组件id
-      model: 'EDU_BACKGROUND', // 模块
-      cptName: 'EDU_BACKGROUND_1', // 组件名
-      cptTitle: '教育背景', // 组件名
+      keyId: '', // 组件id
+      model: 'RESUME_TITLE', // 模块
+      cptName: 'RESUME_TITLE_1', // 组件名
+      cptTitle: '简历标题', // 组件名
       cptX: 0, // 组件x坐标
       cptY: 0, // 组件y坐标
       cptZ: 0, // 组件z坐标
-      cptHeight: '', // 组件高度
-      cptWidth: '', // 组件宽度
+      cptHeight: '100px', // 组件高度
+      cptWidth: '100%', // 组件宽度
       style: {
-        textColor: '#757575',
-        textFontSize: '14px',
-        textFontWeight: 500,
-        titleColor: '#666666',
-        titleFontSize: '14px',
-        titleFontWeight: 600,
+        titleColor: '#121c26',
+        titleFontSize: '30px',
+        titleFontWeight: 500,
+        textColor: '#fff',
+        textFontSize: '16px',
+        textFontWeight: 600,
+        backgroundColor: '#000',
         mBottom: '35px',
-        mTop: '0px'
+        mTop: '15px'
       }, // 组件样式
       data: {} // 组件数据
     }
   ],
   BASE_INFO: [
     {
-      keyId: '2', // 组件id
+      keyId: '', // 组件id
       model: 'BASE_INFO', // 模块
       cptName: 'BASE_INFO_1', // 组件名
       cptTitle: '基础资料', // 组件名
@@ -64,7 +65,33 @@ export const MATERIAL_JSON: IMSTERIALLISTJSON = {
         titleFontWeight: 500,
         textFontWeight: 500,
         textColor: '#7c7b7b',
+        backgroundColor: '',
         mBottom: '50px',
+        mTop: '0px'
+      }, // 组件样式
+      data: {} // 组件数据
+    }
+  ],
+  EDU_BACKGROUND: [
+    {
+      keyId: '', // 组件id
+      model: 'EDU_BACKGROUND', // 模块
+      cptName: 'EDU_BACKGROUND_1', // 组件名
+      cptTitle: '教育背景', // 组件名
+      cptX: 0, // 组件x坐标
+      cptY: 0, // 组件y坐标
+      cptZ: 0, // 组件z坐标
+      cptHeight: '', // 组件高度
+      cptWidth: '', // 组件宽度
+      style: {
+        textColor: '#757575',
+        textFontSize: '14px',
+        textFontWeight: 500,
+        titleColor: '#666666',
+        titleFontSize: '14px',
+        titleFontWeight: 600,
+        backgroundColor: '',
+        mBottom: '35px',
         mTop: '0px'
       }, // 组件样式
       data: {} // 组件数据

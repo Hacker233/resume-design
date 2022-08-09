@@ -21,11 +21,13 @@
 
   import EDU_BACKGROUND_1 from '@/material/EduBackground/EduBackground1/index.vue';
   import BASE_INFO_1 from '@/material/BaseInfo/BaseInfo1/index.vue';
+  import RESUME_TITLE_1 from '@/material/ResumeTitle/ResumeTitle1/index.vue';
 
   // 注册所有物料组件
   const components = {
     EDU_BACKGROUND_1: EDU_BACKGROUND_1,
-    BASE_INFO_1: BASE_INFO_1
+    BASE_INFO_1: BASE_INFO_1,
+    RESUME_TITLE_1: RESUME_TITLE_1
   };
 
   // 初始化数据
