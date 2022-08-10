@@ -5,7 +5,6 @@
       <img src="@/assets/logo.png" alt="logo" srcset="" />
       <span>化简</span>
     </div>
-    <div class="center"> </div>
     <!-- GitHub -->
     <div class="right">
       <el-popover :width="200" trigger="click" teleported>
@@ -59,7 +58,7 @@
 <style lang="scss" scoped>
   .nav-bar-box {
     display: flex;
-    height: 60px;
+    height: 88px;
     width: 100%;
     box-sizing: border-box;
     align-items: center;
@@ -86,13 +85,6 @@
         font-family: cursive;
         color: v-bind('fontColor');
       }
-    }
-    .center {
-      flex: 1;
-      height: 100%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
     }
     .right {
       display: flex;

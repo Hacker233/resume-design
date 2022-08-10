@@ -6,7 +6,6 @@
       <!-- 查看更多按钮 -->
       <div class="see-more-box">
         <div class="button" @click="freeMakeResume"> 免费制作 </div>
-        <div class="button" @click="toCustom"> 创建模板 </div>
       </div>
     </div>
     <div class="right">
@@ -20,14 +19,7 @@
     emit('freeMake');
   };
   const handleMouseover = () => {
-    // console.log('鼠标移动');
-  };
-  // 跳转至自定义模板
-  const router = useRouter();
-  const toCustom = () => {
-    router.push({
-      path: '/custom'
-    });
+    console.log('鼠标移动');
   };
 </script>
 <style lang="scss" scoped>
@@ -66,16 +58,11 @@
       }
       .see-more-box {
         margin-top: 40px;
-        display: flex;
-        & :nth-child(1) {
-          margin-right: 30px;
-        }
         .button {
           width: 120px;
           height: 38px;
           line-height: 38px;
           text-align: center;
-          letter-spacing: 2px;
           color: #fff;
           font-size: 14px;
           background-image: -webkit-linear-gradient(to right, #2ddd9d, #1cc7cf);

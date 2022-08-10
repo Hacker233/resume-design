@@ -8,9 +8,6 @@
       </el-form>
     </el-tab-pane>
     <el-tab-pane label="数据配置" name="data">
-      <el-form-item label="标题名称:">
-        <el-input type="text" v-model="modelItem.title" maxlength="15" show-word-limit />
-      </el-form-item>
       <div class="edu-list" v-for="(item, index) in modelItem.LIST" :key="index">
         <p>
           <span>学历{{ index + 1 }}</span>
