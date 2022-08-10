@@ -53,6 +53,11 @@ export const getAssetsFile = (url: string) => {
   return new URL(`../assets/images/${url}`, import.meta.url).href;
 };
 
+// 获取assets/material下的静态资源
+export const getAssetsMaterialFile = (path: string, url: string) => {
+  return new URL(`../assets/images/material/${path}/${url}`, import.meta.url).href;
+};
+
 // 时间格式转化：['2015-5', '2019-6'] -> 2015.05 - 2019.06
 export const formatDate = (dataArray: Array<string> | string): string => {
   if (Array.isArray(dataArray)) {

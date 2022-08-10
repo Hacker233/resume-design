@@ -309,6 +309,7 @@ type TModelList = Array<
     IWORKSDISPLAY
   ]
 >;
+
 export {
   ISTYLE,
   IResumeJson,

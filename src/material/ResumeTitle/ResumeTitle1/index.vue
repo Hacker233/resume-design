@@ -6,11 +6,13 @@
 </template>
 <script lang="ts" setup>
   import { IRESUMETITLE } from '@/interface/model';
+  import IMODELSTYLE from '@/interface/modelStyle';
   import appStore from '@/store';
   import { storeToRefs } from 'pinia';
-  const { resumeJsonStore } = storeToRefs(appStore.useResumeJsonStore);
+  const { designJsonStore } = storeToRefs(appStore.useDesignStore);
   defineProps<{
     modelData: IRESUMETITLE;
+    modelStyle: IMODELSTYLE; // 模块样式
   }>();
 </script>
 
@@ -18,9 +20,9 @@
   .title {
     width: 100%;
     min-height: 32px;
-    margin-bottom: v-bind('modelData.style.mBottom');
-    margin-top: v-bind('modelData.style.mTop');
-    background-color: v-bind('resumeJsonStore.GLOBAL_STYLE.themeColor');
+    margin-bottom: v-bind('modelStyle.mBottom');
+    margin-top: v-bind('modelStyle.mTop');
+    background-color: v-bind('modelStyle.themeColor');
     display: flex;
     .left {
       min-height: 32px;
@@ -30,17 +32,16 @@
     }
 
     .editor-resume {
-      color: v-bind('modelData.style.textColor');
+      color: v-bind('modelStyle.textColor');
       outline: none;
-      font-weight: v-bind('modelData.style.textFontWeight');
-      font-size: v-bind('modelData.style.textFontSize');
+      font-weight: v-bind('modelStyle.textFontWeight');
+      font-size: v-bind('modelStyle.textFontSize');
       letter-spacing: 2px;
       word-break: break-all;
       width: 0;
       flex: 1;
       display: flex;
       align-items: center;
-      justify-content: v-bind('modelData.style.align');
     }
   }
 </style>
