@@ -42,9 +42,9 @@
         align-items: center;
         li {
           list-style: none;
-          font-size: v-bind('modelData.style.titleFontSize');
-          color: v-bind('modelData.style.titleColor');
-          font-weight: v-bind('modelData.style.titleFontWeight');
+          font-size: v-bind('modelData.style.textFontSize');
+          color: v-bind('modelData.style.textColor');
+          font-weight: v-bind('modelData.style.textFontWeight');
           letter-spacing: 2px;
         }
         &:not(:last-child) {

@@ -32,15 +32,25 @@
             @dragend="handleDragend"
             :ref="(el) => setColumnRefs(el, item.keyId)"
           >
-            <img
-              :src="getAssetsMaterialFile(currentKey, cptOfImg[currentKey][item.cptName].url)"
-              :style="{
-                height: cptOfImg[currentKey][item.cptName].height,
-                width: cptOfImg[currentKey][item.cptName].width
-              }"
-              alt=""
-              srcset=""
-            />
+            <el-tooltip class="box-item" effect="light" placement="right">
+              <template #content>
+                <img
+                  :src="getAssetsMaterialFile(currentKey, cptOfImg[currentKey][item.cptName].url)"
+                  style="max-width: 400px"
+                  alt=""
+                  srcset=""
+                />
+              </template>
+              <img
+                :src="getAssetsMaterialFile(currentKey, cptOfImg[currentKey][item.cptName].url)"
+                :style="{
+                  height: cptOfImg[currentKey][item.cptName].height,
+                  width: cptOfImg[currentKey][item.cptName].width
+                }"
+                alt=""
+                srcset=""
+              />
+            </el-tooltip>
           </div>
         </div>
       </template>

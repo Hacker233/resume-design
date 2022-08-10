@@ -22,7 +22,7 @@
     min-height: 32px;
     margin-bottom: v-bind('modelStyle.mBottom');
     margin-top: v-bind('modelStyle.mTop');
-    background-color: v-bind('designJsonStore.GLOBAL_STYLE.themeColor');
+    background-color: v-bind('modelStyle.themeColor');
     display: flex;
     .left {
       min-height: 32px;

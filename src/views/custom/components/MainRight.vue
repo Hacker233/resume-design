@@ -16,10 +16,12 @@
   import Title from './Title.vue';
   import appStore from '@/store';
   import ResumeThemeVue from '@/components/ResumeTheme/ResumeTheme.vue';
-  import BaseInfoOptionsVue from '../options/BaseInfoOptions.vue';
+  import BaseInfoOptionsVue from '../options/BaseInfoOptions.vue'; // 基础资料模块属性设置
+  import ResumeTitleOptionsVue from '../options/ResumeTitleOptions.vue';
   // 定义属性组件列表
   const optionsComponent: any = {
-    BASE_INFO: BaseInfoOptionsVue
+    BASE_INFO: BaseInfoOptionsVue,
+    RESUME_TITLE: ResumeTitleOptionsVue
   };
 </script>
 <style lang="scss" scoped>
@@ -30,8 +32,5 @@
     display: flex;
     flex-direction: column;
     height: calc(100vh - 50px);
-    .options-box {
-      padding: 20px;
-    }
   }
 </style>

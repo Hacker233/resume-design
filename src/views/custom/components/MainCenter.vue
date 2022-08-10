@@ -10,9 +10,22 @@
         @drop="handleDrop"
       >
         <!-- 常规布局 -->
-        <template v-for="(item, index) in designJsonStore.components">
+        <draggable
+          :list="designJsonStore.components"
+          itemKey="id"
+          ghost-class="ghost"
+          chosen-class="chosenClass"
+          animation="300"
+          @start="onStart"
+          @end="onEnd"
+        >
+          <template #item="{ element, index }">
+            <model-box :components="components" :item="element"></model-box
+          ></template>
+        </draggable>
+        <!-- <template v-for="(item, index) in designJsonStore.components">
           <model-box :components="components" :item="item"></model-box>
-        </template>
+        </template> -->
         <!-- 拖拽提示 -->
         <!-- <div class="drag-tip-box" v-show="isShowDragTip">
           <svg-icon iconName="icon-jia" className="yulan" size="50px" color="#2ddd9d"></svg-icon>
@@ -29,11 +42,22 @@
   import { storeToRefs } from 'pinia';
   import { CScrollbar } from 'c-scrollbar'; // 滚动条
   import ModelBox from './ModelBox.vue';
-  import { getUuid } from "@/utils/common";
+  import { getUuid } from '@/utils/common';
+  import draggable from 'vuedraggable';
+  import { cloneDeep } from 'lodash'; // 深拷贝
 
   defineProps<{
     components: any;
   }>();
+
+  // 是否是当前页面拖拽
+  const isCurrentPage = ref<boolean>(false);
+  const onStart = () => {
+    isCurrentPage.value = true;
+  };
+  const onEnd = () => {
+    isCurrentPage.value = false;
+  };
 
   // store相关数据
   const { designJsonStore } = storeToRefs(appStore.useDesignStore);
@@ -58,14 +82,17 @@
 
   // 源对象在目标对象上松手
   const handleDrop = (evt: DragEvent) => {
+    if (isCurrentPage.value) {
+      return;
+    }
     let cptData: IMATERIALITEM = JSON.parse(evt.dataTransfer?.getData('cptData') as string);
     // 处理组件数据
     // cptData.cptWidth = '100%';
-    cptData.data = MODEL_DATA_JSON[cptData.model]; // 为模块添加数据
+    cptData.data = cloneDeep(MODEL_DATA_JSON[cptData.model]); // 为模块添加数据
     cptData.keyId = getUuid();
     pushComponent(cptData); // 添加模块
-    console.log("designJsonStore.components",designJsonStore.value.components)
-    console.log('源对象在目标对象上松手',cptData);
+    console.log('designJsonStore.components', designJsonStore.value.components);
+    console.log('源对象在目标对象上松手', cptData);
   };
 </script>
 <style lang="scss" scoped>
@@ -84,7 +111,6 @@
       width: 820px;
       min-height: 1160px;
       background-color: #fff;
-      padding: 30px 45px;
       box-sizing: border-box;
       position: relative;
       z-index: 0;

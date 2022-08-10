@@ -15,9 +15,8 @@
 </template>
 <script setup lang="ts">
   import { useFontSizeList } from '@/hooks/useFontSizeList';
-  import appStore from '@/store';
   import ColorPickerCustomVue from '@/components/ColorPicker/ColorPickerCustom.vue';
-  import { storeToRefs } from 'pinia';
+  import useDesignSelectModelItem from '@/hooks/material/useDesignSelectModelItem';
   interface IProps {
     colorLabel?: string;
     fontSizeLabel?: string;
@@ -29,12 +28,7 @@
     fontWeightLabel: '标题字体粗细'
   });
   // 选中的模块
-  const { materialModelKeyId } = storeToRefs(appStore.useSelectMaterialStore);
-  const { designJsonStore } = storeToRefs(appStore.useDesignStore);
-  const modelItem = reactive(
-    designJsonStore.value.components.find((item) => (item.keyId === materialModelKeyId.value))
-  );
-  console.log('选中的modelItem', modelItem);
+  const { modelItem } = useDesignSelectModelItem();
   // 字体大小
   const fontSizeList = useFontSizeList();
   // 字体粗细

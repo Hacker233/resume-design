@@ -40,7 +40,7 @@
     display: flex;
     width: 100%;
     box-sizing: border-box;
-    padding: 10px 0;
+    padding: 10px 45px;
     margin-bottom: v-bind('modelStyle.mBottom');
     margin-top: v-bind('modelStyle.mTop');
     .avatar-box {

@@ -32,7 +32,6 @@
 <script lang="ts" setup>
   import { IMATERIALITEM } from '@/interface/material';
   import appStore from '@/store';
-  import { storeToRefs } from 'pinia';
 
   const props = defineProps<{
     item: IMATERIALITEM;

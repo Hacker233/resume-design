@@ -34,6 +34,8 @@ export const MATERIAL_JSON: IMSTERIALLISTJSON = {
       cptHeight: '100px', // 组件高度
       cptWidth: '100%', // 组件宽度
       style: {
+        themeColor: '#000', // 主题色
+        firstTitleFontSize: '20px', // 一级标题
         titleColor: '#121c26',
         titleFontSize: '30px',
         titleFontWeight: 500,
@@ -59,6 +61,8 @@ export const MATERIAL_JSON: IMSTERIALLISTJSON = {
       cptHeight: '100px', // 组件高度
       cptWidth: '100%', // 组件宽度
       style: {
+        themeColor: '#000', // 主题色
+        firstTitleFontSize: '20px', // 一级标题
         titleColor: '#121c26',
         titleFontSize: '30px',
         textFontSize: '14px',
@@ -81,16 +85,18 @@ export const MATERIAL_JSON: IMSTERIALLISTJSON = {
       cptX: 0, // 组件x坐标
       cptY: 0, // 组件y坐标
       cptZ: 0, // 组件z坐标
-      cptHeight: '', // 组件高度
-      cptWidth: '', // 组件宽度
+      cptHeight: '50px', // 组件高度
+      cptWidth: '100%', // 组件宽度
       style: {
-        textColor: '#757575',
+        themeColor: '#000', // 主题色
+        firstTitleFontSize: '20px', // 一级标题
+        textColor: '#757575', // 正文
         textFontSize: '14px',
         textFontWeight: 500,
-        titleColor: '#666666',
+        titleColor: '#666666', // 二级标题
         titleFontSize: '14px',
         titleFontWeight: 600,
-        backgroundColor: '',
+        backgroundColor: '#000',
         mBottom: '35px',
         mTop: '0px'
       }, // 组件样式

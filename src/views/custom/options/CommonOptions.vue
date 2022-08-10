@@ -21,16 +21,12 @@
 </template>
 <script lang="ts" setup>
   import { useFontSizeList } from '@/hooks/useFontSizeList';
-  import appStore from '@/store';
   import { pxTonumber } from '@/utils/common';
-  import { storeToRefs } from 'pinia';
   import ColorPickerCustomVue from '@/components/ColorPicker/ColorPickerCustom.vue';
+  import useDesignSelectModelItem from '@/hooks/material/useDesignSelectModelItem';
 
-  const { materialModelKeyId } = storeToRefs(appStore.useSelectMaterialStore);
-  const { designJsonStore } = storeToRefs(appStore.useDesignStore);
-  const modelItem = reactive(
-    designJsonStore.value.components.find((item) => (item.keyId === materialModelKeyId.value))
-  ); // 通过keyId获取选中的模块
+  // 选中的模块
+  const { modelItem } = useDesignSelectModelItem();
 
   // 字体大小
   const fontSizeList = useFontSizeList();

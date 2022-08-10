@@ -11,8 +11,8 @@ const ctpOfImg: ICptOfImg = {
   RESUME_TITLE: {
     RESUME_TITLE_1: {
       url: 'RESUME_TITLE_1.png',
-      width: '',
-      height: ''
+      width: '100%',
+      height: '30px'
     }
   },
   BASE_INFO: {
@@ -32,8 +32,8 @@ const ctpOfImg: ICptOfImg = {
   EDU_BACKGROUND: {
     EDU_BACKGROUND_1: {
       url: 'EDU_BACKGROUND_1.png',
-      width: '',
-      height: ''
+      width: '100%',
+      height: '66px'
     }
   },
   SKILL_SPECIALTIES: {
