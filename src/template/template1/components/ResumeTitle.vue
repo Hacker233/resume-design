@@ -5,7 +5,7 @@
   </div>
 </template>
 <script lang="ts" setup>
-  import { IRESUMETITLE } from '@/interface/model';
+  import { IRESUMETITLE, ISTYLE } from '@/interface/model';
   import appStore from '@/store';
   import { storeToRefs } from 'pinia';
   const { resumeJsonStore } = storeToRefs(appStore.useResumeJsonStore);

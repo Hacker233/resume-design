@@ -6,7 +6,12 @@
     <div class="bottom">
       <!-- 左侧添加模块区域 -->
       <div class="left" ref="leftRef">
-        <c-scrollbar trigger="hover">
+        <c-scrollbar
+          trigger="hover"
+          :hThumbStyle="{
+            'background-color': 'rgba(0,0,0,0.4)'
+          }"
+        >
           <Title @unflodOrCollapse="unflodOrCollapse" showCollapse></Title>
           <model-list :leftShowStatus="leftShowStatus" :key="refreshUuid"></model-list>
         </c-scrollbar>
@@ -132,6 +137,7 @@
     // 重置store选中模块
     storeReset();
     // console.log("reset",appStore)
+    
   };
 
   // 导出pdf
