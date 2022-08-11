@@ -25,8 +25,8 @@ const ctpOfImg: ICptOfImg = {
   JOB_INTENTION: {
     JOB_INTENTION_1: {
       url: 'JOB_INTENTION_1.png',
-      width: '',
-      height: ''
+      width: '100%',
+      height: '50px'
     }
   },
   EDU_BACKGROUND: {

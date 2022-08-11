@@ -27,6 +27,7 @@ export const MATERIAL_JSON: IMSTERIALLISTJSON = {
       keyId: '', // 组件id
       model: 'RESUME_TITLE', // 模块
       cptName: 'RESUME_TITLE_1', // 组件名
+      cptOptionsName: 'RESUME_TITLE_OPTIONS',
       cptTitle: '简历标题', // 组件名
       cptX: 0, // 组件x坐标
       cptY: 0, // 组件y坐标
@@ -54,6 +55,7 @@ export const MATERIAL_JSON: IMSTERIALLISTJSON = {
       keyId: '', // 组件id
       model: 'BASE_INFO', // 模块
       cptName: 'BASE_INFO_1', // 组件名
+      cptOptionsName: 'BASE_INFO_OPTIONS',
       cptTitle: '基础资料', // 组件名
       cptX: 0, // 组件x坐标
       cptY: 0, // 组件y坐标
@@ -76,11 +78,40 @@ export const MATERIAL_JSON: IMSTERIALLISTJSON = {
       data: {} // 组件数据
     }
   ],
+  JOB_INTENTION: [
+    {
+      keyId: '', // 组件id
+      model: 'JOB_INTENTION', // 模块
+      cptName: 'JOB_INTENTION_1', // 组件名
+      cptOptionsName: 'JOB_INTENTION_OPTIONS',
+      cptTitle: '求职意向', // 组件名
+      cptX: 0, // 组件x坐标
+      cptY: 0, // 组件y坐标
+      cptZ: 0, // 组件z坐标
+      cptHeight: '100px', // 组件高度
+      cptWidth: '100%', // 组件宽度
+      style: {
+        themeColor: '#000', // 主题色
+        firstTitleFontSize: '20px', // 一级标题
+        titleColor: '#121c26',
+        titleFontSize: '30px',
+        titleFontWeight: 500,
+        textColor: '#757575',
+        textFontSize: '14px',
+        textFontWeight: 500,
+        backgroundColor: '',
+        mBottom: '35px',
+        mTop: '0px'
+      }, // 组件样式
+      data: {} // 组件数据
+    }
+  ],
   EDU_BACKGROUND: [
     {
       keyId: '', // 组件id
       model: 'EDU_BACKGROUND', // 模块
       cptName: 'EDU_BACKGROUND_1', // 组件名
+      cptOptionsName: 'EDU_BACKGROUND_OPTIONS',
       cptTitle: '教育背景', // 组件名
       cptX: 0, // 组件x坐标
       cptY: 0, // 组件y坐标
