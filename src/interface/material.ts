@@ -4,6 +4,7 @@ interface IMATERIALITEM {
   keyId: string;
   model: string;
   cptName: string; // 组件名
+  cptOptionsName: string; // 组件属性设置面板名称
   cptTitle: string; // 组件名
   cptX: number; // 组件x坐标
   cptY: number; // 组件y坐标
