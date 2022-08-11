@@ -57,7 +57,12 @@
   const { updateSelectModdel } = appStore.useSelectMaterialStore;
   const selectModel = () => {
     // 更新store
-    updateSelectModdel(props.item.model, props.item.cptTitle, props.item.keyId);
+    updateSelectModdel(
+      props.item.model,
+      props.item.cptOptionsName,
+      props.item.cptTitle,
+      props.item.keyId
+    );
   };
 </script>
 <style lang="scss" scoped>

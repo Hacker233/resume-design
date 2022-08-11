@@ -30,23 +30,27 @@ export const useDesignStore = defineStore('designStore', () => {
 });
 
 export const useSelectMaterialStore = defineStore('selectMaterialStore', () => {
-  const materialModelName = ref<string>(''); // 选中的模块名称
-  const materialModelTitle = ref<string>('全局主题设置'); // 选中的模块名称
-  const materialModelKeyId = ref<string>(''); // 选中的模块KeyID
+  const cptName = ref<string>(''); // 选中的模块名称
+  const cptOptionsName = ref<string>(''); // 选中的组件属性面板名称
+  const cptTitle = ref<string>('全局主题设置'); // 选中的模块名称
+  const cptKeyId = ref<string>(''); // 选中的模块KeyID
 
   function updateSelectModdel(
-    materialModelNameTxt: string,
-    materialModelTitleTxt: string,
-    materialModelKeyIdTxt: string
+    cptNameTxt: string,
+    cptOptionsNameTxt: string,
+    cptTitleTxt: string,
+    cptKeyIdTxt: string
   ) {
-    materialModelName.value = materialModelNameTxt;
-    materialModelTitle.value = materialModelTitleTxt;
-    materialModelKeyId.value = materialModelKeyIdTxt;
+    cptName.value = cptNameTxt;
+    cptOptionsName.value = cptOptionsNameTxt;
+    cptTitle.value = cptTitleTxt;
+    cptKeyId.value = cptKeyIdTxt;
   }
   return {
-    materialModelName,
-    materialModelTitle,
-    materialModelKeyId,
+    cptName,
+    cptOptionsName,
+    cptTitle,
+    cptKeyId,
     updateSelectModdel
   };
 });
