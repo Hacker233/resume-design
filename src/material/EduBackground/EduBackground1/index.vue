@@ -1,7 +1,7 @@
 <template>
   <div class="edu-background">
     <!-- 标题 -->
-    <model-title :title="modelData.title"></model-title>
+    <model-title :title="modelData.title" :modelStyle="modelStyle"></model-title>
     <!-- 教育背景 -->
     <div class="edu-list">
       <ul v-for="(item, index) in modelData.LIST" :key="index">
@@ -19,17 +19,20 @@
 </template>
 <script setup lang="ts">
   import { IEDUBACKGROUND } from '@/interface/model';
-  import ModelTitle from './ModelTitle.vue';
+  import ModelTitle from '../../ModelTitle/ModelTitle1/ModelTitle1.vue';
   import { formatDate } from '@/utils/common';
+  import IMODELSTYLE from '@/interface/modelStyle';
   defineProps<{
     modelData: IEDUBACKGROUND;
+    modelStyle: IMODELSTYLE; // 模块样式
   }>();
 </script>
 <style lang="scss" scoped>
   .edu-background {
     padding: 0 40px;
-    margin-bottom: v-bind('modelData.style.mBottom');
-    margin-top: v-bind('modelData.style.mTop');
+    margin-bottom: v-bind('modelStyle.mBottom');
+    margin-top: v-bind('modelStyle.mTop');
+    box-sizing: border-box;
     .edu-list {
       display: flex;
       width: 100%;
@@ -42,9 +45,9 @@
         align-items: center;
         li {
           list-style: none;
-          font-size: v-bind('modelData.style.textFontSize');
-          color: v-bind('modelData.style.textColor');
-          font-weight: v-bind('modelData.style.textFontWeight');
+          font-size: v-bind('modelStyle.titleFontSize');
+          color: v-bind('modelStyle.titleColor');
+          font-weight: v-bind('modelStyle.titleFontWeight');
           letter-spacing: 2px;
         }
         &:not(:last-child) {
