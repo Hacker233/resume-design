@@ -113,7 +113,7 @@
   .model-list-box {
     padding: 0 1px;
     .model-ul {
-      width: 100%;
+      width: 294px;
       display: flex;
       flex-direction: column;
       padding: 0;
