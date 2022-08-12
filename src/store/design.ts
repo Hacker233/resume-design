@@ -35,6 +35,7 @@ export const useSelectMaterialStore = defineStore('selectMaterialStore', () => {
   const cptTitle = ref<string>('全局主题设置'); // 选中的模块名称
   const cptKeyId = ref<string>(''); // 选中的模块KeyID
 
+  // 更新
   function updateSelectModdel(
     cptNameTxt: string,
     cptOptionsNameTxt: string,
@@ -46,11 +47,19 @@ export const useSelectMaterialStore = defineStore('selectMaterialStore', () => {
     cptTitle.value = cptTitleTxt;
     cptKeyId.value = cptKeyIdTxt;
   }
+  // 重置
+  function resetSelectModel() {
+    cptName.value = '';
+    cptOptionsName.value = '';
+    cptTitle.value = '全局主题设置';
+    cptKeyId.value = '';
+  }
   return {
     cptName,
     cptOptionsName,
     cptTitle,
     cptKeyId,
-    updateSelectModdel
+    updateSelectModdel,
+    resetSelectModel
   };
 });

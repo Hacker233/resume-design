@@ -1,14 +1,19 @@
 <template>
-  <div class="material-model-box" @click="selectModel">
+  <div
+    class="material-model-box"
+    @click="selectModel"
+    @mouseover="handleMouseover"
+    @mouseleave="handleMouseleave"
+  >
     <!-- 模块操作区域 -->
     <div class="edit-box" v-show="hoverId === item.keyId">
       <el-tooltip class="box-item" effect="dark" content="复制当前模块">
-        <div class="copy">
+        <div class="copy" @click.stop="addModel">
           <svg-icon iconName="icon-jia" className="icon" color="#fff" size="16px"></svg-icon>
         </div>
       </el-tooltip>
       <el-tooltip class="box-item" effect="dark" content="删除当前模块">
-        <div class="delete">
+        <div class="delete" @click.stop="deleteModel">
           <svg-icon
             iconName="icon-shanchu"
             className="icon icon-shanchu"
@@ -24,20 +29,21 @@
       :modelData="item.data"
       :modelStyle="item.style"
       :style="getDynamicStyle(item)"
-      @mouseover="handleMouseover()"
-      @mouseleave="handleMouseleave"
     ></component>
   </div>
 </template>
 <script lang="ts" setup>
   import { IMATERIALITEM } from '@/interface/material';
   import appStore from '@/store';
+  import { getUuid } from '@/utils/common';
+  import { cloneDeep } from 'lodash';
+  import { storeToRefs } from 'pinia';
 
   const props = defineProps<{
     item: IMATERIALITEM;
     components: any;
   }>();
-  console.log('当前移入模块', props.item);
+  const { designJsonStore } = storeToRefs(appStore.useDesignStore);
   // 鼠标移入效果
   const hoverId = ref<string>('');
   const handleMouseover = () => {
@@ -54,7 +60,7 @@
     };
   };
   // 点击选择模块
-  const { updateSelectModdel } = appStore.useSelectMaterialStore;
+  const { updateSelectModdel, resetSelectModel } = appStore.useSelectMaterialStore;
   const selectModel = () => {
     // 更新store
     updateSelectModdel(
@@ -63,6 +69,25 @@
       props.item.cptTitle,
       props.item.keyId
     );
+  };
+
+  // 删除当前模块
+  const deleteModel = () => {
+    let index: number = designJsonStore.value.components.findIndex(
+      (item) => item.keyId === props.item.keyId
+    );
+    designJsonStore.value.components.splice(index, 1);
+    resetSelectModel(); // 重置选中模块
+  };
+
+  // 增加模块
+  const addModel = () => {
+    let index: number = designJsonStore.value.components.findIndex(
+      (item) => item.keyId === props.item.keyId
+    );
+    let insert = cloneDeep(props.item);
+    insert.keyId = getUuid();
+    designJsonStore.value.components.splice(index, 0, insert);
   };
 </script>
 <style lang="scss" scoped>

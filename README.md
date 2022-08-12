@@ -33,13 +33,15 @@
 
 **图片：**
 
-<p align="center"><img width="1000" src="https://github.com/huajian-pro/resume-design/blob/main/doc/images/1.png"></p>
+<p align="center"><img width="1000" src="https://gitee.com/sharemore52/resume-design/raw/main/doc/images/1.png"></p>
+
+<p align="center"><img width="1000" src="https://gitee.com/sharemore52/resume-design/raw/main/doc/images/3.png"></p>
 
 
-<p align="center"><img width="1000" src="https://github.com/huajian-pro/resume-design/blob/main/doc/images/4.png"></p>
+<p align="center"><img width="1000" src="https://gitee.com/sharemore52/resume-design/raw/main/doc/images/4.png"></p>
 
 
-<p align="center"><img width="1000" src="https://github.com/huajian-pro/resume-design/blob/main/doc/images/6.png"></p>
+<p align="center"><img width="1000" src="https://gitee.com/sharemore52/resume-design/raw/main/doc/images/6.png"></p>
 
 ## 功能介绍
 
