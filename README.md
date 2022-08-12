@@ -33,13 +33,15 @@
 
 **图片：**
 
-<p align="center"><img width="1000" src="https://github.com/huajian-pro/resume-design/blob/main/doc/images/1.png"></p>
+<p align="center"><img width="1000" src="https://gitee.com/sharemore52/resume-design/raw/main/doc/images/1.png"></p>
+
+<p align="center"><img width="1000" src="https://gitee.com/sharemore52/resume-design/raw/main/doc/images/3.png"></p>
 
 
-<p align="center"><img width="1000" src="https://github.com/huajian-pro/resume-design/blob/main/doc/images/4.png"></p>
+<p align="center"><img width="1000" src="https://gitee.com/sharemore52/resume-design/raw/main/doc/images/4.png"></p>
 
 
-<p align="center"><img width="1000" src="https://github.com/huajian-pro/resume-design/blob/main/doc/images/6.png"></p>
+<p align="center"><img width="1000" src="https://gitee.com/sharemore52/resume-design/raw/main/doc/images/6.png"></p>
 
 ## 功能介绍
 
@@ -116,7 +118,7 @@ pnpm build
 ## 交流&贡献
 
 添加vx：LHQfighting，进入微信交流群，可方便解决和提出问题。
-<p align="center"><img width="400" src="https://github.com/huajian-pro/resume-design/blob/main/src/assets/images/vx.jpg"></p>
+<p align="center"><img width="400" src="https://gitee.com/sharemore52/resume-design/raw/main/src/assets/images/vx.jpg"></p>
 
 ## 贡献者
 
