@@ -15,6 +15,8 @@
   </div>
 </template>
 <script lang="ts" setup>
+  import { closeGlobalLoading, openGlobalLoading } from '@/utils/common';
+
   const emit = defineEmits(['freeMake']);
   const freeMakeResume = () => {
     emit('freeMake');
@@ -25,10 +27,16 @@
   // 跳转至自定义模板
   const router = useRouter();
   const toCustom = () => {
+    openGlobalLoading(); // 等待动画层
     router.push({
       path: '/custom'
     });
   };
+
+  // 页面销毁
+  onUnmounted(() => {
+    closeGlobalLoading(); // 关闭全局等待层
+  });
 </script>
 <style lang="scss" scoped>
   .project-introduce-box {

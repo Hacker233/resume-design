@@ -22,6 +22,7 @@
     - [构建项目](#构建项目)
     - [目录说明:](#目录说明)
   - [交流&贡献](#交流贡献)
+  - [贡献者](#贡献者)
   - [License](#license)
 
 ## 项目介绍
@@ -68,6 +69,7 @@ git clone https://github.com/huajian-pro/resume-design.git
 ```
 - 推荐使用包管理工具[pnpm](https://pnpm.io/installation)
 - 或使用[yarn](https://yarnpkg.com/getting-started/install)、npm（node自带无需额外安装）包管理工具
+- Node版本请确保在v16.0及以上
 
 > pnpm全局安装方法`npm i -g pnpm`
 
