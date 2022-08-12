@@ -1,5 +1,5 @@
 <template>
-  <c-scrollbar trigger="hover">
+  <!-- <c-scrollbar trigger="hover"> -->
     <div class="main-center-box">
       <!-- 设计区域 -->
       <div
@@ -33,7 +33,7 @@
         </div> -->
       </div>
     </div>
-  </c-scrollbar>
+  <!-- </c-scrollbar> -->
 </template>
 <script lang="ts" setup>
   import { IMATERIALITEM } from '@/interface/material.js';
@@ -107,6 +107,7 @@
     height: calc(100vh - 50px);
     padding: 30px 0;
     box-sizing: border-box;
+    overflow: auto;
     .center-box {
       width: 820px;
       min-height: 1160px;
