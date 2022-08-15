@@ -53,8 +53,6 @@
 
 **图片：**
 
-<p align="center"><img width="1000" src="https://gitee.com/sharemore52/resume-design/raw/main/doc/images/1.png"></p>
-
 <p align="center"><img width="1000" src="https://gitee.com/sharemore52/resume-design/raw/main/doc/images/3.png"></p>
 
 
