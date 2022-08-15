@@ -1,7 +1,27 @@
 <p align="center"><img width="200" src="https://gitee.com/sharemore52/resume-img/raw/master/logo.png"></p>
 
 <p align="center">
-  <a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/npm/l/vue.svg" alt="License"></a>
+    <a href="https://v3.vuejs.org/" target="_blank">
+        <img src="https://img.shields.io/badge/Vue-%3E3.x-brightgreen?color=91aac3&labelColor=439EFD" alt="vue">
+    </a>
+    <a href="https://element-plus.gitee.io/#/zh-CN/component/changelog" target="_blank">
+        <img src="https://img.shields.io/badge/Element--Plus-%3E2.1-brightgreen?color=91aac3&labelColor=439EFD" alt="element plus">
+    </a>
+    <a href="https://www.tslang.cn/" target="_blank">
+        <img src="https://img.shields.io/badge/TypeScript-%3E4.4-blue?color=91aac3&labelColor=439EFD" alt="typescript">
+    </a>
+    <a href="https://vitejs.dev/" target="_blank">
+        <img src="https://img.shields.io/badge/Vite-%3E3.0-blue?color=91aac3&labelColor=439EFD" alt="vite">
+    </a>
+    <a href="https://pinia.vuejs.org/" target="_blank">
+        <img src="https://img.shields.io/badge/Pinia-%3E2.0-blue?color=91aac3&labelColor=439EFD" alt="vite">
+    </a>
+    <a href="https://pinia.vuejs.org/" target="_blank">
+        <img src="https://img.shields.io/badge/Node-%3E16.0-blue?color=91aac3&labelColor=439EFD" alt="vite">
+    </a>
+    <a href="https://opensource.org/licenses/MIT">
+        <img src="https://img.shields.io/npm/l/vue.svg?color=91aac3&labelColor=439EFD" alt="License">
+    </a>
 </p>
 <h1 align="center">😙化简</h1>
 <h2 align="center">一款免费简历制作神器</h2>
