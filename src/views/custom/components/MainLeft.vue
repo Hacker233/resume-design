@@ -30,9 +30,10 @@
             draggable="true"
             @dragstart="ondragstart($event, item)"
             @dragend="handleDragend"
+            @click="addModel(item)"
             :ref="(el) => setColumnRefs(el, item.keyId)"
           >
-            <el-tooltip class="box-item" effect="light" placement="right">
+            <el-tooltip class="box-item" effect="light" :enterable="false">
               <template #content>
                 <img
                   :src="getAssetsMaterialFile(currentKey, cptOfImg[currentKey][item.cptName].url)"
@@ -67,8 +68,11 @@
   import modelOfTitle from '@/dictionary/modelOfTitle';
   import { ComponentPublicInstance } from 'vue';
   import modelCategory from '@/dictionary/modelOfTitle';
-  import { getAssetsMaterialFile } from '@/utils/common';
+  import { getAssetsMaterialFile, getUuid } from '@/utils/common';
   import cptOfImg from '@/dictionary/ctpOfImg';
+  import { cloneDeep } from 'lodash';
+  import MODEL_DATA_JSON from '@/schema/modelData';
+  import appStore from '@/store';
 
   // 点击模块选择
   const currentKey = ref<string>('');
@@ -78,7 +82,7 @@
     currentTitle.value = modelCategory[key];
     currentKey.value = key;
     cptList.value = val;
-    console.log('cptList', cptList);
+    // console.log('cptList', cptList);
   };
 
   // 重置模块
@@ -100,12 +104,21 @@
   // 拖拽开始
   const ondragstart = (evt: DragEvent, item: IMATERIALITEM) => {
     evt.dataTransfer?.setData('cptData', JSON.stringify(item));
-    console.log('源对象拖拽开始', evt);
+    // console.log('源对象拖拽开始', evt);
   };
   // 拖拽结束
   const handleDragend = (evt: DragEvent) => {
     evt.dataTransfer?.clearData();
-    console.log('源数据拖拽结束', evt);
+    // console.log('源数据拖拽结束', evt);
+  };
+
+  // 点击组件，添加模块
+  const { pushComponent } = appStore.useDesignStore;
+  const addModel = (item: IMATERIALITEM) => {
+    let cptData = cloneDeep(item);
+    cptData.data = cloneDeep(MODEL_DATA_JSON[cptData.model]); // 为模块添加数据
+    cptData.keyId = getUuid();
+    pushComponent(cptData); // 添加模块
   };
 </script>
 <style lang="scss" scoped>
