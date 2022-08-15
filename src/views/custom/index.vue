@@ -51,7 +51,7 @@
   };
 
   // 初始化数据
-  console.log('components', components);
+  // console.log('components', components);
 </script>
 <style lang="scss" scoped>
   .custom-resume-box {

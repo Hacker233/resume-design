@@ -8,6 +8,7 @@
           v-if="appStore.useSelectMaterialStore.cptOptionsName"
           :key="appStore.useSelectMaterialStore.cptKeyId"
         />
+        <global-style-options-vue v-else></global-style-options-vue>
       </div>
     </c-scrollbar>
   </div>
@@ -15,7 +16,7 @@
 <script lang="ts" setup>
   import Title from './Title.vue';
   import appStore from '@/store';
-  import ResumeThemeVue from '@/components/ResumeTheme/ResumeTheme.vue';
+  import GlobalStyleOptionsVue from '../options/GlobalStyleOptions.vue';
   import BaseInfoOptionsVue from '../options/BaseInfoOptions.vue'; // 基础资料模块属性设置
   import ResumeTitleOptionsVue from '../options/ResumeTitleOptions.vue';
   import EduBackgroundOptionsVue from '../options/EduBackgroundOptions.vue';

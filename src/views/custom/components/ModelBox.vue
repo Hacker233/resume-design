@@ -1,6 +1,7 @@
 <template>
   <div
     class="material-model-box"
+    :ref="(el) => setRefItem(el, item.keyId)"
     @click="selectModel"
     @mouseover="handleMouseover"
     @mouseleave="handleMouseleave"
@@ -38,12 +39,44 @@
   import { getUuid } from '@/utils/common';
   import { cloneDeep } from 'lodash';
   import { storeToRefs } from 'pinia';
+  import { ComponentPublicInstance } from 'vue';
 
   const props = defineProps<{
     item: IMATERIALITEM;
     components: any;
   }>();
   const { designJsonStore } = storeToRefs(appStore.useDesignStore);
+
+  // 锚点定位
+  const { cptKeyId } = storeToRefs(appStore.useSelectMaterialStore);
+  watch(
+    cptKeyId,
+    (newVal, oldVal) => {
+      // 判断是否选中复选框
+      if (oldVal && modelObj[oldVal]) {
+        modelObj[oldVal].el.style.borderColor = 'transparent';
+      }
+      // 如果选中了模块
+      if (newVal && modelObj[newVal]) {
+        modelObj[newVal].el.scrollIntoView({ behavior: 'smooth', block: 'center' }); // 该模块显示在可视区域内
+        modelObj[newVal].el.style.borderColor = '#7ec97e';
+      }
+    },
+    {
+      deep: true
+    }
+  );
+  // 模块ref
+  const modelObj = reactive<any>({});
+  const setRefItem = (el: ComponentPublicInstance | null | Element, keyId: string) => {
+    if (el) {
+      modelObj[keyId] = {
+        id: keyId,
+        el: el
+      };
+    }
+  };
+
   // 鼠标移入效果
   const hoverId = ref<string>('');
   const handleMouseover = () => {
@@ -92,6 +125,8 @@
 </script>
 <style lang="scss" scoped>
   .material-model-box {
+    border: 1px dashed transparent;
+    transition: all 0.3s;
     position: relative;
     .mode-item {
       border: 1px dashed transparent;
