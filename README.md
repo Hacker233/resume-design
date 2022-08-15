@@ -53,8 +53,6 @@
 
 **图片：**
 
-<p align="center"><img width="1000" src="https://gitee.com/sharemore52/resume-design/raw/main/doc/images/1.png"></p>
-
 <p align="center"><img width="1000" src="https://gitee.com/sharemore52/resume-design/raw/main/doc/images/3.png"></p>
 
 
@@ -138,7 +136,10 @@ pnpm build
 ## 交流&贡献
 
 添加vx：LHQfighting，进入微信交流群，可方便解决和提出问题。
-<p align="center"><img width="400" src="https://gitee.com/sharemore52/resume-design/raw/main/src/assets/images/vx.jpg"></p>
+<p align="center">
+    <img width="300" src="https://gitee.com/sharemore52/resume-design/raw/main/src/assets/images/vx.jpg">
+    <img width="300" src="https://gitee.com/sharemore52/resume-design/raw/main/doc/images/vx-qun.jpg">
+</p>
 
 ## 贡献者
 
