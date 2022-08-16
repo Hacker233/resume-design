@@ -11,7 +11,6 @@
   import { openAndCloseLoadingByTime } from './utils/common';
   const { isLoading } = storeToRefs(appStore.useLoadingStore);
   openAndCloseLoadingByTime(1500); // 等待动画层
-  console.log('测试log');
 </script>
 <style>
   #app {

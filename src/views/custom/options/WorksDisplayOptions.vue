@@ -41,6 +41,7 @@
   import CommonOptions from './CommonOptions.vue';
   import useDesignSelectModelItem from '@/hooks/material/useDesignSelectModelItem';
   import { Delete } from '@element-plus/icons-vue';
+  defineOptions({ name: 'WORKS_DISPLAY_OPTIONS' });
   // 选中的模块
   const { modelItem } = useDesignSelectModelItem();
   let activeName = ref('style');
@@ -59,11 +60,6 @@
       worksLink: 'https://www.baidu.com',
       worksIntroduce: '这是一个千万级作品'
     });
-  };
-</script>
-<script lang="ts">
-  export default {
-    name: 'WORKS_DISPLAY_OPTIONS'
   };
 </script>
 <style lang="scss" scoped>

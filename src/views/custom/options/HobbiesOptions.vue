@@ -28,12 +28,8 @@
 <script setup lang="ts">
   import useDesignSelectModelItem from '@/hooks/material/useDesignSelectModelItem';
   import CommonOptions from './CommonOptions.vue'; // 公共属性设置
+  defineOptions({ name: 'HOBBIES_OPTIONS' });
   // 选中的模块
   const { modelItem } = useDesignSelectModelItem();
   let activeName = ref('style');
-</script>
-<script lang="ts">
-  export default {
-    name: 'HOBBIES_OPTIONS'
-  };
 </script>

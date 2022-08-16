@@ -83,7 +83,7 @@
   import CommonTitleOptions from './CommonTitleOptions.vue';
   import useDesignSelectModelItem from '@/hooks/material/useDesignSelectModelItem';
   import { Delete, SemiSelect, Plus } from '@element-plus/icons-vue';
-
+  defineOptions({ name: 'INTERNSHIP_EXPERIENCE_OPTIONS' });
   // 选中的模块
   const { modelItem } = useDesignSelectModelItem();
   let activeName = ref('style');
@@ -124,11 +124,6 @@
   // 删除内容
   const deleteContent = (index: number, cIndex: number): void => {
     modelItem.data.LIST[index].jobContent.splice(cIndex, 1);
-  };
-</script>
-<script lang="ts">
-  export default {
-    name: 'INTERNSHIP_EXPERIENCE_OPTIONS'
   };
 </script>
 <style lang="scss" scoped>

@@ -24,16 +24,14 @@
   import { IBASEINFO } from '@/interface/model';
   import IMODELSTYLE from '@/interface/modelStyle.js';
   import { reactive } from 'vue';
+  defineOptions({
+    name: 'BASE_INFO_1',
+  });
   const props = defineProps<{
     modelData: IBASEINFO; // 模块数据
     modelStyle: IMODELSTYLE; // 模块样式
   }>();
   const isShow = reactive(props.modelData.isShow);
-</script>
-<script lang="ts">
-  export default {
-    name: 'BASE_INFO_1'
-  };
 </script>
 <style scoped lang="scss">
   .base-info {

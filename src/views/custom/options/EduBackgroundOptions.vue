@@ -71,6 +71,7 @@
   import { useDegreeList } from '@/hooks/useDegreeList';
   import CommonOptions from './CommonOptions.vue';
   import useDesignSelectModelItem from '@/hooks/material/useDesignSelectModelItem';
+  defineOptions({ name: 'EDU_BACKGROUND_OPTIONS' });
   // 选中的模块
   const { modelItem } = useDesignSelectModelItem();
 
@@ -89,11 +90,6 @@
   // 删除学历
   const deleteEdu = (index: number): void => {
     modelItem.data.LIST.splice(index, 1);
-  };
-</script>
-<script lang="ts">
-  export default {
-    name: 'EDU_BACKGROUND_OPTIONS'
   };
 </script>
 <style lang="scss" scoped>

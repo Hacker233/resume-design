@@ -28,6 +28,7 @@
   import appStore from '@/store';
   import CommonOptions from '@/components/CommonOptions/CommonOptions.vue'; // 公共属性设置
   import { useModelIndex } from '@/hooks/useModelIndex';
+  defineOptions({ name: 'SELF_EVALUATION' });
   // store
   const { resumeJsonStore } = appStore.useResumeJsonStore;
 
@@ -35,9 +36,4 @@
   const index = useModelIndex(); // 选中的索引
   const modelItem = reactive<ISELFEVALUATION>(resumeJsonStore.LIST[index] as ISELFEVALUATION);
   let activeName = ref('style');
-</script>
-<script lang="ts">
-  export default {
-    name: 'SELF_EVALUATION'
-  };
 </script>

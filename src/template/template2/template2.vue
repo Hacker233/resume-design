@@ -37,6 +37,7 @@
   import SelfEvaluation from './components/SelfEvaluation.vue'; // 自我评价
   import WorksDisplay from './components/WorksDisplay.vue'; // 个人作品
   import ModelBoxVue from '@/components/ModelBox/ModelBox.vue';
+  defineOptions({ name: 'template2' });
   const { resumeJsonStore } = storeToRefs(appStore.useResumeJsonStore); // 简历数据
 
   const emit = defineEmits(['contentHeightChange']);
@@ -110,11 +111,6 @@
       return item.model !== 'BASE_INFO' && item.model !== 'SKILL_SPECIALTIES';
     })
   );
-</script>
-<script lang="ts">
-  export default {
-    name: 'template2'
-  };
 </script>
 <style lang="scss">
   @import '@/style/options.scss';

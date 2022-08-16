@@ -69,6 +69,7 @@
   import appStore from '@/store';
   import CommonOptions from '@/components/CommonOptions/CommonOptions.vue';
   import { useModelIndex } from '@/hooks/useModelIndex';
+  defineOptions({ name: 'JOB_INTENTION_OPTIONS' });
   // store
   const { resumeJsonStore } = appStore.useResumeJsonStore;
 
@@ -91,10 +92,5 @@
     '12000-15000￥',
     '15000￥以上'
   ]);
-</script>
-<script lang="ts">
-  export default {
-    name: 'JOB_INTENTION_OPTIONS'
-  };
 </script>
 <style lang="scss"></style>

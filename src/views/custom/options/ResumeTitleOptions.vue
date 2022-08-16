@@ -4,9 +4,7 @@
     <el-tab-pane label="样式设置" name="style">
       <el-form label-width="100px" label-position="left">
         <el-form-item label="背景颜色:">
-          <color-picker-custom-vue
-            v-model="modelItem.style.themeColor"
-          ></color-picker-custom-vue>
+          <color-picker-custom-vue v-model="modelItem.style.themeColor"></color-picker-custom-vue>
         </el-form-item>
         <!-- 公共样式属性 -->
         <common-options></common-options>
@@ -25,14 +23,9 @@
   import CommonOptions from './CommonOptions.vue';
   import useDesignSelectModelItem from '@/hooks/material/useDesignSelectModelItem';
   import ColorPickerCustomVue from '@/components/ColorPicker/ColorPickerCustom.vue';
-
+  defineOptions({ name: 'RESUME_TITLE_OPTIONS' });
   // 选中的模块
   const { modelItem } = useDesignSelectModelItem();
 
   let activeName = ref('style');
-</script>
-<script lang="ts">
-  export default {
-    name: 'RESUME_TITLE_OPTIONS'
-  };
 </script>

@@ -45,7 +45,7 @@
   import CommonOptions from './CommonOptions.vue';
   import { Plus, SemiSelect } from '@element-plus/icons-vue';
   import useDesignSelectModelItem from '@/hooks/material/useDesignSelectModelItem';
-
+  defineOptions({ name: 'SKILL_SPECIALTIES_OPTIONS' });
   // 选中的模块
   const { modelItem } = useDesignSelectModelItem();
   let activeName = ref('style');
@@ -64,11 +64,6 @@
       proficiency: '熟悉', // 熟练度
       introduce: '熟练掌握该项技术' // 介绍
     });
-  };
-</script>
-<script lang="ts">
-  export default {
-    name: 'SKILL_SPECIALTIES_OPTIONS'
   };
 </script>
 <style lang="scss" scoped>

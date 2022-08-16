@@ -10,7 +10,7 @@
       >
         <svg-icon
           iconName="icon-jingzi"
-          :className="['icon', 'icon-jingzi', { notAllowed: isAllowed }]"
+          className="icon icon-jingzi"
           :color="themeColorIcon"
           size="20px"
         ></svg-icon>

@@ -86,6 +86,9 @@
   import CommonTitleOptions from '@/components/CommonOptions/CommonTitleOptions.vue';
   import { Delete, SemiSelect, Plus } from '@element-plus/icons-vue';
   import { useModelIndex } from '@/hooks/useModelIndex';
+  defineOptions({
+    name: 'INTERNSHIP_EXPERIENCE'
+  });
   // store
   const { resumeJsonStore } = appStore.useResumeJsonStore;
 
@@ -132,11 +135,6 @@
   // 删除内容
   const deleteContent = (index: number, cIndex: number): void => {
     modelItem.LIST[index].jobContent.splice(cIndex, 1);
-  };
-</script>
-<script lang="ts">
-  export default {
-    name: 'INTERNSHIP_EXPERIENCE'
   };
 </script>
 <style lang="scss" scoped>
