@@ -73,6 +73,9 @@
   import CommonOptions from '@/components/CommonOptions/CommonOptions.vue';
   import CommonTitleOptions from '@/components/CommonOptions/CommonTitleOptions.vue';
   import { useModelIndex } from '@/hooks/useModelIndex';
+  defineOptions({
+    name: 'COM_BASE_INFO_OPTIONS'
+  })
   // store
   const { resumeJsonStore } = appStore.useResumeJsonStore;
 
@@ -102,11 +105,6 @@
       modelItem.avatar = e.target?.result as string;
     };
     return false;
-  };
-</script>
-<script lang="ts">
-  export default {
-    name: 'COM_BASE_INFO_OPTIONS'
   };
 </script>
 <style lang="scss">

@@ -44,6 +44,7 @@
   import CommonOptions from '@/components/CommonOptions/CommonOptions.vue';
   import { Delete, Plus, SemiSelect } from '@element-plus/icons-vue';
   import { useModelIndex } from '@/hooks/useModelIndex';
+  defineOptions({ name: 'WORKS_DISPLAY' });
   // store
   const { resumeJsonStore } = appStore.useResumeJsonStore;
 
@@ -66,11 +67,6 @@
       worksLink: 'https://www.baidu.com',
       worksIntroduce: '这是一个千万级作品'
     });
-  };
-</script>
-<script lang="ts">
-  export default {
-    name: 'WORKS_DISPLAY'
   };
 </script>
 <style lang="scss" scoped>

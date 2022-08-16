@@ -34,7 +34,12 @@
           <el-switch v-model="modelItem.data.isShow.intendedPositions" />
         </el-form-item>
         <el-form-item label="意向城市:">
-          <el-input type="text" v-model="modelItem.data.intendedCity" maxlength="15" show-word-limit />
+          <el-input
+            type="text"
+            v-model="modelItem.data.intendedCity"
+            maxlength="15"
+            show-word-limit
+          />
           <el-switch v-model="modelItem.data.isShow.intendedCity" />
         </el-form-item>
         <el-form-item label="期望薪酬:">
@@ -67,7 +72,7 @@
   import { reactive, ref } from 'vue';
   import CommonOptions from '../options/CommonOptions.vue';
   import useDesignSelectModelItem from '@/hooks/material/useDesignSelectModelItem';
-
+  defineOptions({ name: 'JOB_INTENTION_OPTIONS' });
   // 选中的模块
   const { modelItem } = useDesignSelectModelItem();
   let activeName = ref('style');
@@ -86,10 +91,5 @@
     '12000-15000￥',
     '15000￥以上'
   ]);
-</script>
-<script lang="ts">
-  export default {
-    name: 'JOB_INTENTION_OPTIONS'
-  };
 </script>
 <style lang="scss"></style>
