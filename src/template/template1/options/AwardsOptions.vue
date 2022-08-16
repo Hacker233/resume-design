@@ -49,6 +49,9 @@
   import { Delete } from '@element-plus/icons-vue';
   import CommonOptions from '@/components/CommonOptions/CommonOptions.vue';
   import { useModelIndex } from '@/hooks/useModelIndex';
+  defineOptions({
+    name: 'AWARDS'
+  });
   // store
   const { resumeJsonStore } = appStore.useResumeJsonStore;
 
@@ -70,11 +73,6 @@
   // 删除奖项
   const deleteAwards = (index: number): void => {
     modelItem.LIST.splice(index, 1);
-  };
-</script>
-<script lang="ts">
-  export default {
-    name: 'AWARDS'
   };
 </script>
 <style lang="scss">

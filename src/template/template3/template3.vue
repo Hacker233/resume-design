@@ -28,6 +28,7 @@
   import { storeToRefs } from 'pinia';
   import ModelBoxVue from '@/components/ModelBox/ModelBox.vue';
   import { onMounted, ref } from 'vue';
+  defineOptions({ name: 'template3' });
 
   const { resumeJsonStore } = storeToRefs(appStore.useResumeJsonStore);
   // 注册局部组件
@@ -69,12 +70,6 @@
       }
     });
     observer.observe(tmp3ContentHeightRef.value); // 监听元素
-  };
-</script>
-
-<script lang="ts">
-  export default {
-    name: 'template3'
   };
 </script>
 <style lang="scss" scoped>

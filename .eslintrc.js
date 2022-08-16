@@ -1,5 +1,6 @@
 module.exports = {
   parser: 'vue-eslint-parser',
+  globals: { defineOptions: 'writable' },
 
   parserOptions: {
     parser: '@typescript-eslint/parser',

@@ -67,6 +67,7 @@
   import CommonTitleOptions from './CommonTitleOptions.vue';
   import { Delete } from '@element-plus/icons-vue';
   import useDesignSelectModelItem from '@/hooks/material/useDesignSelectModelItem';
+  defineOptions({ name: 'CAMPUS_EXPERIENCE_OPTIONS' });
   // 选中的模块
   const { modelItem } = useDesignSelectModelItem();
   let activeName = ref('style');
@@ -86,11 +87,6 @@
       campusContent:
         '经历经历描述经历描述经历描经历描述经历描述经历描述经历描述经历描述述经历描述经历描述经历描述经历描述经历描述描述'
     });
-  };
-</script>
-<script lang="ts">
-  export default {
-    name: 'CAMPUS_EXPERIENCE_OPTIONS'
   };
 </script>
 <style lang="scss" scoped>

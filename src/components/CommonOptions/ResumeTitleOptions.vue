@@ -28,6 +28,9 @@
   import CommonOptions from '@/components/CommonOptions/CommonOptions.vue';
   import { useModelIndex } from '@/hooks/useModelIndex';
   import ColorPickerCustomVue from '../ColorPicker/ColorPickerCustom.vue';
+  defineOptions({
+    name: 'COM_RESUME_TITLE_OPTIONS'
+  });
   // store
   const { resumeJsonStore } = appStore.useResumeJsonStore;
 
@@ -35,9 +38,4 @@
   const index = useModelIndex(); // 选中的索引
   const modelItem = reactive<IRESUMETITLE>(resumeJsonStore.LIST[index] as IRESUMETITLE);
   let activeName = ref('style');
-</script>
-<script lang="ts">
-  export default {
-    name: 'COM_RESUME_TITLE_OPTIONS'
-  };
 </script>

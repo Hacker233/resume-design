@@ -56,6 +56,7 @@
   import { Plus, SemiSelect } from '@element-plus/icons-vue';
   import { useModelIndex } from '@/hooks/useModelIndex';
   import { StarFilled } from '@element-plus/icons-vue';
+  defineOptions({ name: 'TEMPLATE2_SKILL_SPECIALTIES' });
   // store
   const { resumeJsonStore } = appStore.useResumeJsonStore;
 
@@ -82,11 +83,6 @@
 
   // 熟练度选择
   const proficiencyList = reactive(['了解', '一般', '熟悉', '精通']);
-</script>
-<script lang="ts">
-  export default {
-    name: 'TEMPLATE2_SKILL_SPECIALTIES'
-  };
 </script>
 <style lang="scss" scoped>
   .skill-list {

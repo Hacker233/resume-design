@@ -77,6 +77,7 @@
   import CommonTitleOptions from '@/components/CommonOptions/CommonTitleOptions.vue';
   import { useModelIndex } from '@/hooks/useModelIndex';
   import { useDegreeList } from '@/hooks/useDegreeList';
+  defineOptions({ name: 'TEMPLATE2_EDU_BACKGROUND_OPTIONS' });
   // store
   const { resumeJsonStore } = appStore.useResumeJsonStore;
 
@@ -98,11 +99,6 @@
   // 删除学历
   const deleteEdu = (index: number): void => {
     modelItem.LIST.splice(index, 1);
-  };
-</script>
-<script lang="ts">
-  export default {
-    name: 'TEMPLATE2_EDU_BACKGROUND_OPTIONS'
   };
 </script>
 <style lang="scss" scoped>

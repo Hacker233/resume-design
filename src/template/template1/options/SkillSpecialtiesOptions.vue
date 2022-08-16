@@ -48,6 +48,7 @@
   import CommonOptions from '@/components/CommonOptions/CommonOptions.vue';
   import { Plus, SemiSelect } from '@element-plus/icons-vue';
   import { useModelIndex } from '@/hooks/useModelIndex';
+  defineOptions({ name: 'SKILL_SPECIALTIES' });
   // store
   const { resumeJsonStore } = appStore.useResumeJsonStore;
 
@@ -70,11 +71,6 @@
       proficiency: '熟悉', // 熟练度
       introduce: '熟练掌握该项技术' // 介绍
     });
-  };
-</script>
-<script lang="ts">
-  export default {
-    name: 'SKILL_SPECIALTIES'
   };
 </script>
 <style lang="scss" scoped>

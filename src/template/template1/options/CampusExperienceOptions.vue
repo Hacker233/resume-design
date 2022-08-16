@@ -70,6 +70,9 @@
   import CommonTitleOptions from '@/components/CommonOptions/CommonTitleOptions.vue';
   import { Delete } from '@element-plus/icons-vue';
   import { useModelIndex } from '@/hooks/useModelIndex';
+  defineOptions({
+    name: 'CAMPUS_EXPERIENCE'
+  });
   // store
   const { resumeJsonStore } = appStore.useResumeJsonStore;
 
@@ -93,11 +96,6 @@
       campusContent:
         '经历经历描述经历描述经历描经历描述经历描述经历描述经历描述经历描述述经历描述经历描述经历描述经历描述经历描述描述'
     });
-  };
-</script>
-<script lang="ts">
-  export default {
-    name: 'CAMPUS_EXPERIENCE'
   };
 </script>
 <style lang="scss" scoped>

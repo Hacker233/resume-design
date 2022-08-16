@@ -46,6 +46,9 @@
   import { Delete } from '@element-plus/icons-vue';
   import CommonOptions from './CommonOptions.vue';
   import useDesignSelectModelItem from '@/hooks/material/useDesignSelectModelItem';
+  defineOptions({
+    name: 'AWARDS_OPTIONS'
+  })
   // 选中的模块
   const { modelItem } = useDesignSelectModelItem();
   let activeName = ref('style');
@@ -63,11 +66,6 @@
   // 删除奖项
   const deleteAwards = (index: number): void => {
     modelItem.data.LIST.splice(index, 1);
-  };
-</script>
-<script lang="ts">
-  export default {
-    name: 'AWARDS_OPTIONS'
   };
 </script>
 <style lang="scss">

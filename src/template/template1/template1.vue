@@ -1,6 +1,6 @@
 <template>
   <div ref="tmp1ContentHeightRef">
-    <template v-for="(item) in resumeJsonStore.LIST">
+    <template v-for="item in resumeJsonStore.LIST">
       <model-box-vue v-if="item" :item="item" :components="components"></model-box-vue>
       <!-- <component v-if="item" :is="components[item.model]" :modelData="item"></component> -->
     </template>
@@ -26,6 +26,9 @@
   import { storeToRefs } from 'pinia';
   import { onMounted, ref } from 'vue';
   import ModelBoxVue from '@/components/ModelBox/ModelBox.vue';
+  defineOptions({
+    name: 'template1'
+  });
   const { resumeJsonStore } = storeToRefs(appStore.useResumeJsonStore);
 
   // 注册局部组件
@@ -62,11 +65,6 @@
       }
     });
     observer.observe(tmp1ContentHeightRef.value); // 监听元素
-  };
-</script>
-<script lang="ts">
-  export default {
-    name: 'template1'
   };
 </script>
 <style lang="scss" scoped>

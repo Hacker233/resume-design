@@ -80,7 +80,7 @@
   import CommonOptions from './CommonOptions.vue';
   import CommonTitleOptions from './CommonTitleOptions.vue';
   import useDesignSelectModelItem from '@/hooks/material/useDesignSelectModelItem';
-
+  defineOptions({ name: 'BASE_INFO_OPTIONS' });
   // 选中的模块
   const { modelItem } = useDesignSelectModelItem();
 
@@ -107,11 +107,6 @@
       modelItem.data.avatar = e.target?.result as string;
     };
     return false;
-  };
-</script>
-<script lang="ts">
-  export default {
-    name: 'BASE_INFO_OPTIONS'
   };
 </script>
 <style lang="scss">
