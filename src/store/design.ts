@@ -5,7 +5,7 @@ export const useDesignStore = defineStore('designStore', () => {
   const designJsonStore = ref<IDESIGNJSON>({
     ID: '', // 模板Id
     NAME: '',
-    TITLE: '',
+    TITLE: '模板标题',
     components: [], // 模板内组件列表
     GLOBAL_STYLE: {
       themeColor: '', // 主题色

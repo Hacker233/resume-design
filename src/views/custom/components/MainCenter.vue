@@ -58,6 +58,7 @@
   import { getUuid } from '@/utils/common';
   import draggable from 'vuedraggable';
   import { cloneDeep } from 'lodash'; // 深拷贝
+  import downloadPDF from '@/utils/html2pdf';
 
   defineProps<{
     components: any;
@@ -66,7 +67,7 @@
   // 生命周期函数
   onMounted(async () => {
     resizeDOM();
-    initClickListen()
+    initClickListen();
   });
 
   // 是否是当前页面拖拽
@@ -166,6 +167,21 @@
   };
   onBeforeUnmount(() => {
     window.removeEventListener('click', dealClick);
+  });
+
+  // 生成pdf方法
+  const generateReport = async () => {
+    let temp = linesNumber.value;
+    linesNumber.value = 0;
+    resetSelectModel(); // 重置选中模块
+    await nextTick();
+    downloadPDF(html2Pdf.value, designJsonStore.value.TITLE, false, () => {
+      linesNumber.value = temp;
+    });
+  };
+
+  defineExpose({
+    generateReport
   });
 </script>
 <style lang="scss" scoped>
