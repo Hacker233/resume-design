@@ -1,25 +1,9 @@
 import IDESIGNJSON from '@/interface/design';
 import { IMATERIALITEM } from '@/interface/material';
+import { DESIGN_JSON } from '@/schema/design';
 import { defineStore } from 'pinia';
 export const useDesignStore = defineStore('designStore', () => {
-  const designJsonStore = ref<IDESIGNJSON>({
-    ID: '', // 模板Id
-    NAME: '',
-    TITLE: '模板标题',
-    components: [], // 模板内组件列表
-    GLOBAL_STYLE: {
-      themeColor: '', // 主题色
-      firstTitleFontSize: '', // 一级标题
-      secondTitleFontSize: '', // 二级标题
-      textFontSize: '', // 正文
-      secondTitleColor: '', // 二级标题字体颜色
-      textFontColor: '', // 正文字体颜色
-      secondTitleWeight: 600, // 二级标题字体粗细
-      textFontWeight: 500, // 正文字体粗细
-      modelMarginTop: '',
-      modelMarginBottom: '40px'
-    }
-  });
+  const designJsonStore = ref<IDESIGNJSON>(DESIGN_JSON);
   function pushComponent(data: IMATERIALITEM) {
     designJsonStore.value.components.push(data);
   }

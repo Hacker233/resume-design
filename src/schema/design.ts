@@ -1,10 +1,12 @@
+import IDESIGNJSON from '@/interface/design';
 import { IMSTERIALLISTJSON } from '@/interface/material';
 
 // 模板设置的JSON数据格式
-export const DESIGN_JSON = {
+export const DESIGN_JSON: IDESIGNJSON = {
   ID: '', // 模板Id
   NAME: '',
   TITLE: '模板标题',
+  LAYOUT: 'classical', // 布局模式
   components: [], // 模板内组件列表
   GLOBAL_STYLE: {
     themeColor: '#079cfa', // 主题色
@@ -16,7 +18,9 @@ export const DESIGN_JSON = {
     secondTitleWeight: 600, // 二级标题字体粗细
     textFontWeight: 500, // 正文字体粗细
     modelMarginTop: '0px',
-    modelMarginBottom: '45px'
+    modelMarginBottom: '45px',
+    leftWidth: '', // 左右布局时左侧宽度
+    rightWidth: '' // 左右布局时右侧宽度
   }
 };
 

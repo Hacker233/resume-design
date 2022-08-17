@@ -25,36 +25,44 @@
         </div>
         <!-- 组件列表 -->
         <div class="cpt-list-box">
-          <div
-            v-for="(item, index) in cptList"
-            :key="index"
-            :ref="(el) => setColumnRefs(el, item.keyId)"
-            class="com-item"
-            draggable="true"
-            @dragstart="ondragstart($event, item)"
-            @dragend="handleDragend"
-            @click="addModel(item)"
+          <!-- 拖拽组件 -->
+          <draggable
+            class="dragArea list-group"
+            :sort="false"
+            :list="cptList"
+            :clone="cloneData"
+            :group="{ name: 'custom', pull: 'clone' }"
+            @start="start"
+            item-key="id"
           >
-            <el-tooltip class="box-item" effect="light" :enterable="false">
-              <template #content>
-                <img
-                  :src="getAssetsMaterialFile(currentKey, cptOfImg[currentKey][item.cptName].url)"
-                  style="max-width: 500px"
-                  alt=""
-                  srcset=""
-                />
-              </template>
-              <img
-                :src="getAssetsMaterialFile(currentKey, cptOfImg[currentKey][item.cptName].url)"
-                :style="{
-                  height: cptOfImg[currentKey][item.cptName].height,
-                  width: cptOfImg[currentKey][item.cptName].width
-                }"
-                alt=""
-                srcset=""
-              />
-            </el-tooltip>
-          </div>
+            <template #item="{ element }">
+              <div class="list-group-item com-item" @click="addModel(element)">
+                <el-tooltip class="box-item" effect="light" :enterable="false">
+                  <template #content>
+                    <img
+                      :src="
+                        getAssetsMaterialFile(currentKey, cptOfImg[currentKey][element.cptName].url)
+                      "
+                      style="max-width: 500px"
+                      alt=""
+                      srcset=""
+                    />
+                  </template>
+                  <img
+                    :src="
+                      getAssetsMaterialFile(currentKey, cptOfImg[currentKey][element.cptName].url)
+                    "
+                    :style="{
+                      height: cptOfImg[currentKey][element.cptName].height,
+                      width: cptOfImg[currentKey][element.cptName].width
+                    }"
+                    alt=""
+                    srcset=""
+                  />
+                </el-tooltip>
+              </div>
+            </template>
+          </draggable>
         </div>
       </template>
       <div v-else>
@@ -68,13 +76,28 @@
   import { MATERIAL_JSON } from '@/schema/design';
   import modelOfIcon from '@/dictionary/modelOfIcon';
   import modelOfTitle from '@/dictionary/modelOfTitle';
-  import { ComponentPublicInstance } from 'vue';
   import modelCategory from '@/dictionary/modelOfTitle';
   import { getAssetsMaterialFile, getUuid } from '@/utils/common';
   import cptOfImg from '@/dictionary/ctpOfImg';
   import { cloneDeep } from 'lodash';
   import MODEL_DATA_JSON from '@/schema/modelData';
   import appStore from '@/store';
+  import draggable from 'vuedraggable';
+  const list1 = ref<any>([
+    { name: 'Jesus', id: 1 },
+    { name: 'Paul', id: 2 },
+    { name: 'Peter', id: 3 }
+  ]);
+  const cloneData = (data: IMATERIALITEM) => {
+    const cptData = cloneDeep(data);
+    cptData.data = cloneDeep(MODEL_DATA_JSON[cptData.model]); // 为模块添加数据
+    cptData.keyId = getUuid();
+    return cptData;
+  };
+  const start = (data: any) => {
+    data.dataTransfer?.setData('cptData', JSON.stringify(123));
+    console.log('拖拽开始', data, data.oldIndex);
+  };
 
   // 点击模块选择
   const currentKey = ref<string>('');
@@ -84,7 +107,7 @@
     currentTitle.value = modelCategory[key];
     currentKey.value = key;
     cptList.value = val;
-    // console.log('cptList', cptList);
+    console.log('cptList', cptList);
   };
 
   // 重置模块
@@ -92,26 +115,10 @@
     currentKey.value = '';
   };
 
-  // 获取模块ref
-  let cptRefs: Array<any> = []; // 分割线的ref
-  const setColumnRefs = (el: Element | ComponentPublicInstance | null, keyId: string) => {
-    if (el) {
-      cptRefs.push({
-        keyId: keyId,
-        el: el
-      });
-    }
-  };
-
   // 拖拽开始
   const ondragstart = (evt: DragEvent, item: IMATERIALITEM) => {
     evt.dataTransfer?.setData('cptData', JSON.stringify(item));
     // console.log('源对象拖拽开始', evt);
-  };
-  // 拖拽结束
-  const handleDragend = (evt: DragEvent) => {
-    evt.dataTransfer?.clearData();
-    // console.log('源数据拖拽结束', evt);
   };
 
   // 点击组件，添加模块
