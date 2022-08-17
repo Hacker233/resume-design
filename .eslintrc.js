@@ -1,5 +1,6 @@
 module.exports = {
   parser: 'vue-eslint-parser',
+  globals: { defineOptions: 'writable' },
 
   parserOptions: {
     parser: '@typescript-eslint/parser',
@@ -13,6 +14,8 @@ module.exports = {
   extends: [
     'plugin:vue/vue3-recommended',
     'plugin:@typescript-eslint/recommended',
+    'vue-global-api',
+    './.eslintrc-auto-import.json',
     'prettier',
     'plugin:prettier/recommended'
   ],
@@ -37,6 +40,7 @@ module.exports = {
         varsIgnorePattern: '^h$'
       }
     ],
+    'vue/multi-word-component-names': 'off',
     'no-unused-vars': [
       'error',
       {

@@ -10,13 +10,13 @@
     <el-tab-pane label="数据配置" name="data">
       <el-form label-width="70px" label-position="left">
         <el-form-item label="标题名称:">
-          <el-input type="text" v-model="modelItem.title" maxlength="15" show-word-limit />
+          <el-input v-model="modelItem.title" type="text" maxlength="15" show-word-limit />
         </el-form-item>
-        <div class="skill-list" v-for="(item, index) in modelItem.LIST">
+        <div v-for="(item, index) in modelItem.LIST" class="skill-list">
           <el-form-item :label="`技能${index + 1}:`">
             <el-input
-              type="textarea"
               v-model="item.introduce"
+              type="textarea"
               maxlength="50"
               show-word-limit
               :rows="4"
@@ -48,6 +48,7 @@
   import CommonOptions from '@/components/CommonOptions/CommonOptions.vue';
   import { Plus, SemiSelect } from '@element-plus/icons-vue';
   import { useModelIndex } from '@/hooks/useModelIndex';
+  defineOptions({ name: 'SKILL_SPECIALTIES' });
   // store
   const { resumeJsonStore } = appStore.useResumeJsonStore;
 
@@ -70,11 +71,6 @@
       proficiency: '熟悉', // 熟练度
       introduce: '熟练掌握该项技术' // 介绍
     });
-  };
-</script>
-<script lang="ts">
-  export default {
-    name: 'SKILL_SPECIALTIES'
   };
 </script>
 <style lang="scss" scoped>

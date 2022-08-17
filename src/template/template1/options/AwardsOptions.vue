@@ -8,7 +8,10 @@
       </el-form>
     </el-tab-pane>
     <el-tab-pane label="数据配置" name="data">
-      <div class="awards-list" v-for="(item, index) in modelItem.LIST" :key="index">
+      <el-form-item label="标题名称:">
+        <el-input v-model="modelItem.title" type="text" maxlength="15" show-word-limit />
+      </el-form-item>
+      <div v-for="(item, index) in modelItem.LIST" :key="index" class="awards-list">
         <p>
           <span>奖项{{ index + 1 }}</span>
           <el-button
@@ -24,11 +27,11 @@
           <el-switch v-model="modelItem.isShow.date" />
         </el-form-item>
         <el-form-item label="奖项名称:">
-          <el-input type="text" v-model="item.awardsName" maxlength="40" show-word-limit />
+          <el-input v-model="item.awardsName" type="text" maxlength="40" show-word-limit />
           <el-switch v-model="modelItem.isShow.awardsName" />
         </el-form-item>
         <el-form-item label="所获奖项:">
-          <el-input type="text" v-model="item.awardsGrade" maxlength="20" show-word-limit />
+          <el-input v-model="item.awardsGrade" type="text" maxlength="20" show-word-limit />
           <el-switch v-model="modelItem.isShow.awardsGrade" />
         </el-form-item>
       </div>
@@ -46,6 +49,9 @@
   import { Delete } from '@element-plus/icons-vue';
   import CommonOptions from '@/components/CommonOptions/CommonOptions.vue';
   import { useModelIndex } from '@/hooks/useModelIndex';
+  defineOptions({
+    name: 'AWARDS'
+  });
   // store
   const { resumeJsonStore } = appStore.useResumeJsonStore;
 
@@ -67,11 +73,6 @@
   // 删除奖项
   const deleteAwards = (index: number): void => {
     modelItem.LIST.splice(index, 1);
-  };
-</script>
-<script lang="ts">
-  export default {
-    name: 'AWARDS'
   };
 </script>
 <style lang="scss">

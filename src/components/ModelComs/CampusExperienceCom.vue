@@ -5,7 +5,7 @@
     <slot name="model-title"></slot>
     <!-- 校园经历 -->
     <div class="campue-experience-list">
-      <div class="list" v-for="(item, index) in modelData.LIST" :key="index">
+      <div v-for="(item, index) in modelData.LIST" :key="index" class="list">
         <ul>
           <!-- 经历时间 -->
           <li v-if="modelData.isShow.date">{{ formatDate(item.date) }}</li>

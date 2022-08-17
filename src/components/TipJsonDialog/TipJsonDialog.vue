@@ -12,13 +12,13 @@
     <!-- 代码编辑器 -->
     <div class="code-mirror-box">
       <codemirror
-        v-model="code"
         ref="codemirrorRef"
+        v-model="code"
         placeholder="请将你的简历JSON写在此处～～"
         :style="{ height: '400px' }"
         :autofocus="true"
         :indent-with-tab="true"
-        :tabSize="2"
+        :tab-size="2"
         :extensions="extensions"
         :disabled="true"
       />

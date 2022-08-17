@@ -8,7 +8,10 @@
       </el-form>
     </el-tab-pane>
     <el-tab-pane label="数据配置" name="data">
-      <div class="edu-list" v-for="(item, index) in modelItem.LIST" :key="index">
+      <el-form-item label="标题名称:">
+        <el-input v-model="modelItem.title" type="text" maxlength="15" show-word-limit />
+      </el-form-item>
+      <div v-for="(item, index) in modelItem.LIST" :key="index" class="edu-list">
         <p>
           <span>学历{{ index + 1 }}</span>
           <el-button
@@ -30,11 +33,11 @@
           <el-switch v-model="modelItem.isShow.date" />
         </el-form-item>
         <el-form-item label="学校名称:">
-          <el-input type="text" v-model="item.schoolName" maxlength="40" show-word-limit />
+          <el-input v-model="item.schoolName" type="text" maxlength="40" show-word-limit />
           <el-switch v-model="modelItem.isShow.schoolName" />
         </el-form-item>
         <el-form-item label="专业名称:">
-          <el-input type="text" v-model="item.specialized" maxlength="20" show-word-limit />
+          <el-input v-model="item.specialized" type="text" maxlength="20" show-word-limit />
           <el-switch v-model="modelItem.isShow.specialized" />
         </el-form-item>
         <el-form-item label="学历学位:">
@@ -64,6 +67,9 @@
   import CommonOptions from '@/components/CommonOptions/CommonOptions.vue'; // 公共属性设置
   import { useModelIndex } from '@/hooks/useModelIndex';
   import { useDegreeList } from '@/hooks/useDegreeList';
+  defineOptions({
+    name: 'EDU_BACKGROUND_OPTIONS'
+  });
   // store
   const { resumeJsonStore } = appStore.useResumeJsonStore;
 
@@ -85,11 +91,6 @@
   // 删除学历
   const deleteEdu = (index: number): void => {
     modelItem.LIST.splice(index, 1);
-  };
-</script>
-<script lang="ts">
-  export default {
-    name: 'EDU_BACKGROUND_OPTIONS'
   };
 </script>
 <style lang="scss" scoped>

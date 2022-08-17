@@ -1,7 +1,7 @@
 <template>
-  <div class="classic-box" ref="tmp2ContentHeightRef">
-    <div class="left" ref="leftRef">
-      <template v-for="item in leftList">
+  <div ref="tmp2ContentHeightRef" class="classic-box">
+    <div ref="leftRef" class="left">
+      <template v-for="(item, index) in leftList">
         <model-box-vue :item="item" :components="components"></model-box-vue>
       </template>
     </div>
@@ -37,6 +37,7 @@
   import SelfEvaluation from './components/SelfEvaluation.vue'; // 自我评价
   import WorksDisplay from './components/WorksDisplay.vue'; // 个人作品
   import ModelBoxVue from '@/components/ModelBox/ModelBox.vue';
+  defineOptions({ name: 'template2' });
   const { resumeJsonStore } = storeToRefs(appStore.useResumeJsonStore); // 简历数据
 
   const emit = defineEmits(['contentHeightChange']);
@@ -64,7 +65,7 @@
   // 监听内容高度发生变化
   const tmp2ContentHeightRef = ref<any>(null);
   let observer: ResizeObserver | null = null;
-  let height: number = 0;
+  let height = 0;
   const changeHeight = () => {
     observer = new ResizeObserver(async (entries: ResizeObserverEntry[]) => {
       for (let entry of entries) {
@@ -110,11 +111,6 @@
       return item.model !== 'BASE_INFO' && item.model !== 'SKILL_SPECIALTIES';
     })
   );
-</script>
-<script lang="ts">
-  export default {
-    name: 'template2'
-  };
 </script>
 <style lang="scss">
   @import '@/style/options.scss';

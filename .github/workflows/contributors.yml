@@ -1,4 +1,4 @@
-name: Add contributors
+name: 自动添加贡献者
 on:
   schedule:
     - cron:  '20 20 * * *'

@@ -10,9 +10,9 @@
     <el-tab-pane label="数据配置" name="data">
       <el-form label-width="70px" label-position="left">
         <el-form-item label="标题名称:">
-          <el-input type="text" v-model="modelItem.title" maxlength="15" show-word-limit />
+          <el-input v-model="modelItem.title" type="text" maxlength="15" show-word-limit />
         </el-form-item>
-        <div class="works-list" v-for="(item, index) in modelItem.LIST">
+        <div v-for="(item, index) in modelItem.LIST" class="works-list">
           <p>
             <span>作品{{ index + 1 }}</span>
             <el-button
@@ -24,10 +24,10 @@
             />
           </p>
           <el-form-item label="作品名称">
-            <el-input type="text" v-model="item.worksName" maxlength="35" show-word-limit />
+            <el-input v-model="item.worksName" type="text" maxlength="35" show-word-limit />
           </el-form-item>
           <el-form-item label="作品链接">
-            <el-input type="text" v-model="item.worksLink" maxlength="235" show-word-limit />
+            <el-input v-model="item.worksLink" type="text" maxlength="235" show-word-limit />
           </el-form-item>
         </div>
         <div class="addOrdelet">
@@ -44,6 +44,7 @@
   import CommonOptions from '@/components/CommonOptions/CommonOptions.vue';
   import { Delete, Plus, SemiSelect } from '@element-plus/icons-vue';
   import { useModelIndex } from '@/hooks/useModelIndex';
+  defineOptions({ name: 'WORKS_DISPLAY' });
   // store
   const { resumeJsonStore } = appStore.useResumeJsonStore;
 
@@ -66,11 +67,6 @@
       worksLink: 'https://www.baidu.com',
       worksIntroduce: '这是一个千万级作品'
     });
-  };
-</script>
-<script lang="ts">
-  export default {
-    name: 'WORKS_DISPLAY'
   };
 </script>
 <style lang="scss" scoped>

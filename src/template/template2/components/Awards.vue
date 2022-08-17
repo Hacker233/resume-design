@@ -16,7 +16,7 @@
           </span>
         </div>
         <!-- 奖项等级 -->
-        <p class="majorCourse" v-if="modelData.isShow.awardsGrade">{{ item.awardsGrade }}</p>
+        <p v-if="modelData.isShow.awardsGrade" class="majorCourse">{{ item.awardsGrade }}</p>
       </ul>
     </div>
   </div>

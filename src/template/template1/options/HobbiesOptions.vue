@@ -11,8 +11,8 @@
       <el-form label-width="80px" label-position="left">
         <el-form-item label="兴趣爱好:">
           <el-input
-            type="textarea"
             v-model="modelItem.content"
+            type="textarea"
             maxlength="500"
             show-word-limit
             :rows="5"
@@ -28,16 +28,14 @@
   import appStore from '@/store';
   import CommonOptions from '@/components/CommonOptions/CommonOptions.vue'; // 公共属性设置
   import { useModelIndex } from '@/hooks/useModelIndex';
+  defineOptions({
+    name: 'HOBBIES'
+  });
   // store
-  const { resumeJsonStore } =appStore.useResumeJsonStore;
+  const { resumeJsonStore } = appStore.useResumeJsonStore;
 
   // 选中的模块
   const index = useModelIndex(); // 选中的索引
   const modelItem = reactive<IHOBBIES>(resumeJsonStore.LIST[index] as IHOBBIES);
   let activeName = ref('style');
-</script>
-<script lang="ts">
-  export default {
-    name: 'HOBBIES'
-  };
 </script>

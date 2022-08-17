@@ -1,7 +1,7 @@
 <template>
-  <project-experience-com-vue :modelData="modelData">
+  <project-experience-com-vue :model-data="modelData">
     <!-- 标题 -->
-    <template v-slot:model-title>
+    <template #model-title>
       <model-title-vue :title="modelData.title" :iconfont="modelData.iconfont"></model-title-vue>
     </template>
   </project-experience-com-vue>

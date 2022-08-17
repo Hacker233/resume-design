@@ -1,6 +1,7 @@
 import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router';
 const Designer = () => import('@/views/designer/index.vue');
 const Index = () => import('@/views/index/index.vue');
+const Custom = () => import('@/views/custom/index.vue');
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -26,7 +27,7 @@ const routes: Array<RouteRecordRaw> = [
 ];
 // const routerHistory = createWebHistory('/');
 const router = createRouter({
-  history: createWebHashHistory(),
+  history: createWebHistory(),
   routes
 });
 export default router;

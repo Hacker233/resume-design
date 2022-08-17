@@ -2,7 +2,7 @@
 <template>
   <div class="template2-model-title">
     <div class="icon-box">
-      <svg-icon :iconName="iconfont" color="#fff" size="15px"></svg-icon>
+      <svg-icon :icon-name="iconfont" color="#fff" size="15px"></svg-icon>
     </div>
     <div class="right-title">
       <h1>{{ title }}</h1>

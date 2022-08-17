@@ -10,7 +10,7 @@
     <el-tab-pane label="数据配置" name="data">
       <el-form label-width="100px" label-position="left">
         <el-form-item label="标题名称:">
-          <el-input type="text" v-model="modelItem.title" maxlength="15" show-word-limit />
+          <el-input v-model="modelItem.title" type="text" maxlength="15" show-word-limit />
         </el-form-item>
         <el-form-item label="求职类型:">
           <el-select v-model="modelItem.jobSearchType" class="m-2" placeholder="Select">
@@ -26,15 +26,15 @@
         </el-form-item>
         <el-form-item label="意向岗位:">
           <el-input
-            type="text"
             v-model="modelItem.intendedPositions"
+            type="text"
             maxlength="15"
             show-word-limit
           />
           <el-switch v-model="modelItem.isShow.intendedPositions" />
         </el-form-item>
         <el-form-item label="意向城市:">
-          <el-input type="text" v-model="modelItem.intendedCity" maxlength="15" show-word-limit />
+          <el-input v-model="modelItem.intendedCity" type="text" maxlength="15" show-word-limit />
           <el-switch v-model="modelItem.isShow.intendedCity" />
         </el-form-item>
         <el-form-item label="期望薪酬:">
@@ -69,6 +69,7 @@
   import appStore from '@/store';
   import CommonOptions from '@/components/CommonOptions/CommonOptions.vue';
   import { useModelIndex } from '@/hooks/useModelIndex';
+  defineOptions({ name: 'JOB_INTENTION_OPTIONS' });
   // store
   const { resumeJsonStore } = appStore.useResumeJsonStore;
 
@@ -91,10 +92,5 @@
     '12000-15000￥',
     '15000￥以上'
   ]);
-</script>
-<script lang="ts">
-  export default {
-    name: 'JOB_INTENTION_OPTIONS'
-  };
 </script>
 <style lang="scss"></style>

@@ -12,9 +12,9 @@
     <el-tab-pane label="数据配置" name="data">
       <el-form label-width="70px" label-position="left">
         <el-form-item label="标题名称:">
-          <el-input type="text" v-model="modelItem.title" maxlength="15" show-word-limit />
+          <el-input v-model="modelItem.title" type="text" maxlength="15" show-word-limit />
         </el-form-item>
-        <div class="campus-list" v-for="(item, index) in modelItem.LIST" :key="index">
+        <div v-for="(item, index) in modelItem.LIST" :key="index" class="campus-list">
           <p>
             <span>经历{{ index + 1 }}</span>
             <el-button
@@ -36,17 +36,17 @@
             <el-switch v-model="modelItem.isShow.date" />
           </el-form-item>
           <el-form-item label="经历简要:">
-            <el-input type="text" v-model="item.campusBriefly" maxlength="35" show-word-limit />
+            <el-input v-model="item.campusBriefly" type="text" maxlength="35" show-word-limit />
             <el-switch v-model="modelItem.isShow.campusBriefly" />
           </el-form-item>
           <el-form-item label="主要职责:">
-            <el-input type="text" v-model="item.campusDuty" maxlength="35" show-word-limit />
+            <el-input v-model="item.campusDuty" type="text" maxlength="35" show-word-limit />
             <el-switch v-model="modelItem.isShow.campusDuty" />
           </el-form-item>
           <el-form-item label="经历简述:">
             <el-input
-              type="textarea"
               v-model="item.campusContent"
+              type="textarea"
               maxlength="200"
               show-word-limit
               :rows="4"
@@ -70,6 +70,9 @@
   import CommonTitleOptions from '@/components/CommonOptions/CommonTitleOptions.vue';
   import { Delete } from '@element-plus/icons-vue';
   import { useModelIndex } from '@/hooks/useModelIndex';
+  defineOptions({
+    name: 'CAMPUS_EXPERIENCE'
+  });
   // store
   const { resumeJsonStore } = appStore.useResumeJsonStore;
 
@@ -93,11 +96,6 @@
       campusContent:
         '经历经历描述经历描述经历描经历描述经历描述经历描述经历描述经历描述述经历描述经历描述经历描述经历描述经历描述描述'
     });
-  };
-</script>
-<script lang="ts">
-  export default {
-    name: 'CAMPUS_EXPERIENCE'
   };
 </script>
 <style lang="scss" scoped>

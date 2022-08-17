@@ -1,10 +1,10 @@
 <template>
-  <div class="template3-box" ref="tmp3ContentHeightRef">
+  <div ref="tmp3ContentHeightRef" class="template3-box">
     <!-- 简历模块 -->
-    <template v-for="item in resumeJsonStore.LIST">
-      <model-box-vue :item="item" :components="components" v-if="!isTitleAndBaseInfo(item)">
+    <template v-for="item in resumeJsonStore.LIST" :key="index">
+      <model-box-vue v-if="!isTitleAndBaseInfo(item)" :item="item" :components="components">
       </model-box-vue>
-      <div class="model-box-wraper" v-else>
+      <div v-else class="model-box-wraper">
         <model-box-vue :item="item" :components="components" class="model-other-class">
         </model-box-vue>
       </div>
@@ -28,6 +28,7 @@
   import { storeToRefs } from 'pinia';
   import ModelBoxVue from '@/components/ModelBox/ModelBox.vue';
   import { onMounted, ref } from 'vue';
+  defineOptions({ name: 'template3' });
 
   const { resumeJsonStore } = storeToRefs(appStore.useResumeJsonStore);
   // 注册局部组件
@@ -60,7 +61,7 @@
   // 监听内容高度发生变化
   const tmp3ContentHeightRef = ref<any>(null);
   let observer: ResizeObserver | null = null;
-  let height: number = 0;
+  let height = 0;
   const changeHeight = () => {
     observer = new ResizeObserver(async (entries: ResizeObserverEntry[]) => {
       for (let entry of entries) {
@@ -69,12 +70,6 @@
       }
     });
     observer.observe(tmp3ContentHeightRef.value); // 监听元素
-  };
-</script>
-
-<script lang="ts">
-  export default {
-    name: 'template3'
   };
 </script>
 <style lang="scss" scoped>

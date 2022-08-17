@@ -8,16 +8,16 @@
       </div>
       <div class="detail">
         <ul>
-          <li class="li-border" v-show="isShow.age">{{ modelData.age }}岁</li>
-          <li class="li-border" v-show="isShow.address">{{ modelData.address }}</li>
-          <li class="li-border" v-show="isShow.workService">{{ modelData.workService }}年经验</li>
-          <li class="li-border" v-show="isShow.phoneNumber">{{ modelData.phoneNumber }}</li>
+          <li v-show="isShow.age" class="li-border">{{ modelData.age }}岁</li>
+          <li v-show="isShow.address" class="li-border">{{ modelData.address }}</li>
+          <li v-show="isShow.workService" class="li-border">{{ modelData.workService }}年经验</li>
+          <li v-show="isShow.phoneNumber" class="li-border">{{ modelData.phoneNumber }}</li>
           <li v-show="isShow.email">{{ modelData.email }}</li>
         </ul>
       </div>
     </div>
     <!-- 头像 -->
-    <div class="avatar-box" v-show="modelData.isShow.avatar">
+    <div v-show="modelData.isShow.avatar" class="avatar-box">
       <el-image style="width: 116px; height: 146px" :src="modelData.avatar" />
     </div>
   </div>

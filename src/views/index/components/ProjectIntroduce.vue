@@ -6,6 +6,7 @@
       <!-- 查看更多按钮 -->
       <div class="see-more-box">
         <div class="button" @click="freeMakeResume"> 免费制作 </div>
+        <div class="button" @click="toCustom"> 创建模板 </div>
       </div>
     </div>
     <div class="right">
@@ -14,13 +15,25 @@
   </div>
 </template>
 <script lang="ts" setup>
-  const emit = defineEmits(['freeMake']);
+  import { closeGlobalLoading, openGlobalLoading } from '@/utils/common';
+
+  const emit = defineEmits(['freeMake', 'customTemplate']);
   const freeMakeResume = () => {
     emit('freeMake');
   };
   const handleMouseover = () => {
-    console.log('鼠标移动');
+    // console.log('鼠标移动');
   };
+
+  // 滚动到自定义模板
+  const toCustom = () => {
+    emit('customTemplate')
+  }
+
+  // 页面销毁
+  onUnmounted(() => {
+    closeGlobalLoading(); // 关闭全局等待层
+  });
 </script>
 <style lang="scss" scoped>
   .project-introduce-box {
@@ -58,11 +71,16 @@
       }
       .see-more-box {
         margin-top: 40px;
+        display: flex;
+        & :nth-child(1) {
+          margin-right: 30px;
+        }
         .button {
           width: 120px;
           height: 38px;
           line-height: 38px;
           text-align: center;
+          letter-spacing: 2px;
           color: #fff;
           font-size: 14px;
           background-image: -webkit-linear-gradient(to right, #2ddd9d, #1cc7cf);
