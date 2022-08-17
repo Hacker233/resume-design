@@ -5,7 +5,7 @@
     <model-title :title="modelData.title"></model-title>
     <!-- 校园经历 -->
     <div class="project-experience-list">
-      <div class="list" v-for="(item, index) in modelData.LIST" :key="index">
+      <div v-for="(item, index) in modelData.LIST" :key="index" class="list">
         <ul>
           <!-- 经历时间 -->
           <li class="list-title">{{ formatDate(item.date) }}</li>

@@ -13,8 +13,8 @@
         </el-icon>
       </p>
       <el-input
-        ref="titleIpf"
         v-show="isShowIpt"
+        ref="titleIpf"
         v-model="resumeJsonStore.TITLE"
         autofocus
         placeholder="请输入标题"
@@ -24,27 +24,27 @@
     <div class="nav-right">
       <el-tooltip class="box-item" effect="dark" content="保存草稿" placement="bottom">
         <div class="icon-box" @click="saveDraft">
-          <svg-icon iconName="icon-caogaoxiang1" color="#fff" size="17px"></svg-icon>
+          <svg-icon icon-name="icon-caogaoxiang1" color="#fff" size="17px"></svg-icon>
         </div>
       </el-tooltip>
       <el-tooltip class="box-item" effect="dark" content="导出为PDF" placement="bottom">
         <div class="icon-box" @click="generateReport">
-          <svg-icon iconName="icon-pdf" color="#fff" size="17px"></svg-icon>
+          <svg-icon icon-name="icon-pdf" color="#fff" size="17px"></svg-icon>
         </div>
       </el-tooltip>
       <el-tooltip class="box-item" effect="dark" content="导出为JSON数据" placement="bottom">
         <div class="icon-box" @click="exportJSON">
-          <svg-icon iconName="icon-xiazai" color="#fff" size="17px"></svg-icon>
+          <svg-icon icon-name="icon-xiazai" color="#fff" size="17px"></svg-icon>
         </div>
       </el-tooltip>
       <el-tooltip class="box-item" effect="dark" content="导入JSON数据" placement="bottom">
         <div class="icon-box" @click="importJson">
-          <svg-icon iconName="icon-yunduanshangchuan" color="#fff" size="19px"></svg-icon>
+          <svg-icon icon-name="icon-yunduanshangchuan" color="#fff" size="19px"></svg-icon>
         </div>
       </el-tooltip>
       <el-tooltip class="box-item" effect="dark" content="重置所有设置" placement="bottom">
         <div class="icon-box" @click="reset">
-          <svg-icon iconName="icon-zhongzhi" color="#fff" size="17px"></svg-icon>
+          <svg-icon icon-name="icon-zhongzhi" color="#fff" size="17px"></svg-icon>
         </div>
       </el-tooltip>
     </div>
@@ -52,7 +52,7 @@
 
   <!-- 上传json代码编辑器 -->
   <import-json-dialog
-    :dialogVisible="dialogVisible"
+    :dialog-visible="dialogVisible"
     @cancle="cancleJsonDialog"
   ></import-json-dialog>
 </template>
@@ -151,7 +151,7 @@
     })
       .then(() => {
         emit('reset');
-        draftTips.value = ``;
+        draftTips.value = '';
       })
       .catch(() => {});
   };

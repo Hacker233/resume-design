@@ -12,9 +12,9 @@
     <el-tab-pane label="数据配置" name="data">
       <el-form label-width="70px" label-position="left">
         <el-form-item label="标题名称:">
-          <el-input type="text" v-model="modelItem.data.title" maxlength="15" show-word-limit />
+          <el-input v-model="modelItem.data.title" type="text" maxlength="15" show-word-limit />
         </el-form-item>
-        <div class="work-list" v-for="(item, index) in modelItem.data.LIST" :key="index">
+        <div v-for="(item, index) in modelItem.data.LIST" :key="index" class="work-list">
           <p>
             <span>工作经验{{ index + 1 }}</span>
             <el-button
@@ -36,21 +36,21 @@
             <el-switch v-model="modelItem.data.isShow.date" />
           </el-form-item>
           <el-form-item label="公司名称:">
-            <el-input type="text" v-model="item.companyName" maxlength="35" show-word-limit />
+            <el-input v-model="item.companyName" type="text" maxlength="35" show-word-limit />
             <el-switch v-model="modelItem.data.isShow.companyName" />
           </el-form-item>
           <el-form-item label="主要职责:">
-            <el-input type="text" v-model="item.posts" maxlength="35" show-word-limit />
+            <el-input v-model="item.posts" type="text" maxlength="35" show-word-limit />
             <el-switch v-model="modelItem.data.isShow.posts" />
           </el-form-item>
           <el-form-item
-            label="工作内容:"
             v-for="(content, cIndex) in item.jobContent"
             :key="cIndex"
+            label="工作内容:"
           >
             <el-input
-              type="textarea"
               v-model="content.content"
+              type="textarea"
               maxlength="200"
               show-word-limit
               :rows="3"

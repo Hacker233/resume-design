@@ -1,30 +1,30 @@
 <template>
   <div class="base-info">
     <!-- 个人头像 -->
-    <div class="avatar-box" v-show="modelData.isShow.avatar">
+    <div v-show="modelData.isShow.avatar" class="avatar-box">
       <el-image style="width: 120px; height: 150px" :src="modelData.avatar" />
     </div>
     <!-- 基础信息 -->
     <div class="user-info">
       <ul>
-        <li class="li-border" v-show="isShow.age">
-          <svg-icon iconName="icon-renwu-ren" color="#fff"></svg-icon>
+        <li v-show="isShow.age" class="li-border">
+          <svg-icon icon-name="icon-renwu-ren" color="#fff"></svg-icon>
           <span>{{ modelData.age }}岁</span>
         </li>
-        <li class="li-border" v-show="isShow.address">
-          <svg-icon iconName="icon-dizhi" color="#fff" size="16px"></svg-icon>
+        <li v-show="isShow.address" class="li-border">
+          <svg-icon icon-name="icon-dizhi" color="#fff" size="16px"></svg-icon>
           <span>{{ modelData.address }}</span>
         </li>
-        <li class="li-border" v-show="isShow.workService">
-          <svg-icon iconName="icon-gongzuojingyan" color="#fff"></svg-icon>
+        <li v-show="isShow.workService" class="li-border">
+          <svg-icon icon-name="icon-gongzuojingyan" color="#fff"></svg-icon>
           <span>{{ modelData.workService }}年经验</span>
         </li>
-        <li class="li-border" v-show="isShow.phoneNumber">
-          <svg-icon iconName="icon-dianhua1" color="#fff"></svg-icon>
+        <li v-show="isShow.phoneNumber" class="li-border">
+          <svg-icon icon-name="icon-dianhua1" color="#fff"></svg-icon>
           <span>{{ modelData.phoneNumber }}</span>
         </li>
         <li v-show="isShow.email">
-          <svg-icon iconName="icon-youxiang" color="#fff"></svg-icon>
+          <svg-icon icon-name="icon-youxiang" color="#fff"></svg-icon>
           <span>{{ modelData.email }}</span>
         </li>
       </ul>

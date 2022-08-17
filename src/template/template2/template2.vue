@@ -1,7 +1,7 @@
 <template>
-  <div class="classic-box" ref="tmp2ContentHeightRef">
-    <div class="left" ref="leftRef">
-      <template v-for="item in leftList">
+  <div ref="tmp2ContentHeightRef" class="classic-box">
+    <div ref="leftRef" class="left">
+      <template v-for="(item, index) in leftList">
         <model-box-vue :item="item" :components="components"></model-box-vue>
       </template>
     </div>
@@ -65,7 +65,7 @@
   // 监听内容高度发生变化
   const tmp2ContentHeightRef = ref<any>(null);
   let observer: ResizeObserver | null = null;
-  let height: number = 0;
+  let height = 0;
   const changeHeight = () => {
     observer = new ResizeObserver(async (entries: ResizeObserverEntry[]) => {
       for (let entry of entries) {

@@ -16,12 +16,12 @@
     <el-tab-pane label="数据配置" name="data">
       <el-form label-width="70px" label-position="left">
         <el-form-item label="姓名:">
-          <el-input type="text" v-model="modelItem.data.name" maxlength="15" show-word-limit />
+          <el-input v-model="modelItem.data.name" type="text" maxlength="15" show-word-limit />
         </el-form-item>
         <el-form-item label="简介:">
           <el-input
-            type="textarea"
             v-model="modelItem.data.abstract"
+            type="textarea"
             maxlength="50"
             show-word-limit
             :rows="4"
@@ -29,17 +29,17 @@
           <el-switch v-model="modelItem.data.isShow.abstract" />
         </el-form-item>
         <el-form-item label="年龄:">
-          <el-input type="text" v-model="modelItem.data.age" maxlength="2" show-word-limit />
+          <el-input v-model="modelItem.data.age" type="text" maxlength="2" show-word-limit />
           <el-switch v-model="modelItem.data.isShow.age" />
         </el-form-item>
         <el-form-item label="地址:">
-          <el-input type="text" v-model="modelItem.data.address" maxlength="30" show-word-limit />
+          <el-input v-model="modelItem.data.address" type="text" maxlength="30" show-word-limit />
           <el-switch v-model="modelItem.data.isShow.address" />
         </el-form-item>
         <el-form-item label="工作经验:">
           <el-input
-            type="text"
             v-model="modelItem.data.workService"
+            type="text"
             maxlength="10"
             show-word-limit
           />
@@ -47,15 +47,15 @@
         </el-form-item>
         <el-form-item label="联系方式:">
           <el-input
-            type="text"
             v-model="modelItem.data.phoneNumber"
+            type="text"
             maxlength="11"
             show-word-limit
           />
           <el-switch v-model="modelItem.data.isShow.phoneNumber" />
         </el-form-item>
         <el-form-item label="邮箱地址:">
-          <el-input type="text" v-model="modelItem.data.email" maxlength="30" show-word-limit />
+          <el-input v-model="modelItem.data.email" type="text" maxlength="30" show-word-limit />
           <el-switch v-model="modelItem.data.isShow.email" />
         </el-form-item>
         <el-form-item label="头像上传:">

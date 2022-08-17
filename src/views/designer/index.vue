@@ -1,29 +1,30 @@
 <template>
   <div class="design-box">
     <!-- 导航栏 -->
-    <design-nav @generateReport="generateReport" @reset="reset"></design-nav>
+    <design-nav @generate-report="generateReport" @reset="reset"></design-nav>
     <!-- 内容区域 -->
     <div class="bottom">
       <!-- 左侧添加模块区域 -->
-      <div class="left" ref="leftRef">
+      <div ref="leftRef" class="left">
         <c-scrollbar trigger="hover">
-          <Title @unflodOrCollapse="unflodOrCollapse" showCollapse></Title>
-          <model-list :leftShowStatus="leftShowStatus" :key="refreshUuid"></model-list>
+          <Title show-collapse @unflod-or-collapse="unflodOrCollapse"></Title>
+          <model-list :key="refreshUuid" :left-show-status="leftShowStatus"></model-list>
         </c-scrollbar>
       </div>
 
       <!-- 预览区域 -->
-      <div class="center" :key="refreshUuid">
-        <div class="design" ref="html2Pdf">
-          <div class="design-content" ref="htmlContentPdf">
-            <component :is="componentName" @contentHeightChange="contentHeightChange" />
+      <div :key="refreshUuid" class="center">
+        <div ref="html2Pdf" class="design">
+          <div ref="htmlContentPdf" class="design-content">
+            <component :is="componentName" @content-height-change="contentHeightChange" />
           </div>
           <!-- 分页线 -->
           <template v-if="linesNumber > 0">
             <div
-              class="lines"
               v-for="(item, index) in linesNumber"
               :ref="(el) => setLinesRef(el, index)"
+              :key="index"
+              class="lines"
               :style="{ top: `${1128 + 1132 * index}px` }"
             >
               <p class="tips">如果分割线遮挡内容，请通过调整模块上下边距以显示内容！</p>
@@ -33,11 +34,11 @@
         </div>
       </div>
       <!-- 属性设置面板 -->
-      <div class="config" :key="refreshUuid">
+      <div :key="refreshUuid" class="config">
         <Title :title="title"></Title>
         <c-scrollbar
           trigger="hover"
-          :hThumbStyle="{
+          :h-thumb-style="{
             'background-color': 'rgba(0,0,0,0.4)'
           }"
         >
@@ -55,7 +56,6 @@
 </template>
 
 <script setup lang="ts">
-  import { nextTick, onBeforeUnmount, onBeforeUpdate, onMounted, ref, watch } from 'vue';
   import Title from './components/Title.vue';
   import ModelList from './components/ModelList.vue';
   import ResumeThemeVue from '@/components/ResumeTheme/ResumeTheme.vue';
@@ -187,7 +187,7 @@
   // 监听内容元素高度变化，绘制分割线
   const htmlContentPdf = ref<any>(null);
   let observer: ResizeObserver | null = null;
-  let height: number = 0;
+  let height = 0;
   let linesNumber = ref<number>(0);
   const resizeDOM = () => {
     observer = new ResizeObserver(async (entries: ResizeObserverEntry[]) => {

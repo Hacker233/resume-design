@@ -13,19 +13,19 @@
         <div class="header-left">
           <h1 class="title">请在编辑器内输入简历JSON数据，格式如下：</h1>
           <span>
-            <svg-icon iconName="icon-xianshi_jinggao" color="red" size="14px"></svg-icon>
+            <svg-icon icon-name="icon-xianshi_jinggao" color="red" size="14px"></svg-icon>
             注意：示例中的所有字段都需要保留，若无值为空即可，不可删除字段！
           </span>
         </div>
         <div class="header-right">
           <el-tooltip class="box-item" effect="dark" content="JSON示例" placement="bottom">
             <div class="icon-box" @click="openTip">
-              <svg-icon iconName="icon-daimashili" color="#fff" size="17px"></svg-icon>
+              <svg-icon icon-name="icon-daimashili" color="#fff" size="17px"></svg-icon>
             </div>
           </el-tooltip>
           <el-tooltip class="box-item" effect="dark" content="重置" placement="bottom">
             <div class="icon-box" @click="resetJson">
-              <svg-icon iconName="icon-zhongzhi" color="#fff" size="17px"></svg-icon>
+              <svg-icon icon-name="icon-zhongzhi" color="#fff" size="17px"></svg-icon>
             </div>
           </el-tooltip>
         </div>
@@ -39,7 +39,7 @@
         :style="{ height: '400px' }"
         :autofocus="true"
         :indent-with-tab="true"
-        :tabSize="2"
+        :tab-size="2"
         :extensions="extensions"
       />
     </div>
@@ -53,7 +53,7 @@
 
   <!-- JSON提示弹窗 -->
   <tip-json-dialog
-    :tipDialogVisible="tipDialogVisible"
+    :tip-dialog-visible="tipDialogVisible"
     @close-tip-dialog="closeTipDialog"
   ></tip-json-dialog>
 </template>

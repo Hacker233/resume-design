@@ -1,23 +1,23 @@
 <template>
   <div
-    class="material-model-box"
     :ref="(el) => setRefItem(el, item.keyId)"
+    class="material-model-box"
     @click="selectModel"
     @mouseover="handleMouseover"
     @mouseleave="handleMouseleave"
   >
     <!-- 模块操作区域 -->
-    <div class="edit-box" v-show="hoverId === item.keyId">
+    <div v-show="hoverId === item.keyId" class="edit-box">
       <el-tooltip class="box-item" effect="dark" content="复制当前模块">
         <div class="copy" @click.stop="addModel">
-          <svg-icon iconName="icon-jia" className="icon" color="#fff" size="16px"></svg-icon>
+          <svg-icon icon-name="icon-jia" class-name="icon" color="#fff" size="16px"></svg-icon>
         </div>
       </el-tooltip>
       <el-tooltip class="box-item" effect="dark" content="删除当前模块">
         <div class="delete" @click.stop="deleteModel">
           <svg-icon
-            iconName="icon-shanchu"
-            className="icon icon-shanchu"
+            icon-name="icon-shanchu"
+            class-name="icon icon-shanchu"
             color="#fff"
             size="18px"
           ></svg-icon>
@@ -25,10 +25,10 @@
       </el-tooltip>
     </div>
     <component
-      :class="['mode-item', { isHover: hoverId === item.keyId }]"
       :is="components[item.cptName]"
-      :modelData="item.data"
-      :modelStyle="item.style"
+      :class="['mode-item', { isHover: hoverId === item.keyId }]"
+      :model-data="item.data"
+      :model-style="item.style"
       :style="getDynamicStyle(item)"
     ></component>
   </div>

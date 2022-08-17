@@ -1,13 +1,13 @@
 <template>
   <div class="custom-resume-box">
     <!-- 导航栏 -->
-    <nav-com @generateReport="generateReport"></nav-com>
+    <nav-com @generate-report="generateReport"></nav-com>
     <!-- 主区 -->
     <div class="main-box">
       <!-- 左侧物料区 -->
       <main-left></main-left>
       <!-- 中间设计区 -->
-      <main-center :components="components" ref="mainCenterRef"></main-center>
+      <main-center ref="mainCenterRef" :components="components"></main-center>
       <!-- 右侧属性区 -->
       <main-right></main-right>
     </div>

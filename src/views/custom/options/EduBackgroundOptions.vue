@@ -15,9 +15,9 @@
     </el-tab-pane>
     <el-tab-pane label="数据配置" name="data">
       <el-form-item label="标题名称:">
-        <el-input type="text" v-model="modelItem.data.title" maxlength="15" show-word-limit />
+        <el-input v-model="modelItem.data.title" type="text" maxlength="15" show-word-limit />
       </el-form-item>
-      <div class="edu-list" v-for="(item, index) in modelItem.data.LIST" :key="index">
+      <div v-for="(item, index) in modelItem.data.LIST" :key="index" class="edu-list">
         <p>
           <span>学历{{ index + 1 }}</span>
           <el-button
@@ -39,20 +39,20 @@
           <el-switch v-model="modelItem.data.isShow.date" />
         </el-form-item>
         <el-form-item label="学校名称:">
-          <el-input type="text" v-model="item.schoolName" maxlength="40" show-word-limit />
+          <el-input v-model="item.schoolName" type="text" maxlength="40" show-word-limit />
           <el-switch v-model="modelItem.data.isShow.schoolName" />
         </el-form-item>
         <el-form-item label="专业名称:">
-          <el-input type="text" v-model="item.specialized" maxlength="20" show-word-limit />
+          <el-input v-model="item.specialized" type="text" maxlength="20" show-word-limit />
           <el-switch v-model="modelItem.data.isShow.specialized" />
         </el-form-item>
         <el-form-item label="学历学位:">
           <el-select v-model="item.degree" class="m-2" placeholder="Select">
             <el-option
-              v-for="(item, index) in degreeList"
-              :key="index"
-              :label="item"
-              :value="item"
+              v-for="(sItem, sIndex) in degreeList"
+              :key="sIndex"
+              :label="sItem"
+              :value="sItem"
             />
           </el-select>
           <el-switch v-model="modelItem.data.isShow.degree" />

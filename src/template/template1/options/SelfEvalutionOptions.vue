@@ -11,8 +11,8 @@
       <el-form label-width="100px" label-position="left">
         <el-form-item label="自我评价:">
           <el-input
-            type="textarea"
             v-model="modelItem.content"
+            type="textarea"
             maxlength="500"
             show-word-limit
             :rows="5"

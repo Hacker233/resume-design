@@ -1,13 +1,15 @@
 <template>
-  <div class="index-box" ref="indexRef" @scroll="handleScroll">
+  <div ref="indexRef" class="index-box" @scroll="handleScroll">
     <!-- 导航栏 -->
-    <nav-bar :bgColor="navColor" :fontColor="fontColor" :icon-color="iconColor"></nav-bar>
+    <nav-bar :bg-color="navColor" :font-color="fontColor" :icon-color="iconColor"></nav-bar>
     <!-- 项目介绍栏 -->
     <div ref="introduceRef">
-      <project-introduce @free-make="freeMake"></project-introduce>
+      <project-introduce @free-make="freeMake" @custom-template="customTemple"></project-introduce>
     </div>
     <!-- 模板选择 -->
     <template-select ref="templeTef"></template-select>
+    <!-- 自定义模板 -->
+    <custom-template-vue ref="customTempleRef"></custom-template-vue>
 
     <!-- footer -->
     <footer-com></footer-com>
@@ -17,6 +19,7 @@
   import NavBar from '@/components/NavBar/NavBar.vue';
   import ProjectIntroduce from './components/ProjectIntroduce.vue';
   import TemplateSelect from './components/TemplateSelect.vue';
+  import CustomTemplateVue from './components/CustomTemplate.vue';
   import FooterCom from '@/components/FooterCom/FooterCom.vue';
   import { onBeforeUnmount, onMounted, ref } from 'vue';
   import { throttle } from 'lodash';
@@ -56,6 +59,12 @@
   const templeTef = ref<any>(null);
   const freeMake = () => {
     templeTef.value.scrollIntoView();
+  };
+
+  // 点击自定义模板
+  const customTempleRef = ref<any>(null);
+  const customTemple = () => {
+    customTempleRef.value.scrollIntoView();
   };
 </script>
 <style lang="scss" scoped>

@@ -1,6 +1,6 @@
 <!-- 姓名与简介 -->
 <template>
-  <div class="name-introduce" v-if="modelData">
+  <div v-if="modelData" class="name-introduce">
     <h1>{{ modelData.name }}</h1>
     <p>{{ modelData.abstract }}</p>
   </div>
