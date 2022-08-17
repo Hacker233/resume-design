@@ -76,7 +76,6 @@
   import { MATERIAL_JSON } from '@/schema/design';
   import modelOfIcon from '@/dictionary/modelOfIcon';
   import modelOfTitle from '@/dictionary/modelOfTitle';
-  import { ComponentPublicInstance } from 'vue';
   import modelCategory from '@/dictionary/modelOfTitle';
   import { getAssetsMaterialFile, getUuid } from '@/utils/common';
   import cptOfImg from '@/dictionary/ctpOfImg';
@@ -116,26 +115,10 @@
     currentKey.value = '';
   };
 
-  // 获取模块ref
-  let cptRefs: Array<any> = []; // 分割线的ref
-  const setColumnRefs = (el: Element | ComponentPublicInstance | null, keyId: string) => {
-    if (el) {
-      cptRefs.push({
-        keyId: keyId,
-        el: el
-      });
-    }
-  };
-
   // 拖拽开始
   const ondragstart = (evt: DragEvent, item: IMATERIALITEM) => {
     evt.dataTransfer?.setData('cptData', JSON.stringify(item));
     // console.log('源对象拖拽开始', evt);
-  };
-  // 拖拽结束
-  const handleDragend = (evt: DragEvent) => {
-    evt.dataTransfer?.clearData();
-    // console.log('源数据拖拽结束', evt);
   };
 
   // 点击组件，添加模块
