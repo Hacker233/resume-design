@@ -13,6 +13,25 @@
 
     <!-- footer -->
     <footer-com></footer-com>
+
+    <el-backtop :bottom="100">
+      <div
+        style="
+          height: 100%;
+          width: 100%;
+          background-color: var(--el-bg-color-overlay);
+          box-shadow: var(--el-box-shadow-lighter);
+          text-align: center;
+          line-height: 40px;
+          color: #1989fa;
+          user-select: none;
+          border-radius: 50%;
+          font-size: 14px;
+        "
+      >
+        UP
+      </div>
+    </el-backtop>
   </div>
 </template>
 <script setup lang="ts">

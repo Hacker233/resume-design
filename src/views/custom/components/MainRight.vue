@@ -48,6 +48,7 @@
   };
 </script>
 <style lang="scss" scoped>
+  @import '../../../style/options.scss';
   .main-right-box {
     width: 355px;
     background-color: #fff;
