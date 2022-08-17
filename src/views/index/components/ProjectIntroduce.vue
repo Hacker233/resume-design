@@ -17,21 +17,18 @@
 <script lang="ts" setup>
   import { closeGlobalLoading, openGlobalLoading } from '@/utils/common';
 
-  const emit = defineEmits(['freeMake']);
+  const emit = defineEmits(['freeMake', 'customTemplate']);
   const freeMakeResume = () => {
     emit('freeMake');
   };
   const handleMouseover = () => {
     // console.log('鼠标移动');
   };
-  // 跳转至自定义模板
-  const router = useRouter();
+
+  // 滚动到自定义模板
   const toCustom = () => {
-    openGlobalLoading(); // 等待动画层
-    router.push({
-      path: '/custom'
-    });
-  };
+    emit('customTemplate')
+  }
 
   // 页面销毁
   onUnmounted(() => {

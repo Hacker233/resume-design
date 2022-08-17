@@ -4,7 +4,7 @@
     <!-- 标题 -->
     <model-title :title="modelData.title" :iconfont="modelData.iconfont"></model-title>
     <!-- 实习经历 -->
-    <div class="list" v-for="(item, index) in modelData.LIST" :key="index">
+    <div v-for="(item, index) in modelData.LIST" :key="index" class="list">
       <ul class="list-ul">
         <!-- 经历时间和项目名称 -->
         <div class="date-name-box">
@@ -13,7 +13,7 @@
           <span v-if="modelData.isShow.companyName">{{ item.companyName }}</span>
         </div>
         <!-- 主要职责 -->
-        <p class="campusDuty" v-if="modelData.isShow.posts">{{ item.posts }}</p>
+        <p v-if="modelData.isShow.posts" class="campusDuty">{{ item.posts }}</p>
         <!-- 工作内容 -->
         <ul class="campusContent">
           <li v-for="(list, index) in item.jobContent" :key="index">{{ list.content }}</li>

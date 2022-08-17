@@ -1,58 +1,125 @@
 <!-- 自定义模板 -->
 <template>
-  <div class="custom-template-box">
-    <title-vue
+  <div class="custom-template-box" ref="customTempleRef">
+    <introduce-title-vue
       title="自定义模板 + 随心所欲"
       subtitle="自定义模板，随意搭配，自定义主题"
-      titleColor="#fff"
-      subtitleColor="#e2e3e4"
-    ></title-vue>
+      title-color="#000"
+      subtitle-color="#7f8b96"
+    ></introduce-title-vue>
     <div class="bottom">
       <div class="left-box">
         <img src="../../../assets/images/index-drag.png" alt="" srcset="" />
       </div>
-      <div class="right-box"></div>
+      <div class="right-box">
+        <h1>丰富的物料模块组件，可随意进行搭配，还可进行主题配置等等</h1>
+        <p>自定义的模板可提交至官方，将在首页展出</p>
+        <div class="button" @click="toCustom"> 立即创作 </div>
+      </div>
     </div>
   </div>
 </template>
 <script lang="ts" setup>
-  import TitleVue from './Title.vue';
+  import { openGlobalLoading } from '@/utils/common';
+  import IntroduceTitleVue from './IntroduceTitle.vue';
+
+  // 点击立即创作按钮
+  const router = useRouter();
+  const toCustom = () => {
+    openGlobalLoading(); // 等待动画层
+    router.push({
+      path: '/custom'
+    });
+  };
+
+  // 出现在可视区
+  const customTempleRef = ref<any>(null);
+  const scrollIntoView = () => {
+    customTempleRef.value.scrollIntoView({ behavior: 'smooth' });
+  };
+  defineExpose({
+    scrollIntoView
+  });
 </script>
 <style lang="scss" scoped>
   .custom-template-box {
-    height: 80vh;
+    min-height: 80vh;
     width: 100%;
     display: flex;
     flex-direction: column;
-    background: #4e54c8; /* fallback for old browsers */
-    background: -webkit-linear-gradient(
-      to right,
-      #8f94fb,
-      #4e54c8
-    ); /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(
-      to right,
-      #8f94fb,
-      #4e54c8
-    ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background: #fff;
     .bottom {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 0 40px;
+      padding: 0 2% 20px 5%;
       box-sizing: border-box;
-      height: 60vh;
-      .right-box {
-        flex: 1;
-      }
+      min-height: 60vh;
       .left-box {
         display: flex;
         align-items: center;
         justify-content: center;
-        // width: 60vw;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0px 0px 70px rgb(175 50 50 / 20%);
         user-select: none;
         img {
           width: 50vw;
+        }
+      }
+      .right-box {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        margin-left: 100px;
+        h1 {
+          text-align: justify;
+          font-size: 2vw;
+          letter-spacing: 1px;
+          word-break: normal;
+          line-height: 1.5;
+          background-clip: text;
+          background-image: url('@/assets/images/font-bgc.png');
+          -webkit-background-clip: text;
+          color: transparent;
+          margin-bottom: 10px;
+        }
+        p {
+          margin-top: 10px;
+          font-size: 0.8vw;
+          opacity: 0.9;
+          color: #7f8b96;
+        }
+        .button {
+          width: 150px;
+          height: 48px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          letter-spacing: 2px;
+          color: #fff;
+          font-size: 20px;
+          background-image: -webkit-linear-gradient(to right, #2ddd9d, #1cc7cf);
+          background-image: -moz-linear-gradient(to right, #2ddd9d, #1cc7cf);
+          background-image: -ms-linear-gradient(to right, #2ddd9d, #1cc7cf);
+          background-image: linear-gradient(to right, #2ddd9d, #1cc7cf);
+          -webkit-border-radius: 50px;
+          -moz-border-radius: 50px;
+          border-radius: 50px;
+          background-color: #2ddd9d;
+          -webkit-transition: all 0.3s;
+          -moz-transition: all 0.3s;
+          -ms-transition: all 0.3s;
+          -o-transition: all 0.3s;
+          transition: all 0.3s;
+          cursor: pointer;
+          user-select: none;
+          margin-top: 40px;
+          font-weight: 600;
+          &:hover {
+            opacity: 0.8;
+          }
         }
       }
     }

@@ -11,8 +11,8 @@
       <el-form label-width="80px" label-position="left">
         <el-form-item label="兴趣爱好:">
           <el-input
-            type="textarea"
             v-model="modelItem.content"
+            type="textarea"
             maxlength="500"
             show-word-limit
             :rows="5"

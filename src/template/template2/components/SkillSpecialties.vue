@@ -3,7 +3,7 @@
   <div class="skill-specialties">
     <!-- 标题 -->
     <div class="skill-title">
-      <svg-icon iconName="icon-techang" color="#fff" size="26px"></svg-icon>
+      <svg-icon icon-name="icon-techang" color="#fff" size="26px"></svg-icon>
       <h1>技能特长</h1>
     </div>
     <!-- 技能特长 -->

@@ -9,7 +9,7 @@
     title: string;
     subtitle: string;
     titleColor: string;
-    subtitleColor: string
+    subtitleColor: string;
   }>();
 </script>
 <style lang="scss" scoped>

@@ -16,12 +16,12 @@
     <el-tab-pane label="数据配置" name="data">
       <el-form label-width="70px" label-position="left">
         <el-form-item label="姓名:">
-          <el-input type="text" v-model="modelItem.name" maxlength="15" show-word-limit />
+          <el-input v-model="modelItem.name" type="text" maxlength="15" show-word-limit />
         </el-form-item>
         <el-form-item label="简介:">
           <el-input
-            type="textarea"
             v-model="modelItem.abstract"
+            type="textarea"
             maxlength="50"
             show-word-limit
             :rows="4"
@@ -29,23 +29,23 @@
           <el-switch v-model="modelItem.isShow.abstract" />
         </el-form-item>
         <el-form-item label="年龄:">
-          <el-input type="text" v-model="modelItem.age" maxlength="2" show-word-limit />
+          <el-input v-model="modelItem.age" type="text" maxlength="2" show-word-limit />
           <el-switch v-model="modelItem.isShow.age" />
         </el-form-item>
         <el-form-item label="地址:">
-          <el-input type="text" v-model="modelItem.address" maxlength="30" show-word-limit />
+          <el-input v-model="modelItem.address" type="text" maxlength="30" show-word-limit />
           <el-switch v-model="modelItem.isShow.address" />
         </el-form-item>
         <el-form-item label="工作经验:">
-          <el-input type="text" v-model="modelItem.workService" maxlength="10" show-word-limit />
+          <el-input v-model="modelItem.workService" type="text" maxlength="10" show-word-limit />
           <el-switch v-model="modelItem.isShow.workService" />
         </el-form-item>
         <el-form-item label="联系方式:">
-          <el-input type="text" v-model="modelItem.phoneNumber" maxlength="11" show-word-limit />
+          <el-input v-model="modelItem.phoneNumber" type="text" maxlength="11" show-word-limit />
           <el-switch v-model="modelItem.isShow.phoneNumber" />
         </el-form-item>
         <el-form-item label="邮箱地址:">
-          <el-input type="text" v-model="modelItem.email" maxlength="30" show-word-limit />
+          <el-input v-model="modelItem.email" type="text" maxlength="30" show-word-limit />
           <el-switch v-model="modelItem.isShow.email" />
         </el-form-item>
         <el-form-item label="头像上传:">
@@ -75,7 +75,7 @@
   import { useModelIndex } from '@/hooks/useModelIndex';
   defineOptions({
     name: 'COM_BASE_INFO_OPTIONS'
-  })
+  });
   // store
   const { resumeJsonStore } = appStore.useResumeJsonStore;
 

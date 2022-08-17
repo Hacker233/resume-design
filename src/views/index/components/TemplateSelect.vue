@@ -1,15 +1,15 @@
 <template>
-  <div class="template-select-box" ref="templateRef">
-    <title-vue
+  <div ref="templateRef" class="template-select-box">
+    <introduce-title-vue
       title="免费模板 + 用心设计"
       subtitle="用心设计每一套模板，适合各行各业从业者"
-      titleColor="#000"
-      subtitleColor="#7f8b96"
-    ></title-vue>
+      title-color="#000"
+      subtitle-color="#7f8b96"
+    ></introduce-title-vue>
     <!-- 模板列表 -->
     <div class="card-list">
-      <template v-for="(item, index) in templateList">
-        <template-card :cardData="item" @toDesign="toDesign"> </template-card>
+      <template v-for="(item, index) in templateList" :key="index">
+        <template-card :card-data="item" @to-design="toDesign"> </template-card>
       </template>
     </div>
   </div>
@@ -17,7 +17,7 @@
 <script setup lang="ts">
   import templateList from '@/template';
   import TemplateCard from './TemplateCard.vue';
-  import TitleVue from './Title.vue';
+  import IntroduceTitleVue from './IntroduceTitle.vue';
   import { ITempList } from '@/template/type';
   import { useRouter } from 'vue-router';
   import { onUnmounted, ref } from 'vue';
@@ -55,7 +55,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: 700px;
+    height: 750px;
     .card-list {
       display: flex;
     }

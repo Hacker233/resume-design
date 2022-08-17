@@ -4,7 +4,7 @@
     <!-- 标题 -->
     <model-title :title="modelData.title" :iconfont="modelData.iconfont"></model-title>
     <!-- 校园经历 -->
-    <div class="list" v-for="(item, index) in modelData.LIST" :key="index">
+    <div v-for="(item, index) in modelData.LIST" :key="index" class="list">
       <ul>
         <!-- 经历时间和项目名称 -->
         <div class="date-name-box">
@@ -13,9 +13,9 @@
           <span v-if="modelData.isShow.campusBriefly">{{ item.campusBriefly }}</span>
         </div>
         <!-- 主要职责 -->
-        <p class="campusDuty" v-if="modelData.isShow.campusDuty">{{ item.campusDuty }}</p>
+        <p v-if="modelData.isShow.campusDuty" class="campusDuty">{{ item.campusDuty }}</p>
         <!-- 简述 -->
-        <p class="campusContent" v-if="modelData.isShow.campusContent">{{ item.campusContent }}</p>
+        <p v-if="modelData.isShow.campusContent" class="campusContent">{{ item.campusContent }}</p>
       </ul>
     </div>
   </div>

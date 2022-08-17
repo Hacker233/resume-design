@@ -12,8 +12,8 @@
         </el-icon>
       </p>
       <el-input
-        ref="titleIpf"
         v-show="isShowIpt"
+        ref="titleIpf"
         v-model="designJsonStore.TITLE"
         autofocus
         placeholder="请输入标题"
@@ -23,7 +23,7 @@
     <div class="nav-right">
       <el-tooltip class="box-item" effect="dark" content="导出为PDF" placement="bottom">
         <div class="icon-box" @click="generateReport">
-          <svg-icon iconName="icon-pdf" color="#fff" size="17px"></svg-icon>
+          <svg-icon icon-name="icon-pdf" color="#fff" size="17px"></svg-icon>
         </div>
       </el-tooltip>
     </div>

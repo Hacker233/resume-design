@@ -6,27 +6,27 @@
     <ul>
       <!-- 求职类型 -->
       <li v-show="modelData.isShow.jobSearchType">
-        <svg-icon iconName="icon-gongzuoleixing" className="icon" color="#757575"></svg-icon>
+        <svg-icon icon-name="icon-gongzuoleixing" class-name="icon" color="#757575"></svg-icon>
         {{ modelData.jobSearchType }}</li
       >
       <!-- 意向岗位 -->
       <li v-show="modelData.isShow.intendedPositions">
-        <svg-icon iconName="icon-yixianggangwei" className="icon" color="#757575"></svg-icon
+        <svg-icon icon-name="icon-yixianggangwei" class-name="icon" color="#757575"></svg-icon
         >{{ modelData.intendedPositions }}</li
       >
       <!-- 意向城市 -->
       <li v-show="modelData.isShow.intendedCity"
-        ><svg-icon iconName="icon-didiandingwei" className="icon" color="#757575"></svg-icon
+        ><svg-icon icon-name="icon-didiandingwei" class-name="icon" color="#757575"></svg-icon
         >{{ modelData.intendedCity }}</li
       >
       <!-- 期望薪资 -->
       <li v-show="modelData.isShow.expectSalary"
-        ><svg-icon iconName="icon-nianduxinchou" className="icon" color="#757575"></svg-icon
+        ><svg-icon icon-name="icon-nianduxinchou" class-name="icon" color="#757575"></svg-icon
         >{{ modelData.expectSalary }}</li
       >
       <!-- 求职状态 -->
       <li v-show="modelData.isShow.jobStatus"
-        ><svg-icon iconName="icon-ruzhiriqi" className="icon" color="#757575"></svg-icon
+        ><svg-icon icon-name="icon-ruzhiriqi" class-name="icon" color="#757575"></svg-icon
         >{{ modelData.jobStatus }}</li
       >
     </ul>

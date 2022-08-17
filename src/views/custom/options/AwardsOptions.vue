@@ -9,9 +9,9 @@
     </el-tab-pane>
     <el-tab-pane label="数据配置" name="data">
       <el-form-item label="标题名称:">
-        <el-input type="text" v-model="modelItem.data.title" maxlength="15" show-word-limit />
+        <el-input v-model="modelItem.data.title" type="text" maxlength="15" show-word-limit />
       </el-form-item>
-      <div class="awards-list" v-for="(item, index) in modelItem.data.LIST" :key="index">
+      <div v-for="(item, index) in modelItem.data.LIST" :key="index" class="awards-list">
         <p>
           <span>奖项{{ index + 1 }}</span>
           <el-button
@@ -27,11 +27,11 @@
           <el-switch v-model="modelItem.data.isShow.date" />
         </el-form-item>
         <el-form-item label="奖项名称:">
-          <el-input type="text" v-model="item.awardsName" maxlength="40" show-word-limit />
+          <el-input v-model="item.awardsName" type="text" maxlength="40" show-word-limit />
           <el-switch v-model="modelItem.data.isShow.awardsName" />
         </el-form-item>
         <el-form-item label="所获奖项:">
-          <el-input type="text" v-model="item.awardsGrade" maxlength="20" show-word-limit />
+          <el-input v-model="item.awardsGrade" type="text" maxlength="20" show-word-limit />
           <el-switch v-model="modelItem.data.isShow.awardsGrade" />
         </el-form-item>
       </div>
@@ -48,7 +48,7 @@
   import useDesignSelectModelItem from '@/hooks/material/useDesignSelectModelItem';
   defineOptions({
     name: 'AWARDS_OPTIONS'
-  })
+  });
   // 选中的模块
   const { modelItem } = useDesignSelectModelItem();
   let activeName = ref('style');

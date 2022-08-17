@@ -2,7 +2,7 @@
   <div class="footer-box">
     <ul>
       <li>
-        <svg-icon iconName="icon-bilibili-copy" className="bilibili"></svg-icon>
+        <svg-icon icon-name="icon-bilibili-copy" class-name="bilibili"></svg-icon>
         <a
           href="https://space.bilibili.com/493520625?spm_id_from=333.1007.0.0"
           target="_blank"
@@ -12,14 +12,14 @@
       </li>
       <div class="lines"></div>
       <li>
-        <svg-icon iconName="icon-juejin-logo" className="juejin"></svg-icon>
+        <svg-icon icon-name="icon-juejin-logo" class-name="juejin"></svg-icon>
         <a href="https://juejin.cn/user/3034307822112798" target="_blank" rel="noopener noreferrer"
           >掘金</a
         >
       </li>
       <div class="lines"></div>
       <li>
-        <svg-icon iconName="icon-shejiaotubiao-10" className="zhihu"></svg-icon>
+        <svg-icon icon-name="icon-shejiaotubiao-10" class-name="zhihu"></svg-icon>
         <a href="https://www.zhihu.com/people/luhongquan" target="_blank" rel="noopener noreferrer"
           >会飞的猪</a
         >
