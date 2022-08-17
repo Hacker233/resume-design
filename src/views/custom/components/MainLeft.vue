@@ -37,7 +37,7 @@
               <template #content>
                 <img
                   :src="getAssetsMaterialFile(currentKey, cptOfImg[currentKey][item.cptName].url)"
-                  style="max-width: 400px"
+                  style="max-width: 500px"
                   alt=""
                   srcset=""
                 />

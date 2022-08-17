@@ -8,6 +8,8 @@
     </div>
     <!-- 模板选择 -->
     <template-select ref="templeTef"></template-select>
+    <!-- 自定义模板 -->
+    <custom-template-vue></custom-template-vue>
 
     <!-- footer -->
     <footer-com></footer-com>
@@ -17,6 +19,7 @@
   import NavBar from '@/components/NavBar/NavBar.vue';
   import ProjectIntroduce from './components/ProjectIntroduce.vue';
   import TemplateSelect from './components/TemplateSelect.vue';
+  import CustomTemplateVue from './components/CustomTemplate.vue';
   import FooterCom from '@/components/FooterCom/FooterCom.vue';
   import { onBeforeUnmount, onMounted, ref } from 'vue';
   import { throttle } from 'lodash';
