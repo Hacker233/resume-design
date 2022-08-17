@@ -2,7 +2,7 @@
 <template>
   <div class="awards">
     <!-- 标题 -->
-    <model-title :title="modelData.title" :modelStyle="modelStyle"></model-title>
+    <model-title :title="modelData.title" :model-style="modelStyle"></model-title>
     <!-- 荣誉奖项 -->
     <div class="awards-list">
       <ul v-for="(item, index) in modelData.LIST" :key="index">

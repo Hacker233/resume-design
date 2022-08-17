@@ -56,7 +56,7 @@
   // 监听内容高度发生变化
   const tmp1ContentHeightRef = ref<any>(null);
   let observer: ResizeObserver | null = null;
-  let height: number = 0;
+  let height = 0;
   const changeHeight = () => {
     observer = new ResizeObserver(async (entries: ResizeObserverEntry[]) => {
       for (let entry of entries) {

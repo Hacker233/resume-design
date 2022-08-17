@@ -1,20 +1,20 @@
 <template>
   <div class="base-info">
     <!-- 个人头像 -->
-    <div class="avatar-box" v-show="modelData.isShow.avatar">
+    <div v-show="modelData.isShow.avatar" class="avatar-box">
       <el-image style="width: 115px; height: 115px" :src="modelData.avatar" />
     </div>
     <!-- 基础信息 -->
     <div class="user-info">
       <h1>{{ modelData.name }}</h1>
       <!-- 一句话简介 -->
-      <p class="user-abstract" v-show="isShow.abstract">{{ modelData.abstract }}</p>
+      <p v-show="isShow.abstract" class="user-abstract">{{ modelData.abstract }}</p>
       <!-- 年龄、地点、经验等信息 -->
       <ul>
-        <li class="li-border" v-show="isShow.age">{{ modelData.age }}岁</li>
-        <li class="li-border" v-show="isShow.address">{{ modelData.address }}</li>
-        <li class="li-border" v-show="isShow.workService">{{ modelData.workService }}年经验</li>
-        <li class="li-border" v-show="isShow.phoneNumber">{{ modelData.phoneNumber }}</li>
+        <li v-show="isShow.age" class="li-border">{{ modelData.age }}岁</li>
+        <li v-show="isShow.address" class="li-border">{{ modelData.address }}</li>
+        <li v-show="isShow.workService" class="li-border">{{ modelData.workService }}年经验</li>
+        <li v-show="isShow.phoneNumber" class="li-border">{{ modelData.phoneNumber }}</li>
         <li v-show="isShow.email">{{ modelData.email }}</li>
       </ul>
     </div>
@@ -25,7 +25,7 @@
   import IMODELSTYLE from '@/interface/modelStyle.js';
   import { reactive } from 'vue';
   defineOptions({
-    name: 'BASE_INFO_1',
+    name: 'BASE_INFO_1'
   });
   const props = defineProps<{
     modelData: IBASEINFO; // 模块数据

@@ -9,8 +9,8 @@
         @click="themeSetting"
       >
         <svg-icon
-          iconName="icon-jingzi"
-          className="icon icon-jingzi"
+          icon-name="icon-jingzi"
+          class-name="icon icon-jingzi"
           :color="themeColorIcon"
           size="20px"
         ></svg-icon>

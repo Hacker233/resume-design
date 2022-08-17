@@ -7,11 +7,12 @@
       </div>
       <ul>
         <li
+          v-for="(val, key, index) in MATERIAL_JSON"
+          :key="index"
           :class="[{ active: currentKey === key }]"
-          v-for="(val, key) in MATERIAL_JSON"
           @click="selectModel(val, key as string)"
         >
-          <svg-icon :iconName="modelOfIcon[key]" color="#2cbd99" size="25px"></svg-icon>
+          <svg-icon :icon-name="modelOfIcon[key]" color="#2cbd99" size="25px"></svg-icon>
           <p>{{ modelOfTitle[key] }}</p>
         </li>
       </ul>
@@ -26,18 +27,19 @@
         <div class="cpt-list-box">
           <div
             v-for="(item, index) in cptList"
+            :key="index"
+            :ref="(el) => setColumnRefs(el, item.keyId)"
             class="com-item"
             draggable="true"
             @dragstart="ondragstart($event, item)"
             @dragend="handleDragend"
             @click="addModel(item)"
-            :ref="(el) => setColumnRefs(el, item.keyId)"
           >
             <el-tooltip class="box-item" effect="light" :enterable="false">
               <template #content>
                 <img
                   :src="getAssetsMaterialFile(currentKey, cptOfImg[currentKey][item.cptName].url)"
-                  style="max-width: 400px"
+                  style="max-width: 500px"
                   alt=""
                   srcset=""
                 />

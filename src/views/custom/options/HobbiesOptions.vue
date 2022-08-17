@@ -10,12 +10,12 @@
     <el-tab-pane label="数据配置" name="data">
       <el-form label-width="80px" label-position="left">
         <el-form-item label="标题名称:">
-          <el-input type="text" v-model="modelItem.data.title" maxlength="15" show-word-limit />
+          <el-input v-model="modelItem.data.title" type="text" maxlength="15" show-word-limit />
         </el-form-item>
         <el-form-item label="兴趣爱好:">
           <el-input
-            type="textarea"
             v-model="modelItem.data.content"
+            type="textarea"
             maxlength="500"
             show-word-limit
             :rows="5"

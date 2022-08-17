@@ -1,7 +1,7 @@
 <template>
   <div class="model-title-box">
     <div class="icon-box">
-      <svg-icon :iconName="iconfont" color="#fff" size="15px"></svg-icon>
+      <svg-icon :icon-name="iconfont" color="#fff" size="15px"></svg-icon>
     </div>
     <div class="right-title">
       <h1>{{ title }}</h1>

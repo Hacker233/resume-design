@@ -2,7 +2,7 @@
 <template>
   <div class="skill-specialties">
     <!-- 标题 -->
-    <model-title :title="modelData.title" :modelStyle="modelStyle"></model-title>
+    <model-title :title="modelData.title" :model-style="modelStyle"></model-title>
     <!-- 技能特长 -->
     <ul>
       <!-- 左边部分 -->

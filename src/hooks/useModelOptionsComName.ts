@@ -35,10 +35,10 @@ export const useModelOptionsComName = (templateModel: string): string => {
       break;
     // 教育背景
     case 'template1-EDU_BACKGROUND':
-    case 'template3-EDU_BACKGROUND':
       optionsName = 'EDU_BACKGROUND_OPTIONS';
       break;
     case 'template2-EDU_BACKGROUND':
+    case 'template3-EDU_BACKGROUND':
       optionsName = 'TEMPLATE2_EDU_BACKGROUND_OPTIONS';
       break;
     // 校园经历

@@ -12,9 +12,9 @@
       <el-form-item label="模块标题字体大小:">
         <el-select
           v-model="designJsonStore.GLOBAL_STYLE.firstTitleFontSize"
-          @change="changeFirstTitleFontSize"
           class="m-2"
           placeholder="请选择"
+          @change="changeFirstTitleFontSize"
         >
           <el-option
             v-for="(item, index) in fontSizeList"

@@ -1,7 +1,7 @@
 <template>
   <div class="edu-background">
     <!-- 标题 -->
-    <model-title :title="modelData.title" :modelStyle="modelStyle"></model-title>
+    <model-title :title="modelData.title" :model-style="modelStyle"></model-title>
     <!-- 教育背景 -->
     <div class="edu-list">
       <ul v-for="(item, index) in modelData.LIST" :key="index">

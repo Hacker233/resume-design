@@ -19,9 +19,9 @@
           </span>
         </div>
         <!-- 专业 -->
-        <p class="special" v-if="modelData.isShow.specialized">{{ item.specialized }}</p>
+        <p v-if="modelData.isShow.specialized" class="special">{{ item.specialized }}</p>
         <!-- 教学经历 -->
-        <p class="majorCourse" v-if="modelData.isShow.majorCourse">{{ item.majorCourse }}</p>
+        <p v-if="modelData.isShow.majorCourse" class="majorCourse">{{ item.majorCourse }}</p>
       </ul>
     </div>
   </div>

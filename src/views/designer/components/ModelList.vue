@@ -3,14 +3,14 @@
     <div class="model-ul">
       <draggable
         :list="resumeJsonStore.LIST"
-        itemKey="id"
+        item-key="id"
         ghost-class="ghost"
         chosen-class="chosenClass"
         animation="300"
         @start="onStart"
         @end="onEnd"
       >
-        <template #item="{ element, index }">
+        <template #item="{ element }">
           <div
             :class="[
               'model-list-item',
@@ -30,8 +30,8 @@
                   :disabled="leftShowStatus"
                 >
                   <svg-icon
-                    :iconName="element.iconfont"
-                    className="icon"
+                    :icon-name="element.iconfont"
+                    class-name="icon"
                     :color="leftShowStatus ? '#c4c4c4' : '#00c091'"
                     size="16px"
                   ></svg-icon>
@@ -39,7 +39,7 @@
               </div>
               <p v-show="leftShowStatus">{{ element.title }}</p>
             </div>
-            <div class="right" v-show="leftShowStatus">
+            <div v-show="leftShowStatus" class="right">
               <!-- 模块开关 -->
               <el-switch v-model="element.show" size="small" active-color="#00C091" />
             </div>
@@ -52,7 +52,6 @@
 <script setup lang="ts">
   import { useModelOptionsComName } from '@/hooks/useModelOptionsComName';
   import appStore from '@/store';
-  import { getUuid } from '@/utils/common';
   import draggable from 'vuedraggable';
 
   defineProps<{
@@ -73,31 +72,6 @@
       id: item.id
     };
     setResumeModel(updateData.model, updateData.optionsName, updateData.title, updateData.id);
-  };
-
-  // 下移模块
-  const down = (index: number): void => {
-    if (index === resumeJsonStore.LIST.length - 1) {
-      return;
-    }
-    let temp = resumeJsonStore.LIST[index];
-    resumeJsonStore.LIST[index] = resumeJsonStore.LIST[index + 1];
-    resumeJsonStore.LIST[index + 1] = temp;
-  };
-  // 上移模块
-  const up = (index: number): void => {
-    if (index === 0) {
-      return;
-    }
-    let temp = resumeJsonStore.LIST[index];
-    resumeJsonStore.LIST[index] = resumeJsonStore.LIST[index - 1];
-    resumeJsonStore.LIST[index - 1] = temp;
-  };
-  // 添加模块
-  const add = (index: number) => {
-    let temp = JSON.parse(JSON.stringify(resumeJsonStore.LIST[index]));
-    temp.id = getUuid();
-    resumeJsonStore.LIST.splice(index, 0, temp);
   };
   //拖拽开始的事件
   const onStart = () => {

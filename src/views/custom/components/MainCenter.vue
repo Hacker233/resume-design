@@ -2,7 +2,7 @@
   <!-- <c-scrollbar trigger="hover"> -->
   <div class="main-center-box">
     <!-- 设计区域 -->
-    <div class="design" ref="html2Pdf">
+    <div ref="html2Pdf" class="design">
       <div
         ref="htmlContentPdf"
         class="center-box"
@@ -14,14 +14,14 @@
         <!-- 常规布局 -->
         <draggable
           :list="designJsonStore.components"
-          itemKey="id"
+          item-key="id"
           ghost-class="ghost"
           chosen-class="chosenClass"
           animation="300"
           @start="onStart"
           @end="onEnd"
         >
-          <template #item="{ element, index }">
+          <template #item="{ element }">
             <model-box :components="components" :item="element"></model-box
           ></template>
         </draggable>
@@ -36,9 +36,10 @@
         <!-- 分页线 -->
         <template v-if="linesNumber > 0">
           <div
-            class="lines"
             v-for="(item, index) in linesNumber"
+            :key="index"
             :ref="(el) => setLinesRef(el, index)"
+            class="lines"
             :style="{ top: `${1128 + 1132 * index}px` }"
           >
             <p class="tips">如果分割线遮挡内容，请通过调整模块上下边距以显示内容！</p>
@@ -84,8 +85,7 @@
   const { pushComponent } = appStore.useDesignStore;
 
   // 源对象进入目标对象时
-  const isShowDragTip = ref<boolean>(false); // 是否显示拖拽提示
-  const handleDragenter = (evt: DragEvent) => {
+  const handleDragenter = () => {
     // console.log('目标对象被源对象拖动着进入');
   };
 
@@ -96,7 +96,7 @@
   };
 
   // 拖拽对象离开
-  const handleDragleave = (evt: DragEvent) => {
+  const handleDragleave = () => {
     console.log('拖拽对象离开');
   };
 
@@ -131,7 +131,7 @@
   // 监听内容元素高度变化，绘制分割线
   const htmlContentPdf = ref<any>(null);
   let observer: ResizeObserver | null = null;
-  let height: number = 0;
+  let height = 0;
   const resizeDOM = () => {
     observer = new ResizeObserver(async (entries: ResizeObserverEntry[]) => {
       for (let entry of entries) {

@@ -6,7 +6,7 @@
         <color-picker v-model:hex="modelValue" @change="changeColorPicker"></color-picker>
       </div>
     </el-tooltip>
-    <div :class="['item-box']" v-for="(item, index) in colorList">
+    <div v-for="(item, index) in colorList" :class="['item-box']">
       <span
         :class="['item', { active: index === curentIndex || modelValue === item.hex }]"
         :style="{
@@ -24,7 +24,7 @@
     modelValue: string;
   }>();
 
-  const emit = defineEmits(['update:modelValue','change']);
+  const emit = defineEmits(['update:modelValue', 'change']);
 
   // 颜色列表
   const colorList = reactive<Array<{ rgb: string; hex: string }>>([
