@@ -3,34 +3,29 @@
   <div class="main-center-box">
     <!-- 设计区域 -->
     <div ref="html2Pdf" class="design">
-      <div
-        ref="htmlContentPdf"
-        class="center-box"
-        @dragenter="handleDragenter"
-        @dragover="handleDragover"
-        @dragleave="handleDragleave"
-        @drop="handleDrop"
-      >
+      <div class="content-box" ref="htmlContentPdf">
+        <!-- 拖拽组件 -->
+        <draggable
+          class="dragArea list-group"
+          :list="designJsonStore.components"
+          animation="500"
+          group="custom"
+          :sort="true"
+          item-key="id"
+          @end="onEnd"
+        >
+          <template #item="{ element }">
+            <div class="list-group-item">
+              <model-box :components="components" :item="element"></model-box>
+            </div>
+          </template>
+        </draggable>
         <!-- 拖拽提示 -->
         <div class="drag-tip-box" v-if="!designJsonStore.components.length">
           <svg-icon iconName="icon-jia" className="yulan" size="70px" color="#2ddd9d"></svg-icon>
           <p>请将组件拖拽或者点击放置此处~</p>
         </div>
-        <!-- 常规布局 -->
-        <draggable
-          :list="designJsonStore.components"
-          item-key="id"
-          ghost-class="ghost"
-          chosen-class="chosenClass"
-          animation="300"
-          @start="onStart"
-          @end="onEnd"
-        >
-          <template #item="{ element }">
-            <model-box :components="components" :item="element"></model-box
-          ></template>
-        </draggable>
-        <!-- 分页线 -->
+        <!-- 分割线 -->
         <template v-if="linesNumber > 0">
           <div
             v-for="(item, index) in linesNumber"
@@ -44,21 +39,18 @@
           </div>
         </template>
       </div>
+      <!-- 布局模式切换组件 -->
+      <mode-switch></mode-switch>
     </div>
-
-    <!-- 模板样式切换 -->
   </div>
 </template>
 <script lang="ts" setup>
-  import { IMATERIALITEM } from '@/interface/material.js';
-  import MODEL_DATA_JSON from '@/schema/modelData';
   import appStore from '@/store';
   import { storeToRefs } from 'pinia';
   import ModelBox from './ModelBox.vue';
-  import { getUuid } from '@/utils/common';
   import draggable from 'vuedraggable';
-  import { cloneDeep } from 'lodash'; // 深拷贝
   import downloadPDF from '@/utils/html2pdf';
+  import ModeSwitch from './ModeSwitch.vue';
 
   defineProps<{
     components: any;
@@ -66,6 +58,7 @@
 
   // 生命周期函数
   onMounted(async () => {
+    console.log('ref', htmlContentPdf.vue);
     resizeDOM();
     initClickListen();
   });
@@ -81,38 +74,6 @@
 
   // store相关数据
   const { designJsonStore } = storeToRefs(appStore.useDesignStore);
-  const { pushComponent } = appStore.useDesignStore;
-
-  // 源对象进入目标对象时
-  const handleDragenter = () => {
-    // console.log('目标对象被源对象拖动着进入');
-  };
-
-  // 源对象悬停在目标对象上时
-  const handleDragover = (evt: DragEvent) => {
-    evt.preventDefault();
-    // console.log('源对象悬停在目标对象上时', evt);
-  };
-
-  // 拖拽对象离开
-  const handleDragleave = () => {
-    console.log('拖拽对象离开');
-  };
-
-  // 源对象在目标对象上松手
-  const handleDrop = (evt: DragEvent) => {
-    if (isCurrentPage.value) {
-      return;
-    }
-    let cptData: IMATERIALITEM = JSON.parse(evt.dataTransfer?.getData('cptData') as string);
-    // 处理组件数据
-    // cptData.cptWidth = '100%';
-    cptData.data = cloneDeep(MODEL_DATA_JSON[cptData.model]); // 为模块添加数据
-    cptData.keyId = getUuid();
-    pushComponent(cptData); // 添加模块
-    // console.log('designJsonStore.components', designJsonStore.value.components);
-    // console.log('源对象在目标对象上松手', cptData);
-  };
 
   // 分割线
   const linesNumber = ref<number>(1);
@@ -137,6 +98,7 @@
         height = (entry.target as HTMLElement).offsetHeight;
         console.log('htmlContentPdf高度发生变化', height);
         linesNumber.value = Math.ceil(height / 1160); // 有几条分割线
+        console.log('分割线数目', linesNumber.value, height);
         html2Pdf.value.style.height = 1160 * linesNumber.value + 'px'; // 整个简历的高度
         // htmlContentPdf.value.style.height = html2Pdf.value.style.height;
       }
@@ -202,13 +164,18 @@
       min-height: 1160px;
       display: table;
       position: relative;
-      .center-box {
-        width: 820px;
-        min-height: 1160px;
-        background-color: #fff;
-        box-sizing: border-box;
+      .content-box {
         position: relative;
-        z-index: 0;
+        .dragArea {
+          min-width: 820px;
+          min-height: 300px;
+          width: 820px;
+          min-height: 1160px;
+          background-color: #fff;
+          box-sizing: border-box;
+          position: relative;
+          z-index: 0;
+        }
         .drag-tip-box {
           position: absolute;
           top: 50%;

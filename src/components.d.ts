@@ -14,6 +14,7 @@ declare module '@vue/runtime-core' {
     CommonOptions: typeof import('./components/CommonOptions/CommonOptions.vue')['default']
     CommonTitleOptions: typeof import('./components/CommonOptions/CommonTitleOptions.vue')['default']
     EduBackgroundCom: typeof import('./components/ModelComs/EduBackgroundCom.vue')['default']
+    ElBacktop: typeof import('element-plus/es')['ElBacktop']
     ElButton: typeof import('element-plus/es')['ElButton']
     ElConfigProvider: typeof import('element-plus/es')['ElConfigProvider']
     ElDatePicker: typeof import('element-plus/es')['ElDatePicker']

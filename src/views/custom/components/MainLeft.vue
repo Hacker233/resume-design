@@ -25,36 +25,44 @@
         </div>
         <!-- 组件列表 -->
         <div class="cpt-list-box">
-          <div
-            v-for="(item, index) in cptList"
-            :key="index"
-            :ref="(el) => setColumnRefs(el, item.keyId)"
-            class="com-item"
-            draggable="true"
-            @dragstart="ondragstart($event, item)"
-            @dragend="handleDragend"
-            @click="addModel(item)"
+          <!-- 拖拽组件 -->
+          <draggable
+            class="dragArea list-group"
+            :sort="false"
+            :list="cptList"
+            :clone="cloneData"
+            :group="{ name: 'custom', pull: 'clone' }"
+            @start="start"
+            item-key="id"
           >
-            <el-tooltip class="box-item" effect="light" :enterable="false">
-              <template #content>
-                <img
-                  :src="getAssetsMaterialFile(currentKey, cptOfImg[currentKey][item.cptName].url)"
-                  style="max-width: 500px"
-                  alt=""
-                  srcset=""
-                />
-              </template>
-              <img
-                :src="getAssetsMaterialFile(currentKey, cptOfImg[currentKey][item.cptName].url)"
-                :style="{
-                  height: cptOfImg[currentKey][item.cptName].height,
-                  width: cptOfImg[currentKey][item.cptName].width
-                }"
-                alt=""
-                srcset=""
-              />
-            </el-tooltip>
-          </div>
+            <template #item="{ element }">
+              <div class="list-group-item com-item" @click="addModel(element)">
+                <el-tooltip class="box-item" effect="light" :enterable="false">
+                  <template #content>
+                    <img
+                      :src="
+                        getAssetsMaterialFile(currentKey, cptOfImg[currentKey][element.cptName].url)
+                      "
+                      style="max-width: 500px"
+                      alt=""
+                      srcset=""
+                    />
+                  </template>
+                  <img
+                    :src="
+                      getAssetsMaterialFile(currentKey, cptOfImg[currentKey][element.cptName].url)
+                    "
+                    :style="{
+                      height: cptOfImg[currentKey][element.cptName].height,
+                      width: cptOfImg[currentKey][element.cptName].width
+                    }"
+                    alt=""
+                    srcset=""
+                  />
+                </el-tooltip>
+              </div>
+            </template>
+          </draggable>
         </div>
       </template>
       <div v-else>
@@ -75,6 +83,22 @@
   import { cloneDeep } from 'lodash';
   import MODEL_DATA_JSON from '@/schema/modelData';
   import appStore from '@/store';
+  import draggable from 'vuedraggable';
+  const list1 = ref<any>([
+    { name: 'Jesus', id: 1 },
+    { name: 'Paul', id: 2 },
+    { name: 'Peter', id: 3 }
+  ]);
+  const cloneData = (data: IMATERIALITEM) => {
+    const cptData = cloneDeep(data);
+    cptData.data = cloneDeep(MODEL_DATA_JSON[cptData.model]); // 为模块添加数据
+    cptData.keyId = getUuid();
+    return cptData;
+  };
+  const start = (data: any) => {
+    data.dataTransfer?.setData('cptData', JSON.stringify(123));
+    console.log('拖拽开始', data, data.oldIndex);
+  };
 
   // 点击模块选择
   const currentKey = ref<string>('');
@@ -84,7 +108,7 @@
     currentTitle.value = modelCategory[key];
     currentKey.value = key;
     cptList.value = val;
-    // console.log('cptList', cptList);
+    console.log('cptList', cptList);
   };
 
   // 重置模块
