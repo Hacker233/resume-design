@@ -15,7 +15,7 @@
   </div>
 </template>
 <script lang="ts" setup>
-  import { closeGlobalLoading, openGlobalLoading } from '@/utils/common';
+  import { closeGlobalLoading } from '@/utils/common';
 
   const emit = defineEmits(['freeMake', 'customTemplate']);
   const freeMakeResume = () => {

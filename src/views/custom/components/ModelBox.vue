@@ -134,6 +134,7 @@
       // border-radius: 8px;
       overflow: hidden;
       user-select: none;
+      box-sizing: border-box;
       &:hover {
         border: 1px dashed #7ec97e;
         cursor: move;

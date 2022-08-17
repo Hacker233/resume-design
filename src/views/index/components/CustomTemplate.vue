@@ -14,7 +14,7 @@
       <div class="right-box">
         <h1>丰富的物料模块组件，可随意进行搭配，还可进行主题配置等等</h1>
         <p>自定义的模板可提交至官方，将在首页展出</p>
-        <div class="button" @click="toCustom"> 立即创作 </div>
+        <div class="button" @click="toCustom"> 开始创建模板 </div>
       </div>
     </div>
   </div>
@@ -92,31 +92,24 @@
           color: #7f8b96;
         }
         .button {
-          width: 150px;
-          height: 48px;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          letter-spacing: 2px;
-          color: #fff;
-          font-size: 20px;
-          background-image: -webkit-linear-gradient(to right, #2ddd9d, #1cc7cf);
-          background-image: -moz-linear-gradient(to right, #2ddd9d, #1cc7cf);
-          background-image: -ms-linear-gradient(to right, #2ddd9d, #1cc7cf);
-          background-image: linear-gradient(to right, #2ddd9d, #1cc7cf);
-          -webkit-border-radius: 50px;
-          -moz-border-radius: 50px;
-          border-radius: 50px;
-          background-color: #2ddd9d;
-          -webkit-transition: all 0.3s;
-          -moz-transition: all 0.3s;
-          -ms-transition: all 0.3s;
-          -o-transition: all 0.3s;
-          transition: all 0.3s;
-          cursor: pointer;
-          user-select: none;
+          width: 160px;
+          height: 52px;
+          line-height: 52px;
           margin-top: 40px;
-          font-weight: 600;
+          background-color: #00c090;
+          text-align: center;
+          color: #fff;
+          font-size: 16px;
+          border-radius: 52px;
+          cursor: pointer;
+          -webkit-transition: all 0.2s;
+          -moz-transition: all 0.2s;
+          -ms-transition: all 0.2s;
+          transition: all 0.2s;
+          -webkit-user-select: none;
+          -moz-user-select: none;
+          -ms-user-select: none;
+          user-select: none;
           &:hover {
             opacity: 0.8;
           }

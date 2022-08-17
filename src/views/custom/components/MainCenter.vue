@@ -11,6 +11,11 @@
         @dragleave="handleDragleave"
         @drop="handleDrop"
       >
+        <!-- 拖拽提示 -->
+        <div class="drag-tip-box" v-if="!designJsonStore.components.length">
+          <svg-icon iconName="icon-jia" className="yulan" size="70px" color="#2ddd9d"></svg-icon>
+          <p>请将组件拖拽或者点击放置此处~</p>
+        </div>
         <!-- 常规布局 -->
         <draggable
           :list="designJsonStore.components"
@@ -25,14 +30,6 @@
             <model-box :components="components" :item="element"></model-box
           ></template>
         </draggable>
-        <!-- <template v-for="(item, index) in designJsonStore.components">
-          <model-box :components="components" :item="item"></model-box>
-        </template> -->
-        <!-- 拖拽提示 -->
-        <!-- <div class="drag-tip-box" v-show="isShowDragTip">
-          <svg-icon iconName="icon-jia" className="yulan" size="50px" color="#2ddd9d"></svg-icon>
-          <p>组件将会放置在此处~</p>
-        </div> -->
         <!-- 分页线 -->
         <template v-if="linesNumber > 0">
           <div
@@ -48,6 +45,8 @@
         </template>
       </div>
     </div>
+
+    <!-- 模板样式切换 -->
   </div>
 </template>
 <script lang="ts" setup>
@@ -211,8 +210,13 @@
         position: relative;
         z-index: 0;
         .drag-tip-box {
-          width: 100%;
-          height: 150px;
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          z-index: 10;
+          width: 70%;
+          height: 250px;
           display: flex;
           flex-direction: column;
           justify-content: center;
@@ -220,9 +224,9 @@
           justify-content: center;
           background-color: rgba(#2ddd9d, 0.2);
           border-radius: 10px;
-          border: 2px dashed #2ddd9d;
+          // border: 2px dashed #2ddd9d;
           p {
-            font-size: 16px;
+            font-size: 20px;
             color: #2ddd9d;
             margin-top: 20px;
           }
