@@ -95,6 +95,7 @@
   // 点击选择模块
   const { updateSelectModdel, resetSelectModel } = appStore.useSelectMaterialStore;
   const selectModel = () => {
+    console.log('item', props.item);
     // 更新store
     updateSelectModdel(
       props.item.model,

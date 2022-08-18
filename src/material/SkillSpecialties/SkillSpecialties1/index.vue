@@ -31,7 +31,7 @@
 </script>
 <style lang="scss" scoped>
   .skill-specialties {
-    padding: 0 40px;
+    padding: v-bind('modelStyle.pTopBottom') v-bind('modelStyle.pLeftRight');
     box-sizing: border-box;
     margin-top: v-bind('modelStyle.mTop');
     margin-bottom: v-bind('modelStyle.mBottom');

@@ -28,7 +28,7 @@
 </script>
 <style lang="scss" scoped>
   .awards {
-    padding: 0 40px;
+    padding: v-bind('modelStyle.pTopBottom') v-bind('modelStyle.pLeftRight');
     box-sizing: border-box;
     margin-bottom: v-bind('modelStyle.mBottom');
     margin-top: v-bind('modelStyle.mTop');

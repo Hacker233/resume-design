@@ -29,7 +29,7 @@
 </script>
 <style lang="scss" scoped>
   .edu-background {
-    padding: 0 40px;
+    padding: v-bind('modelStyle.pTopBottom') v-bind('modelStyle.pLeftRight');
     margin-bottom: v-bind('modelStyle.mBottom');
     margin-top: v-bind('modelStyle.mTop');
     box-sizing: border-box;
