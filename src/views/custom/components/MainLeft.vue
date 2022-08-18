@@ -31,7 +31,7 @@
             :sort="false"
             :list="cptList"
             :clone="cloneData"
-            :group="{ name: 'custom', pull: 'clone' }"
+            :group="{ name: 'custom', pull: 'clone', put: false }"
             @start="start"
             item-key="id"
           >

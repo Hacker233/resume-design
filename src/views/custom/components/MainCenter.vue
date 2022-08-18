@@ -35,7 +35,12 @@
             >
               <template #item="{ element }">
                 <div class="list-group-item">
-                  <model-box :components="components" :item="element"></model-box>
+                  <model-box
+                    :components="components"
+                    :item="element"
+                    @left-right-delete="leftDelete"
+                    @left-right-add="leftAdd"
+                  ></model-box>
                 </div>
               </template>
             </draggable>
@@ -51,7 +56,12 @@
             >
               <template #item="{ element }">
                 <div class="list-group-item">
-                  <model-box :components="components" :item="element"></model-box>
+                  <model-box
+                    :components="components"
+                    :item="element"
+                    @left-right-delete="rightDelete"
+                    @left-right-add="rightAdd"
+                  ></model-box>
                 </div>
               </template>
             </draggable>
@@ -92,6 +102,9 @@
   import draggable from 'vuedraggable';
   import downloadPDF from '@/utils/html2pdf';
   import ModeSwitch from './ModeSwitch.vue';
+  import { IMATERIALITEM } from '@/interface/material';
+  import { getUuid } from '@/utils/common';
+  import { cloneDeep } from 'lodash';
 
   defineProps<{
     components: any;
@@ -200,6 +213,38 @@
       deep: true
     }
   );
+  // 左侧模块删除
+  const leftDelete = (keyId: string) => {
+    let index: number = leftList.value.findIndex((item: IMATERIALITEM) => item.keyId === keyId);
+    leftList.value.splice(index, 1);
+    designJsonStore.value.components = leftList.value.concat(rightList.value);
+  };
+  // 右侧模块删除
+  const rightDelete = (keyId: string) => {
+    let index: number = rightList.value.findIndex((item: IMATERIALITEM) => item.keyId === keyId);
+    rightList.value.splice(index, 1);
+    designJsonStore.value.components = leftList.value.concat(rightList.value);
+  };
+  // 左侧模块复制
+  const leftAdd = (modeItem: IMATERIALITEM) => {
+    let index: number = leftList.value.findIndex(
+      (item: IMATERIALITEM) => item.keyId === modeItem.keyId
+    );
+    let insert = cloneDeep(modeItem);
+    insert.keyId = getUuid();
+    leftList.value.splice(index, 0, insert);
+    designJsonStore.value.components = leftList.value.concat(rightList.value);
+  };
+  // 右侧模块复制
+  const rightAdd = (modeItem: IMATERIALITEM) => {
+    let index: number = rightList.value.findIndex(
+      (item: IMATERIALITEM) => item.keyId === modeItem.keyId
+    );
+    let insert = cloneDeep(modeItem);
+    insert.keyId = getUuid();
+    rightList.value.splice(index, 0, insert);
+    designJsonStore.value.components = leftList.value.concat(rightList.value);
+  };
 
   defineExpose({
     generateReport
@@ -225,7 +270,7 @@
       display: table;
       position: relative;
       .content-box {
-        position: relative;
+        // position: relative;
         .dragArea {
           min-width: 820px;
           min-height: 300px;
@@ -240,7 +285,6 @@
           width: v-bind('designJsonStore.GLOBAL_STYLE.leftWidth');
           box-sizing: border-box;
           background-color: v-bind('designJsonStore.GLOBAL_STYLE.leftThemeColor');
-          overflow: hidden;
           min-height: 1160px;
           position: absolute;
           height: 100%;
