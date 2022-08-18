@@ -17,10 +17,14 @@ export const DESIGN_JSON: IDESIGNJSON = {
     textFontColor: '#757575', // 正文字体颜色
     secondTitleWeight: 600, // 二级标题字体粗细
     textFontWeight: 500, // 正文字体粗细
+    pTopBottom: '0', // 上下内边距
+    pLeftRight: '40px', // 左右内边距
     modelMarginTop: '0px',
     modelMarginBottom: '45px',
     leftWidth: '', // 左右布局时左侧宽度
-    rightWidth: '' // 左右布局时右侧宽度
+    rightWidth: '', // 左右布局时右侧宽度
+    leftThemeColor: '', // 左侧布局时左侧背景色
+    rightThemeColor: '' // 右侧布局时右侧背景色
   }
 };
 
@@ -49,7 +53,9 @@ export const MATERIAL_JSON: IMSTERIALLISTJSON = {
         textFontWeight: 600,
         backgroundColor: '#000',
         mBottom: '35px',
-        mTop: '15px'
+        mTop: '15px',
+        pTopBottom: '0', // 上下内边距
+        pLeftRight: '0' // 左右内边距
       }, // 组件样式
       data: {} // 组件数据
     }
@@ -77,7 +83,9 @@ export const MATERIAL_JSON: IMSTERIALLISTJSON = {
         textColor: '#7c7b7b',
         backgroundColor: '',
         mBottom: '50px',
-        mTop: '0px'
+        mTop: '0px',
+        pTopBottom: '0', // 上下内边距
+        pLeftRight: '40px' // 左右内边距
       }, // 组件样式
       data: {} // 组件数据
     }
@@ -105,7 +113,9 @@ export const MATERIAL_JSON: IMSTERIALLISTJSON = {
         textFontWeight: 500,
         backgroundColor: '',
         mBottom: '35px',
-        mTop: '0px'
+        mTop: '0px',
+        pTopBottom: '0', // 上下内边距
+        pLeftRight: '40px' // 左右内边距
       }, // 组件样式
       data: {} // 组件数据
     }
@@ -133,7 +143,9 @@ export const MATERIAL_JSON: IMSTERIALLISTJSON = {
         titleFontWeight: 600,
         backgroundColor: '#000',
         mBottom: '35px',
-        mTop: '0px'
+        mTop: '0px',
+        pTopBottom: '0', // 上下内边距
+        pLeftRight: '40px' // 左右内边距
       }, // 组件样式
       data: {} // 组件数据
     }
@@ -161,7 +173,9 @@ export const MATERIAL_JSON: IMSTERIALLISTJSON = {
         titleFontWeight: 600,
         backgroundColor: '#000',
         mBottom: '35px',
-        mTop: '0px'
+        mTop: '0px',
+        pTopBottom: '0', // 上下内边距
+        pLeftRight: '40px' // 左右内边距
       }, // 组件样式
       data: {} // 组件数据
     }
@@ -189,7 +203,9 @@ export const MATERIAL_JSON: IMSTERIALLISTJSON = {
         titleFontWeight: 600,
         backgroundColor: '#000',
         mBottom: '35px',
-        mTop: '0px'
+        mTop: '0px',
+        pTopBottom: '0', // 上下内边距
+        pLeftRight: '40px' // 左右内边距
       }, // 组件样式
       data: {} // 组件数据
     }
@@ -217,7 +233,9 @@ export const MATERIAL_JSON: IMSTERIALLISTJSON = {
         titleFontWeight: 600,
         backgroundColor: '#000',
         mBottom: '35px',
-        mTop: '0px'
+        mTop: '0px',
+        pTopBottom: '0', // 上下内边距
+        pLeftRight: '40px' // 左右内边距
       }, // 组件样式
       data: {} // 组件数据
     }
@@ -245,7 +263,9 @@ export const MATERIAL_JSON: IMSTERIALLISTJSON = {
         titleFontWeight: 600,
         backgroundColor: '#000',
         mBottom: '35px',
-        mTop: '0px'
+        mTop: '0px',
+        pTopBottom: '0', // 上下内边距
+        pLeftRight: '40px' // 左右内边距
       }, // 组件样式
       data: {} // 组件数据
     }
@@ -273,7 +293,9 @@ export const MATERIAL_JSON: IMSTERIALLISTJSON = {
         titleFontWeight: 600,
         backgroundColor: '#000',
         mBottom: '35px',
-        mTop: '0px'
+        mTop: '0px',
+        pTopBottom: '0', // 上下内边距
+        pLeftRight: '40px' // 左右内边距
       }, // 组件样式
       data: {} // 组件数据
     }
@@ -301,7 +323,9 @@ export const MATERIAL_JSON: IMSTERIALLISTJSON = {
         titleFontWeight: 600,
         backgroundColor: '#000',
         mBottom: '35px',
-        mTop: '0px'
+        mTop: '0px',
+        pTopBottom: '0', // 上下内边距
+        pLeftRight: '40px' // 左右内边距
       }, // 组件样式
       data: {} // 组件数据
     }
@@ -329,7 +353,9 @@ export const MATERIAL_JSON: IMSTERIALLISTJSON = {
         titleFontWeight: 600,
         backgroundColor: '#000',
         mBottom: '35px',
-        mTop: '0px'
+        mTop: '0px',
+        pTopBottom: '0', // 上下内边距
+        pLeftRight: '40px' // 左右内边距
       }, // 组件样式
       data: {} // 组件数据
     }
@@ -357,7 +383,9 @@ export const MATERIAL_JSON: IMSTERIALLISTJSON = {
         titleFontWeight: 600,
         backgroundColor: '#000',
         mBottom: '35px',
-        mTop: '0px'
+        mTop: '0px',
+        pTopBottom: '0', // 上下内边距
+        pLeftRight: '40px' // 左右内边距
       }, // 组件样式
       data: {} // 组件数据
     }
@@ -385,7 +413,9 @@ export const MATERIAL_JSON: IMSTERIALLISTJSON = {
         titleFontWeight: 600,
         backgroundColor: '#000',
         mBottom: '35px',
-        mTop: '0px'
+        mTop: '0px',
+        pTopBottom: '0', // 上下内边距
+        pLeftRight: '40px' // 左右内边距
       }, // 组件样式
       data: {} // 组件数据
     }

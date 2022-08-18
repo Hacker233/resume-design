@@ -2,6 +2,30 @@
 <template>
   <div class="resume-theme-box">
     <el-form label-width="120px" label-position="left">
+      <!-- 左右布局时主题颜色配置 -->
+      <template v-if="designJsonStore.LAYOUT === 'leftRight'">
+        <el-form-item label="左侧主题颜色:">
+          <color-picker-custom-vue
+            v-model="designJsonStore.GLOBAL_STYLE.leftThemeColor"
+          ></color-picker-custom-vue>
+        </el-form-item>
+        <el-form-item label="左侧容器宽度：">
+          <el-input-number v-model="form.leftWidth" :min="0" :max="820" @change="handleLeftWidth" />
+        </el-form-item>
+        <el-form-item label="右侧主题颜色:">
+          <color-picker-custom-vue
+            v-model="designJsonStore.GLOBAL_STYLE.rightThemeColor"
+          ></color-picker-custom-vue>
+        </el-form-item>
+        <el-form-item label="右侧容器宽度：">
+          <el-input-number
+            v-model="form.rightWidth"
+            :min="0"
+            :max="820"
+            @change="handleRightWidth"
+          />
+        </el-form-item>
+      </template>
       <el-form-item label="主题颜色:">
         <color-picker-custom-vue
           v-model="designJsonStore.GLOBAL_STYLE.themeColor"
@@ -105,6 +129,25 @@
       <el-form-item label="模块下外边距:">
         <el-input-number v-model="mBottom" :min="-100" :max="100" @change="handleChangeMBottom" />
       </el-form-item>
+
+      <!-- 模块上下内边距 -->
+      <el-form-item label="模块上下外边距:">
+        <el-input-number
+          v-model="pTopBottom"
+          :min="-100"
+          :max="100"
+          @change="handleChangePTopBottom"
+        />
+      </el-form-item>
+      <!-- 模块左右内边距 -->
+      <el-form-item label="模块下外边距:">
+        <el-input-number
+          v-model="pLeftRight"
+          :min="-100"
+          :max="100"
+          @change="handleChangePLeftRight"
+        />
+      </el-form-item>
     </el-form>
   </div>
 </template>
@@ -116,6 +159,25 @@
   import { IMATERIALITEM } from '@/interface/material';
 
   const { designJsonStore } = appStore.useDesignStore;
+
+  // 表单数据
+  const form = reactive({
+    leftWidth: 270,
+    rightWidth: 550
+  });
+  // 左侧宽度改变
+  const handleLeftWidth = (value: number) => {
+    form.rightWidth = 820 - value;
+    designJsonStore.GLOBAL_STYLE.leftWidth = `${form.leftWidth}px`;
+    designJsonStore.GLOBAL_STYLE.rightWidth = `${820 - value}px`;
+  };
+
+  // 右侧宽度改变
+  const handleRightWidth = (value: number) => {
+    form.leftWidth = 820 - value;
+    designJsonStore.GLOBAL_STYLE.rightWidth = `${form.rightWidth}px`;
+    designJsonStore.GLOBAL_STYLE.leftWidth = `${820 - value}px`;
+  };
 
   // 改变主题色
   const changeThemeColor = (item: { rgb: string; hex: string }) => {
@@ -199,6 +261,30 @@
     }
     designJsonStore.components.forEach((item) => {
       item.style.mBottom = designJsonStore.GLOBAL_STYLE.modelMarginBottom;
+    });
+  };
+
+  // 上下内边距
+  const defaultPTopBottom: number = pxTonumber(designJsonStore.GLOBAL_STYLE.pTopBottom);
+  const pTopBottom = ref<number>(defaultPTopBottom);
+  const handleChangePTopBottom = (value: number): void => {
+    if (designJsonStore.GLOBAL_STYLE) {
+      designJsonStore.GLOBAL_STYLE.pTopBottom = value + 'px';
+    }
+    designJsonStore.components.forEach((item) => {
+      item.style.pTopBottom = designJsonStore.GLOBAL_STYLE.pTopBottom;
+    });
+  };
+
+  // 左右内边距
+  const defaultPLeftRight: number = pxTonumber(designJsonStore.GLOBAL_STYLE.modelMarginBottom);
+  const pLeftRight = ref<number>(defaultPLeftRight);
+  const handleChangePLeftRight = (value: number): void => {
+    if (designJsonStore.GLOBAL_STYLE) {
+      designJsonStore.GLOBAL_STYLE.pLeftRight = value + 'px';
+    }
+    designJsonStore.components.forEach((item) => {
+      item.style.pLeftRight = designJsonStore.GLOBAL_STYLE.pLeftRight;
     });
   };
 </script>

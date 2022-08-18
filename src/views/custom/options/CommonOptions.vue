@@ -18,6 +18,12 @@
   <el-form-item label="下外边距:">
     <el-input-number v-model="mBottom" :min="-100" :max="100" @change="handleChangeMBottom" />
   </el-form-item>
+  <el-form-item label="上外内边距:">
+    <el-input-number v-model="pTopBottom" :min="-100" :max="100" @change="handleChangePTopBottom" />
+  </el-form-item>
+  <el-form-item label="左右内边距:">
+    <el-input-number v-model="pLeftRight" :min="-100" :max="100" @change="handleChangePLeftRight" />
+  </el-form-item>
 </template>
 <script lang="ts" setup>
   import { useFontSizeList } from '@/hooks/useFontSizeList';
@@ -44,5 +50,19 @@
   const mBottom = ref<number>(defaultMbottom);
   const handleChangeMBottom = (value: number): void => {
     modelItem.style.mBottom = value + 'px';
+  };
+
+  // 上下内边距
+  const defaultPTopBottom: number = pxTonumber(modelItem.style.pTopBottom);
+  const pTopBottom = ref<number>(defaultPTopBottom);
+  const handleChangePTopBottom = (value: number): void => {
+    modelItem.style.pTopBottom = value + 'px';
+  };
+
+  // 左右内边距
+  const defaultPLeftRight: number = pxTonumber(modelItem.style.pLeftRight);
+  const pLeftRight = ref<number>(defaultPLeftRight);
+  const handleChangePLeftRight = (value: number): void => {
+    modelItem.style.pLeftRight = value + 'px';
   };
 </script>

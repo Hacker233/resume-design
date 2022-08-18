@@ -4,24 +4,65 @@
     <!-- 设计区域 -->
     <div ref="html2Pdf" class="design">
       <div class="content-box" ref="htmlContentPdf">
-        <!-- 拖拽组件 -->
-        <draggable
-          class="dragArea list-group"
-          :list="designJsonStore.components"
-          animation="500"
-          group="custom"
-          :sort="true"
-          item-key="id"
-          @end="onEnd"
-        >
-          <template #item="{ element }">
-            <div class="list-group-item">
-              <model-box :components="components" :item="element"></model-box>
-            </div>
-          </template>
-        </draggable>
+        <!-- 传统布局 -->
+        <template v-if="designJsonStore.LAYOUT === 'classical'">
+          <draggable
+            class="dragArea list-group"
+            :list="designJsonStore.components"
+            animation="500"
+            group="custom"
+            :sort="true"
+            item-key="id"
+          >
+            <template #item="{ element }">
+              <div class="list-group-item">
+                <model-box :components="components" :item="element"></model-box>
+              </div>
+            </template>
+          </draggable>
+        </template>
+
+        <!-- 左右两列布局 -->
+        <template v-else>
+          <div class="left-box">
+            <draggable
+              class="left-drag-area"
+              :list="leftList"
+              animation="500"
+              group="custom"
+              :sort="true"
+              item-key="id"
+            >
+              <template #item="{ element }">
+                <div class="list-group-item">
+                  <model-box :components="components" :item="element"></model-box>
+                </div>
+              </template>
+            </draggable>
+          </div>
+          <div class="right-box">
+            <draggable
+              class="right-drag-area"
+              :list="rightList"
+              animation="500"
+              group="custom"
+              :sort="true"
+              item-key="id"
+            >
+              <template #item="{ element }">
+                <div class="list-group-item">
+                  <model-box :components="components" :item="element"></model-box>
+                </div>
+              </template>
+            </draggable>
+          </div>
+        </template>
+
         <!-- 拖拽提示 -->
-        <div class="drag-tip-box" v-if="!designJsonStore.components.length">
+        <div
+          class="drag-tip-box"
+          v-if="!designJsonStore.components.length && designJsonStore.LAYOUT === 'classical'"
+        >
           <svg-icon iconName="icon-jia" className="yulan" size="70px" color="#2ddd9d"></svg-icon>
           <p>请将组件拖拽或者点击放置此处~</p>
         </div>
@@ -58,19 +99,9 @@
 
   // 生命周期函数
   onMounted(async () => {
-    console.log('ref', htmlContentPdf.vue);
     resizeDOM();
     initClickListen();
   });
-
-  // 是否是当前页面拖拽
-  const isCurrentPage = ref<boolean>(false);
-  const onStart = () => {
-    isCurrentPage.value = true;
-  };
-  const onEnd = () => {
-    isCurrentPage.value = false;
-  };
 
   // store相关数据
   const { designJsonStore } = storeToRefs(appStore.useDesignStore);
@@ -141,6 +172,35 @@
     });
   };
 
+  /**
+   * 左右两列布局
+   */
+  // 左侧列表
+  const leftList = ref<any>([]);
+  // 右侧列表
+  const rightList = ref<any>([]);
+
+  watch(
+    leftList,
+    () => {
+      designJsonStore.value.components = leftList.value.concat(rightList.value);
+      console.log('最新designJsonStore', designJsonStore.value.components, leftList.value);
+    },
+    {
+      deep: true
+    }
+  );
+  watch(
+    rightList,
+    () => {
+      designJsonStore.value.components = leftList.value.concat(rightList.value);
+      console.log('最新designJsonStore', designJsonStore.value.components, rightList.value);
+    },
+    {
+      deep: true
+    }
+  );
+
   defineExpose({
     generateReport
   });
@@ -176,6 +236,30 @@
           position: relative;
           z-index: 0;
         }
+        .left-box {
+          width: v-bind('designJsonStore.GLOBAL_STYLE.leftWidth');
+          box-sizing: border-box;
+          background-color: v-bind('designJsonStore.GLOBAL_STYLE.leftThemeColor');
+          overflow: hidden;
+          min-height: 1160px;
+          position: absolute;
+          height: 100%;
+          .left-drag-area {
+            min-height: 1160px;
+            width: 100%;
+          }
+        }
+        .right-box {
+          min-height: 1160px;
+          width: v-bind('designJsonStore.GLOBAL_STYLE.rightWidth');
+          margin-left: v-bind('designJsonStore.GLOBAL_STYLE.leftWidth');
+          background-color: v-bind('designJsonStore.GLOBAL_STYLE.rightThemeColor');
+          .right-drag-area {
+            min-height: 1160px;
+            width: 100%;
+          }
+        }
+        // 拖拽提示
         .drag-tip-box {
           position: absolute;
           top: 50%;
@@ -198,6 +282,7 @@
             margin-top: 20px;
           }
         }
+        // 分割线
         .lines {
           z-index: 10;
           width: 820px;

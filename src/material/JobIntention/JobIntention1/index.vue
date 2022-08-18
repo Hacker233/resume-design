@@ -44,7 +44,7 @@
 </script>
 <style lang="scss" scoped>
   .job-intention {
-    padding: 0 40px;
+    padding: v-bind('modelStyle.pTopBottom') v-bind('modelStyle.pLeftRight');
     margin-top: v-bind('modelStyle.mTop');
     margin-bottom: v-bind('modelStyle.mBottom');
     box-sizing: border-box;
