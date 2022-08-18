@@ -131,7 +131,7 @@
       </el-form-item>
 
       <!-- 模块上下内边距 -->
-      <el-form-item label="模块上下外边距:">
+      <el-form-item label="模块上下内边距:">
         <el-input-number
           v-model="pTopBottom"
           :min="-100"
@@ -140,7 +140,7 @@
         />
       </el-form-item>
       <!-- 模块左右内边距 -->
-      <el-form-item label="模块下外边距:">
+      <el-form-item label="模块左右内边距:">
         <el-input-number
           v-model="pLeftRight"
           :min="-100"
