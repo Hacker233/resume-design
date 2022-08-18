@@ -115,12 +115,6 @@
     currentKey.value = '';
   };
 
-  // 拖拽开始
-  const ondragstart = (evt: DragEvent, item: IMATERIALITEM) => {
-    evt.dataTransfer?.setData('cptData', JSON.stringify(item));
-    // console.log('源对象拖拽开始', evt);
-  };
-
   // 点击组件，添加模块
   const { pushComponent } = appStore.useDesignStore;
   const addModel = (item: IMATERIALITEM) => {
