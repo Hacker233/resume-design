@@ -40,7 +40,7 @@
   import { cloneDeep } from 'lodash';
   import { storeToRefs } from 'pinia';
   import { ComponentPublicInstance } from 'vue';
-
+  const emit = defineEmits(['leftRightDelete', 'leftRightAdd']);
   const props = defineProps<{
     item: IMATERIALITEM;
     components: any;
@@ -95,7 +95,7 @@
   // 点击选择模块
   const { updateSelectModdel, resetSelectModel } = appStore.useSelectMaterialStore;
   const selectModel = () => {
-    console.log('item', props.item);
+    console.log('keyId', props.item.keyId);
     // 更新store
     updateSelectModdel(
       props.item.model,
@@ -107,15 +107,33 @@
 
   // 删除当前模块
   const deleteModel = () => {
+    if (designJsonStore.value.LAYOUT === 'classical') {
+      classicalDelete();
+    } else {
+      emit('leftRightDelete', props.item.keyId);
+    }
+    resetSelectModel(); // 重置选中模块
+  };
+
+  // 传统模块删除
+  const classicalDelete = () => {
     let index: number = designJsonStore.value.components.findIndex(
       (item) => item.keyId === props.item.keyId
     );
     designJsonStore.value.components.splice(index, 1);
-    resetSelectModel(); // 重置选中模块
   };
 
-  // 增加模块
+  // 复制当前模块
   const addModel = () => {
+    if (designJsonStore.value.LAYOUT === 'classical') {
+      classicalAdd();
+    } else {
+      emit('leftRightAdd', props.item);
+    }
+  };
+
+  // 传统布局删除
+  const classicalAdd = () => {
     let index: number = designJsonStore.value.components.findIndex(
       (item) => item.keyId === props.item.keyId
     );
