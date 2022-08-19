@@ -196,6 +196,9 @@
   watch(
     leftList,
     () => {
+      leftList.value.forEach((item: IMATERIALITEM) => {
+        item.layout = 'left';
+      });
       designJsonStore.value.components = leftList.value.concat(rightList.value);
       console.log('最新designJsonStore', designJsonStore.value.components, leftList.value);
     },
@@ -206,6 +209,9 @@
   watch(
     rightList,
     () => {
+      rightList.value.forEach((item: IMATERIALITEM) => {
+        item.layout = 'right';
+      });
       designJsonStore.value.components = leftList.value.concat(rightList.value);
       console.log('最新designJsonStore', designJsonStore.value.components, rightList.value);
     },

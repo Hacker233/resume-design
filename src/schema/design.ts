@@ -42,6 +42,7 @@ export const MATERIAL_JSON: IMSTERIALLISTJSON = {
       cptZ: 0, // 组件z坐标
       cptHeight: '100px', // 组件高度
       cptWidth: '100%', // 组件宽度
+      layout: '', // 布局在左侧还是右侧
       style: {
         themeColor: '#000', // 主题色
         firstTitleFontSize: '20px', // 一级标题
@@ -72,6 +73,7 @@ export const MATERIAL_JSON: IMSTERIALLISTJSON = {
       cptZ: 0, // 组件z坐标
       cptHeight: '100px', // 组件高度
       cptWidth: '100%', // 组件宽度
+      layout: '', // 布局在左侧还是右侧
       style: {
         themeColor: '#000', // 主题色
         firstTitleFontSize: '20px', // 一级标题
@@ -102,6 +104,7 @@ export const MATERIAL_JSON: IMSTERIALLISTJSON = {
       cptZ: 0, // 组件z坐标
       cptHeight: '100px', // 组件高度
       cptWidth: '100%', // 组件宽度
+      layout: '', // 布局在左侧还是右侧
       style: {
         themeColor: '#000', // 主题色
         firstTitleFontSize: '20px', // 一级标题
@@ -132,6 +135,7 @@ export const MATERIAL_JSON: IMSTERIALLISTJSON = {
       cptZ: 0, // 组件z坐标
       cptHeight: '50px', // 组件高度
       cptWidth: '100%', // 组件宽度
+      layout: '', // 布局在左侧还是右侧
       style: {
         themeColor: '#000', // 主题色
         firstTitleFontSize: '20px', // 一级标题
@@ -162,6 +166,7 @@ export const MATERIAL_JSON: IMSTERIALLISTJSON = {
       cptZ: 0, // 组件z坐标
       cptHeight: '50px', // 组件高度
       cptWidth: '100%', // 组件宽度
+      layout: '', // 布局在左侧还是右侧
       style: {
         themeColor: '#000', // 主题色
         firstTitleFontSize: '20px', // 一级标题
@@ -192,6 +197,7 @@ export const MATERIAL_JSON: IMSTERIALLISTJSON = {
       cptZ: 0, // 组件z坐标
       cptHeight: '50px', // 组件高度
       cptWidth: '100%', // 组件宽度
+      layout: '', // 布局在左侧还是右侧
       style: {
         themeColor: '#000', // 主题色
         firstTitleFontSize: '20px', // 一级标题
@@ -222,6 +228,7 @@ export const MATERIAL_JSON: IMSTERIALLISTJSON = {
       cptZ: 0, // 组件z坐标
       cptHeight: '50px', // 组件高度
       cptWidth: '100%', // 组件宽度
+      layout: '', // 布局在左侧还是右侧
       style: {
         themeColor: '#000', // 主题色
         firstTitleFontSize: '20px', // 一级标题
@@ -252,6 +259,7 @@ export const MATERIAL_JSON: IMSTERIALLISTJSON = {
       cptZ: 0, // 组件z坐标
       cptHeight: '50px', // 组件高度
       cptWidth: '100%', // 组件宽度
+      layout: '', // 布局在左侧还是右侧
       style: {
         themeColor: '#000', // 主题色
         firstTitleFontSize: '20px', // 一级标题
@@ -282,6 +290,7 @@ export const MATERIAL_JSON: IMSTERIALLISTJSON = {
       cptZ: 0, // 组件z坐标
       cptHeight: '50px', // 组件高度
       cptWidth: '100%', // 组件宽度
+      layout: '', // 布局在左侧还是右侧
       style: {
         themeColor: '#000', // 主题色
         firstTitleFontSize: '20px', // 一级标题
@@ -312,6 +321,7 @@ export const MATERIAL_JSON: IMSTERIALLISTJSON = {
       cptZ: 0, // 组件z坐标
       cptHeight: '50px', // 组件高度
       cptWidth: '100%', // 组件宽度
+      layout: '', // 布局在左侧还是右侧
       style: {
         themeColor: '#000', // 主题色
         firstTitleFontSize: '20px', // 一级标题
@@ -342,6 +352,7 @@ export const MATERIAL_JSON: IMSTERIALLISTJSON = {
       cptZ: 0, // 组件z坐标
       cptHeight: '50px', // 组件高度
       cptWidth: '100%', // 组件宽度
+      layout: '', // 布局在左侧还是右侧
       style: {
         themeColor: '#000', // 主题色
         firstTitleFontSize: '20px', // 一级标题
@@ -372,6 +383,7 @@ export const MATERIAL_JSON: IMSTERIALLISTJSON = {
       cptZ: 0, // 组件z坐标
       cptHeight: '50px', // 组件高度
       cptWidth: '100%', // 组件宽度
+      layout: '', // 布局在左侧还是右侧
       style: {
         themeColor: '#000', // 主题色
         firstTitleFontSize: '20px', // 一级标题
@@ -402,6 +414,7 @@ export const MATERIAL_JSON: IMSTERIALLISTJSON = {
       cptZ: 0, // 组件z坐标
       cptHeight: '50px', // 组件高度
       cptWidth: '100%', // 组件宽度
+      layout: '', // 布局在左侧还是右侧
       style: {
         themeColor: '#000', // 主题色
         firstTitleFontSize: '20px', // 一级标题

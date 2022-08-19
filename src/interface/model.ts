@@ -274,6 +274,7 @@ interface IResumeJson {
   ID: string; // 模板id
   NAME: string; // 模板名
   TITLE: string; // 模板名称
+  LAYOUT: string; // 布局方式
   LIST: [
     IRESUMETITLE,
     IBASEINFO,

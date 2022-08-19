@@ -3,6 +3,7 @@ let TEMPLATE_JSON: IResumeJson = {
   ID: '', // 模板Id
   NAME: '',
   TITLE: '我的简历',
+  LAYOUT: '', // 布局方式
   LIST: [
     {
       id: '1',

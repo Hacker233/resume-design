@@ -132,7 +132,7 @@
 
   // 导出JSON
   const exportJSON = () => {
-    const data = JSON.stringify(resumeJsonStore.value);
+    const data = JSON.stringify(resumeJsonStore.value, null, 4);
     const blob = new Blob([data], { type: '' });
     FileSaver.saveAs(blob, resumeJsonStore.value.TITLE + '.json');
   };
