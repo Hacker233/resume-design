@@ -7,7 +7,7 @@ export const DESIGN_JSON: IDESIGNJSON = {
   NAME: '',
   TITLE: '模板标题',
   LAYOUT: 'classical', // 布局模式
-  components: [], // 模板内组件列表
+  COMPONENTS: [], // 模板内组件列表
   GLOBAL_STYLE: {
     themeColor: '#079cfa', // 主题色
     firstTitleFontSize: '20px', // 一级标题

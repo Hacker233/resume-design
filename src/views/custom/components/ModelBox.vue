@@ -117,10 +117,10 @@
 
   // 传统模块删除
   const classicalDelete = () => {
-    let index: number = designJsonStore.value.components.findIndex(
+    let index: number = designJsonStore.value.COMPONENTS.findIndex(
       (item) => item.keyId === props.item.keyId
     );
-    designJsonStore.value.components.splice(index, 1);
+    designJsonStore.value.COMPONENTS.splice(index, 1);
   };
 
   // 复制当前模块
@@ -134,12 +134,12 @@
 
   // 传统布局删除
   const classicalAdd = () => {
-    let index: number = designJsonStore.value.components.findIndex(
+    let index: number = designJsonStore.value.COMPONENTS.findIndex(
       (item) => item.keyId === props.item.keyId
     );
     let insert = cloneDeep(props.item);
     insert.keyId = getUuid();
-    designJsonStore.value.components.splice(index, 0, insert);
+    designJsonStore.value.COMPONENTS.splice(index, 0, insert);
   };
 </script>
 <style lang="scss" scoped>

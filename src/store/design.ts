@@ -5,7 +5,7 @@ import { defineStore } from 'pinia';
 export const useDesignStore = defineStore('designStore', () => {
   const designJsonStore = ref<IDESIGNJSON>(DESIGN_JSON);
   function pushComponent(data: IMATERIALITEM) {
-    designJsonStore.value.components.push(data);
+    designJsonStore.value.COMPONENTS.push(data);
   }
   return {
     designJsonStore,

@@ -111,7 +111,7 @@
   // 选择传统布局方式
   const chooseClassical = () => {
     designJsonStore.value.LAYOUT = 'classical';
-    designJsonStore.value.components = [];
+    designJsonStore.value.COMPONENTS = [];
   };
 
   // 属性设置弹窗
@@ -124,7 +124,7 @@
     designJsonStore.value.GLOBAL_STYLE.leftThemeColor = form.leftThemeColor;
     designJsonStore.value.GLOBAL_STYLE.rightThemeColor = form.rightThemeColor;
     designJsonStore.value.LAYOUT = 'leftRight';
-    designJsonStore.value.components = [];
+    designJsonStore.value.COMPONENTS = [];
     dialogVisible.value = false;
   };
 

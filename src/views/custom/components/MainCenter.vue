@@ -8,7 +8,7 @@
         <template v-if="designJsonStore.LAYOUT === 'classical'">
           <draggable
             class="dragArea list-group"
-            :list="designJsonStore.components"
+            :list="designJsonStore.COMPONENTS"
             animation="500"
             group="custom"
             :sort="true"
@@ -71,7 +71,7 @@
         <!-- 拖拽提示 -->
         <div
           class="drag-tip-box"
-          v-if="!designJsonStore.components.length && designJsonStore.LAYOUT === 'classical'"
+          v-if="!designJsonStore.COMPONENTS.length && designJsonStore.LAYOUT === 'classical'"
         >
           <svg-icon iconName="icon-jia" className="yulan" size="70px" color="#2ddd9d"></svg-icon>
           <p>请将组件拖拽或者点击放置此处~</p>
@@ -199,8 +199,8 @@
       leftList.value.forEach((item: IMATERIALITEM) => {
         item.layout = 'left';
       });
-      designJsonStore.value.components = leftList.value.concat(rightList.value);
-      console.log('最新designJsonStore', designJsonStore.value.components, leftList.value);
+      designJsonStore.value.COMPONENTS = leftList.value.concat(rightList.value);
+      console.log('最新designJsonStore', designJsonStore.value.COMPONENTS, leftList.value);
     },
     {
       deep: true
@@ -212,8 +212,8 @@
       rightList.value.forEach((item: IMATERIALITEM) => {
         item.layout = 'right';
       });
-      designJsonStore.value.components = leftList.value.concat(rightList.value);
-      console.log('最新designJsonStore', designJsonStore.value.components, rightList.value);
+      designJsonStore.value.COMPONENTS = leftList.value.concat(rightList.value);
+      console.log('最新designJsonStore', designJsonStore.value.COMPONENTS, rightList.value);
     },
     {
       deep: true
@@ -223,13 +223,13 @@
   const leftDelete = (keyId: string) => {
     let index: number = leftList.value.findIndex((item: IMATERIALITEM) => item.keyId === keyId);
     leftList.value.splice(index, 1);
-    designJsonStore.value.components = leftList.value.concat(rightList.value);
+    designJsonStore.value.COMPONENTS = leftList.value.concat(rightList.value);
   };
   // 右侧模块删除
   const rightDelete = (keyId: string) => {
     let index: number = rightList.value.findIndex((item: IMATERIALITEM) => item.keyId === keyId);
     rightList.value.splice(index, 1);
-    designJsonStore.value.components = leftList.value.concat(rightList.value);
+    designJsonStore.value.COMPONENTS = leftList.value.concat(rightList.value);
   };
   // 左侧模块复制
   const leftAdd = (modeItem: IMATERIALITEM) => {
@@ -239,7 +239,7 @@
     let insert = cloneDeep(modeItem);
     insert.keyId = getUuid();
     leftList.value.splice(index, 0, insert);
-    designJsonStore.value.components = leftList.value.concat(rightList.value);
+    designJsonStore.value.COMPONENTS = leftList.value.concat(rightList.value);
   };
   // 右侧模块复制
   const rightAdd = (modeItem: IMATERIALITEM) => {
@@ -249,7 +249,7 @@
     let insert = cloneDeep(modeItem);
     insert.keyId = getUuid();
     rightList.value.splice(index, 0, insert);
-    designJsonStore.value.components = leftList.value.concat(rightList.value);
+    designJsonStore.value.COMPONENTS = leftList.value.concat(rightList.value);
   };
 
   defineExpose({

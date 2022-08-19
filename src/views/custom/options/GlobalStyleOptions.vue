@@ -182,13 +182,13 @@
   // 改变主题色
   const changeThemeColor = (item: { rgb: string; hex: string }) => {
     // 改变一级标题颜色
-    designJsonStore.components.forEach((cptItem: IMATERIALITEM) => {
+    designJsonStore.COMPONENTS.forEach((cptItem: IMATERIALITEM) => {
       cptItem.style.themeColor = item.hex;
     });
   };
   // 改变一级字体大小
   const changeFirstTitleFontSize = (value: string) => {
-    designJsonStore.components.forEach((cptItem: IMATERIALITEM) => {
+    designJsonStore.COMPONENTS.forEach((cptItem: IMATERIALITEM) => {
       cptItem.style.firstTitleFontSize = value;
     });
   };
@@ -201,42 +201,42 @@
 
   // 二级标题字体大小发生变化时
   const secondTitleFontSizeChange = (value: string) => {
-    designJsonStore.components.forEach((cptItem: IMATERIALITEM) => {
+    designJsonStore.COMPONENTS.forEach((cptItem: IMATERIALITEM) => {
       cptItem.style.titleFontSize = value;
     });
   };
 
   // 正文字体大小发生变化
   const textFontSizeChange = (value: string) => {
-    designJsonStore.components.forEach((cptItem: IMATERIALITEM) => {
+    designJsonStore.COMPONENTS.forEach((cptItem: IMATERIALITEM) => {
       cptItem.style.titleFontSize = value;
     });
   };
 
   // 二级标题颜色改变
   const secondTitleColorChange = (item: { hex: string; rgba: string }) => {
-    designJsonStore.components.forEach((cptItem: IMATERIALITEM) => {
+    designJsonStore.COMPONENTS.forEach((cptItem: IMATERIALITEM) => {
       cptItem.style.titleColor = item.hex;
     });
   };
 
   // 正文字体颜色发生改变
   const textColorChange = (item: { hex: string; rgba: string }) => {
-    designJsonStore.components.forEach((cptItem: IMATERIALITEM) => {
+    designJsonStore.COMPONENTS.forEach((cptItem: IMATERIALITEM) => {
       cptItem.style.textColor = item.hex;
     });
   };
 
   // 二级标题字体粗细
   const secondTitleWeightChange = (value: number) => {
-    designJsonStore.components.forEach((cptItem: IMATERIALITEM) => {
+    designJsonStore.COMPONENTS.forEach((cptItem: IMATERIALITEM) => {
       cptItem.style.titleFontWeight = value;
     });
   };
 
   // 正文字体粗细
   const textFontWeight = (value: number) => {
-    designJsonStore.components.forEach((cptItem: IMATERIALITEM) => {
+    designJsonStore.COMPONENTS.forEach((cptItem: IMATERIALITEM) => {
       cptItem.style.textFontWeight = value;
     });
   };
@@ -248,7 +248,7 @@
     if (designJsonStore.GLOBAL_STYLE) {
       designJsonStore.GLOBAL_STYLE.modelMarginTop = value + 'px';
     }
-    designJsonStore.components.forEach((item) => {
+    designJsonStore.COMPONENTS.forEach((item) => {
       item.style.mTop = designJsonStore.GLOBAL_STYLE.modelMarginTop;
     });
   };
@@ -259,7 +259,7 @@
     if (designJsonStore.GLOBAL_STYLE) {
       designJsonStore.GLOBAL_STYLE.modelMarginBottom = value + 'px';
     }
-    designJsonStore.components.forEach((item) => {
+    designJsonStore.COMPONENTS.forEach((item) => {
       item.style.mBottom = designJsonStore.GLOBAL_STYLE.modelMarginBottom;
     });
   };
@@ -271,7 +271,7 @@
     if (designJsonStore.GLOBAL_STYLE) {
       designJsonStore.GLOBAL_STYLE.pTopBottom = value + 'px';
     }
-    designJsonStore.components.forEach((item) => {
+    designJsonStore.COMPONENTS.forEach((item) => {
       item.style.pTopBottom = designJsonStore.GLOBAL_STYLE.pTopBottom;
     });
   };
@@ -283,7 +283,7 @@
     if (designJsonStore.GLOBAL_STYLE) {
       designJsonStore.GLOBAL_STYLE.pLeftRight = value + 'px';
     }
-    designJsonStore.components.forEach((item) => {
+    designJsonStore.COMPONENTS.forEach((item) => {
       item.style.pLeftRight = designJsonStore.GLOBAL_STYLE.pLeftRight;
     });
   };
