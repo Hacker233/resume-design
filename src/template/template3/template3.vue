@@ -1,7 +1,7 @@
 <template>
   <div ref="tmp3ContentHeightRef" class="template3-box">
     <!-- 简历模块 -->
-    <template v-for="item in resumeJsonStore.LIST" :key="index">
+    <template v-for="(item, index) in resumeJsonStore.LIST" :key="index">
       <model-box-vue v-if="!isTitleAndBaseInfo(item)" :item="item" :components="components">
       </model-box-vue>
       <div v-else class="model-box-wraper">

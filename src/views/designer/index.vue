@@ -87,20 +87,25 @@
   const localData = localStorage.getItem('resumeDraft');
   const route = useRoute();
   const { id, name } = route.query; // 模板id和模板名称
-  resumeJsonStore.value.ID = id as string;
-  resumeJsonStore.value.NAME = name as string;
   const componentName = ref<string>(name as string); // 模板名称,即渲染哪个模板
-  if (localData) {
-    let localObj = JSON.parse(localData)[id as string];
-    if (localObj) {
-      changeResumeJsonData(localObj);
+  // 模板1、模板2、模板3处理逻辑
+  if (componentName.value !== 'custom') {
+    resumeJsonStore.value.ID = id as string;
+    resumeJsonStore.value.NAME = name as string;
+    if (localData) {
+      let localObj = JSON.parse(localData)[id as string];
+      if (localObj) {
+        changeResumeJsonData(localObj);
+      } else {
+        resetStoreAndLocal();
+      }
     } else {
       resetStoreAndLocal();
     }
   } else {
-    resetStoreAndLocal();
+    console.log('自定义的模板');
   }
-  console.log('resumeJsonStore', resumeJsonStore.value);
+
   // 过滤掉模板2不需要的模块
   if (Number(id) == 2) {
     let List: any = [];
