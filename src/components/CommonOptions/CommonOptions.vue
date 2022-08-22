@@ -27,10 +27,10 @@
   import { useFontSizeList } from '@/hooks/useFontSizeList';
   import ColorPickerCustomVue from '../ColorPicker/ColorPickerCustom.vue';
   // store
-  const { resumeJsonStore } = appStore.useResumeJsonStore;
+  const { resumeJsonNewStore } = appStore.useResumeJsonNewStore;
   // 选中的模块
   const index = useModelIndex(); // 选中的索引
-  const modelItem = reactive(resumeJsonStore.LIST[index]);
+  const modelItem = reactive(resumeJsonNewStore.COMPONENTS[index]);
   // 字体大小
   const fontSizeList = useFontSizeList();
   // 字体粗细

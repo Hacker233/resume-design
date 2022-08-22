@@ -8,7 +8,7 @@
     </div>
     <!-- 技能特长 -->
     <ul>
-      <template v-for="item in modelData.LIST">
+      <template v-for="item in data.LIST">
         <li>
           <p>{{ item.skillName }}</p>
           <el-slider
@@ -24,10 +24,12 @@
   </div>
 </template>
 <script setup lang="ts">
-  import { ISKILLSPECIALTIES } from '@/interface/model';
+  import { IMATERIALITEM } from '@/interface/material';
+import { ISKILLSPECIALTIES } from '@/interface/model';
   import { numberToText, textToNumber } from '@/utils/common';
   defineProps<{
-    modelData: ISKILLSPECIALTIES;
+    modelData: IMATERIALITEM;
+    data: ISKILLSPECIALTIES;
   }>();
   const vModelPro = (text: string) => {
     return textToNumber(text);

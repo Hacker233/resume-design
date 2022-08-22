@@ -16,37 +16,37 @@
     <el-tab-pane label="数据配置" name="data">
       <el-form label-width="70px" label-position="left">
         <el-form-item label="姓名:">
-          <el-input v-model="modelItem.name" type="text" maxlength="15" show-word-limit />
+          <el-input v-model="data.name" type="text" maxlength="15" show-word-limit />
         </el-form-item>
         <el-form-item label="简介:">
           <el-input
-            v-model="modelItem.abstract"
+            v-model="data.abstract"
             type="textarea"
             maxlength="50"
             show-word-limit
             :rows="4"
           />
-          <el-switch v-model="modelItem.isShow.abstract" />
+          <el-switch v-model="data.isShow.abstract" />
         </el-form-item>
         <el-form-item label="年龄:">
-          <el-input v-model="modelItem.age" type="text" maxlength="2" show-word-limit />
-          <el-switch v-model="modelItem.isShow.age" />
+          <el-input v-model="data.age" type="text" maxlength="2" show-word-limit />
+          <el-switch v-model="data.isShow.age" />
         </el-form-item>
         <el-form-item label="地址:">
-          <el-input v-model="modelItem.address" type="text" maxlength="30" show-word-limit />
-          <el-switch v-model="modelItem.isShow.address" />
+          <el-input v-model="data.address" type="text" maxlength="30" show-word-limit />
+          <el-switch v-model="data.isShow.address" />
         </el-form-item>
         <el-form-item label="工作经验:">
-          <el-input v-model="modelItem.workService" type="text" maxlength="10" show-word-limit />
-          <el-switch v-model="modelItem.isShow.workService" />
+          <el-input v-model="data.workService" type="text" maxlength="10" show-word-limit />
+          <el-switch v-model="data.isShow.workService" />
         </el-form-item>
         <el-form-item label="联系方式:">
-          <el-input v-model="modelItem.phoneNumber" type="text" maxlength="11" show-word-limit />
-          <el-switch v-model="modelItem.isShow.phoneNumber" />
+          <el-input v-model="data.phoneNumber" type="text" maxlength="11" show-word-limit />
+          <el-switch v-model="data.isShow.phoneNumber" />
         </el-form-item>
         <el-form-item label="邮箱地址:">
-          <el-input v-model="modelItem.email" type="text" maxlength="30" show-word-limit />
-          <el-switch v-model="modelItem.isShow.email" />
+          <el-input v-model="data.email" type="text" maxlength="30" show-word-limit />
+          <el-switch v-model="data.isShow.email" />
         </el-form-item>
         <el-form-item label="头像上传:">
           <el-upload
@@ -58,7 +58,7 @@
             <img v-if="imageUrl" :src="imageUrl" class="avatar" />
             <el-icon v-else class="avatar-uploader-icon"><Plus /></el-icon>
           </el-upload>
-          <el-switch v-model="modelItem.isShow.avatar" />
+          <el-switch v-model="data.isShow.avatar" />
         </el-form-item>
       </el-form>
     </el-tab-pane>
@@ -73,22 +73,24 @@
   import CommonOptions from '@/components/CommonOptions/CommonOptions.vue';
   import CommonTitleOptions from '@/components/CommonOptions/CommonTitleOptions.vue';
   import { useModelIndex } from '@/hooks/useModelIndex';
+  import { IMATERIALITEM } from '@/interface/material';
   defineOptions({
     name: 'COM_BASE_INFO_OPTIONS'
   });
   // store
-  const { resumeJsonStore } = appStore.useResumeJsonStore;
+  const { resumeJsonNewStore } = appStore.useResumeJsonNewStore;
 
   // 选中的模块
   const index = useModelIndex(); // 选中的索引
-  const modelItem = reactive<IBASEINFO>(resumeJsonStore.LIST[index] as IBASEINFO);
+  const modelItem = reactive<IMATERIALITEM>(resumeJsonNewStore.COMPONENTS[index]);
+  const data = reactive<IBASEINFO>(resumeJsonNewStore.COMPONENTS[index].data); // 组件数据
   let activeName = ref('style');
 
   /**
    * 数据配置
    */
   // 头像设置
-  const imageUrl = ref(modelItem.avatar);
+  const imageUrl = ref(data.avatar);
   const beforeAvatarUpload: UploadProps['beforeUpload'] = (rawFile) => {
     if (rawFile.type !== 'image/jpeg') {
       ElMessage.error('只支持jpg格式的图片');
@@ -102,7 +104,7 @@
     reader.readAsDataURL(rawFile);
     reader.onload = (e) => {
       imageUrl.value = e.target?.result as string;
-      modelItem.avatar = e.target?.result as string;
+      data.avatar = e.target?.result as string;
     };
     return false;
   };

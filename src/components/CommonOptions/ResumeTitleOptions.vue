@@ -32,10 +32,10 @@
     name: 'COM_RESUME_TITLE_OPTIONS'
   });
   // store
-  const { resumeJsonStore } = appStore.useResumeJsonStore;
+  const { resumeJsonNewStore } = appStore.useResumeJsonNewStore;
 
   // 选中的模块
   const index = useModelIndex(); // 选中的索引
-  const modelItem = reactive<IRESUMETITLE>(resumeJsonStore.LIST[index] as IRESUMETITLE);
+  const modelItem = reactive<IRESUMETITLE>(resumeJsonNewStore.COMPONENTS[index] as IRESUMETITLE);
   let activeName = ref('style');
 </script>

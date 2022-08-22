@@ -5,7 +5,7 @@
     <slot name="model-title"></slot>
     <!-- 校园经历 -->
     <div class="project-experience-list">
-      <div v-for="(item, index) in modelData.LIST" :key="index" class="list">
+      <div v-for="(item, index) in data.LIST" :key="index" class="list">
         <ul>
           <!-- 经历时间 -->
           <li class="list-title">{{ formatDate(item.date) }}</li>
@@ -28,10 +28,12 @@
   </div>
 </template>
 <script setup lang="ts">
+  import { IMATERIALITEM } from '@/interface/material';
   import { IPROJECTEXPERIENCE } from '@/interface/model';
   import { formatDate } from '@/utils/common';
   defineProps<{
-    modelData: IPROJECTEXPERIENCE;
+    modelData: IMATERIALITEM;
+    data: IPROJECTEXPERIENCE;
   }>();
 </script>
 <style lang="scss" scoped>

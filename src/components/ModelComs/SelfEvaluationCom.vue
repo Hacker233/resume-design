@@ -5,14 +5,16 @@
     <slot name="model-title"></slot>
     <!-- 兴趣爱好 -->
     <div class="self-eavluation-content">
-      <p>{{ modelData.content }}</p>
+      <p>{{ data.content }}</p>
     </div>
   </div>
 </template>
 <script setup lang="ts">
+  import { IMATERIALITEM } from '@/interface/material';
   import { ISELFEVALUATION } from '@/interface/model';
   defineProps<{
-    modelData: ISELFEVALUATION;
+    modelData: IMATERIALITEM;
+    data: ISELFEVALUATION;
   }>();
 </script>
 <style lang="scss" scoped>

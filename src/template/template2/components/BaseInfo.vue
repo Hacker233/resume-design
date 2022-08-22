@@ -1,43 +1,45 @@
 <template>
   <div class="base-info">
     <!-- 个人头像 -->
-    <div v-show="modelData.isShow.avatar" class="avatar-box">
-      <el-image style="width: 120px; height: 150px" :src="modelData.avatar" />
+    <div v-show="data.isShow.avatar" class="avatar-box">
+      <el-image style="width: 120px; height: 150px" :src="data.avatar" />
     </div>
     <!-- 基础信息 -->
     <div class="user-info">
       <ul>
         <li v-show="isShow.age" class="li-border">
           <svg-icon icon-name="icon-renwu-ren" color="#fff"></svg-icon>
-          <span>{{ modelData.age }}岁</span>
+          <span>{{ data.age }}岁</span>
         </li>
         <li v-show="isShow.address" class="li-border">
           <svg-icon icon-name="icon-dizhi" color="#fff" size="16px"></svg-icon>
-          <span>{{ modelData.address }}</span>
+          <span>{{ data.address }}</span>
         </li>
         <li v-show="isShow.workService" class="li-border">
           <svg-icon icon-name="icon-gongzuojingyan" color="#fff"></svg-icon>
-          <span>{{ modelData.workService }}年经验</span>
+          <span>{{ data.workService }}年经验</span>
         </li>
         <li v-show="isShow.phoneNumber" class="li-border">
           <svg-icon icon-name="icon-dianhua1" color="#fff"></svg-icon>
-          <span>{{ modelData.phoneNumber }}</span>
+          <span>{{ data.phoneNumber }}</span>
         </li>
         <li v-show="isShow.email">
           <svg-icon icon-name="icon-youxiang" color="#fff"></svg-icon>
-          <span>{{ modelData.email }}</span>
+          <span>{{ data.email }}</span>
         </li>
       </ul>
     </div>
   </div>
 </template>
 <script lang="ts" setup>
+  import { IMATERIALITEM } from '@/interface/material';
   import { IBASEINFO } from '@/interface/model';
   import { reactive } from 'vue';
   const props = defineProps<{
-    modelData: IBASEINFO;
+    modelData: IMATERIALITEM;
+    data: IBASEINFO;
   }>();
-  const isShow = reactive(props.modelData.isShow);
+  const isShow = reactive(props.data.isShow);
 </script>
 <style lang="scss" scoped>
   .base-info {

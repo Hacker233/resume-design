@@ -9,7 +9,7 @@
   import IMODELSTYLE from '@/interface/modelStyle';
   import appStore from '@/store';
   import { storeToRefs } from 'pinia';
-  const { designJsonStore } = storeToRefs(appStore.useDesignStore);
+  const { resumeJsonNewStore } = storeToRefs(appStore.useResumeJsonNewStore);
   defineProps<{
     modelData: IRESUMETITLE;
     modelStyle: IMODELSTYLE; // 模块样式

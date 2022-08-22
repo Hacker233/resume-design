@@ -37,8 +37,9 @@
   import SelfEvaluation from './components/SelfEvaluation.vue'; // 自我评价
   import WorksDisplay from './components/WorksDisplay.vue'; // 个人作品
   import ModelBoxVue from '@/components/ModelBox/ModelBox.vue';
+  import { IMATERIALITEM } from '@/interface/material';
   defineOptions({ name: 'template2' });
-  const { resumeJsonStore } = storeToRefs(appStore.useResumeJsonStore); // 简历数据
+  const { resumeJsonNewStore } = storeToRefs(appStore.useResumeJsonNewStore); // 简历数据
 
   const emit = defineEmits(['contentHeightChange']);
 
@@ -78,36 +79,36 @@
 
   // 左侧组件列表
   let leftList = ref<any>(
-    resumeJsonStore.value.LIST.filter((item) => {
+    resumeJsonNewStore.value.COMPONENTS.filter((item) => {
       return item.model === 'BASE_INFO' || item.model === 'SKILL_SPECIALTIES';
     })
   );
-  watch(resumeJsonStore, () => {
-    leftList.value = resumeJsonStore.value.LIST.filter((item) => {
+  watch(resumeJsonNewStore, () => {
+    leftList.value = resumeJsonNewStore.value.COMPONENTS.filter((item) => {
       return item.model === 'BASE_INFO' || item.model === 'SKILL_SPECIALTIES';
     });
-    rightList.value = resumeJsonStore.value.LIST.filter((item) => {
+    rightList.value = resumeJsonNewStore.value.COMPONENTS.filter((item) => {
       return item.model !== 'BASE_INFO' && item.model !== 'SKILL_SPECIALTIES';
     });
   });
 
   // 基础信息模块
-  const modelData: IBASEINFO = resumeJsonStore.value.LIST.find((item) => {
+  const modelData: IMATERIALITEM = resumeJsonNewStore.value.COMPONENTS.find((item) => {
     return item.model == 'BASE_INFO';
-  }) as IBASEINFO;
+  });
   // 选择姓名简介模块
-  const { setResumeModel } = appStore.useResumeModelStore;
+  const { updateSelectModel } = appStore.useSelectMaterialStore;
   const selectNameModel = () => {
-    let optionsName: string = useModelOptionsComName(`template2-${modelData?.model}`) as string;
-    let model = modelData?.model;
-    let title = modelData?.title;
-    let id = modelData?.id;
-    setResumeModel(model, optionsName, title, id);
+    let optionsName: string = useModelOptionsComName(`template2-${modelData.model}`) as string;
+    let model = modelData.model;
+    let title = modelData.data.title;
+    let keyId = modelData.keyId;
+    updateSelectModel(model, optionsName, title, keyId);
   };
 
   // 右侧组件列表
   let rightList = ref<any>(
-    resumeJsonStore.value.LIST.filter((item) => {
+    resumeJsonNewStore.value.COMPONENTS.filter((item) => {
       return item.model !== 'BASE_INFO' && item.model !== 'SKILL_SPECIALTIES';
     })
   );
@@ -125,7 +126,7 @@
     .left {
       width: 270px;
       box-sizing: border-box;
-      background-color: v-bind('resumeJsonStore.GLOBAL_STYLE.themeColor');
+      background-color: v-bind('resumeJsonNewStore.GLOBAL_STYLE.themeColor');
       overflow: hidden;
       min-height: 1160px;
       position: absolute;

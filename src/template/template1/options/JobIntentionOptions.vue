@@ -10,10 +10,10 @@
     <el-tab-pane label="数据配置" name="data">
       <el-form label-width="100px" label-position="left">
         <el-form-item label="标题名称:">
-          <el-input v-model="modelItem.title" type="text" maxlength="15" show-word-limit />
+          <el-input v-model="data.title" type="text" maxlength="15" show-word-limit />
         </el-form-item>
         <el-form-item label="求职类型:">
-          <el-select v-model="modelItem.jobSearchType" class="m-2" placeholder="Select">
+          <el-select v-model="data.jobSearchType" class="m-2" placeholder="Select">
             <!-- <el-switch v-model="modelItem.isShow.jobSearchType" /> -->
             <el-option
               v-for="(item, index) in jobSearchTypeList"
@@ -22,23 +22,18 @@
               :value="item"
             />
           </el-select>
-          <el-switch v-model="modelItem.isShow.jobSearchType" />
+          <el-switch v-model="data.isShow.jobSearchType" />
         </el-form-item>
         <el-form-item label="意向岗位:">
-          <el-input
-            v-model="modelItem.intendedPositions"
-            type="text"
-            maxlength="15"
-            show-word-limit
-          />
-          <el-switch v-model="modelItem.isShow.intendedPositions" />
+          <el-input v-model="data.intendedPositions" type="text" maxlength="15" show-word-limit />
+          <el-switch v-model="data.isShow.intendedPositions" />
         </el-form-item>
         <el-form-item label="意向城市:">
-          <el-input v-model="modelItem.intendedCity" type="text" maxlength="15" show-word-limit />
-          <el-switch v-model="modelItem.isShow.intendedCity" />
+          <el-input v-model="data.intendedCity" type="text" maxlength="15" show-word-limit />
+          <el-switch v-model="data.isShow.intendedCity" />
         </el-form-item>
         <el-form-item label="期望薪酬:">
-          <el-select v-model="modelItem.expectSalary" class="m-2" placeholder="Select">
+          <el-select v-model="data.expectSalary" class="m-2" placeholder="Select">
             <el-option
               v-for="(item, index) in expectSalaryList"
               :key="index"
@@ -46,10 +41,10 @@
               :value="item"
             />
           </el-select>
-          <el-switch v-model="modelItem.isShow.expectSalary" />
+          <el-switch v-model="data.isShow.expectSalary" />
         </el-form-item>
         <el-form-item label="求职状态:">
-          <el-select v-model="modelItem.jobStatus" class="m-2" placeholder="Select">
+          <el-select v-model="data.jobStatus" class="m-2" placeholder="Select">
             <el-option
               v-for="(item, index) in jobStatusList"
               :key="index"
@@ -57,7 +52,7 @@
               :value="item"
             />
           </el-select>
-          <el-switch v-model="modelItem.isShow.jobStatus" />
+          <el-switch v-model="data.isShow.jobStatus" />
         </el-form-item>
       </el-form>
     </el-tab-pane>
@@ -69,13 +64,15 @@
   import appStore from '@/store';
   import CommonOptions from '@/components/CommonOptions/CommonOptions.vue';
   import { useModelIndex } from '@/hooks/useModelIndex';
+  import { IMATERIALITEM } from '@/interface/material';
   defineOptions({ name: 'JOB_INTENTION_OPTIONS' });
   // store
-  const { resumeJsonStore } = appStore.useResumeJsonStore;
+  const { resumeJsonNewStore } = appStore.useResumeJsonNewStore;
 
   // 选中的模块
   const index = useModelIndex(); // 选中的索引
-  const modelItem = reactive<IJOBINTENTION>(resumeJsonStore.LIST[index] as IJOBINTENTION);
+  const modelItem = reactive<IMATERIALITEM>(resumeJsonNewStore.COMPONENTS[index]);
+  const data = reactive<IJOBINTENTION>(resumeJsonNewStore.COMPONENTS[index].data); // 组件数据
   let activeName = ref('style');
 
   /**

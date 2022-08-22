@@ -5,10 +5,10 @@
     <div ref="html2Pdf" class="design">
       <div class="content-box" ref="htmlContentPdf">
         <!-- 传统布局 -->
-        <template v-if="designJsonStore.LAYOUT === 'classical'">
+        <template v-if="resumeJsonNewStore.LAYOUT === 'classical'">
           <draggable
             class="dragArea list-group"
-            :list="designJsonStore.COMPONENTS"
+            :list="resumeJsonNewStore.COMPONENTS"
             animation="500"
             group="custom"
             :sort="true"
@@ -71,7 +71,7 @@
         <!-- 拖拽提示 -->
         <div
           class="drag-tip-box"
-          v-if="!designJsonStore.COMPONENTS.length && designJsonStore.LAYOUT === 'classical'"
+          v-if="!resumeJsonNewStore.COMPONENTS.length && resumeJsonNewStore.LAYOUT === 'classical'"
         >
           <svg-icon iconName="icon-jia" className="yulan" size="70px" color="#2ddd9d"></svg-icon>
           <p>请将组件拖拽或者点击放置此处~</p>
@@ -117,7 +117,7 @@
   });
 
   // store相关数据
-  const { designJsonStore } = storeToRefs(appStore.useDesignStore);
+  const { resumeJsonNewStore } = storeToRefs(appStore.useResumeJsonNewStore);
 
   // 分割线
   const linesNumber = ref<number>(1);
@@ -180,7 +180,7 @@
     linesNumber.value = 0;
     resetSelectModel(); // 重置选中模块
     await nextTick();
-    downloadPDF(html2Pdf.value, designJsonStore.value.TITLE, false, () => {
+    downloadPDF(html2Pdf.value, resumeJsonNewStore.value.TITLE, false, () => {
       linesNumber.value = temp;
     });
   };
@@ -199,8 +199,8 @@
       leftList.value.forEach((item: IMATERIALITEM) => {
         item.layout = 'left';
       });
-      designJsonStore.value.COMPONENTS = leftList.value.concat(rightList.value);
-      console.log('最新designJsonStore', designJsonStore.value.COMPONENTS, leftList.value);
+      resumeJsonNewStore.value.COMPONENTS = leftList.value.concat(rightList.value);
+      console.log('最新designJsonStore', resumeJsonNewStore.value.COMPONENTS, leftList.value);
     },
     {
       deep: true
@@ -212,8 +212,8 @@
       rightList.value.forEach((item: IMATERIALITEM) => {
         item.layout = 'right';
       });
-      designJsonStore.value.COMPONENTS = leftList.value.concat(rightList.value);
-      console.log('最新designJsonStore', designJsonStore.value.COMPONENTS, rightList.value);
+      resumeJsonNewStore.value.COMPONENTS = leftList.value.concat(rightList.value);
+      console.log('最新designJsonStore', resumeJsonNewStore.value.COMPONENTS, rightList.value);
     },
     {
       deep: true
@@ -223,13 +223,13 @@
   const leftDelete = (keyId: string) => {
     let index: number = leftList.value.findIndex((item: IMATERIALITEM) => item.keyId === keyId);
     leftList.value.splice(index, 1);
-    designJsonStore.value.COMPONENTS = leftList.value.concat(rightList.value);
+    resumeJsonNewStore.value.COMPONENTS = leftList.value.concat(rightList.value);
   };
   // 右侧模块删除
   const rightDelete = (keyId: string) => {
     let index: number = rightList.value.findIndex((item: IMATERIALITEM) => item.keyId === keyId);
     rightList.value.splice(index, 1);
-    designJsonStore.value.COMPONENTS = leftList.value.concat(rightList.value);
+    resumeJsonNewStore.value.COMPONENTS = leftList.value.concat(rightList.value);
   };
   // 左侧模块复制
   const leftAdd = (modeItem: IMATERIALITEM) => {
@@ -239,7 +239,7 @@
     let insert = cloneDeep(modeItem);
     insert.keyId = getUuid();
     leftList.value.splice(index, 0, insert);
-    designJsonStore.value.COMPONENTS = leftList.value.concat(rightList.value);
+    resumeJsonNewStore.value.COMPONENTS = leftList.value.concat(rightList.value);
   };
   // 右侧模块复制
   const rightAdd = (modeItem: IMATERIALITEM) => {
@@ -249,7 +249,7 @@
     let insert = cloneDeep(modeItem);
     insert.keyId = getUuid();
     rightList.value.splice(index, 0, insert);
-    designJsonStore.value.COMPONENTS = leftList.value.concat(rightList.value);
+    resumeJsonNewStore.value.COMPONENTS = leftList.value.concat(rightList.value);
   };
 
   defineExpose({
@@ -288,9 +288,9 @@
           z-index: 0;
         }
         .left-box {
-          width: v-bind('designJsonStore.GLOBAL_STYLE.leftWidth');
+          width: v-bind('resumeJsonNewStore.GLOBAL_STYLE.leftWidth');
           box-sizing: border-box;
-          background-color: v-bind('designJsonStore.GLOBAL_STYLE.leftThemeColor');
+          background-color: v-bind('resumeJsonNewStore.GLOBAL_STYLE.leftThemeColor');
           min-height: 1160px;
           position: absolute;
           height: 100%;
@@ -301,9 +301,9 @@
         }
         .right-box {
           min-height: 1160px;
-          width: v-bind('designJsonStore.GLOBAL_STYLE.rightWidth');
-          margin-left: v-bind('designJsonStore.GLOBAL_STYLE.leftWidth');
-          background-color: v-bind('designJsonStore.GLOBAL_STYLE.rightThemeColor');
+          width: v-bind('resumeJsonNewStore.GLOBAL_STYLE.rightWidth');
+          margin-left: v-bind('resumeJsonNewStore.GLOBAL_STYLE.leftWidth');
+          background-color: v-bind('resumeJsonNewStore.GLOBAL_STYLE.rightThemeColor');
           .right-drag-area {
             min-height: 1160px;
             width: 100%;

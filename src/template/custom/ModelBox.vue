@@ -45,7 +45,7 @@
     item: IMATERIALITEM;
     components: any;
   }>();
-  const { designJsonStore } = storeToRefs(appStore.useDesignStore);
+  const { resumeJsonNewStore } = storeToRefs(appStore.useResumeJsonNewStore);
 
   // 锚点定位
   const { cptKeyId } = storeToRefs(appStore.useSelectMaterialStore);
@@ -93,11 +93,11 @@
     };
   };
   // 点击选择模块
-  const { updateSelectModdel, resetSelectModel } = appStore.useSelectMaterialStore;
+  const { updateSelectModel, resetSelectModel } = appStore.useSelectMaterialStore;
   const selectModel = () => {
     console.log('keyId', props.item.keyId);
     // 更新store
-    updateSelectModdel(
+    updateSelectModel(
       props.item.model,
       props.item.cptOptionsName,
       props.item.cptTitle,
@@ -107,7 +107,7 @@
 
   // 删除当前模块
   const deleteModel = () => {
-    if (designJsonStore.value.LAYOUT === 'classical') {
+    if (resumeJsonNewStore.value.LAYOUT === 'classical') {
       classicalDelete();
     } else {
       emit('leftRightDelete', props.item.keyId);
@@ -117,15 +117,15 @@
 
   // 传统模块删除
   const classicalDelete = () => {
-    let index: number = designJsonStore.value.COMPONENTS.findIndex(
+    let index: number = resumeJsonNewStore.value.COMPONENTS.findIndex(
       (item) => item.keyId === props.item.keyId
     );
-    designJsonStore.value.COMPONENTS.splice(index, 1);
+    resumeJsonNewStore.value.COMPONENTS.splice(index, 1);
   };
 
   // 复制当前模块
   const addModel = () => {
-    if (designJsonStore.value.LAYOUT === 'classical') {
+    if (resumeJsonNewStore.value.LAYOUT === 'classical') {
       classicalAdd();
     } else {
       emit('leftRightAdd', props.item);
@@ -134,12 +134,12 @@
 
   // 传统布局删除
   const classicalAdd = () => {
-    let index: number = designJsonStore.value.COMPONENTS.findIndex(
+    let index: number = resumeJsonNewStore.value.COMPONENTS.findIndex(
       (item) => item.keyId === props.item.keyId
     );
     let insert = cloneDeep(props.item);
     insert.keyId = getUuid();
-    designJsonStore.value.COMPONENTS.splice(index, 0, insert);
+    resumeJsonNewStore.value.COMPONENTS.splice(index, 0, insert);
   };
 </script>
 <style lang="scss" scoped>

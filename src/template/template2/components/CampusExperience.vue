@@ -2,20 +2,20 @@
 <template>
   <div class="campus-experience">
     <!-- 标题 -->
-    <model-title :title="modelData.title" :iconfont="modelData.iconfont"></model-title>
+    <model-title :title="data.title" :iconfont="data.iconfont"></model-title>
     <!-- 校园经历 -->
-    <div v-for="(item, index) in modelData.LIST" :key="index" class="list">
+    <div v-for="(item, index) in data.LIST" :key="index" class="list">
       <ul>
         <!-- 经历时间和项目名称 -->
         <div class="date-name-box">
-          <span v-if="modelData.isShow.date">{{ formatDate(item.date) }}</span>
+          <span v-if="data.isShow.date">{{ formatDate(item.date) }}</span>
           <!-- 项目名称 -->
-          <span v-if="modelData.isShow.campusBriefly">{{ item.campusBriefly }}</span>
+          <span v-if="data.isShow.campusBriefly">{{ item.campusBriefly }}</span>
         </div>
         <!-- 主要职责 -->
-        <p v-if="modelData.isShow.campusDuty" class="campusDuty">{{ item.campusDuty }}</p>
+        <p v-if="data.isShow.campusDuty" class="campusDuty">{{ item.campusDuty }}</p>
         <!-- 简述 -->
-        <p v-if="modelData.isShow.campusContent" class="campusContent">{{ item.campusContent }}</p>
+        <p v-if="data.isShow.campusContent" class="campusContent">{{ item.campusContent }}</p>
       </ul>
     </div>
   </div>
@@ -24,9 +24,11 @@
   import { ICAMPUSEXPERIENCE } from '@/interface/model';
   import ModelTitle from './ModelTitle.vue';
   import { formatDate } from '@/utils/common';
+  import { IMATERIALITEM } from '@/interface/material';
 
   defineProps<{
-    modelData: ICAMPUSEXPERIENCE;
+    modelData: IMATERIALITEM;
+    data: ICAMPUSEXPERIENCE;
   }>();
 </script>
 <style lang="scss" scoped>

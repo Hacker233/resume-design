@@ -6,7 +6,7 @@
     </div>
     <div class="nav-center">
       <p v-show="!isShowIpt">
-        {{ designJsonStore.TITLE }}
+        {{ resumeJsonNewStore.TITLE }}
         <el-icon :size="20" color="#409eff" @click="changeTitle">
           <Edit />
         </el-icon>
@@ -14,7 +14,7 @@
       <el-input
         v-show="isShowIpt"
         ref="titleIpf"
-        v-model="designJsonStore.TITLE"
+        v-model="resumeJsonNewStore.TITLE"
         autofocus
         placeholder="请输入标题"
         @blur="blurTitle"
@@ -40,7 +40,7 @@ import FileSaver from 'file-saver';
   import { storeToRefs } from 'pinia';
 
   const emit = defineEmits(['generateReport']);
-  const { designJsonStore } = storeToRefs(appStore.useDesignStore);
+  const { resumeJsonNewStore } = storeToRefs(appStore.useResumeJsonNewStore);
   // 跳转到首页
   const router = useRouter();
   const toHome = () => {
@@ -56,9 +56,9 @@ import FileSaver from 'file-saver';
 
   // 导出为JSON
   const exportJSON = () => {
-    const data = JSON.stringify(designJsonStore.value, null, 4);
+    const data = JSON.stringify(resumeJsonNewStore.value, null, 4);
     const blob = new Blob([data], { type: '' });
-    FileSaver.saveAs(blob, designJsonStore.value.TITLE + '.json');
+    FileSaver.saveAs(blob, resumeJsonNewStore.value.TITLE + '.json');
   };
 
   // 更改标题

@@ -11,7 +11,7 @@
 <script setup lang="ts">
   import appStore from '@/store';
   import { storeToRefs } from 'pinia';
-  const { resumeJsonStore } = storeToRefs(appStore.useResumeJsonStore);
+  const { resumeJsonNewStore } = storeToRefs(appStore.useResumeJsonNewStore);
   defineProps<{
     title: string;
     iconfont: string;
@@ -24,7 +24,7 @@
     position: relative;
     left: -42px;
     .icon-box {
-      background: v-bind('resumeJsonStore.GLOBAL_STYLE.themeColor');
+      background: v-bind('resumeJsonNewStore.GLOBAL_STYLE.themeColor');
       width: 30px;
       height: 30px;
       border-radius: 50%;
@@ -35,8 +35,8 @@
     }
     .right-title {
       h1 {
-        font-size: v-bind('resumeJsonStore.GLOBAL_STYLE.firstTitleFontSize');
-        color: v-bind('resumeJsonStore.GLOBAL_STYLE.themeColor');
+        font-size: v-bind('resumeJsonNewStore.GLOBAL_STYLE.firstTitleFontSize');
+        color: v-bind('resumeJsonNewStore.GLOBAL_STYLE.themeColor');
       }
     }
   }

@@ -12,7 +12,8 @@ interface IMATERIALITEM {
   cptHeight: string; // 组件高度
   cptWidth: string; // 组件宽度
   layout: string; // 布局在左侧还是右侧
-  style: IMODELSTYLE;
+  show: boolean; // 组件是否显示
+  style: IMODELSTYLE | any;
   data: any;
 }
 // 物料左侧数据

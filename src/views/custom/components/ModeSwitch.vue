@@ -9,7 +9,7 @@
         </div>
       </template>
       <div
-        :class="['classical-icon-box', { active: designJsonStore.LAYOUT === 'classical' }]"
+        :class="['classical-icon-box', { active: resumeJsonNewStore.LAYOUT === 'classical' }]"
         @click="chooseClassical"
       >
         <svg-icon
@@ -27,7 +27,7 @@
         </div>
       </template>
       <div
-        :class="['left-right-box', { active: designJsonStore.LAYOUT === 'leftRight' }]"
+        :class="['left-right-box', { active: resumeJsonNewStore.LAYOUT === 'leftRight' }]"
         @click="chooseLeftRight"
       >
         <svg-icon icon-name="icon-buju-04" color="#74a274" size="17px"></svg-icon>
@@ -85,7 +85,7 @@
   import { storeToRefs } from 'pinia';
   import ColorPickerCustomVue from '@/components/ColorPicker/ColorPickerCustom.vue';
 
-  const { designJsonStore } = storeToRefs(appStore.useDesignStore);
+  const { resumeJsonNewStore } = storeToRefs(appStore.useResumeJsonNewStore);
   // 表单数据
   const form = reactive({
     leftWidth: 270,
@@ -110,8 +110,8 @@
 
   // 选择传统布局方式
   const chooseClassical = () => {
-    designJsonStore.value.LAYOUT = 'classical';
-    designJsonStore.value.COMPONENTS = [];
+    resumeJsonNewStore.value.LAYOUT = 'classical';
+    resumeJsonNewStore.value.COMPONENTS = [];
   };
 
   // 属性设置弹窗
@@ -119,12 +119,12 @@
 
   // 弹窗确定
   const confirm = () => {
-    designJsonStore.value.GLOBAL_STYLE.leftWidth = `${form.leftWidth}px`;
-    designJsonStore.value.GLOBAL_STYLE.rightWidth = `${form.rightWidth}px`;
-    designJsonStore.value.GLOBAL_STYLE.leftThemeColor = form.leftThemeColor;
-    designJsonStore.value.GLOBAL_STYLE.rightThemeColor = form.rightThemeColor;
-    designJsonStore.value.LAYOUT = 'leftRight';
-    designJsonStore.value.COMPONENTS = [];
+    resumeJsonNewStore.value.GLOBAL_STYLE.leftWidth = `${form.leftWidth}px`;
+    resumeJsonNewStore.value.GLOBAL_STYLE.rightWidth = `${form.rightWidth}px`;
+    resumeJsonNewStore.value.GLOBAL_STYLE.leftThemeColor = form.leftThemeColor;
+    resumeJsonNewStore.value.GLOBAL_STYLE.rightThemeColor = form.rightThemeColor;
+    resumeJsonNewStore.value.LAYOUT = 'leftRight';
+    resumeJsonNewStore.value.COMPONENTS = [];
     dialogVisible.value = false;
   };
 

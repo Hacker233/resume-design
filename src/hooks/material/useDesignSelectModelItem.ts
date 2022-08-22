@@ -5,9 +5,9 @@ import { storeToRefs } from 'pinia';
 const useDesignSelectModelItem = () => {
   // 选中的模块
   const { cptKeyId } = storeToRefs(appStore.useSelectMaterialStore);
-  const { designJsonStore } = storeToRefs(appStore.useDesignStore);
+  const { resumeJsonNewStore } = storeToRefs(appStore.useResumeJsonNewStore);
   const modelItem = reactive(
-    designJsonStore.value.COMPONENTS.find((item) => item.keyId === cptKeyId.value)
+    resumeJsonNewStore.value.COMPONENTS.find((item) => item.keyId === cptKeyId.value)
   ); // 通过keyId获取选中的模块
 
   return {

@@ -7,13 +7,13 @@
     <ul>
       <!-- 左边部分 -->
       <div class="left">
-        <template v-for="(item, index) in modelData.LIST" :key="index">
+        <template v-for="(item, index) in data.LIST" :key="index">
           <li v-if="index % 2 === 0">{{ item.introduce }}</li>
         </template>
       </div>
       <!-- 右边部分 -->
       <div class="right">
-        <template v-for="(item, index) in modelData.LIST" :key="index">
+        <template v-for="(item, index) in data.LIST" :key="index">
           <li v-if="index % 2 != 0">{{ item.introduce }}</li>
         </template>
       </div>
@@ -21,9 +21,11 @@
   </div>
 </template>
 <script setup lang="ts">
+  import { IMATERIALITEM } from '@/interface/material';
   import { ISKILLSPECIALTIES } from '@/interface/model';
   defineProps<{
-    modelData: ISKILLSPECIALTIES;
+    modelData: IMATERIALITEM;
+    data: ISKILLSPECIALTIES;
   }>();
 </script>
 <style lang="scss" scoped>

@@ -3,10 +3,10 @@
   <div class="resume-theme-box">
     <el-form label-width="120px" label-position="left">
       <!-- 左右布局时主题颜色配置 -->
-      <template v-if="designJsonStore.LAYOUT === 'leftRight'">
+      <template v-if="resumeJsonNewStore.LAYOUT === 'leftRight'">
         <el-form-item label="左侧主题颜色:">
           <color-picker-custom-vue
-            v-model="designJsonStore.GLOBAL_STYLE.leftThemeColor"
+            v-model="resumeJsonNewStore.GLOBAL_STYLE.leftThemeColor"
           ></color-picker-custom-vue>
         </el-form-item>
         <el-form-item label="左侧容器宽度：">
@@ -14,7 +14,7 @@
         </el-form-item>
         <el-form-item label="右侧主题颜色:">
           <color-picker-custom-vue
-            v-model="designJsonStore.GLOBAL_STYLE.rightThemeColor"
+            v-model="resumeJsonNewStore.GLOBAL_STYLE.rightThemeColor"
           ></color-picker-custom-vue>
         </el-form-item>
         <el-form-item label="右侧容器宽度：">
@@ -28,14 +28,14 @@
       </template>
       <el-form-item label="主题颜色:">
         <color-picker-custom-vue
-          v-model="designJsonStore.GLOBAL_STYLE.themeColor"
+          v-model="resumeJsonNewStore.GLOBAL_STYLE.themeColor"
           @change="changeThemeColor"
         ></color-picker-custom-vue>
       </el-form-item>
       <!-- 字体大小设置 -->
       <el-form-item label="模块标题字体大小:">
         <el-select
-          v-model="designJsonStore.GLOBAL_STYLE.firstTitleFontSize"
+          v-model="resumeJsonNewStore.GLOBAL_STYLE.firstTitleFontSize"
           class="m-2"
           placeholder="请选择"
           @change="changeFirstTitleFontSize"
@@ -50,7 +50,7 @@
       </el-form-item>
       <el-form-item label="二级标题字体大小:">
         <el-select
-          v-model="designJsonStore.GLOBAL_STYLE.secondTitleFontSize"
+          v-model="resumeJsonNewStore.GLOBAL_STYLE.secondTitleFontSize"
           class="m-2"
           placeholder="请选择"
           @change="secondTitleFontSizeChange"
@@ -65,7 +65,7 @@
       </el-form-item>
       <el-form-item label="正文字体大小:">
         <el-select
-          v-model="designJsonStore.GLOBAL_STYLE.textFontSize"
+          v-model="resumeJsonNewStore.GLOBAL_STYLE.textFontSize"
           class="m-2"
           placeholder="请选择"
           @change="textFontSizeChange"
@@ -81,20 +81,20 @@
       <!-- 字体颜色设置 -->
       <el-form-item label="二级标题颜色:">
         <color-picker-custom-vue
-          v-model="designJsonStore.GLOBAL_STYLE.secondTitleColor"
+          v-model="resumeJsonNewStore.GLOBAL_STYLE.secondTitleColor"
           @change="secondTitleColorChange"
         ></color-picker-custom-vue>
       </el-form-item>
       <el-form-item label="正文字体颜色:">
         <color-picker-custom-vue
-          v-model="designJsonStore.GLOBAL_STYLE.textFontColor"
+          v-model="resumeJsonNewStore.GLOBAL_STYLE.textFontColor"
           @change="textColorChange"
         ></color-picker-custom-vue>
       </el-form-item>
       <!-- 字体粗细设置 -->
       <el-form-item label="二级标题字体粗细:">
         <el-select
-          v-model="designJsonStore.GLOBAL_STYLE.secondTitleWeight"
+          v-model="resumeJsonNewStore.GLOBAL_STYLE.secondTitleWeight"
           class="m-2"
           placeholder="请选择"
           @change="secondTitleWeightChange"
@@ -109,7 +109,7 @@
       </el-form-item>
       <el-form-item label="正文字体粗细:">
         <el-select
-          v-model="designJsonStore.GLOBAL_STYLE.textFontWeight"
+          v-model="resumeJsonNewStore.GLOBAL_STYLE.textFontWeight"
           class="m-2"
           placeholder="请选择"
           @change="textFontWeight"
@@ -158,7 +158,7 @@
   import ColorPickerCustomVue from '@/components/ColorPicker/ColorPickerCustom.vue';
   import { IMATERIALITEM } from '@/interface/material';
 
-  const { designJsonStore } = appStore.useDesignStore;
+  const { resumeJsonNewStore } = appStore.useResumeJsonNewStore;
 
   // 表单数据
   const form = reactive({
@@ -168,27 +168,27 @@
   // 左侧宽度改变
   const handleLeftWidth = (value: number) => {
     form.rightWidth = 820 - value;
-    designJsonStore.GLOBAL_STYLE.leftWidth = `${form.leftWidth}px`;
-    designJsonStore.GLOBAL_STYLE.rightWidth = `${820 - value}px`;
+    resumeJsonNewStore.GLOBAL_STYLE.leftWidth = `${form.leftWidth}px`;
+    resumeJsonNewStore.GLOBAL_STYLE.rightWidth = `${820 - value}px`;
   };
 
   // 右侧宽度改变
   const handleRightWidth = (value: number) => {
     form.leftWidth = 820 - value;
-    designJsonStore.GLOBAL_STYLE.rightWidth = `${form.rightWidth}px`;
-    designJsonStore.GLOBAL_STYLE.leftWidth = `${820 - value}px`;
+    resumeJsonNewStore.GLOBAL_STYLE.rightWidth = `${form.rightWidth}px`;
+    resumeJsonNewStore.GLOBAL_STYLE.leftWidth = `${820 - value}px`;
   };
 
   // 改变主题色
   const changeThemeColor = (item: { rgb: string; hex: string }) => {
     // 改变一级标题颜色
-    designJsonStore.COMPONENTS.forEach((cptItem: IMATERIALITEM) => {
+    resumeJsonNewStore.COMPONENTS.forEach((cptItem: IMATERIALITEM) => {
       cptItem.style.themeColor = item.hex;
     });
   };
   // 改变一级字体大小
   const changeFirstTitleFontSize = (value: string) => {
-    designJsonStore.COMPONENTS.forEach((cptItem: IMATERIALITEM) => {
+    resumeJsonNewStore.COMPONENTS.forEach((cptItem: IMATERIALITEM) => {
       cptItem.style.firstTitleFontSize = value;
     });
   };
@@ -201,90 +201,90 @@
 
   // 二级标题字体大小发生变化时
   const secondTitleFontSizeChange = (value: string) => {
-    designJsonStore.COMPONENTS.forEach((cptItem: IMATERIALITEM) => {
+    resumeJsonNewStore.COMPONENTS.forEach((cptItem: IMATERIALITEM) => {
       cptItem.style.titleFontSize = value;
     });
   };
 
   // 正文字体大小发生变化
   const textFontSizeChange = (value: string) => {
-    designJsonStore.COMPONENTS.forEach((cptItem: IMATERIALITEM) => {
+    resumeJsonNewStore.COMPONENTS.forEach((cptItem: IMATERIALITEM) => {
       cptItem.style.titleFontSize = value;
     });
   };
 
   // 二级标题颜色改变
   const secondTitleColorChange = (item: { hex: string; rgba: string }) => {
-    designJsonStore.COMPONENTS.forEach((cptItem: IMATERIALITEM) => {
+    resumeJsonNewStore.COMPONENTS.forEach((cptItem: IMATERIALITEM) => {
       cptItem.style.titleColor = item.hex;
     });
   };
 
   // 正文字体颜色发生改变
   const textColorChange = (item: { hex: string; rgba: string }) => {
-    designJsonStore.COMPONENTS.forEach((cptItem: IMATERIALITEM) => {
+    resumeJsonNewStore.COMPONENTS.forEach((cptItem: IMATERIALITEM) => {
       cptItem.style.textColor = item.hex;
     });
   };
 
   // 二级标题字体粗细
   const secondTitleWeightChange = (value: number) => {
-    designJsonStore.COMPONENTS.forEach((cptItem: IMATERIALITEM) => {
+    resumeJsonNewStore.COMPONENTS.forEach((cptItem: IMATERIALITEM) => {
       cptItem.style.titleFontWeight = value;
     });
   };
 
   // 正文字体粗细
   const textFontWeight = (value: number) => {
-    designJsonStore.COMPONENTS.forEach((cptItem: IMATERIALITEM) => {
+    resumeJsonNewStore.COMPONENTS.forEach((cptItem: IMATERIALITEM) => {
       cptItem.style.textFontWeight = value;
     });
   };
 
   // 上外边距
-  const defaultMtop: number = pxTonumber(designJsonStore.GLOBAL_STYLE.modelMarginTop);
+  const defaultMtop: number = pxTonumber(resumeJsonNewStore.GLOBAL_STYLE.modelMarginTop);
   const mTop = ref<number>(defaultMtop);
   const handleChange = (value: number): void => {
-    if (designJsonStore.GLOBAL_STYLE) {
-      designJsonStore.GLOBAL_STYLE.modelMarginTop = value + 'px';
+    if (resumeJsonNewStore.GLOBAL_STYLE) {
+      resumeJsonNewStore.GLOBAL_STYLE.modelMarginTop = value + 'px';
     }
-    designJsonStore.COMPONENTS.forEach((item) => {
-      item.style.mTop = designJsonStore.GLOBAL_STYLE.modelMarginTop;
+    resumeJsonNewStore.COMPONENTS.forEach((item) => {
+      item.style.mTop = resumeJsonNewStore.GLOBAL_STYLE.modelMarginTop;
     });
   };
   // 下外边距
-  const defaultMbottom: number = pxTonumber(designJsonStore.GLOBAL_STYLE.modelMarginBottom);
+  const defaultMbottom: number = pxTonumber(resumeJsonNewStore.GLOBAL_STYLE.modelMarginBottom);
   const mBottom = ref<number>(defaultMbottom);
   const handleChangeMBottom = (value: number): void => {
-    if (designJsonStore.GLOBAL_STYLE) {
-      designJsonStore.GLOBAL_STYLE.modelMarginBottom = value + 'px';
+    if (resumeJsonNewStore.GLOBAL_STYLE) {
+      resumeJsonNewStore.GLOBAL_STYLE.modelMarginBottom = value + 'px';
     }
-    designJsonStore.COMPONENTS.forEach((item) => {
-      item.style.mBottom = designJsonStore.GLOBAL_STYLE.modelMarginBottom;
+    resumeJsonNewStore.COMPONENTS.forEach((item) => {
+      item.style.mBottom = resumeJsonNewStore.GLOBAL_STYLE.modelMarginBottom;
     });
   };
 
   // 上下内边距
-  const defaultPTopBottom: number = pxTonumber(designJsonStore.GLOBAL_STYLE.pTopBottom);
+  const defaultPTopBottom: number = pxTonumber(resumeJsonNewStore.GLOBAL_STYLE.pTopBottom);
   const pTopBottom = ref<number>(defaultPTopBottom);
   const handleChangePTopBottom = (value: number): void => {
-    if (designJsonStore.GLOBAL_STYLE) {
-      designJsonStore.GLOBAL_STYLE.pTopBottom = value + 'px';
+    if (resumeJsonNewStore.GLOBAL_STYLE) {
+      resumeJsonNewStore.GLOBAL_STYLE.pTopBottom = value + 'px';
     }
-    designJsonStore.COMPONENTS.forEach((item) => {
-      item.style.pTopBottom = designJsonStore.GLOBAL_STYLE.pTopBottom;
+    resumeJsonNewStore.COMPONENTS.forEach((item) => {
+      item.style.pTopBottom = resumeJsonNewStore.GLOBAL_STYLE.pTopBottom;
     });
   };
 
   // 左右内边距
-  const defaultPLeftRight: number = pxTonumber(designJsonStore.GLOBAL_STYLE.modelMarginBottom);
+  const defaultPLeftRight: number = pxTonumber(resumeJsonNewStore.GLOBAL_STYLE.modelMarginBottom);
   const pLeftRight = ref<number>(defaultPLeftRight);
   const handleChangePLeftRight = (value: number): void => {
-    if (designJsonStore.GLOBAL_STYLE) {
-      designJsonStore.GLOBAL_STYLE.pLeftRight = value + 'px';
+    if (resumeJsonNewStore.GLOBAL_STYLE) {
+      resumeJsonNewStore.GLOBAL_STYLE.pLeftRight = value + 'px';
     }
-    designJsonStore.COMPONENTS.forEach((item) => {
-      item.style.pLeftRight = designJsonStore.GLOBAL_STYLE.pLeftRight;
+    resumeJsonNewStore.COMPONENTS.forEach((item) => {
+      item.style.pLeftRight = resumeJsonNewStore.GLOBAL_STYLE.pLeftRight;
     });
   };
 </script>

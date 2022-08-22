@@ -7,7 +7,7 @@
     <div class="nav-center">
       <span class="draft-tips">{{ draftTips }}</span>
       <p v-show="!isShowIpt">
-        {{ resumeJsonStore.TITLE }}
+        {{ resumeJsonNewStore.TITLE }}
         <el-icon :size="20" color="#409eff" @click="changeTitle">
           <Edit />
         </el-icon>
@@ -15,7 +15,7 @@
       <el-input
         v-show="isShowIpt"
         ref="titleIpf"
-        v-model="resumeJsonStore.TITLE"
+        v-model="resumeJsonNewStore.TITLE"
         autofocus
         placeholder="请输入标题"
         @blur="blurTitle"
@@ -67,7 +67,7 @@
   import { useRouter } from 'vue-router';
   import ImportJsonDialog from '@/components/ImportJsonDialog/ImportJsonDialog.vue';
   import { debounce } from 'lodash';
-  let { resumeJsonStore } = storeToRefs(appStore.useResumeJsonStore); // store里的模板数据
+  let { resumeJsonNewStore } = storeToRefs(appStore.useResumeJsonNewStore); // store里的模板数据
   const emit = defineEmits(['generateReport', 'reset', 'saveDataToLocal']);
 
   // 跳转到首页
@@ -92,14 +92,14 @@
   // 保存数据到本地
   let draftTips = ref<string>('');
   const saveDataToLocal = () => {
-    let key = resumeJsonStore.value.ID; // 当前模板的id
+    let key = resumeJsonNewStore.value.ID; // 当前模板的id
     let saveData: { [key: string]: object } = {}; // 需要保存的数据
     let localData = localStorage.getItem('resumeDraft'); // 本地缓存数据
     if (localData) {
       saveData = JSON.parse(localData);
-      saveData[key] = resumeJsonStore.value;
+      saveData[key] = resumeJsonNewStore.value;
     } else {
-      saveData[key] = resumeJsonStore.value;
+      saveData[key] = resumeJsonNewStore.value;
     }
     localStorage.setItem('resumeDraft', JSON.stringify(saveData));
     const date = moment(new Date()).format('YYYY.MM.DD HH:mm:ss');
@@ -121,7 +121,7 @@
     saveDataToLocal();
   }, 1000);
   watch(
-    resumeJsonStore.value, // JSON数据发生变化，则保存草稿
+    resumeJsonNewStore.value, // JSON数据发生变化，则保存草稿
     () => {
       debounced();
     },
@@ -132,9 +132,9 @@
 
   // 导出JSON
   const exportJSON = () => {
-    const data = JSON.stringify(resumeJsonStore.value, null, 4);
+    const data = JSON.stringify(resumeJsonNewStore.value, null, 4);
     const blob = new Blob([data], { type: '' });
-    FileSaver.saveAs(blob, resumeJsonStore.value.TITLE + '.json');
+    FileSaver.saveAs(blob, resumeJsonNewStore.value.TITLE + '.json');
   };
 
   // 导出pdf

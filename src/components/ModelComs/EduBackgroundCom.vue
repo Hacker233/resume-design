@@ -5,32 +5,34 @@
     <slot name="model-title"></slot>
     <!-- 教育背景 -->
     <div class="edu-list">
-      <ul v-for="(item, index) in modelData.LIST" :key="index">
+      <ul v-for="(item, index) in data.LIST" :key="index">
         <!-- 日期和学校 -->
         <div class="date-school-box">
-          <span v-if="modelData.isShow.date">
+          <span v-if="data.isShow.date">
             {{ formatDate(item.date) }}
           </span>
-          <span v-if="modelData.isShow.schoolName">
+          <span v-if="data.isShow.schoolName">
             {{ item.schoolName }}
           </span>
-          <span v-if="modelData.isShow.degree">
+          <span v-if="data.isShow.degree">
             {{ item.degree }}
           </span>
         </div>
         <!-- 专业 -->
-        <p v-if="modelData.isShow.specialized" class="special">{{ item.specialized }}</p>
+        <p v-if="data.isShow.specialized" class="special">{{ item.specialized }}</p>
         <!-- 教学经历 -->
-        <p v-if="modelData.isShow.majorCourse" class="majorCourse">{{ item.majorCourse }}</p>
+        <p v-if="data.isShow.majorCourse" class="majorCourse">{{ item.majorCourse }}</p>
       </ul>
     </div>
   </div>
 </template>
 <script setup lang="ts">
+  import { IMATERIALITEM } from '@/interface/material';
   import { IEDUBACKGROUND } from '@/interface/model';
   import { formatDate } from '@/utils/common';
   defineProps<{
-    modelData: IEDUBACKGROUND;
+    modelData: IMATERIALITEM;
+    data: IEDUBACKGROUND;
   }>();
 </script>
 <style lang="scss" scoped>
