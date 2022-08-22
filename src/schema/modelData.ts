@@ -2,14 +2,12 @@ import IMODELDATAJSON from '@/interface/modelData';
 
 const MODEL_DATA_JSON: IMODELDATAJSON = {
   RESUME_TITLE: {
-    id: '1',
     iconfont: 'icon-xiangmujingli-04',
     model: 'RESUME_TITLE',
     show: true,
     title: '我的简历'
   },
   BASE_INFO: {
-    id: '2',
     iconfont: 'icon-jibenziliao',
     model: 'BASE_INFO',
     show: true,
@@ -35,7 +33,6 @@ const MODEL_DATA_JSON: IMODELDATAJSON = {
     }
   },
   JOB_INTENTION: {
-    id: '3',
     iconfont: 'icon-yixianggangwei',
     model: 'JOB_INTENTION',
     show: true,
@@ -54,7 +51,6 @@ const MODEL_DATA_JSON: IMODELDATAJSON = {
     }
   },
   EDU_BACKGROUND: {
-    id: '4',
     iconfont: 'icon-education-1-copy',
     model: 'EDU_BACKGROUND',
     show: true,
@@ -84,7 +80,6 @@ const MODEL_DATA_JSON: IMODELDATAJSON = {
     }
   },
   SKILL_SPECIALTIES: {
-    id: '5',
     iconfont: 'icon-zhuanyezhishijineng',
     model: 'SKILL_SPECIALTIES',
     show: true,
@@ -113,7 +108,6 @@ const MODEL_DATA_JSON: IMODELDATAJSON = {
     ]
   },
   CAMPUS_EXPERIENCE: {
-    id: '6',
     iconfont: 'icon-jiatimianban_timu',
     model: 'CAMPUS_EXPERIENCE',
     show: true,
@@ -141,7 +135,6 @@ const MODEL_DATA_JSON: IMODELDATAJSON = {
     }
   },
   INTERNSHIP_EXPERIENCE: {
-    id: '9',
     iconfont: 'icon-biyeshixi',
     model: 'INTERNSHIP_EXPERIENCE',
     show: true,
@@ -190,7 +183,6 @@ const MODEL_DATA_JSON: IMODELDATAJSON = {
     }
   },
   WORK_EXPERIENCE: {
-    id: '7',
     iconfont: 'icon-gongzuojingyan',
     model: 'WORK_EXPERIENCE',
     show: true,
@@ -214,7 +206,6 @@ const MODEL_DATA_JSON: IMODELDATAJSON = {
     }
   },
   PROJECT_EXPERIENCE: {
-    id: '8',
     iconfont: 'icon-xiangmu',
     model: 'PROJECT_EXPERIENCE',
     show: true,
@@ -238,7 +229,6 @@ const MODEL_DATA_JSON: IMODELDATAJSON = {
     }
   },
   AWARDS: {
-    id: '10',
     iconfont: 'icon-rongyu1',
     model: 'AWARDS',
     show: true,
@@ -257,7 +247,6 @@ const MODEL_DATA_JSON: IMODELDATAJSON = {
     }
   },
   HOBBIES: {
-    id: '11',
     iconfont: 'icon-xingquaihao',
     model: 'HOBBIES',
     show: true,
@@ -272,7 +261,6 @@ const MODEL_DATA_JSON: IMODELDATAJSON = {
     }
   },
   SELF_EVALUATION: {
-    id: '12',
     iconfont: 'icon-ziwopingjia',
     model: 'SELF_EVALUATION',
     show: true,
@@ -280,7 +268,6 @@ const MODEL_DATA_JSON: IMODELDATAJSON = {
     content: '我是一个没有责任感的人'
   },
   WORKS_DISPLAY: {
-    id: '13',
     iconfont: 'icon-zhuanyezhishijineng',
     model: 'WORKS_DISPLAY',
     show: true,

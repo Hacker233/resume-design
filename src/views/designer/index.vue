@@ -35,7 +35,7 @@
       </div>
       <!-- 属性设置面板 -->
       <div :key="refreshUuid" class="config">
-        <Title :title="title"></Title>
+        <Title :title="cptTitle"></Title>
         <c-scrollbar
           trigger="hover"
           :h-thumb-style="{
@@ -43,9 +43,9 @@
           }"
         >
           <component
-            :is="appStore.useResumeModelStore.optionsName"
-            v-if="appStore.useResumeModelStore.model"
-            :key="appStore.useResumeModelStore.id"
+            :is="appStore.useSelectMaterialStore.cptOptionsName"
+            v-if="appStore.useSelectMaterialStore.cptName"
+            :key="appStore.useSelectMaterialStore.cptKeyId"
           />
           <!-- 全局主题样式设置 -->
           <resume-theme-vue v-else></resume-theme-vue>
@@ -59,7 +59,6 @@
   import Title from './components/Title.vue';
   import ModelList from './components/ModelList.vue';
   import ResumeThemeVue from '@/components/ResumeTheme/ResumeTheme.vue';
-  import TEMPLATE_JSON from '@/schema/model';
 
   import downloadPDF from '@/utils/html2pdf'; // 下载为pdf
   import appStore from '@/store';
@@ -67,50 +66,70 @@
   import { useRoute } from 'vue-router';
   import { CScrollbar } from 'c-scrollbar'; // 滚动条
   import DesignNav from './components/DesignNav.vue';
-  import useAddStyle from '@/hooks/useAddStyle';
+  import TEMPLATE_1_JSON from '@/schema/template1';
+  import TEMPLATE_2_JSON from '@/schema/template2';
+  import TEMPLATE_3_JSON from '@/schema/template3';
   import { ElMessage } from 'element-plus';
+  import MODEL_DATA_JSON from '@/schema/modelData';
 
-  const { title } = storeToRefs(appStore.useResumeModelStore);
-  const { changeResumeJsonData } = appStore.useResumeJsonStore;
+  const { cptTitle } = storeToRefs(appStore.useSelectMaterialStore);
+  const { changeResumeJsonData } = appStore.useResumeJsonNewStore;
   const { refreshUuid } = storeToRefs(appStore.useUuidStore);
   const { setUuid } = appStore.useUuidStore;
-  const { resumeJsonStore } = storeToRefs(appStore.useResumeJsonStore); // store里的模板数据
+  const { resumeJsonNewStore } = storeToRefs(appStore.useResumeJsonNewStore); // store里的模板数据
 
   // 重置数据方法
   const resetStoreAndLocal = () => {
+    let TEMPLATE_JSON;
+    if (name === 'template1') {
+      TEMPLATE_JSON = TEMPLATE_1_JSON;
+    } else if (name === 'template2') {
+      TEMPLATE_JSON = TEMPLATE_2_JSON;
+    } else {
+      TEMPLATE_JSON = TEMPLATE_3_JSON;
+    }
     TEMPLATE_JSON.ID = id as string;
     TEMPLATE_JSON.NAME = name as string;
-    let resetObj = useAddStyle(TEMPLATE_JSON); // 初始数据
-    changeResumeJsonData(resetObj); // 更改store的数据
+    TEMPLATE_JSON.COMPONENTS.forEach((item) => {
+      item.data = MODEL_DATA_JSON[item.model];
+    });
+    changeResumeJsonData(TEMPLATE_JSON); // 更改store的数据
   };
   // 获取本地数据,初始化store里面的简历数据
   const localData = localStorage.getItem('resumeDraft');
   const route = useRoute();
   const { id, name } = route.query; // 模板id和模板名称
-  resumeJsonStore.value.ID = id as string;
-  resumeJsonStore.value.NAME = name as string;
   const componentName = ref<string>(name as string); // 模板名称,即渲染哪个模板
-  if (localData) {
-    let localObj = JSON.parse(localData)[id as string];
-    if (localObj) {
-      changeResumeJsonData(localObj);
+  // 模板1、模板2、模板3处理逻辑
+  if (componentName.value !== 'custom') {
+    resumeJsonNewStore.value.ID = id as string;
+    resumeJsonNewStore.value.NAME = name as string;
+    if (localData) {
+      let localObj = JSON.parse(localData)[id as string];
+      if (localObj) {
+        changeResumeJsonData(localObj);
+      } else {
+        resetStoreAndLocal();
+      }
     } else {
       resetStoreAndLocal();
     }
   } else {
-    resetStoreAndLocal();
+    console.log('自定义的模板');
   }
-  console.log('resumeJsonStore', resumeJsonStore.value);
+
+  console.log('简历JSON数据', resumeJsonNewStore.value);
+
   // 过滤掉模板2不需要的模块
   if (Number(id) == 2) {
     let List: any = [];
-    resumeJsonStore.value.LIST.forEach((item) => {
+    resumeJsonNewStore.value.COMPONENTS.forEach((item) => {
       if (item.model == 'RESUME_TITLE') {
         item.show = false;
       }
       List.push(item);
     });
-    resumeJsonStore.value.LIST = List;
+    resumeJsonNewStore.value.COMPONENTS = List;
   }
 
   // 生命周期函数
@@ -126,11 +145,11 @@
   });
 
   // 属性设置
-  const { storeReset } = appStore.useResumeModelStore;
+  const { resetSelectModel } = appStore.useSelectMaterialStore;
   // 全局样式设置
   const globalStyleSetting = () => {
     // 重置store选中模块
-    storeReset();
+    resetSelectModel();
     // console.log("reset",appStore)
   };
 
@@ -177,9 +196,9 @@
   const generateReport = async () => {
     let temp = linesNumber.value;
     linesNumber.value = 0;
-    storeReset(); // 重置选中模块
+    resetSelectModel(); // 重置选中模块
     await nextTick();
-    downloadPDF(html2Pdf.value, resumeJsonStore.value.TITLE, false, () => {
+    downloadPDF(html2Pdf.value, resumeJsonNewStore.value.TITLE, false, () => {
       linesNumber.value = temp;
     });
   };

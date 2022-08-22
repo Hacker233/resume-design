@@ -1,32 +1,34 @@
 <template>
   <div class="base-info">
     <!-- 个人头像 -->
-    <div v-show="modelData.isShow.avatar" class="avatar-box">
-      <el-image style="width: 115px; height: 115px" :src="modelData.avatar" />
+    <div v-show="data.isShow.avatar" class="avatar-box">
+      <el-image style="width: 115px; height: 115px" :src="data.avatar" />
     </div>
     <!-- 基础信息 -->
     <div class="user-info">
-      <h1>{{ modelData.name }}</h1>
+      <h1>{{ data.name }}</h1>
       <!-- 一句话简介 -->
-      <p v-show="isShow.abstract" class="user-abstract">{{ modelData.abstract }}</p>
+      <p v-show="isShow.abstract" class="user-abstract">{{ data.abstract }}</p>
       <!-- 年龄、地点、经验等信息 -->
       <ul>
-        <li v-show="isShow.age" class="li-border">{{ modelData.age }}岁</li>
-        <li v-show="isShow.address" class="li-border">{{ modelData.address }}</li>
-        <li v-show="isShow.workService" class="li-border">{{ modelData.workService }}年经验</li>
-        <li v-show="isShow.phoneNumber" class="li-border">{{ modelData.phoneNumber }}</li>
-        <li v-show="isShow.email">{{ modelData.email }}</li>
+        <li v-show="isShow.age" class="li-border">{{ data.age }}岁</li>
+        <li v-show="isShow.address" class="li-border">{{ data.address }}</li>
+        <li v-show="isShow.workService" class="li-border">{{ data.workService }}年经验</li>
+        <li v-show="isShow.phoneNumber" class="li-border">{{ data.phoneNumber }}</li>
+        <li v-show="isShow.email">{{ data.email }}</li>
       </ul>
     </div>
   </div>
 </template>
 <script lang="ts" setup>
+  import { IMATERIALITEM } from '@/interface/material';
   import { IBASEINFO } from '@/interface/model';
   import { reactive } from 'vue';
   const props = defineProps<{
-    modelData: IBASEINFO;
+    modelData: IMATERIALITEM;
+    data: IBASEINFO;
   }>();
-  const isShow = reactive(props.modelData.isShow);
+  const isShow = reactive(props.data.isShow);
 </script>
 
 <style scoped lang="scss">

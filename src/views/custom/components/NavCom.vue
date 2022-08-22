@@ -6,7 +6,7 @@
     </div>
     <div class="nav-center">
       <p v-show="!isShowIpt">
-        {{ designJsonStore.TITLE }}
+        {{ resumeJsonNewStore.TITLE }}
         <el-icon :size="20" color="#409eff" @click="changeTitle">
           <Edit />
         </el-icon>
@@ -14,7 +14,7 @@
       <el-input
         v-show="isShowIpt"
         ref="titleIpf"
-        v-model="designJsonStore.TITLE"
+        v-model="resumeJsonNewStore.TITLE"
         autofocus
         placeholder="请输入标题"
         @blur="blurTitle"
@@ -26,15 +26,21 @@
           <svg-icon icon-name="icon-pdf" color="#fff" size="17px"></svg-icon>
         </div>
       </el-tooltip>
+      <el-tooltip class="box-item" effect="dark" content="导出为JSON数据" placement="bottom">
+        <div class="icon-box" @click="exportJSON">
+          <svg-icon icon-name="icon-xiazai" color="#fff" size="17px"></svg-icon>
+        </div>
+      </el-tooltip>
     </div>
   </nav>
 </template>
 <script lang="ts" setup>
   import appStore from '@/store';
+import FileSaver from 'file-saver';
   import { storeToRefs } from 'pinia';
 
   const emit = defineEmits(['generateReport']);
-  const { designJsonStore } = storeToRefs(appStore.useDesignStore);
+  const { resumeJsonNewStore } = storeToRefs(appStore.useResumeJsonNewStore);
   // 跳转到首页
   const router = useRouter();
   const toHome = () => {
@@ -46,6 +52,13 @@
   // 导出为pdf
   const generateReport = () => {
     emit('generateReport');
+  };
+
+  // 导出为JSON
+  const exportJSON = () => {
+    const data = JSON.stringify(resumeJsonNewStore.value, null, 4);
+    const blob = new Blob([data], { type: '' });
+    FileSaver.saveAs(blob, resumeJsonNewStore.value.TITLE + '.json');
   };
 
   // 更改标题

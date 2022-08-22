@@ -10,7 +10,7 @@
       </el-form>
     </el-tab-pane>
     <el-tab-pane label="数据配置" name="data">
-      <div v-for="(item, index) in modelItem.LIST" :key="index" class="edu-list">
+      <div v-for="(item, index) in data.LIST" :key="index" class="edu-list">
         <p>
           <span>学历{{ index + 1 }}</span>
           <el-button
@@ -29,15 +29,15 @@
             start-placeholder="开始月份"
             end-placeholder="结束月份"
           />
-          <el-switch v-model="modelItem.isShow.date" />
+          <el-switch v-model="data.isShow.date" />
         </el-form-item>
         <el-form-item label="学校名称:">
           <el-input v-model="item.schoolName" type="text" maxlength="40" show-word-limit />
-          <el-switch v-model="modelItem.isShow.schoolName" />
+          <el-switch v-model="data.isShow.schoolName" />
         </el-form-item>
         <el-form-item label="专业名称:">
           <el-input v-model="item.specialized" type="text" maxlength="20" show-word-limit />
-          <el-switch v-model="modelItem.isShow.specialized" />
+          <el-switch v-model="data.isShow.specialized" />
         </el-form-item>
         <el-form-item label="学历学位:">
           <el-select v-model="item.degree" class="m-2" placeholder="Select">
@@ -48,7 +48,7 @@
               :value="item"
             />
           </el-select>
-          <el-switch v-model="modelItem.isShow.degree" />
+          <el-switch v-model="data.isShow.degree" />
         </el-form-item>
         <el-form-item label="教学经历">
           <el-input
@@ -58,7 +58,7 @@
             show-word-limit
             :rows="4"
           />
-          <el-switch v-model="modelItem.isShow.majorCourse" />
+          <el-switch v-model="data.isShow.majorCourse" />
         </el-form-item>
       </div>
       <!-- 添加或删除学历 -->
@@ -79,16 +79,18 @@
   import { useDegreeList } from '@/hooks/useDegreeList';
   defineOptions({ name: 'TEMPLATE2_EDU_BACKGROUND_OPTIONS' });
   // store
-  const { resumeJsonStore } = appStore.useResumeJsonStore;
+  const { resumeJsonNewStore } = appStore.useResumeJsonNewStore;
 
   // 选中的模块
   const index = useModelIndex(); // 选中的索引
-  const modelItem = reactive<IEDUBACKGROUND>(resumeJsonStore.LIST[index] as IEDUBACKGROUND);
+  const modelItem = reactive<IEDUBACKGROUND>(resumeJsonNewStore.COMPONENTS[index]);
+  const data = reactive<IEDUBACKGROUND>(resumeJsonNewStore.COMPONENTS[index].data); // 组件数据
+
   let activeName = ref('style');
   const { degreeList } = useDegreeList(); // 学历列表
   // 添加学历
   const addEdu = (): void => {
-    modelItem.LIST.push({
+    data.LIST.push({
       date: ['2015-5', '2019-6'],
       schoolName: '小猪大学', // 学校名称
       specialized: '通信工程', // 专业
@@ -98,7 +100,7 @@
   };
   // 删除学历
   const deleteEdu = (index: number): void => {
-    modelItem.LIST.splice(index, 1);
+    data.LIST.splice(index, 1);
   };
 </script>
 <style lang="scss" scoped>

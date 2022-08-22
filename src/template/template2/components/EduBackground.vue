@@ -2,26 +2,26 @@
 <template>
   <div class="edu-background">
     <!-- 标题 -->
-    <model-title :title="modelData.title" :iconfont="modelData.iconfont"></model-title>
+    <model-title :title="data.title" :iconfont="data.iconfont"></model-title>
     <!-- 教育背景 -->
     <div class="edu-list">
-      <ul v-for="(item, index) in modelData.LIST" :key="index">
+      <ul v-for="(item, index) in data.LIST" :key="index">
         <!-- 日期和学校 -->
         <div class="date-school-box">
-          <span v-if="modelData.isShow.date">
+          <span v-if="data.isShow.date">
             {{ formatDate(item.date) }}
           </span>
-          <span v-if="modelData.isShow.schoolName">
+          <span v-if="data.isShow.schoolName">
             {{ item.schoolName }}
           </span>
-          <span v-if="modelData.isShow.degree">
+          <span v-if="data.isShow.degree">
             {{ item.degree }}
           </span>
         </div>
         <!-- 专业 -->
-        <p v-if="modelData.isShow.specialized" class="special">{{ item.specialized }}</p>
+        <p v-if="data.isShow.specialized" class="special">{{ item.specialized }}</p>
         <!-- 教学经历 -->
-        <p v-if="modelData.isShow.majorCourse" class="majorCourse">{{ item.majorCourse }}</p>
+        <p v-if="data.isShow.majorCourse" class="majorCourse">{{ item.majorCourse }}</p>
       </ul>
     </div>
   </div>
@@ -30,8 +30,10 @@
   import { IEDUBACKGROUND } from '@/interface/model';
   import ModelTitle from './ModelTitle.vue';
   import { formatDate } from '@/utils/common';
+  import { IMATERIALITEM } from '@/interface/material';
   defineProps<{
-    modelData: IEDUBACKGROUND;
+    modelData: IMATERIALITEM;
+    data: IEDUBACKGROUND;
   }>();
 </script>
 <style lang="scss" scoped>

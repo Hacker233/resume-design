@@ -1,7 +1,7 @@
 <template>
   <div ref="tmp3ContentHeightRef" class="template3-box">
     <!-- 简历模块 -->
-    <template v-for="item in resumeJsonStore.LIST" :key="index">
+    <template v-for="(item, index) in resumeJsonNewStore.COMPONENTS" :key="index">
       <model-box-vue v-if="!isTitleAndBaseInfo(item)" :item="item" :components="components">
       </model-box-vue>
       <div v-else class="model-box-wraper">
@@ -30,7 +30,7 @@
   import { onMounted, ref } from 'vue';
   defineOptions({ name: 'template3' });
 
-  const { resumeJsonStore } = storeToRefs(appStore.useResumeJsonStore);
+  const { resumeJsonNewStore } = storeToRefs(appStore.useResumeJsonNewStore);
   // 注册局部组件
   const components: any = {
     BASE_INFO: BaseInfoVue,
@@ -84,7 +84,7 @@
         position: absolute;
         width: 1px;
         height: 100%;
-        background-color: v-bind('resumeJsonStore.GLOBAL_STYLE.themeColor');
+        background-color: v-bind('resumeJsonNewStore.GLOBAL_STYLE.themeColor');
         left: 55px;
         top: 1px;
       }

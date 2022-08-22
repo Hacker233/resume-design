@@ -1,6 +1,6 @@
 <template>
   <div ref="tmp1ContentHeightRef">
-    <template v-for="item in resumeJsonStore.LIST">
+    <template v-for="item in resumeJsonNewStore.COMPONENTS">
       <model-box-vue v-if="item" :item="item" :components="components"></model-box-vue>
       <!-- <component v-if="item" :is="components[item.model]" :modelData="item"></component> -->
     </template>
@@ -29,7 +29,7 @@
   defineOptions({
     name: 'template1'
   });
-  const { resumeJsonStore } = storeToRefs(appStore.useResumeJsonStore);
+  const { resumeJsonNewStore } = storeToRefs(appStore.useResumeJsonNewStore);
 
   // 注册局部组件
   const components: any = {

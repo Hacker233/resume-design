@@ -1,48 +1,60 @@
 import { defineStore } from 'pinia';
-import { IResumeJson } from '@/interface/model';
-import TEMPLATE_JSON from '@/schema/model';
-import { reactive, ref } from 'vue';
+import IRESUMEJSON from '@/interface/resume';
+import RESUME_JSON from '@/schema/resume';
+import { IMATERIALITEM } from '@/interface/material';
 
-export const useResumeJsonStore = defineStore('resumeJson', () => {
-  let resumeJsonStore = ref<IResumeJson>(TEMPLATE_JSON);
-  function changeResumeJsonData(obj: IResumeJson) {
-    resumeJsonStore.value = obj;
+// 新的简历store
+export const useResumeJsonNewStore = defineStore('resumeJsonNew', () => {
+  let resumeJsonNewStore = ref<IRESUMEJSON>(RESUME_JSON);
+  function changeResumeJsonData(obj: IRESUMEJSON) {
+    resumeJsonNewStore.value = obj;
+  }
+  function pushComponent(data: IMATERIALITEM) {
+    resumeJsonNewStore.value.COMPONENTS.push(data);
+  }
+  function resetResumeJson() {
+    resumeJsonNewStore.value = RESUME_JSON;
   }
 
   return {
-    resumeJsonStore,
-    changeResumeJsonData
+    resumeJsonNewStore,
+    changeResumeJsonData,
+    pushComponent,
+    resetResumeJson
   };
 });
 
-export const useResumeModelStore = defineStore('resumeModel', () => {
-  const model = ref<string>(''); // 选中的模块名称
-  const optionsName = ref<string>(''); // 需要使用的属性设置面板组件名
-  const title = ref<string>('主题设置');
-  const id = ref<string>(''); // 选中的id
-  function setResumeModel(
-    modelTxt: string,
-    optionsNameTxt: string,
-    titleTxt: string,
-    idTxt: string
+export const useSelectMaterialStore = defineStore('selectMaterialStore', () => {
+  const cptName = ref<string>(''); // 选中的模块名称
+  const cptOptionsName = ref<string>(''); // 选中的组件属性面板名称
+  const cptTitle = ref<string>('全局主题设置'); // 选中的模块名称
+  const cptKeyId = ref<string>(''); // 选中的模块KeyID
+
+  // 更新
+  function updateSelectModel(
+    cptNameTxt: string,
+    cptOptionsNameTxt: string,
+    cptTitleTxt: string,
+    cptKeyIdTxt: string
   ) {
-    model.value = modelTxt;
-    optionsName.value = optionsNameTxt;
-    title.value = titleTxt;
-    id.value = idTxt;
+    cptName.value = cptNameTxt;
+    cptOptionsName.value = cptOptionsNameTxt;
+    cptTitle.value = cptTitleTxt;
+    cptKeyId.value = cptKeyIdTxt;
   }
-  function storeReset() {
-    model.value = '';
-    optionsName.value = '';
-    title.value = '主题设置';
-    id.value = '';
+  // 重置
+  function resetSelectModel() {
+    cptName.value = '';
+    cptOptionsName.value = '';
+    cptTitle.value = '全局主题设置';
+    cptKeyId.value = '';
   }
   return {
-    model,
-    optionsName,
-    title,
-    id,
-    setResumeModel,
-    storeReset
+    cptName,
+    cptOptionsName,
+    cptTitle,
+    cptKeyId,
+    updateSelectModel,
+    resetSelectModel
   };
 });

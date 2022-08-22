@@ -1,14 +1,17 @@
 <template>
   <div
     v-if="item.show && item.style"
-    :ref="(el) => setRefItem(el, item.model, item.id)"
-    class="model-box"
-    @click="selectModel(item.model, item.title, item.id)"
-    @mouseover="modelHover(item.id)"
+    :ref="(el) => setRefItem(el, item.model, item.keyId)"
+    :class="[
+      'model-box',
+      { 'is-have-border': item.keyId === appStore.useSelectMaterialStore.cptKeyId }
+    ]"
+    @click="selectModel(item.model, item.cptTitle, item.keyId)"
+    @mouseover="modelHover(item.keyId)"
     @mouseleave="modelMouseleave"
   >
     <!-- 模块操作区域 -->
-    <div v-show="hoverCurrentId === item.id" class="edit-box">
+    <div v-show="hoverCurrentId === item.keyId" class="edit-box">
       <el-tooltip class="box-item" effect="dark" content="复制当前模块">
         <div class="copy" @click="useCopyModel(item)">
           <svg-icon icon-name="icon-jia" class-name="icon" color="#fff" size="16px"></svg-icon>
@@ -27,7 +30,12 @@
     </div>
     <!-- 模块标题 -->
     <slot name="model-title"></slot>
-    <component :is="components[item.model]" v-if="item.style" :model-data="item"></component>
+    <component
+      :is="components[item.model]"
+      v-if="item.style"
+      :model-data="item"
+      :data="item.data"
+    ></component>
   </div>
 </template>
 <script lang="ts" setup>
@@ -38,24 +46,20 @@
   import { useDeleteModel } from '@/hooks/useDeleteModel';
   import { storeToRefs } from 'pinia';
   import { useRoute } from 'vue-router';
+  import { IMATERIALITEM } from '@/interface/material';
 
   const props = defineProps<{
-    item: any;
+    item: IMATERIALITEM;
     components: any;
   }>();
   // 锚点定位
-  const { id } = storeToRefs(appStore.useResumeModelStore);
+  const { cptKeyId } = storeToRefs(appStore.useSelectMaterialStore);
   watch(
-    id,
+    cptKeyId,
     (newVal, oldVal) => {
-      // 判断是否选中复选框
-      if (oldVal && modelObj[oldVal]) {
-        modelObj[oldVal].el.style.borderColor = 'transparent';
-      }
       // 如果选中了模块
       if (newVal && modelObj[newVal]) {
         modelObj[newVal].el.scrollIntoView({ behavior: 'smooth', block: 'center' }); // 该模块显示在可视区域内
-        modelObj[newVal].el.style.borderColor = '#7ec97e';
       }
     },
     {
@@ -65,8 +69,8 @@
 
   // 鼠标移入模块
   const hoverCurrentId = ref<string>('');
-  const modelHover = (id: string) => {
-    hoverCurrentId.value = id;
+  const modelHover = (keyId: string) => {
+    hoverCurrentId.value = keyId;
   };
 
   // 鼠标移出模块
@@ -76,23 +80,27 @@
 
   // 模块ref
   const modelObj = reactive<any>({});
-  const setRefItem = (el: ComponentPublicInstance | null | Element, model: string, id: string) => {
+  const setRefItem = (
+    el: ComponentPublicInstance | null | Element,
+    model: string,
+    keyId: string
+  ) => {
     if (el) {
-      modelObj[id] = {
-        id: id,
+      modelObj[keyId] = {
+        keyId: keyId,
         el: el
       };
     }
   };
 
   // 点击模块
-  const { setResumeModel } = appStore.useResumeModelStore;
+  const { updateSelectModel } = appStore.useSelectMaterialStore;
   const route = useRoute();
   const { name } = route.query; // 模板id和模板名称
-  const selectModel = (model: string, title: string, id: string) => {
+  const selectModel = (model: string, title: string, keyId: string) => {
     let optionsName: string = useModelOptionsComName(`${name}-${model}`);
-    console.log('optionsName', optionsName);
-    setResumeModel(model, optionsName, title, id);
+    // 更新store
+    updateSelectModel(model, optionsName, title, keyId);
   };
 </script>
 <style lang="scss" scoped>
@@ -127,5 +135,8 @@
         margin-left: 6px;
       }
     }
+  }
+  .is-have-border {
+    border-color: #7ec97e;
   }
 </style>

@@ -11,7 +11,7 @@
       <el-form label-width="100px" label-position="left">
         <el-form-item label="自我评价:">
           <el-input
-            v-model="modelItem.content"
+            v-model="data.content"
             type="textarea"
             maxlength="500"
             show-word-limit
@@ -28,12 +28,14 @@
   import appStore from '@/store';
   import CommonOptions from '@/components/CommonOptions/CommonOptions.vue'; // 公共属性设置
   import { useModelIndex } from '@/hooks/useModelIndex';
+  import { IMATERIALITEM } from '@/interface/material';
   defineOptions({ name: 'SELF_EVALUATION' });
   // store
-  const { resumeJsonStore } = appStore.useResumeJsonStore;
+  const { resumeJsonNewStore } = appStore.useResumeJsonNewStore;
 
   // 选中的模块
   const index = useModelIndex(); // 选中的索引
-  const modelItem = reactive<ISELFEVALUATION>(resumeJsonStore.LIST[index] as ISELFEVALUATION);
+  const modelItem = reactive<IMATERIALITEM>(resumeJsonNewStore.COMPONENTS[index]);
+  const data = reactive<ISELFEVALUATION>(resumeJsonNewStore.COMPONENTS[index].data); // 组件数据
   let activeName = ref('style');
 </script>

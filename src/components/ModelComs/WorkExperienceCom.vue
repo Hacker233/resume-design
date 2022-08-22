@@ -5,14 +5,14 @@
     <slot name="model-title"></slot>
     <!-- 校园经历 -->
     <div class="work-experience-list">
-      <div v-for="(item, index) in modelData.LIST" :key="index" class="list">
+      <div v-for="(item, index) in data.LIST" :key="index" class="list">
         <ul>
           <!-- 经历时间 -->
-          <li v-if="modelData.isShow.date" class="list-title">{{ formatDate(item.date) }}</li>
+          <li v-if="data.isShow.date" class="list-title">{{ formatDate(item.date) }}</li>
           <!-- 公司名称 -->
-          <li v-if="modelData.isShow.companyName" class="list-title">{{ item.companyName }}</li>
+          <li v-if="data.isShow.companyName" class="list-title">{{ item.companyName }}</li>
           <!-- 主要职责 -->
-          <li v-if="modelData.isShow.posts" class="list-title">{{ item.posts }}</li>
+          <li v-if="data.isShow.posts" class="list-title">{{ item.posts }}</li>
         </ul>
         <!-- 简述 -->
         <div class="job-content">
@@ -28,10 +28,12 @@
   </div>
 </template>
 <script setup lang="ts">
+  import { IMATERIALITEM } from '@/interface/material';
   import { IWORKEXPERIENCE } from '@/interface/model';
   import { formatDate } from '@/utils/common';
   defineProps<{
-    modelData: IWORKEXPERIENCE;
+    modelData: IMATERIALITEM;
+    data: IWORKEXPERIENCE;
   }>();
 </script>
 <style lang="scss" scoped>

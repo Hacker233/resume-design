@@ -73,7 +73,7 @@
 </template>
 <script lang="ts" setup>
   import { IMATERIALITEM } from '@/interface/material.js';
-  import { MATERIAL_JSON } from '@/schema/design';
+  import { MATERIAL_JSON } from '@/schema/materialList';
   import modelOfIcon from '@/dictionary/modelOfIcon';
   import modelOfTitle from '@/dictionary/modelOfTitle';
   import modelCategory from '@/dictionary/modelOfTitle';
@@ -116,7 +116,7 @@
   };
 
   // 点击组件，添加模块
-  const { pushComponent } = appStore.useDesignStore;
+  const { pushComponent } = appStore.useResumeJsonNewStore;
   const addModel = (item: IMATERIALITEM) => {
     let cptData = cloneDeep(item);
     cptData.data = cloneDeep(MODEL_DATA_JSON[cptData.model]); // 为模块添加数据

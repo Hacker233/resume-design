@@ -1,17 +1,20 @@
 <template>
   <div class="title">
     <div class="left"></div>
-    <div class="editor-resume">{{ modelData.title }}</div>
+    <div class="editor-resume">{{ data.title }}</div>
   </div>
 </template>
 <script lang="ts" setup>
+  import { IMATERIALITEM } from '@/interface/material';
   import { IRESUMETITLE } from '@/interface/model';
   import appStore from '@/store';
   import { storeToRefs } from 'pinia';
-  const { resumeJsonStore } = storeToRefs(appStore.useResumeJsonStore);
-  defineProps<{
-    modelData: IRESUMETITLE;
+  const { resumeJsonNewStore } = storeToRefs(appStore.useResumeJsonNewStore);
+  const props = defineProps<{
+    modelData: IMATERIALITEM;
+    data: IRESUMETITLE;
   }>();
+  console.log('resumeTitle数据', props.modelData);
 </script>
 
 <style lang="scss" scoped>
@@ -20,7 +23,7 @@
     min-height: 32px;
     margin-bottom: v-bind('modelData.style.mBottom');
     margin-top: v-bind('modelData.style.mTop');
-    background-color: v-bind('resumeJsonStore.GLOBAL_STYLE.themeColor');
+    background-color: v-bind('resumeJsonNewStore.GLOBAL_STYLE.themeColor');
     display: flex;
     .left {
       min-height: 32px;

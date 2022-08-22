@@ -10,9 +10,9 @@
     <el-tab-pane label="数据配置" name="data">
       <el-form label-width="70px" label-position="left">
         <el-form-item label="标题名称:">
-          <el-input v-model="modelItem.title" type="text" maxlength="15" show-word-limit />
+          <el-input v-model="data.title" type="text" maxlength="15" show-word-limit />
         </el-form-item>
-        <div v-for="(item, index) in modelItem.LIST" class="works-list">
+        <div v-for="(item, index) in data.LIST" class="works-list">
           <p>
             <span>作品{{ index + 1 }}</span>
             <el-button
@@ -44,13 +44,15 @@
   import CommonOptions from '@/components/CommonOptions/CommonOptions.vue';
   import { Delete, Plus, SemiSelect } from '@element-plus/icons-vue';
   import { useModelIndex } from '@/hooks/useModelIndex';
+  import { IMATERIALITEM } from '@/interface/material';
   defineOptions({ name: 'WORKS_DISPLAY' });
   // store
-  const { resumeJsonStore } = appStore.useResumeJsonStore;
+  const { resumeJsonNewStore } = appStore.useResumeJsonNewStore;
 
   // 选中的模块
   const index = useModelIndex(); // 选中的索引
-  const modelItem = reactive<IWORKSDISPLAY>(resumeJsonStore.LIST[index] as IWORKSDISPLAY);
+  const modelItem = reactive<IMATERIALITEM>(resumeJsonNewStore.COMPONENTS[index]);
+  const data = reactive<IWORKSDISPLAY>(resumeJsonNewStore.COMPONENTS[index].data); // 组件数据
   let activeName = ref('style');
 
   /**
@@ -58,11 +60,11 @@
    */
   // 删除作品
   const deleteWorks = (index: number): void => {
-    modelItem.LIST.splice(index, 1);
+    data.LIST.splice(index, 1);
   };
   // 添加技能
   const addWorks = (): void => {
-    modelItem.LIST.push({
+    data.LIST.push({
       worksName: '作品名称',
       worksLink: 'https://www.baidu.com',
       worksIntroduce: '这是一个千万级作品'

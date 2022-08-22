@@ -1,8 +1,8 @@
 <template>
-  <hobbies-com-vue :model-data="modelData">
+  <hobbies-com-vue :model-data="modelData" :data="data">
     <!-- 标题 -->
     <template #model-title>
-      <model-title-vue :title="modelData.title" :iconfont="modelData.iconfont"></model-title-vue>
+      <model-title-vue :title="data.title" :iconfont="data.iconfont"></model-title-vue>
     </template>
   </hobbies-com-vue>
 </template>
@@ -10,7 +10,9 @@
   import HobbiesComVue from '@/components/ModelComs/HobbiesCom.vue';
   import ModelTitleVue from './ModelTitle.vue';
   import { IHOBBIES } from '@/interface/model';
+  import { IMATERIALITEM } from '@/interface/material';
   defineProps<{
-    modelData: IHOBBIES;
+    modelData: IMATERIALITEM;
+    data: IHOBBIES;
   }>();
 </script>

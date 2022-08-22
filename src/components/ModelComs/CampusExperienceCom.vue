@@ -5,26 +5,28 @@
     <slot name="model-title"></slot>
     <!-- 校园经历 -->
     <div class="campue-experience-list">
-      <div v-for="(item, index) in modelData.LIST" :key="index" class="list">
+      <div v-for="(item, index) in data.LIST" :key="index" class="list">
         <ul>
           <!-- 经历时间 -->
-          <li v-if="modelData.isShow.date">{{ formatDate(item.date) }}</li>
+          <li v-if="data.isShow.date">{{ formatDate(item.date) }}</li>
           <!-- 项目名称 -->
-          <li v-if="modelData.isShow.campusBriefly">{{ item.campusBriefly }}</li>
+          <li v-if="data.isShow.campusBriefly">{{ item.campusBriefly }}</li>
           <!-- 主要职责 -->
-          <li v-if="modelData.isShow.campusDuty">{{ item.campusDuty }}</li>
+          <li v-if="data.isShow.campusDuty">{{ item.campusDuty }}</li>
         </ul>
         <!-- 简述 -->
-        <p v-if="modelData.isShow.campusContent">{{ item.campusContent }}</p>
+        <p v-if="data.isShow.campusContent">{{ item.campusContent }}</p>
       </div>
     </div>
   </div>
 </template>
 <script setup lang="ts">
+  import { IMATERIALITEM } from '@/interface/material';
   import { ICAMPUSEXPERIENCE } from '@/interface/model';
   import { formatDate } from '@/utils/common';
   defineProps<{
-    modelData: ICAMPUSEXPERIENCE;
+    modelData: IMATERIALITEM;
+    data: ICAMPUSEXPERIENCE;
   }>();
 </script>
 <style lang="scss" scoped>

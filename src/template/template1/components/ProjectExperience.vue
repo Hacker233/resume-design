@@ -2,10 +2,10 @@
 <template>
   <div class="project-experience">
     <!-- 标题 -->
-    <model-title :title="modelData.title"></model-title>
+    <model-title :title="data.title"></model-title>
     <!-- 校园经历 -->
     <div class="project-experience-list">
-      <div v-for="(item, index) in modelData.LIST" :key="index" class="list">
+      <div v-for="(item, index) in data.LIST" :key="index" class="list">
         <ul>
           <!-- 经历时间 -->
           <li class="list-title">{{ formatDate(item.date) }}</li>
@@ -31,8 +31,10 @@
   import { IPROJECTEXPERIENCE } from '@/interface/model';
   import ModelTitle from './ModelTitle.vue';
   import { formatDate } from '@/utils/common';
+  import { IMATERIALITEM } from '@/interface/material';
   defineProps<{
-    modelData: IPROJECTEXPERIENCE;
+    modelData: IMATERIALITEM;
+    data: IPROJECTEXPERIENCE;
   }>();
 </script>
 <style lang="scss" scoped>

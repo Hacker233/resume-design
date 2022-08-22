@@ -12,9 +12,9 @@
     <el-tab-pane label="数据配置" name="data">
       <el-form label-width="70px" label-position="left">
         <el-form-item label="标题名称:">
-          <el-input v-model="modelItem.title" type="text" maxlength="15" show-word-limit />
+          <el-input v-model="data.title" type="text" maxlength="15" show-word-limit />
         </el-form-item>
-        <div v-for="(item, index) in modelItem.LIST" :key="index" class="campus-list">
+        <div v-for="(item, index) in data.LIST" :key="index" class="campus-list">
           <p>
             <span>经历{{ index + 1 }}</span>
             <el-button
@@ -33,15 +33,15 @@
               start-placeholder="开始月份"
               end-placeholder="结束月份"
             />
-            <el-switch v-model="modelItem.isShow.date" />
+            <el-switch v-model="data.isShow.date" />
           </el-form-item>
           <el-form-item label="经历简要:">
             <el-input v-model="item.campusBriefly" type="text" maxlength="35" show-word-limit />
-            <el-switch v-model="modelItem.isShow.campusBriefly" />
+            <el-switch v-model="data.isShow.campusBriefly" />
           </el-form-item>
           <el-form-item label="主要职责:">
             <el-input v-model="item.campusDuty" type="text" maxlength="35" show-word-limit />
-            <el-switch v-model="modelItem.isShow.campusDuty" />
+            <el-switch v-model="data.isShow.campusDuty" />
           </el-form-item>
           <el-form-item label="经历简述:">
             <el-input
@@ -51,7 +51,7 @@
               show-word-limit
               :rows="4"
             />
-            <el-switch v-model="modelItem.isShow.campusContent" />
+            <el-switch v-model="data.isShow.campusContent" />
           </el-form-item>
         </div>
         <!-- 添加或删除经历 -->
@@ -70,26 +70,28 @@
   import CommonTitleOptions from '@/components/CommonOptions/CommonTitleOptions.vue';
   import { Delete } from '@element-plus/icons-vue';
   import { useModelIndex } from '@/hooks/useModelIndex';
+import { IMATERIALITEM } from '@/interface/material';
   defineOptions({
     name: 'CAMPUS_EXPERIENCE'
   });
   // store
-  const { resumeJsonStore } = appStore.useResumeJsonStore;
+  const { resumeJsonNewStore } = appStore.useResumeJsonNewStore;
 
   // 选中的模块
   const index = useModelIndex(); // 选中的索引
-  const modelItem = reactive<ICAMPUSEXPERIENCE>(resumeJsonStore.LIST[index] as ICAMPUSEXPERIENCE);
+  const modelItem = reactive<IMATERIALITEM>(resumeJsonNewStore.COMPONENTS[index]);
+  const data = reactive<ICAMPUSEXPERIENCE>(resumeJsonNewStore.COMPONENTS[index].data); // 组件数据
   let activeName = ref('style');
   /**
    * 数据配置
    */
   // 删除技能
   const deleteCampus = (index: number): void => {
-    modelItem.LIST.splice(index, 1);
+    data.LIST.splice(index, 1);
   };
   // 添加经历
   const addCampus = (): void => {
-    modelItem.LIST.push({
+    data.LIST.push({
       date: ['2021-9', '2022-10'], // 经历时间
       campusBriefly: '经历简要，如社团名称',
       campusDuty: '主要职责',

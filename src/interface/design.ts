@@ -3,7 +3,7 @@ interface IDESIGNJSON {
   NAME: string;
   TITLE: string;
   LAYOUT: string;
-  components: Array<any>; // 模板内组件列表
+  COMPONENTS: Array<any>; // 模板内组件列表
   GLOBAL_STYLE: {
     themeColor: string; // 主题色
     firstTitleFontSize: string; // 一级标题

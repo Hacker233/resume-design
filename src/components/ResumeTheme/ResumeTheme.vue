@@ -4,13 +4,13 @@
     <el-form label-width="120px" label-position="left">
       <el-form-item label="主题颜色:">
         <color-picker-custom-vue
-          v-model="resumeJsonStore.GLOBAL_STYLE.themeColor"
+          v-model="resumeJsonNewStore.GLOBAL_STYLE.themeColor"
         ></color-picker-custom-vue>
       </el-form-item>
       <!-- 字体大小设置 -->
       <el-form-item label="模块标题字体大小:">
         <el-select
-          v-model="resumeJsonStore.GLOBAL_STYLE.firstTitleFontSize"
+          v-model="resumeJsonNewStore.GLOBAL_STYLE.firstTitleFontSize"
           class="m-2"
           placeholder="Select"
         >
@@ -24,7 +24,7 @@
       </el-form-item>
       <el-form-item label="二级标题字体大小:">
         <el-select
-          v-model="resumeJsonStore.GLOBAL_STYLE.secondTitleFontSize"
+          v-model="resumeJsonNewStore.GLOBAL_STYLE.secondTitleFontSize"
           class="m-2"
           placeholder="Select"
           @change="secondTitleFontSizeChange"
@@ -39,7 +39,7 @@
       </el-form-item>
       <el-form-item label="正文字体大小:">
         <el-select
-          v-model="resumeJsonStore.GLOBAL_STYLE.textFontSize"
+          v-model="resumeJsonNewStore.GLOBAL_STYLE.textFontSize"
           class="m-2"
           placeholder="Select"
           @change="textFontSizeChange"
@@ -55,20 +55,20 @@
       <!-- 字体颜色设置 -->
       <el-form-item label="二级标题颜色:">
         <color-picker-custom-vue
-          v-model="resumeJsonStore.GLOBAL_STYLE.secondTitleColor"
+          v-model="resumeJsonNewStore.GLOBAL_STYLE.secondTitleColor"
           @change="secondTitleColorChange"
         ></color-picker-custom-vue>
       </el-form-item>
       <el-form-item label="正文字体颜色:">
         <color-picker-custom-vue
-          v-model="resumeJsonStore.GLOBAL_STYLE.textFontColor"
+          v-model="resumeJsonNewStore.GLOBAL_STYLE.textFontColor"
           @change="textColorChange"
         ></color-picker-custom-vue>
       </el-form-item>
       <!-- 字体粗细设置 -->
       <el-form-item label="二级标题字体粗细:">
         <el-select
-          v-model="resumeJsonStore.GLOBAL_STYLE.secondTitleWeight"
+          v-model="resumeJsonNewStore.GLOBAL_STYLE.secondTitleWeight"
           class="m-2"
           placeholder="Select"
           @change="secondTitleWeightChange"
@@ -83,7 +83,7 @@
       </el-form-item>
       <el-form-item label="正文字体粗细:">
         <el-select
-          v-model="resumeJsonStore.GLOBAL_STYLE.textFontWeight"
+          v-model="resumeJsonNewStore.GLOBAL_STYLE.textFontWeight"
           class="m-2"
           placeholder="Select"
           @change="textFontWeight"
@@ -112,7 +112,7 @@
   import { pxTonumber } from '@/utils/common';
   import { useFontSizeList } from '@/hooks/useFontSizeList';
   import ColorPickerCustomVue from '../ColorPicker/ColorPickerCustom.vue';
-  const { resumeJsonStore } = appStore.useResumeJsonStore;
+  const { resumeJsonNewStore } = appStore.useResumeJsonNewStore;
 
   // 字体大小
   const fontSizeList = useFontSizeList();
@@ -122,7 +122,7 @@
 
   // 二级标题字体大小发生变化时
   const secondTitleFontSizeChange = (value: string) => {
-    resumeJsonStore.LIST.forEach((item) => {
+    resumeJsonNewStore.COMPONENTS.forEach((item) => {
       if (item.model !== 'BASE_INFO') {
         item.style.titleFontSize = value;
       }
@@ -131,59 +131,59 @@
 
   // 正文字体大小发生变化
   const textFontSizeChange = (value: string) => {
-    resumeJsonStore.LIST.forEach((item) => {
+    resumeJsonNewStore.COMPONENTS.forEach((item) => {
       item.style.textFontSize = value;
     });
   };
 
   // 二级标题颜色改变
   const secondTitleColorChange = (value: { hex: string; rgba: string }) => {
-    resumeJsonStore.LIST.forEach((item) => {
+    resumeJsonNewStore.COMPONENTS.forEach((item) => {
       item.style.titleColor = value.hex;
     });
   };
 
   // 正文字体颜色发生改变
   const textColorChange = (value: { hex: string; rgba: string }) => {
-    resumeJsonStore.LIST.forEach((item) => {
+    resumeJsonNewStore.COMPONENTS.forEach((item) => {
       item.style.textColor = value.hex;
     });
   };
 
   // 二级标题字体粗细
   const secondTitleWeightChange = (value: number) => {
-    resumeJsonStore.LIST.forEach((item) => {
+    resumeJsonNewStore.COMPONENTS.forEach((item) => {
       item.style.titleFontWeight = value;
     });
   };
 
   // 正文字体粗细
   const textFontWeight = (value: number) => {
-    resumeJsonStore.LIST.forEach((item) => {
+    resumeJsonNewStore.COMPONENTS.forEach((item) => {
       item.style.textFontWeight = value;
     });
   };
 
   // 上外边距
-  const defaultMtop: number = pxTonumber(resumeJsonStore.GLOBAL_STYLE.modelMarginTop);
+  const defaultMtop: number = pxTonumber(resumeJsonNewStore.GLOBAL_STYLE.modelMarginTop);
   const mTop = ref<number>(defaultMtop);
   const handleChange = (value: number): void => {
-    if (resumeJsonStore.GLOBAL_STYLE) {
-      resumeJsonStore.GLOBAL_STYLE.modelMarginTop = value + 'px';
+    if (resumeJsonNewStore.GLOBAL_STYLE) {
+      resumeJsonNewStore.GLOBAL_STYLE.modelMarginTop = value + 'px';
     }
-    resumeJsonStore.LIST.forEach((item) => {
-      item.style.mTop = resumeJsonStore.GLOBAL_STYLE.modelMarginTop;
+    resumeJsonNewStore.COMPONENTS.forEach((item) => {
+      item.style.mTop = resumeJsonNewStore.GLOBAL_STYLE.modelMarginTop;
     });
   };
   // 下外边距
-  const defaultMbottom: number = pxTonumber(resumeJsonStore.GLOBAL_STYLE.modelMarginBottom);
+  const defaultMbottom: number = pxTonumber(resumeJsonNewStore.GLOBAL_STYLE.modelMarginBottom);
   const mBottom = ref<number>(defaultMbottom);
   const handleChangeMBottom = (value: number): void => {
-    if (resumeJsonStore.GLOBAL_STYLE) {
-      resumeJsonStore.GLOBAL_STYLE.modelMarginBottom = value + 'px';
+    if (resumeJsonNewStore.GLOBAL_STYLE) {
+      resumeJsonNewStore.GLOBAL_STYLE.modelMarginBottom = value + 'px';
     }
-    resumeJsonStore.LIST.forEach((item) => {
-      item.style.mBottom = resumeJsonStore.GLOBAL_STYLE.modelMarginBottom;
+    resumeJsonNewStore.COMPONENTS.forEach((item) => {
+      item.style.mBottom = resumeJsonNewStore.GLOBAL_STYLE.modelMarginBottom;
     });
   };
 </script>

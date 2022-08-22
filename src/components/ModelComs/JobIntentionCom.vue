@@ -5,37 +5,39 @@
     <!-- 求职意向 -->
     <ul>
       <!-- 求职类型 -->
-      <li v-show="modelData.isShow.jobSearchType">
+      <li v-show="data.isShow.jobSearchType">
         <svg-icon icon-name="icon-gongzuoleixing" class-name="icon" color="#757575"></svg-icon>
-        {{ modelData.jobSearchType }}</li
+        {{ data.jobSearchType }}</li
       >
       <!-- 意向岗位 -->
-      <li v-show="modelData.isShow.intendedPositions">
+      <li v-show="data.isShow.intendedPositions">
         <svg-icon icon-name="icon-yixianggangwei" class-name="icon" color="#757575"></svg-icon
-        >{{ modelData.intendedPositions }}</li
+        >{{ data.intendedPositions }}</li
       >
       <!-- 意向城市 -->
-      <li v-show="modelData.isShow.intendedCity"
+      <li v-show="data.isShow.intendedCity"
         ><svg-icon icon-name="icon-didiandingwei" class-name="icon" color="#757575"></svg-icon
-        >{{ modelData.intendedCity }}</li
+        >{{ data.intendedCity }}</li
       >
       <!-- 期望薪资 -->
-      <li v-show="modelData.isShow.expectSalary"
+      <li v-show="data.isShow.expectSalary"
         ><svg-icon icon-name="icon-nianduxinchou" class-name="icon" color="#757575"></svg-icon
-        >{{ modelData.expectSalary }}</li
+        >{{ data.expectSalary }}</li
       >
       <!-- 求职状态 -->
-      <li v-show="modelData.isShow.jobStatus"
+      <li v-show="data.isShow.jobStatus"
         ><svg-icon icon-name="icon-ruzhiriqi" class-name="icon" color="#757575"></svg-icon
-        >{{ modelData.jobStatus }}</li
+        >{{ data.jobStatus }}</li
       >
     </ul>
   </div>
 </template>
 <script setup lang="ts">
+  import { IMATERIALITEM } from '@/interface/material';
   import { IJOBINTENTION } from '@/interface/model';
   defineProps<{
-    modelData: IJOBINTENTION;
+    modelData: IMATERIALITEM;
+    data: IJOBINTENTION;
   }>();
 </script>
 <style lang="scss" scoped>
