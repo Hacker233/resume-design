@@ -13,7 +13,6 @@ export const useCopyModel = (modelItem: any) => {
   let index = resumeJsonNewStore.COMPONENTS.findIndex((item) => item.keyId === modelItem.keyId); // 需要复制的模块的索引
   const deepItem = cloneDeep(modelItem);
   deepItem.keyId = getUuid();
-  deepItem.data.id = deepItem.keyId;
   resumeJsonNewStore.COMPONENTS.splice(index, 0, deepItem);
   console.log('最新的resumeJsonNewStore', resumeJsonNewStore.COMPONENTS);
 };

@@ -92,7 +92,6 @@
     const cptData = cloneDeep(data);
     cptData.data = cloneDeep(MODEL_DATA_JSON[cptData.model]); // 为模块添加数据
     cptData.keyId = getUuid();
-    cptData.data.id = cptData.keyId;
     return cptData;
   };
   const start = (data: any) => {
@@ -122,7 +121,6 @@
     let cptData = cloneDeep(item);
     cptData.data = cloneDeep(MODEL_DATA_JSON[cptData.model]); // 为模块添加数据
     cptData.keyId = getUuid();
-    cptData.data.id = cptData.keyId;
     pushComponent(cptData); // 添加模块
   };
 </script>

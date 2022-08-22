@@ -41,7 +41,7 @@
             </div>
             <div v-show="leftShowStatus" class="right">
               <!-- 模块开关 -->
-              <el-switch v-model="element.data.show" size="small" active-color="#00C091" />
+              <el-switch v-model="element.show" size="small" active-color="#00C091" />
             </div>
           </div>
         </template>

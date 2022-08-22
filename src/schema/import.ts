@@ -1,6 +1,5 @@
 let IMPORT_JSON = {
   TITLE: '我的简历',
-  LAYOUT: '', // 布局模式
   LIST: [
     {
       model: 'RESUME_TITLE',
