@@ -37,7 +37,13 @@
           <svg-icon icon-name="icon-xiazai" color="#fff" size="17px"></svg-icon>
         </div>
       </el-tooltip>
-      <el-tooltip class="box-item" effect="dark" content="导入JSON数据" placement="bottom">
+      <el-tooltip
+        v-if="name === 'custom'"
+        class="box-item"
+        effect="dark"
+        content="导入JSON数据"
+        placement="bottom"
+      >
         <div class="icon-box" @click="importJson">
           <svg-icon icon-name="icon-yunduanshangchuan" color="#fff" size="19px"></svg-icon>
         </div>
@@ -69,7 +75,8 @@
   import { debounce } from 'lodash';
   let { resumeJsonNewStore } = storeToRefs(appStore.useResumeJsonNewStore); // store里的模板数据
   const emit = defineEmits(['generateReport', 'reset', 'saveDataToLocal']);
-
+  const route = useRoute();
+  const { name } = route.query; // 模板id和模板名称
   // 跳转到首页
   const router = useRouter();
   const toHome = () => {
