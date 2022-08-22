@@ -9,9 +9,9 @@
     </el-tab-pane>
     <el-tab-pane label="数据配置" name="data">
       <el-form-item label="标题名称:">
-        <el-input v-model="modelItem.title" type="text" maxlength="15" show-word-limit />
+        <el-input v-model="data.title" type="text" maxlength="15" show-word-limit />
       </el-form-item>
-      <div v-for="(item, index) in modelItem.LIST" :key="index" class="awards-list">
+      <div v-for="(item, index) in data.LIST" :key="index" class="awards-list">
         <p>
           <span>奖项{{ index + 1 }}</span>
           <el-button
@@ -24,15 +24,15 @@
         </p>
         <el-form-item label="日期选择:">
           <el-date-picker v-model="item.date" type="month" placeholder="Pick a month" />
-          <el-switch v-model="modelItem.isShow.date" />
+          <el-switch v-model="data.isShow.date" />
         </el-form-item>
         <el-form-item label="奖项名称:">
           <el-input v-model="item.awardsName" type="text" maxlength="40" show-word-limit />
-          <el-switch v-model="modelItem.isShow.awardsName" />
+          <el-switch v-model="data.isShow.awardsName" />
         </el-form-item>
         <el-form-item label="所获奖项:">
           <el-input v-model="item.awardsGrade" type="text" maxlength="20" show-word-limit />
-          <el-switch v-model="modelItem.isShow.awardsGrade" />
+          <el-switch v-model="data.isShow.awardsGrade" />
         </el-form-item>
       </div>
       <!-- 添加或删除奖项 -->
@@ -44,27 +44,29 @@
 </template>
 <script setup lang="ts">
   import { reactive, ref } from 'vue';
-  import { IAWARDS } from '@/interface/model';
   import appStore from '@/store';
   import { Delete } from '@element-plus/icons-vue';
   import CommonOptions from '@/components/CommonOptions/CommonOptions.vue';
   import { useModelIndex } from '@/hooks/useModelIndex';
+  import { IMATERIALITEM } from '@/interface/material';
+  import { IAWARDS } from '@/interface/model';
   defineOptions({
     name: 'AWARDS'
   });
   // store
-  const { resumeJsonStore } = appStore.useResumeJsonStore;
+  const { resumeJsonNewStore } = appStore.useResumeJsonNewStore;
 
   // 选中的模块
   const index = useModelIndex(); // 选中的索引
-  const modelItem = reactive<IAWARDS>(resumeJsonStore.LIST[index] as IAWARDS);
+  const modelItem = reactive<IMATERIALITEM>(resumeJsonNewStore.COMPONENTS[index]);
+  const data = reactive<IAWARDS>(resumeJsonNewStore.COMPONENTS[index].data); // 组件数据
   let activeName = ref('style');
   /**
    * 数据配置
    */
   // 添加奖项
   const addAwards = (): void => {
-    modelItem.LIST.push({
+    data.LIST.push({
       date: '2021-9', // 获奖时间
       awardsName: '奖项名称',
       awardsGrade: '获奖等级'
@@ -72,7 +74,7 @@
   };
   // 删除奖项
   const deleteAwards = (index: number): void => {
-    modelItem.LIST.splice(index, 1);
+    data.LIST.splice(index, 1);
   };
 </script>
 <style lang="scss">

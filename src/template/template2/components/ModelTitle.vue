@@ -12,7 +12,7 @@
 <script setup lang="ts">
   import appStore from '@/store';
   import { storeToRefs } from 'pinia';
-  const { resumeJsonStore } = storeToRefs(appStore.useResumeJsonStore);
+  const { resumeJsonNewStore } = storeToRefs(appStore.useResumeJsonNewStore);
   defineProps<{
     title: string;
     iconfont: string;
@@ -26,7 +26,7 @@
     .icon-box {
       width: 26px;
       height: 26px;
-      background-color: v-bind('resumeJsonStore.GLOBAL_STYLE.themeColor');
+      background-color: v-bind('resumeJsonNewStore.GLOBAL_STYLE.themeColor');
       border-radius: 50%;
       display: flex;
       align-items: center;
@@ -38,12 +38,12 @@
     }
     .right-title {
       width: 100%;
-      border-bottom: 1px solid v-bind('resumeJsonStore.GLOBAL_STYLE.themeColor');
+      border-bottom: 1px solid v-bind('resumeJsonNewStore.GLOBAL_STYLE.themeColor');
       height: 30px;
       display: flex;
       h1 {
-        font-size: v-bind('resumeJsonStore.GLOBAL_STYLE.firstTitleFontSize');
-        color: v-bind('resumeJsonStore.GLOBAL_STYLE.themeColor');
+        font-size: v-bind('resumeJsonNewStore.GLOBAL_STYLE.firstTitleFontSize');
+        color: v-bind('resumeJsonNewStore.GLOBAL_STYLE.themeColor');
       }
     }
   }

@@ -64,12 +64,11 @@
   import { oneDark } from '@codemirror/theme-one-dark';
   import { json } from '@codemirror/lang-json';
   import { ref } from 'vue';
-  import TEMPLATE_JSON from '@/schema/model';
+  import RESUME_JSON from '@/schema/resume';
   import IMPORT_JSON from '@/schema/import';
   import { ElMessage } from 'element-plus';
   import { isJSON } from '@/utils/common';
   import { useRoute } from 'vue-router';
-  import useAddStyle from '@/hooks/useAddStyle';
   import appStore from '@/store';
   import TipJsonDialog from '@/components/TipJsonDialog/TipJsonDialog.vue';
 
@@ -114,8 +113,8 @@
   // 提交JSON
   const { setUuid } = appStore.useUuidStore;
   const route = useRoute();
-  const { changeResumeJsonData } = appStore.useResumeJsonStore;
-  const { storeReset } = appStore.useResumeModelStore;
+  const { changeResumeJsonData } = appStore.useResumeJsonNewStore;
+  const { resetSelectModel } = appStore.useSelectMaterialStore;
   const confirmJson = () => {
     if (!code.value) {
       ElMessage({
@@ -140,21 +139,21 @@
     importJson.NAME = name;
     // 合并基础json与导入的json
     for (let i = 0; i < importJson.LIST.length; i++) {
-      for (let j = 0; j < TEMPLATE_JSON.LIST.length; j++) {
-        if (TEMPLATE_JSON.LIST[j].model === importJson.LIST[i].model) {
+      for (let j = 0; j < RESUME_JSON.COMPONENTS.length; j++) {
+        if (RESUME_JSON.COMPONENTS[j].model === importJson.LIST[i].model) {
           importJson.LIST[i] = {
-            ...TEMPLATE_JSON.LIST[j],
+            ...RESUME_JSON.COMPONENTS[j],
             ...importJson.LIST[i]
           };
         }
       }
     }
     // 合并样式
-    const afterStyleJson = useAddStyle(importJson);
+    const afterStyleJson = importJson;
     console.log('导入的最终JSON', afterStyleJson);
     changeResumeJsonData(afterStyleJson); // 更改store的数据
     setUuid(); // 重新渲染左侧列表和右侧属性面板设置
-    storeReset(); // 重置选中模块
+    resetSelectModel(); // 重置选中模块
     emit('cancle');
   };
 </script>

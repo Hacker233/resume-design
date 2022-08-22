@@ -1,8 +1,8 @@
 <template>
-  <project-experience-com-vue :model-data="modelData">
+  <project-experience-com-vue :model-data="modelData"  :data="data">
     <!-- 标题 -->
     <template #model-title>
-      <model-title-vue :title="modelData.title" :iconfont="modelData.iconfont"></model-title-vue>
+      <model-title-vue :title="data.title" :iconfont="data.iconfont"></model-title-vue>
     </template>
   </project-experience-com-vue>
 </template>
@@ -10,7 +10,9 @@
   import ProjectExperienceComVue from '@/components/ModelComs/ProjectExperienceCom.vue';
   import ModelTitleVue from './ModelTitle.vue';
   import { IPROJECTEXPERIENCE } from '@/interface/model';
+import { IMATERIALITEM } from '@/interface/material';
   defineProps<{
-    modelData: IPROJECTEXPERIENCE;
+    modelData: IMATERIALITEM;
+    data: IPROJECTEXPERIENCE;
   }>();
 </script>

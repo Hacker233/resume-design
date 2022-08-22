@@ -2,16 +2,16 @@
 <template>
   <div class="awards">
     <!-- 标题 -->
-    <model-title :title="modelData.title"></model-title>
+    <model-title :title="data.title"></model-title>
     <!-- 荣誉奖项 -->
     <div class="awards-list">
-      <ul v-for="(item, index) in modelData.LIST" :key="index">
+      <ul v-for="(item, index) in data.LIST" :key="index">
         <!-- 获奖日期 -->
-        <li v-show="modelData.isShow.date">{{ formatDate(item.date) }}</li>
+        <li v-show="data.isShow.date">{{ formatDate(item.date) }}</li>
         <!-- 奖项名称 -->
-        <li v-show="modelData.isShow.awardsName">{{ item.awardsName }}</li>
+        <li v-show="data.isShow.awardsName">{{ item.awardsName }}</li>
         <!-- 奖项等级 -->
-        <li v-show="modelData.isShow.awardsGrade">{{ item.awardsGrade }}</li>
+        <li v-show="data.isShow.awardsGrade">{{ item.awardsGrade }}</li>
       </ul>
     </div>
   </div>
@@ -20,8 +20,10 @@
   import { IAWARDS } from '@/interface/model';
   import ModelTitle from './ModelTitle.vue';
   import { formatDate } from '@/utils/common';
+  import { IMATERIALITEM } from '@/interface/material';
   defineProps<{
-    modelData: IAWARDS;
+    modelData: IMATERIALITEM;
+    data: IAWARDS;
   }>();
 </script>
 <style lang="scss" scoped>

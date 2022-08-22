@@ -1,4 +1,4 @@
-import IMODELSTYLE from "./modelStyle";
+import IMODELSTYLE from './modelStyle';
 
 interface IMATERIALITEM {
   keyId: string;
@@ -11,7 +11,9 @@ interface IMATERIALITEM {
   cptZ: number; // 组件z坐标
   cptHeight: string; // 组件高度
   cptWidth: string; // 组件宽度
-  style: IMODELSTYLE;
+  layout: string; // 布局在左侧还是右侧
+  show: boolean; // 组件是否显示
+  style: IMODELSTYLE | any;
   data: any;
 }
 // 物料左侧数据

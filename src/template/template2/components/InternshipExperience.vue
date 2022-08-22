@@ -2,18 +2,18 @@
 <template>
   <div class="internship-experience">
     <!-- 标题 -->
-    <model-title :title="modelData.title" :iconfont="modelData.iconfont"></model-title>
+    <model-title :title="data.title" :iconfont="data.iconfont"></model-title>
     <!-- 实习经历 -->
-    <div v-for="(item, index) in modelData.LIST" :key="index" class="list">
+    <div v-for="(item, index) in data.LIST" :key="index" class="list">
       <ul class="list-ul">
         <!-- 经历时间和项目名称 -->
         <div class="date-name-box">
-          <span v-if="modelData.isShow.date">{{ formatDate(item.date) }}</span>
+          <span v-if="data.isShow.date">{{ formatDate(item.date) }}</span>
           <!-- 公司名称 -->
-          <span v-if="modelData.isShow.companyName">{{ item.companyName }}</span>
+          <span v-if="data.isShow.companyName">{{ item.companyName }}</span>
         </div>
         <!-- 主要职责 -->
-        <p v-if="modelData.isShow.posts" class="campusDuty">{{ item.posts }}</p>
+        <p v-if="data.isShow.posts" class="campusDuty">{{ item.posts }}</p>
         <!-- 实习内容 -->
         <ul class="campusContent">
           <li v-for="(list, index) in item.jobContent" :key="index">{{ list.content }}</li>
@@ -26,8 +26,10 @@
   import { IINTERNSHIPEXPERIENCE } from '@/interface/model';
   import ModelTitle from './ModelTitle.vue';
   import { formatDate } from '@/utils/common';
+  import { IMATERIALITEM } from '@/interface/material';
   defineProps<{
-    modelData: IINTERNSHIPEXPERIENCE;
+    modelData: IMATERIALITEM;
+    data: IINTERNSHIPEXPERIENCE;
   }>();
 </script>
 <style lang="scss" scoped>

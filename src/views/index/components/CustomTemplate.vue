@@ -20,12 +20,15 @@
   </div>
 </template>
 <script lang="ts" setup>
+  import appStore from '@/store';
   import { openGlobalLoading } from '@/utils/common';
   import IntroduceTitleVue from './IntroduceTitle.vue';
 
   // 点击立即创作按钮
   const router = useRouter();
+  const { resetResumeJson } = appStore.useResumeJsonNewStore;
   const toCustom = () => {
+    resetResumeJson(); // 重置简历数据
     openGlobalLoading(); // 等待动画层
     router.push({
       path: '/custom'

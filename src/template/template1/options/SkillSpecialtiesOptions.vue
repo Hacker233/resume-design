@@ -10,9 +10,9 @@
     <el-tab-pane label="数据配置" name="data">
       <el-form label-width="70px" label-position="left">
         <el-form-item label="标题名称:">
-          <el-input v-model="modelItem.title" type="text" maxlength="15" show-word-limit />
+          <el-input v-model="data.title" type="text" maxlength="15" show-word-limit />
         </el-form-item>
-        <div v-for="(item, index) in modelItem.LIST" class="skill-list">
+        <div v-for="(item, index) in data.LIST" class="skill-list">
           <el-form-item :label="`技能${index + 1}:`">
             <el-input
               v-model="item.introduce"
@@ -29,7 +29,7 @@
               @click="deleteSkill(index)"
             />
             <el-button
-              :disabled="index !== modelItem.LIST.length - 1"
+              :disabled="index !== data.LIST.length - 1"
               type="primary"
               :icon="Plus"
               circle
@@ -48,13 +48,15 @@
   import CommonOptions from '@/components/CommonOptions/CommonOptions.vue';
   import { Plus, SemiSelect } from '@element-plus/icons-vue';
   import { useModelIndex } from '@/hooks/useModelIndex';
+  import { IMATERIALITEM } from '@/interface/material';
   defineOptions({ name: 'SKILL_SPECIALTIES' });
   // store
-  const { resumeJsonStore } = appStore.useResumeJsonStore;
+  const { resumeJsonNewStore } = appStore.useResumeJsonNewStore;
 
   // 选中的模块
   const index = useModelIndex(); // 选中的索引
-  const modelItem = reactive<ISKILLSPECIALTIES>(resumeJsonStore.LIST[index] as ISKILLSPECIALTIES);
+  const modelItem = reactive<IMATERIALITEM>(resumeJsonNewStore.COMPONENTS[index]);
+  const data = reactive<ISKILLSPECIALTIES>(resumeJsonNewStore.COMPONENTS[index].data); // 组件数据
   let activeName = ref('style');
 
   /**
@@ -62,11 +64,11 @@
    */
   // 删除技能
   const deleteSkill = (index: number): void => {
-    modelItem.LIST.splice(index, 1);
+    data.LIST.splice(index, 1);
   };
   // 添加技能
   const addSkill = (): void => {
-    modelItem.LIST.push({
+    data.LIST.push({
       skillName: 'JavaScript', // 技能名称
       proficiency: '熟悉', // 熟练度
       introduce: '熟练掌握该项技术' // 介绍

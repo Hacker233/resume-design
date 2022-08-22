@@ -2,7 +2,7 @@
   <div class="model-list-box">
     <div class="model-ul">
       <draggable
-        :list="resumeJsonStore.LIST"
+        :list="resumeJsonNewStore.COMPONENTS"
         item-key="id"
         ghost-class="ghost"
         chosen-class="chosenClass"
@@ -14,7 +14,7 @@
           <div
             :class="[
               'model-list-item',
-              { active: appStore.useResumeModelStore.id == element.id },
+              { active: appStore.useSelectMaterialStore.cptKeyId == element.keyId },
               { 'collapse-center': !leftShowStatus }
             ]"
             @click="selectModel(element)"
@@ -26,18 +26,18 @@
                   class="box-item"
                   placement="right"
                   effect="dark"
-                  :content="element.title"
+                  :content="element.data.title"
                   :disabled="leftShowStatus"
                 >
                   <svg-icon
-                    :icon-name="element.iconfont"
+                    :icon-name="element.data.iconfont"
                     class-name="icon"
                     :color="leftShowStatus ? '#c4c4c4' : '#00c091'"
                     size="16px"
                   ></svg-icon>
                 </el-tooltip>
               </div>
-              <p v-show="leftShowStatus">{{ element.title }}</p>
+              <p v-show="leftShowStatus">{{ element.data.title }}</p>
             </div>
             <div v-show="leftShowStatus" class="right">
               <!-- 模块开关 -->
@@ -59,19 +59,19 @@
   }>();
 
   // 列表数据
-  const { resumeJsonStore } = appStore.useResumeJsonStore;
+  const { resumeJsonNewStore } = appStore.useResumeJsonNewStore;
 
   // 选中模块
-  const { setResumeModel } = appStore.useResumeModelStore;
+  const { updateSelectModel } = appStore.useSelectMaterialStore;
   const selectModel = (item: any) => {
-    let optionsName: string = useModelOptionsComName(`${resumeJsonStore.NAME}-${item.model}`);
+    let optionsName: string = useModelOptionsComName(`${resumeJsonNewStore.NAME}-${item.model}`);
     let updateData = {
       model: item.model,
       optionsName: optionsName,
-      title: item.title,
-      id: item.id
+      title: item.data.title,
+      keyId: item.keyId
     };
-    setResumeModel(updateData.model, updateData.optionsName, updateData.title, updateData.id);
+    updateSelectModel(updateData.model, updateData.optionsName, updateData.title, updateData.keyId);
   };
   //拖拽开始的事件
   const onStart = () => {

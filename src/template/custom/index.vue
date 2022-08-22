@@ -1,3 +1,4 @@
+<!-- 自定义创建的模板数据 -->
 <template>
   <!-- <c-scrollbar trigger="hover"> -->
   <div class="main-center-box">
@@ -67,15 +68,6 @@
             </draggable>
           </div>
         </template>
-
-        <!-- 拖拽提示 -->
-        <div
-          class="drag-tip-box"
-          v-if="!resumeJsonNewStore.COMPONENTS.length && resumeJsonNewStore.LAYOUT === 'classical'"
-        >
-          <svg-icon iconName="icon-jia" className="yulan" size="70px" color="#2ddd9d"></svg-icon>
-          <p>请将组件拖拽或者点击放置此处~</p>
-        </div>
         <!-- 分割线 -->
         <template v-if="linesNumber > 0">
           <div
@@ -90,8 +82,6 @@
           </div>
         </template>
       </div>
-      <!-- 布局模式切换组件 -->
-      <mode-switch></mode-switch>
     </div>
   </div>
 </template>
@@ -101,7 +91,6 @@
   import ModelBox from './ModelBox.vue';
   import draggable from 'vuedraggable';
   import downloadPDF from '@/utils/html2pdf';
-  import ModeSwitch from './ModeSwitch.vue';
   import { IMATERIALITEM } from '@/interface/material';
   import { getUuid } from '@/utils/common';
   import { cloneDeep } from 'lodash';
@@ -307,29 +296,6 @@
           .right-drag-area {
             min-height: 1160px;
             width: 100%;
-          }
-        }
-        // 拖拽提示
-        .drag-tip-box {
-          position: absolute;
-          top: 50%;
-          left: 50%;
-          transform: translate(-50%, -50%);
-          z-index: 10;
-          width: 70%;
-          height: 250px;
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          align-items: center;
-          justify-content: center;
-          background-color: rgba(#2ddd9d, 0.2);
-          border-radius: 10px;
-          // border: 2px dashed #2ddd9d;
-          p {
-            font-size: 20px;
-            color: #2ddd9d;
-            margin-top: 20px;
           }
         }
         // 分割线

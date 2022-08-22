@@ -2,10 +2,10 @@
 <template>
   <div class="works-display">
     <!-- 标题 -->
-    <model-title :title="modelData.title"></model-title>
+    <model-title :title="data.title"></model-title>
     <!-- 作品展示 -->
     <ul class="works-display-list">
-      <li v-for="(item, index) in modelData.LIST" :key="index">
+      <li v-for="(item, index) in data.LIST" :key="index">
         <h1>{{ item.worksName }}</h1>
         <a :href="item.worksLink" target="_blank">{{ item.worksLink }}</a>
       </li>
@@ -13,10 +13,12 @@
   </div>
 </template>
 <script setup lang="ts">
+  import { IMATERIALITEM } from '@/interface/material';
   import { IWORKSDISPLAY } from '@/interface/model';
   import ModelTitle from './ModelTitle.vue';
   defineProps<{
-    modelData: IWORKSDISPLAY;
+    modelData: IMATERIALITEM;
+    data: IWORKSDISPLAY;
   }>();
 </script>
 <style lang="scss" scoped>

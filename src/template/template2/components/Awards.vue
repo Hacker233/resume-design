@@ -2,21 +2,21 @@
 <template>
   <div class="edu-background">
     <!-- 标题 -->
-    <model-title :title="modelData.title" :iconfont="modelData.iconfont"></model-title>
+    <model-title :title="data.title" :iconfont="data.iconfont"></model-title>
     <!-- 教育背景 -->
     <div class="edu-list">
-      <ul v-for="(item, index) in modelData.LIST" :key="index">
+      <ul v-for="(item, index) in data.LIST" :key="index">
         <!-- 日期和学校 -->
         <div class="date-school-box">
-          <span v-if="modelData.isShow.date">
+          <span v-if="data.isShow.date">
             {{ formatDate(item.date) }}
           </span>
-          <span v-if="modelData.isShow.awardsName">
+          <span v-if="data.isShow.awardsName">
             {{ item.awardsName }}
           </span>
         </div>
         <!-- 奖项等级 -->
-        <p v-if="modelData.isShow.awardsGrade" class="majorCourse">{{ item.awardsGrade }}</p>
+        <p v-if="data.isShow.awardsGrade" class="majorCourse">{{ item.awardsGrade }}</p>
       </ul>
     </div>
   </div>
@@ -25,9 +25,11 @@
   import { IAWARDS } from '@/interface/model';
   import ModelTitle from './ModelTitle.vue';
   import { formatDate } from '@/utils/common';
+  import { IMATERIALITEM } from '@/interface/material';
 
   defineProps<{
-    modelData: IAWARDS;
+    modelData: IMATERIALITEM;
+    data: IAWARDS;
   }>();
 </script>
 <style lang="scss" scoped>

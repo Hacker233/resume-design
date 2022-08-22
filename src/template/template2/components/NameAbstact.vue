@@ -1,19 +1,19 @@
 <!-- 姓名与简介 -->
 <template>
   <div v-if="modelData" class="name-introduce">
-    <h1>{{ modelData.name }}</h1>
-    <p>{{ modelData.abstract }}</p>
+    <h1>{{ modelData.data.name }}</h1>
+    <p>{{ modelData.data.abstract }}</p>
   </div>
 </template>
 <script lang="ts" setup>
   import appStore from '@/store';
   import { storeToRefs } from 'pinia';
   import { IBASEINFO } from '@/interface/model';
-  const { resumeJsonStore } = storeToRefs(appStore.useResumeJsonStore); // 简历数据
+  const { resumeJsonNewStore } = storeToRefs(appStore.useResumeJsonNewStore); // 简历数据
   // 获得基础信息数据
-  const modelData: IBASEINFO = resumeJsonStore.value.LIST.find((item) => {
-    return item.model == 'BASE_INFO';
-  }) as IBASEINFO;
+  const modelData: IBASEINFO = resumeJsonNewStore.value.COMPONENTS.find(
+    (item) => item.model == 'BASE_INFO'
+  );
 </script>
 <style lang="scss" scoped>
   .name-introduce {

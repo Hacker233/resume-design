@@ -2,18 +2,20 @@
 <template>
   <div class="self-eavluation">
     <!-- 标题 -->
-    <model-title :title="modelData.title"></model-title>
+    <model-title :title="data.title"></model-title>
     <!-- 兴趣爱好 -->
     <div class="self-eavluation-content">
-      <p>{{ modelData.content }}</p>
+      <p>{{ data.content }}</p>
     </div>
   </div>
 </template>
 <script setup lang="ts">
+  import { IMATERIALITEM } from '@/interface/material';
   import { ISELFEVALUATION } from '@/interface/model';
   import ModelTitle from './ModelTitle.vue';
   defineProps<{
-    modelData: ISELFEVALUATION;
+    modelData: IMATERIALITEM;
+    data: ISELFEVALUATION;
   }>();
 </script>
 <style lang="scss" scoped>

@@ -1,8 +1,8 @@
 <template>
-  <awards-com-vue :model-data="modelData">
+  <awards-com-vue :model-data="modelData" :data="data">
     <!-- 标题 -->
     <template #model-title>
-      <model-title-vue :title="modelData.title" :iconfont="modelData.iconfont"></model-title-vue>
+      <model-title-vue :title="data.title" :iconfont="data.iconfont"></model-title-vue>
     </template>
   </awards-com-vue>
 </template>
@@ -10,7 +10,9 @@
   import AwardsComVue from '@/components/ModelComs/AwardsCom.vue';
   import ModelTitleVue from './ModelTitle.vue';
   import { IAWARDS } from '@/interface/model';
+  import { IMATERIALITEM } from '@/interface/material';
   defineProps<{
-    modelData: IAWARDS;
+    modelData: IMATERIALITEM;
+    data: IAWARDS;
   }>();
 </script>

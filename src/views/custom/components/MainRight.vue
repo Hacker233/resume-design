@@ -16,20 +16,20 @@
 <script lang="ts" setup>
   import Title from './Title.vue';
   import appStore from '@/store';
-  import GlobalStyleOptionsVue from '../options/GlobalStyleOptions.vue';
-  import BaseInfoOptionsVue from '../options/BaseInfoOptions.vue'; // 基础资料模块属性设置
-  import ResumeTitleOptionsVue from '../options/ResumeTitleOptions.vue';
-  import EduBackgroundOptionsVue from '../options/EduBackgroundOptions.vue';
-  import JobIntentionOptionsVue from '../options/JobIntentionOptions.vue';
-  import SkillSpecialtiesOptionsVue from '../options/SkillSpecialtiesOptions.vue';
-  import CampusExperienceOptionsVue from '../options/CampusExperienceOptions.vue';
-  import InternshipExperienceOptionsVue from '../options/InternshipExperienceOptions.vue';
-  import WorkExperienceOptionsVue from '../options/WorkExperienceOptions.vue';
-  import ProjectExperienceOptionsVue from '../options/ProjectExperienceOptions.vue';
-  import AwardsOptionsVue from '../options/AwardsOptions.vue';
-  import HobbiesOptionsVue from '../options/HobbiesOptions.vue';
-  import SelfEvalutionOptionsVue from '../options/SelfEvalutionOptions.vue';
-  import WorksDisplayOptionsVue from '../options/WorksDisplayOptions.vue';
+  import GlobalStyleOptionsVue from '@/options/GlobalStyleOptions.vue';
+  import BaseInfoOptionsVue from '@/options/BaseInfoOptions.vue'; // 基础资料模块属性设置
+  import ResumeTitleOptionsVue from '@/options/ResumeTitleOptions.vue';
+  import EduBackgroundOptionsVue from '@/options/EduBackgroundOptions.vue';
+  import JobIntentionOptionsVue from '@/options/JobIntentionOptions.vue';
+  import SkillSpecialtiesOptionsVue from '@/options/SkillSpecialtiesOptions.vue';
+  import CampusExperienceOptionsVue from '@/options/CampusExperienceOptions.vue';
+  import InternshipExperienceOptionsVue from '@/options/InternshipExperienceOptions.vue';
+  import WorkExperienceOptionsVue from '@/options/WorkExperienceOptions.vue';
+  import ProjectExperienceOptionsVue from '@/options/ProjectExperienceOptions.vue';
+  import AwardsOptionsVue from '@/options/AwardsOptions.vue';
+  import HobbiesOptionsVue from '@/options/HobbiesOptions.vue';
+  import SelfEvalutionOptionsVue from '@/options/SelfEvalutionOptions.vue';
+  import WorksDisplayOptionsVue from '@/options/WorksDisplayOptions.vue';
   // 定义属性组件列表
   const optionsComponent: any = {
     BASE_INFO_OPTIONS: BaseInfoOptionsVue,

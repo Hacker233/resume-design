@@ -2,18 +2,20 @@
 <template>
   <div class="hobbies">
     <!-- 标题 -->
-    <model-title :title="modelData.title" :iconfont="modelData.iconfont"></model-title>
+    <model-title :title="data.title" :iconfont="data.iconfont"></model-title>
     <!-- 兴趣爱好 -->
     <div class="hobbies-content">
-      <p>{{ modelData.content }}</p>
+      <p>{{ data.content }}</p>
     </div>
   </div>
 </template>
 <script setup lang="ts">
+  import { IMATERIALITEM } from '@/interface/material';
   import { IHOBBIES } from '@/interface/model';
   import ModelTitle from './ModelTitle.vue';
   defineProps<{
-    modelData: IHOBBIES;
+    modelData: IMATERIALITEM;
+    data: IHOBBIES;
   }>();
 </script>
 <style lang="scss" scoped>
