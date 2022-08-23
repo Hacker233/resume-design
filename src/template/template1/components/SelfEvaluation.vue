@@ -20,9 +20,10 @@
 </script>
 <style lang="scss" scoped>
   .self-eavluation {
-    padding: 0 40px;
+    padding: v-bind('modelData.style.pTopBottom') v-bind('modelData.style.pLeftRight');
     margin-bottom: v-bind('modelData.style.mBottom');
     margin-top: v-bind('modelData.style.mTop');
+    box-sizing: border-box;
     .self-eavluation-content {
       display: flex;
       margin-top: 25px;

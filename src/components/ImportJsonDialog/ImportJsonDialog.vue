@@ -14,7 +14,7 @@
           <h1 class="title">请在编辑器内输入简历JSON数据，格式如下：</h1>
           <span>
             <svg-icon icon-name="icon-xianshi_jinggao" color="red" size="14px"></svg-icon>
-            注意：示例中的所有字段都需要保留，若无值为空即可，不可删除字段！
+            注意：JSON数据通常为自定义模板时导出的JSON数据！
           </span>
         </div>
         <div class="header-right">
@@ -35,7 +35,7 @@
     <div class="code-mirror-box">
       <codemirror
         v-model="code"
-        placeholder="请将你的简历JSON写在此处～～"
+        placeholder="请将你在自定义模板下载的JSON数据粘贴在此处哦~~"
         :style="{ height: '400px' }"
         :autofocus="true"
         :indent-with-tab="true"
@@ -82,7 +82,7 @@
   });
 
   // 代码编辑器
-  const code = ref<string>(JSON.stringify(IMPORT_JSON, null, 4));
+  const code = ref<string>('');
   const extensions = [javascript(), oneDark, json()];
 
   // 取消
@@ -113,7 +113,7 @@
   // 提交JSON
   const { setUuid } = appStore.useUuidStore;
   const route = useRoute();
-  const { changeResumeJsonData } = appStore.useResumeJsonNewStore;
+  const { changeResumeJsonData, changeImportJsonData } = appStore.useResumeJsonNewStore;
   const { resetSelectModel } = appStore.useSelectMaterialStore;
   const confirmJson = () => {
     if (!code.value) {
@@ -133,26 +133,11 @@
       });
       return;
     }
-    // 处理数据
+    // // 处理数据
     let importJson = JSON.parse(code.value);
-    const { id, name } = route.query; // 模板id和模板名称
-    importJson.ID = id;
-    importJson.NAME = name;
-    // 合并基础json与导入的json
-    for (let i = 0; i < importJson.LIST.length; i++) {
-      for (let j = 0; j < RESUME_JSON.COMPONENTS.length; j++) {
-        if (RESUME_JSON.COMPONENTS[j].model === importJson.LIST[i].model) {
-          importJson.LIST[i] = {
-            ...RESUME_JSON.COMPONENTS[j],
-            ...importJson.LIST[i]
-          };
-        }
-      }
-    }
-    // 合并样式
-    const afterStyleJson = importJson;
-    console.log('导入的最终JSON', afterStyleJson);
-    changeResumeJsonData(afterStyleJson); // 更改store的数据
+    console.log('导入的最终JSON', importJson);
+    changeResumeJsonData(importJson); // 更改store的数据
+    changeImportJsonData(importJson); // 保存JSON数据
     setUuid(); // 重新渲染左侧列表和右侧属性面板设置
     resetSelectModel(); // 重置选中模块
     emit('cancle');

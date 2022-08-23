@@ -3,7 +3,7 @@
     <img :src="getAssetsFile(cardData.preview)" alt="" srcset="" />
     <!-- 遮罩层 -->
     <div v-show="isShowLayer" class="mask-layer">
-      <div class="preview-icon" title="预览" @click="previreImg">
+      <div v-if="cardData.name !== 'custom'" class="preview-icon" title="预览" @click="previreImg">
         <svg-icon icon-name="icon-yulan" class-name="yulan"></svg-icon>
       </div>
       <div class="design-button" @click="toDesign">立即免费制作</div>

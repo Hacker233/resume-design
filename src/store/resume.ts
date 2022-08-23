@@ -2,23 +2,31 @@ import { defineStore } from 'pinia';
 import IRESUMEJSON from '@/interface/resume';
 import RESUME_JSON from '@/schema/resume';
 import { IMATERIALITEM } from '@/interface/material';
+import { cloneDeep } from 'lodash';
 
 // 新的简历store
 export const useResumeJsonNewStore = defineStore('resumeJsonNew', () => {
-  let resumeJsonNewStore = ref<IRESUMEJSON>(RESUME_JSON);
+  let resume_json = cloneDeep(RESUME_JSON); // 简历数据
+  let importJson = ref<IRESUMEJSON>(resume_json); // 导入的JSON数据
+  let resumeJsonNewStore = ref<IRESUMEJSON>(resume_json);
   function changeResumeJsonData(obj: IRESUMEJSON) {
-    resumeJsonNewStore.value = obj;
+    resumeJsonNewStore.value = cloneDeep(obj);
+  }
+  function changeImportJsonData(obj: IRESUMEJSON) {
+    importJson.value = cloneDeep(obj);
   }
   function pushComponent(data: IMATERIALITEM) {
     resumeJsonNewStore.value.COMPONENTS.push(data);
   }
   function resetResumeJson() {
-    resumeJsonNewStore.value = RESUME_JSON;
+    resumeJsonNewStore.value = cloneDeep(RESUME_JSON);
   }
 
   return {
     resumeJsonNewStore,
+    importJson,
     changeResumeJsonData,
+    changeImportJsonData,
     pushComponent,
     resetResumeJson
   };
