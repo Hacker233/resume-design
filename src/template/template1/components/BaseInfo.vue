@@ -36,7 +36,7 @@
     display: flex;
     width: 100%;
     box-sizing: border-box;
-    padding: 0 45px;
+    padding: v-bind('modelData.style.pTopBottom') v-bind('modelData.style.pLeftRight');
     margin-bottom: v-bind('modelData.style.mBottom');
     margin-top: v-bind('modelData.style.mTop');
     .avatar-box {

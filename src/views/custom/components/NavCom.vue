@@ -36,6 +36,7 @@
 </template>
 <script lang="ts" setup>
   import appStore from '@/store';
+import { getUuid } from '@/utils/common';
 import FileSaver from 'file-saver';
   import { storeToRefs } from 'pinia';
 
@@ -56,6 +57,8 @@ import FileSaver from 'file-saver';
 
   // 导出为JSON
   const exportJSON = () => {
+    resumeJsonNewStore.value.NAME = 'custom';
+    resumeJsonNewStore.value.ID = getUuid();
     const data = JSON.stringify(resumeJsonNewStore.value, null, 4);
     const blob = new Blob([data], { type: '' });
     FileSaver.saveAs(blob, resumeJsonNewStore.value.TITLE + '.json');

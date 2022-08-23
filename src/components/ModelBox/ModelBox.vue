@@ -39,7 +39,6 @@
   </div>
 </template>
 <script lang="ts" setup>
-  import { useModelOptionsComName } from '@/hooks/useModelOptionsComName';
   import appStore from '@/store';
   import { ComponentPublicInstance, reactive, ref, watch } from 'vue';
   import { useCopyModel } from '@/hooks/useCopyModel';
@@ -96,9 +95,9 @@
   // 点击模块
   const { updateSelectModel } = appStore.useSelectMaterialStore;
   const route = useRoute();
-  const { name } = route.query; // 模板id和模板名称
   const selectModel = (model: string, title: string, keyId: string) => {
-    let optionsName: string = useModelOptionsComName(`${name}-${model}`);
+    let optionsName: string = props.item.cptOptionsName;
+    console.log('optionsName', optionsName);
     // 更新store
     updateSelectModel(model, optionsName, title, keyId);
   };

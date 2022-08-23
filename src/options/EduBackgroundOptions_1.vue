@@ -10,7 +10,7 @@
       </el-form>
     </el-tab-pane>
     <el-tab-pane label="数据配置" name="data">
-      <div v-for="(item, index) in data.LIST" :key="index" class="edu-list">
+      <div v-for="(item, index) in modelItem.data.LIST" :key="index" class="edu-list">
         <p>
           <span>学历{{ index + 1 }}</span>
           <el-button
@@ -29,15 +29,15 @@
             start-placeholder="开始月份"
             end-placeholder="结束月份"
           />
-          <el-switch v-model="data.isShow.date" />
+          <el-switch v-model="modelItem.data.isShow.date" />
         </el-form-item>
         <el-form-item label="学校名称:">
           <el-input v-model="item.schoolName" type="text" maxlength="40" show-word-limit />
-          <el-switch v-model="data.isShow.schoolName" />
+          <el-switch v-model="modelItem.data.isShow.schoolName" />
         </el-form-item>
         <el-form-item label="专业名称:">
           <el-input v-model="item.specialized" type="text" maxlength="20" show-word-limit />
-          <el-switch v-model="data.isShow.specialized" />
+          <el-switch v-model="modelItem.data.isShow.specialized" />
         </el-form-item>
         <el-form-item label="学历学位:">
           <el-select v-model="item.degree" class="m-2" placeholder="Select">
@@ -48,7 +48,7 @@
               :value="item"
             />
           </el-select>
-          <el-switch v-model="data.isShow.degree" />
+          <el-switch v-model="modelItem.data.isShow.degree" />
         </el-form-item>
         <el-form-item label="教学经历">
           <el-input
@@ -58,7 +58,7 @@
             show-word-limit
             :rows="4"
           />
-          <el-switch v-model="data.isShow.majorCourse" />
+          <el-switch v-model="modelItem.data.isShow.majorCourse" />
         </el-form-item>
       </div>
       <!-- 添加或删除学历 -->
@@ -69,28 +69,22 @@
   </el-tabs>
 </template>
 <script setup lang="ts">
-  import { reactive, ref } from 'vue';
-  import { IEDUBACKGROUND } from '@/interface/model';
-  import appStore from '@/store';
   import { Delete } from '@element-plus/icons-vue';
-  import CommonOptions from '@/components/CommonOptions/CommonOptions.vue'; // 公共属性设置
-  import CommonTitleOptions from '@/components/CommonOptions/CommonTitleOptions.vue';
-  import { useModelIndex } from '@/hooks/useModelIndex';
+  import CommonOptions from './CommonOptions.vue';
+  import CommonTitleOptions from './CommonTitleOptions.vue';
   import { useDegreeList } from '@/hooks/useDegreeList';
+  import useDesignSelectModelItem from '@/hooks/material/useDesignSelectModelItem';
   defineOptions({ name: 'TEMPLATE2_EDU_BACKGROUND_OPTIONS' });
   // store
-  const { resumeJsonNewStore } = appStore.useResumeJsonNewStore;
 
   // 选中的模块
-  const index = useModelIndex(); // 选中的索引
-  const modelItem = reactive<IEDUBACKGROUND>(resumeJsonNewStore.COMPONENTS[index]);
-  const data = reactive<IEDUBACKGROUND>(resumeJsonNewStore.COMPONENTS[index].data); // 组件数据
+  const { modelItem } = useDesignSelectModelItem();
 
   let activeName = ref('style');
   const { degreeList } = useDegreeList(); // 学历列表
   // 添加学历
   const addEdu = (): void => {
-    data.LIST.push({
+    modelItem.data.LIST.push({
       date: ['2015-5', '2019-6'],
       schoolName: '小猪大学', // 学校名称
       specialized: '通信工程', // 专业
@@ -100,7 +94,7 @@
   };
   // 删除学历
   const deleteEdu = (index: number): void => {
-    data.LIST.splice(index, 1);
+    modelItem.data.LIST.splice(index, 1);
   };
 </script>
 <style lang="scss" scoped>
