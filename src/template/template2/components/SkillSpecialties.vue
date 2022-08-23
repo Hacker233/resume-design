@@ -4,7 +4,7 @@
     <!-- 标题 -->
     <div class="skill-title">
       <svg-icon icon-name="icon-techang" color="#fff" size="26px"></svg-icon>
-      <h1>技能特长</h1>
+      <h1>{{ data.title }}</h1>
     </div>
     <!-- 技能特长 -->
     <ul>
@@ -25,7 +25,7 @@
 </template>
 <script setup lang="ts">
   import { IMATERIALITEM } from '@/interface/material';
-import { ISKILLSPECIALTIES } from '@/interface/model';
+  import { ISKILLSPECIALTIES } from '@/interface/model';
   import { numberToText, textToNumber } from '@/utils/common';
   defineProps<{
     modelData: IMATERIALITEM;

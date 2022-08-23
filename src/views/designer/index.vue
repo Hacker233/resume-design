@@ -43,12 +43,12 @@
           }"
         >
           <component
-            :is="appStore.useSelectMaterialStore.cptOptionsName"
+            :is="optionsComponents[appStore.useSelectMaterialStore.cptOptionsName]"
             v-if="appStore.useSelectMaterialStore.cptName"
             :key="appStore.useSelectMaterialStore.cptKeyId"
           />
           <!-- 全局主题样式设置 -->
-          <resume-theme-vue v-else></resume-theme-vue>
+          <global-style-options-vue v-else></global-style-options-vue>
         </c-scrollbar>
       </div>
     </div>
@@ -58,7 +58,7 @@
 <script setup lang="ts">
   import Title from './components/Title.vue';
   import ModelList from './components/ModelList.vue';
-  import ResumeThemeVue from '@/components/ResumeTheme/ResumeTheme.vue';
+  import GlobalStyleOptionsVue from '@/options/GlobalStyleOptions.vue';
 
   import downloadPDF from '@/utils/html2pdf'; // 下载为pdf
   import appStore from '@/store';
@@ -71,12 +71,13 @@
   import TEMPLATE_3_JSON from '@/schema/template3';
   import { ElMessage } from 'element-plus';
   import MODEL_DATA_JSON from '@/schema/modelData';
+  import optionsComponents from '@/utils/registerMaterialOptionsCom';
 
   const { cptTitle } = storeToRefs(appStore.useSelectMaterialStore);
   const { changeResumeJsonData } = appStore.useResumeJsonNewStore;
   const { refreshUuid } = storeToRefs(appStore.useUuidStore);
   const { setUuid } = appStore.useUuidStore;
-  const { resumeJsonNewStore } = storeToRefs(appStore.useResumeJsonNewStore); // store里的模板数据
+  const { resumeJsonNewStore, importJson } = storeToRefs(appStore.useResumeJsonNewStore); // store里的模板数据
 
   // 重置数据方法
   const resetStoreAndLocal = () => {
@@ -85,8 +86,10 @@
       TEMPLATE_JSON = TEMPLATE_1_JSON;
     } else if (name === 'template2') {
       TEMPLATE_JSON = TEMPLATE_2_JSON;
-    } else {
+    } else if (name === 'template3') {
       TEMPLATE_JSON = TEMPLATE_3_JSON;
+    } else {
+      TEMPLATE_JSON = importJson.value;
     }
     TEMPLATE_JSON.ID = id as string;
     TEMPLATE_JSON.NAME = name as string;
@@ -119,18 +122,6 @@
   }
 
   console.log('简历JSON数据', resumeJsonNewStore.value);
-
-  // 过滤掉模板2不需要的模块
-  if (Number(id) == 2) {
-    let List: any = [];
-    resumeJsonNewStore.value.COMPONENTS.forEach((item) => {
-      if (item.model == 'RESUME_TITLE') {
-        item.show = false;
-      }
-      List.push(item);
-    });
-    resumeJsonNewStore.value.COMPONENTS = List;
-  }
 
   // 生命周期函数
   onMounted(async () => {
@@ -223,6 +214,7 @@
   // 子组件内容高度发生变化---需要重新计算高度，触发resizeDOM
   const contentHeightChange = (height: number) => {
     htmlContentPdf.value.style.height = height + 'px';
+    console.log('子组件内容高度发生变化---需要重新计算高度',htmlContentPdf.value.style.height)
   };
 
   // 点击其它区域，取消模块选择，即取消模块选中效果

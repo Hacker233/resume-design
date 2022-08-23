@@ -1,13 +1,13 @@
 import IRESUMEJSON from '@/interface/resume';
 
 const TEMPLATE_1_JSON: IRESUMEJSON = {
-  ID: '',
-  NAME: '',
-  TITLE: '我的简历',
+  ID: '85784222-1a82-4567-ba9d-1e2746afaacf',
+  NAME: 'custom',
+  TITLE: '模板标题',
   LAYOUT: 'classical',
   COMPONENTS: [
     {
-      keyId: '60d785cb-e4ed-4db3-aab6-d77c6c3739bb',
+      keyId: 'ba651baf-2a92-4e6c-9467-5ca73375da66',
       model: 'RESUME_TITLE',
       cptName: 'RESUME_TITLE_1',
       cptOptionsName: 'RESUME_TITLE_OPTIONS',
@@ -34,10 +34,15 @@ const TEMPLATE_1_JSON: IRESUMEJSON = {
         pTopBottom: '0',
         pLeftRight: '0'
       },
-      data: {}
+      data: {
+        iconfont: 'icon-xiangmujingli-04',
+        model: 'RESUME_TITLE',
+        show: true,
+        title: '我的简历'
+      }
     },
     {
-      keyId: '20b6991e-8414-4b13-bbd2-288067ee61a8',
+      keyId: '19693e90-5f18-48b9-85b7-7dd56da4561a',
       model: 'BASE_INFO',
       cptName: 'BASE_INFO_1',
       cptOptionsName: 'BASE_INFO_OPTIONS',
@@ -64,10 +69,34 @@ const TEMPLATE_1_JSON: IRESUMEJSON = {
         pTopBottom: '0',
         pLeftRight: '40px'
       },
-      data: {}
+      data: {
+        iconfont: 'icon-jibenziliao',
+        model: 'BASE_INFO',
+        show: true,
+        title: '基本资料',
+        name: '小猪课堂',
+        age: 25,
+        address: '四川成都',
+        avatar: 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg',
+        workService: 3,
+        phoneNumber: '028-1234321',
+        email: '12322233@qq.com',
+        abstract: '我是一个没有感情的工作机器',
+        degree: '本科',
+        isShow: {
+          age: true,
+          address: true,
+          avatar: true,
+          workService: true,
+          phoneNumber: true,
+          email: true,
+          abstract: true,
+          degree: true
+        }
+      }
     },
     {
-      keyId: 'dfb3f700-dab7-461b-93ac-08e6f5beca5b',
+      keyId: '799343b4-f1f3-4dd0-963b-cfaafe82bedb',
       model: 'JOB_INTENTION',
       cptName: 'JOB_INTENTION_1',
       cptOptionsName: 'JOB_INTENTION_OPTIONS',
@@ -94,10 +123,27 @@ const TEMPLATE_1_JSON: IRESUMEJSON = {
         pTopBottom: '0',
         pLeftRight: '40px'
       },
-      data: {}
+      data: {
+        iconfont: 'icon-yixianggangwei',
+        model: 'JOB_INTENTION',
+        show: true,
+        title: '求职意向',
+        intendedPositions: '前端开发工程师',
+        intendedCity: '成都',
+        expectSalary: '8000-10000',
+        jobStatus: '随时入职',
+        jobSearchType: '求职类型',
+        isShow: {
+          intendedPositions: true,
+          intendedCity: true,
+          expectSalary: true,
+          jobStatus: true,
+          jobSearchType: true
+        }
+      }
     },
     {
-      keyId: '771953b7-65dd-4ec3-b571-1a8683906ad9',
+      keyId: '4e66b0c5-2d11-4b1a-a77a-e562055868b1',
       model: 'EDU_BACKGROUND',
       cptName: 'EDU_BACKGROUND_1',
       cptOptionsName: 'EDU_BACKGROUND_OPTIONS',
@@ -124,10 +170,38 @@ const TEMPLATE_1_JSON: IRESUMEJSON = {
         pTopBottom: '0',
         pLeftRight: '40px'
       },
-      data: {}
+      data: {
+        iconfont: 'icon-education-1-copy',
+        model: 'EDU_BACKGROUND',
+        show: true,
+        title: '教育背景',
+        LIST: [
+          {
+            date: ['2015-5', '2019-6'],
+            schoolName: '野鸡大学',
+            specialized: '通信工程',
+            degree: '本科',
+            majorCourse: '主修计算机技术、Java、c++等等'
+          },
+          {
+            date: ['2015-5', '2019-6'],
+            schoolName: '野鸡大学',
+            specialized: '通信工程',
+            degree: '本科',
+            majorCourse: '主修计算机技术、Java、c++等等'
+          }
+        ],
+        isShow: {
+          date: true,
+          schoolName: true,
+          specialized: true,
+          degree: true,
+          majorCourse: true
+        }
+      }
     },
     {
-      keyId: 'dbcc9cbe-188e-4a49-a486-2ad4f23a030a',
+      keyId: 'b2d5a3bb-ea22-4d96-9da4-f30a3ac2a1f6',
       model: 'SKILL_SPECIALTIES',
       cptName: 'SKILL_SPECIALTIES_1',
       cptOptionsName: 'SKILL_SPECIALTIES_OPTIONS',
@@ -154,10 +228,37 @@ const TEMPLATE_1_JSON: IRESUMEJSON = {
         pTopBottom: '0',
         pLeftRight: '40px'
       },
-      data: {}
+      data: {
+        iconfont: 'icon-zhuanyezhishijineng',
+        model: 'SKILL_SPECIALTIES',
+        show: true,
+        title: '技能特长',
+        LIST: [
+          {
+            skillName: 'JavaScript',
+            proficiency: '了解',
+            introduce: '熟练掌握该项技术'
+          },
+          {
+            skillName: 'JavaScript',
+            proficiency: '一般',
+            introduce: '熟练掌握该项技术熟练掌握该项技术熟练掌握该项技术熟练掌握该项技术'
+          },
+          {
+            skillName: 'JavaScript',
+            proficiency: '熟悉',
+            introduce: '熟练掌握该项技术熟练掌握该项技术熟练掌握该项技术熟练掌握该项技术'
+          },
+          {
+            skillName: 'JavaScript',
+            proficiency: '精通',
+            introduce: '熟练掌握该项技术'
+          }
+        ]
+      }
     },
     {
-      keyId: '8399cdc7-c624-4858-aafc-5cff711e6646',
+      keyId: 'e9fe6082-3d30-44cc-a1bb-53a81efb67d5',
       model: 'CAMPUS_EXPERIENCE',
       cptName: 'CAMPUS_EXPERIENCE_1',
       cptOptionsName: 'CAMPUS_EXPERIENCE_OPTIONS',
@@ -184,10 +285,36 @@ const TEMPLATE_1_JSON: IRESUMEJSON = {
         pTopBottom: '0',
         pLeftRight: '40px'
       },
-      data: {}
+      data: {
+        iconfont: 'icon-jiatimianban_timu',
+        model: 'CAMPUS_EXPERIENCE',
+        show: true,
+        title: '校园经历',
+        LIST: [
+          {
+            date: ['2021-9', '2022-10'],
+            campusBriefly: '经历简要，如社团名称',
+            campusDuty: '主要职责',
+            campusContent: '经历描述'
+          },
+          {
+            date: ['2021-9', '2022-10'],
+            campusBriefly: '经历简要，如社团名称',
+            campusDuty: '主要职责',
+            campusContent:
+              '经历经历描述经历描述经历描经历描述经历描述经历描述经历描述经历描述述经历描述经历描述经历描述经历描述经历描述描述'
+          }
+        ],
+        isShow: {
+          date: true,
+          campusBriefly: true,
+          campusDuty: true,
+          campusContent: true
+        }
+      }
     },
     {
-      keyId: '6c6ff9b8-1c4d-4bd9-a43a-bc912ed1692b',
+      keyId: 'b1623739-ae54-40aa-bb37-3258fc56331a',
       model: 'INTERNSHIP_EXPERIENCE',
       cptName: 'INTERNSHIP_EXPERIENCE_1',
       cptOptionsName: 'INTERNSHIP_EXPERIENCE_OPTIONS',
@@ -214,10 +341,57 @@ const TEMPLATE_1_JSON: IRESUMEJSON = {
         pTopBottom: '0',
         pLeftRight: '40px'
       },
-      data: {}
+      data: {
+        iconfont: 'icon-biyeshixi',
+        model: 'INTERNSHIP_EXPERIENCE',
+        show: true,
+        title: '实习经验',
+        LIST: [
+          {
+            date: ['2021-9', '2022-10'],
+            companyName: '业绩公司',
+            posts: '前端开发工程师',
+            jobContent: [
+              {
+                content: '主要工作内容是打杂'
+              },
+              {
+                content:
+                  '主要工作内容是打杂主要工作内容是打杂主要工作内容是打杂主要工作内容是打杂主要工作内容是打杂'
+              },
+              {
+                content: '主要工作内容是打杂'
+              }
+            ]
+          },
+          {
+            date: ['2021-9', '2022-10'],
+            companyName: '业绩公司',
+            posts: '前端开发工程师',
+            jobContent: [
+              {
+                content: '主要工作内容是打杂'
+              },
+              {
+                content:
+                  '主要工作内容是打杂主要工作内容是打杂主要工作内容是打杂主要工作内容是打杂主要工作内容是打杂'
+              },
+              {
+                content: '主要工作内容是打杂'
+              }
+            ]
+          }
+        ],
+        isShow: {
+          date: true,
+          companyName: true,
+          posts: true,
+          jobContent: true
+        }
+      }
     },
     {
-      keyId: '940a00f9-925b-4451-9b9c-3678b3b6005c',
+      keyId: '70f9ece9-ba02-4722-8ffb-bde88bcc2cd8',
       model: 'WORK_EXPERIENCE',
       cptName: 'WORK_EXPERIENCE_1',
       cptOptionsName: 'WORK_EXPERIENCE_OPTIONS',
@@ -244,10 +418,32 @@ const TEMPLATE_1_JSON: IRESUMEJSON = {
         pTopBottom: '0',
         pLeftRight: '40px'
       },
-      data: {}
+      data: {
+        iconfont: 'icon-gongzuojingyan',
+        model: 'WORK_EXPERIENCE',
+        show: true,
+        title: '工作经验',
+        LIST: [
+          {
+            date: ['2021-9', '2022-10'],
+            companyName: '业绩公司',
+            posts: '前端开发工程师',
+            jobContent: [
+              {
+                content: '主要工作内容是打杂'
+              }
+            ]
+          }
+        ],
+        isShow: {
+          date: true,
+          companyName: true,
+          posts: true
+        }
+      }
     },
     {
-      keyId: '3486820a-6287-4eac-8035-e9aa0d4c4b8c',
+      keyId: '951dded0-fee0-42c9-b4a3-b027dd229ba6',
       model: 'PROJECT_EXPERIENCE',
       cptName: 'PROJECT_EXPERIENCE_1',
       cptOptionsName: 'PROJECT_EXPERIENCE_OPTIONS',
@@ -274,10 +470,32 @@ const TEMPLATE_1_JSON: IRESUMEJSON = {
         pTopBottom: '0',
         pLeftRight: '40px'
       },
-      data: {}
+      data: {
+        iconfont: 'icon-xiangmu',
+        model: 'PROJECT_EXPERIENCE',
+        show: true,
+        title: '项目经验',
+        LIST: [
+          {
+            date: ['2021-9', '2022-10'],
+            projectName: '项目名称',
+            posts: '前端开发工程师',
+            projectContent: [
+              {
+                content: '该项目是一个打杂项目'
+              }
+            ]
+          }
+        ],
+        isShow: {
+          date: true,
+          projectName: true,
+          posts: true
+        }
+      }
     },
     {
-      keyId: '97bfd4ac-f141-49b1-96de-b15272ea9f07',
+      keyId: 'ca7a7294-230b-4f94-8ca0-176a7f893add',
       model: 'AWARDS',
       cptName: 'AWARDS_1',
       cptOptionsName: 'AWARDS_OPTIONS',
@@ -304,10 +522,27 @@ const TEMPLATE_1_JSON: IRESUMEJSON = {
         pTopBottom: '0',
         pLeftRight: '40px'
       },
-      data: {}
+      data: {
+        iconfont: 'icon-rongyu1',
+        model: 'AWARDS',
+        show: true,
+        title: '荣誉奖项',
+        LIST: [
+          {
+            date: '2021-9',
+            awardsName: '奖项名称',
+            awardsGrade: '获奖等级'
+          }
+        ],
+        isShow: {
+          date: true,
+          awardsName: true,
+          awardsGrade: true
+        }
+      }
     },
     {
-      keyId: '0ae03905-f823-4667-83cb-9ff79d6b608d',
+      keyId: '4b2b10b7-861c-444b-a2b4-94d0d789ca61',
       model: 'HOBBIES',
       cptName: 'HOBBIES_1',
       cptOptionsName: 'HOBBIES_OPTIONS',
@@ -334,10 +569,23 @@ const TEMPLATE_1_JSON: IRESUMEJSON = {
         pTopBottom: '0',
         pLeftRight: '40px'
       },
-      data: {}
+      data: {
+        iconfont: 'icon-xingquaihao',
+        model: 'HOBBIES',
+        show: true,
+        title: '兴趣爱好',
+        content: '我喜欢打杂我喜欢打杂我喜欢打杂我喜欢打杂我喜欢打杂我喜欢打杂我喜欢打杂我喜欢打杂',
+        style: {
+          textColor: '#757575',
+          textFontSize: '14px',
+          textFontWeight: 500,
+          mBottom: '45px',
+          mTop: '0px'
+        }
+      }
     },
     {
-      keyId: '987bfb09-31e7-4a67-9305-d1138bc6bef2',
+      keyId: '0f6801d1-08de-4fb3-833c-5184f2e1c36c',
       model: 'SELF_EVALUATION',
       cptName: 'SELF_EVALUATION_1',
       cptOptionsName: 'SELF_EVALUATION_OPTIONS',
@@ -364,10 +612,16 @@ const TEMPLATE_1_JSON: IRESUMEJSON = {
         pTopBottom: '0',
         pLeftRight: '40px'
       },
-      data: {}
+      data: {
+        iconfont: 'icon-ziwopingjia',
+        model: 'SELF_EVALUATION',
+        show: true,
+        title: '自我评价',
+        content: '我是一个没有责任感的人'
+      }
     },
     {
-      keyId: 'e669991a-e2cc-4557-bcf1-14000624ccf5',
+      keyId: '230ec7d1-22ec-4d79-bbae-67c5539a255e',
       model: 'WORKS_DISPLAY',
       cptName: 'WORKS_DISPLAY_1',
       cptOptionsName: 'WORKS_DISPLAY_OPTIONS',
@@ -394,7 +648,24 @@ const TEMPLATE_1_JSON: IRESUMEJSON = {
         pTopBottom: '0',
         pLeftRight: '40px'
       },
-      data: {}
+      data: {
+        iconfont: 'icon-zhuanyezhishijineng',
+        model: 'WORKS_DISPLAY',
+        show: true,
+        title: '作品展示',
+        LIST: [
+          {
+            worksName: '作品名称',
+            worksLink: 'https://www.baidu.com',
+            worksIntroduce: '这是一个千万级作品'
+          },
+          {
+            worksName: '作品名称',
+            worksLink: 'https://www.baidu.com',
+            worksIntroduce: '这是一个千万级作品'
+          }
+        ]
+      }
     }
   ],
   GLOBAL_STYLE: {

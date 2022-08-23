@@ -61,7 +61,7 @@ const TEMPLATE_2_JSON: IRESUMEJSON = {
         themeColor: '#000',
         firstTitleFontSize: '20px',
         pTopBottom: '0',
-        pLeftRight: '40px'
+        pLeftRight: '30px'
       },
       data: {}
     },
@@ -90,7 +90,7 @@ const TEMPLATE_2_JSON: IRESUMEJSON = {
         titleFontSize: '30px',
         titleFontWeight: 500,
         pTopBottom: '0',
-        pLeftRight: '40px'
+        pLeftRight: '30px'
       },
       data: {}
     },
@@ -98,7 +98,7 @@ const TEMPLATE_2_JSON: IRESUMEJSON = {
       keyId: '771953b7-65dd-4ec3-b571-1a8683906ad9',
       model: 'EDU_BACKGROUND',
       cptName: 'EDU_BACKGROUND_1',
-      cptOptionsName: 'EDU_BACKGROUND_OPTIONS',
+      cptOptionsName: 'EDU_BACKGROUND_OPTIONS_1',
       cptTitle: '教育背景',
       cptX: 0,
       cptY: 0,
@@ -119,7 +119,7 @@ const TEMPLATE_2_JSON: IRESUMEJSON = {
         themeColor: '#000',
         firstTitleFontSize: '20px',
         pTopBottom: '0',
-        pLeftRight: '40px'
+        pLeftRight: '30px'
       },
       data: {}
     },
@@ -127,7 +127,7 @@ const TEMPLATE_2_JSON: IRESUMEJSON = {
       keyId: 'dbcc9cbe-188e-4a49-a486-2ad4f23a030a',
       model: 'SKILL_SPECIALTIES',
       cptName: 'SKILL_SPECIALTIES_1',
-      cptOptionsName: 'SKILL_SPECIALTIES_OPTIONS',
+      cptOptionsName: 'SKILL_SPECIALTIES_OPTIONS_1',
       cptTitle: '技能特长',
       cptX: 0,
       cptY: 0,
@@ -149,7 +149,7 @@ const TEMPLATE_2_JSON: IRESUMEJSON = {
         titleFontWeight: 600,
         backgroundColor: '#000',
         pTopBottom: '0',
-        pLeftRight: '40px'
+        pLeftRight: '30px'
       },
       data: {}
     },
@@ -179,7 +179,7 @@ const TEMPLATE_2_JSON: IRESUMEJSON = {
         firstTitleFontSize: '20px',
         backgroundColor: '#000',
         pTopBottom: '0',
-        pLeftRight: '40px'
+        pLeftRight: '30px'
       },
       data: {}
     },
@@ -209,7 +209,7 @@ const TEMPLATE_2_JSON: IRESUMEJSON = {
         firstTitleFontSize: '20px',
         backgroundColor: '#000',
         pTopBottom: '0',
-        pLeftRight: '40px'
+        pLeftRight: '30px'
       },
       data: {}
     },
@@ -239,7 +239,7 @@ const TEMPLATE_2_JSON: IRESUMEJSON = {
         firstTitleFontSize: '20px',
         backgroundColor: '#000',
         pTopBottom: '0',
-        pLeftRight: '40px'
+        pLeftRight: '30px'
       },
       data: {}
     },
@@ -269,7 +269,7 @@ const TEMPLATE_2_JSON: IRESUMEJSON = {
         firstTitleFontSize: '20px',
         backgroundColor: '#000',
         pTopBottom: '0',
-        pLeftRight: '40px'
+        pLeftRight: '30px'
       },
       data: {}
     },
@@ -299,7 +299,7 @@ const TEMPLATE_2_JSON: IRESUMEJSON = {
         firstTitleFontSize: '20px',
         backgroundColor: '#000',
         pTopBottom: '0',
-        pLeftRight: '40px'
+        pLeftRight: '30px'
       },
       data: {}
     },
@@ -329,7 +329,7 @@ const TEMPLATE_2_JSON: IRESUMEJSON = {
         mBottom: '35px',
         mTop: '0px',
         pTopBottom: '0',
-        pLeftRight: '40px'
+        pLeftRight: '30px'
       },
       data: {}
     },
@@ -359,7 +359,7 @@ const TEMPLATE_2_JSON: IRESUMEJSON = {
         titleFontWeight: 600,
         backgroundColor: '#000',
         pTopBottom: '0',
-        pLeftRight: '40px'
+        pLeftRight: '30px'
       },
       data: {}
     },
@@ -389,7 +389,7 @@ const TEMPLATE_2_JSON: IRESUMEJSON = {
         titleFontWeight: 600,
         backgroundColor: '#000',
         pTopBottom: '0',
-        pLeftRight: '40px'
+        pLeftRight: '30px'
       },
       data: {}
     }
@@ -406,7 +406,7 @@ const TEMPLATE_2_JSON: IRESUMEJSON = {
     modelMarginTop: '0px',
     modelMarginBottom: '45px',
     pTopBottom: '0',
-    pLeftRight: '40px',
+    pLeftRight: '30px',
     leftWidth: '',
     rightWidth: '',
     leftThemeColor: '',

@@ -1,5 +1,6 @@
 <template>
   <div
+    v-if="item.show"
     :ref="(el) => setRefItem(el, item.keyId)"
     class="material-model-box"
     @click="selectModel"
@@ -14,7 +15,7 @@
         </div>
       </el-tooltip>
       <el-tooltip class="box-item" effect="dark" content="删除当前模块">
-        <div class="delete" @click.stop="deleteModel">
+        <div class="delete" @click.stop="useDeleteModel(item)">
           <svg-icon
             icon-name="icon-shanchu"
             class-name="icon icon-shanchu"
@@ -40,6 +41,7 @@
   import { cloneDeep } from 'lodash';
   import { storeToRefs } from 'pinia';
   import { ComponentPublicInstance } from 'vue';
+  import { useDeleteModel } from '@/hooks/useDeleteModel';
   const emit = defineEmits(['leftRightDelete', 'leftRightAdd']);
   const props = defineProps<{
     item: IMATERIALITEM;

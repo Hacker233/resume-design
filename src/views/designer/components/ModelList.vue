@@ -30,7 +30,7 @@
                   :disabled="leftShowStatus"
                 >
                   <svg-icon
-                    :icon-name="element.data.iconfont"
+                    :icon-name="element.data.iconfont ? element.data.iconfont : 'icon-xingquaihao'"
                     class-name="icon"
                     :color="leftShowStatus ? '#c4c4c4' : '#00c091'"
                     size="16px"
@@ -50,7 +50,6 @@
   </div>
 </template>
 <script setup lang="ts">
-  import { useModelOptionsComName } from '@/hooks/useModelOptionsComName';
   import appStore from '@/store';
   import draggable from 'vuedraggable';
 
@@ -64,7 +63,7 @@
   // 选中模块
   const { updateSelectModel } = appStore.useSelectMaterialStore;
   const selectModel = (item: any) => {
-    let optionsName: string = useModelOptionsComName(`${resumeJsonNewStore.NAME}-${item.model}`);
+    let optionsName: string = item.cptOptionsName;
     let updateData = {
       model: item.model,
       optionsName: optionsName,

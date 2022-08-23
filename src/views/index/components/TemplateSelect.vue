@@ -22,11 +22,16 @@
   import { useRouter } from 'vue-router';
   import { onUnmounted, ref } from 'vue';
   import { closeGlobalLoading, openGlobalLoading } from '@/utils/common';
+  import appStore from '@/store';
 
   // 跳转至设计页面
+  const { resetResumeJson } = appStore.useResumeJsonNewStore;
+  const { resetSelectModel } = appStore.useSelectMaterialStore;
   const router = useRouter();
   const toDesign = (item: ITempList) => {
     openGlobalLoading(); // 等待动画层
+    resetResumeJson(); // 重置json数据
+    resetSelectModel(); // 重置选中模块
     router.push({
       path: '/designer',
       query: {

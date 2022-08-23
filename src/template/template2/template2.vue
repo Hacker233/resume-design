@@ -83,7 +83,7 @@
       return item.model === 'BASE_INFO' || item.model === 'SKILL_SPECIALTIES';
     })
   );
-  watch(resumeJsonNewStore, () => {
+  watch(resumeJsonNewStore.value, () => {
     leftList.value = resumeJsonNewStore.value.COMPONENTS.filter((item) => {
       return item.model === 'BASE_INFO' || item.model === 'SKILL_SPECIALTIES';
     });
@@ -118,7 +118,6 @@
   .classic-box {
     display: flex;
     .model-box {
-      padding: 4px 30px;
       .edit-box {
         z-index: 999;
       }
@@ -137,7 +136,8 @@
       }
     }
     .right {
-      padding: 40px 0 40px 270px;
+      margin-left: 270px;
+      padding: 40px 0;
       flex: 1;
       .name-abstract-box {
         border: 1px dashed transparent;
