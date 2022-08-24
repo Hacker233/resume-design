@@ -7,13 +7,13 @@
     <ul>
       <!-- 左边部分 -->
       <div class="left">
-        <template v-for="(item, index) in data.LIST" :key="index">
+        <template v-for="(item, index) in modelData.LIST" :key="index">
           <li v-if="index % 2 === 0">{{ item.introduce }}</li>
         </template>
       </div>
       <!-- 右边部分 -->
       <div class="right">
-        <template v-for="(item, index) in data.LIST" :key="index">
+        <template v-for="(item, index) in modelData.LIST" :key="index">
           <li v-if="index % 2 != 0">{{ item.introduce }}</li>
         </template>
       </div>
@@ -21,18 +21,18 @@
   </div>
 </template>
 <script setup lang="ts">
-  import { IMATERIALITEM } from '@/interface/material';
   import { ISKILLSPECIALTIES } from '@/interface/model';
+  import IMODELSTYLE from '@/interface/modelStyle';
   defineProps<{
-    modelData: IMATERIALITEM;
-    data: ISKILLSPECIALTIES;
+    modelData: ISKILLSPECIALTIES;
+    modelStyle: IMODELSTYLE; // 模块样式
   }>();
 </script>
 <style lang="scss" scoped>
   .skill-specialties {
-    padding: v-bind('modelData.style.pTopBottom') v-bind('modelData.style.pLeftRight');
-    margin-bottom: v-bind('modelData.style.mBottom');
-    margin-top: v-bind('modelData.style.mTop');
+    padding: v-bind('modelStyle.pTopBottom') v-bind('modelStyle.pLeftRight');
+    margin-bottom: v-bind('modelStyle.mBottom');
+    margin-top: v-bind('modelStyle.mTop');
     box-sizing: border-box;
     ul {
       display: flex;
@@ -43,9 +43,9 @@
         margin-top: 25px;
         li {
           letter-spacing: 2px;
-          font-size: v-bind('modelData.style.textFontSize');
-          color: v-bind('modelData.style.textColor');
-          font-weight: v-bind('modelData.style.textFontWeight');
+          font-size: v-bind('modelStyle.textFontSize');
+          color: v-bind('modelStyle.textColor');
+          font-weight: v-bind('modelStyle.textFontWeight');
           line-height: 1.5;
           &:not(:last-child) {
             margin-bottom: 10px;

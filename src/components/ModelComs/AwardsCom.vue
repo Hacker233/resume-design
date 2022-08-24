@@ -5,31 +5,31 @@
     <slot name="model-title"></slot>
     <!-- 荣誉奖项 -->
     <div class="awards-list">
-      <ul v-for="(item, index) in data.LIST" :key="index">
+      <ul v-for="(item, index) in modelData.LIST" :key="index">
         <!-- 获奖日期 -->
-        <li v-show="data.isShow.date">{{ formatDate(item.date) }}</li>
+        <li v-show="modelData.isShow.date">{{ formatDate(item.date) }}</li>
         <!-- 奖项名称 -->
-        <li v-show="data.isShow.awardsName">{{ item.awardsName }}</li>
+        <li v-show="modelData.isShow.awardsName">{{ item.awardsName }}</li>
         <!-- 奖项等级 -->
-        <li v-show="data.isShow.awardsGrade">{{ item.awardsGrade }}</li>
+        <li v-show="modelData.isShow.awardsGrade">{{ item.awardsGrade }}</li>
       </ul>
     </div>
   </div>
 </template>
 <script setup lang="ts">
-  import { IMATERIALITEM } from '@/interface/material';
   import { IAWARDS } from '@/interface/model';
+  import IMODELSTYLE from '@/interface/modelStyle';
   import { formatDate } from '@/utils/common';
   defineProps<{
-    modelData: IMATERIALITEM;
-    data: IAWARDS;
+    modelData: IAWARDS;
+    modelStyle: IMODELSTYLE; // 模块样式
   }>();
 </script>
 <style lang="scss" scoped>
   .awards {
-    padding: v-bind('modelData.style.pTopBottom') v-bind('modelData.style.pLeftRight');
-    margin-bottom: v-bind('modelData.style.mBottom');
-    margin-top: v-bind('modelData.style.mTop');
+    padding: v-bind('modelStyle.pTopBottom') v-bind('modelStyle.pLeftRight');
+    margin-bottom: v-bind('modelStyle.mBottom');
+    margin-top: v-bind('modelStyle.mTop');
     box-sizing: border-box;
     .awards-list {
       display: flex;
@@ -43,9 +43,9 @@
         align-items: center;
         li {
           list-style: none;
-          font-size: v-bind('modelData.style.textFontSize');
-          color: v-bind('modelData.style.textColor');
-          font-weight: v-bind('modelData.style.textFontWeight');
+          font-size: v-bind('modelStyle.textFontSize');
+          color: v-bind('modelStyle.textColor');
+          font-weight: v-bind('modelStyle.textFontWeight');
           letter-spacing: 2px;
         }
         &:not(:last-child) {

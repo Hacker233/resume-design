@@ -98,7 +98,7 @@ const TEMPLATE_3_JSON: IRESUMEJSON = {
       keyId: '771953b7-65dd-4ec3-b571-1a8683906ad9',
       model: 'EDU_BACKGROUND',
       cptName: 'EDU_BACKGROUND_1',
-      cptOptionsName: 'EDU_BACKGROUND_OPTIONS',
+      cptOptionsName: 'EDU_BACKGROUND_OPTIONS_1',
       cptTitle: '教育背景',
       cptX: 0,
       cptY: 0,

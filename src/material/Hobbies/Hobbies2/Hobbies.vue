@@ -2,7 +2,7 @@
 <template>
   <div class="hobbies">
     <!-- 标题 -->
-    <slot name="model-title"></slot>
+    <model-title :title="modelData.title" :iconfont="modelData.iconfont"></model-title>
     <!-- 兴趣爱好 -->
     <div class="hobbies-content">
       <p>{{ modelData.content }}</p>
@@ -12,6 +12,7 @@
 <script setup lang="ts">
   import { IHOBBIES } from '@/interface/model';
   import IMODELSTYLE from '@/interface/modelStyle';
+  import ModelTitle from '@/material/ModelTitle/ModelTitle2/ModelTitle.vue';
   defineProps<{
     modelData: IHOBBIES;
     modelStyle: IMODELSTYLE; // 模块样式
@@ -25,9 +26,14 @@
     box-sizing: border-box;
     .hobbies-content {
       display: flex;
-      margin-top: 25px;
+      flex-direction: column;
+      display: flex;
+      width: 100%;
+      flex-direction: column;
+      margin-top: 20px;
       p {
         letter-spacing: 2px;
+        text-align: justify;
         font-size: v-bind('modelStyle.textFontSize');
         color: v-bind('modelStyle.textColor');
         font-weight: v-bind('modelStyle.textFontWeight');

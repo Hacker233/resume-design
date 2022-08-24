@@ -1,8 +1,8 @@
-<!-- 教育背景 -->
+<!-- 荣誉奖项 -->
 <template>
   <div class="edu-background">
     <!-- 标题 -->
-    <slot name="model-title"></slot>
+    <model-title :title="modelData.title" :iconfont="modelData.iconfont"></model-title>
     <!-- 教育背景 -->
     <div class="edu-list">
       <ul v-for="(item, index) in modelData.LIST" :key="index">
@@ -11,27 +11,24 @@
           <span v-if="modelData.isShow.date">
             {{ formatDate(item.date) }}
           </span>
-          <span v-if="modelData.isShow.schoolName">
-            {{ item.schoolName }}
-          </span>
-          <span v-if="modelData.isShow.degree">
-            {{ item.degree }}
+          <span v-if="modelData.isShow.awardsName">
+            {{ item.awardsName }}
           </span>
         </div>
-        <!-- 专业 -->
-        <p v-if="modelData.isShow.specialized" class="special">{{ item.specialized }}</p>
-        <!-- 教学经历 -->
-        <p v-if="modelData.isShow.majorCourse" class="majorCourse">{{ item.majorCourse }}</p>
+        <!-- 奖项等级 -->
+        <p v-if="modelData.isShow.awardsGrade" class="majorCourse">{{ item.awardsGrade }}</p>
       </ul>
     </div>
   </div>
 </template>
 <script setup lang="ts">
-  import { IEDUBACKGROUND } from '@/interface/model';
-  import IMODELSTYLE from '@/interface/modelStyle';
+  import { IAWARDS } from '@/interface/model';
+  import ModelTitle from '@/material/ModelTitle/ModelTitle2/ModelTitle.vue';
   import { formatDate } from '@/utils/common';
+  import IMODELSTYLE from '@/interface/modelStyle';
+
   defineProps<{
-    modelData: IEDUBACKGROUND;
+    modelData: IAWARDS;
     modelStyle: IMODELSTYLE; // 模块样式
   }>();
 </script>
@@ -63,7 +60,6 @@
           letter-spacing: 2px;
           margin-bottom: 5px;
         }
-        .special,
         .majorCourse {
           width: 100%;
           display: flex;
@@ -73,9 +69,6 @@
           line-height: 18px;
           text-align: justify;
           font-family: '微软雅黑';
-        }
-        .special {
-          margin-bottom: 10px;
         }
       }
     }

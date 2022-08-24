@@ -21,21 +21,19 @@
   import appStore from '@/store';
   import { storeToRefs } from 'pinia';
   import { onMounted, ref, watch } from 'vue';
-  import { useModelOptionsComName } from '@/hooks/useModelOptionsComName';
-  import BaseInfo from './components/BaseInfo.vue'; // 基础信息
-  import SkillSpecialties from './components/SkillSpecialties.vue';
+  import BaseInfo from '@/material/BaseInfo/BaseInfo2/BaseInfo.vue'; // 基础信息
+  import SkillSpecialties from '@/material/SkillSpecialties/SkillSpecialties2/SkillSpecialties.vue';
   import NameAbstact from './components/NameAbstact.vue';
-  import { IBASEINFO } from '@/interface/model';
-  import JobIntention from './components/JobIntention.vue'; // 求职意向
-  import EduBackground from './components/EduBackground.vue'; // 教育背景
-  import CampusExperience from './components/CampusExperience.vue'; // 校园经历
-  import InternshipExperience from './components/InternshipExperience.vue'; // 实习经验
-  import WorkExperience from './components/WorkExperience.vue'; // 工作经验
-  import ProjectExperience from './components/ProjectExperience.vue'; // 项目经验
-  import Awards from './components/Awards.vue'; // 荣誉奖项
-  import Hobbies from './components/Hobbies.vue'; // 兴趣爱好
-  import SelfEvaluation from './components/SelfEvaluation.vue'; // 自我评价
-  import WorksDisplay from './components/WorksDisplay.vue'; // 个人作品
+  import JobIntention from '@/material/JobIntention/JobIntention2/JobIntention.vue'; // 求职意向
+  import EduBackground from '@/material/EduBackground/EduBackground2/EduBackground.vue'; // 教育背景
+  import CampusExperience from '@/material/CampusExperience/CampusExperience2/CampusExperience.vue'; // 校园经历
+  import InternshipExperience from '@/material/InternshipExperience/InternshipExperience2/InternshipExperience.vue'; // 实习经验
+  import WorkExperience from '@/material/WorkExperience/WorkExperience2/WorkExperience.vue'; // 工作经验
+  import ProjectExperience from '@/material/ProjectExperience/ProjectExperience2/ProjectExperience.vue'; // 项目经验
+  import Awards from '@/material/Awards/Awards2/Awards.vue'; // 荣誉奖项
+  import Hobbies from '@/material/Hobbies/Hobbies2/Hobbies.vue'; // 兴趣爱好
+  import SelfEvaluation from '@/material/SelfEvaluation/SelfEvaluation2/SelfEvaluation.vue'; // 自我评价
+  import WorksDisplay from '@/material/WorksDisplay/WorksDisplay2/WorksDisplay.vue'; // 个人作品
   import ModelBoxVue from '@/components/ModelBox/ModelBox.vue';
   import { IMATERIALITEM } from '@/interface/material';
   defineOptions({ name: 'template2' });
@@ -99,7 +97,7 @@
   // 选择姓名简介模块
   const { updateSelectModel } = appStore.useSelectMaterialStore;
   const selectNameModel = () => {
-    let optionsName: string = useModelOptionsComName(`template2-${modelData.model}`) as string;
+    let optionsName: string = modelData.cptOptionsName;
     let model = modelData.model;
     let title = modelData.data.title;
     let keyId = modelData.keyId;
