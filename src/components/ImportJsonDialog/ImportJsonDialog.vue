@@ -135,6 +135,7 @@
     }
     // // 处理数据
     let importJson = JSON.parse(code.value);
+    importJson.ID = 4;
     console.log('导入的最终JSON', importJson);
     changeResumeJsonData(importJson); // 更改store的数据
     changeImportJsonData(importJson); // 保存JSON数据

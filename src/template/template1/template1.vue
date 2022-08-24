@@ -2,26 +2,25 @@
   <div ref="tmp1ContentHeightRef">
     <template v-for="item in resumeJsonNewStore.COMPONENTS">
       <model-box-vue v-if="item" :item="item" :components="components"></model-box-vue>
-      <!-- <component v-if="item" :is="components[item.model]" :modelData="item"></component> -->
     </template>
   </div>
   <!-- 底部 -->
   <div class="model-bottom"></div>
 </template>
 <script setup lang="ts">
-  import ResumeTitle from './components/ResumeTitle.vue'; // 简历标题
-  import BaseInfo from './components/BaseInfo.vue'; // 基础资料
-  import JobIntention from './components/JobIntention.vue'; // 求职意向
-  import EduBackground from './components/EduBackground.vue'; // 学历背景
-  import SkillSpecialties from './components/SkillSpecialties.vue'; // 技能特长
-  import CampusExperience from './components/CampusExperience.vue'; // 校园经历
-  import InternshipExperience from './components/InternshipExperience.vue'; // 实习经验
-  import WorkExpreience from './components/WorkExperience.vue'; // 工作经验
-  import ProjectExperience from './components/ProjectExperience.vue'; // 项目经验
-  import Awards from './components/Awards.vue'; // 荣誉奖项
-  import Hobbies from './components/Hobbies.vue'; // 兴趣爱好
-  import SelfEvaluation from './components/SelfEvaluation.vue'; // 自我评价
-  import WorksDisplay from './components/WorksDisplay.vue'; // 作品展示
+  import ResumeTitle from '@/material/ResumeTitle/ResumeTitle1/index.vue'; // 简历标题
+  import BaseInfo from '@/material/BaseInfo/BaseInfo1/index.vue'; // 基础资料
+  import JobIntention from '@/material/JobIntention/JobIntention1/index.vue'; // 求职意向
+  import EduBackground from '@/material/EduBackground/EduBackground1/index.vue'; // 学历背景
+  import SkillSpecialties from '@/material/SkillSpecialties/SkillSpecialties1/index.vue'; // 技能特长
+  import CampusExperience from '@/material/CampusExperience/CampusExperience1/index.vue'; // 校园经历
+  import InternshipExperience from '@/material/InternshipExperience/InternshipExperience1/index.vue'; // 实习经验
+  import WorkExpreience from '@/material/WorkExperience/WorkExperience1/index.vue'; // 工作经验
+  import ProjectExperience from '@/material/ProjectExperience/ProjectExperience1/index.vue'; // 项目经验
+  import Awards from '@/material/Awards/Awards1/index.vue'; // 荣誉奖项
+  import Hobbies from '@/material/Hobbies/Hobbies1/index.vue'; // 兴趣爱好
+  import SelfEvaluation from '@/material/SelfEvaluation/SelfEvaluation1/index.vue'; // 自我评价
+  import WorksDisplay from '@/material/WorksDisplay/WorksDisplay1/index.vue'; // 作品展示
   import appStore from '@/store';
   import { storeToRefs } from 'pinia';
   import { onMounted, ref } from 'vue';

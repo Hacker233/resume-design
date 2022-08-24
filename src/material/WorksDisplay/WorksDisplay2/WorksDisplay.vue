@@ -2,7 +2,7 @@
 <template>
   <div class="works-display">
     <!-- 标题 -->
-    <slot name="model-title"></slot>
+    <model-title :title="modelData.title" :iconfont="modelData.iconfont"></model-title>
     <!-- 作品展示 -->
     <ul class="works-display-list">
       <li v-for="(item, index) in modelData.LIST" :key="index">
@@ -15,6 +15,7 @@
 <script setup lang="ts">
   import { IWORKSDISPLAY } from '@/interface/model';
   import IMODELSTYLE from '@/interface/modelStyle';
+  import ModelTitle from '@/material/ModelTitle/ModelTitle2/ModelTitle.vue';
   defineProps<{
     modelData: IWORKSDISPLAY;
     modelStyle: IMODELSTYLE; // 模块样式
@@ -27,14 +28,16 @@
     margin-top: v-bind('modelStyle.mTop');
     box-sizing: border-box;
     .works-display-list {
-      margin-top: 25px;
       display: flex;
       flex-direction: column;
+      display: flex;
+      width: 100%;
+      margin-top: 20px;
+      align-items: flex-start;
       li {
         display: flex;
         flex-direction: column;
         list-style: none;
-        align-items: flex-start;
         h1 {
           font-size: v-bind('modelStyle.textFontSize');
           color: v-bind('modelStyle.textColor');

@@ -33,8 +33,8 @@
     <component
       :is="components[item.model]"
       v-if="item.style"
-      :model-data="item"
-      :data="item.data"
+      :model-data="item.data"
+      :model-style="item.style"
     ></component>
   </div>
 </template>

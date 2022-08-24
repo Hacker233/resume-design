@@ -12,18 +12,18 @@
   </div>
 </template>
 <script lang="ts" setup>
-  import BaseInfoVue from './components/BaseInfo.vue';
-  import JobIntentionVue from './components/JobIntention.vue';
-  import EduBackgroundComVue from './components/EduBackground.vue';
-  import SkillSpecialtiesVue from './components/SkillSpecialties.vue';
-  import CampusExperienceVue from './components/CampusExperience.vue';
-  import InternshipExperienceVue from './components/InternshipExperience.vue';
-  import WorkExperienceComVue from './components/WorkExperienceCom.vue';
-  import ProjectExperienceVue from './components/ProjectExperience.vue';
-  import SelfEvaluationVue from './components/SelfEvaluation.vue';
-  import WorksDisplayVue from './components/WorksDisplay.vue';
-  import HobbiesVue from './components/Hobbies.vue';
-  import AwardsVue from './components/Awards.vue';
+  import BaseInfoVue from '@/material/BaseInfo/BaseInfo3/BaseInfo.vue';
+  import JobIntentionVue from '@/material/JobIntention/JobIntention3/JobIntention.vue';
+  import EduBackgroundComVue from '@/material/EduBackground/EduBackground3/EduBackground.vue';
+  import SkillSpecialtiesVue from '@/material/SkillSpecialties/SkillSpecialties3/SkillSpecialties.vue';
+  import CampusExperienceVue from '@/material/CampusExperience/CampusExperience3/CampusExperience.vue';
+  import InternshipExperienceVue from '@/material/InternshipExperience/InternshipExperience3/InternshipExperience.vue';
+  import WorkExperienceComVue from '@/material/WorkExperience/WorkExperience3/WorkExperienceCom.vue';
+  import ProjectExperienceVue from '@/material/ProjectExperience/ProjectExperience3/ProjectExperience.vue';
+  import SelfEvaluationVue from '@/material/SelfEvaluation/SelfEvaluation3/SelfEvaluation.vue';
+  import WorksDisplayVue from '@/material/WorksDisplay/WorksDisplay3/WorksDisplay.vue';
+  import HobbiesVue from '@/material/Hobbies/Hobbies3/Hobbies.vue';
+  import AwardsVue from '@/material/Awards/Awards3/Awards.vue';
   import appStore from '@/store';
   import { storeToRefs } from 'pinia';
   import ModelBoxVue from '@/components/ModelBox/ModelBox.vue';
