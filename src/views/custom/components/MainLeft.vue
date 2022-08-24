@@ -36,7 +36,14 @@
             item-key="id"
           >
             <template #item="{ element }">
-              <div class="list-group-item com-item" @click="addModel(element)">
+              <div
+                class="list-group-item com-item"
+                :style="{
+                  height: cptOfImg[currentKey][element.cptName].height,
+                  width: cptOfImg[currentKey][element.cptName].width
+                }"
+                @click="addModel(element)"
+              >
                 <el-tooltip class="box-item" effect="light" :enterable="false">
                   <template #content>
                     <img
@@ -52,10 +59,7 @@
                     :src="
                       getAssetsMaterialFile(currentKey, cptOfImg[currentKey][element.cptName].url)
                     "
-                    :style="{
-                      height: cptOfImg[currentKey][element.cptName].height,
-                      width: cptOfImg[currentKey][element.cptName].width
-                    }"
+                    style="width: 100%"
                     alt=""
                     srcset=""
                   />
@@ -220,20 +224,22 @@
         }
       }
       .cpt-list-box {
-        width: 100%;
+        // width: 100%;
         display: flex;
         padding: 10px;
         box-sizing: border-box;
+        flex-grow: 0;
         .com-item {
-          width: 100%;
+          // width: 100%;
           cursor: move;
           border: 1px solid #eee;
           border-radius: 5px;
           overflow: hidden;
-          box-shadow: 0 5px 21px 0 rgb(78 78 78 / 8%);
+          box-shadow: 0 5px 21px 0 rgb(78 78 78 / 30%);
           transition: all 0.3s;
+          margin-bottom: 10px;
           &:hover {
-            box-shadow: 0 5px 21px 0 rgb(78 78 78 / 28%);
+            box-shadow: 0 5px 21px 0 rgb(78 78 78 / 60%);
           }
         }
       }

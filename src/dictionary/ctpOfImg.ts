@@ -20,6 +20,16 @@ const ctpOfImg: ICptOfImg = {
       url: 'BASE_INFO_1.png',
       width: '100%',
       height: ''
+    },
+    BASE_INFO_2: {
+      url: 'BASE_INFO_2.png',
+      width: '50%',
+      height: ''
+    },
+    BASE_INFO_3: {
+      url: 'BASE_INFO_3.png',
+      width: '100%',
+      height: ''
     }
   },
   JOB_INTENTION: {
@@ -40,6 +50,11 @@ const ctpOfImg: ICptOfImg = {
     SKILL_SPECIALTIES_1: {
       url: 'SKILL_SPECIALTIES_1.png',
       width: '100%',
+      height: ''
+    },
+    SKILL_SPECIALTIES_2: {
+      url: 'SKILL_SPECIALTIES_2.png',
+      width: '50%',
       height: ''
     }
   },

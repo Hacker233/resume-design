@@ -1,8 +1,15 @@
 import EDU_BACKGROUND_1 from '@/material/EduBackground/EduBackground1/index.vue';
+
 import BASE_INFO_1 from '@/material/BaseInfo/BaseInfo1/index.vue';
+import BASE_INFO_2 from '@/material/BaseInfo/BaseInfo2/BaseInfo.vue';
+import BASE_INFO_3 from '@/material/BaseInfo/BaseInfo3/BaseInfo.vue';
+
 import RESUME_TITLE_1 from '@/material/ResumeTitle/ResumeTitle1/index.vue';
 import JOB_INTENTION_1 from '@/material/JobIntention/JobIntention1/index.vue';
+
 import SKILL_SPECIALTIES_1 from '@/material/SkillSpecialties/SkillSpecialties1/index.vue';
+import SKILL_SPECIALTIES_2 from '@/material/SkillSpecialties/SkillSpecialties2/SkillSpecialties.vue';
+
 import CAMPUS_EXPERIENCE_1 from '@/material/CampusExperience/CampusExperience1/index.vue';
 import INTERNSHIP_EXPERIENCE_1 from '@/material/InternshipExperience/InternshipExperience1/index.vue';
 import WORK_EXPERIENCE_1 from '@/material/WorkExperience/WorkExperience1/index.vue';
@@ -16,9 +23,12 @@ import WORKS_DISPLAY_1 from '@/material/WorksDisplay/WorksDisplay1/index.vue';
 const MaterialComponents = {
   EDU_BACKGROUND_1: EDU_BACKGROUND_1,
   BASE_INFO_1: BASE_INFO_1,
+  BASE_INFO_2: BASE_INFO_2,
+  BASE_INFO_3: BASE_INFO_3,
   RESUME_TITLE_1: RESUME_TITLE_1,
   JOB_INTENTION_1: JOB_INTENTION_1,
   SKILL_SPECIALTIES_1: SKILL_SPECIALTIES_1,
+  SKILL_SPECIALTIES_2: SKILL_SPECIALTIES_2,
   CAMPUS_EXPERIENCE_1: CAMPUS_EXPERIENCE_1,
   INTERNSHIP_EXPERIENCE_1: INTERNSHIP_EXPERIENCE_1,
   WORK_EXPERIENCE_1: WORK_EXPERIENCE_1,
