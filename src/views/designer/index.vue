@@ -104,21 +104,17 @@
   const { id, name } = route.query; // 模板id和模板名称
   const componentName = ref<string>(name as string); // 模板名称,即渲染哪个模板
   // 模板1、模板2、模板3处理逻辑
-  if (componentName.value !== 'custom') {
-    resumeJsonNewStore.value.ID = id as string;
-    resumeJsonNewStore.value.NAME = name as string;
-    if (localData) {
-      let localObj = JSON.parse(localData)[id as string];
-      if (localObj) {
-        changeResumeJsonData(localObj);
-      } else {
-        resetStoreAndLocal();
-      }
+  resumeJsonNewStore.value.ID = id as string;
+  resumeJsonNewStore.value.NAME = name as string;
+  if (localData) {
+    let localObj = JSON.parse(localData)[id as string];
+    if (localObj) {
+      changeResumeJsonData(localObj);
     } else {
       resetStoreAndLocal();
     }
   } else {
-    console.log('自定义的模板');
+    resetStoreAndLocal();
   }
 
   console.log('简历JSON数据', resumeJsonNewStore.value);
@@ -214,7 +210,7 @@
   // 子组件内容高度发生变化---需要重新计算高度，触发resizeDOM
   const contentHeightChange = (height: number) => {
     htmlContentPdf.value.style.height = height + 'px';
-    console.log('子组件内容高度发生变化---需要重新计算高度',htmlContentPdf.value.style.height)
+    console.log('子组件内容高度发生变化---需要重新计算高度', htmlContentPdf.value.style.height);
   };
 
   // 点击其它区域，取消模块选择，即取消模块选中效果

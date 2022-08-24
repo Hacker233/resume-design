@@ -5,14 +5,14 @@
     <slot name="model-title"></slot>
     <!-- 校园经历 -->
     <div class="work-experience-list">
-      <div v-for="(item, index) in data.LIST" :key="index" class="list">
+      <div v-for="(item, index) in modelData.LIST" :key="index" class="list">
         <ul>
           <!-- 经历时间 -->
-          <li v-if="data.isShow.date" class="list-title">{{ formatDate(item.date) }}</li>
+          <li v-if="modelData.isShow.date" class="list-title">{{ formatDate(item.date) }}</li>
           <!-- 公司名称 -->
-          <li v-if="data.isShow.companyName" class="list-title">{{ item.companyName }}</li>
+          <li v-if="modelData.isShow.companyName" class="list-title">{{ item.companyName }}</li>
           <!-- 主要职责 -->
-          <li v-if="data.isShow.posts" class="list-title">{{ item.posts }}</li>
+          <li v-if="modelData.isShow.posts" class="list-title">{{ item.posts }}</li>
         </ul>
         <!-- 简述 -->
         <div class="job-content">
@@ -28,19 +28,19 @@
   </div>
 </template>
 <script setup lang="ts">
-  import { IMATERIALITEM } from '@/interface/material';
   import { IWORKEXPERIENCE } from '@/interface/model';
+  import IMODELSTYLE from '@/interface/modelStyle';
   import { formatDate } from '@/utils/common';
   defineProps<{
-    modelData: IMATERIALITEM;
-    data: IWORKEXPERIENCE;
+    modelData: IWORKEXPERIENCE;
+    modelStyle: IMODELSTYLE; // 模块样式
   }>();
 </script>
 <style lang="scss" scoped>
   .work-experience {
-    padding: v-bind('modelData.style.pTopBottom') v-bind('modelData.style.pLeftRight');
-    margin-bottom: v-bind('modelData.style.mBottom');
-    margin-top: v-bind('modelData.style.mTop');
+    padding: v-bind('modelStyle.pTopBottom') v-bind('modelStyle.pLeftRight');
+    margin-bottom: v-bind('modelStyle.mBottom');
+    margin-top: v-bind('modelStyle.mTop');
     box-sizing: border-box;
     .work-experience-list {
       margin-top: 25px;
@@ -56,9 +56,9 @@
           margin-bottom: 12px;
           .list-title {
             list-style: none;
-            font-size: v-bind('modelData.style.titleFontSize');
-            color: v-bind('modelData.style.titleColor');
-            font-weight: v-bind('modelData.style.titleFontWeight');
+            font-size: v-bind('modelStyle.titleFontSize');
+            color: v-bind('modelStyle.titleColor');
+            font-weight: v-bind('modelStyle.titleFontWeight');
             letter-spacing: 2px;
             text-align: justify;
           }
@@ -68,9 +68,9 @@
           .left {
             width: 20%;
             letter-spacing: 2px;
-            font-size: v-bind('modelData.style.titleFontSize');
-            color: v-bind('modelData.style.titleColor');
-            font-weight: v-bind('modelData.style.titleFontWeight');
+            font-size: v-bind('modelStyle.titleFontSize');
+            color: v-bind('modelStyle.titleColor');
+            font-weight: v-bind('modelStyle.titleFontWeight');
           }
           .content-list {
             flex: 1;
@@ -80,9 +80,9 @@
               li {
                 letter-spacing: 2px;
                 text-align: justify;
-                font-size: v-bind('modelData.style.textFontSize');
-                color: v-bind('modelData.style.textColor');
-                font-weight: v-bind('modelData.style.textFontWeight');
+                font-size: v-bind('modelStyle.textFontSize');
+                color: v-bind('modelStyle.textColor');
+                font-weight: v-bind('modelStyle.textFontWeight');
                 line-height: 1.5;
                 &:not(:last-child) {
                   margin-bottom: 6px;

@@ -1,7 +1,7 @@
+<!-- 求职意向 -->
 <template>
   <div class="job-intention">
-    <!-- 标题 -->
-    <slot name="model-title"></slot>
+    <model-title :title="modelData.title" :iconfont="modelData.iconfont"></model-title>
     <!-- 求职意向 -->
     <ul>
       <!-- 求职类型 -->
@@ -35,10 +35,12 @@
 <script setup lang="ts">
   import { IJOBINTENTION } from '@/interface/model';
   import IMODELSTYLE from '@/interface/modelStyle';
-  defineProps<{
+  import ModelTitle from '@/material/ModelTitle/ModelTitle2/ModelTitle.vue';
+  const props = defineProps<{
     modelData: IJOBINTENTION;
     modelStyle: IMODELSTYLE; // 模块样式
   }>();
+  props.modelData.isShow.jobSearchType = false;
 </script>
 <style lang="scss" scoped>
   .job-intention {

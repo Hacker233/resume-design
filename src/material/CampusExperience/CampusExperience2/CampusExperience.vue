@@ -1,59 +1,56 @@
-<!-- 教育背景 -->
+<!-- 校园经历 -->
 <template>
-  <div class="edu-background">
+  <div class="campus-experience">
     <!-- 标题 -->
-    <slot name="model-title"></slot>
-    <!-- 教育背景 -->
-    <div class="edu-list">
-      <ul v-for="(item, index) in modelData.LIST" :key="index">
-        <!-- 日期和学校 -->
-        <div class="date-school-box">
-          <span v-if="modelData.isShow.date">
-            {{ formatDate(item.date) }}
-          </span>
-          <span v-if="modelData.isShow.schoolName">
-            {{ item.schoolName }}
-          </span>
-          <span v-if="modelData.isShow.degree">
-            {{ item.degree }}
-          </span>
+    <model-title :title="modelData.title" :iconfont="modelData.iconfont"></model-title>
+    <!-- 校园经历 -->
+    <div v-for="(item, index) in modelData.LIST" :key="index" class="list">
+      <ul>
+        <!-- 经历时间和项目名称 -->
+        <div class="date-name-box">
+          <span v-if="modelData.isShow.date">{{ formatDate(item.date) }}</span>
+          <!-- 项目名称 -->
+          <span v-if="modelData.isShow.campusBriefly">{{ item.campusBriefly }}</span>
         </div>
-        <!-- 专业 -->
-        <p v-if="modelData.isShow.specialized" class="special">{{ item.specialized }}</p>
-        <!-- 教学经历 -->
-        <p v-if="modelData.isShow.majorCourse" class="majorCourse">{{ item.majorCourse }}</p>
+        <!-- 主要职责 -->
+        <p v-if="modelData.isShow.campusDuty" class="campusDuty">{{ item.campusDuty }}</p>
+        <!-- 简述 -->
+        <p v-if="modelData.isShow.campusContent" class="campusContent">{{ item.campusContent }}</p>
       </ul>
     </div>
   </div>
 </template>
 <script setup lang="ts">
-  import { IEDUBACKGROUND } from '@/interface/model';
-  import IMODELSTYLE from '@/interface/modelStyle';
+  import { ICAMPUSEXPERIENCE } from '@/interface/model';
+  import ModelTitle from '@/material/ModelTitle/ModelTitle2/ModelTitle.vue';
   import { formatDate } from '@/utils/common';
+  import IMODELSTYLE from '@/interface/modelStyle';
+
   defineProps<{
-    modelData: IEDUBACKGROUND;
+    modelData: ICAMPUSEXPERIENCE;
     modelStyle: IMODELSTYLE; // 模块样式
   }>();
 </script>
 <style lang="scss" scoped>
-  .edu-background {
+  .campus-experience {
     padding: v-bind('modelStyle.pTopBottom') v-bind('modelStyle.pLeftRight');
     margin-bottom: v-bind('modelStyle.mBottom');
     margin-top: v-bind('modelStyle.mTop');
     box-sizing: border-box;
-    .edu-list {
+    .list {
+      display: flex;
+      flex-direction: column;
       display: flex;
       width: 100%;
       flex-direction: column;
-
+      margin-top: 20px;
       ul {
         display: flex;
         flex-direction: column;
         justify-content: space-between;
         align-items: center;
         width: 100%;
-        margin-top: 20px;
-        .date-school-box {
+        .date-name-box {
           width: 100%;
           display: flex;
           justify-content: space-between;
@@ -63,8 +60,8 @@
           letter-spacing: 2px;
           margin-bottom: 5px;
         }
-        .special,
-        .majorCourse {
+        .campusDuty,
+        .campusContent {
           width: 100%;
           display: flex;
           font-size: v-bind('modelStyle.textFontSize');
@@ -74,7 +71,7 @@
           text-align: justify;
           font-family: '微软雅黑';
         }
-        .special {
+        .campusDuty {
           margin-bottom: 10px;
         }
       }

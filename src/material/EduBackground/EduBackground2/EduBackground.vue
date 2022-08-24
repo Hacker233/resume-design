@@ -2,7 +2,7 @@
 <template>
   <div class="edu-background">
     <!-- 标题 -->
-    <slot name="model-title"></slot>
+    <model-title :title="modelData.title" :iconfont="modelData.iconfont"></model-title>
     <!-- 教育背景 -->
     <div class="edu-list">
       <ul v-for="(item, index) in modelData.LIST" :key="index">
@@ -28,8 +28,9 @@
 </template>
 <script setup lang="ts">
   import { IEDUBACKGROUND } from '@/interface/model';
-  import IMODELSTYLE from '@/interface/modelStyle';
+  import ModelTitle from '@/material/ModelTitle/ModelTitle2/ModelTitle.vue';
   import { formatDate } from '@/utils/common';
+  import IMODELSTYLE from '@/interface/modelStyle';
   defineProps<{
     modelData: IEDUBACKGROUND;
     modelStyle: IMODELSTYLE; // 模块样式
