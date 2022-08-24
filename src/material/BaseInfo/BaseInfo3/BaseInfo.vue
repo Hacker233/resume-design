@@ -35,6 +35,8 @@
 </script>
 <style lang="scss" scoped>
   .base-info {
+    background: url(../../../assets/images/template3_bg_2.png);
+    background-repeat: no-repeat;
     width: 100%;
     height: 250px;
     border-bottom: 1px dashed #cfcfcf;
