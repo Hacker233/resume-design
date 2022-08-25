@@ -8,7 +8,10 @@
       <div ref="leftRef" class="left">
         <c-scrollbar trigger="hover">
           <Title show-collapse @unflod-or-collapse="unflodOrCollapse"></Title>
-          <model-list :key="refreshUuid" :left-show-status="leftShowStatus"></model-list>
+          <model-list
+            :key="refreshUuid"
+            :left-show-status="leftShowStatus"
+          ></model-list>
         </c-scrollbar>
       </div>
 
@@ -16,7 +19,7 @@
       <div :key="refreshUuid" class="center">
         <div ref="html2Pdf" class="design">
           <div ref="htmlContentPdf" class="design-content">
-            <component :is="componentName" @content-height-change="contentHeightChange" />
+            <component is="custom" @content-height-change="contentHeightChange" />
           </div>
           <!-- 分页线 -->
           <template v-if="linesNumber > 0">
@@ -66,12 +69,11 @@
   import { useRoute } from 'vue-router';
   import { CScrollbar } from 'c-scrollbar'; // 滚动条
   import DesignNav from './components/DesignNav.vue';
-  import TEMPLATE_1_JSON from '@/schema/template1';
-  import TEMPLATE_2_JSON from '@/schema/template2';
-  import TEMPLATE_3_JSON from '@/schema/template3';
   import { ElMessage } from 'element-plus';
   import MODEL_DATA_JSON from '@/schema/modelData';
   import optionsComponents from '@/utils/registerMaterialOptionsCom';
+  import { getTemplateJson } from '@/service/template/template';
+  import IDESIGNJSON from '@/interface/design';
 
   const { cptTitle } = storeToRefs(appStore.useSelectMaterialStore);
   const { changeResumeJsonData } = appStore.useResumeJsonNewStore;
@@ -80,29 +82,25 @@
   const { resumeJsonNewStore, importJson } = storeToRefs(appStore.useResumeJsonNewStore); // store里的模板数据
 
   // 重置数据方法
-  const resetStoreAndLocal = () => {
+  const resetStoreAndLocal = async () => {
     let TEMPLATE_JSON;
-    if (name === 'template1') {
-      TEMPLATE_JSON = TEMPLATE_1_JSON;
-    } else if (name === 'template2') {
-      TEMPLATE_JSON = TEMPLATE_2_JSON;
-    } else if (name === 'template3') {
-      TEMPLATE_JSON = TEMPLATE_3_JSON;
-    } else {
-      TEMPLATE_JSON = importJson.value;
-    }
+
+    const url = `${location.origin}/public/json/${name}/template.json`;
+    const data: IDESIGNJSON = await getTemplateJson(url);
+    TEMPLATE_JSON = data;
     TEMPLATE_JSON.ID = id as string;
     TEMPLATE_JSON.NAME = name as string;
     TEMPLATE_JSON.COMPONENTS.forEach((item) => {
       item.data = MODEL_DATA_JSON[item.model];
     });
     changeResumeJsonData(TEMPLATE_JSON); // 更改store的数据
+    setUuid();
+    console.log('简历JSON数据', resumeJsonNewStore.value);
   };
   // 获取本地数据,初始化store里面的简历数据
   const localData = localStorage.getItem('resumeDraft');
   const route = useRoute();
   const { id, name } = route.query; // 模板id和模板名称
-  const componentName = ref<string>(name as string); // 模板名称,即渲染哪个模板
   // 模板1、模板2、模板3处理逻辑
   resumeJsonNewStore.value.ID = id as string;
   resumeJsonNewStore.value.NAME = name as string;
@@ -116,8 +114,6 @@
   } else {
     resetStoreAndLocal();
   }
-
-  console.log('简历JSON数据', resumeJsonNewStore.value);
 
   // 生命周期函数
   onMounted(async () => {
@@ -208,8 +204,10 @@
   };
 
   // 子组件内容高度发生变化---需要重新计算高度，触发resizeDOM
-  const contentHeightChange = (height: number) => {
+  const contentHeightChange = async (height: number) => {
     htmlContentPdf.value.style.height = height + 'px';
+    await nextTick();
+    resizeDOM();
     console.log('子组件内容高度发生变化---需要重新计算高度', htmlContentPdf.value.style.height);
   };
 

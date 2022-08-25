@@ -46,6 +46,10 @@
     width: 100%;
     box-sizing: border-box;
     align-items: center;
+    padding: v-bind('modelStyle.pTopBottom') v-bind('modelStyle.pLeftRight');
+    box-sizing: border-box;
+    margin-top: v-bind('modelStyle.mTop');
+    margin-bottom: v-bind('modelStyle.mBottom');
     .skill-title {
       display: flex;
       align-items: center;

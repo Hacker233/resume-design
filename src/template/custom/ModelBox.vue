@@ -32,6 +32,12 @@
       :model-style="item.style"
       :style="getDynamicStyle(item)"
     ></component>
+
+    <!-- 模板3左侧竖线 -->
+    <div
+      class="template2-left-line"
+      v-if="name === 'template3' && item.model !== 'BASE_INFO'"
+    ></div>
   </div>
 </template>
 <script lang="ts" setup>
@@ -42,13 +48,15 @@
   import { storeToRefs } from 'pinia';
   import { ComponentPublicInstance } from 'vue';
   import { useDeleteModel } from '@/hooks/useDeleteModel';
+  import useGetLineLeft from '@/hooks/material/useTemplate3LeftLine';
   const emit = defineEmits(['leftRightDelete', 'leftRightAdd']);
   const props = defineProps<{
     item: IMATERIALITEM;
     components: any;
   }>();
   const { resumeJsonNewStore } = storeToRefs(appStore.useResumeJsonNewStore);
-
+  const route = useRoute();
+  const { name } = route.query; // 模板id和模板名称
   // 锚点定位
   const { cptKeyId } = storeToRefs(appStore.useSelectMaterialStore);
   watch(
@@ -143,17 +151,28 @@
     insert.keyId = getUuid();
     resumeJsonNewStore.value.COMPONENTS.splice(index, 0, insert);
   };
+
+  // 模板3左侧竖线
+  const { left } = useGetLineLeft();
 </script>
 <style lang="scss" scoped>
   .material-model-box {
     border: 1px dashed transparent;
     transition: all 0.3s;
     position: relative;
+    .template2-left-line {
+      position: absolute;
+      width: 1px;
+      height: 100%;
+      background-color: v-bind('resumeJsonNewStore.GLOBAL_STYLE.themeColor');
+      left: v-bind('left');
+      top: 1px;
+    }
     .mode-item {
       border: 1px dashed transparent;
       position: relative;
       // border-radius: 8px;
-      overflow: hidden;
+      // overflow: hidden;
       user-select: none;
       box-sizing: border-box;
       &:hover {

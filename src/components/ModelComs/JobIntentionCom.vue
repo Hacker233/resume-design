@@ -2,6 +2,8 @@
   <div class="job-intention">
     <!-- 标题 -->
     <slot name="model-title"></slot>
+    <!-- 其它内容 -->
+    <slot name="left-line"></slot>
     <!-- 求职意向 -->
     <ul>
       <!-- 求职类型 -->

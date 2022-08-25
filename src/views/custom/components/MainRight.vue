@@ -19,7 +19,7 @@
   import GlobalStyleOptionsVue from '@/options/GlobalStyleOptions.vue';
   import optionsComponents from '@/utils/registerMaterialOptionsCom';
 </script>
-<style lang="scss" scoped>
+<style lang="scss">
   @import '../../../style/options.scss';
   .main-right-box {
     width: 355px;

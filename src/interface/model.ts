@@ -243,6 +243,17 @@ interface IWORKSDISPLAY {
   [propNams: string]: any;
 }
 
+// 自定义的任意模块
+interface ICUSTOM1 {
+  iconfont: string;
+  model: string;
+  show: boolean;
+  title: string;
+  name: string;
+  abstract: string;
+  [propNams: string]: any;
+}
+
 // 全局样式主题
 interface IGlobalStyle {
   themeColor: string; // 主题色
@@ -275,7 +286,8 @@ interface IResumeJson {
     IAWARDS,
     IHOBBIES,
     ISELFEVALUATION,
-    IWORKSDISPLAY
+    IWORKSDISPLAY,
+    ICUSTOM1
   ];
   GLOBAL_STYLE: IGlobalStyle;
 }
@@ -294,7 +306,8 @@ type TModelList = Array<
     IAWARDS,
     IHOBBIES,
     ISELFEVALUATION,
-    IWORKSDISPLAY
+    IWORKSDISPLAY,
+    ICUSTOM1
   ]
 >;
 
@@ -315,5 +328,6 @@ export {
   ISELFEVALUATION,
   IWORKSDISPLAY,
   TModelList,
-  IGlobalStyle
+  IGlobalStyle,
+  ICUSTOM1
 };
