@@ -84,8 +84,7 @@
   // 重置数据方法
   const resetStoreAndLocal = async () => {
     let TEMPLATE_JSON;
-
-    const url = `${location.origin}/public/json/${name}/template.json`;
+    const url = `${location.origin}/json/${name}/template.json`;
     const data: IDESIGNJSON = await getTemplateJson(url);
     TEMPLATE_JSON = data;
     TEMPLATE_JSON.ID = id as string;
