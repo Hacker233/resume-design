@@ -277,7 +277,7 @@
   };
 
   // 左右内边距
-  const defaultPLeftRight: number = pxTonumber(resumeJsonNewStore.GLOBAL_STYLE.modelMarginBottom);
+  const defaultPLeftRight: number = pxTonumber(resumeJsonNewStore.GLOBAL_STYLE.pLeftRight);
   const pLeftRight = ref<number>(defaultPLeftRight);
   const handleChangePLeftRight = (value: number): void => {
     if (resumeJsonNewStore.GLOBAL_STYLE) {

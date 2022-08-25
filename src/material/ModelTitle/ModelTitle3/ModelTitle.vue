@@ -22,7 +22,7 @@
     display: flex;
     align-items: center;
     position: relative;
-    left: -42px;
+    left: -30px;
     .icon-box {
       background: v-bind('resumeJsonNewStore.GLOBAL_STYLE.themeColor');
       width: 30px;
@@ -32,6 +32,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      z-index: 1;
     }
     .right-title {
       h1 {

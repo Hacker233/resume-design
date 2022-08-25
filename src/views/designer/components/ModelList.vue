@@ -1,6 +1,6 @@
 <template>
   <div class="model-list-box">
-    <div class="model-ul">
+    <div class="model-ul" v-if="resumeJsonNewStore.COMPONENTS.length">
       <draggable
         :list="resumeJsonNewStore.COMPONENTS"
         item-key="id"

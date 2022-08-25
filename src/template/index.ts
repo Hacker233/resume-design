@@ -14,11 +14,11 @@ const templateList: Array<ITempList> = [
     id: '3',
     name: 'template3',
     preview: 'template3.png'
-  },
-  {
-    id: '4',
-    name: 'custom',
-    preview: 'custom.png'
   }
+  // {
+  //   id: '4',
+  //   name: 'custom',
+  //   preview: 'custom.png'
+  // }
 ];
 export default templateList;
