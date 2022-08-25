@@ -2,7 +2,7 @@
 <template>
   <div class="content-box" ref="customContentPdf">
     <!-- 无布局方式 -->
-    <template v-if="!resumeJsonNewStore.COMPONENTS.length">
+    <template v-if="resumeJsonNewStore.LAYOUT === 'custom'">
       <div class="upload-json-box" @click="importJson">
         <svg-icon icon-name="icon-daimashili" color="#74a274" size="28px"></svg-icon>
         <h1>请导入JSON文件</h1>
@@ -82,7 +82,6 @@
 </template>
 <script lang="ts" setup>
   import appStore from '@/store';
-  import { storeToRefs } from 'pinia';
   import ModelBox from './ModelBox.vue';
   import draggable from 'vuedraggable';
   import { IMATERIALITEM } from '@/interface/material';
@@ -92,14 +91,13 @@
   import MaterialComponents from '@/utils/registerMaterialCom'; // 所有物料组件
   defineOptions({ name: 'custom' });
   const emit = defineEmits(['contentHeightChange']);
-
   // 生命周期函数
   onMounted(() => {
     changeHeight();
   });
 
   // store相关数据
-  const { resumeJsonNewStore } = storeToRefs(appStore.useResumeJsonNewStore);
+  const { resumeJsonNewStore } = appStore.useResumeJsonNewStore;
 
   // 监听内容高度发生变化
   const customContentPdf = ref<any>(null);
@@ -120,12 +118,10 @@
    * 左右两列布局
    */
   // 左侧列表
-  const leftList = ref<any>(
-    resumeJsonNewStore.value.COMPONENTS.filter((item) => item.layout === 'left')
-  );
+  const leftList = ref<any>(resumeJsonNewStore.COMPONENTS.filter((item) => item.layout === 'left'));
   // 右侧列表
   const rightList = ref<any>(
-    resumeJsonNewStore.value.COMPONENTS.filter((item) => item.layout === 'right')
+    resumeJsonNewStore.COMPONENTS.filter((item) => item.layout === 'right')
   );
 
   watch(
@@ -134,8 +130,8 @@
       leftList.value.forEach((item: IMATERIALITEM) => {
         item.layout = 'left';
       });
-      resumeJsonNewStore.value.COMPONENTS = leftList.value.concat(rightList.value);
-      console.log('最新designJsonStore', resumeJsonNewStore.value.COMPONENTS, leftList.value);
+      resumeJsonNewStore.COMPONENTS = leftList.value.concat(rightList.value);
+      console.log('最新designJsonStore', resumeJsonNewStore.COMPONENTS, leftList.value);
     },
     {
       deep: true
@@ -147,8 +143,8 @@
       rightList.value.forEach((item: IMATERIALITEM) => {
         item.layout = 'right';
       });
-      resumeJsonNewStore.value.COMPONENTS = leftList.value.concat(rightList.value);
-      console.log('最新designJsonStore', resumeJsonNewStore.value.COMPONENTS, rightList.value);
+      resumeJsonNewStore.COMPONENTS = leftList.value.concat(rightList.value);
+      console.log('最新designJsonStore', resumeJsonNewStore.COMPONENTS, rightList.value);
     },
     {
       deep: true
@@ -158,13 +154,13 @@
   const leftDelete = (keyId: string) => {
     let index: number = leftList.value.findIndex((item: IMATERIALITEM) => item.keyId === keyId);
     leftList.value.splice(index, 1);
-    resumeJsonNewStore.value.COMPONENTS = leftList.value.concat(rightList.value);
+    resumeJsonNewStore.COMPONENTS = leftList.value.concat(rightList.value);
   };
   // 右侧模块删除
   const rightDelete = (keyId: string) => {
     let index: number = rightList.value.findIndex((item: IMATERIALITEM) => item.keyId === keyId);
     rightList.value.splice(index, 1);
-    resumeJsonNewStore.value.COMPONENTS = leftList.value.concat(rightList.value);
+    resumeJsonNewStore.COMPONENTS = leftList.value.concat(rightList.value);
   };
   // 左侧模块复制
   const leftAdd = (modeItem: IMATERIALITEM) => {
@@ -174,7 +170,7 @@
     let insert = cloneDeep(modeItem);
     insert.keyId = getUuid();
     leftList.value.splice(index, 0, insert);
-    resumeJsonNewStore.value.COMPONENTS = leftList.value.concat(rightList.value);
+    resumeJsonNewStore.COMPONENTS = leftList.value.concat(rightList.value);
   };
   // 右侧模块复制
   const rightAdd = (modeItem: IMATERIALITEM) => {
@@ -184,7 +180,7 @@
     let insert = cloneDeep(modeItem);
     insert.keyId = getUuid();
     rightList.value.splice(index, 0, insert);
-    resumeJsonNewStore.value.COMPONENTS = leftList.value.concat(rightList.value);
+    resumeJsonNewStore.COMPONENTS = leftList.value.concat(rightList.value);
   };
 
   // 上传JSON弹窗

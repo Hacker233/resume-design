@@ -17,7 +17,7 @@ const RESUME_JSON: IRESUMEJSON = {
     secondTitleWeight: 600, // 二级标题字体粗细
     textFontWeight: 500, // 正文字体粗细
     pTopBottom: '0', // 上下内边距
-    pLeftRight: '40px', // 左右内边距
+    pLeftRight: '', // 左右内边距
     modelMarginTop: '0px',
     modelMarginBottom: '45px',
     leftWidth: '', // 左右布局时左侧宽度

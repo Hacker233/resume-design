@@ -57,8 +57,8 @@ import FileSaver from 'file-saver';
 
   // 导出为JSON
   const exportJSON = () => {
-    resumeJsonNewStore.value.NAME = 'custom';
-    resumeJsonNewStore.value.ID = getUuid();
+    resumeJsonNewStore.value.NAME = '';
+    resumeJsonNewStore.value.ID = '';
     const data = JSON.stringify(resumeJsonNewStore.value, null, 4);
     const blob = new Blob([data], { type: '' });
     FileSaver.saveAs(blob, resumeJsonNewStore.value.TITLE + '.json');

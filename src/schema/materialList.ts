@@ -89,7 +89,7 @@ export const MATERIAL_JSON: IMSTERIALLISTJSON = {
         mTop: '0px',
         themeColor: '#000',
         firstTitleFontSize: '20px',
-        pTopBottom: '0',
+        pTopBottom: '40px',
         pLeftRight: '40px'
       },
       data: {}

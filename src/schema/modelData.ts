@@ -284,6 +284,18 @@ const MODEL_DATA_JSON: IMODELDATAJSON = {
         worksIntroduce: '这是一个千万级作品'
       }
     ]
+  },
+  CUSTOM_1: {
+    iconfont: 'icon-jibenziliao',
+    model: 'CUSTOM_1',
+    show: true,
+    title: '姓名简介',
+    name: '小猪课堂',
+    abstract: '用一句话来概括一下自己把！',
+    isShow: {
+      abstract: true,
+      name: true
+    }
   }
 };
 export default MODEL_DATA_JSON;
