@@ -69,7 +69,7 @@
   import { ElMessage } from 'element-plus';
   import MODEL_DATA_JSON from '@/schema/modelData';
   import optionsComponents from '@/utils/registerMaterialOptionsCom';
-  import { getTemplateJson } from '@/service/template/template';
+  import { getTemplateJson } from '@/http/api/getTemplateJson';
   import IDESIGNJSON from '@/interface/design';
   import { closeGlobalLoading } from '@/utils/common';
 
