@@ -14,7 +14,7 @@ export const MATERIAL_JSON: IMSTERIALLISTJSON = {
       cptZ: 0, // 组件z坐标
       cptHeight: '100px', // 组件高度
       cptWidth: '100%', // 组件宽度
-      layout: '', // 布局在左侧还是右侧
+      layout: 'center', // 布局在左侧还是右侧
       show: true, // 组件是否显示
       style: {
         themeColor: '#000',
@@ -159,6 +159,66 @@ export const MATERIAL_JSON: IMSTERIALLISTJSON = {
         pLeftRight: '40px'
       }, // 组件样式
       data: {} // 组件数据
+    },
+    {
+      keyId: '',
+      model: 'JOB_INTENTION',
+      cptName: 'JOB_INTENTION_2',
+      cptOptionsName: 'JOB_INTENTION_OPTIONS',
+      cptTitle: '求职意向',
+      cptX: 0,
+      cptY: 0,
+      cptZ: 0,
+      cptHeight: '100px',
+      cptWidth: '100%',
+      layout: 'right',
+      show: true,
+      style: {
+        textColor: '#757575',
+        textFontSize: '14px',
+        textFontWeight: 500,
+        mBottom: '0px',
+        mTop: '0px',
+        themeColor: '#254665',
+        firstTitleFontSize: '20px',
+        titleColor: '#121c26',
+        titleFontSize: '30px',
+        titleFontWeight: 500,
+        pTop: '0',
+        pBottom: '30px',
+        pLeftRight: '30px'
+      },
+      data: {}
+    },
+    {
+      keyId: '',
+      model: 'JOB_INTENTION',
+      cptName: 'JOB_INTENTION_3',
+      cptOptionsName: 'JOB_INTENTION_OPTIONS',
+      cptTitle: '求职意向',
+      cptX: 0,
+      cptY: 0,
+      cptZ: 0,
+      cptHeight: '100px',
+      cptWidth: '100%',
+      layout: 'center',
+      show: true,
+      style: {
+        textColor: '#757575',
+        textFontSize: '14px',
+        textFontWeight: 500,
+        mBottom: '0',
+        mTop: '0px',
+        themeColor: '#079cfa',
+        firstTitleFontSize: '20px',
+        titleColor: '#121c26',
+        titleFontSize: '30px',
+        titleFontWeight: 500,
+        pTop: '0',
+        pBottom: '30px',
+        pLeftRight: '50px'
+      },
+      data: {}
     }
   ],
   EDU_BACKGROUND: [
@@ -517,6 +577,38 @@ export const MATERIAL_JSON: IMSTERIALLISTJSON = {
         pTop: '0',
         pBottom: '30px',
         pLeftRight: '40px'
+      }, // 组件样式
+      data: {} // 组件数据
+    }
+  ],
+  CUSTOM: [
+    {
+      keyId: '', // 组件id
+      model: 'CUSTOM_1', // 模块
+      cptName: 'CUSTOM_1', // 组件名
+      cptOptionsName: 'CUSTOM_OPTIONS_1',
+      cptTitle: '姓名简介', // 组件名
+      cptX: 0, // 组件x坐标
+      cptY: 0, // 组件y坐标
+      cptZ: 0, // 组件z坐标
+      cptHeight: '50px', // 组件高度
+      cptWidth: '100%', // 组件宽度
+      layout: 'right', // 布局在左侧还是右侧
+      show: true, // 组件是否显示
+      style: {
+        titleColor: '#121c26',
+        titleFontSize: '30px',
+        textFontSize: '14px',
+        titleFontWeight: 500,
+        textFontWeight: 500,
+        textColor: '#686868',
+        mBottom: '0px',
+        mTop: '0',
+        themeColor: '#000',
+        firstTitleFontSize: '20px',
+        pTop: '30px',
+        pBottom: '30px',
+        pLeftRight: '30px'
       }, // 组件样式
       data: {} // 组件数据
     }
