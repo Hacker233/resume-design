@@ -78,7 +78,7 @@ export const MATERIAL_JSON: IMSTERIALLISTJSON = {
       cptZ: 0,
       cptHeight: '100px',
       cptWidth: '100%',
-      layout: '',
+      layout: 'right',
       show: true,
       style: {
         titleColor: '#fff',
@@ -252,6 +252,66 @@ export const MATERIAL_JSON: IMSTERIALLISTJSON = {
         pLeftRight: '40px'
       }, // 组件样式
       data: {} // 组件数据
+    },
+    {
+      keyId: '',
+      model: 'EDU_BACKGROUND',
+      cptName: 'EDU_BACKGROUND_2',
+      cptOptionsName: 'EDU_BACKGROUND_OPTIONS_1',
+      cptTitle: '教育背景',
+      cptX: 0,
+      cptY: 0,
+      cptZ: 0,
+      cptHeight: '50px',
+      cptWidth: '100%',
+      layout: 'right',
+      show: true,
+      style: {
+        textColor: '#757575',
+        textFontSize: '14px',
+        textFontWeight: 500,
+        titleColor: '#666666',
+        titleFontSize: '14px',
+        titleFontWeight: 600,
+        mBottom: '0px',
+        mTop: '0px',
+        themeColor: '#254665',
+        firstTitleFontSize: '20px',
+        pTop: '0',
+        pBottom: '30px',
+        pLeftRight: '30px'
+      },
+      data: {}
+    },
+    {
+      keyId: '',
+      model: 'EDU_BACKGROUND',
+      cptName: 'EDU_BACKGROUND_3',
+      cptOptionsName: 'EDU_BACKGROUND_OPTIONS_1',
+      cptTitle: '教育背景',
+      cptX: 0,
+      cptY: 0,
+      cptZ: 0,
+      cptHeight: '50px',
+      cptWidth: '100%',
+      layout: 'right',
+      show: true,
+      style: {
+        textColor: '#757575',
+        textFontSize: '14px',
+        textFontWeight: 500,
+        titleColor: '#666666',
+        titleFontSize: '14px',
+        titleFontWeight: 600,
+        mBottom: '0',
+        mTop: '0px',
+        themeColor: '#079cfa',
+        firstTitleFontSize: '20px',
+        pTop: '0',
+        pBottom: '30px',
+        pLeftRight: '50px'
+      },
+      data: {}
     }
   ],
   SKILL_SPECIALTIES: [
@@ -285,6 +345,37 @@ export const MATERIAL_JSON: IMSTERIALLISTJSON = {
         pLeftRight: '40px'
       }, // 组件样式
       data: {} // 组件数据
+    },
+    {
+      keyId: '',
+      model: 'SKILL_SPECIALTIES',
+      cptName: 'SKILL_SPECIALTIES_3',
+      cptOptionsName: 'SKILL_SPECIALTIES_OPTIONS',
+      cptTitle: '技能特长',
+      cptX: 0,
+      cptY: 0,
+      cptZ: 0,
+      cptHeight: '50px',
+      cptWidth: '100%',
+      layout: 'left',
+      show: true,
+      style: {
+        textColor: '#757575',
+        textFontSize: '14px',
+        textFontWeight: 500,
+        mBottom: '0',
+        mTop: '0px',
+        themeColor: '#079cfa',
+        firstTitleFontSize: '20px',
+        titleColor: '#666666',
+        titleFontSize: '14px',
+        titleFontWeight: 600,
+        backgroundColor: '#000',
+        pTop: '0',
+        pBottom: '30px',
+        pLeftRight: '50px'
+      },
+      data: {}
     },
     {
       keyId: '',
@@ -348,6 +439,68 @@ export const MATERIAL_JSON: IMSTERIALLISTJSON = {
         pLeftRight: '40px'
       }, // 组件样式
       data: {} // 组件数据
+    },
+    {
+      keyId: '',
+      model: 'CAMPUS_EXPERIENCE',
+      cptName: 'CAMPUS_EXPERIENCE_2',
+      cptOptionsName: 'CAMPUS_EXPERIENCE_OPTIONS',
+      cptTitle: '校园经历',
+      cptX: 0,
+      cptY: 0,
+      cptZ: 0,
+      cptHeight: '50px',
+      cptWidth: '100%',
+      layout: 'right',
+      show: true,
+      style: {
+        titleColor: '#666',
+        titleFontSize: '14px',
+        titleFontWeight: 600,
+        textColor: '#757575',
+        textFontSize: '14px',
+        textFontWeight: 500,
+        mBottom: '0px',
+        mTop: '0px',
+        themeColor: '#254665',
+        firstTitleFontSize: '20px',
+        backgroundColor: '#000',
+        pTop: '0',
+        pBottom: '30px',
+        pLeftRight: '30px'
+      },
+      data: {}
+    },
+    {
+      keyId: '',
+      model: 'CAMPUS_EXPERIENCE',
+      cptName: 'CAMPUS_EXPERIENCE_3',
+      cptOptionsName: 'CAMPUS_EXPERIENCE_OPTIONS',
+      cptTitle: '校园经历',
+      cptX: 0,
+      cptY: 0,
+      cptZ: 0,
+      cptHeight: '50px',
+      cptWidth: '100%',
+      layout: 'right',
+      show: true,
+      style: {
+        titleColor: '#666',
+        titleFontSize: '14px',
+        titleFontWeight: 600,
+        textColor: '#757575',
+        textFontSize: '14px',
+        textFontWeight: 500,
+        mBottom: '0',
+        mTop: '0px',
+        themeColor: '#079cfa',
+        firstTitleFontSize: '20px',
+        backgroundColor: '#000',
+        pTop: '0',
+        pBottom: '30px',
+        pLeftRight: '50px'
+      },
+      data: {}
     }
   ],
   INTERNSHIP_EXPERIENCE: [
@@ -381,6 +534,68 @@ export const MATERIAL_JSON: IMSTERIALLISTJSON = {
         pLeftRight: '40px'
       }, // 组件样式
       data: {} // 组件数据
+    },
+    {
+      keyId: '',
+      model: 'INTERNSHIP_EXPERIENCE',
+      cptName: 'INTERNSHIP_EXPERIENCE_2',
+      cptOptionsName: 'INTERNSHIP_EXPERIENCE_OPTIONS',
+      cptTitle: '实习经验',
+      cptX: 0,
+      cptY: 0,
+      cptZ: 0,
+      cptHeight: '50px',
+      cptWidth: '100%',
+      layout: 'right',
+      show: true,
+      style: {
+        titleColor: '#666',
+        titleFontSize: '14px',
+        titleFontWeight: 600,
+        textColor: '#757575',
+        textFontSize: '14px',
+        textFontWeight: 500,
+        mBottom: '0px',
+        mTop: '0px',
+        themeColor: '#254665',
+        firstTitleFontSize: '20px',
+        backgroundColor: '#000',
+        pTop: '0',
+        pBottom: '30px',
+        pLeftRight: '30px'
+      },
+      data: {}
+    },
+    {
+      keyId: '',
+      model: 'INTERNSHIP_EXPERIENCE',
+      cptName: 'INTERNSHIP_EXPERIENCE_3',
+      cptOptionsName: 'INTERNSHIP_EXPERIENCE_OPTIONS',
+      cptTitle: '实习经验',
+      cptX: 0,
+      cptY: 0,
+      cptZ: 0,
+      cptHeight: '50px',
+      cptWidth: '100%',
+      layout: 'right',
+      show: true,
+      style: {
+        titleColor: '#666',
+        titleFontSize: '14px',
+        titleFontWeight: 600,
+        textColor: '#757575',
+        textFontSize: '14px',
+        textFontWeight: 500,
+        mBottom: '0',
+        mTop: '0px',
+        themeColor: '#079cfa',
+        firstTitleFontSize: '20px',
+        backgroundColor: '#000',
+        pTop: '0',
+        pBottom: '30px',
+        pLeftRight: '50px'
+      },
+      data: {}
     }
   ],
   WORK_EXPERIENCE: [
@@ -414,6 +629,68 @@ export const MATERIAL_JSON: IMSTERIALLISTJSON = {
         pLeftRight: '40px'
       }, // 组件样式
       data: {} // 组件数据
+    },
+    {
+      keyId: '',
+      model: 'WORK_EXPERIENCE',
+      cptName: 'WORK_EXPERIENCE_2',
+      cptOptionsName: 'WORK_EXPERIENCE_OPTIONS',
+      cptTitle: '工作经验',
+      cptX: 0,
+      cptY: 0,
+      cptZ: 0,
+      cptHeight: '50px',
+      cptWidth: '100%',
+      layout: 'right',
+      show: true,
+      style: {
+        titleColor: '#666',
+        titleFontSize: '14px',
+        titleFontWeight: 600,
+        textColor: '#757575',
+        textFontSize: '14px',
+        textFontWeight: 500,
+        mBottom: '0px',
+        mTop: '0px',
+        themeColor: '#254665',
+        firstTitleFontSize: '20px',
+        backgroundColor: '#000',
+        pTop: '0',
+        pBottom: '30px',
+        pLeftRight: '30px'
+      },
+      data: {}
+    },
+    {
+      keyId: '',
+      model: 'WORK_EXPERIENCE',
+      cptName: 'WORK_EXPERIENCE_3',
+      cptOptionsName: 'WORK_EXPERIENCE_OPTIONS',
+      cptTitle: '工作经验',
+      cptX: 0,
+      cptY: 0,
+      cptZ: 0,
+      cptHeight: '50px',
+      cptWidth: '100%',
+      layout: 'right',
+      show: true,
+      style: {
+        titleColor: '#666',
+        titleFontSize: '14px',
+        titleFontWeight: 600,
+        textColor: '#757575',
+        textFontSize: '14px',
+        textFontWeight: 500,
+        mBottom: '0',
+        mTop: '0px',
+        themeColor: '#079cfa',
+        firstTitleFontSize: '20px',
+        backgroundColor: '#000',
+        pTop: '0',
+        pBottom: '30px',
+        pLeftRight: '50px'
+      },
+      data: {}
     }
   ],
   PROJECT_EXPERIENCE: [
@@ -447,6 +724,68 @@ export const MATERIAL_JSON: IMSTERIALLISTJSON = {
         pLeftRight: '40px'
       }, // 组件样式
       data: {} // 组件数据
+    },
+    {
+      keyId: '',
+      model: 'PROJECT_EXPERIENCE',
+      cptName: 'PROJECT_EXPERIENCE_2',
+      cptOptionsName: 'PROJECT_EXPERIENCE_OPTIONS',
+      cptTitle: '项目经验',
+      cptX: 0,
+      cptY: 0,
+      cptZ: 0,
+      cptHeight: '50px',
+      cptWidth: '100%',
+      layout: 'right',
+      show: true,
+      style: {
+        titleColor: '#666',
+        titleFontSize: '14px',
+        titleFontWeight: 600,
+        textColor: '#757575',
+        textFontSize: '14px',
+        textFontWeight: 500,
+        mBottom: '0px',
+        mTop: '0px',
+        themeColor: '#254665',
+        firstTitleFontSize: '20px',
+        backgroundColor: '#000',
+        pTop: '0',
+        pBottom: '30px',
+        pLeftRight: '30px'
+      },
+      data: {}
+    },
+    {
+      keyId: '',
+      model: 'PROJECT_EXPERIENCE',
+      cptName: 'PROJECT_EXPERIENCE_3',
+      cptOptionsName: 'PROJECT_EXPERIENCE_OPTIONS',
+      cptTitle: '项目经验',
+      cptX: 0,
+      cptY: 0,
+      cptZ: 0,
+      cptHeight: '50px',
+      cptWidth: '100%',
+      layout: 'right',
+      show: true,
+      style: {
+        titleColor: '#666',
+        titleFontSize: '14px',
+        titleFontWeight: 600,
+        textColor: '#757575',
+        textFontSize: '14px',
+        textFontWeight: 500,
+        mBottom: '0',
+        mTop: '0px',
+        themeColor: '#079cfa',
+        firstTitleFontSize: '20px',
+        backgroundColor: '#000',
+        pTop: '0',
+        pBottom: '30px',
+        pLeftRight: '50px'
+      },
+      data: {}
     }
   ],
   AWARDS: [
@@ -480,6 +819,68 @@ export const MATERIAL_JSON: IMSTERIALLISTJSON = {
         pLeftRight: '40px'
       }, // 组件样式
       data: {} // 组件数据
+    },
+    {
+      keyId: '',
+      model: 'AWARDS',
+      cptName: 'AWARDS_2',
+      cptOptionsName: 'AWARDS_OPTIONS',
+      cptTitle: '荣誉奖项',
+      cptX: 0,
+      cptY: 0,
+      cptZ: 0,
+      cptHeight: '50px',
+      cptWidth: '100%',
+      layout: 'right',
+      show: true,
+      style: {
+        textColor: '#757575',
+        textFontSize: '14px',
+        textFontWeight: 500,
+        titleColor: '#666666',
+        titleFontSize: '14px',
+        titleFontWeight: 600,
+        mBottom: '0px',
+        mTop: '0px',
+        themeColor: '#254665',
+        firstTitleFontSize: '20px',
+        backgroundColor: '#000',
+        pTop: '0',
+        pBottom: '30px',
+        pLeftRight: '30px'
+      },
+      data: {}
+    },
+    {
+      keyId: '',
+      model: 'AWARDS',
+      cptName: 'AWARDS_3',
+      cptOptionsName: 'AWARDS_OPTIONS',
+      cptTitle: '荣誉奖项',
+      cptX: 0,
+      cptY: 0,
+      cptZ: 0,
+      cptHeight: '50px',
+      cptWidth: '100%',
+      layout: 'right',
+      show: true,
+      style: {
+        textColor: '#757575',
+        textFontSize: '14px',
+        textFontWeight: 500,
+        titleColor: '#666666',
+        titleFontSize: '14px',
+        titleFontWeight: 600,
+        mBottom: '0',
+        mTop: '0px',
+        themeColor: '#079cfa',
+        firstTitleFontSize: '20px',
+        backgroundColor: '#000',
+        pTop: '0',
+        pBottom: '30px',
+        pLeftRight: '50px'
+      },
+      data: {}
     }
   ],
   HOBBIES: [
@@ -513,6 +914,68 @@ export const MATERIAL_JSON: IMSTERIALLISTJSON = {
         pLeftRight: '40px'
       }, // 组件样式
       data: {} // 组件数据
+    },
+    {
+      keyId: '',
+      model: 'HOBBIES',
+      cptName: 'HOBBIES_2',
+      cptOptionsName: 'HOBBIES_OPTIONS',
+      cptTitle: '兴趣爱好',
+      cptX: 0,
+      cptY: 0,
+      cptZ: 0,
+      cptHeight: '50px',
+      cptWidth: '100%',
+      layout: 'right',
+      show: true,
+      style: {
+        themeColor: '#254665',
+        firstTitleFontSize: '20px',
+        textColor: '#757575',
+        textFontSize: '14px',
+        textFontWeight: 500,
+        titleColor: '#666666',
+        titleFontSize: '14px',
+        titleFontWeight: 600,
+        backgroundColor: '#000',
+        mBottom: '0px',
+        mTop: '0px',
+        pTop: '0',
+        pBottom: '30px',
+        pLeftRight: '30px'
+      },
+      data: {}
+    },
+    {
+      keyId: '',
+      model: 'HOBBIES',
+      cptName: 'HOBBIES_3',
+      cptOptionsName: 'HOBBIES_OPTIONS',
+      cptTitle: '兴趣爱好',
+      cptX: 0,
+      cptY: 0,
+      cptZ: 0,
+      cptHeight: '50px',
+      cptWidth: '100%',
+      layout: 'right',
+      show: true,
+      style: {
+        themeColor: '#079cfa',
+        firstTitleFontSize: '20px',
+        textColor: '#757575',
+        textFontSize: '14px',
+        textFontWeight: 500,
+        titleColor: '#666666',
+        titleFontSize: '14px',
+        titleFontWeight: 600,
+        backgroundColor: '#000',
+        mBottom: '0',
+        mTop: '0px',
+        pTop: '0',
+        pBottom: '30px',
+        pLeftRight: '50px'
+      },
+      data: {}
     }
   ],
   SELF_EVALUATION: [
@@ -546,6 +1009,68 @@ export const MATERIAL_JSON: IMSTERIALLISTJSON = {
         pLeftRight: '40px'
       }, // 组件样式
       data: {} // 组件数据
+    },
+    {
+      keyId: '',
+      model: 'SELF_EVALUATION',
+      cptName: 'SELF_EVALUATION_2',
+      cptOptionsName: 'SELF_EVALUATION_OPTIONS',
+      cptTitle: '自我评价',
+      cptX: 0,
+      cptY: 0,
+      cptZ: 0,
+      cptHeight: '50px',
+      cptWidth: '100%',
+      layout: 'right',
+      show: true,
+      style: {
+        textColor: '#757575',
+        textFontSize: '14px',
+        textFontWeight: 500,
+        mBottom: '0px',
+        mTop: '0px',
+        themeColor: '#254665',
+        firstTitleFontSize: '20px',
+        titleColor: '#666666',
+        titleFontSize: '14px',
+        titleFontWeight: 600,
+        backgroundColor: '#000',
+        pTop: '0',
+        pBottom: '30px',
+        pLeftRight: '30px'
+      },
+      data: {}
+    },
+    {
+      keyId: '',
+      model: 'SELF_EVALUATION',
+      cptName: 'SELF_EVALUATION_3',
+      cptOptionsName: 'SELF_EVALUATION_OPTIONS',
+      cptTitle: '自我评价',
+      cptX: 0,
+      cptY: 0,
+      cptZ: 0,
+      cptHeight: '50px',
+      cptWidth: '100%',
+      layout: 'right',
+      show: true,
+      style: {
+        textColor: '#757575',
+        textFontSize: '14px',
+        textFontWeight: 500,
+        mBottom: '0',
+        mTop: '0px',
+        themeColor: '#079cfa',
+        firstTitleFontSize: '20px',
+        titleColor: '#666666',
+        titleFontSize: '14px',
+        titleFontWeight: 600,
+        backgroundColor: '#000',
+        pTop: '0',
+        pBottom: '30px',
+        pLeftRight: '50px'
+      },
+      data: {}
     }
   ],
   WORKS_DISPLAY: [
@@ -579,6 +1104,68 @@ export const MATERIAL_JSON: IMSTERIALLISTJSON = {
         pLeftRight: '40px'
       }, // 组件样式
       data: {} // 组件数据
+    },
+    {
+      keyId: '',
+      model: 'WORKS_DISPLAY',
+      cptName: 'WORKS_DISPLAY_2',
+      cptOptionsName: 'WORKS_DISPLAY_OPTIONS',
+      cptTitle: '作评展示',
+      cptX: 0,
+      cptY: 0,
+      cptZ: 0,
+      cptHeight: '50px',
+      cptWidth: '100%',
+      layout: 'right',
+      show: true,
+      style: {
+        textColor: '#757575',
+        textFontSize: '14px',
+        textFontWeight: 500,
+        mBottom: '0px',
+        mTop: '0px',
+        themeColor: '#254665',
+        firstTitleFontSize: '20px',
+        titleColor: '#666666',
+        titleFontSize: '14px',
+        titleFontWeight: 600,
+        backgroundColor: '#000',
+        pTop: '0',
+        pBottom: '30px',
+        pLeftRight: '30px'
+      },
+      data: {}
+    },
+    {
+      keyId: '',
+      model: 'WORKS_DISPLAY',
+      cptName: 'WORKS_DISPLAY_3',
+      cptOptionsName: 'WORKS_DISPLAY_OPTIONS',
+      cptTitle: '作评展示',
+      cptX: 0,
+      cptY: 0,
+      cptZ: 0,
+      cptHeight: '50px',
+      cptWidth: '100%',
+      layout: 'right',
+      show: true,
+      style: {
+        textColor: '#757575',
+        textFontSize: '14px',
+        textFontWeight: 500,
+        mBottom: '0',
+        mTop: '0px',
+        themeColor: '#079cfa',
+        firstTitleFontSize: '20px',
+        titleColor: '#666666',
+        titleFontSize: '14px',
+        titleFontWeight: 600,
+        backgroundColor: '#000',
+        pTop: '0',
+        pBottom: '30px',
+        pLeftRight: '50px'
+      },
+      data: {}
     }
   ],
   CUSTOM: [

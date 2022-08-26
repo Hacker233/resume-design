@@ -54,6 +54,16 @@ const ctpOfImg: ICptOfImg = {
       url: 'EDU_BACKGROUND_1.png',
       width: '100%',
       height: ''
+    },
+    EDU_BACKGROUND_2: {
+      url: 'EDU_BACKGROUND_2.png',
+      width: '100%',
+      height: ''
+    },
+    EDU_BACKGROUND_3: {
+      url: 'EDU_BACKGROUND_3.png',
+      width: '100%',
+      height: ''
     }
   },
   SKILL_SPECIALTIES: {
@@ -66,11 +76,26 @@ const ctpOfImg: ICptOfImg = {
       url: 'SKILL_SPECIALTIES_2.png',
       width: '50%',
       height: ''
+    },
+    SKILL_SPECIALTIES_3: {
+      url: 'SKILL_SPECIALTIES_3.png',
+      width: '100%',
+      height: ''
     }
   },
   CAMPUS_EXPERIENCE: {
     CAMPUS_EXPERIENCE_1: {
       url: 'CAMPUS_EXPERIENCE_1.png',
+      width: '100%',
+      height: ''
+    },
+    CAMPUS_EXPERIENCE_2: {
+      url: 'CAMPUS_EXPERIENCE_2.png',
+      width: '100%',
+      height: ''
+    },
+    CAMPUS_EXPERIENCE_3: {
+      url: 'CAMPUS_EXPERIENCE_3.png',
       width: '100%',
       height: ''
     }
@@ -80,11 +105,31 @@ const ctpOfImg: ICptOfImg = {
       url: 'INTERNSHIP_EXPERIENCE_1.png',
       width: '100%',
       height: ''
+    },
+    INTERNSHIP_EXPERIENCE_2: {
+      url: 'INTERNSHIP_EXPERIENCE_2.png',
+      width: '100%',
+      height: ''
+    },
+    INTERNSHIP_EXPERIENCE_3: {
+      url: 'INTERNSHIP_EXPERIENCE_3.png',
+      width: '100%',
+      height: ''
     }
   },
   WORK_EXPERIENCE: {
     WORK_EXPERIENCE_1: {
       url: 'WORK_EXPERIENCE_1.png',
+      width: '100%',
+      height: ''
+    },
+    WORK_EXPERIENCE_2: {
+      url: 'WORK_EXPERIENCE_2.png',
+      width: '100%',
+      height: ''
+    },
+    WORK_EXPERIENCE_3: {
+      url: 'WORK_EXPERIENCE_3.png',
       width: '100%',
       height: ''
     }
@@ -94,11 +139,31 @@ const ctpOfImg: ICptOfImg = {
       url: 'PROJECT_EXPERIENCE_1.png',
       width: '100%',
       height: ''
+    },
+    PROJECT_EXPERIENCE_2: {
+      url: 'PROJECT_EXPERIENCE_2.png',
+      width: '100%',
+      height: ''
+    },
+    PROJECT_EXPERIENCE_3: {
+      url: 'PROJECT_EXPERIENCE_3.png',
+      width: '100%',
+      height: ''
     }
   },
   AWARDS: {
     AWARDS_1: {
       url: 'AWARDS_1.png',
+      width: '100%',
+      height: ''
+    },
+    AWARDS_2: {
+      url: 'AWARDS_2.png',
+      width: '100%',
+      height: ''
+    },
+    AWARDS_3: {
+      url: 'AWARDS_3.png',
       width: '100%',
       height: ''
     }
@@ -108,11 +173,31 @@ const ctpOfImg: ICptOfImg = {
       url: 'HOBBIES_1.png',
       width: '100%',
       height: ''
+    },
+    HOBBIES_2: {
+      url: 'HOBBIES_2.png',
+      width: '100%',
+      height: ''
+    },
+    HOBBIES_3: {
+      url: 'HOBBIES_3.png',
+      width: '100%',
+      height: ''
     }
   },
   SELF_EVALUATION: {
     SELF_EVALUATION_1: {
       url: 'SELF_EVALUATION_1.png',
+      width: '100%',
+      height: ''
+    },
+    SELF_EVALUATION_2: {
+      url: 'SELF_EVALUATION_2.png',
+      width: '100%',
+      height: ''
+    },
+    SELF_EVALUATION_3: {
+      url: 'SELF_EVALUATION_3.png',
       width: '100%',
       height: ''
     }
@@ -122,11 +207,31 @@ const ctpOfImg: ICptOfImg = {
       url: 'WORKS_DISPLAY_1.png',
       width: '100%',
       height: ''
+    },
+    WORKS_DISPLAY_2: {
+      url: 'WORKS_DISPLAY_2.png',
+      width: '100%',
+      height: ''
+    },
+    WORKS_DISPLAY_3: {
+      url: 'WORKS_DISPLAY_3.png',
+      width: '100%',
+      height: ''
     }
   },
   CUSTOM: {
     CUSTOM_1: {
       url: 'CUSTOM_1.png',
+      width: '100%',
+      height: ''
+    },
+    CUSTOM_2: {
+      url: 'CUSTOM_2.png',
+      width: '100%',
+      height: ''
+    },
+    CUSTOM_3: {
+      url: 'CUSTOM_3.png',
       width: '100%',
       height: ''
     }
