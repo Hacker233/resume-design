@@ -19,7 +19,10 @@
 <style lang="scss" scoped>
   .title {
     width: 100%;
-    padding: v-bind('modelStyle.pTopBottom') v-bind('modelStyle.pLeftRight');
+    padding-top: v-bind('modelStyle.pTop');
+    padding-bottom: v-bind('modelStyle.pBottom');
+    padding-left: v-bind('modelStyle.pLeftRight');
+    padding-right: v-bind('modelStyle.pLeftRight');
     min-height: 32px;
     margin-bottom: v-bind('modelStyle.mBottom');
     margin-top: v-bind('modelStyle.mTop');

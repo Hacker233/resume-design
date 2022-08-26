@@ -33,7 +33,10 @@
 </script>
 <style lang="scss" scoped>
   .campus-experience {
-    padding: v-bind('modelStyle.pTopBottom') v-bind('modelStyle.pLeftRight');
+    padding-top: v-bind('modelStyle.pTop');
+    padding-bottom: v-bind('modelStyle.pBottom');
+    padding-left: v-bind('modelStyle.pLeftRight');
+    padding-right: v-bind('modelStyle.pLeftRight');
     margin-bottom: v-bind('modelStyle.mBottom');
     margin-top: v-bind('modelStyle.mTop');
     box-sizing: border-box;
