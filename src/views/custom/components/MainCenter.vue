@@ -266,7 +266,7 @@
     align-items: flex-start;
     flex: 1;
     height: calc(100vh - 50px);
-    padding: 30px 0;
+    padding: 65px 0;
     box-sizing: border-box;
     overflow: auto;
     .design {

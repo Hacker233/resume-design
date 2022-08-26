@@ -8,10 +8,7 @@
       <div ref="leftRef" class="left">
         <c-scrollbar trigger="hover">
           <Title show-collapse @unflod-or-collapse="unflodOrCollapse"></Title>
-          <model-list
-            :key="refreshUuid"
-            :left-show-status="leftShowStatus"
-          ></model-list>
+          <model-list :key="refreshUuid" :left-show-status="leftShowStatus"></model-list>
         </c-scrollbar>
       </div>
 
@@ -74,6 +71,7 @@
   import optionsComponents from '@/utils/registerMaterialOptionsCom';
   import { getTemplateJson } from '@/service/template/template';
   import IDESIGNJSON from '@/interface/design';
+  import { closeGlobalLoading } from '@/utils/common';
 
   const { cptTitle } = storeToRefs(appStore.useSelectMaterialStore);
   const { changeResumeJsonData } = appStore.useResumeJsonNewStore;
@@ -118,6 +116,9 @@
   onMounted(async () => {
     resizeDOM();
     initClickListen();
+
+    await nextTick();
+    closeGlobalLoading(); // 关闭全局等待层
   });
   onBeforeUnmount(() => {
     observer?.disconnect();
@@ -245,7 +246,9 @@
     }
   };
 </script>
-
+<style lang="scss">
+  @import '../../style/options.scss';
+</style>
 <style lang="scss" scoped>
   .design-box {
     height: 100vh;

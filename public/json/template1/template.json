@@ -29,7 +29,8 @@
                 "backgroundColor": "#000",
                 "mBottom": "35px",
                 "mTop": "15px",
-                "pTopBottom": "0",
+                "pTop": "0",
+                "pBottom": "0px",
                 "pLeftRight": "0"
             },
             "data": {
@@ -62,9 +63,10 @@
                 "textFontWeight": 500,
                 "textColor": "#7c7b7b",
                 "backgroundColor": "",
-                "mBottom": "50px",
+                "mBottom": "0px",
                 "mTop": "0px",
-                "pTopBottom": "0",
+                "pTop": "0",
+                "pBottom": "30px",
                 "pLeftRight": "40px"
             },
             "data": {
@@ -116,9 +118,10 @@
                 "textFontSize": "14px",
                 "textFontWeight": 500,
                 "backgroundColor": "",
-                "mBottom": "35px",
+                "mBottom": "0px",
                 "mTop": "0px",
-                "pTopBottom": "0",
+                "pTop": "0",
+                "pBottom": "30px",
                 "pLeftRight": "40px"
             },
             "data": {
@@ -163,9 +166,10 @@
                 "titleFontSize": "14px",
                 "titleFontWeight": 600,
                 "backgroundColor": "#000",
-                "mBottom": "35px",
+                "mBottom": "0px",
                 "mTop": "0px",
-                "pTopBottom": "0",
+                "pTop": "0",
+                "pBottom": "30px",
                 "pLeftRight": "40px"
             },
             "data": {
@@ -227,9 +231,10 @@
                 "titleFontSize": "14px",
                 "titleFontWeight": 600,
                 "backgroundColor": "#000",
-                "mBottom": "35px",
+                "mBottom": "0px",
                 "mTop": "0px",
-                "pTopBottom": "0",
+                "pTop": "0",
+                "pBottom": "30px",
                 "pLeftRight": "40px"
             },
             "data": {
@@ -284,9 +289,10 @@
                 "titleFontSize": "14px",
                 "titleFontWeight": 600,
                 "backgroundColor": "#000",
-                "mBottom": "35px",
+                "mBottom": "0px",
                 "mTop": "0px",
-                "pTopBottom": "0",
+                "pTop": "0",
+                "pBottom": "30px",
                 "pLeftRight": "40px"
             },
             "data": {
@@ -345,9 +351,10 @@
                 "titleFontSize": "14px",
                 "titleFontWeight": 600,
                 "backgroundColor": "#000",
-                "mBottom": "35px",
+                "mBottom": "0px",
                 "mTop": "0px",
-                "pTopBottom": "0",
+                "pTop": "0",
+                "pBottom": "30px",
                 "pLeftRight": "40px"
             },
             "data": {
@@ -426,9 +433,10 @@
                 "titleFontSize": "14px",
                 "titleFontWeight": 600,
                 "backgroundColor": "#000",
-                "mBottom": "35px",
+                "mBottom": "0px",
                 "mTop": "0px",
-                "pTopBottom": "0",
+                "pTop": "0",
+                "pBottom": "30px",
                 "pLeftRight": "40px"
             },
             "data": {
@@ -481,9 +489,10 @@
                 "titleFontSize": "14px",
                 "titleFontWeight": 600,
                 "backgroundColor": "#000",
-                "mBottom": "35px",
+                "mBottom": "0px",
                 "mTop": "0px",
-                "pTopBottom": "0",
+                "pTop": "0",
+                "pBottom": "30px",
                 "pLeftRight": "40px"
             },
             "data": {
@@ -536,9 +545,10 @@
                 "titleFontSize": "14px",
                 "titleFontWeight": 600,
                 "backgroundColor": "#000",
-                "mBottom": "35px",
+                "mBottom": "0px",
                 "mTop": "0px",
-                "pTopBottom": "0",
+                "pTop": "0",
+                "pBottom": "30px",
                 "pLeftRight": "40px"
             },
             "data": {
@@ -583,9 +593,10 @@
                 "titleFontSize": "14px",
                 "titleFontWeight": 600,
                 "backgroundColor": "#000",
-                "mBottom": "35px",
+                "mBottom": "0px",
                 "mTop": "0px",
-                "pTopBottom": "0",
+                "pTop": "0",
+                "pBottom": "30px",
                 "pLeftRight": "40px"
             },
             "data": {
@@ -626,9 +637,10 @@
                 "titleFontSize": "14px",
                 "titleFontWeight": 600,
                 "backgroundColor": "#000",
-                "mBottom": "35px",
+                "mBottom": "0px",
                 "mTop": "0px",
-                "pTopBottom": "0",
+                "pTop": "0",
+                "pBottom": "30px",
                 "pLeftRight": "40px"
             },
             "data": {
@@ -662,9 +674,10 @@
                 "titleFontSize": "14px",
                 "titleFontWeight": 600,
                 "backgroundColor": "#000",
-                "mBottom": "35px",
+                "mBottom": "0px",
                 "mTop": "0px",
-                "pTopBottom": "0",
+                "pTop": "0",
+                "pBottom": "30px",
                 "pLeftRight": "40px"
             },
             "data": {
@@ -696,10 +709,11 @@
         "textFontColor": "#757575",
         "secondTitleWeight": 600,
         "textFontWeight": 500,
-        "pTopBottom": "0",
+        "pTop": "0",
+        "pBottom": "30px",
         "pLeftRight": "40px",
         "modelMarginTop": "0px",
-        "modelMarginBottom": "45px",
+        "modelMarginBottom": "0px",
         "leftWidth": "",
         "rightWidth": "",
         "leftThemeColor": "",

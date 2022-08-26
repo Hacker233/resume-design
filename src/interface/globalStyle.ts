@@ -7,7 +7,8 @@ interface IGlobalStyle {
   textFontColor: string; // 正文字体颜色
   secondTitleWeight: number; // 二级标题字体粗细
   textFontWeight: number; // 正文字体粗细
-  pTopBottom: string; // 上下内边距
+  pTop: string; // 上内边距
+  pBottom: string; // 下内边距
   pLeftRight: string; // 左右内边距
   modelMarginTop: string;
   modelMarginBottom: string;
