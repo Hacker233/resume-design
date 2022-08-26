@@ -37,6 +37,16 @@ const ctpOfImg: ICptOfImg = {
       url: 'JOB_INTENTION_1.png',
       width: '100%',
       height: ''
+    },
+    JOB_INTENTION_2: {
+      url: 'JOB_INTENTION_2.png',
+      width: '100%',
+      height: ''
+    },
+    JOB_INTENTION_3: {
+      url: 'JOB_INTENTION_3.png',
+      width: '100%',
+      height: ''
     }
   },
   EDU_BACKGROUND: {
@@ -110,6 +120,13 @@ const ctpOfImg: ICptOfImg = {
   WORKS_DISPLAY: {
     WORKS_DISPLAY_1: {
       url: 'WORKS_DISPLAY_1.png',
+      width: '100%',
+      height: ''
+    }
+  },
+  CUSTOM: {
+    CUSTOM_1: {
+      url: 'CUSTOM_1.png',
       width: '100%',
       height: ''
     }

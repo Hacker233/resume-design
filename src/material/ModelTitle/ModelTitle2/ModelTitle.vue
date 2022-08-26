@@ -10,12 +10,11 @@
   </div>
 </template>
 <script setup lang="ts">
-  import appStore from '@/store';
-  import { storeToRefs } from 'pinia';
-  const { resumeJsonNewStore } = storeToRefs(appStore.useResumeJsonNewStore);
+  import IMODELSTYLE from '@/interface/modelStyle';
   defineProps<{
     title: string;
     iconfont: string;
+    modelStyle: IMODELSTYLE; // 模块样式
   }>();
 </script>
 <style lang="scss" scoped>
@@ -26,7 +25,7 @@
     .icon-box {
       width: 26px;
       height: 26px;
-      background-color: v-bind('resumeJsonNewStore.GLOBAL_STYLE.themeColor');
+      background-color: v-bind('modelStyle.themeColor');
       border-radius: 50%;
       display: flex;
       align-items: center;
@@ -38,12 +37,12 @@
     }
     .right-title {
       width: 100%;
-      border-bottom: 1px solid v-bind('resumeJsonNewStore.GLOBAL_STYLE.themeColor');
+      border-bottom: 1px solid v-bind('modelStyle.themeColor');
       height: 30px;
       display: flex;
       h1 {
-        font-size: v-bind('resumeJsonNewStore.GLOBAL_STYLE.firstTitleFontSize');
-        color: v-bind('resumeJsonNewStore.GLOBAL_STYLE.themeColor');
+        font-size: v-bind('modelStyle.firstTitleFontSize');
+        color: v-bind('modelStyle.themeColor');
       }
     }
   }

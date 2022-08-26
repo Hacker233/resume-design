@@ -1,7 +1,7 @@
 <!-- 求职意向 -->
 <template>
   <div class="job-intention">
-    <model-title :title="modelData.title" :iconfont="modelData.iconfont"></model-title>
+    <model-title :title="modelData.title" :iconfont="modelData.iconfont" :model-style="modelStyle"></model-title>
     <!-- 求职意向 -->
     <ul>
       <!-- 求职类型 -->

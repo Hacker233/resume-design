@@ -11,6 +11,7 @@ const modelOfIcon: { [propName: string]: string } = {
   AWARDS: 'icon-jiangbei',
   HOBBIES: 'icon-xingquaihao',
   SELF_EVALUATION: 'icon-ziwojieshao',
-  WORKS_DISPLAY: 'icon-zuopinzhanshi'
+  WORKS_DISPLAY: 'icon-zuopinzhanshi',
+  CUSTOM: 'icon-zuopin'
 };
 export default modelOfIcon;

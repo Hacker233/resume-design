@@ -2,7 +2,11 @@
 <template>
   <div class="campus-experience">
     <!-- 标题 -->
-    <model-title :title="modelData.title" :iconfont="modelData.iconfont"></model-title>
+    <model-title
+      :title="modelData.title"
+      :iconfont="modelData.iconfont"
+      :model-style="modelStyle"
+    ></model-title>
     <!-- 校园经历 -->
     <div v-for="(item, index) in modelData.LIST" :key="index" class="list">
       <ul>
