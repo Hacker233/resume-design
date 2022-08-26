@@ -18,8 +18,11 @@
   <el-form-item label="下外边距:">
     <el-input-number v-model="mBottom" :min="-100" :max="100" @change="handleChangeMBottom" />
   </el-form-item>
-  <el-form-item label="上下内边距:">
-    <el-input-number v-model="pTopBottom" :min="-100" :max="100" @change="handleChangePTopBottom" />
+  <el-form-item label="上内边距:">
+    <el-input-number v-model="pTop" :min="-100" :max="100" @change="handleChangePTop" />
+  </el-form-item>
+  <el-form-item label="下内边距:">
+    <el-input-number v-model="pBottom" :min="-100" :max="100" @change="handleChangePBottom" />
   </el-form-item>
   <el-form-item label="左右内边距:">
     <el-input-number v-model="pLeftRight" :min="-100" :max="100" @change="handleChangePLeftRight" />
@@ -52,11 +55,18 @@
     modelItem.style.mBottom = value + 'px';
   };
 
-  // 上下内边距
-  const defaultPTopBottom: number = pxTonumber(modelItem.style.pTopBottom);
-  const pTopBottom = ref<number>(defaultPTopBottom);
-  const handleChangePTopBottom = (value: number): void => {
-    modelItem.style.pTopBottom = value + 'px';
+  // 上内边距
+  const defaultPTop: number = pxTonumber(modelItem.style.pTop);
+  const pTop = ref<number>(defaultPTop);
+  const handleChangePTop = (value: number): void => {
+    modelItem.style.pTop = value + 'px';
+  };
+
+  // 下内边距
+  const defaultPBottom: number = pxTonumber(modelItem.style.pBottom);
+  const pBottom = ref<number>(defaultPBottom);
+  const handleChangePBottom = (value: number): void => {
+    modelItem.style.pBottom = value + 'px';
   };
 
   // 左右内边距

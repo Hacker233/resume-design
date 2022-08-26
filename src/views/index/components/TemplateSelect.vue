@@ -52,7 +52,7 @@
 
   // 页面销毁
   onUnmounted(() => {
-    closeGlobalLoading(); // 关闭全局等待层
+    // closeGlobalLoading(); // 关闭全局等待层
   });
 </script>
 <style lang="scss">

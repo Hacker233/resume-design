@@ -17,7 +17,10 @@
   .name-introduce {
     width: 100%;
     cursor: pointer;
-    padding: v-bind('modelStyle.pTopBottom') v-bind('modelStyle.pLeftRight');
+    padding-top: v-bind('modelStyle.pTop');
+    padding-bottom: v-bind('modelStyle.pBottom');
+    padding-left: v-bind('modelStyle.pLeftRight');
+    padding-right: v-bind('modelStyle.pLeftRight');
     box-sizing: border-box;
     margin-bottom: v-bind('modelStyle.mBottom');
     margin-top: v-bind('modelStyle.mTop');

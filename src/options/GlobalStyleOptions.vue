@@ -130,15 +130,25 @@
         <el-input-number v-model="mBottom" :min="-100" :max="100" @change="handleChangeMBottom" />
       </el-form-item>
 
-      <!-- 模块上下内边距 -->
-      <el-form-item label="模块上下内边距:">
+      <!-- 模块上内边距 -->
+      <el-form-item label="模块上内边距:">
         <el-input-number
-          v-model="pTopBottom"
+          v-model="pTop"
           :min="-100"
           :max="100"
-          @change="handleChangePTopBottom"
+          @change="handleChangePTop"
         />
       </el-form-item>
+      <!-- 模块下内边距 -->
+      <el-form-item label="模块下内边距:">
+        <el-input-number
+          v-model="pBottom"
+          :min="-100"
+          :max="100"
+          @change="handleChangePBottom"
+        />
+      </el-form-item>
+
       <!-- 模块左右内边距 -->
       <el-form-item label="模块左右内边距:">
         <el-input-number
@@ -264,15 +274,26 @@
     });
   };
 
-  // 上下内边距
-  const defaultPTopBottom: number = pxTonumber(resumeJsonNewStore.GLOBAL_STYLE.pTopBottom);
-  const pTopBottom = ref<number>(defaultPTopBottom);
-  const handleChangePTopBottom = (value: number): void => {
+  // 上内边距
+  const defaultPTop: number = pxTonumber(resumeJsonNewStore.GLOBAL_STYLE.pTop);
+  const pTop = ref<number>(defaultPTop);
+  const handleChangePTop = (value: number): void => {
     if (resumeJsonNewStore.GLOBAL_STYLE) {
-      resumeJsonNewStore.GLOBAL_STYLE.pTopBottom = value + 'px';
+      resumeJsonNewStore.GLOBAL_STYLE.pTop = value + 'px';
     }
     resumeJsonNewStore.COMPONENTS.forEach((item) => {
-      item.style.pTopBottom = resumeJsonNewStore.GLOBAL_STYLE.pTopBottom;
+      item.style.pTop = resumeJsonNewStore.GLOBAL_STYLE.pTop;
+    });
+  };
+  // 下边距
+  const defaultPBottom: number = pxTonumber(resumeJsonNewStore.GLOBAL_STYLE.pBottom);
+  const pBottom = ref<number>(defaultPBottom);
+  const handleChangePBottom = (value: number): void => {
+    if (resumeJsonNewStore.GLOBAL_STYLE) {
+      resumeJsonNewStore.GLOBAL_STYLE.pBottom = value + 'px';
+    }
+    resumeJsonNewStore.COMPONENTS.forEach((item) => {
+      item.style.pBottom = resumeJsonNewStore.GLOBAL_STYLE.pBottom;
     });
   };
 

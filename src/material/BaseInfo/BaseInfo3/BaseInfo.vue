@@ -47,7 +47,10 @@
     justify-content: space-between;
     margin-bottom: v-bind('modelStyle.mBottom');
     margin-top: v-bind('modelStyle.mTop');
-    padding: v-bind('modelStyle.pTopBottom') v-bind('modelStyle.pLeftRight');
+    padding-top: v-bind('modelStyle.pTop');
+    padding-bottom: v-bind('modelStyle.pBottom');
+    padding-left: v-bind('modelStyle.pLeftRight');
+    padding-right: v-bind('modelStyle.pLeftRight');
     .user-info {
       display: flex;
       flex-direction: column;

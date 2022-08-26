@@ -135,18 +135,17 @@
 </script>
 <style lang="scss" scoped>
   .mode-switch {
-    height: 78px;
-    width: 40px;
+    height: 40px;
+    width: 78px;
     position: absolute;
-    top: 0;
-    right: -53px;
+    top: -50px;
+    left: 0;
     background: #e0e4ec;
     border-radius: 100px;
     padding: 1px;
     -webkit-box-shadow: 0 1px rgb(255 255 255 / 50%), 0 8px 13px rgb(0 0 0 / 15%) inset;
     box-shadow: 0 1px rgb(255 255 255 / 50%), 0 8px 13px rgb(0 0 0 / 15%) inset;
     display: flex;
-    flex-direction: column;
     align-items: center;
     justify-content: center;
     .classical-icon-box,

@@ -17,8 +17,8 @@ export const MATERIAL_JSON: IMSTERIALLISTJSON = {
       layout: '', // 布局在左侧还是右侧
       show: true, // 组件是否显示
       style: {
-        themeColor: '#000', // 主题色
-        firstTitleFontSize: '20px', // 一级标题
+        themeColor: '#000',
+        firstTitleFontSize: '20px',
         titleColor: '#121c26',
         titleFontSize: '30px',
         titleFontWeight: 500,
@@ -28,8 +28,9 @@ export const MATERIAL_JSON: IMSTERIALLISTJSON = {
         backgroundColor: '#000',
         mBottom: '35px',
         mTop: '15px',
-        pTopBottom: '0', // 上下内边距
-        pLeftRight: '0' // 左右内边距
+        pTop: '0',
+        pBottom: '0px',
+        pLeftRight: '0'
       }, // 组件样式
       data: {} // 组件数据
     }
@@ -49,8 +50,8 @@ export const MATERIAL_JSON: IMSTERIALLISTJSON = {
       layout: 'center', // 布局在左侧还是右侧
       show: true, // 组件是否显示
       style: {
-        themeColor: '#000', // 主题色
-        firstTitleFontSize: '20px', // 一级标题
+        themeColor: '#000',
+        firstTitleFontSize: '20px',
         titleColor: '#121c26',
         titleFontSize: '30px',
         textFontSize: '14px',
@@ -58,10 +59,11 @@ export const MATERIAL_JSON: IMSTERIALLISTJSON = {
         textFontWeight: 500,
         textColor: '#7c7b7b',
         backgroundColor: '',
-        mBottom: '50px',
+        mBottom: '0px',
         mTop: '0px',
-        pTopBottom: '0', // 上下内边距
-        pLeftRight: '40px' // 左右内边距
+        pTop: '0',
+        pBottom: '30px',
+        pLeftRight: '40px'
       }, // 组件样式
       data: {} // 组件数据
     },
@@ -85,12 +87,13 @@ export const MATERIAL_JSON: IMSTERIALLISTJSON = {
         titleFontWeight: 400,
         textFontWeight: 500,
         textColor: '#757575',
-        mBottom: '40px',
+        mBottom: '0',
         mTop: '0px',
         themeColor: '#000',
         firstTitleFontSize: '20px',
-        pTopBottom: '40px',
-        pLeftRight: '40px'
+        pTop: '40px',
+        pBottom: '55px',
+        pLeftRight: '50px'
       },
       data: {}
     },
@@ -114,11 +117,12 @@ export const MATERIAL_JSON: IMSTERIALLISTJSON = {
         titleFontWeight: 500,
         textFontWeight: 500,
         textColor: '#fff',
-        mBottom: '50px',
-        mTop: '0px',
+        mBottom: '0px',
+        mTop: '30px',
         themeColor: '#000',
         firstTitleFontSize: '20px',
-        pTopBottom: '0',
+        pTop: '0',
+        pBottom: '30px',
         pLeftRight: '30px'
       },
       data: {}
@@ -139,8 +143,8 @@ export const MATERIAL_JSON: IMSTERIALLISTJSON = {
       layout: 'center', // 布局在左侧还是右侧
       show: true, // 组件是否显示
       style: {
-        themeColor: '#000', // 主题色
-        firstTitleFontSize: '20px', // 一级标题
+        themeColor: '#000',
+        firstTitleFontSize: '20px',
         titleColor: '#121c26',
         titleFontSize: '30px',
         titleFontWeight: 500,
@@ -148,10 +152,11 @@ export const MATERIAL_JSON: IMSTERIALLISTJSON = {
         textFontSize: '14px',
         textFontWeight: 500,
         backgroundColor: '',
-        mBottom: '35px',
+        mBottom: '0px',
         mTop: '0px',
-        pTopBottom: '0', // 上下内边距
-        pLeftRight: '40px' // 左右内边距
+        pTop: '0',
+        pBottom: '30px',
+        pLeftRight: '40px'
       }, // 组件样式
       data: {} // 组件数据
     }
@@ -171,19 +176,20 @@ export const MATERIAL_JSON: IMSTERIALLISTJSON = {
       layout: 'center', // 布局在左侧还是右侧
       show: true, // 组件是否显示
       style: {
-        themeColor: '#000', // 主题色
-        firstTitleFontSize: '20px', // 一级标题
-        textColor: '#757575', // 正文
+        themeColor: '#000',
+        firstTitleFontSize: '20px',
+        textColor: '#757575',
         textFontSize: '14px',
         textFontWeight: 500,
-        titleColor: '#666666', // 二级标题
+        titleColor: '#666666',
         titleFontSize: '14px',
         titleFontWeight: 600,
         backgroundColor: '#000',
-        mBottom: '35px',
+        mBottom: '0px',
         mTop: '0px',
-        pTopBottom: '0', // 上下内边距
-        pLeftRight: '40px' // 左右内边距
+        pTop: '0',
+        pBottom: '30px',
+        pLeftRight: '40px'
       }, // 组件样式
       data: {} // 组件数据
     }
@@ -203,19 +209,20 @@ export const MATERIAL_JSON: IMSTERIALLISTJSON = {
       layout: 'center', // 布局在左侧还是右侧
       show: true, // 组件是否显示
       style: {
-        themeColor: '#000', // 主题色
-        firstTitleFontSize: '20px', // 一级标题
-        textColor: '#757575', // 正文
+        themeColor: '#000',
+        firstTitleFontSize: '20px',
+        textColor: '#757575',
         textFontSize: '14px',
         textFontWeight: 500,
-        titleColor: '#666666', // 二级标题
+        titleColor: '#666666',
         titleFontSize: '14px',
         titleFontWeight: 600,
         backgroundColor: '#000',
-        mBottom: '35px',
+        mBottom: '0px',
         mTop: '0px',
-        pTopBottom: '0', // 上下内边距
-        pLeftRight: '40px' // 左右内边距
+        pTop: '0',
+        pBottom: '30px',
+        pLeftRight: '40px'
       }, // 组件样式
       data: {} // 组件数据
     },
@@ -265,19 +272,20 @@ export const MATERIAL_JSON: IMSTERIALLISTJSON = {
       layout: 'center', // 布局在左侧还是右侧
       show: true, // 组件是否显示
       style: {
-        themeColor: '#000', // 主题色
-        firstTitleFontSize: '20px', // 一级标题
-        textColor: '#757575', // 正文
+        themeColor: '#000',
+        firstTitleFontSize: '20px',
+        textColor: '#757575',
         textFontSize: '14px',
         textFontWeight: 500,
-        titleColor: '#666666', // 二级标题
+        titleColor: '#666666',
         titleFontSize: '14px',
         titleFontWeight: 600,
         backgroundColor: '#000',
-        mBottom: '35px',
+        mBottom: '0px',
         mTop: '0px',
-        pTopBottom: '0', // 上下内边距
-        pLeftRight: '40px' // 左右内边距
+        pTop: '0',
+        pBottom: '30px',
+        pLeftRight: '40px'
       }, // 组件样式
       data: {} // 组件数据
     }
@@ -297,19 +305,20 @@ export const MATERIAL_JSON: IMSTERIALLISTJSON = {
       layout: 'center', // 布局在左侧还是右侧
       show: true, // 组件是否显示
       style: {
-        themeColor: '#000', // 主题色
-        firstTitleFontSize: '20px', // 一级标题
-        textColor: '#757575', // 正文
+        themeColor: '#000',
+        firstTitleFontSize: '20px',
+        textColor: '#757575',
         textFontSize: '14px',
         textFontWeight: 500,
-        titleColor: '#666666', // 二级标题
+        titleColor: '#666666',
         titleFontSize: '14px',
         titleFontWeight: 600,
         backgroundColor: '#000',
-        mBottom: '35px',
+        mBottom: '0px',
         mTop: '0px',
-        pTopBottom: '0', // 上下内边距
-        pLeftRight: '40px' // 左右内边距
+        pTop: '0',
+        pBottom: '30px',
+        pLeftRight: '40px'
       }, // 组件样式
       data: {} // 组件数据
     }
@@ -329,19 +338,20 @@ export const MATERIAL_JSON: IMSTERIALLISTJSON = {
       layout: 'center', // 布局在左侧还是右侧
       show: true, // 组件是否显示
       style: {
-        themeColor: '#000', // 主题色
-        firstTitleFontSize: '20px', // 一级标题
-        textColor: '#757575', // 正文
+        themeColor: '#000',
+        firstTitleFontSize: '20px',
+        textColor: '#757575',
         textFontSize: '14px',
         textFontWeight: 500,
-        titleColor: '#666666', // 二级标题
+        titleColor: '#666666',
         titleFontSize: '14px',
         titleFontWeight: 600,
         backgroundColor: '#000',
-        mBottom: '35px',
+        mBottom: '0px',
         mTop: '0px',
-        pTopBottom: '0', // 上下内边距
-        pLeftRight: '40px' // 左右内边距
+        pTop: '0',
+        pBottom: '30px',
+        pLeftRight: '40px'
       }, // 组件样式
       data: {} // 组件数据
     }
@@ -361,19 +371,20 @@ export const MATERIAL_JSON: IMSTERIALLISTJSON = {
       layout: 'center', // 布局在左侧还是右侧
       show: true, // 组件是否显示
       style: {
-        themeColor: '#000', // 主题色
-        firstTitleFontSize: '20px', // 一级标题
-        textColor: '#757575', // 正文
+        themeColor: '#000',
+        firstTitleFontSize: '20px',
+        textColor: '#757575',
         textFontSize: '14px',
         textFontWeight: 500,
-        titleColor: '#666666', // 二级标题
+        titleColor: '#666666',
         titleFontSize: '14px',
         titleFontWeight: 600,
         backgroundColor: '#000',
-        mBottom: '35px',
+        mBottom: '0px',
         mTop: '0px',
-        pTopBottom: '0', // 上下内边距
-        pLeftRight: '40px' // 左右内边距
+        pTop: '0',
+        pBottom: '30px',
+        pLeftRight: '40px'
       }, // 组件样式
       data: {} // 组件数据
     }
@@ -393,19 +404,20 @@ export const MATERIAL_JSON: IMSTERIALLISTJSON = {
       layout: 'center', // 布局在左侧还是右侧
       show: true, // 组件是否显示
       style: {
-        themeColor: '#000', // 主题色
-        firstTitleFontSize: '20px', // 一级标题
-        textColor: '#757575', // 正文
+        themeColor: '#000',
+        firstTitleFontSize: '20px',
+        textColor: '#757575',
         textFontSize: '14px',
         textFontWeight: 500,
-        titleColor: '#666666', // 二级标题
+        titleColor: '#666666',
         titleFontSize: '14px',
         titleFontWeight: 600,
         backgroundColor: '#000',
-        mBottom: '35px',
+        mBottom: '0px',
         mTop: '0px',
-        pTopBottom: '0', // 上下内边距
-        pLeftRight: '40px' // 左右内边距
+        pTop: '0',
+        pBottom: '30px',
+        pLeftRight: '40px'
       }, // 组件样式
       data: {} // 组件数据
     }
@@ -425,19 +437,20 @@ export const MATERIAL_JSON: IMSTERIALLISTJSON = {
       layout: 'center', // 布局在左侧还是右侧
       show: true, // 组件是否显示
       style: {
-        themeColor: '#000', // 主题色
-        firstTitleFontSize: '20px', // 一级标题
-        textColor: '#757575', // 正文
+        themeColor: '#000',
+        firstTitleFontSize: '20px',
+        textColor: '#757575',
         textFontSize: '14px',
         textFontWeight: 500,
-        titleColor: '#666666', // 二级标题
+        titleColor: '#666666',
         titleFontSize: '14px',
         titleFontWeight: 600,
         backgroundColor: '#000',
-        mBottom: '35px',
+        mBottom: '0px',
         mTop: '0px',
-        pTopBottom: '0', // 上下内边距
-        pLeftRight: '40px' // 左右内边距
+        pTop: '0',
+        pBottom: '30px',
+        pLeftRight: '40px'
       }, // 组件样式
       data: {} // 组件数据
     }
@@ -457,19 +470,20 @@ export const MATERIAL_JSON: IMSTERIALLISTJSON = {
       layout: 'center', // 布局在左侧还是右侧
       show: true, // 组件是否显示
       style: {
-        themeColor: '#000', // 主题色
-        firstTitleFontSize: '20px', // 一级标题
-        textColor: '#757575', // 正文
+        themeColor: '#000',
+        firstTitleFontSize: '20px',
+        textColor: '#757575',
         textFontSize: '14px',
         textFontWeight: 500,
-        titleColor: '#666666', // 二级标题
+        titleColor: '#666666',
         titleFontSize: '14px',
         titleFontWeight: 600,
         backgroundColor: '#000',
-        mBottom: '35px',
+        mBottom: '0px',
         mTop: '0px',
-        pTopBottom: '0', // 上下内边距
-        pLeftRight: '40px' // 左右内边距
+        pTop: '0',
+        pBottom: '30px',
+        pLeftRight: '40px'
       }, // 组件样式
       data: {} // 组件数据
     }
@@ -489,19 +503,20 @@ export const MATERIAL_JSON: IMSTERIALLISTJSON = {
       layout: 'center', // 布局在左侧还是右侧
       show: true, // 组件是否显示
       style: {
-        themeColor: '#000', // 主题色
-        firstTitleFontSize: '20px', // 一级标题
-        textColor: '#757575', // 正文
+        themeColor: '#000',
+        firstTitleFontSize: '20px',
+        textColor: '#757575',
         textFontSize: '14px',
         textFontWeight: 500,
-        titleColor: '#666666', // 二级标题
+        titleColor: '#666666',
         titleFontSize: '14px',
         titleFontWeight: 600,
         backgroundColor: '#000',
-        mBottom: '35px',
+        mBottom: '0px',
         mTop: '0px',
-        pTopBottom: '0', // 上下内边距
-        pLeftRight: '40px' // 左右内边距
+        pTop: '0',
+        pBottom: '30px',
+        pLeftRight: '40px'
       }, // 组件样式
       data: {} // 组件数据
     }
