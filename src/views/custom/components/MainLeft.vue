@@ -46,14 +46,22 @@
               >
                 <el-tooltip class="box-item" effect="light" :enterable="false">
                   <template #content>
-                    <img
-                      :src="
-                        getAssetsMaterialFile(currentKey, cptOfImg[currentKey][element.cptName].url)
-                      "
-                      style="max-width: 500px"
-                      alt=""
-                      srcset=""
-                    />
+                    <div class="toolTip-box">
+                      <img
+                        :src="
+                          getAssetsMaterialFile(
+                            currentKey,
+                            cptOfImg[currentKey][element.cptName].url
+                          )
+                        "
+                        style="max-width: 500px"
+                        alt="效果图"
+                        srcset=""
+                      />
+                      <div class="layout-box">
+                        建议位置：{{layoutDic[element.layout]}}
+                      </div>
+                    </div>
                   </template>
                   <img
                     :src="
@@ -87,11 +95,11 @@
   import MODEL_DATA_JSON from '@/schema/modelData';
   import appStore from '@/store';
   import draggable from 'vuedraggable';
-  const list1 = ref<any>([
-    { name: 'Jesus', id: 1 },
-    { name: 'Paul', id: 2 },
-    { name: 'Peter', id: 3 }
-  ]);
+  const layoutDic:any = {
+    'left': '左',
+    'right': '右',
+    'center': '常规'
+  };
   const cloneData = (data: IMATERIALITEM) => {
     const cptData = cloneDeep(data);
     cptData.data = cloneDeep(MODEL_DATA_JSON[cptData.model]); // 为模块添加数据
@@ -125,6 +133,7 @@
     let cptData = cloneDeep(item);
     cptData.data = cloneDeep(MODEL_DATA_JSON[cptData.model]); // 为模块添加数据
     cptData.keyId = getUuid();
+    console.log('cptData', cptData);
     pushComponent(cptData); // 添加模块
   };
 </script>
@@ -243,6 +252,22 @@
           }
         }
       }
+    }
+  }
+
+  .toolTip-box {
+    position: relative;
+    .layout-box {
+      position: absolute;
+      right: -5px;
+      top: 0;
+      background-color: rgba(#74a274, 0.9);
+      padding: 3px 10px;
+      color: #fff;
+      border-radius: 5px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
   }
 </style>

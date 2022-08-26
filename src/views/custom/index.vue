@@ -25,6 +25,7 @@
   const generateReport = () => {
     mainCenterRef.value.generateReport();
   };
+  console.log('组件列表', MaterialComponents);
 </script>
 <style lang="scss" scoped>
   .custom-resume-box {

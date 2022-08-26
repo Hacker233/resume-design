@@ -38,14 +38,12 @@
   import useGetLineLeft from '@/hooks/material/useTemplate3LeftLine';
   import { IJOBINTENTION } from '@/interface/model';
   import IMODELSTYLE from '@/interface/modelStyle';
-  import appStore from '@/store';
-  defineProps<{
+  const props = defineProps<{
     modelData: IJOBINTENTION;
     modelStyle: IMODELSTYLE; // 模块样式
   }>();
-  const { resumeJsonNewStore } = appStore.useResumeJsonNewStore;
   // 模板3左侧竖线
-  const { left } = useGetLineLeft();
+  const { left } = useGetLineLeft(props.modelStyle);
 </script>
 <style lang="scss" scoped>
   .job-intention {
@@ -62,7 +60,7 @@
       position: absolute;
       width: 1px;
       height: 100%;
-      background-color: v-bind('resumeJsonNewStore.GLOBAL_STYLE.themeColor');
+      background-color: v-bind('modelStyle.themeColor');
       left: v-bind('left');
       top: 5px;
     }
