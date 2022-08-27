@@ -19,6 +19,11 @@ const templateList: Array<ITempList> = [
     id: '4',
     name: 'template4',
     preview: 'template4.png'
+  },
+  {
+    id: '5',
+    name: 'template5',
+    preview: 'template5.png'
   }
   // {
   //   id: '4',
