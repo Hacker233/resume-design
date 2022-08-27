@@ -118,11 +118,13 @@
    * 左右两列布局
    */
   // 左侧列表
-  const leftList = ref<any>(resumeJsonNewStore.COMPONENTS.filter((item) => item.layout === 'left'));
-  // 右侧列表
-  const rightList = ref<any>(
-    resumeJsonNewStore.COMPONENTS.filter((item) => item.layout === 'right')
-  );
+  const leftList = ref<any>([]);
+  const rightList = ref<any>([]);
+  if (resumeJsonNewStore.LAYOUT === 'leftRight') {
+    leftList.value = resumeJsonNewStore.COMPONENTS.filter((item) => item.layout === 'left');
+    // 右侧列表
+    rightList.value = resumeJsonNewStore.COMPONENTS.filter((item) => item.layout === 'right');
+  }
 
   watch(
     leftList,

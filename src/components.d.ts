@@ -8,11 +8,8 @@ export {}
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
     AwardsCom: typeof import('./components/ModelComs/AwardsCom.vue')['default']
-    BaseInfoOptions: typeof import('./components/CommonOptions/BaseInfoOptions.vue')['default']
     CampusExperienceCom: typeof import('./components/ModelComs/CampusExperienceCom.vue')['default']
     ColorPickerCustom: typeof import('./components/ColorPicker/ColorPickerCustom.vue')['default']
-    CommonOptions: typeof import('./components/CommonOptions/CommonOptions.vue')['default']
-    CommonTitleOptions: typeof import('./components/CommonOptions/CommonTitleOptions.vue')['default']
     EduBackgroundCom: typeof import('./components/ModelComs/EduBackgroundCom.vue')['default']
     ElBacktop: typeof import('element-plus/es')['ElBacktop']
     ElButton: typeof import('element-plus/es')['ElButton']
@@ -47,7 +44,6 @@ declare module '@vue/runtime-core' {
     PreviewImage: typeof import('./components/PreviewImage/PreviewImage.vue')['default']
     ProjectExperienceCom: typeof import('./components/ModelComs/ProjectExperienceCom.vue')['default']
     ResumeTheme: typeof import('./components/ResumeTheme/ResumeTheme.vue')['default']
-    ResumeTitleOptions: typeof import('./components/CommonOptions/ResumeTitleOptions.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     SelfEvaluationCom: typeof import('./components/ModelComs/SelfEvaluationCom.vue')['default']
