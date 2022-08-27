@@ -128,7 +128,7 @@
     saveDataToLocal();
   }, 1000);
   watch(
-    resumeJsonNewStore.value, // JSON数据发生变化，则保存草稿
+    () => resumeJsonNewStore.value, // JSON数据发生变化，则保存草稿
     () => {
       debounced();
     },

@@ -195,6 +195,7 @@
     resumeJsonNewStore.COMPONENTS.forEach((cptItem: IMATERIALITEM) => {
       cptItem.style.themeColor = item.hex;
     });
+    console.log("改变主题色后的COMPONENTS", resumeJsonNewStore.COMPONENTS)
   };
   // 改变一级字体大小
   const changeFirstTitleFontSize = (value: string) => {

@@ -133,6 +133,7 @@
     let cptData = cloneDeep(item);
     cptData.data = cloneDeep(MODEL_DATA_JSON[cptData.model]); // 为模块添加数据
     cptData.keyId = getUuid();
+    cptData.show = true;
     console.log('cptData', cptData);
     pushComponent(cptData); // 添加模块
   };
