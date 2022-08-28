@@ -95,7 +95,7 @@
   // 点击选择模块
   const { updateSelectModel, resetSelectModel } = appStore.useSelectMaterialStore;
   const selectModel = () => {
-    console.log('keyId', props.item.keyId);
+    console.log('keyId', props.item.keyId, props.item);
     // 更新store
     updateSelectModel(
       props.item.model,

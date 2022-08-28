@@ -1,6 +1,7 @@
 import RESUME_TITLE_1 from '@/material/ResumeTitle/ResumeTitle1/index.vue';
 
 import CUSTOM_1 from '@/material/Custom/Custom1/NameAbstract.vue';
+import CUSTOM_2 from '@/material/Custom/Custom2/ResumeTitleWord.vue';
 
 import EDU_BACKGROUND_1 from '@/material/EduBackground/EduBackground1/index.vue';
 import EDU_BACKGROUND_2 from '@/material/EduBackground/EduBackground2/EduBackground.vue';
@@ -53,6 +54,7 @@ import WORKS_DISPLAY_3 from '@/material/WorksDisplay/WorksDisplay3/WorksDisplay.
 // 注册所有物料组件
 const MaterialComponents = {
   CUSTOM_1: CUSTOM_1,
+  CUSTOM_2: CUSTOM_2,
 
   EDU_BACKGROUND_1: EDU_BACKGROUND_1,
   EDU_BACKGROUND_2: EDU_BACKGROUND_2,

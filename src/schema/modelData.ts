@@ -296,6 +296,18 @@ const MODEL_DATA_JSON: IMODELDATAJSON = {
       abstract: true,
       name: true
     }
+  },
+  CUSTOM_2: {
+    iconfont: 'icon-jibenziliao',
+    model: 'CUSTOM_2',
+    show: true,
+    title: '简历标题',
+    name: '个人简历',
+    abstract: '给我一个机会，我必全力以赴！',
+    isShow: {
+      abstract: true,
+      name: true
+    }
   }
 };
 export default MODEL_DATA_JSON;
