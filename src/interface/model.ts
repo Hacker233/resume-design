@@ -254,6 +254,17 @@ interface ICUSTOM1 {
   [propNams: string]: any;
 }
 
+// 自定义任意模块2
+interface ICUSTOM2 {
+  iconfont: string;
+  model: string;
+  show: boolean;
+  title: string;
+  name: string;
+  abstract: string;
+  [propNams: string]: any;
+}
+
 // 全局样式主题
 interface IGlobalStyle {
   themeColor: string; // 主题色
@@ -329,5 +340,6 @@ export {
   IWORKSDISPLAY,
   TModelList,
   IGlobalStyle,
-  ICUSTOM1
+  ICUSTOM1,
+  ICUSTOM2
 };
