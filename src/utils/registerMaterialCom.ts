@@ -10,6 +10,7 @@ import EDU_BACKGROUND_3 from '@/material/EduBackground/EduBackground3/EduBackgro
 import BASE_INFO_1 from '@/material/BaseInfo/BaseInfo1/index.vue';
 import BASE_INFO_2 from '@/material/BaseInfo/BaseInfo2/BaseInfo.vue';
 import BASE_INFO_3 from '@/material/BaseInfo/BaseInfo3/BaseInfo.vue';
+import BASE_INFO_4 from '@/material/BaseInfo/BaseInfo4/BaseInfo.vue';
 
 import JOB_INTENTION_1 from '@/material/JobIntention/JobIntention1/index.vue';
 import JOB_INTENTION_2 from '@/material/JobIntention/JobIntention2/JobIntention.vue';
@@ -63,6 +64,8 @@ const MaterialComponents = {
   BASE_INFO_1: BASE_INFO_1,
   BASE_INFO_2: BASE_INFO_2,
   BASE_INFO_3: BASE_INFO_3,
+  BASE_INFO_4: BASE_INFO_4,
+
   RESUME_TITLE_1: RESUME_TITLE_1,
 
   JOB_INTENTION_1: JOB_INTENTION_1,

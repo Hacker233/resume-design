@@ -1,11 +1,13 @@
 <template>
   <div class="base-info">
     <!-- 模块标题 -->
+    <model-title :title="modelData.title" :model-style="modelStyle"></model-title>
   </div>
 </template>
 <script lang="ts" setup>
   import { IBASEINFO } from '@/interface/model';
   import IMODELSTYLE from '@/interface/modelStyle';
+  import ModelTitle from '@/material/ModelTitle/ModelTItle4/ModelTitle.vue';
 
   const props = defineProps<{
     modelData: IBASEINFO; // 模块数据

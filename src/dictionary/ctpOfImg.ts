@@ -30,6 +30,11 @@ const ctpOfImg: ICptOfImg = {
       url: 'BASE_INFO_3.png',
       width: '100%',
       height: ''
+    },
+    BASE_INFO_4: {
+      url: 'BASE_INFO_4.png',
+      width: '100%',
+      height: ''
     }
   },
   JOB_INTENTION: {
