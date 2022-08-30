@@ -56,9 +56,11 @@ import FileSaver from 'file-saver';
   };
 
   // 导出为JSON
+  const route = useRoute();
+  const { name } = route.query; // 模板id和模板名称
   const exportJSON = () => {
-    resumeJsonNewStore.value.NAME = '';
-    resumeJsonNewStore.value.ID = '';
+    resumeJsonNewStore.value.NAME = name as string;
+    resumeJsonNewStore.value.ID = getUuid();
     const data = JSON.stringify(resumeJsonNewStore.value, null, 4);
     const blob = new Blob([data], { type: '' });
     FileSaver.saveAs(blob, resumeJsonNewStore.value.TITLE + '.json');
