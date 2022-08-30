@@ -52,6 +52,11 @@ const ctpOfImg: ICptOfImg = {
       url: 'JOB_INTENTION_3.png',
       width: '100%',
       height: ''
+    },
+    JOB_INTENTION_4: {
+      url: 'JOB_INTENTION_4.png',
+      width: '100%',
+      height: ''
     }
   },
   EDU_BACKGROUND: {
@@ -67,6 +72,11 @@ const ctpOfImg: ICptOfImg = {
     },
     EDU_BACKGROUND_3: {
       url: 'EDU_BACKGROUND_3.png',
+      width: '100%',
+      height: ''
+    },
+    EDU_BACKGROUND_4: {
+      url: 'EDU_BACKGROUND_4.png',
       width: '100%',
       height: ''
     }
@@ -86,6 +96,11 @@ const ctpOfImg: ICptOfImg = {
       url: 'SKILL_SPECIALTIES_3.png',
       width: '100%',
       height: ''
+    },
+    SKILL_SPECIALTIES_4: {
+      url: 'SKILL_SPECIALTIES_4.png',
+      width: '100%',
+      height: ''
     }
   },
   CAMPUS_EXPERIENCE: {
@@ -103,6 +118,11 @@ const ctpOfImg: ICptOfImg = {
       url: 'CAMPUS_EXPERIENCE_3.png',
       width: '100%',
       height: ''
+    },
+    CAMPUS_EXPERIENCE_4: {
+      url: 'CAMPUS_EXPERIENCE_4.png',
+      width: '100%',
+      height: ''
     }
   },
   INTERNSHIP_EXPERIENCE: {
@@ -118,6 +138,11 @@ const ctpOfImg: ICptOfImg = {
     },
     INTERNSHIP_EXPERIENCE_3: {
       url: 'INTERNSHIP_EXPERIENCE_3.png',
+      width: '100%',
+      height: ''
+    },
+    INTERNSHIP_EXPERIENCE_4: {
+      url: 'INTERNSHIP_EXPERIENCE_4.png',
       width: '100%',
       height: ''
     }

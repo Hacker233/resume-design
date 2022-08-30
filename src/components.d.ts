@@ -39,6 +39,7 @@ declare module '@vue/runtime-core' {
     InternshipExperienceCom: typeof import('./components/ModelComs/InternshipExperienceCom.vue')['default']
     JobIntentionCom: typeof import('./components/ModelComs/JobIntentionCom.vue')['default']
     LoadingCom: typeof import('./components/Loading/LoadingCom.vue')['default']
+    LoginDialog: typeof import('./components/LoginDialog/LoginDialog.vue')['default']
     ModelBox: typeof import('./components/ModelBox/ModelBox.vue')['default']
     NavBar: typeof import('./components/NavBar/NavBar.vue')['default']
     PreviewImage: typeof import('./components/PreviewImage/PreviewImage.vue')['default']

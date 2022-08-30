@@ -2,9 +2,29 @@
   <div class="base-info">
     <!-- 模块标题 -->
     <model-title :title="modelData.title" :model-style="modelStyle"></model-title>
+    <!-- 基本信息 -->
+    <div class="user-info">
+      <div class="left">
+        <h1>{{ modelData.name }}</h1>
+        <!-- 一句话简介 -->
+        <p v-show="isShow.abstract" class="user-abstract">{{ modelData.abstract }}</p>
+        <!-- 年龄、地点、经验等信息 -->
+        <ul>
+          <li v-show="isShow.age" class="li-border">{{ modelData.age }}岁</li>
+          <li v-show="isShow.address" class="li-border">{{ modelData.address }}</li>
+          <li v-show="isShow.workService" class="li-border">{{ modelData.workService }}年经验</li>
+          <li v-show="isShow.phoneNumber" class="li-border">{{ modelData.phoneNumber }}</li>
+          <li v-show="isShow.email">{{ modelData.email }}</li>
+        </ul>
+      </div>
+      <div v-show="modelData.isShow.avatar" class="avatar-box">
+        <el-image style="width: 120px; height: 150px" :src="modelData.avatar" />
+      </div>
+    </div>
   </div>
 </template>
 <script lang="ts" setup>
+  import useGetLineLeft from '@/hooks/material/useTemplate3LeftLine';
   import { IBASEINFO } from '@/interface/model';
   import IMODELSTYLE from '@/interface/modelStyle';
   import ModelTitle from '@/material/ModelTitle/ModelTItle4/ModelTitle.vue';
@@ -13,6 +33,8 @@
     modelData: IBASEINFO; // 模块数据
     modelStyle: IMODELSTYLE; // 模块样式
   }>();
+  const isShow = reactive(props.modelData.isShow);
+  const { left } = useGetLineLeft(props.modelStyle, -23);
 </script>
 <style lang="scss" scoped>
   .base-info {
@@ -25,5 +47,65 @@
     box-sizing: border-box;
     margin-bottom: v-bind('modelStyle.mBottom');
     margin-top: v-bind('modelStyle.mTop');
+    position: relative;
+    &::before {
+      content: '';
+      position: absolute;
+      width: 1px;
+      height: 100%;
+      background-color: v-bind('modelStyle.themeColor');
+      left: v-bind('left');
+      top: 5px;
+    }
+    .user-info {
+      display: flex;
+      padding: 30px 30px 10px 50px;
+
+      .left {
+        flex: 1;
+        h1 {
+          margin: 0;
+          font-size: v-bind('modelStyle.titleFontSize');
+          color: v-bind('modelStyle.titleColor');
+          font-weight: v-bind('modelStyle.titleFontWeight');
+          margin-bottom: 20px;
+        }
+        p {
+          color: v-bind('modelStyle.textColor');
+          font-size: v-bind('modelStyle.textFontSize');
+          font-weight: v-bind('modelStyle.textFontWeight');
+          margin-bottom: 20px;
+        }
+        ul {
+          display: flex;
+          li {
+            list-style: none;
+            font-size: v-bind('modelStyle.textFontSize');
+            font-weight: v-bind('modelStyle.textFontWeight');
+            padding-right: 12px;
+            height: 20px;
+            margin-right: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: v-bind('modelStyle.textColor');
+          }
+          .li-border {
+            border-right: 2px solid #b4b4b4;
+          }
+        }
+      }
+    }
+
+    .avatar-box {
+      width: 120px;
+      height: 150px;
+      overflow: hidden;
+      background-color: #eee;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 4px solid #eee;
+    }
   }
 </style>

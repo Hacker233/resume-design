@@ -11,7 +11,7 @@ const routes: Array<RouteRecordRaw> = [
     meta: {
       title: '首页',
       keepAlive: true,
-      requireAuth: false
+      requireLogin: false
     },
     component: Index
   },
@@ -21,7 +21,7 @@ const routes: Array<RouteRecordRaw> = [
     meta: {
       title: '设计',
       keepAlive: true,
-      requireAuth: true
+      requireLogin: true
     },
     component: Designer
   },
@@ -31,7 +31,7 @@ const routes: Array<RouteRecordRaw> = [
     meta: {
       title: '自定义',
       keepAlive: true,
-      requireAuth: true
+      requireLogin: true
     },
     component: Custom
   }
