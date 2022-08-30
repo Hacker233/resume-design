@@ -6,26 +6,32 @@ import CUSTOM_2 from '@/material/Custom/Custom2/ResumeTitleWord.vue';
 import EDU_BACKGROUND_1 from '@/material/EduBackground/EduBackground1/index.vue';
 import EDU_BACKGROUND_2 from '@/material/EduBackground/EduBackground2/EduBackground.vue';
 import EDU_BACKGROUND_3 from '@/material/EduBackground/EduBackground3/EduBackground.vue';
+import EDU_BACKGROUND_4 from '@/material/EduBackground/EduBackground4/EduBackground.vue';
 
 import BASE_INFO_1 from '@/material/BaseInfo/BaseInfo1/index.vue';
 import BASE_INFO_2 from '@/material/BaseInfo/BaseInfo2/BaseInfo.vue';
 import BASE_INFO_3 from '@/material/BaseInfo/BaseInfo3/BaseInfo.vue';
+import BASE_INFO_4 from '@/material/BaseInfo/BaseInfo4/BaseInfo.vue';
 
 import JOB_INTENTION_1 from '@/material/JobIntention/JobIntention1/index.vue';
 import JOB_INTENTION_2 from '@/material/JobIntention/JobIntention2/JobIntention.vue';
 import JOB_INTENTION_3 from '@/material/JobIntention/JobIntention3/JobIntention.vue';
+import JOB_INTENTION_4 from '@/material/JobIntention/JobIntention4/JobIntention.vue';
 
 import SKILL_SPECIALTIES_1 from '@/material/SkillSpecialties/SkillSpecialties1/index.vue';
 import SKILL_SPECIALTIES_2 from '@/material/SkillSpecialties/SkillSpecialties2/SkillSpecialties.vue';
 import SKILL_SPECIALTIES_3 from '@/material/SkillSpecialties/SkillSpecialties3/SkillSpecialties.vue';
+import SKILL_SPECIALTIES_4 from '@/material/SkillSpecialties/SkillSpecialties4/SkillSpecialties.vue';
 
 import CAMPUS_EXPERIENCE_1 from '@/material/CampusExperience/CampusExperience1/index.vue';
 import CAMPUS_EXPERIENCE_2 from '@/material/CampusExperience/CampusExperience2/CampusExperience.vue';
 import CAMPUS_EXPERIENCE_3 from '@/material/CampusExperience/CampusExperience3/CampusExperience.vue';
+import CAMPUS_EXPERIENCE_4 from '@/material/CampusExperience/CampusExperience4/CampusExperience.vue';
 
 import INTERNSHIP_EXPERIENCE_1 from '@/material/InternshipExperience/InternshipExperience1/index.vue';
 import INTERNSHIP_EXPERIENCE_2 from '@/material/InternshipExperience/InternshipExperience2/InternshipExperience.vue';
 import INTERNSHIP_EXPERIENCE_3 from '@/material/InternshipExperience/InternshipExperience3/InternshipExperience.vue';
+import INTERNSHIP_EXPERIENCE_4 from '@/material/InternshipExperience/InternshipExperience4/InternshipExperience.vue';
 
 import WORK_EXPERIENCE_1 from '@/material/WorkExperience/WorkExperience1/index.vue';
 import WORK_EXPERIENCE_2 from '@/material/WorkExperience/WorkExperience2/WorkExperience.vue';
@@ -59,27 +65,34 @@ const MaterialComponents = {
   EDU_BACKGROUND_1: EDU_BACKGROUND_1,
   EDU_BACKGROUND_2: EDU_BACKGROUND_2,
   EDU_BACKGROUND_3: EDU_BACKGROUND_3,
+  EDU_BACKGROUND_4: EDU_BACKGROUND_4,
 
   BASE_INFO_1: BASE_INFO_1,
   BASE_INFO_2: BASE_INFO_2,
   BASE_INFO_3: BASE_INFO_3,
+  BASE_INFO_4: BASE_INFO_4,
+
   RESUME_TITLE_1: RESUME_TITLE_1,
 
   JOB_INTENTION_1: JOB_INTENTION_1,
   JOB_INTENTION_2: JOB_INTENTION_2,
   JOB_INTENTION_3: JOB_INTENTION_3,
+  JOB_INTENTION_4: JOB_INTENTION_4,
 
   SKILL_SPECIALTIES_1: SKILL_SPECIALTIES_1,
   SKILL_SPECIALTIES_2: SKILL_SPECIALTIES_2,
   SKILL_SPECIALTIES_3: SKILL_SPECIALTIES_3,
+  SKILL_SPECIALTIES_4: SKILL_SPECIALTIES_4,
 
   CAMPUS_EXPERIENCE_1: CAMPUS_EXPERIENCE_1,
   CAMPUS_EXPERIENCE_2: CAMPUS_EXPERIENCE_2,
   CAMPUS_EXPERIENCE_3: CAMPUS_EXPERIENCE_3,
+  CAMPUS_EXPERIENCE_4: CAMPUS_EXPERIENCE_4,
 
   INTERNSHIP_EXPERIENCE_1: INTERNSHIP_EXPERIENCE_1,
   INTERNSHIP_EXPERIENCE_2: INTERNSHIP_EXPERIENCE_2,
   INTERNSHIP_EXPERIENCE_3: INTERNSHIP_EXPERIENCE_3,
+  INTERNSHIP_EXPERIENCE_4: INTERNSHIP_EXPERIENCE_4,
 
   WORK_EXPERIENCE_1: WORK_EXPERIENCE_1,
   WORK_EXPERIENCE_2: WORK_EXPERIENCE_2,

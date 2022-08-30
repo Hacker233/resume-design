@@ -3,6 +3,7 @@
     <div class="nav-left">
       <img src="@/assets/logo.png" alt="logo" srcset="" @click="toHome" />
       <span @click="toHome">化简</span>
+      <!-- <el-button @click="login">登录</el-button> -->
     </div>
     <div class="nav-center">
       <p v-show="!isShowIpt">
@@ -39,6 +40,13 @@
 import { getUuid } from '@/utils/common';
 import FileSaver from 'file-saver';
   import { storeToRefs } from 'pinia';
+  import LoginDialog from '@/components/LoginDialog/LoginDialog'
+
+
+  const login = () => {
+    LoginDialog();
+  }
+
 
   const emit = defineEmits(['generateReport']);
   const { resumeJsonNewStore } = storeToRefs(appStore.useResumeJsonNewStore);
@@ -56,9 +64,11 @@ import FileSaver from 'file-saver';
   };
 
   // 导出为JSON
+  const route = useRoute();
+  const { name } = route.query; // 模板id和模板名称
   const exportJSON = () => {
-    resumeJsonNewStore.value.NAME = '';
-    resumeJsonNewStore.value.ID = '';
+    resumeJsonNewStore.value.NAME = name as string;
+    resumeJsonNewStore.value.ID = getUuid();
     const data = JSON.stringify(resumeJsonNewStore.value, null, 4);
     const blob = new Blob([data], { type: '' });
     FileSaver.saveAs(blob, resumeJsonNewStore.value.TITLE + '.json');
