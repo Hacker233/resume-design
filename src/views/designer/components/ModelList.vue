@@ -2,6 +2,7 @@
   <div class="model-list-box">
     <div class="model-ul">
       <draggable
+        v-show="leftShowStatus"
         :list="resumeJsonStore.LIST"
         itemKey="id"
         ghost-class="ghost"
