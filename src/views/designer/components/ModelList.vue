@@ -2,7 +2,6 @@
   <div class="model-list-box">
     <div class="model-ul">
       <draggable
-        v-show="leftShowStatus"
         :list="resumeJsonStore.LIST"
         itemKey="id"
         ghost-class="ghost"
@@ -10,6 +9,7 @@
         animation="300"
         @start="onStart"
         @end="onEnd"
+        v-show="leftShowStatus"
       >
         <template #item="{ element, index }">
           <div
