@@ -2,7 +2,6 @@
   <div class="model-list-box">
     <div class="model-ul" v-if="resumeJsonNewStore.COMPONENTS.length">
       <draggable
-        v-show="leftShowStatus"
         :list="resumeJsonNewStore.COMPONENTS"
         item-key="id"
         ghost-class="ghost"

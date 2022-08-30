@@ -172,7 +172,7 @@
         li {
           list-style: none;
           width: 100%;
-          height: 60px;
+          height: 48px;
           display: flex;
           flex-direction: column;
           justify-content: space-evenly;
