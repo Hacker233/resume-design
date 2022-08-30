@@ -19,25 +19,44 @@
           </span>
         </div>
         <!-- 专业 -->
-        <p class="special" v-if="modelData.isShow.specialized">{{ item.specialized }}</p>
+        <p v-if="modelData.isShow.specialized" class="special">{{ item.specialized }}</p>
         <!-- 教学经历 -->
-        <p class="majorCourse" v-if="modelData.isShow.majorCourse">{{ item.majorCourse }}</p>
+        <p v-if="modelData.isShow.majorCourse" class="majorCourse">{{ item.majorCourse }}</p>
       </ul>
     </div>
   </div>
 </template>
 <script setup lang="ts">
+  import useGetLineLeft from '@/hooks/material/useTemplate3LeftLine';
   import { IEDUBACKGROUND } from '@/interface/model';
+  import IMODELSTYLE from '@/interface/modelStyle';
   import { formatDate } from '@/utils/common';
-  defineProps<{
+  const props = defineProps<{
     modelData: IEDUBACKGROUND;
+    modelStyle: IMODELSTYLE; // 模块样式
   }>();
+  // 模板3左侧竖线
+  const { left } = useGetLineLeft(props.modelStyle);
 </script>
 <style lang="scss" scoped>
   .edu-background {
-    padding: 0 40px;
-    margin-bottom: v-bind('modelData.style.mBottom');
-    margin-top: v-bind('modelData.style.mTop');
+    padding-top: v-bind('modelStyle.pTop');
+    padding-bottom: v-bind('modelStyle.pBottom');
+    padding-left: v-bind('modelStyle.pLeftRight');
+    padding-right: v-bind('modelStyle.pLeftRight');
+    margin-bottom: v-bind('modelStyle.mBottom');
+    margin-top: v-bind('modelStyle.mTop');
+    box-sizing: border-box;
+    position: relative;
+    &::before {
+      content: '';
+      position: absolute;
+      width: 1px;
+      height: 100%;
+      background-color: v-bind('modelStyle.themeColor');
+      left: v-bind('left');
+      top: 5px;
+    }
     .edu-list {
       display: flex;
       width: 100%;
@@ -54,9 +73,9 @@
           width: 100%;
           display: flex;
           justify-content: space-between;
-          font-size: v-bind('modelData.style.titleFontSize');
-          color: v-bind('modelData.style.titleColor');
-          font-weight: v-bind('modelData.style.titleFontWeight');
+          font-size: v-bind('modelStyle.titleFontSize');
+          color: v-bind('modelStyle.titleColor');
+          font-weight: v-bind('modelStyle.titleFontWeight');
           letter-spacing: 2px;
           margin-bottom: 5px;
         }
@@ -64,9 +83,9 @@
         .majorCourse {
           width: 100%;
           display: flex;
-          font-size: v-bind('modelData.style.textFontSize');
-          color: v-bind('modelData.style.textColor');
-          font-weight: v-bind('modelData.style.textFontWeight');
+          font-size: v-bind('modelStyle.textFontSize');
+          color: v-bind('modelStyle.textColor');
+          font-weight: v-bind('modelStyle.textFontWeight');
           line-height: 18px;
           text-align: justify;
           font-family: '微软雅黑';

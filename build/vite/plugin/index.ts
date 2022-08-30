@@ -4,6 +4,8 @@ import { configAutoImportPlugin } from './autoImport';
 import { configAutoComponentsPlugin } from './autocomponents';
 import { configCompressPlugin } from './compress';
 import { configSvgIconsPlugin } from './svgIcons';
+import DefineOptions from 'unplugin-vue-define-options/vite';
+
 export function createVitePlugins(viteEnv: ViteEnv, isBuild: boolean) {
   const { VITE_BUILD_COMPRESS, VITE_BUILD_COMPRESS_DELETE_ORIGIN_FILE } = viteEnv;
 
@@ -20,6 +22,9 @@ export function createVitePlugins(viteEnv: ViteEnv, isBuild: boolean) {
 
   // vite-plugin-svg-icons
   vitePlugins.push(configSvgIconsPlugin());
+
+  // unplugin-vue-define-options
+  vitePlugins.push(DefineOptions());
 
   // The following plugins only work in the production environment
   if (isBuild) {

@@ -11,7 +11,26 @@
       <el-popover :width="200" trigger="click" teleported>
         <template #reference>
           <span class="contact-me">
-            <svg-icon iconName="icon-lianxiwomen1" :color="iconColor" size="16px"></svg-icon>
+            <svg-icon icon-name="icon-lianxiwomen1" :color="iconColor" size="16px"></svg-icon>
+            官方交流群
+          </span>
+        </template>
+        <!-- 内容区域 -->
+        <div class="vx-box">
+          <div class="vx-title">
+            <h1>进入微信群</h1>
+            <p>进入交流群，迅速解答疑问！</p>
+          </div>
+          <div class="vx-img">
+            <img class="bgc-img" src="@/assets/images/vx-qun.jpg" alt="" />
+          </div>
+        </div>
+      </el-popover>
+
+      <el-popover :width="200" trigger="click" teleported>
+        <template #reference>
+          <span class="contact-me">
+            <svg-icon icon-name="icon-lianxiwomen1" :color="iconColor" size="16px"></svg-icon>
             联系我
           </span>
         </template>
@@ -32,14 +51,14 @@
         target="_blank"
         rel="noopener noreferrer"
       >
-        <svg-icon iconName="icon-gitee-fill-round" :color="iconColor" size="31px"></svg-icon>
+        <svg-icon icon-name="icon-gitee-fill-round" :color="iconColor" size="31px"></svg-icon>
       </a>
       <a
         href="https://github.com/Hacker233/resume-design"
         target="_blank"
         rel="noopener noreferrer"
       >
-        <svg-icon iconName="icon-github-fill" :color="iconColor" size="35px"></svg-icon>
+        <svg-icon icon-name="icon-github-fill" :color="iconColor" size="35px"></svg-icon>
       </a>
     </div>
   </div>
@@ -118,11 +137,11 @@
       align-items: center;
       h1 {
         font-size: 14px;
-        margin-bottom: 6px;
       }
       p {
         font-size: 12px;
         color: rgb(105, 105, 105);
+        margin: 6px 0;
       }
     }
     .vx-img {

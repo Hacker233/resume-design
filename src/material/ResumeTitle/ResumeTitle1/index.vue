@@ -9,7 +9,7 @@
   import IMODELSTYLE from '@/interface/modelStyle';
   import appStore from '@/store';
   import { storeToRefs } from 'pinia';
-  const { designJsonStore } = storeToRefs(appStore.useDesignStore);
+  const { resumeJsonNewStore } = storeToRefs(appStore.useResumeJsonNewStore);
   defineProps<{
     modelData: IRESUMETITLE;
     modelStyle: IMODELSTYLE; // 模块样式
@@ -19,6 +19,10 @@
 <style lang="scss" scoped>
   .title {
     width: 100%;
+    padding-top: v-bind('modelStyle.pTop');
+    padding-bottom: v-bind('modelStyle.pBottom');
+    padding-left: v-bind('modelStyle.pLeftRight');
+    padding-right: v-bind('modelStyle.pLeftRight');
     min-height: 32px;
     margin-bottom: v-bind('modelStyle.mBottom');
     margin-top: v-bind('modelStyle.mTop');

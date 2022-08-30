@@ -4,10 +4,11 @@
     <c-scrollbar trigger="hover">
       <div class="options-box">
         <component
-          :is="optionsComponent[appStore.useSelectMaterialStore.cptOptionsName]"
+          :is="optionsComponents[appStore.useSelectMaterialStore.cptOptionsName]"
           v-if="appStore.useSelectMaterialStore.cptOptionsName"
           :key="appStore.useSelectMaterialStore.cptKeyId"
         />
+        <global-style-options-vue v-else></global-style-options-vue>
       </div>
     </c-scrollbar>
   </div>
@@ -15,20 +16,11 @@
 <script lang="ts" setup>
   import Title from './Title.vue';
   import appStore from '@/store';
-  import ResumeThemeVue from '@/components/ResumeTheme/ResumeTheme.vue';
-  import BaseInfoOptionsVue from '../options/BaseInfoOptions.vue'; // 基础资料模块属性设置
-  import ResumeTitleOptionsVue from '../options/ResumeTitleOptions.vue';
-  import EduBackgroundOptionsVue from '../options/EduBackgroundOptions.vue';
-  import JobIntentionOptionsVue from '../options/JobIntentionOptions.vue';
-  // 定义属性组件列表
-  const optionsComponent: any = {
-    BASE_INFO_OPTIONS: BaseInfoOptionsVue,
-    RESUME_TITLE_OPTIONS: ResumeTitleOptionsVue,
-    EDU_BACKGROUND_OPTIONS: EduBackgroundOptionsVue,
-    JOB_INTENTION_OPTIONS: JobIntentionOptionsVue
-  };
+  import GlobalStyleOptionsVue from '@/options/GlobalStyleOptions.vue';
+  import optionsComponents from '@/utils/registerMaterialOptionsCom';
 </script>
-<style lang="scss" scoped>
+<style lang="scss">
+  @import '../../../style/options.scss';
   .main-right-box {
     width: 355px;
     background-color: #fff;

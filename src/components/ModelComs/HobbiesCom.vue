@@ -10,24 +10,43 @@
   </div>
 </template>
 <script setup lang="ts">
+  import useGetLineLeft from '@/hooks/material/useTemplate3LeftLine';
   import { IHOBBIES } from '@/interface/model';
-  defineProps<{
+  import IMODELSTYLE from '@/interface/modelStyle';
+  const props = defineProps<{
     modelData: IHOBBIES;
+    modelStyle: IMODELSTYLE; // 模块样式
   }>();
+  // 模板3左侧竖线
+  const { left } = useGetLineLeft(props.modelStyle);
 </script>
 <style lang="scss" scoped>
   .hobbies {
-    padding: 0 40px;
-    margin-bottom: v-bind('modelData.style.mBottom');
-    margin-top: v-bind('modelData.style.mTop');
+    padding-top: v-bind('modelStyle.pTop');
+    padding-bottom: v-bind('modelStyle.pBottom');
+    padding-left: v-bind('modelStyle.pLeftRight');
+    padding-right: v-bind('modelStyle.pLeftRight');
+    margin-bottom: v-bind('modelStyle.mBottom');
+    margin-top: v-bind('modelStyle.mTop');
+    box-sizing: border-box;
+    position: relative;
+    &::before {
+      content: '';
+      position: absolute;
+      width: 1px;
+      height: 100%;
+      background-color: v-bind('modelStyle.themeColor');
+      left: v-bind('left');
+      top: 5px;
+    }
     .hobbies-content {
       display: flex;
       margin-top: 25px;
       p {
         letter-spacing: 2px;
-        font-size: v-bind('modelData.style.textFontSize');
-        color: v-bind('modelData.style.textColor');
-        font-weight: v-bind('modelData.style.textFontWeight');
+        font-size: v-bind('modelStyle.textFontSize');
+        color: v-bind('modelStyle.textColor');
+        font-weight: v-bind('modelStyle.textFontWeight');
         line-height: 1.5;
       }
     }

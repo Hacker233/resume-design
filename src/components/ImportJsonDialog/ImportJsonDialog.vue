@@ -13,19 +13,19 @@
         <div class="header-left">
           <h1 class="title">请在编辑器内输入简历JSON数据，格式如下：</h1>
           <span>
-            <svg-icon iconName="icon-xianshi_jinggao" color="red" size="14px"></svg-icon>
-            注意：示例中的所有字段都需要保留，若无值为空即可，不可删除字段！
+            <svg-icon icon-name="icon-xianshi_jinggao" color="red" size="14px"></svg-icon>
+            注意：JSON数据通常为自定义模板时导出的JSON数据！
           </span>
         </div>
         <div class="header-right">
           <el-tooltip class="box-item" effect="dark" content="JSON示例" placement="bottom">
             <div class="icon-box" @click="openTip">
-              <svg-icon iconName="icon-daimashili" color="#fff" size="17px"></svg-icon>
+              <svg-icon icon-name="icon-daimashili" color="#fff" size="17px"></svg-icon>
             </div>
           </el-tooltip>
           <el-tooltip class="box-item" effect="dark" content="重置" placement="bottom">
             <div class="icon-box" @click="resetJson">
-              <svg-icon iconName="icon-zhongzhi" color="#fff" size="17px"></svg-icon>
+              <svg-icon icon-name="icon-zhongzhi" color="#fff" size="17px"></svg-icon>
             </div>
           </el-tooltip>
         </div>
@@ -35,11 +35,11 @@
     <div class="code-mirror-box">
       <codemirror
         v-model="code"
-        placeholder="请将你的简历JSON写在此处～～"
+        placeholder="请将你在自定义模板下载的JSON数据粘贴在此处哦~~"
         :style="{ height: '400px' }"
         :autofocus="true"
         :indent-with-tab="true"
-        :tabSize="2"
+        :tab-size="2"
         :extensions="extensions"
       />
     </div>
@@ -53,7 +53,7 @@
 
   <!-- JSON提示弹窗 -->
   <tip-json-dialog
-    :tipDialogVisible="tipDialogVisible"
+    :tip-dialog-visible="tipDialogVisible"
     @close-tip-dialog="closeTipDialog"
   ></tip-json-dialog>
 </template>
@@ -64,12 +64,11 @@
   import { oneDark } from '@codemirror/theme-one-dark';
   import { json } from '@codemirror/lang-json';
   import { ref } from 'vue';
-  import TEMPLATE_JSON from '@/schema/model';
+  import RESUME_JSON from '@/schema/resume';
   import IMPORT_JSON from '@/schema/import';
   import { ElMessage } from 'element-plus';
   import { isJSON } from '@/utils/common';
   import { useRoute } from 'vue-router';
-  import useAddStyle from '@/hooks/useAddStyle';
   import appStore from '@/store';
   import TipJsonDialog from '@/components/TipJsonDialog/TipJsonDialog.vue';
 
@@ -83,7 +82,7 @@
   });
 
   // 代码编辑器
-  const code = ref<string>(JSON.stringify(IMPORT_JSON, null, 4));
+  const code = ref<string>('');
   const extensions = [javascript(), oneDark, json()];
 
   // 取消
@@ -114,8 +113,8 @@
   // 提交JSON
   const { setUuid } = appStore.useUuidStore;
   const route = useRoute();
-  const { changeResumeJsonData } = appStore.useResumeJsonStore;
-  const { storeReset } = appStore.useResumeModelStore;
+  const { changeResumeJsonData, changeImportJsonData } = appStore.useResumeJsonNewStore;
+  const { resetSelectModel } = appStore.useSelectMaterialStore;
   const confirmJson = () => {
     if (!code.value) {
       ElMessage({
@@ -134,27 +133,14 @@
       });
       return;
     }
+    // // 处理数据
     let importJson = JSON.parse(code.value);
-    const { id, name } = route.query; // 模板id和模板名称
-    importJson.ID = id;
-    importJson.NAME = name;
-    // 合并基础json与导入的json
-    for (let i = 0; i < importJson.LIST.length; i++) {
-      for (let j = 0; j < TEMPLATE_JSON.LIST.length; j++) {
-        if (TEMPLATE_JSON.LIST[j].model === importJson.LIST[i].model) {
-          importJson.LIST[i] = {
-            ...TEMPLATE_JSON.LIST[j],
-            ...importJson.LIST[i]
-          };
-        }
-      }
-    }
-    // 合并样式
-    const afterStyleJson = useAddStyle(importJson);
-    console.log('导入的最终JSON', afterStyleJson);
-    changeResumeJsonData(afterStyleJson); // 更改store的数据
+    importJson.ID = 4;
+    console.log('导入的最终JSON', importJson);
+    changeResumeJsonData(importJson); // 更改store的数据
+    changeImportJsonData(importJson); // 保存JSON数据
     setUuid(); // 重新渲染左侧列表和右侧属性面板设置
-    storeReset(); // 重置选中模块
+    resetSelectModel(); // 重置选中模块
     emit('cancle');
   };
 </script>

@@ -1,15 +1,61 @@
 <template>
   <div :class="['title']">
     <h1>{{ title }}</h1>
+    <el-tooltip class="box-item" effect="dark" content="全局主题设置">
+      <div
+        :class="['right-icon', { isHover: isHover }, { notAllowed: isAllowed }]"
+        @mouseover="handleMousver"
+        @mouseleave="handleMouselaave"
+        @click="themeSetting"
+      >
+        <svg-icon
+          icon-name="icon-jingzi"
+          class-name="icon icon-jingzi"
+          :color="themeColorIcon"
+          size="20px"
+        ></svg-icon>
+      </div>
+    </el-tooltip>
   </div>
 </template>
 <script setup lang="ts">
+  import appStore from '@/store';
+  import { storeToRefs } from 'pinia';
+
   interface ITitle {
     title?: string;
   }
   withDefaults(defineProps<ITitle>(), {
     title: '属性设置'
   });
+
+  // 图标是否可用
+  const { cptKeyId } = storeToRefs(appStore.useSelectMaterialStore);
+  const isAllowed = computed(() => {
+    return cptKeyId.value ? false : true;
+  });
+
+  // 主题图标颜色
+  const themeColorIcon = computed(() => {
+    return isAllowed.value ? '#ccc' : 'green';
+  });
+
+  // 鼠标移入
+  const isHover = ref<boolean>(false);
+  const handleMousver = () => {
+    isHover.value = true;
+  };
+
+  // 鼠标移出
+  const handleMouselaave = () => {
+    isHover.value = false;
+  };
+
+  // 主题设置
+  const { resetSelectModel } = appStore.useSelectMaterialStore;
+  const themeSetting = () => {
+    resetSelectModel();
+  };
 </script>
 <style lang="scss" scoped>
   .title {
@@ -43,6 +89,21 @@
       letter-spacing: 3px;
       height: 60px;
       line-height: 60px;
+    }
+    .right-icon {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+    }
+    .isHover {
+      background-color: #eee;
+    }
+    .notAllowed {
+      cursor: not-allowed;
     }
   }
 </style>

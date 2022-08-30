@@ -1,7 +1,7 @@
 <template>
   <div class="edu-background">
     <!-- 标题 -->
-    <model-title :title="modelData.title" :modelStyle="modelStyle"></model-title>
+    <model-title :title="modelData.title" :model-style="modelStyle"></model-title>
     <!-- 教育背景 -->
     <div class="edu-list">
       <ul v-for="(item, index) in modelData.LIST" :key="index">
@@ -29,7 +29,10 @@
 </script>
 <style lang="scss" scoped>
   .edu-background {
-    padding: 0 40px;
+    padding-top: v-bind('modelStyle.pTop');
+    padding-bottom: v-bind('modelStyle.pBottom');
+    padding-left: v-bind('modelStyle.pLeftRight');
+    padding-right: v-bind('modelStyle.pLeftRight');
     margin-bottom: v-bind('modelStyle.mBottom');
     margin-top: v-bind('modelStyle.mTop');
     box-sizing: border-box;

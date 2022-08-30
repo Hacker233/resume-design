@@ -6,7 +6,7 @@
       <!-- 查看更多按钮 -->
       <div class="see-more-box">
         <div class="button" @click="freeMakeResume"> 免费制作 </div>
-        <div class="button" @click="toCustom"> 创建模板 </div>
+        <div class="button" @click="toCustom"> 自定义模板 </div>
       </div>
     </div>
     <div class="right">
@@ -15,20 +15,25 @@
   </div>
 </template>
 <script lang="ts" setup>
-  const emit = defineEmits(['freeMake']);
+  import { closeGlobalLoading } from '@/utils/common';
+
+  const emit = defineEmits(['freeMake', 'customTemplate']);
   const freeMakeResume = () => {
     emit('freeMake');
   };
   const handleMouseover = () => {
     // console.log('鼠标移动');
   };
-  // 跳转至自定义模板
-  const router = useRouter();
+
+  // 滚动到自定义模板
   const toCustom = () => {
-    router.push({
-      path: '/custom'
-    });
-  };
+    emit('customTemplate')
+  }
+
+  // 页面销毁
+  onUnmounted(() => {
+    closeGlobalLoading(); // 关闭全局等待层
+  });
 </script>
 <style lang="scss" scoped>
   .project-introduce-box {

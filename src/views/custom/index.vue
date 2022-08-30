@@ -1,13 +1,13 @@
 <template>
   <div class="custom-resume-box">
     <!-- 导航栏 -->
-    <nav-com></nav-com>
+    <nav-com @generate-report="generateReport"></nav-com>
     <!-- 主区 -->
     <div class="main-box">
       <!-- 左侧物料区 -->
       <main-left></main-left>
       <!-- 中间设计区 -->
-      <main-center :components="components"></main-center>
+      <main-center ref="mainCenterRef" :components="MaterialComponents"></main-center>
       <!-- 右侧属性区 -->
       <main-right></main-right>
     </div>
@@ -18,22 +18,14 @@
   import MainLeft from './components/MainLeft.vue'; // 左侧区域
   import MainCenter from './components/MainCenter.vue'; // 中间区域
   import MainRight from './components/MainRight.vue'; // 右侧区域
+  import MaterialComponents from '@/utils/registerMaterialCom'; // 所有物料组件
 
-  import EDU_BACKGROUND_1 from '@/material/EduBackground/EduBackground1/index.vue';
-  import BASE_INFO_1 from '@/material/BaseInfo/BaseInfo1/index.vue';
-  import RESUME_TITLE_1 from '@/material/ResumeTitle/ResumeTitle1/index.vue';
-  import JOB_INTENTION_1 from '@/material/JobIntention/JobIntention1/index.vue';
-
-  // 注册所有物料组件
-  const components = {
-    EDU_BACKGROUND_1: EDU_BACKGROUND_1,
-    BASE_INFO_1: BASE_INFO_1,
-    RESUME_TITLE_1: RESUME_TITLE_1,
-    JOB_INTENTION_1: JOB_INTENTION_1
+  // 打印为pdf
+  const mainCenterRef = ref<any>(null);
+  const generateReport = () => {
+    mainCenterRef.value.generateReport();
   };
-
-  // 初始化数据
-  console.log('components', components);
+  console.log('组件列表', MaterialComponents);
 </script>
 <style lang="scss" scoped>
   .custom-resume-box {

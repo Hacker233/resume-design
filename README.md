@@ -1,7 +1,27 @@
 <p align="center"><img width="200" src="https://gitee.com/sharemore52/resume-img/raw/master/logo.png"></p>
 
 <p align="center">
-  <a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/npm/l/vue.svg" alt="License"></a>
+    <a href="https://v3.vuejs.org/" target="_blank">
+        <img src="https://img.shields.io/badge/Vue-%3E3.x-brightgreen?color=91aac3&labelColor=439EFD" alt="vue">
+    </a>
+    <a href="https://element-plus.gitee.io/#/zh-CN/component/changelog" target="_blank">
+        <img src="https://img.shields.io/badge/Element--Plus-%3E2.1-brightgreen?color=91aac3&labelColor=439EFD" alt="element plus">
+    </a>
+    <a href="https://www.tslang.cn/" target="_blank">
+        <img src="https://img.shields.io/badge/TypeScript-%3E4.4-blue?color=91aac3&labelColor=439EFD" alt="typescript">
+    </a>
+    <a href="https://vitejs.dev/" target="_blank">
+        <img src="https://img.shields.io/badge/Vite-%3E3.0-blue?color=91aac3&labelColor=439EFD" alt="vite">
+    </a>
+    <a href="https://pinia.vuejs.org/" target="_blank">
+        <img src="https://img.shields.io/badge/Pinia-%3E2.0-blue?color=91aac3&labelColor=439EFD" alt="vite">
+    </a>
+    <a href="https://pinia.vuejs.org/" target="_blank">
+        <img src="https://img.shields.io/badge/Node-%3E16.0-blue?color=91aac3&labelColor=439EFD" alt="vite">
+    </a>
+    <a href="https://opensource.org/licenses/MIT">
+        <img src="https://img.shields.io/npm/l/vue.svg?color=91aac3&labelColor=439EFD" alt="License">
+    </a>
 </p>
 <h1 align="center">😙化简</h1>
 <h2 align="center">一款免费简历制作神器</h2>
@@ -22,23 +42,24 @@
     - [构建项目](#构建项目)
     - [目录说明:](#目录说明)
   - [交流&贡献](#交流贡献)
+  - [贡献者](#贡献者)
   - [License](#license)
 
 ## 项目介绍
 
-该项目为纯前端项目，所有数据存储在浏览器端，你可以利用该项目轻松制作出精美的简历。你可以随意添加删除简历模块、选择模板、更改字体大小、颜色、间距等等样式。
+该项目目前为纯前端项目，所有数据存储在浏览器端，你可以利用该项目轻松制作出精美的简历。你可以随意添加删除简历模块、选择模板、更改字体大小、颜色、间距等等样式。
 
 ## 演示
 
 **图片：**
 
-<p align="center"><img width="1000" src="https://github.com/huajian-pro/resume-design/blob/main/doc/images/1.png"></p>
+<p align="center"><img width="1000" src="https://gitee.com/sharemore52/resume-design/raw/main/doc/images/3.png"></p>
 
 
-<p align="center"><img width="1000" src="https://github.com/huajian-pro/resume-design/blob/main/doc/images/4.png"></p>
+<p align="center"><img width="1000" src="https://gitee.com/sharemore52/resume-design/raw/main/doc/images/4.png"></p>
 
 
-<p align="center"><img width="1000" src="https://github.com/huajian-pro/resume-design/blob/main/doc/images/6.png"></p>
+<p align="center"><img width="1000" src="https://gitee.com/sharemore52/resume-design/raw/main/doc/images/6.png"></p>
 
 ## 功能介绍
 
@@ -68,6 +89,7 @@ git clone https://github.com/huajian-pro/resume-design.git
 ```
 - 推荐使用包管理工具[pnpm](https://pnpm.io/installation)
 - 或使用[yarn](https://yarnpkg.com/getting-started/install)、npm（node自带无需额外安装）包管理工具
+- Node版本请确保在v16.0及以上
 
 > pnpm全局安装方法`npm i -g pnpm`
 
@@ -114,7 +136,10 @@ pnpm build
 ## 交流&贡献
 
 添加vx：LHQfighting，进入微信交流群，可方便解决和提出问题。
-<p align="center"><img width="400" src="https://github.com/huajian-pro/resume-design/blob/main/src/assets/images/vx.jpg"></p>
+<p align="center">
+    <img width="300" src="https://gitee.com/sharemore52/resume-design/raw/main/src/assets/images/vx.jpg">
+    <img width="300" src="https://gitee.com/sharemore52/resume-design/raw/main/doc/images/vx-qun.jpg">
+</p>
 
 ## 贡献者
 

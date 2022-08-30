@@ -1,29 +1,30 @@
 <template>
   <div class="design-box">
     <!-- 导航栏 -->
-    <design-nav @generateReport="generateReport" @reset="reset"></design-nav>
+    <design-nav @generate-report="generateReport" @reset="reset"></design-nav>
     <!-- 内容区域 -->
     <div class="bottom">
       <!-- 左侧添加模块区域 -->
-      <div class="left" ref="leftRef">
+      <div ref="leftRef" class="left">
         <c-scrollbar trigger="hover">
-          <Title @unflodOrCollapse="unflodOrCollapse" showCollapse></Title>
-          <model-list :leftShowStatus="leftShowStatus" :key="refreshUuid"></model-list>
+          <Title show-collapse @unflod-or-collapse="unflodOrCollapse"></Title>
+          <model-list :key="refreshUuid" :left-show-status="leftShowStatus"></model-list>
         </c-scrollbar>
       </div>
 
       <!-- 预览区域 -->
-      <div class="center" :key="refreshUuid">
-        <div class="design" ref="html2Pdf">
-          <div class="design-content" ref="htmlContentPdf">
-            <component :is="componentName" @contentHeightChange="contentHeightChange" />
+      <div :key="refreshUuid" class="center">
+        <div ref="html2Pdf" class="design">
+          <div ref="htmlContentPdf" class="design-content">
+            <component is="custom" @content-height-change="contentHeightChange" />
           </div>
           <!-- 分页线 -->
           <template v-if="linesNumber > 0">
             <div
-              class="lines"
               v-for="(item, index) in linesNumber"
               :ref="(el) => setLinesRef(el, index)"
+              :key="index"
+              class="lines"
               :style="{ top: `${1128 + 1132 * index}px` }"
             >
               <p class="tips">如果分割线遮挡内容，请通过调整模块上下边距以显示内容！</p>
@@ -33,21 +34,21 @@
         </div>
       </div>
       <!-- 属性设置面板 -->
-      <div class="config" :key="refreshUuid">
-        <Title :title="title"></Title>
+      <div :key="refreshUuid" class="config">
+        <Title :title="cptTitle"></Title>
         <c-scrollbar
           trigger="hover"
-          :hThumbStyle="{
+          :h-thumb-style="{
             'background-color': 'rgba(0,0,0,0.4)'
           }"
         >
           <component
-            :is="appStore.useResumeModelStore.optionsName"
-            v-if="appStore.useResumeModelStore.model"
-            :key="appStore.useResumeModelStore.id"
+            :is="optionsComponents[appStore.useSelectMaterialStore.cptOptionsName]"
+            v-if="appStore.useSelectMaterialStore.cptName"
+            :key="appStore.useSelectMaterialStore.cptKeyId"
           />
           <!-- 全局主题样式设置 -->
-          <resume-theme-vue v-else></resume-theme-vue>
+          <global-style-options-vue v-else></global-style-options-vue>
         </c-scrollbar>
       </div>
     </div>
@@ -55,11 +56,9 @@
 </template>
 
 <script setup lang="ts">
-  import { nextTick, onBeforeUnmount, onBeforeUpdate, onMounted, ref, watch } from 'vue';
   import Title from './components/Title.vue';
   import ModelList from './components/ModelList.vue';
-  import ResumeThemeVue from '@/components/ResumeTheme/ResumeTheme.vue';
-  import TEMPLATE_JSON from '@/schema/model';
+  import GlobalStyleOptionsVue from '@/options/GlobalStyleOptions.vue';
 
   import downloadPDF from '@/utils/html2pdf'; // 下载为pdf
   import appStore from '@/store';
@@ -67,29 +66,41 @@
   import { useRoute } from 'vue-router';
   import { CScrollbar } from 'c-scrollbar'; // 滚动条
   import DesignNav from './components/DesignNav.vue';
-  import useAddStyle from '@/hooks/useAddStyle';
   import { ElMessage } from 'element-plus';
+  import MODEL_DATA_JSON from '@/schema/modelData';
+  import optionsComponents from '@/utils/registerMaterialOptionsCom';
+  import { getTemplateJson } from '@/http/api/getTemplateJson';
+  import IDESIGNJSON from '@/interface/design';
+  import { closeGlobalLoading } from '@/utils/common';
 
-  const { title } = storeToRefs(appStore.useResumeModelStore);
-  const { changeResumeJsonData } = appStore.useResumeJsonStore;
+  const { cptTitle } = storeToRefs(appStore.useSelectMaterialStore);
+  const { changeResumeJsonData } = appStore.useResumeJsonNewStore;
   const { refreshUuid } = storeToRefs(appStore.useUuidStore);
   const { setUuid } = appStore.useUuidStore;
-  const { resumeJsonStore } = storeToRefs(appStore.useResumeJsonStore); // store里的模板数据
+  const { resumeJsonNewStore, importJson } = storeToRefs(appStore.useResumeJsonNewStore); // store里的模板数据
 
   // 重置数据方法
-  const resetStoreAndLocal = () => {
+  const resetStoreAndLocal = async () => {
+    let TEMPLATE_JSON;
+    const url = `${location.origin}/json/${name}/template.json`;
+    const data: IDESIGNJSON = await getTemplateJson(url);
+    TEMPLATE_JSON = data;
     TEMPLATE_JSON.ID = id as string;
     TEMPLATE_JSON.NAME = name as string;
-    let resetObj = useAddStyle(TEMPLATE_JSON); // 初始数据
-    changeResumeJsonData(resetObj); // 更改store的数据
+    TEMPLATE_JSON.COMPONENTS.forEach((item) => {
+      item.data = MODEL_DATA_JSON[item.model];
+    });
+    changeResumeJsonData(TEMPLATE_JSON); // 更改store的数据
+    setUuid();
+    console.log('简历JSON数据', resumeJsonNewStore.value);
   };
   // 获取本地数据,初始化store里面的简历数据
   const localData = localStorage.getItem('resumeDraft');
   const route = useRoute();
   const { id, name } = route.query; // 模板id和模板名称
-  resumeJsonStore.value.ID = id as string;
-  resumeJsonStore.value.NAME = name as string;
-  const componentName = ref<string>(name as string); // 模板名称,即渲染哪个模板
+  // 模板1、模板2、模板3处理逻辑
+  resumeJsonNewStore.value.ID = id as string;
+  resumeJsonNewStore.value.NAME = name as string;
   if (localData) {
     let localObj = JSON.parse(localData)[id as string];
     if (localObj) {
@@ -100,23 +111,14 @@
   } else {
     resetStoreAndLocal();
   }
-  console.log('resumeJsonStore', resumeJsonStore.value);
-  // 过滤掉模板2不需要的模块
-  if (Number(id) == 2) {
-    let List: any = [];
-    resumeJsonStore.value.LIST.forEach((item) => {
-      if (item.model == 'RESUME_TITLE') {
-        item.show = false;
-      }
-      List.push(item);
-    });
-    resumeJsonStore.value.LIST = List;
-  }
 
   // 生命周期函数
   onMounted(async () => {
     resizeDOM();
     initClickListen();
+
+    await nextTick();
+    closeGlobalLoading(); // 关闭全局等待层
   });
   onBeforeUnmount(() => {
     observer?.disconnect();
@@ -126,11 +128,11 @@
   });
 
   // 属性设置
-  const { storeReset } = appStore.useResumeModelStore;
+  const { resetSelectModel } = appStore.useSelectMaterialStore;
   // 全局样式设置
   const globalStyleSetting = () => {
     // 重置store选中模块
-    storeReset();
+    resetSelectModel();
     // console.log("reset",appStore)
   };
 
@@ -177,9 +179,9 @@
   const generateReport = async () => {
     let temp = linesNumber.value;
     linesNumber.value = 0;
-    storeReset(); // 重置选中模块
+    resetSelectModel(); // 重置选中模块
     await nextTick();
-    downloadPDF(html2Pdf.value, resumeJsonStore.value.TITLE, false, () => {
+    downloadPDF(html2Pdf.value, resumeJsonNewStore.value.TITLE, false, () => {
       linesNumber.value = temp;
     });
   };
@@ -187,7 +189,7 @@
   // 监听内容元素高度变化，绘制分割线
   const htmlContentPdf = ref<any>(null);
   let observer: ResizeObserver | null = null;
-  let height: number = 0;
+  let height = 0;
   let linesNumber = ref<number>(0);
   const resizeDOM = () => {
     observer = new ResizeObserver(async (entries: ResizeObserverEntry[]) => {
@@ -202,8 +204,11 @@
   };
 
   // 子组件内容高度发生变化---需要重新计算高度，触发resizeDOM
-  const contentHeightChange = (height: number) => {
+  const contentHeightChange = async (height: number) => {
     htmlContentPdf.value.style.height = height + 'px';
+    await nextTick();
+    resizeDOM();
+    console.log('子组件内容高度发生变化---需要重新计算高度', htmlContentPdf.value.style.height);
   };
 
   // 点击其它区域，取消模块选择，即取消模块选中效果
@@ -241,7 +246,9 @@
     }
   };
 </script>
-
+<style lang="scss">
+  @import '../../style/options.scss';
+</style>
 <style lang="scss" scoped>
   .design-box {
     height: 100vh;

@@ -1,17 +1,27 @@
 <template>
-  <div class="material-model-box" @click="selectModel">
+  <div
+    v-if="item.show"
+    :ref="(el) => setRefItem(el, item.keyId)"
+    :class="[
+      'material-model-box',
+      { 'is-have-border': item.keyId === appStore.useSelectMaterialStore.cptKeyId }
+    ]"
+    @click="selectModel"
+    @mouseover="handleMouseover"
+    @mouseleave="handleMouseleave"
+  >
     <!-- 模块操作区域 -->
-    <div class="edit-box" v-show="hoverId === item.keyId">
+    <div v-show="hoverId === item.keyId" class="edit-box">
       <el-tooltip class="box-item" effect="dark" content="复制当前模块">
-        <div class="copy">
-          <svg-icon iconName="icon-jia" className="icon" color="#fff" size="16px"></svg-icon>
+        <div class="copy" @click.stop="addModel">
+          <svg-icon icon-name="icon-jia" class-name="icon" color="#fff" size="16px"></svg-icon>
         </div>
       </el-tooltip>
       <el-tooltip class="box-item" effect="dark" content="删除当前模块">
-        <div class="delete">
+        <div class="delete" @click.stop="useDeleteModel(item)">
           <svg-icon
-            iconName="icon-shanchu"
-            className="icon icon-shanchu"
+            icon-name="icon-shanchu"
+            class-name="icon icon-shanchu"
             color="#fff"
             size="18px"
           ></svg-icon>
@@ -19,25 +29,54 @@
       </el-tooltip>
     </div>
     <component
-      :class="['mode-item', { isHover: hoverId === item.keyId }]"
       :is="components[item.cptName]"
-      :modelData="item.data"
-      :modelStyle="item.style"
+      :class="['mode-item', { isHover: hoverId === item.keyId }]"
+      :model-data="item.data"
+      :model-style="item.style"
       :style="getDynamicStyle(item)"
-      @mouseover="handleMouseover()"
-      @mouseleave="handleMouseleave"
     ></component>
   </div>
 </template>
 <script lang="ts" setup>
   import { IMATERIALITEM } from '@/interface/material';
   import appStore from '@/store';
-
+  import { getUuid } from '@/utils/common';
+  import { cloneDeep } from 'lodash';
+  import { storeToRefs } from 'pinia';
+  import { ComponentPublicInstance } from 'vue';
+  import { useDeleteModel } from '@/hooks/useDeleteModel';
+  const emit = defineEmits(['leftRightDelete', 'leftRightAdd']);
   const props = defineProps<{
     item: IMATERIALITEM;
     components: any;
   }>();
-  console.log('当前移入模块', props.item);
+  const { resumeJsonNewStore } = storeToRefs(appStore.useResumeJsonNewStore);
+
+  // 锚点定位
+  const { cptKeyId } = storeToRefs(appStore.useSelectMaterialStore);
+  watch(
+    cptKeyId,
+    (newVal, oldVal) => {
+      // 如果选中了模块
+      if (newVal && modelObj[newVal]) {
+        modelObj[newVal].el.scrollIntoView({ behavior: 'smooth', block: 'center' }); // 该模块显示在可视区域内
+      }
+    },
+    {
+      deep: true
+    }
+  );
+  // 模块ref
+  const modelObj = reactive<any>({});
+  const setRefItem = (el: ComponentPublicInstance | null | Element, keyId: string) => {
+    if (el) {
+      modelObj[keyId] = {
+        id: keyId,
+        el: el
+      };
+    }
+  };
+
   // 鼠标移入效果
   const hoverId = ref<string>('');
   const handleMouseover = () => {
@@ -54,26 +93,67 @@
     };
   };
   // 点击选择模块
-  const { updateSelectModdel } = appStore.useSelectMaterialStore;
+  const { updateSelectModel, resetSelectModel } = appStore.useSelectMaterialStore;
   const selectModel = () => {
+    console.log('keyId', props.item.keyId, props.item);
     // 更新store
-    updateSelectModdel(
+    updateSelectModel(
       props.item.model,
       props.item.cptOptionsName,
       props.item.cptTitle,
       props.item.keyId
     );
   };
+
+  // 删除当前模块
+  const deleteModel = () => {
+    if (resumeJsonNewStore.value.LAYOUT === 'classical') {
+      classicalDelete();
+    } else {
+      emit('leftRightDelete', props.item.keyId);
+    }
+    resetSelectModel(); // 重置选中模块
+  };
+
+  // 传统模块删除
+  const classicalDelete = () => {
+    let index: number = resumeJsonNewStore.value.COMPONENTS.findIndex(
+      (item) => item.keyId === props.item.keyId
+    );
+    resumeJsonNewStore.value.COMPONENTS.splice(index, 1);
+  };
+
+  // 复制当前模块
+  const addModel = () => {
+    if (resumeJsonNewStore.value.LAYOUT === 'classical') {
+      classicalAdd();
+    } else {
+      emit('leftRightAdd', props.item);
+    }
+  };
+
+  // 传统布局删除
+  const classicalAdd = () => {
+    let index: number = resumeJsonNewStore.value.COMPONENTS.findIndex(
+      (item) => item.keyId === props.item.keyId
+    );
+    let insert = cloneDeep(props.item);
+    insert.keyId = getUuid();
+    resumeJsonNewStore.value.COMPONENTS.splice(index, 0, insert);
+  };
 </script>
 <style lang="scss" scoped>
   .material-model-box {
+    border: 1px dashed transparent;
+    transition: all 0.3s;
     position: relative;
     .mode-item {
       border: 1px dashed transparent;
       position: relative;
       // border-radius: 8px;
-      overflow: hidden;
+      // overflow: hidden;
       user-select: none;
+      box-sizing: border-box;
       &:hover {
         border: 1px dashed #7ec97e;
         cursor: move;
@@ -114,5 +194,9 @@
         margin-left: 6px;
       }
     }
+  }
+
+  .is-have-border {
+    border-color: #7ec97e;
   }
 </style>

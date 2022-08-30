@@ -7,15 +7,15 @@
     <div class="nav-center">
       <span class="draft-tips">{{ draftTips }}</span>
       <p v-show="!isShowIpt">
-        {{ resumeJsonStore.TITLE }}
+        {{ resumeJsonNewStore.TITLE }}
         <el-icon :size="20" color="#409eff" @click="changeTitle">
           <Edit />
         </el-icon>
       </p>
       <el-input
-        ref="titleIpf"
         v-show="isShowIpt"
-        v-model="resumeJsonStore.TITLE"
+        ref="titleIpf"
+        v-model="resumeJsonNewStore.TITLE"
         autofocus
         placeholder="请输入标题"
         @blur="blurTitle"
@@ -24,27 +24,33 @@
     <div class="nav-right">
       <el-tooltip class="box-item" effect="dark" content="保存草稿" placement="bottom">
         <div class="icon-box" @click="saveDraft">
-          <svg-icon iconName="icon-caogaoxiang1" color="#fff" size="17px"></svg-icon>
+          <svg-icon icon-name="icon-caogaoxiang1" color="#fff" size="17px"></svg-icon>
         </div>
       </el-tooltip>
       <el-tooltip class="box-item" effect="dark" content="导出为PDF" placement="bottom">
         <div class="icon-box" @click="generateReport">
-          <svg-icon iconName="icon-pdf" color="#fff" size="17px"></svg-icon>
+          <svg-icon icon-name="icon-pdf" color="#fff" size="17px"></svg-icon>
         </div>
       </el-tooltip>
       <el-tooltip class="box-item" effect="dark" content="导出为JSON数据" placement="bottom">
         <div class="icon-box" @click="exportJSON">
-          <svg-icon iconName="icon-xiazai" color="#fff" size="17px"></svg-icon>
+          <svg-icon icon-name="icon-xiazai" color="#fff" size="17px"></svg-icon>
         </div>
       </el-tooltip>
-      <el-tooltip class="box-item" effect="dark" content="导入JSON数据" placement="bottom">
+      <el-tooltip
+        v-if="name === 'custom'"
+        class="box-item"
+        effect="dark"
+        content="导入JSON数据"
+        placement="bottom"
+      >
         <div class="icon-box" @click="importJson">
-          <svg-icon iconName="icon-yunduanshangchuan" color="#fff" size="19px"></svg-icon>
+          <svg-icon icon-name="icon-yunduanshangchuan" color="#fff" size="19px"></svg-icon>
         </div>
       </el-tooltip>
       <el-tooltip class="box-item" effect="dark" content="重置所有设置" placement="bottom">
         <div class="icon-box" @click="reset">
-          <svg-icon iconName="icon-zhongzhi" color="#fff" size="17px"></svg-icon>
+          <svg-icon icon-name="icon-zhongzhi" color="#fff" size="17px"></svg-icon>
         </div>
       </el-tooltip>
     </div>
@@ -52,7 +58,7 @@
 
   <!-- 上传json代码编辑器 -->
   <import-json-dialog
-    :dialogVisible="dialogVisible"
+    :dialog-visible="dialogVisible"
     @cancle="cancleJsonDialog"
   ></import-json-dialog>
 </template>
@@ -67,9 +73,10 @@
   import { useRouter } from 'vue-router';
   import ImportJsonDialog from '@/components/ImportJsonDialog/ImportJsonDialog.vue';
   import { debounce } from 'lodash';
-  let { resumeJsonStore } = storeToRefs(appStore.useResumeJsonStore); // store里的模板数据
+  let { resumeJsonNewStore } = storeToRefs(appStore.useResumeJsonNewStore); // store里的模板数据
   const emit = defineEmits(['generateReport', 'reset', 'saveDataToLocal']);
-
+  const route = useRoute();
+  const { name } = route.query; // 模板id和模板名称
   // 跳转到首页
   const router = useRouter();
   const toHome = () => {
@@ -92,14 +99,14 @@
   // 保存数据到本地
   let draftTips = ref<string>('');
   const saveDataToLocal = () => {
-    let key = resumeJsonStore.value.ID; // 当前模板的id
+    let key = resumeJsonNewStore.value.ID; // 当前模板的id
     let saveData: { [key: string]: object } = {}; // 需要保存的数据
     let localData = localStorage.getItem('resumeDraft'); // 本地缓存数据
     if (localData) {
       saveData = JSON.parse(localData);
-      saveData[key] = resumeJsonStore.value;
+      saveData[key] = resumeJsonNewStore.value;
     } else {
-      saveData[key] = resumeJsonStore.value;
+      saveData[key] = resumeJsonNewStore.value;
     }
     localStorage.setItem('resumeDraft', JSON.stringify(saveData));
     const date = moment(new Date()).format('YYYY.MM.DD HH:mm:ss');
@@ -121,7 +128,7 @@
     saveDataToLocal();
   }, 1000);
   watch(
-    resumeJsonStore.value, // JSON数据发生变化，则保存草稿
+    () => resumeJsonNewStore.value, // JSON数据发生变化，则保存草稿
     () => {
       debounced();
     },
@@ -132,9 +139,9 @@
 
   // 导出JSON
   const exportJSON = () => {
-    const data = JSON.stringify(resumeJsonStore.value);
+    const data = JSON.stringify(resumeJsonNewStore.value, null, 4);
     const blob = new Blob([data], { type: '' });
-    FileSaver.saveAs(blob, resumeJsonStore.value.TITLE + '.json');
+    FileSaver.saveAs(blob, resumeJsonNewStore.value.TITLE + '.json');
   };
 
   // 导出pdf
@@ -151,7 +158,7 @@
     })
       .then(() => {
         emit('reset');
-        draftTips.value = ``;
+        draftTips.value = '';
       })
       .catch(() => {});
   };

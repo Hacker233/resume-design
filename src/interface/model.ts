@@ -21,7 +21,6 @@ interface ISTYLE {
 }
 // 简历标题
 interface IRESUMETITLE {
-  id: string;
   model: string;
   show: boolean;
   title: string;
@@ -29,7 +28,6 @@ interface IRESUMETITLE {
 }
 // 基础资料
 interface IBASEINFO {
-  id: string;
   iconfont: string;
   model: string;
   show: boolean;
@@ -57,7 +55,6 @@ interface IBASEINFO {
 }
 // 求职意向
 interface IJOBINTENTION {
-  id: string;
   iconfont: string;
   model: string;
   show: boolean;
@@ -78,7 +75,6 @@ interface IJOBINTENTION {
 }
 // 教育背景
 interface IEDUBACKGROUND {
-  id: string;
   iconfont: string;
   model: string;
   show: boolean;
@@ -101,7 +97,6 @@ interface IEDUBACKGROUND {
 }
 // 技能特长
 interface ISKILLSPECIALTIES {
-  id: string;
   iconfont: string;
   model: string;
   show: boolean;
@@ -116,7 +111,6 @@ interface ISKILLSPECIALTIES {
 
 // 校园经历
 interface ICAMPUSEXPERIENCE {
-  id: string;
   iconfont: string;
   model: string;
   show: boolean;
@@ -137,7 +131,6 @@ interface ICAMPUSEXPERIENCE {
 }
 // 实习经验
 interface IINTERNSHIPEXPERIENCE {
-  id: string;
   iconfont: string;
   model: string;
   show: boolean;
@@ -160,7 +153,6 @@ interface IINTERNSHIPEXPERIENCE {
 }
 // 工作经验
 interface IWORKEXPERIENCE {
-  id: string;
   iconfont: string;
   model: string;
   show: boolean;
@@ -182,7 +174,6 @@ interface IWORKEXPERIENCE {
 }
 // 项目经验
 interface IPROJECTEXPERIENCE {
-  id: string;
   iconfont: string;
   model: string;
   show: boolean;
@@ -204,7 +195,6 @@ interface IPROJECTEXPERIENCE {
 }
 // 所获奖项
 interface IAWARDS {
-  id: string;
   iconfont: string;
   model: string;
   show: boolean;
@@ -223,7 +213,6 @@ interface IAWARDS {
 }
 // 兴趣爱好
 interface IHOBBIES {
-  id: string;
   iconfont: string;
   model: string;
   show: boolean;
@@ -233,7 +222,6 @@ interface IHOBBIES {
 }
 // 自我评价
 interface ISELFEVALUATION {
-  id: string;
   iconfont: string;
   model: string;
   show: boolean;
@@ -243,7 +231,6 @@ interface ISELFEVALUATION {
 }
 // 作品展示
 interface IWORKSDISPLAY {
-  id: string;
   iconfont: string;
   model: string;
   show: boolean;
@@ -253,6 +240,28 @@ interface IWORKSDISPLAY {
     worksLink: string;
     worksIntroduce: string;
   }>;
+  [propNams: string]: any;
+}
+
+// 自定义的任意模块
+interface ICUSTOM1 {
+  iconfont: string;
+  model: string;
+  show: boolean;
+  title: string;
+  name: string;
+  abstract: string;
+  [propNams: string]: any;
+}
+
+// 自定义任意模块2
+interface ICUSTOM2 {
+  iconfont: string;
+  model: string;
+  show: boolean;
+  title: string;
+  name: string;
+  abstract: string;
   [propNams: string]: any;
 }
 
@@ -274,6 +283,7 @@ interface IResumeJson {
   ID: string; // 模板id
   NAME: string; // 模板名
   TITLE: string; // 模板名称
+  LAYOUT: string; // 布局方式
   LIST: [
     IRESUMETITLE,
     IBASEINFO,
@@ -287,7 +297,8 @@ interface IResumeJson {
     IAWARDS,
     IHOBBIES,
     ISELFEVALUATION,
-    IWORKSDISPLAY
+    IWORKSDISPLAY,
+    ICUSTOM1
   ];
   GLOBAL_STYLE: IGlobalStyle;
 }
@@ -306,7 +317,8 @@ type TModelList = Array<
     IAWARDS,
     IHOBBIES,
     ISELFEVALUATION,
-    IWORKSDISPLAY
+    IWORKSDISPLAY,
+    ICUSTOM1
   ]
 >;
 
@@ -327,5 +339,7 @@ export {
   ISELFEVALUATION,
   IWORKSDISPLAY,
   TModelList,
-  IGlobalStyle
+  IGlobalStyle,
+  ICUSTOM1,
+  ICUSTOM2
 };

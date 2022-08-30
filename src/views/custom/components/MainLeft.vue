@@ -7,11 +7,12 @@
       </div>
       <ul>
         <li
+          v-for="(val, key, index) in MATERIAL_JSON"
+          :key="index"
           :class="[{ active: currentKey === key }]"
-          v-for="(val, key) in MATERIAL_JSON"
           @click="selectModel(val, key as string)"
         >
-          <svg-icon :iconName="modelOfIcon[key]" color="#2cbd99" size="25px"></svg-icon>
+          <svg-icon :icon-name="modelOfIcon[key]" color="#2cbd99" size="25px"></svg-icon>
           <p>{{ modelOfTitle[key] }}</p>
         </li>
       </ul>
@@ -24,34 +25,56 @@
         </div>
         <!-- 组件列表 -->
         <div class="cpt-list-box">
-          <div
-            v-for="(item, index) in cptList"
-            class="com-item"
-            draggable="true"
-            @dragstart="ondragstart($event, item)"
-            @dragend="handleDragend"
-            :ref="(el) => setColumnRefs(el, item.keyId)"
+          <!-- 拖拽组件 -->
+          <draggable
+            class="dragArea list-group"
+            :sort="false"
+            :list="cptList"
+            :clone="cloneData"
+            :group="{ name: 'custom', pull: 'clone', put: false }"
+            @start="start"
+            item-key="id"
           >
-            <el-tooltip class="box-item" effect="light" placement="right">
-              <template #content>
-                <img
-                  :src="getAssetsMaterialFile(currentKey, cptOfImg[currentKey][item.cptName].url)"
-                  style="max-width: 400px"
-                  alt=""
-                  srcset=""
-                />
-              </template>
-              <img
-                :src="getAssetsMaterialFile(currentKey, cptOfImg[currentKey][item.cptName].url)"
+            <template #item="{ element }">
+              <div
+                class="list-group-item com-item"
                 :style="{
-                  height: cptOfImg[currentKey][item.cptName].height,
-                  width: cptOfImg[currentKey][item.cptName].width
+                  height: cptOfImg[currentKey][element.cptName].height,
+                  width: cptOfImg[currentKey][element.cptName].width
                 }"
-                alt=""
-                srcset=""
-              />
-            </el-tooltip>
-          </div>
+                @click="addModel(element)"
+              >
+                <el-tooltip class="box-item" effect="light" :enterable="false">
+                  <template #content>
+                    <div class="toolTip-box">
+                      <img
+                        :src="
+                          getAssetsMaterialFile(
+                            currentKey,
+                            cptOfImg[currentKey][element.cptName].url
+                          )
+                        "
+                        style="max-width: 500px"
+                        alt="效果图"
+                        srcset=""
+                      />
+                      <div class="layout-box">
+                        建议位置：{{layoutDic[element.layout]}}
+                      </div>
+                    </div>
+                  </template>
+                  <img
+                    :src="
+                      getAssetsMaterialFile(currentKey, cptOfImg[currentKey][element.cptName].url)
+                    "
+                    style="width: 100%"
+                    alt=""
+                    srcset=""
+                  />
+                </el-tooltip>
+              </div>
+            </template>
+          </draggable>
         </div>
       </template>
       <div v-else>
@@ -62,13 +85,31 @@
 </template>
 <script lang="ts" setup>
   import { IMATERIALITEM } from '@/interface/material.js';
-  import { MATERIAL_JSON } from '@/schema/design';
+  import { MATERIAL_JSON } from '@/schema/materialList';
   import modelOfIcon from '@/dictionary/modelOfIcon';
   import modelOfTitle from '@/dictionary/modelOfTitle';
-  import { ComponentPublicInstance } from 'vue';
   import modelCategory from '@/dictionary/modelOfTitle';
-  import { getAssetsMaterialFile } from '@/utils/common';
+  import { getAssetsMaterialFile, getUuid } from '@/utils/common';
   import cptOfImg from '@/dictionary/ctpOfImg';
+  import { cloneDeep } from 'lodash';
+  import MODEL_DATA_JSON from '@/schema/modelData';
+  import appStore from '@/store';
+  import draggable from 'vuedraggable';
+  const layoutDic:any = {
+    'left': '左',
+    'right': '右',
+    'center': '常规'
+  };
+  const cloneData = (data: IMATERIALITEM) => {
+    const cptData = cloneDeep(data);
+    cptData.data = cloneDeep(MODEL_DATA_JSON[cptData.model]); // 为模块添加数据
+    cptData.keyId = getUuid();
+    return cptData;
+  };
+  const start = (data: any) => {
+    data.dataTransfer?.setData('cptData', JSON.stringify(123));
+    console.log('拖拽开始', data, data.oldIndex);
+  };
 
   // 点击模块选择
   const currentKey = ref<string>('');
@@ -86,26 +127,15 @@
     currentKey.value = '';
   };
 
-  // 获取模块ref
-  let cptRefs: Array<any> = []; // 分割线的ref
-  const setColumnRefs = (el: Element | ComponentPublicInstance | null, keyId: string) => {
-    if (el) {
-      cptRefs.push({
-        keyId: keyId,
-        el: el
-      });
-    }
-  };
-
-  // 拖拽开始
-  const ondragstart = (evt: DragEvent, item: IMATERIALITEM) => {
-    evt.dataTransfer?.setData('cptData', JSON.stringify(item));
-    console.log('源对象拖拽开始', evt);
-  };
-  // 拖拽结束
-  const handleDragend = (evt: DragEvent) => {
-    evt.dataTransfer?.clearData();
-    console.log('源数据拖拽结束', evt);
+  // 点击组件，添加模块
+  const { pushComponent } = appStore.useResumeJsonNewStore;
+  const addModel = (item: IMATERIALITEM) => {
+    let cptData = cloneDeep(item);
+    cptData.data = cloneDeep(MODEL_DATA_JSON[cptData.model]); // 为模块添加数据
+    cptData.keyId = getUuid();
+    cptData.show = true;
+    console.log('cptData', cptData);
+    pushComponent(cptData); // 添加模块
   };
 </script>
 <style lang="scss" scoped>
@@ -204,23 +234,41 @@
         }
       }
       .cpt-list-box {
-        width: 100%;
+        // width: 100%;
         display: flex;
         padding: 10px;
         box-sizing: border-box;
+        flex-grow: 0;
         .com-item {
-          width: 100%;
+          // width: 100%;
           cursor: move;
           border: 1px solid #eee;
           border-radius: 5px;
           overflow: hidden;
-          box-shadow: 0 5px 21px 0 rgb(78 78 78 / 8%);
+          box-shadow: 0 5px 21px 0 rgb(78 78 78 / 30%);
           transition: all 0.3s;
+          margin-bottom: 10px;
           &:hover {
-            box-shadow: 0 5px 21px 0 rgb(78 78 78 / 28%);
+            box-shadow: 0 5px 21px 0 rgb(78 78 78 / 60%);
           }
         }
       }
+    }
+  }
+
+  .toolTip-box {
+    position: relative;
+    .layout-box {
+      position: absolute;
+      right: -5px;
+      top: 0;
+      background-color: rgba(#74a274, 0.9);
+      padding: 3px 10px;
+      color: #fff;
+      border-radius: 5px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
   }
 </style>

@@ -2,9 +2,9 @@
   <div class="template-card-box" @mouseover="mouseover" @mouseleave="mouseleave">
     <img :src="getAssetsFile(cardData.preview)" alt="" srcset="" />
     <!-- 遮罩层 -->
-    <div class="mask-layer" v-show="isShowLayer">
-      <div class="preview-icon" title="预览" @click="previreImg">
-        <svg-icon iconName="icon-yulan" className="yulan"></svg-icon>
+    <div v-show="isShowLayer" class="mask-layer">
+      <div v-if="cardData.name !== 'custom'" class="preview-icon" title="预览" @click="previreImg">
+        <svg-icon icon-name="icon-yulan" class-name="yulan"></svg-icon>
       </div>
       <div class="design-button" @click="toDesign">立即免费制作</div>
     </div>

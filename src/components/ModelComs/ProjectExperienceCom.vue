@@ -5,7 +5,7 @@
     <slot name="model-title"></slot>
     <!-- 校园经历 -->
     <div class="project-experience-list">
-      <div class="list" v-for="(item, index) in modelData.LIST" :key="index">
+      <div v-for="(item, index) in modelData.LIST" :key="index" class="list">
         <ul>
           <!-- 经历时间 -->
           <li class="list-title">{{ formatDate(item.date) }}</li>
@@ -28,17 +28,36 @@
   </div>
 </template>
 <script setup lang="ts">
+  import useGetLineLeft from '@/hooks/material/useTemplate3LeftLine';
   import { IPROJECTEXPERIENCE } from '@/interface/model';
+  import IMODELSTYLE from '@/interface/modelStyle';
   import { formatDate } from '@/utils/common';
-  defineProps<{
+  const props = defineProps<{
     modelData: IPROJECTEXPERIENCE;
+    modelStyle: IMODELSTYLE; // 模块样式
   }>();
+  // 模板3左侧竖线
+  const { left } = useGetLineLeft(props.modelStyle);
 </script>
 <style lang="scss" scoped>
   .project-experience {
-    padding: 0 40px;
-    margin-bottom: v-bind('modelData.style.mBottom');
-    margin-top: v-bind('modelData.style.mTop');
+    padding-top: v-bind('modelStyle.pTop');
+    padding-bottom: v-bind('modelStyle.pBottom');
+    padding-left: v-bind('modelStyle.pLeftRight');
+    padding-right: v-bind('modelStyle.pLeftRight');
+    margin-bottom: v-bind('modelStyle.mBottom');
+    margin-top: v-bind('modelStyle.mTop');
+    box-sizing: border-box;
+    position: relative;
+    &::before {
+      content: '';
+      position: absolute;
+      width: 1px;
+      height: 100%;
+      background-color: v-bind('modelStyle.themeColor');
+      left: v-bind('left');
+      top: 5px;
+    }
     .project-experience-list {
       margin-top: 25px;
       .list {
@@ -53,9 +72,9 @@
           margin-bottom: 12px;
           .list-title {
             list-style: none;
-            font-size: v-bind('modelData.style.titleFontSize');
-            color: v-bind('modelData.style.titleColor');
-            font-weight: v-bind('modelData.style.titleFontWeight');
+            font-size: v-bind('modelStyle.titleFontSize');
+            color: v-bind('modelStyle.titleColor');
+            font-weight: v-bind('modelStyle.titleFontWeight');
             letter-spacing: 2px;
           }
         }
@@ -64,9 +83,9 @@
           .left {
             width: 20%;
             letter-spacing: 2px;
-            font-size: v-bind('modelData.style.titleFontSize');
-            color: v-bind('modelData.style.titleColor');
-            font-weight: v-bind('modelData.style.titleFontWeight');
+            font-size: v-bind('modelStyle.titleFontSize');
+            color: v-bind('modelStyle.titleColor');
+            font-weight: v-bind('modelStyle.titleFontWeight');
             font-weight: bold;
           }
           .content-list {
@@ -76,9 +95,9 @@
               flex-direction: column;
               li {
                 letter-spacing: 2px;
-                font-size: v-bind('modelData.style.textFontSize');
-                color: v-bind('modelData.style.textColor');
-                font-weight: v-bind('modelData.style.textFontWeight');
+                font-size: v-bind('modelStyle.textFontSize');
+                color: v-bind('modelStyle.textColor');
+                font-weight: v-bind('modelStyle.textFontWeight');
                 line-height: 1.5;
                 &:not(:last-child) {
                   margin-bottom: 6px;

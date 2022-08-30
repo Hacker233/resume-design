@@ -17,17 +17,36 @@
   </div>
 </template>
 <script setup lang="ts">
+  import useGetLineLeft from '@/hooks/material/useTemplate3LeftLine';
   import { IAWARDS } from '@/interface/model';
+  import IMODELSTYLE from '@/interface/modelStyle';
   import { formatDate } from '@/utils/common';
-  defineProps<{
+  const props = defineProps<{
     modelData: IAWARDS;
+    modelStyle: IMODELSTYLE; // 模块样式
   }>();
+  // 模板3左侧竖线
+  const { left } = useGetLineLeft(props.modelStyle);
 </script>
 <style lang="scss" scoped>
   .awards {
-    padding: 0 40px;
-    margin-bottom: v-bind('modelData.style.mBottom');
-    margin-top: v-bind('modelData.style.mTop');
+    padding-top: v-bind('modelStyle.pTop');
+    padding-bottom: v-bind('modelStyle.pBottom');
+    padding-left: v-bind('modelStyle.pLeftRight');
+    padding-right: v-bind('modelStyle.pLeftRight');
+    margin-bottom: v-bind('modelStyle.mBottom');
+    margin-top: v-bind('modelStyle.mTop');
+    box-sizing: border-box;
+    position: relative;
+    &::before {
+      content: '';
+      position: absolute;
+      width: 1px;
+      height: 100%;
+      background-color: v-bind('modelStyle.themeColor');
+      left: v-bind('left');
+      top: 5px;
+    }
     .awards-list {
       display: flex;
       width: 100%;
@@ -40,9 +59,9 @@
         align-items: center;
         li {
           list-style: none;
-          font-size: v-bind('modelData.style.textFontSize');
-          color: v-bind('modelData.style.textColor');
-          font-weight: v-bind('modelData.style.textFontWeight');
+          font-size: v-bind('modelStyle.textFontSize');
+          color: v-bind('modelStyle.textColor');
+          font-weight: v-bind('modelStyle.textFontWeight');
           letter-spacing: 2px;
         }
         &:not(:last-child) {
