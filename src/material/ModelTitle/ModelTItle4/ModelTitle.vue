@@ -31,7 +31,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      background: linear-gradient(225deg, transparent 22px, var(--1988726a-modelStyle_themeColor) 0)
+      background: linear-gradient(225deg, transparent 22px, v-bind('modelStyle.themeColor') 0)
         top right;
       h1 {
         font-size: v-bind('modelStyle.firstTitleFontSize');
@@ -49,7 +49,7 @@
         height: 0;
         border-style: solid;
         border-width: 0 0 25px 10px;
-        border-color: transparent transparent var(--1988726a-modelStyle_themeColor);
+        border-color: transparent transparent v-bind('modelStyle.themeColor');
         transform: rotate(-90deg);
       }
     }
