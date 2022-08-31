@@ -1,21 +1,23 @@
 <template>
   <div class="main-left-box">
     <div class="left-box">
-      <div class="left-title" @click="selectNone">
-        <span>模块</span>
-        <span>选择</span>
-      </div>
-      <ul>
-        <li
-          v-for="(val, key, index) in MATERIAL_JSON"
-          :key="index"
-          :class="[{ active: currentKey === key }]"
-          @click="selectModel(val, key as string)"
-        >
-          <svg-icon :icon-name="modelOfIcon[key]" color="#2cbd99" size="25px"></svg-icon>
-          <p>{{ modelOfTitle[key] }}</p>
-        </li>
-      </ul>
+      <c-scrollbar trigger="hover">
+        <div class="left-title" @click="selectNone">
+          <span>模块</span>
+          <span>选择</span>
+        </div>
+        <ul>
+          <li
+            v-for="(val, key, index) in MATERIAL_JSON"
+            :key="index"
+            :class="[{ active: currentKey === key }]"
+            @click="selectModel(val, key as string)"
+          >
+            <svg-icon :icon-name="modelOfIcon[key]" color="#2cbd99" size="25px"></svg-icon>
+            <p>{{ modelOfTitle[key] }}</p>
+          </li>
+        </ul>
+      </c-scrollbar>
     </div>
     <div class="right-box">
       <template v-if="currentKey">
@@ -141,6 +143,7 @@
 <style lang="scss" scoped>
   .main-left-box {
     width: 350px;
+    height: calc(100vh - 50px);
     background-color: #fff;
     display: flex;
     .left-box {
@@ -172,7 +175,7 @@
         li {
           list-style: none;
           width: 100%;
-          height: 48px;
+          height: 60px;
           display: flex;
           flex-direction: column;
           justify-content: space-evenly;
