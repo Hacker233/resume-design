@@ -36,26 +36,32 @@ import INTERNSHIP_EXPERIENCE_4 from '@/material/InternshipExperience/InternshipE
 import WORK_EXPERIENCE_1 from '@/material/WorkExperience/WorkExperience1/index.vue';
 import WORK_EXPERIENCE_2 from '@/material/WorkExperience/WorkExperience2/WorkExperience.vue';
 import WORK_EXPERIENCE_3 from '@/material/WorkExperience/WorkExperience3/WorkExperienceCom.vue';
+import WORK_EXPERIENCE_4 from '@/material/WorkExperience/WorkExperience4/WorkExperience.vue';
 
 import PROJECT_EXPERIENCE_1 from '@/material/ProjectExperience/ProjectExperience1/index.vue';
 import PROJECT_EXPERIENCE_2 from '@/material/ProjectExperience/ProjectExperience2/ProjectExperience.vue';
 import PROJECT_EXPERIENCE_3 from '@/material/ProjectExperience/ProjectExperience3/ProjectExperience.vue';
+import PROJECT_EXPERIENCE_4 from '@/material/ProjectExperience/ProjectExperience4/ProjectExperience.vue';
 
 import AWARDS_1 from '@/material/Awards/Awards1/index.vue';
 import AWARDS_2 from '@/material/Awards/Awards2/Awards.vue';
 import AWARDS_3 from '@/material/Awards/Awards3/Awards.vue';
+import AWARDS_4 from '@/material/Awards/Awards4/Awards.vue';
 
 import HOBBIES_1 from '@/material/Hobbies/Hobbies1/index.vue';
 import HOBBIES_2 from '@/material/Hobbies/Hobbies2/Hobbies.vue';
 import HOBBIES_3 from '@/material/Hobbies/Hobbies3/Hobbies.vue';
+import HOBBIES_4 from '@/material/Hobbies/Hobbies4/Hobbies.vue';
 
 import SELF_EVALUATION_1 from '@/material/SelfEvaluation/SelfEvaluation1/index.vue';
 import SELF_EVALUATION_2 from '@/material/SelfEvaluation/SelfEvaluation2/SelfEvaluation.vue';
 import SELF_EVALUATION_3 from '@/material/SelfEvaluation/SelfEvaluation3/SelfEvaluation.vue';
+import SELF_EVALUATION_4 from '@/material/SelfEvaluation/SelfEvaluation4/SelfEvaluation.vue';
 
 import WORKS_DISPLAY_1 from '@/material/WorksDisplay/WorksDisplay1/index.vue';
 import WORKS_DISPLAY_2 from '@/material/WorksDisplay/WorksDisplay2/WorksDisplay.vue';
 import WORKS_DISPLAY_3 from '@/material/WorksDisplay/WorksDisplay3/WorksDisplay.vue';
+import WORKS_DISPLAY_4 from '@/material/WorksDisplay/WorksDisplay4/WorksDisplay.vue';
 
 // 注册所有物料组件
 const MaterialComponents = {
@@ -97,25 +103,31 @@ const MaterialComponents = {
   WORK_EXPERIENCE_1: WORK_EXPERIENCE_1,
   WORK_EXPERIENCE_2: WORK_EXPERIENCE_2,
   WORK_EXPERIENCE_3: WORK_EXPERIENCE_3,
+  WORK_EXPERIENCE_4: WORK_EXPERIENCE_4,
 
   PROJECT_EXPERIENCE_1: PROJECT_EXPERIENCE_1,
   PROJECT_EXPERIENCE_2: PROJECT_EXPERIENCE_2,
   PROJECT_EXPERIENCE_3: PROJECT_EXPERIENCE_3,
+  PROJECT_EXPERIENCE_4: PROJECT_EXPERIENCE_4,
 
   AWARDS_1: AWARDS_1,
   AWARDS_2: AWARDS_2,
   AWARDS_3: AWARDS_3,
+  AWARDS_4: AWARDS_4,
 
   HOBBIES_1: HOBBIES_1,
   HOBBIES_2: HOBBIES_2,
   HOBBIES_3: HOBBIES_3,
+  HOBBIES_4: HOBBIES_4,
 
   SELF_EVALUATION_1: SELF_EVALUATION_1,
   SELF_EVALUATION_2: SELF_EVALUATION_2,
   SELF_EVALUATION_3: SELF_EVALUATION_3,
+  SELF_EVALUATION_4: SELF_EVALUATION_4,
 
   WORKS_DISPLAY_1: WORKS_DISPLAY_1,
   WORKS_DISPLAY_2: WORKS_DISPLAY_2,
-  WORKS_DISPLAY_3: WORKS_DISPLAY_3
+  WORKS_DISPLAY_3: WORKS_DISPLAY_3,
+  WORKS_DISPLAY_4: WORKS_DISPLAY_4
 };
 export default MaterialComponents;

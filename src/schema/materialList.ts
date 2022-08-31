@@ -874,6 +874,37 @@ export const MATERIAL_JSON: IMSTERIALLISTJSON = {
         pLeftRight: '50px'
       },
       data: {}
+    },
+    {
+      keyId: '', // 组件id
+      model: 'WORK_EXPERIENCE', // 模块
+      cptName: 'WORK_EXPERIENCE_4', // 组件名
+      cptOptionsName: 'WORK_EXPERIENCE_OPTIONS',
+      cptTitle: '工作经验', // 组件名
+      cptX: 0, // 组件x坐标
+      cptY: 0, // 组件y坐标
+      cptZ: 0, // 组件z坐标
+      cptHeight: '50px', // 组件高度
+      cptWidth: '100%', // 组件宽度
+      layout: 'center', // 布局在左侧还是右侧
+      show: true, // 组件是否显示
+      style: {
+        themeColor: '#254665',
+        firstTitleFontSize: '20px',
+        textColor: '#757575',
+        textFontSize: '14px',
+        textFontWeight: 500,
+        titleColor: '#666666',
+        titleFontSize: '14px',
+        titleFontWeight: 600,
+        backgroundColor: '#000',
+        mBottom: '0px',
+        mTop: '0px',
+        pTop: '0',
+        pBottom: '0',
+        pLeftRight: '25px'
+      }, // 组件样式
+      data: {} // 组件数据
     }
   ],
   PROJECT_EXPERIENCE: [
@@ -969,6 +1000,37 @@ export const MATERIAL_JSON: IMSTERIALLISTJSON = {
         pLeftRight: '50px'
       },
       data: {}
+    },
+    {
+      keyId: '', // 组件id
+      model: 'PROJECT_EXPERIENCE', // 模块
+      cptName: 'PROJECT_EXPERIENCE_4', // 组件名
+      cptOptionsName: 'PROJECT_EXPERIENCE_OPTIONS',
+      cptTitle: '项目经验', // 组件名
+      cptX: 0, // 组件x坐标
+      cptY: 0, // 组件y坐标
+      cptZ: 0, // 组件z坐标
+      cptHeight: '50px', // 组件高度
+      cptWidth: '100%', // 组件宽度
+      layout: 'center', // 布局在左侧还是右侧
+      show: true, // 组件是否显示
+      style: {
+        themeColor: '#254665',
+        firstTitleFontSize: '20px',
+        textColor: '#757575',
+        textFontSize: '14px',
+        textFontWeight: 500,
+        titleColor: '#666666',
+        titleFontSize: '14px',
+        titleFontWeight: 600,
+        backgroundColor: '#000',
+        mBottom: '0px',
+        mTop: '0px',
+        pTop: '0',
+        pBottom: '0',
+        pLeftRight: '25px'
+      }, // 组件样式
+      data: {} // 组件数据
     }
   ],
   AWARDS: [
@@ -1064,6 +1126,37 @@ export const MATERIAL_JSON: IMSTERIALLISTJSON = {
         pLeftRight: '50px'
       },
       data: {}
+    },
+    {
+      keyId: '', // 组件id
+      model: 'AWARDS', // 模块
+      cptName: 'AWARDS_4', // 组件名
+      cptOptionsName: 'AWARDS_OPTIONS',
+      cptTitle: '荣誉奖项', // 组件名
+      cptX: 0, // 组件x坐标
+      cptY: 0, // 组件y坐标
+      cptZ: 0, // 组件z坐标
+      cptHeight: '50px', // 组件高度
+      cptWidth: '100%', // 组件宽度
+      layout: 'center', // 布局在左侧还是右侧
+      show: true, // 组件是否显示
+      style: {
+        themeColor: '#254665',
+        firstTitleFontSize: '20px',
+        textColor: '#757575',
+        textFontSize: '14px',
+        textFontWeight: 500,
+        titleColor: '#666666',
+        titleFontSize: '14px',
+        titleFontWeight: 600,
+        backgroundColor: '#000',
+        mBottom: '0px',
+        mTop: '0px',
+        pTop: '0',
+        pBottom: '0px',
+        pLeftRight: '25px'
+      }, // 组件样式
+      data: {} // 组件数据
     }
   ],
   HOBBIES: [
@@ -1159,6 +1252,37 @@ export const MATERIAL_JSON: IMSTERIALLISTJSON = {
         pLeftRight: '50px'
       },
       data: {}
+    },
+    {
+      keyId: '', // 组件id
+      model: 'HOBBIES', // 模块
+      cptName: 'HOBBIES_4', // 组件名
+      cptOptionsName: 'HOBBIES_OPTIONS',
+      cptTitle: '兴趣爱好', // 组件名
+      cptX: 0, // 组件x坐标
+      cptY: 0, // 组件y坐标
+      cptZ: 0, // 组件z坐标
+      cptHeight: '50px', // 组件高度
+      cptWidth: '100%', // 组件宽度
+      layout: 'center', // 布局在左侧还是右侧
+      show: true, // 组件是否显示
+      style: {
+        themeColor: '#254665',
+        firstTitleFontSize: '20px',
+        textColor: '#757575',
+        textFontSize: '14px',
+        textFontWeight: 500,
+        titleColor: '#666666',
+        titleFontSize: '14px',
+        titleFontWeight: 600,
+        backgroundColor: '#000',
+        mBottom: '0px',
+        mTop: '0px',
+        pTop: '0',
+        pBottom: '0',
+        pLeftRight: '25px'
+      }, // 组件样式
+      data: {} // 组件数据
     }
   ],
   SELF_EVALUATION: [
@@ -1254,6 +1378,37 @@ export const MATERIAL_JSON: IMSTERIALLISTJSON = {
         pLeftRight: '50px'
       },
       data: {}
+    },
+    {
+      keyId: '', // 组件id
+      model: 'SELF_EVALUATION', // 模块
+      cptName: 'SELF_EVALUATION_4', // 组件名
+      cptOptionsName: 'SELF_EVALUATION_OPTIONS',
+      cptTitle: '自我评价', // 组件名
+      cptX: 0, // 组件x坐标
+      cptY: 0, // 组件y坐标
+      cptZ: 0, // 组件z坐标
+      cptHeight: '50px', // 组件高度
+      cptWidth: '100%', // 组件宽度
+      layout: 'center', // 布局在左侧还是右侧
+      show: true, // 组件是否显示
+      style: {
+        themeColor: '#254665',
+        firstTitleFontSize: '20px',
+        textColor: '#757575',
+        textFontSize: '14px',
+        textFontWeight: 500,
+        titleColor: '#666666',
+        titleFontSize: '14px',
+        titleFontWeight: 600,
+        backgroundColor: '#000',
+        mBottom: '0px',
+        mTop: '0px',
+        pTop: '0',
+        pBottom: '0',
+        pLeftRight: '25px'
+      }, // 组件样式
+      data: {} // 组件数据
     }
   ],
   WORKS_DISPLAY: [
@@ -1349,6 +1504,37 @@ export const MATERIAL_JSON: IMSTERIALLISTJSON = {
         pLeftRight: '50px'
       },
       data: {}
+    },
+    {
+      keyId: '', // 组件id
+      model: 'WORKS_DISPLAY', // 模块
+      cptName: 'WORKS_DISPLAY_4', // 组件名
+      cptOptionsName: 'WORKS_DISPLAY_OPTIONS',
+      cptTitle: '作评展示', // 组件名
+      cptX: 0, // 组件x坐标
+      cptY: 0, // 组件y坐标
+      cptZ: 0, // 组件z坐标
+      cptHeight: '50px', // 组件高度
+      cptWidth: '100%', // 组件宽度
+      layout: 'center', // 布局在左侧还是右侧
+      show: true, // 组件是否显示
+      style: {
+        themeColor: '#254665',
+        firstTitleFontSize: '20px',
+        textColor: '#757575',
+        textFontSize: '14px',
+        textFontWeight: 500,
+        titleColor: '#666666',
+        titleFontSize: '14px',
+        titleFontWeight: 600,
+        backgroundColor: '#000',
+        mBottom: '0px',
+        mTop: '0px',
+        pTop: '0',
+        pBottom: '0',
+        pLeftRight: '25px'
+      }, // 组件样式
+      data: {} // 组件数据
     }
   ],
   CUSTOM: [
