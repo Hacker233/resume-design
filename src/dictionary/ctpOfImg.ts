@@ -162,6 +162,11 @@ const ctpOfImg: ICptOfImg = {
       url: 'WORK_EXPERIENCE_3.png',
       width: '100%',
       height: ''
+    },
+    WORK_EXPERIENCE_4: {
+      url: 'WORK_EXPERIENCE_4.png',
+      width: '100%',
+      height: ''
     }
   },
   PROJECT_EXPERIENCE: {
@@ -177,6 +182,11 @@ const ctpOfImg: ICptOfImg = {
     },
     PROJECT_EXPERIENCE_3: {
       url: 'PROJECT_EXPERIENCE_3.png',
+      width: '100%',
+      height: ''
+    },
+    PROJECT_EXPERIENCE_4: {
+      url: 'PROJECT_EXPERIENCE_4.png',
       width: '100%',
       height: ''
     }
@@ -196,6 +206,11 @@ const ctpOfImg: ICptOfImg = {
       url: 'AWARDS_3.png',
       width: '100%',
       height: ''
+    },
+    AWARDS_4: {
+      url: 'AWARDS_4.png',
+      width: '100%',
+      height: ''
     }
   },
   HOBBIES: {
@@ -211,6 +226,11 @@ const ctpOfImg: ICptOfImg = {
     },
     HOBBIES_3: {
       url: 'HOBBIES_3.png',
+      width: '100%',
+      height: ''
+    },
+    HOBBIES_4: {
+      url: 'HOBBIES_4.png',
       width: '100%',
       height: ''
     }
@@ -230,6 +250,11 @@ const ctpOfImg: ICptOfImg = {
       url: 'SELF_EVALUATION_3.png',
       width: '100%',
       height: ''
+    },
+    SELF_EVALUATION_4: {
+      url: 'SELF_EVALUATION_4.png',
+      width: '100%',
+      height: ''
     }
   },
   WORKS_DISPLAY: {
@@ -245,6 +270,11 @@ const ctpOfImg: ICptOfImg = {
     },
     WORKS_DISPLAY_3: {
       url: 'WORKS_DISPLAY_3.png',
+      width: '100%',
+      height: ''
+    },
+    WORKS_DISPLAY_4: {
+      url: 'WORKS_DISPLAY_4.png',
       width: '100%',
       height: ''
     }
