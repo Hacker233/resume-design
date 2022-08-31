@@ -5,17 +5,19 @@
         <span>模块</span>
         <span>选择</span>
       </div>
-      <ul>
-        <li
-          v-for="(val, key, index) in MATERIAL_JSON"
-          :key="index"
-          :class="[{ active: currentKey === key }]"
-          @click="selectModel(val, key as string)"
-        >
-          <svg-icon :icon-name="modelOfIcon[key]" color="#2cbd99" size="25px"></svg-icon>
-          <p>{{ modelOfTitle[key] }}</p>
-        </li>
-      </ul>
+      <c-scrollbar trigger="hover" style="height: calc(100vh - 110px)">
+        <ul>
+          <li
+            v-for="(val, key, index) in MATERIAL_JSON"
+            :key="index"
+            :class="[{ active: currentKey === key }]"
+            @click="selectModel(val, key as string)"
+          >
+            <svg-icon :icon-name="modelOfIcon[key]" color="#2cbd99" size="25px"></svg-icon>
+            <p>{{ modelOfTitle[key] }}</p>
+          </li>
+        </ul>
+      </c-scrollbar>
     </div>
     <div class="right-box">
       <template v-if="currentKey">
@@ -167,8 +169,7 @@
       }
       ul {
         width: 100%;
-        display: flex;
-        flex-direction: column;
+        height: calc(100vh - 110px);
         li {
           list-style: none;
           width: 100%;
