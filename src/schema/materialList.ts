@@ -508,7 +508,7 @@ export const MATERIAL_JSON: IMSTERIALLISTJSON = {
       cptZ: 0,
       cptHeight: '50px',
       cptWidth: '100%',
-      layout: 'left',
+      layout: 'center',
       show: true,
       style: {
         textColor: '#757575',
