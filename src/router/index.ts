@@ -48,7 +48,7 @@ const routes: Array<RouteRecordRaw> = [
     name: 'EmailVerify',
     meta: {
       title: '邮箱验证',
-      keepAlive: true,
+      keepAlive: false,
       isShowComNav: true,
       requireLogin: false
     },
@@ -56,7 +56,7 @@ const routes: Array<RouteRecordRaw> = [
   },
   {
     path: '/forgetPassword',
-    name: 'EmailVerify',
+    name: 'ForgetPassword',
     meta: {
       title: '忘记密码',
       keepAlive: false,
