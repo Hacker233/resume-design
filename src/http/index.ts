@@ -1,4 +1,5 @@
 import axios, { AxiosResponse } from 'axios';
+import qs from 'qs';
 import type { AxiosInstance, AxiosRequestConfig } from 'axios';
 import type { RequestConfig, RequestInterceptors, CancelRequestSource } from './types/types';
 
@@ -91,6 +92,20 @@ class Request {
           });
         });
       }
+
+      // 序列化
+      if (config.method === 'post') {
+        config.data = qs.stringify(config.data)//序列化post 参数
+      }
+
+      // 设置token
+      if (localStorage.getItem("token")) {
+        config.headers = {};
+        config.headers.Authorization = localStorage.getItem("token") as string;
+      }
+
+      // console.log('config', config);
+
       this.instance
         .request<any, T>(config)
         .then((res) => {

@@ -1,7 +1,8 @@
 import Request from './index';
 import { AxiosResponse } from 'axios';
+import CONFIG from '@/config/index';
 const http = new Request({
-  baseURL: 'https://smallpig.site/api',
+  baseURL: CONFIG.serverAddress,
   timeout: 1000 * 60 * 5,
   interceptors: {
     // 请求拦截器
