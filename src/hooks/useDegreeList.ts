@@ -12,6 +12,8 @@ export const useDegreeList = () => {
     '全日制本科',
     '硕士',
     '非全硕士',
+    '博士',
+    '教授',
     '其它'
   ]);
   return {
