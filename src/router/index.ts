@@ -23,11 +23,21 @@ const routes: Array<RouteRecordRaw> = [
       requireAuth: true
     },
     component: Designer
+  },
+  {
+    path: '/custom',
+    name: 'Cutom',
+    meta: {
+      title: '自定义',
+      keepAlive: true,
+      requireAuth: true
+    },
+    component: Custom
   }
 ];
 // const routerHistory = createWebHistory('/');
 const router = createRouter({
-  history: createWebHistory(),
+  history: createWebHashHistory(),
   routes
 });
 export default router;

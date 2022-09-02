@@ -1,6 +1,6 @@
 <template>
   <el-config-provider size="small">
-    <router-view v-slot="{}" v-show="!isLoading"></router-view>
+    <router-view v-show="!isLoading" v-slot="{}"></router-view>
     <loading-com-vue v-show="isLoading"></loading-com-vue>
     <auth-dialog />
   </el-config-provider>
@@ -10,6 +10,7 @@
   import AuthDialog from '@/components/AuthDialog/AuthDialog.vue';
   import { storeToRefs } from 'pinia';
   import { openAndCloseLoadingByTime } from './utils/common';
+  import appStore from './store';
   const { isLoading } = storeToRefs(appStore.useLoadingStore);
   openAndCloseLoadingByTime(1500); // 等待动画层
 </script>

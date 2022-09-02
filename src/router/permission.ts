@@ -2,7 +2,7 @@ import router from '@/router';
 import appStore from '@/store';
 
 // 白名单
-const whiteList: string[] = ['/'];
+const whiteList: string[] = ['/', '/custom'];
 
 /**
  * 路由前置守卫

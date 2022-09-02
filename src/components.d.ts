@@ -7,6 +7,7 @@ export {}
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
+    AuthDialog: typeof import('./components/AuthDialog/AuthDialog.vue')['default']
     AwardsCom: typeof import('./components/ModelComs/AwardsCom.vue')['default']
     BaseInfoOptions: typeof import('./components/CommonOptions/BaseInfoOptions.vue')['default']
     CampusExperienceCom: typeof import('./components/ModelComs/CampusExperienceCom.vue')['default']

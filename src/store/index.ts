@@ -25,6 +25,9 @@ export const registerStore = () => {
   appStore.useResumeJsonStore = useResumeJsonStore();
   appStore.useResumeModelStore = useResumeModelStore();
   appStore.useUuidStore = useUuidStore();
+  appStore.useAuthStore = useAuthStore();
+  appStore.useDesignStore = useDesignStore();
+  appStore.useSelectMaterialStore = useSelectMaterialStore();
   // 重写reset方法
   initResetFun(appStore);
 };
