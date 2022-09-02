@@ -14,6 +14,7 @@
     <!-- footer -->
     <footer-com></footer-com>
 
+    <!-- 回到顶部 -->
     <el-backtop :bottom="100">
       <div
         style="
@@ -32,6 +33,9 @@
         UP
       </div>
     </el-backtop>
+
+    <!-- 联系我 -->
+    <call-me></call-me>
   </div>
 </template>
 <script setup lang="ts">
@@ -40,6 +44,7 @@
   import TemplateSelect from './components/TemplateSelect.vue';
   import CustomTemplateVue from './components/CustomTemplate.vue';
   import FooterCom from '@/components/FooterCom/FooterCom.vue';
+  import CallMe from './components/CallMe.vue'
   import { onBeforeUnmount, onMounted, ref } from 'vue';
   import { throttle } from 'lodash';
   import { checkVersion } from '@/utils/common';

@@ -3,7 +3,6 @@
     <div class="nav-left">
       <img src="@/assets/logo.png" alt="logo" srcset="" @click="toHome" />
       <span @click="toHome">化简</span>
-      <!-- <el-button @click="login">登录</el-button> -->
     </div>
     <div class="nav-center">
       <p v-show="!isShowIpt">
@@ -37,16 +36,9 @@
 </template>
 <script lang="ts" setup>
   import appStore from '@/store';
-import { getUuid } from '@/utils/common';
-import FileSaver from 'file-saver';
+  import { getUuid } from '@/utils/common';
+  import FileSaver from 'file-saver';
   import { storeToRefs } from 'pinia';
-  import LoginDialog from '@/components/LoginDialog/LoginDialog'
-
-
-  const login = () => {
-    LoginDialog();
-  }
-
 
   const emit = defineEmits(['generateReport']);
   const { resumeJsonNewStore } = storeToRefs(appStore.useResumeJsonNewStore);

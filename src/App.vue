@@ -1,6 +1,15 @@
 <template>
   <el-config-provider size="small" :locale="zhCn">
-    <router-view v-show="!isLoading" v-slot="{}"></router-view>
+    <!-- 导航栏 -->
+    <nav-bar
+      bg-color="#fff"
+      font-color="green"
+      position="sticky"
+      icon-color="green"
+      v-if="route.meta.isShowComNav"
+      :key="refreshUuid"
+    ></nav-bar>
+    <router-view v-show="!isLoading" v-slot="{}" :key="refreshUuid"></router-view>
     <loading-com-vue v-show="isLoading"></loading-com-vue>
   </el-config-provider>
 </template>
@@ -10,19 +19,17 @@
   import { storeToRefs } from 'pinia';
   import { openAndCloseLoadingByTime } from './utils/common';
   import zhCn from 'element-plus/lib/locale/lang/zh-cn';
-  import { test } from '@/http/api/test';
   const { isLoading } = storeToRefs(appStore.useLoadingStore);
   openAndCloseLoadingByTime(1500); // 等待动画层
+  const { refreshUuid } = appStore.useRefreshStore;
+  const route = useRoute();
 
-  // 测试发送请求
-  const testHttp = async () => {
-    let params = {
-      menuId: 12
-    };
-    // const data = await test(params);
-    // console.log("请求返回结果", data)
-  };
-  testHttp();
+  // 查询和更新用户信息
+  const { getAndUpdateUserInfo } = appStore.useUserInfoStore;
+  const { token } = appStore.useTokenStore;
+  if (token) {
+    getAndUpdateUserInfo();
+  }
 </script>
 <style>
   #app {
