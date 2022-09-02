@@ -22,7 +22,7 @@
           <el-input
             v-model="modelItem.data.abstract"
             type="textarea"
-            maxlength="50"
+            maxlength="100"
             show-word-limit
             :rows="4"
           />
