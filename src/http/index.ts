@@ -92,20 +92,21 @@ class Request {
           });
         });
       }
+      if (!config.headers) {
+        config.headers = {};
+        config.headers['Content-Type'] = 'application/json';
+      }
 
       // 序列化
-      if (config.method === 'post') {
-        config.data = qs.stringify(config.data)//序列化post 参数
+      if (config.method === 'post' && config.headers['Content-Type'] !== 'application/json') {
+        config.data = qs.stringify(config.data); //序列化post 参数
       }
 
       // 设置token
-      if (localStorage.getItem("token")) {
-        config.headers = {};
-        config.headers.Authorization = localStorage.getItem("token") as string;
+      if (localStorage.getItem('token')) {
+        config.headers.Authorization = localStorage.getItem('token') as string;
       }
-
-      // console.log('config', config);
-
+      console.log('config', config);
       this.instance
         .request<any, T>(config)
         .then((res) => {

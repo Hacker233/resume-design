@@ -55,7 +55,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 0 2% 20px 5%;
+      padding: 0 2% 40px 5%;
       box-sizing: border-box;
       min-height: 60vh;
       .left-box {

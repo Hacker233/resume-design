@@ -1,9 +1,9 @@
 <template>
   <div class="template-card-box" @mouseover="mouseover" @mouseleave="mouseleave">
-    <img :src="getAssetsFile(cardData.preview)" alt="" srcset="" />
+    <img :src="cardData.previewUrl" alt="" srcset="" />
     <!-- 遮罩层 -->
     <div v-show="isShowLayer" class="mask-layer">
-      <div v-if="cardData.name !== 'custom'" class="preview-icon" title="预览" @click="previreImg">
+      <div v-if="cardData.NAME !== 'custom'" class="preview-icon" title="预览" @click="previreImg">
         <svg-icon icon-name="icon-yulan" class-name="yulan"></svg-icon>
       </div>
       <div class="design-button" @click="toDesign">立即免费制作</div>
@@ -11,13 +11,12 @@
   </div>
 
   <PreviewImage v-show="dialogVisible" @close="close">
-    <img class="previewImg" :src="getAssetsFile(cardData.preview)" alt="" srcset="" />
+    <img class="previewImg" :src="cardData.previewUrl" alt="" srcset="" />
   </PreviewImage>
 </template>
 <script setup lang="ts">
   import { ref } from 'vue';
   import { ITempList } from '@/template/type';
-  import { getAssetsFile } from '@/utils/common';
   import PreviewImage from '@/components/PreviewImage/PreviewImage.vue';
   const props = defineProps<{
     cardData: ITempList;
@@ -59,6 +58,7 @@
     margin: 0 20px;
     overflow: hidden;
     transition: all 0.3s;
+    margin-bottom: 40px;
     &:hover {
       transition: all 0.1s;
       box-shadow: 5px 5px 5px 0px rgba(175, 50, 50, 0.2);

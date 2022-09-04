@@ -134,9 +134,6 @@
       .svg-icon {
         cursor: pointer;
       }
-      .github {
-        margin-left: 15px;
-      }
       .user-box {
         display: flex;
         .logon-register-box {

@@ -692,6 +692,9 @@
   }
 </style>
 <style lang="scss">
+  .el-dialog {
+    border-radius: 4px;
+  }
   .login-dialog-box {
     .el-dialog__header {
       display: none;

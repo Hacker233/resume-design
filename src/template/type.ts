@@ -1,7 +1,7 @@
 interface ITempList {
-  id: string;
-  name: string;
-  preview: string;
+  ID: string;
+  NAME: string;
+  previewUrl: string;
 }
 
 export {
