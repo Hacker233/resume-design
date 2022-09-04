@@ -69,38 +69,35 @@
   import { ElMessage } from 'element-plus';
   import MODEL_DATA_JSON from '@/schema/modelData';
   import optionsComponents from '@/utils/registerMaterialOptionsCom';
-  import { getTemplateJson } from '@/http/api/getTemplateJson';
   import IDESIGNJSON from '@/interface/design';
   import { closeGlobalLoading } from '@/utils/common';
+  import { getTemplateInfoAsync } from '@/http/api/resume';
 
   const { cptTitle } = storeToRefs(appStore.useSelectMaterialStore);
   const { changeResumeJsonData } = appStore.useResumeJsonNewStore;
   const { refreshUuid } = storeToRefs(appStore.useUuidStore);
   const { setUuid } = appStore.useUuidStore;
-  const { resumeJsonNewStore, importJson } = storeToRefs(appStore.useResumeJsonNewStore); // store里的模板数据
+  const { resumeJsonNewStore } = storeToRefs(appStore.useResumeJsonNewStore); // store里的模板数据
+  const route = useRoute();
+  const { id } = route.query; // 模板id和模板名称
 
   // 重置数据方法
   const resetStoreAndLocal = async () => {
-    let TEMPLATE_JSON;
-    const url = `${location.origin}/json/${name}/template.json`;
-    const data: IDESIGNJSON = await getTemplateJson(url);
-    TEMPLATE_JSON = data;
-    TEMPLATE_JSON.ID = id as string;
-    TEMPLATE_JSON.NAME = name as string;
-    TEMPLATE_JSON.COMPONENTS.forEach((item) => {
-      item.data = MODEL_DATA_JSON[item.model];
-    });
+    let TEMPLATE_JSON: IDESIGNJSON;
+    const data = await getTemplateInfoAsync(id);
+    if (data.data.status === 200) {
+      TEMPLATE_JSON = data.data.data as IDESIGNJSON;
+    } else {
+      ElMessage.error('查询模板失败！');
+      return;
+    }
     changeResumeJsonData(TEMPLATE_JSON); // 更改store的数据
     setUuid();
     console.log('简历JSON数据', resumeJsonNewStore.value);
   };
+
   // 获取本地数据,初始化store里面的简历数据
   const localData = localStorage.getItem('resumeDraft');
-  const route = useRoute();
-  const { id, name } = route.query; // 模板id和模板名称
-  // 模板1、模板2、模板3处理逻辑
-  resumeJsonNewStore.value.ID = id as string;
-  resumeJsonNewStore.value.NAME = name as string;
   if (localData) {
     let localObj = JSON.parse(localData)[id as string];
     if (localObj) {

@@ -56,8 +56,37 @@
         <svg-icon icon-name="icon-github-fill" color="#fff" size="20px"></svg-icon>
       </a>
     </el-tooltip>
+    <!-- 管理员入口 -->
+    <el-tooltip
+      class="box-item"
+      effect="light"
+      content="管理员入口"
+      placement="left"
+      v-if="
+        appStore.useUserInfoStore.userInfo &&
+        appStore.useUserInfoStore.userInfo.roles.indexOf('Admin') !== -1
+      "
+    >
+      <a
+        href="javascript:void(0)"
+        rel="noopener noreferrer"
+        class="contact-me"
+        @click="toAdmin"
+      >
+        <svg-icon icon-name="icon-guanliyuan_jiaoseguanli" color="#fff" size="20px"></svg-icon>
+      </a>
+    </el-tooltip>
   </div>
 </template>
+<script setup lang="ts">
+  import appStore from '@/store';
+
+  // 跳转至管理员页面
+  const router = useRouter();
+  const toAdmin = () => {
+    router.push('/admin');
+  };
+</script>
 <style lang="scss" scoped>
   .call-me-box {
     position: fixed;

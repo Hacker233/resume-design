@@ -72,7 +72,8 @@
   import { ref, watch } from 'vue';
   import { useRouter } from 'vue-router';
   import ImportJsonDialog from '@/components/ImportJsonDialog/ImportJsonDialog.vue';
-  import { debounce } from 'lodash';
+  import { cloneDeep, debounce } from 'lodash';
+import { getUuid } from '@/utils/common';
   let { resumeJsonNewStore } = storeToRefs(appStore.useResumeJsonNewStore); // store里的模板数据
   const emit = defineEmits(['generateReport', 'reset', 'saveDataToLocal']);
   const route = useRoute();
@@ -139,7 +140,9 @@
 
   // 导出JSON
   const exportJSON = () => {
-    const data = JSON.stringify(resumeJsonNewStore.value, null, 4);
+    let JSONData = cloneDeep(resumeJsonNewStore.value);
+    JSONData.ID = getUuid();
+    const data = JSON.stringify(JSONData, null, 4);
     const blob = new Blob([data], { type: '' });
     FileSaver.saveAs(blob, resumeJsonNewStore.value.TITLE + '.json');
   };

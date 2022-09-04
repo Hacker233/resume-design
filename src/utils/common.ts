@@ -45,7 +45,7 @@ export const numberToText = (value: number) => {
 
 // 生成uuid
 export const getUuid = (): string => {
-  return uuid.v4();
+  return uuid.v4().split('-').join('');
 };
 
 // 获取assets静态资源
