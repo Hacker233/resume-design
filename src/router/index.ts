@@ -9,6 +9,10 @@ const EmailVerify = () => import('@/views/emailVerify/index.vue');
 const ForgetPassword = () => import('@/views/forgetPassword/index.vue');
 const ResetPassword = () => import('@/views/resetPassword/index.vue');
 
+// 管理员界面
+const AdminIndex = () => import('@/views/admin/index.vue');
+const AddTemplate = () => import('@/views/admin/addTemplate/index.vue');
+
 const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
@@ -75,6 +79,32 @@ const routes: Array<RouteRecordRaw> = [
       requireLogin: false
     },
     component: ResetPassword
+  },
+  // 管理员界面
+  {
+    path: '/admin',
+    name: 'Admin',
+    redirect: '/admin/addTemplate',
+    meta: {
+      title: '管理员页面',
+      keepAlive: true,
+      isShowComNav: false,
+      requireLogin: true
+    },
+    component: AdminIndex,
+    children: [
+      {
+        path: 'addTemplate',
+        name: 'AddTemplate',
+        meta: {
+          title: '新增模板',
+          keepAlive: true,
+          isShowComNav: false,
+          requireLogin: true
+        },
+        component: AddTemplate
+      }
+    ]
   }
 ];
 // const routerHistory = createWebHistory('/');
