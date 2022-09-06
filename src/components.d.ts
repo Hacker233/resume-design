@@ -53,6 +53,7 @@ declare module '@vue/runtime-core' {
     LoginDialog: typeof import('./components/LoginDialog/LoginDialog.vue')['default']
     ModelBox: typeof import('./components/ModelBox/ModelBox.vue')['default']
     NavBar: typeof import('./components/NavBar/NavBar.vue')['default']
+    NoData: typeof import('./components/NoData/NoData.vue')['default']
     Pagination: typeof import('./components/Pagination/pagination.vue')['default']
     PreviewImage: typeof import('./components/PreviewImage/PreviewImage.vue')['default']
     ProjectExperienceCom: typeof import('./components/ModelComs/ProjectExperienceCom.vue')['default']

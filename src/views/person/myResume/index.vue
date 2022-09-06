@@ -5,6 +5,8 @@
       <template v-for="(item, index) in templateList" :key="index">
         <resume-card :card-data="item" @to-design="toDesign"> </resume-card>
       </template>
+      <!-- 无数据页 -->
+      <no-data-vue v-if="!templateList.length"></no-data-vue>
     </div>
     <el-skeleton v-else :rows="5" animated />
 
@@ -20,6 +22,7 @@
   import ResumeCard from './components/ResumeCard.vue';
   import Pagination from '@/components/Pagination/pagination.vue';
   import { getUserResumeListAsync } from '@/http/api/resume';
+  import NoDataVue from '@/components/NoData/NoData.vue';
 
   // 获取用户简历列表
   const templateList = ref<any>([]);
