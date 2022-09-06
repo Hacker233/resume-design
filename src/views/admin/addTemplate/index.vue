@@ -199,6 +199,8 @@
       position: relative;
       overflow: hidden;
       transition: var(--el-transition-duration-fast);
+      width: 260px;
+      height: 365px;
     }
 
     .avatar-uploader .el-upload:hover {

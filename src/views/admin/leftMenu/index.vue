@@ -1,17 +1,22 @@
 <template>
   <div class="left-menu-box">
-    <el-menu default-active="1" class="el-menu-vertical-demo" unique-opened>
-      <el-sub-menu index="1">
+    <el-menu :default-active="route.name" class="el-menu-vertical-demo" unique-opened>
+      <el-sub-menu :index="route.name">
         <template #title>
-          <el-icon><location /></el-icon>
+          <svg-icon
+            icon-name="icon-gongzuoleixing"
+            class="iconfont"
+            color="#303133"
+            size="20px"
+          ></svg-icon>
           <span>模板管理</span>
         </template>
-        <el-menu-item index="1" @click="handleClick">
+        <el-menu-item index="AddTemplate" @click="handleClick">
           <svg-icon
             icon-name="icon-jia"
             class="iconfont"
-            :color="getIconColor('1')"
-            size="20px"
+            :color="getIconColor('AddTemplate')"
+            size="18px"
           ></svg-icon>
           <span>添加模板</span>
         </el-menu-item>
@@ -22,14 +27,16 @@
 <script lang="ts" setup>
   import { MenuItemClicked } from 'element-plus/lib/components';
   const router = useRouter();
+  const route = useRoute();
   // 点击菜单
-  const currentIndex = ref<any>('1'); // 选中的菜单index
+  const currentIndex = ref<any>(route.name); // 选中的菜单index
+  console.log("currentIndex",currentIndex)
   const handleClick = (item: MenuItemClicked) => {
     console.log('item', item);
     currentIndex.value = item.index;
     router.push({
       name: 'AddTemplate'
-    })
+    });
   };
 
   // 返回图标颜色
