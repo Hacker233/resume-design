@@ -17,14 +17,18 @@
         <div class="user-avatar-box" v-else>
           <el-dropdown>
             <span class="el-dropdown-link">
-              <el-avatar>
-                <div class="name-content">{{
-                  appStore.useUserInfoStore.userInfo.name.split('')[0]
-                }}</div>
+              <el-avatar
+                v-if="appStore.useUserInfoStore.userInfo.photos.profilePic.url"
+                :size="45"
+                :src="appStore.useUserInfoStore.userInfo.photos.profilePic.url"
+              />
+              <el-avatar :size="45" v-else>
+                {{ appStore.useUserInfoStore.userInfo.name.split('')[0] }}
               </el-avatar>
             </span>
             <template #dropdown>
               <el-dropdown-menu>
+                <el-dropdown-item @click="toPerson">个人中心</el-dropdown-item>
                 <el-dropdown-item @click="loginout">退出登录</el-dropdown-item>
               </el-dropdown-menu>
             </template>
@@ -69,6 +73,10 @@
   const router = useRouter();
   const toHome = () => {
     router.push('/');
+  };
+  // 跳转至个人中心页
+  const toPerson = () => {
+    router.push('/person');
   };
 
   // 退出登录
