@@ -1,7 +1,7 @@
 <template>
   <div class="right-content-box">
     <!-- 菜单标题 -->
-    <content-title-vue title="个人信息"></content-title-vue>
+    <content-title-vue :title="(route.meta.title as string)"></content-title-vue>
     <div class="router-box">
       <router-view></router-view>
     </div>
@@ -9,6 +9,8 @@
 </template>
 <script lang="ts" setup>
   import ContentTitleVue from './ContentTitle.vue';
+
+  const route = useRoute();
 </script>
 <style lang="scss" scoped>
   .right-content-box {
