@@ -67,11 +67,10 @@
   import { CScrollbar } from 'c-scrollbar'; // 滚动条
   import DesignNav from './components/DesignNav.vue';
   import { ElMessage } from 'element-plus';
-  import MODEL_DATA_JSON from '@/schema/modelData';
   import optionsComponents from '@/utils/registerMaterialOptionsCom';
   import IDESIGNJSON from '@/interface/design';
   import { closeGlobalLoading } from '@/utils/common';
-  import { getTemplateInfoAsync } from '@/http/api/resume';
+  import { getTemplateInfoAsync, getResetTemplateInfoAsync } from '@/http/api/resume';
 
   const { cptTitle } = storeToRefs(appStore.useSelectMaterialStore);
   const { changeResumeJsonData } = appStore.useResumeJsonNewStore;
@@ -81,10 +80,15 @@
   const route = useRoute();
   const { id } = route.query; // 模板id和模板名称
 
-  // 重置数据方法
-  const resetStoreAndLocal = async () => {
+  // 查询简历数据，有草稿返回草稿，没有草稿返回简历数据
+  const resetStoreAndLocal = async (isReset: boolean = false) => {
     let TEMPLATE_JSON: IDESIGNJSON;
-    const data = await getTemplateInfoAsync(id);
+    let data;
+    if (isReset) {
+      data = await getResetTemplateInfoAsync(id); // 重置
+    } else {
+      data = await getTemplateInfoAsync(id);
+    }
     if (data.data.status === 200) {
       TEMPLATE_JSON = data.data.data as IDESIGNJSON;
     } else {
@@ -95,19 +99,7 @@
     setUuid();
     console.log('简历JSON数据', resumeJsonNewStore.value);
   };
-
-  // 获取本地数据,初始化store里面的简历数据
-  const localData = localStorage.getItem('resumeDraft');
-  if (localData) {
-    let localObj = JSON.parse(localData)[id as string];
-    if (localObj) {
-      changeResumeJsonData(localObj);
-    } else {
-      resetStoreAndLocal();
-    }
-  } else {
-    resetStoreAndLocal();
-  }
+  resetStoreAndLocal();
 
   // 生命周期函数
   onMounted(async () => {
@@ -130,7 +122,6 @@
   const globalStyleSetting = () => {
     // 重置store选中模块
     resetSelectModel();
-    // console.log("reset",appStore)
   };
 
   // 导出pdf
@@ -147,21 +138,8 @@
 
   // 重置数据
   const reset = async () => {
-    resetStoreAndLocal(); // 重置store数据
+    resetStoreAndLocal(true); // 重置store数据
     globalStyleSetting(); // 重置选中模块
-    // 删除本地该条数据
-    let localData = localStorage.getItem('resumeDraft'); // 本地缓存数据
-    if (localData) {
-      let allData = JSON.parse(localData);
-      if (Object.keys(allData).length > 1) {
-        if (allData[id as string]) {
-          delete allData[id as string]; // 删除该条数据
-          localStorage.setItem('resumeDraft', JSON.stringify(allData));
-        }
-      } else {
-        localStorage.removeItem('resumeDraft');
-      }
-    }
     ElMessage({
       message: '重置成功!',
       type: 'success',

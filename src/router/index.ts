@@ -8,6 +8,9 @@ const Custom = () => import('@/views/custom/index.vue');
 const EmailVerify = () => import('@/views/emailVerify/index.vue');
 const ForgetPassword = () => import('@/views/forgetPassword/index.vue');
 const ResetPassword = () => import('@/views/resetPassword/index.vue');
+const Person = () => import('@/views/person/index.vue');
+const PersonDetail = () => import('@/views/person/personDetial/index.vue');
+const MyResume = () => import('@/views/person/myResume/index.vue');
 
 // 管理员界面
 const AdminIndex = () => import('@/views/admin/index.vue');
@@ -79,6 +82,42 @@ const routes: Array<RouteRecordRaw> = [
       requireLogin: false
     },
     component: ResetPassword
+  },
+  {
+    path: '/person',
+    name: 'Person',
+    redirect: '/person/personDetail',
+    meta: {
+      title: '个人中心',
+      keepAlive: true,
+      isShowComNav: true,
+      requireLogin: true
+    },
+    component: Person,
+    children: [
+      {
+        path: 'personDetail',
+        name: 'PersonDetail',
+        meta: {
+          title: '个人信息',
+          keepAlive: true,
+          isShowComNav: true,
+          requireLogin: true
+        },
+        component: PersonDetail
+      },
+      {
+        path: 'myResume',
+        name: 'MyResume',
+        meta: {
+          title: '我的简历',
+          keepAlive: true,
+          isShowComNav: true,
+          requireLogin: true
+        },
+        component: MyResume
+      }
+    ]
   },
   // 管理员界面
   {
