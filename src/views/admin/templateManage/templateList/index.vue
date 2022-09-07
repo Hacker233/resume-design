@@ -9,7 +9,13 @@
       </template>
     </el-table-column>
     <el-table-column prop="TITLE" label="模板标题" />
-    <el-table-column prop="LAYOUT" label="布局模式" />
+    <el-table-column prop="LAYOUT" label="布局模式">
+      <template #default="scope">
+        <div>
+          {{ scope.row.LAYOUT === 'classical' ? '传统模式' : '左右布局模式' }}
+        </div>
+      </template>
+    </el-table-column>
     <el-table-column prop="createDate" label="创建日期">
       <template #default="scope">
         <div>
@@ -35,7 +41,7 @@
   </el-table>
 
   <!-- 分页组件 -->
-  <Pagination :total="total" @handle-current-change="handleCurrentChange"></Pagination>
+  <Pagination :total="total" :limit="limit" @handle-current-change="handleCurrentChange"></Pagination>
 
   <!-- 编辑弹窗 -->
   <edit-dialog

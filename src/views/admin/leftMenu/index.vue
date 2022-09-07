@@ -35,6 +35,26 @@
           <span>模板列表</span>
         </el-menu-item>
       </el-sub-menu>
+      <el-sub-menu index="2">
+        <template #title>
+          <svg-icon
+            icon-name="icon-guanliyuan_jiaoseguanli"
+            class="iconfont"
+            color="#303133"
+            size="20px"
+          ></svg-icon>
+          <span>用户管理</span>
+        </template>
+        <el-menu-item index="UserList">
+          <svg-icon
+            icon-name="icon-qunzuduoren"
+            class="iconfont"
+            :color="getIconColor('UserList')"
+            size="18px"
+          ></svg-icon>
+          <span>用户列表</span>
+        </el-menu-item>
+      </el-sub-menu>
     </el-menu>
   </div>
 </template>

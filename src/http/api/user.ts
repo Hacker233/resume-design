@@ -68,3 +68,12 @@ export const resetPasswordAsync: any = (data: any) => {
     data: data
   });
 };
+
+// 查询用户列表
+export const getAllUserListAsync: any = (params: any) => {
+  return http.request({
+    url: `/huajian/users/getAllUser`,
+    method: 'get',
+    params: params
+  });
+};

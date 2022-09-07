@@ -13,6 +13,7 @@
     <!-- 分页组件 -->
     <Pagination
       v-if="total > limit"
+      :limit="limit"
       :total="total"
       @handle-current-change="handleCurrentChange"
     ></Pagination>
