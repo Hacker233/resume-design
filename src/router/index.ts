@@ -14,7 +14,8 @@ const MyResume = () => import('@/views/person/myResume/index.vue');
 
 // 管理员界面
 const AdminIndex = () => import('@/views/admin/index.vue');
-const AddTemplate = () => import('@/views/admin/addTemplate/index.vue');
+const AddTemplate = () => import('@/views/admin/templateManage/addTemplate/index.vue');
+const TemplateList = () => import('@/views/admin/templateManage/templateList/index.vue');
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -123,7 +124,6 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: '/admin',
     name: 'Admin',
-    redirect: '/admin/addTemplate',
     meta: {
       title: '管理员页面',
       keepAlive: true,
@@ -142,6 +142,17 @@ const routes: Array<RouteRecordRaw> = [
           requireLogin: true
         },
         component: AddTemplate
+      },
+      {
+        path: 'templateList',
+        name: 'TemplateList',
+        meta: {
+          title: '模板列表',
+          keepAlive: true,
+          isShowComNav: false,
+          requireLogin: true
+        },
+        component: TemplateList
       }
     ]
   }
