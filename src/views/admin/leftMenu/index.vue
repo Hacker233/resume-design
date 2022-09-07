@@ -1,7 +1,12 @@
 <template>
   <div class="left-menu-box">
-    <el-menu :default-active="route.name" class="el-menu-vertical-demo" unique-opened>
-      <el-sub-menu :index="route.name">
+    <el-menu
+      :default-active="route.name"
+      class="el-menu-vertical-demo"
+      unique-opened
+      @select="handleSelect"
+    >
+      <el-sub-menu index="1">
         <template #title>
           <svg-icon
             icon-name="icon-gongzuoleixing"
@@ -11,7 +16,7 @@
           ></svg-icon>
           <span>模板管理</span>
         </template>
-        <el-menu-item index="AddTemplate" @click="handleClick">
+        <el-menu-item index="AddTemplate">
           <svg-icon
             icon-name="icon-jia"
             class="iconfont"
@@ -20,22 +25,30 @@
           ></svg-icon>
           <span>添加模板</span>
         </el-menu-item>
+        <el-menu-item index="TemplateList">
+          <svg-icon
+            icon-name="icon-hengxiangbuju"
+            class="iconfont"
+            :color="getIconColor('TemplateList')"
+            size="16px"
+          ></svg-icon>
+          <span>模板列表</span>
+        </el-menu-item>
       </el-sub-menu>
     </el-menu>
   </div>
 </template>
 <script lang="ts" setup>
-  import { MenuItemClicked } from 'element-plus/lib/components';
   const router = useRouter();
   const route = useRoute();
   // 点击菜单
   const currentIndex = ref<any>(route.name); // 选中的菜单index
-  console.log("currentIndex",currentIndex)
-  const handleClick = (item: MenuItemClicked) => {
-    console.log('item', item);
-    currentIndex.value = item.index;
+  console.log('currentIndex', currentIndex);
+  const handleSelect = (index: string) => {
+    console.log('index', index);
+    currentIndex.value = index;
     router.push({
-      name: 'AddTemplate'
+      name: index
     });
   };
 

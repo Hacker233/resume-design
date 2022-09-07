@@ -45,6 +45,7 @@
       justify-content: space-between;
       box-shadow: 0 5px 21px 0 rgb(78 78 78 / 5%);
       box-sizing: border-box;
+      z-index: 10;
       .nav-left {
         width: 210px;
         display: flex;
@@ -72,13 +73,13 @@
       flex: 1;
       .bottom-right {
         flex: 1;
-        height: 100%;
+        height: calc(100vh - 50px);
         box-sizing: border-box;
         padding: 15px;
         overflow: auto;
         .content {
           width: 100%;
-          height: 100%;
+          min-height: 100%;
           border-radius: 5px;
           background-color: #fff;
           padding: 15px;

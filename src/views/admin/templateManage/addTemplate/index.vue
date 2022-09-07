@@ -136,6 +136,8 @@
             message: '模板添加成功',
             type: 'success'
           });
+          ruleForm.code = '';
+          ruleForm.imageUrl = '';
         } else {
           isAddLoading.value = false;
           ElMessage({
@@ -188,7 +190,7 @@
       .v-codemirror {
         height: 100%;
         .cm-editor {
-          height: inherit !important;
+          height: calc(100vh - 160px) !important;
         }
       }
     }
