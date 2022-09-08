@@ -68,3 +68,32 @@ export const resetPasswordAsync: any = (data: any) => {
     data: data
   });
 };
+
+// 查询用户列表
+export const getAllUserListAsync: any = (params: any) => {
+  return http.request({
+    url: `/huajian/users/getAllUser`,
+    method: 'get',
+    params: params
+  });
+};
+
+// 管理员更新用户信息
+export const updateUserInfoByAdminAsync: any = (data: any) => {
+  return http.request({
+    url: `/huajian/users/updateUserInfo`,
+    method: 'post',
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded'
+    },
+    data: data
+  });
+};
+
+// 管理员删除用户
+export const deleteUserAsync: any = (email: string) => {
+  return http.request({
+    url: `/huajian/users/deleteUser/${email}`,
+    method: 'delete'
+  });
+};

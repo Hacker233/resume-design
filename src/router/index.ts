@@ -16,6 +16,7 @@ const MyResume = () => import('@/views/person/myResume/index.vue');
 const AdminIndex = () => import('@/views/admin/index.vue');
 const AddTemplate = () => import('@/views/admin/templateManage/addTemplate/index.vue');
 const TemplateList = () => import('@/views/admin/templateManage/templateList/index.vue');
+const UserList = () => import('@/views/admin/userManage/uerList/index.vue')
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -153,6 +154,16 @@ const routes: Array<RouteRecordRaw> = [
           requireLogin: true
         },
         component: TemplateList
+      },{
+        path: 'userList',
+        name: 'UserList',
+        meta: {
+          title: '用户列表',
+          keepAlive: true,
+          isShowComNav: false,
+          requireLogin: true
+        },
+        component: UserList
       }
     ]
   }
