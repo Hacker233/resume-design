@@ -57,7 +57,6 @@
   import { ref } from 'vue';
   import { ElMessage } from 'element-plus';
   import { isJSON } from '@/utils/common';
-  import { useRoute } from 'vue-router';
   import appStore from '@/store';
   import CONFIG from '@/config';
   import { UploadProps } from 'element-plus';
