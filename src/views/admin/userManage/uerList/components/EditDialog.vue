@@ -76,7 +76,7 @@
 </template>
 
 <script lang="ts" setup>
-  import { ElMessage, FormRules } from 'element-plus';
+  import { ElMessage, FormInstance, FormRules } from 'element-plus';
   import { updateUserInfoByAdminAsync } from '@/http/api/user';
   import CONFIG from '@/config';
   import { UploadProps } from 'element-plus';
@@ -107,7 +107,7 @@
       deep: true
     }
   );
-  const validList = reactive<Array>([
+  const validList = reactive<Array<{ label: string; value: boolean }>>([
     {
       label: '已验证',
       value: true
@@ -117,7 +117,7 @@
       value: false
     }
   ]);
-  const rolesList = reactive<Array>([
+  const rolesList = reactive<Array<{ label: string; value: string }>>([
     {
       label: '普通用户',
       value: 'User'
@@ -131,12 +131,12 @@
     name: [{ required: true, message: '昵称不能为空', trigger: 'change' }],
     email: [{ required: true, message: '邮箱不能为空', trigger: 'change' }],
     valid: [{ required: true, message: '请选择验证状态', trigger: 'change' }],
-    roles: [{ required: true, message: '请选择角色', trigger: 'change' }],
+    roles: [{ required: true, message: '请选择角色', trigger: 'change' }]
   });
   const ruleForm = reactive({
     name: '',
     email: '',
-    valid: '',
+    valid: false,
     profilePic: '',
     roles: ''
   });
@@ -146,7 +146,7 @@
     return CONFIG.serverAddress + '/huajian/upload/file';
   };
   const handleAvatarSuccess: UploadProps['onSuccess'] = (response, uploadFile) => {
-    ruleForm.profilePic.value = response.data.data.fileUrl;
+    ruleForm.profilePic = response.data.data.fileUrl;
   };
 
   const beforeAvatarUpload: UploadProps['beforeUpload'] = (rawFile) => {
