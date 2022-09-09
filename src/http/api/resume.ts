@@ -19,12 +19,12 @@ export const updateTemplateAsync: any = (data: any) => {
 };
 
 // 删除模板
-export const deleteTemplateAsync:any = (id: string)  => {
+export const deleteTemplateAsync: any = (id: string) => {
   return http.request({
     url: `/huajian/resume/deleteTemplate/${id}`,
-    method: 'delete',
+    method: 'delete'
   });
-}
+};
 
 // 查询模板列表
 export const getTemplateListAsync: any = (params: any) => {
@@ -75,5 +75,15 @@ export const getResumeListAllAsync: any = (params: any) => {
     url: '/huajian/resume/templateListAll',
     method: 'get',
     params: params
+  });
+};
+
+// 导出为pdf
+export const getResumePdfAsync: any = (params: any) => {
+  return http.request({
+    url: '/huajian/pdf/getPdf',
+    method: 'get',
+    responseType: 'blob',
+    params: params,
   });
 };

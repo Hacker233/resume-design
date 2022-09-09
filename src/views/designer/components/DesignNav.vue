@@ -121,7 +121,7 @@
   // 自动保存草稿
   const debounced = debounce(() => {
     saveDataToLocal();
-  }, 3000);
+  }, 1000);
   watch(
     () => resumeJsonNewStore.value, // JSON数据发生变化，则保存草稿
     () => {
@@ -142,7 +142,7 @@
   };
 
   // 导出pdf
-  const generateReport = () => {
+  const generateReport = async () => {
     emit('generateReport');
   };
 

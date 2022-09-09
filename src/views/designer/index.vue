@@ -52,6 +52,13 @@
         </c-scrollbar>
       </div>
     </div>
+
+    <!-- 导出pdf进度弹窗 -->
+    <process-bar-dialog
+      :dialog-visible="dialogVisible"
+      :percentageNum="percentage"
+      @cancle="cancleProgress"
+    ></process-bar-dialog>
   </div>
 </template>
 
@@ -60,7 +67,7 @@
   import ModelList from './components/ModelList.vue';
   import GlobalStyleOptionsVue from '@/options/GlobalStyleOptions.vue';
 
-  import downloadPDF from '@/utils/html2pdf'; // 下载为pdf
+  import ProcessBarDialog from '@/components/ProcessBarDialog/ProcessBarDialog.vue';
   import appStore from '@/store';
   import { storeToRefs } from 'pinia';
   import { useRoute } from 'vue-router';
@@ -71,6 +78,7 @@
   import IDESIGNJSON from '@/interface/design';
   import { closeGlobalLoading } from '@/utils/common';
   import { getTemplateInfoAsync, getResetTemplateInfoAsync } from '@/http/api/resume';
+  import exportPdf from '@/utils/pdf';
 
   const { cptTitle } = storeToRefs(appStore.useSelectMaterialStore);
   const { changeResumeJsonData } = appStore.useResumeJsonNewStore;
@@ -151,14 +159,29 @@
   };
 
   // 生成pdf方法
+  const dialogVisible = ref<boolean>(false);
+  const percentage = ref<number>(10);
+  let timer: any = null;
   const generateReport = async () => {
-    let temp = linesNumber.value;
-    linesNumber.value = 0;
-    resetSelectModel(); // 重置选中模块
-    await nextTick();
-    downloadPDF(html2Pdf.value, resumeJsonNewStore.value.TITLE, false, () => {
-      linesNumber.value = temp;
-    });
+    dialogVisible.value = true;
+    timer = setInterval(() => {
+      percentage.value += 5;
+      if (percentage.value > 95) {
+        percentage.value = 98;
+        clearInterval(timer);
+      }
+    }, 500);
+    let token = localStorage.getItem('token') as string;
+    let height = htmlContentPdf.value.style.height;
+    await exportPdf(token, id as string, height);
+    clearInterval(timer);
+    percentage.value = 100;
+  };
+
+  // 关闭进度弹窗
+  const cancleProgress = () => {
+    dialogVisible.value = false;
+    percentage.value = 10;
   };
 
   // 监听内容元素高度变化，绘制分割线
@@ -220,6 +243,13 @@
       leftRef.value.style.width = '70px';
     }
   };
+
+  // 页面销毁
+  onUnmounted(() => {
+    if (timer) {
+      clearInterval(timer);
+    } // 关闭全局等待层
+  });
 </script>
 <style lang="scss">
   @import '../../style/options.scss';
@@ -247,6 +277,7 @@
         justify-content: center;
         align-items: flex-start;
         flex: 1;
+        min-width: 840px;
         height: calc(100vh - 50px);
         overflow: auto;
 
