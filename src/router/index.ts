@@ -11,12 +11,13 @@ const ResetPassword = () => import('@/views/resetPassword/index.vue');
 const Person = () => import('@/views/person/index.vue');
 const PersonDetail = () => import('@/views/person/personDetial/index.vue');
 const MyResume = () => import('@/views/person/myResume/index.vue');
+const PdfPreview = () => import('@/views/PdfPreview/index.vue');
 
 // 管理员界面
 const AdminIndex = () => import('@/views/admin/index.vue');
 const AddTemplate = () => import('@/views/admin/templateManage/addTemplate/index.vue');
 const TemplateList = () => import('@/views/admin/templateManage/templateList/index.vue');
-const UserList = () => import('@/views/admin/userManage/uerList/index.vue')
+const UserList = () => import('@/views/admin/userManage/uerList/index.vue');
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -51,6 +52,17 @@ const routes: Array<RouteRecordRaw> = [
       requireLogin: true
     },
     component: Custom
+  },
+  {
+    path: '/pdfPreview',
+    name: 'PdfPreview',
+    meta: {
+      title: '简历预览页',
+      keepAlive: false,
+      isShowComNav: false,
+      requireLogin: false
+    },
+    component: PdfPreview
   },
   {
     path: '/emailVerify',
@@ -154,7 +166,8 @@ const routes: Array<RouteRecordRaw> = [
           requireLogin: true
         },
         component: TemplateList
-      },{
+      },
+      {
         path: 'userList',
         name: 'UserList',
         meta: {
