@@ -60,7 +60,6 @@ declare module '@vue/runtime-core' {
     NoData: typeof import('./components/NoData/NoData.vue')['default']
     Pagination: typeof import('./components/Pagination/pagination.vue')['default']
     PreviewImage: typeof import('./components/PreviewImage/PreviewImage.vue')['default']
-    ProcessBar: typeof import('./components/ProcessBarDailog/ProcessBar.vue')['default']
     ProcessBarDialog: typeof import('./components/ProcessBarDialog/ProcessBarDialog.vue')['default']
     ProjectExperienceCom: typeof import('./components/ModelComs/ProjectExperienceCom.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
