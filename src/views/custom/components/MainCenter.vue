@@ -194,7 +194,7 @@
   const rightList = ref<any>([]);
 
   watch(
-    leftList,
+    () => leftList.value,
     () => {
       leftList.value.forEach((item: IMATERIALITEM) => {
         item.layout = 'left';
@@ -207,7 +207,7 @@
     }
   );
   watch(
-    rightList,
+    () => rightList.value,
     () => {
       rightList.value.forEach((item: IMATERIALITEM) => {
         item.layout = 'right';
