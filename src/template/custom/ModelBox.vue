@@ -53,7 +53,7 @@
   // 锚点定位
   const { cptKeyId } = storeToRefs(appStore.useSelectMaterialStore);
   watch(
-    cptKeyId,
+    () => cptKeyId.value,
     (newVal, oldVal) => {
       // 判断是否选中复选框
       if (oldVal && modelObj[oldVal]) {

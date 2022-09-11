@@ -69,8 +69,6 @@
   import FileSaver from 'file-saver';
   import moment from 'moment';
   import { storeToRefs } from 'pinia';
-  import { ref, watch } from 'vue';
-  import { useRouter } from 'vue-router';
   import ImportJsonDialog from '@/components/ImportJsonDialog/ImportJsonDialog.vue';
   import { cloneDeep, debounce } from 'lodash';
   import { getUuid } from '@/utils/common';
@@ -123,7 +121,7 @@
   // 自动保存草稿
   const debounced = debounce(() => {
     saveDataToLocal();
-  }, 3000);
+  }, 1000);
   watch(
     () => resumeJsonNewStore.value, // JSON数据发生变化，则保存草稿
     () => {
@@ -144,7 +142,7 @@
   };
 
   // 导出pdf
-  const generateReport = () => {
+  const generateReport = async () => {
     emit('generateReport');
   };
 

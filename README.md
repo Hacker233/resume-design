@@ -38,6 +38,7 @@
   - [如何使用](#如何使用)
     - [拉取项目](#拉取项目)
     - [安装项目依赖](#安装项目依赖)
+    - [项目配置](#项目配置)
     - [运行项目](#运行项目)
     - [构建项目](#构建项目)
     - [目录说明:](#目录说明)
@@ -99,6 +100,19 @@ cd resume-design
 
 // 使用pnpm安装依赖（推荐）
 pnpm install
+```
+
+### 项目配置
+若要运行项目，需要有相对应的后台，如果没有自己搭建的后台，则可以连接化简官方后台。
+**修改对应文件**：
+```
+// src/config/index.ts
+
+const CONFIG = {
+  serverAddress: 'https://huajian.smallpig.site', // 服务器地址
+};
+console.log('运行环境', CONFIG);
+export default CONFIG;
 ```
 
 ### 运行项目

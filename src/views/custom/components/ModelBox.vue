@@ -55,7 +55,7 @@
   // 锚点定位
   const { cptKeyId } = storeToRefs(appStore.useSelectMaterialStore);
   watch(
-    cptKeyId,
+    () => cptKeyId.value,
     (newVal, oldVal) => {
       // 如果选中了模块
       if (newVal && modelObj[newVal]) {

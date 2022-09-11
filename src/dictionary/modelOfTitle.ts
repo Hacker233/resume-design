@@ -12,6 +12,6 @@ const modelCategory: { [propName: string]: string } = {
   HOBBIES: '兴趣爱好',
   SELF_EVALUATION: '自我评价',
   WORKS_DISPLAY: '作品展示',
-  CUSTOM: '自定义模块'
+  CUSTOM: '自定义'
 };
 export default modelCategory;
