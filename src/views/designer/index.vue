@@ -7,7 +7,7 @@
       <!-- 左侧添加模块区域 -->
       <div ref="leftRef" class="left">
         <c-scrollbar trigger="hover">
-          <Title show-collapse @unflod-or-collapse="unfoldOrCollapse"></Title>
+          <Title show-collapse @unfold-or-collapse="unfoldOrCollapse"></Title>
           <model-list :key="refreshUuid" :left-show-status="leftShowStatus"></model-list>
         </c-scrollbar>
       </div>
