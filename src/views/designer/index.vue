@@ -7,7 +7,7 @@
       <!-- 左侧添加模块区域 -->
       <div ref="leftRef" class="left">
         <c-scrollbar trigger="hover">
-          <Title show-collapse @unflod-or-collapse="unflodOrCollapse"></Title>
+          <Title show-collapse @unflod-or-collapse="unfoldOrCollapse"></Title>
           <model-list :key="refreshUuid" :left-show-status="leftShowStatus"></model-list>
         </c-scrollbar>
       </div>
@@ -56,7 +56,7 @@
     <!-- 导出pdf进度弹窗 -->
     <process-bar-dialog
       :dialog-visible="dialogVisible"
-      :percentageNum="percentage"
+      :percentage-num="percentage"
       @cancle="cancleProgress"
     ></process-bar-dialog>
   </div>
@@ -89,7 +89,7 @@
   const { id } = route.query; // 模板id和模板名称
 
   // 查询简历数据，有草稿返回草稿，没有草稿返回简历数据
-  const resetStoreAndLocal = async (isReset: boolean = false) => {
+  const resetStoreAndLocal = async (isReset = false) => {
     let TEMPLATE_JSON: IDESIGNJSON;
     let data;
     if (isReset) {
@@ -230,7 +230,7 @@
   // 展开或收起左侧栏
   const leftRef = ref<any>(null);
   const leftShowStatus = ref<boolean>(true);
-  const unflodOrCollapse = (status: boolean) => {
+  const unfoldOrCollapse = (status: boolean) => {
     if (status) {
       setTimeout(() => {
         leftShowStatus.value = status;

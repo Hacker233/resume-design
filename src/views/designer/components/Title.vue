@@ -2,7 +2,7 @@
   <div :class="['title', { 'collapse-center': !status }]">
     <h1 v-show="status">{{ title }}</h1>
     <el-tooltip v-if="showCollapse" class="box-item" effect="dark" :content="tooltipTitle">
-      <div ref="switchRef" class="unfold-collapse-box" @click="unflodOrCollapse">
+      <div ref="switchRef" class="unfold-collapse-box" @click="unfoldOrCollapse">
         <svg-icon icon-name="icon-shouqi" color="#00c091" size="24px"></svg-icon>
       </div>
     </el-tooltip>
@@ -18,13 +18,13 @@
   withDefaults(defineProps<ITitle>(), {
     title: '模块选择'
   });
-  const emit = defineEmits(['unflodOrCollapse']);
+  const emit = defineEmits(['unfoldOrCollapse']);
   const tooltipTitle = ref<string>('收起');
 
   // 展开或收起
   const status = ref<boolean>(true);
   const switchRef = ref<any>(null);
-  const unflodOrCollapse = () => {
+  const unfoldOrCollapse = () => {
     if (status.value) {
       tooltipTitle.value = '展开';
       status.value = false;
@@ -34,7 +34,7 @@
       status.value = true;
       switchRef.value.style.transform = 'rotate(0deg)';
     }
-    emit('unflodOrCollapse', status.value);
+    emit('unfoldOrCollapse', status.value);
   };
 </script>
 <style lang="scss" scoped>
