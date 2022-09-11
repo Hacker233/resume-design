@@ -1,6 +1,6 @@
 <!-- 自定义模板 -->
 <template>
-  <div class="custom-template-box" ref="customTempleRef">
+  <div ref="customTempleRef" class="custom-template-box">
     <introduce-title-vue
       title="自定义模板 + 随心所欲"
       subtitle="自定义模板，随意搭配，自定义主题"

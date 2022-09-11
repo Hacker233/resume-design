@@ -5,10 +5,10 @@
     <el-table-column prop="roles" label="角色" />
     <el-table-column prop="valid" label="是否验证邮箱">
       <template #default="scope">
-        <el-tag type="success" size="default" v-if="scope.row.valid === '已验证'">{{
+        <el-tag v-if="scope.row.valid === '已验证'" type="success" size="default">{{
           scope.row.valid
         }}</el-tag>
-        <el-tag type="danger" size="default" v-else>{{ scope.row.valid }}</el-tag>
+        <el-tag v-else type="danger" size="default">{{ scope.row.valid }}</el-tag>
       </template>
     </el-table-column>
     <el-table-column prop="profilePic" label="头像">
@@ -40,7 +40,7 @@
 
   <!-- 编辑弹窗 -->
   <edit-dialog
-    :dialogVisible="dialogVisible"
+    :dialog-visible="dialogVisible"
     :row="row"
     @cancle="cancle"
     @update-success="updateSuccess"

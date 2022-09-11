@@ -2,7 +2,11 @@
 <template>
   <div class="works-display">
     <!-- 标题 -->
-    <model-title :title="modelData.title" :iconfont="modelData.iconfont" :model-style="modelStyle"></model-title>
+    <model-title
+      :title="modelData.title"
+      :iconfont="modelData.iconfont"
+      :model-style="modelStyle"
+    ></model-title>
     <!-- 作品展示 -->
     <ul class="works-display-list">
       <li v-for="(item, index) in modelData.LIST" :key="index">

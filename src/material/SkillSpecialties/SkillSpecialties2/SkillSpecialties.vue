@@ -8,7 +8,7 @@
     </div>
     <!-- 技能特长 -->
     <ul>
-      <template v-for="item in modelData.LIST">
+      <template v-for="item in modelData.LIST" :key="item.skillName">
         <li>
           <p>{{ item.skillName }}</p>
           <el-slider

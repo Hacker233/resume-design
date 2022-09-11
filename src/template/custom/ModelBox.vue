@@ -48,8 +48,6 @@
     components: any;
   }>();
   const { resumeJsonNewStore } = storeToRefs(appStore.useResumeJsonNewStore);
-  const route = useRoute();
-  const { name } = route.query; // 模板id和模板名称
   // 锚点定位
   const { cptKeyId } = storeToRefs(appStore.useSelectMaterialStore);
   watch(
@@ -96,7 +94,7 @@
     };
   };
   // 点击选择模块
-  const { updateSelectModel, resetSelectModel } = appStore.useSelectMaterialStore;
+  const { updateSelectModel } = appStore.useSelectMaterialStore;
   const selectModel = () => {
     console.log('keyId', props.item.keyId);
     // 更新store
@@ -106,24 +104,6 @@
       props.item.cptTitle,
       props.item.keyId
     );
-  };
-
-  // 删除当前模块
-  const deleteModel = () => {
-    if (resumeJsonNewStore.value.LAYOUT === 'classical') {
-      classicalDelete();
-    } else {
-      emit('leftRightDelete', props.item.keyId);
-    }
-    resetSelectModel(); // 重置选中模块
-  };
-
-  // 传统模块删除
-  const classicalDelete = () => {
-    let index: number = resumeJsonNewStore.value.COMPONENTS.findIndex(
-      (item) => item.keyId === props.item.keyId
-    );
-    resumeJsonNewStore.value.COMPONENTS.splice(index, 1);
   };
 
   // 复制当前模块

@@ -2,7 +2,11 @@
 <template>
   <div class="project-experience">
     <!-- 标题 -->
-    <model-title :title="modelData.title" :iconfont="modelData.iconfont" :model-style="modelStyle"></model-title>
+    <model-title
+      :title="modelData.title"
+      :iconfont="modelData.iconfont"
+      :model-style="modelStyle"
+    ></model-title>
     <!-- 项目经验 -->
     <div v-for="(item, index) in modelData.LIST" :key="index" class="list">
       <ul class="list-ul">
@@ -16,7 +20,7 @@
         <p v-if="modelData.isShow.posts" class="campusDuty">{{ item.posts }}</p>
         <!-- 工作内容 -->
         <ul class="campusContent">
-          <li v-for="(list, index) in item.projectContent" :key="index">{{ list.content }}</li>
+          <li v-for="(list, j) in item.projectContent" :key="j">{{ list.content }}</li>
         </ul>
       </ul>
     </div>

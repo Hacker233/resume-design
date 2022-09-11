@@ -7,7 +7,7 @@
         :size="70"
         :src="appStore.useUserInfoStore.userInfo.photos.profilePic.url"
       />
-      <el-avatar :size="70" v-else>
+      <el-avatar v-else :size="70">
         {{ appStore.useUserInfoStore.userInfo.name.split('')[0] }}
       </el-avatar>
     </div>

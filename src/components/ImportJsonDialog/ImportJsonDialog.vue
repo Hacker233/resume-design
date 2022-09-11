@@ -64,11 +64,9 @@
   import { oneDark } from '@codemirror/theme-one-dark';
   import { json } from '@codemirror/lang-json';
   import { ref } from 'vue';
-  import RESUME_JSON from '@/schema/resume';
   import IMPORT_JSON from '@/schema/import';
   import { ElMessage } from 'element-plus';
   import { isJSON } from '@/utils/common';
-  import { useRoute } from 'vue-router';
   import appStore from '@/store';
   import TipJsonDialog from '@/components/TipJsonDialog/TipJsonDialog.vue';
 
@@ -112,7 +110,6 @@
 
   // 提交JSON
   const { setUuid } = appStore.useUuidStore;
-  const route = useRoute();
   const { changeResumeJsonData, changeImportJsonData } = appStore.useResumeJsonNewStore;
   const { resetSelectModel } = appStore.useSelectMaterialStore;
   const confirmJson = () => {

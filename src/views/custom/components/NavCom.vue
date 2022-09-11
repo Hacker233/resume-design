@@ -35,7 +35,6 @@
   </nav>
 </template>
 <script lang="ts" setup>
-  import { getResumePdfAsync } from '@/http/api/resume';
   import appStore from '@/store';
   import { getUuid } from '@/utils/common';
   import FileSaver from 'file-saver';

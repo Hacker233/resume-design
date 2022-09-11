@@ -2,7 +2,11 @@
 <template>
   <div class="hobbies">
     <!-- 标题 -->
-    <model-title :title="modelData.title" :iconfont="modelData.iconfont" :model-style="modelStyle"></model-title>
+    <model-title
+      :title="modelData.title"
+      :iconfont="modelData.iconfont"
+      :model-style="modelStyle"
+    ></model-title>
     <!-- 兴趣爱好 -->
     <div class="hobbies-content">
       <p>{{ modelData.content }}</p>

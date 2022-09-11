@@ -1,9 +1,9 @@
 <template>
   <div class="forget-password-box">
-    <div class="icon-box" v-if="!isSendSuccess">
+    <div v-if="!isSendSuccess" class="icon-box">
       <svg-icon icon-name="icon-guanbi" color="red" size="100px"></svg-icon>
     </div>
-    <div class="icon-box success-box" v-else>
+    <div v-else class="icon-box success-box">
       <svg-icon icon-name="icon-icon" color="#00c091" size="100px"></svg-icon>
       <p>邮件发送成功,请前往您的邮箱重置密码!</p>
     </div>
@@ -20,10 +20,10 @@
         label-position="top"
       >
         <el-form-item label="请填写您的邮箱地址" prop="email">
-          <el-input type="email" v-model="ruleForm.email" />
+          <el-input v-model="ruleForm.email" type="email" />
         </el-form-item>
         <el-form-item>
-          <el-button type="primary" @click="submitForm(ruleFormRef)" :loading="isLoading"
+          <el-button type="primary" :loading="isLoading" @click="submitForm(ruleFormRef)"
             >发送重置密码链接</el-button
           >
         </el-form-item>

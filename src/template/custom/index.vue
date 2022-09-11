@@ -1,6 +1,6 @@
 <!-- 自定义创建的模板数据 -->
 <template>
-  <div class="content-box" ref="customContentPdf">
+  <div ref="customContentPdf" class="content-box">
     <!-- 无布局方式 -->
     <template v-if="resumeJsonNewStore.LAYOUT === 'custom'">
       <div class="upload-json-box" @click="importJson">

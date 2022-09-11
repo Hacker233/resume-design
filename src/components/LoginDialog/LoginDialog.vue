@@ -27,18 +27,18 @@
           <div class="user_forms-login">
             <h2 class="forms_title">登录</h2>
             <el-form
+              ref="loginRuleFormRef"
               class="forms_form"
               :model="loginForm"
-              ref="loginRuleFormRef"
               :rules="loginRules"
             >
               <fieldset class="forms_fieldset">
                 <div class="forms_field">
                   <el-form-item prop="email">
                     <el-input
+                      v-model="loginForm.email"
                       type="email"
                       class="forms_field-input"
-                      v-model="loginForm.email"
                       maxlength="40"
                       placeholder="电子邮箱"
                       @keyup.enter="login(loginRuleFormRef)"
@@ -48,9 +48,9 @@
                 <div class="forms_field">
                   <el-form-item prop="password">
                     <el-input
+                      v-model="loginForm.password"
                       type="password"
                       class="forms_field-input"
-                      v-model="loginForm.password"
                       placeholder="密码"
                       @keyup.enter="login(loginRuleFormRef)"
                     />
@@ -62,9 +62,9 @@
                   >忘记密码？</button
                 >
                 <el-button
-                  @click="login(loginRuleFormRef)"
                   class="forms_buttons-action"
                   :loading="isLoginLoading"
+                  @click="login(loginRuleFormRef)"
                   >登 录</el-button
                 >
               </div>
@@ -73,9 +73,9 @@
           <div class="user_forms-signup">
             <h2 class="forms_title">注册</h2>
             <el-form
+              ref="registerRuleFormRef"
               class="forms_form"
               :model="registerForm"
-              ref="registerRuleFormRef"
               :rules="registerRules"
             >
               <fieldset class="forms_fieldset">
@@ -83,10 +83,10 @@
                   <!-- 昵称 -->
                   <el-form-item prop="name">
                     <el-input
+                      v-model="registerForm.name"
                       type="text"
                       maxlength="16"
                       class="forms_field-input"
-                      v-model="registerForm.name"
                       placeholder="昵称"
                       @keyup.enter="register(registerRuleFormRef)"
                     />
@@ -96,9 +96,9 @@
                   <!-- 邮箱 -->
                   <el-form-item prop="email">
                     <el-input
+                      v-model="registerForm.email"
                       type="email"
                       class="forms_field-input"
-                      v-model="registerForm.email"
                       maxlength="40"
                       placeholder="电子邮箱"
                       @keyup.enter="register(registerRuleFormRef)"
@@ -109,9 +109,9 @@
                   <!-- 密码 -->
                   <el-form-item prop="password">
                     <el-input
+                      v-model="registerForm.password"
                       type="password"
                       class="forms_field-input"
-                      v-model="registerForm.password"
                       placeholder="密码"
                       @keyup.enter="register(registerRuleFormRef)"
                     />
@@ -121,9 +121,9 @@
                   <!-- 确认密码 -->
                   <el-form-item prop="surePassword">
                     <el-input
+                      v-model="registerForm.surePassword"
                       type="password"
                       class="forms_field-input"
-                      v-model="registerForm.surePassword"
                       placeholder="确认密码"
                       @keyup.enter="register(registerRuleFormRef)"
                     />
@@ -132,9 +132,9 @@
               </fieldset>
               <div class="forms_buttons">
                 <el-button
-                  @click="register(registerRuleFormRef)"
                   class="forms_buttons-action"
                   :loading="isRegisterLoading"
+                  @click="register(registerRuleFormRef)"
                   >注 册</el-button
                 >
               </div>
@@ -153,7 +153,7 @@
 
 <script lang="ts" setup>
   import { ElMessage, FormInstance, FormRules } from 'element-plus';
-  import { loginAsync, registerAsync, forgetPasswordAsync } from '@/http/api/user';
+  import { loginAsync, registerAsync } from '@/http/api/user';
   import appStore from '@/store';
   const props = defineProps({
     isLogin: {

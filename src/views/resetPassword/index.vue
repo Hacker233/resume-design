@@ -1,6 +1,6 @@
 <template>
   <div class="reset-password-box">
-    <div class="form-box" v-if="!showCountdown">
+    <div v-if="!showCountdown" class="form-box">
       <el-alert
         v-if="isShowError"
         title="设置密码失败,请尝试重新发送重置邮件"
@@ -10,27 +10,27 @@
         style="margin-bottom: 40px"
       />
       <el-form
-        label-width="80px"
         ref="resetRuleFormRef"
+        label-width="80px"
         label-position="left"
         :model="formLabelAlign"
         :rules="registerRules"
       >
         <el-form-item label="邮箱:" prop="email">
-          <el-input type="email" v-model="formLabelAlign.email" />
+          <el-input v-model="formLabelAlign.email" type="email" />
         </el-form-item>
         <el-form-item label="新密码:" prop="newPassword">
-          <el-input type="password" v-model="formLabelAlign.newPassword" />
+          <el-input v-model="formLabelAlign.newPassword" type="password" />
         </el-form-item>
         <el-form-item label="确认密码:" prop="surePassword">
-          <el-input type="password" v-model="formLabelAlign.surePassword" />
+          <el-input v-model="formLabelAlign.surePassword" type="password" />
         </el-form-item>
         <el-form-item>
           <el-button
             type="primary"
-            @click="reset(resetRuleFormRef)"
             class="forms_buttons-action"
             :loading="isLoading"
+            @click="reset(resetRuleFormRef)"
             >确认重置</el-button
           >
         </el-form-item>
@@ -38,7 +38,7 @@
     </div>
 
     <!-- 自动跳转至首页 -->
-    <div class="auto-jump" v-else>
+    <div v-else class="auto-jump">
       <p>即将自动跳转至首页</p>
       <a href="javacript:void()" @click="toHome">点击立即跳转>></a>
       {{ countdown }}s

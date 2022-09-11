@@ -42,9 +42,9 @@
         <el-form-item>
           <el-button
             class="add-btn"
-            @click="addTemplate(ruleFormRef)"
             type="primary"
             :loading="isAddLoading"
+            @click="addTemplate(ruleFormRef)"
             >提 交</el-button
           ></el-form-item
         >
@@ -82,7 +82,7 @@
     imageUrl: ''
   });
 
-  const handleAvatarSuccess: UploadProps['onSuccess'] = (response, uploadFile) => {
+  const handleAvatarSuccess: UploadProps['onSuccess'] = (response) => {
     ruleForm.imageUrl = response.data.data.fileUrl;
   };
 

@@ -7,9 +7,6 @@
 <script lang="ts" setup>
   import { IRESUMETITLE } from '@/interface/model';
   import IMODELSTYLE from '@/interface/modelStyle';
-  import appStore from '@/store';
-  import { storeToRefs } from 'pinia';
-  const { resumeJsonNewStore } = storeToRefs(appStore.useResumeJsonNewStore);
   defineProps<{
     modelData: IRESUMETITLE;
     modelStyle: IMODELSTYLE; // 模块样式
