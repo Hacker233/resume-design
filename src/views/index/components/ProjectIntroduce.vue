@@ -27,8 +27,8 @@
 
   // 滚动到自定义模板
   const toCustom = () => {
-    emit('customTemplate')
-  }
+    emit('customTemplate');
+  };
 
   // 页面销毁
   onUnmounted(() => {

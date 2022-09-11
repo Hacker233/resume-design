@@ -19,7 +19,7 @@
           <p class="left">实习内容</p>
           <div class="content-list">
             <ul>
-              <li v-for="(list, index) in item.jobContent" :key="index">{{ list.content }}</li>
+              <li v-for="(list, j) in item.jobContent" :key="j">{{ list.content }}</li>
             </ul>
           </div>
         </div>
@@ -29,7 +29,7 @@
 </template>
 <script setup lang="ts">
   import useGetLineLeft from '@/hooks/material/useTemplate3LeftLine';
-import { IINTERNSHIPEXPERIENCE } from '@/interface/model';
+  import { IINTERNSHIPEXPERIENCE } from '@/interface/model';
   import IMODELSTYLE from '@/interface/modelStyle';
   import { formatDate } from '@/utils/common';
   const props = defineProps<{

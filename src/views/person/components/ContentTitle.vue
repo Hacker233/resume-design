@@ -13,7 +13,7 @@
 </script>
 <style lang="scss" scpoed>
   .content-title-box {
-    border-bottom:  1px solid #eee;
+    border-bottom: 1px solid #eee;
     h1 {
       font-size: 22px;
       height: 40px;

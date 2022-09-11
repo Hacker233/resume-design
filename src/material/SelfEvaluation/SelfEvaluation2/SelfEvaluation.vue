@@ -2,7 +2,11 @@
 <template>
   <div class="self-eavluation">
     <!-- 标题 -->
-    <model-title :title="modelData.title" :iconfont="modelData.iconfont" :model-style="modelStyle"></model-title>
+    <model-title
+      :title="modelData.title"
+      :iconfont="modelData.iconfont"
+      :model-style="modelStyle"
+    ></model-title>
     <!-- 兴趣爱好 -->
     <div class="self-eavluation-content">
       <p>{{ modelData.content }}</p>

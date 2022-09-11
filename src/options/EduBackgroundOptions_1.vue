@@ -42,10 +42,10 @@
         <el-form-item label="学历学位:">
           <el-select v-model="item.degree" class="m-2" placeholder="Select">
             <el-option
-              v-for="(item, index) in degreeList"
-              :key="index"
-              :label="item"
-              :value="item"
+              v-for="(childItem, j) in degreeList"
+              :key="j"
+              :label="childItem"
+              :value="childItem"
             />
           </el-select>
           <el-switch v-model="modelItem.data.isShow.degree" />

@@ -3,10 +3,10 @@
   <div class="color-picker-box">
     <el-tooltip content="自定义主题色">
       <div class="item-box">
-        <color-picker v-model:hex="modelValue" @change="changeColorPicker"></color-picker>
+        <color-picker :hex="modelValue" @change="changeColorPicker"></color-picker>
       </div>
     </el-tooltip>
-    <div v-for="(item, index) in colorList" :class="['item-box']">
+    <div v-for="(item, index) in colorList" :key="item.hex" :class="['item-box']">
       <span
         :class="['item', { active: index === curentIndex || modelValue === item.hex }]"
         :style="{

@@ -31,8 +31,8 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      background: linear-gradient(225deg, transparent 22px, v-bind('modelStyle.themeColor') 0)
-        top right;
+      background: linear-gradient(225deg, transparent 22px, v-bind('modelStyle.themeColor') 0) top
+        right;
       h1 {
         font-size: v-bind('modelStyle.firstTitleFontSize');
         color: #fff;

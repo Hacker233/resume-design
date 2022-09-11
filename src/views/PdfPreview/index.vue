@@ -1,7 +1,7 @@
 <template>
   <div :key="refreshUuid" ref="html2Pdf" class="design">
     <div ref="htmlContentPdf" class="design-content">
-      <component is="custom" @content-height-change="contentHeightChange" />
+      <component :is="custom" @content-height-change="contentHeightChange" />
     </div>
   </div>
 </template>
@@ -11,7 +11,7 @@
   import appStore from '@/store';
   import { closeGlobalLoading } from '@/utils/common';
   import { storeToRefs } from 'pinia';
-
+  import custom from '@/template/custom/index.vue';
   closeGlobalLoading();
 
   const route = useRoute();
@@ -20,6 +20,7 @@
   const { refreshUuid } = storeToRefs(appStore.useUuidStore);
   const { changeResumeJsonData } = appStore.useResumeJsonNewStore;
   const { token, id, height } = route.query; // 模板id和模板名称
+  console.log({ 'route-query': route.query });
   const getResumeData = async () => {
     if (token && id) {
       localStorage.setItem('token', token as string);
@@ -40,11 +41,10 @@
   const htmlContentPdf = ref<any>(null);
   const html2Pdf = ref<any>(null); // 获取元素节点
   let observer: ResizeObserver | null = null;
-  let contentHeight = 0;
   const resizeDOM = () => {
     observer = new ResizeObserver(async (entries: ResizeObserverEntry[]) => {
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars, no-unused-vars
       for (let entry of entries) {
-        contentHeight = (entry.target as HTMLElement).offsetHeight;
         html2Pdf.value.style.height = height; // 整个简历的高度
         htmlContentPdf.value.style.height = html2Pdf.value.style.height;
       }
@@ -53,7 +53,7 @@
   };
 
   // 子组件内容高度发生变化---需要重新计算高度，触发resizeDOM
-  const contentHeightChange = async (height: number) => {
+  const contentHeightChange = async () => {
     await nextTick();
     resizeDOM();
   };

@@ -44,7 +44,7 @@
   import TemplateSelect from './components/TemplateSelect.vue';
   import CustomTemplateVue from './components/CustomTemplate.vue';
   import FooterCom from '@/components/FooterCom/FooterCom.vue';
-  import CallMe from './components/CallMe.vue'
+  import CallMe from './components/CallMe.vue';
   import { onBeforeUnmount, onMounted, ref } from 'vue';
   import { throttle } from 'lodash';
 
