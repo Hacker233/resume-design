@@ -90,7 +90,7 @@
   const uploadAddress = () => {
     return CONFIG.serverAddress + '/huajian/upload/file';
   };
-  const handleAvatarSuccess: UploadProps['onSuccess'] = (response, uploadFile) => {
+  const handleAvatarSuccess: UploadProps['onSuccess'] = (response) => {
     previewUrl.value = response.data.data.fileUrl;
   };
 

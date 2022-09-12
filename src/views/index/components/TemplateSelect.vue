@@ -21,7 +21,7 @@
   import { ITempList } from '@/template/type';
   import { useRouter } from 'vue-router';
   import { onUnmounted, ref } from 'vue';
-  import { closeGlobalLoading, openGlobalLoading } from '@/utils/common';
+  import { openGlobalLoading } from '@/utils/common';
   import appStore from '@/store';
   import { getTemplateListAsync } from '@/http/api/resume';
 
@@ -36,7 +36,7 @@
     router.push({
       path: '/designer',
       query: {
-        id: item.ID,
+        id: item.ID
       }
     });
   };

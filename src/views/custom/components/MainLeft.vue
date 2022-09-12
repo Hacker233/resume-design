@@ -34,8 +34,8 @@
             :list="cptList"
             :clone="cloneData"
             :group="{ name: 'custom', pull: 'clone', put: false }"
-            @start="start"
             item-key="id"
+            @start="start"
           >
             <template #item="{ element }">
               <div
@@ -60,9 +60,7 @@
                         alt="效果图"
                         srcset=""
                       />
-                      <div class="layout-box">
-                        建议位置：{{layoutDic[element.layout]}}
-                      </div>
+                      <div class="layout-box"> 建议位置：{{ layoutDic[element.layout] }} </div>
                     </div>
                   </template>
                   <img
@@ -97,10 +95,10 @@
   import MODEL_DATA_JSON from '@/schema/modelData';
   import appStore from '@/store';
   import draggable from 'vuedraggable';
-  const layoutDic:any = {
-    'left': '左',
-    'right': '右',
-    'center': '常规'
+  const layoutDic: any = {
+    left: '左',
+    right: '右',
+    center: '常规'
   };
   const cloneData = (data: IMATERIALITEM) => {
     const cptData = cloneDeep(data);

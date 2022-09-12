@@ -132,21 +132,11 @@
 
       <!-- 模块上内边距 -->
       <el-form-item label="模块上内边距:">
-        <el-input-number
-          v-model="pTop"
-          :min="-100"
-          :max="100"
-          @change="handleChangePTop"
-        />
+        <el-input-number v-model="pTop" :min="-100" :max="100" @change="handleChangePTop" />
       </el-form-item>
       <!-- 模块下内边距 -->
       <el-form-item label="模块下内边距:">
-        <el-input-number
-          v-model="pBottom"
-          :min="-100"
-          :max="100"
-          @change="handleChangePBottom"
-        />
+        <el-input-number v-model="pBottom" :min="-100" :max="100" @change="handleChangePBottom" />
       </el-form-item>
 
       <!-- 模块左右内边距 -->
@@ -195,7 +185,7 @@
     resumeJsonNewStore.COMPONENTS.forEach((cptItem: IMATERIALITEM) => {
       cptItem.style.themeColor = item.hex;
     });
-    console.log("改变主题色后的COMPONENTS", resumeJsonNewStore.COMPONENTS)
+    console.log('改变主题色后的COMPONENTS', resumeJsonNewStore.COMPONENTS);
   };
   // 改变一级字体大小
   const changeFirstTitleFontSize = (value: string) => {

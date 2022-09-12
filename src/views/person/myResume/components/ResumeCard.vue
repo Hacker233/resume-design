@@ -13,7 +13,6 @@
   const props = defineProps<{
     cardData: ITempList;
   }>();
-  const emit = defineEmits(['toDesign']);
 
   // 鼠标移入显示遮罩层
   let isShowLayer = ref<boolean>(false);
@@ -27,7 +26,7 @@
   // 点击继续制作
   const router = useRouter();
   const toDesign = () => {
-    console.log(props.cardData)
+    console.log(props.cardData);
     router.push({
       path: '/designer',
       query: {
