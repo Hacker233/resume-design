@@ -143,7 +143,7 @@
 
   // 上传文件地址
   const uploadAddress = () => {
-    return CONFIG.serverAddress + '/huajian/upload/file';
+    return CONFIG.serverAddress + '/huajian/upload/file/avatar';
   };
   const handleAvatarSuccess: UploadProps['onSuccess'] = (response) => {
     ruleForm.profilePic = response.data.data.fileUrl;
