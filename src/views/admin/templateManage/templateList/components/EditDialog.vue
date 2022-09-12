@@ -88,7 +88,7 @@
   const previewUrl = ref<string>('');
   // 上传文件地址
   const uploadAddress = () => {
-    return CONFIG.serverAddress + '/huajian/upload/file';
+    return CONFIG.serverAddress + '/huajian/upload/file/templatePreview';
   };
   const handleAvatarSuccess: UploadProps['onSuccess'] = (response) => {
     previewUrl.value = response.data.data.fileUrl;
