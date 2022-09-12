@@ -19,7 +19,14 @@
     <el-table-column prop="createDate" label="注册日期" sortable>
       <template #default="scope">
         <div>
-          {{ moment(new Date(scope.row.date)).format('YYYY-MM-DD HH:mm:ss') }}
+          {{ moment(new Date(scope.row.createDate)).format('YYYY-MM-DD HH:mm:ss') }}
+        </div>
+      </template>
+    </el-table-column>
+    <el-table-column prop="updateDate" label="更新日期" sortable>
+      <template #default="scope">
+        <div>
+          {{ moment(new Date(scope.row.updateDate)).format('YYYY-MM-DD HH:mm:ss') }}
         </div>
       </template>
     </el-table-column>
@@ -72,7 +79,8 @@
       tableData.value = tableData.value.map((item: any) => {
         return {
           valid: item.auth.email.valid ? '已验证' : '未验证',
-          date: item.date,
+          createDate: item.createDate,
+          updateDate: item.updateDate || '-',
           email: item.email,
           name: item.name,
           profilePic: item.photos.profilePic.url,
