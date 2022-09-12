@@ -58,21 +58,16 @@
     </el-tooltip>
     <!-- 管理员入口 -->
     <el-tooltip
-      class="box-item"
-      effect="light"
-      content="管理员入口"
-      placement="left"
       v-if="
         appStore.useUserInfoStore.userInfo &&
         appStore.useUserInfoStore.userInfo.roles.indexOf('Admin') !== -1
       "
+      class="box-item"
+      effect="light"
+      content="管理员入口"
+      placement="left"
     >
-      <a
-        href="javascript:void(0)"
-        rel="noopener noreferrer"
-        class="contact-me"
-        @click="toAdmin"
-      >
+      <a href="javascript:void(0)" rel="noopener noreferrer" class="contact-me" @click="toAdmin">
         <svg-icon icon-name="icon-guanliyuan_jiaoseguanli" color="#fff" size="20px"></svg-icon>
       </a>
     </el-tooltip>

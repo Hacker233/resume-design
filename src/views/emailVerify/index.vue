@@ -1,21 +1,21 @@
 <template>
   <div class="email-verify-box">
-    <div class="icon-box" v-if="!isValid">
+    <div v-if="!isValid" class="icon-box">
       <svg-icon icon-name="icon-guanbi" color="red" size="100px"></svg-icon>
     </div>
-    <div class="icon-box" v-else>
+    <div v-else class="icon-box">
       <svg-icon icon-name="icon-icon" color="#00c091" size="100px"></svg-icon>
     </div>
-    <div class="goEmail" v-if="!isValid">
+    <div v-if="!isValid" class="goEmail">
       <p>您还需要验证您的电子邮箱才可正常使用！</p>
       <a :href="emailUrl" target="_blank" rel="noopener noreferrer">点击前往邮箱立即验证>></a>
     </div>
-    <div class="goEmail" v-else>
+    <div v-else class="goEmail">
       <p>您的邮箱已经验证通过啦！</p>
     </div>
     <!-- 重新发送验证链接 -->
-    <div class="resend-email" v-if="!isValid">
-      <el-button class="resend-email-btn" @click="resendEmail" :loading="isLoading">{{
+    <div v-if="!isValid" class="resend-email">
+      <el-button class="resend-email-btn" :loading="isLoading" @click="resendEmail">{{
         sendText
       }}</el-button>
       <!-- <p @click="resendEmail"></p> -->

@@ -1,7 +1,7 @@
 <template>
   <div class="my-resume-box">
     <!-- 简历列表 -->
-    <div class="resume-list" v-if="!isShowSkeleton">
+    <div v-if="!isShowSkeleton" class="resume-list">
       <template v-for="(item, index) in templateList" :key="index">
         <resume-card :card-data="item" @to-design="toDesign"> </resume-card>
       </template>

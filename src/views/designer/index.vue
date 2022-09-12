@@ -16,7 +16,7 @@
       <div :key="refreshUuid" class="center">
         <div ref="html2Pdf" class="design">
           <div ref="htmlContentPdf" class="design-content">
-            <component is="custom" @content-height-change="contentHeightChange" />
+            <component :is="custom" @content-height-change="contentHeightChange" />
           </div>
           <!-- 分页线 -->
           <template v-if="linesNumber > 0">
@@ -66,7 +66,7 @@
   import Title from './components/Title.vue';
   import ModelList from './components/ModelList.vue';
   import GlobalStyleOptionsVue from '@/options/GlobalStyleOptions.vue';
-
+  import custom from '@/template/custom/index.vue';
   import ProcessBarDialog from '@/components/ProcessBarDialog/ProcessBarDialog.vue';
   import appStore from '@/store';
   import { storeToRefs } from 'pinia';

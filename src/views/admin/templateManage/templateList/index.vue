@@ -41,11 +41,15 @@
   </el-table>
 
   <!-- 分页组件 -->
-  <Pagination :total="total" :limit="limit" @handle-current-change="handleCurrentChange"></Pagination>
+  <Pagination
+    :total="total"
+    :limit="limit"
+    @handle-current-change="handleCurrentChange"
+  ></Pagination>
 
   <!-- 编辑弹窗 -->
   <edit-dialog
-    :dialogVisible="dialogVisible"
+    :dialog-visible="dialogVisible"
     :row="row"
     @cancle="cancle"
     @update-success="updateSuccess"
@@ -59,10 +63,6 @@
   import EditDialog from './components/EditDialog.vue';
   import { ElMessageBox } from 'element-plus';
   import 'element-plus/es/components/message-box/style/index';
-  const handleClick = () => {
-    console.log('click');
-  };
-
   let tableData = ref<any>([]);
 
   // 获取模板列表

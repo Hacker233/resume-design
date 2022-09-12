@@ -104,7 +104,7 @@
       const time = moment(new Date()).format('YYYY.MM.DD HH:mm:ss');
       draftTips.value = `已自动保存草稿  ${time}`;
     } else {
-      draftTips.value = `自动保存草稿失败！`;
+      draftTips.value = '自动保存草稿失败！';
     }
   };
 

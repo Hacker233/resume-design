@@ -2,12 +2,12 @@
   <el-config-provider size="small" :locale="zhCn">
     <!-- 导航栏 -->
     <nav-bar
+      v-if="route.meta.isShowComNav"
+      :key="refreshUuid"
       bg-color="#fff"
       font-color="green"
       position="sticky"
       icon-color="green"
-      v-if="route.meta.isShowComNav"
-      :key="refreshUuid"
     ></nav-bar>
     <router-view v-show="!isLoading" v-slot="{}" :key="refreshUuid"></router-view>
     <loading-com-vue v-show="isLoading"></loading-com-vue>

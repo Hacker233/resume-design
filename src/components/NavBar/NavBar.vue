@@ -10,11 +10,11 @@
     <div class="right">
       <!-- 登录注册以及用户展示区域 -->
       <div class="user-box">
-        <div class="logon-register-box" v-if="!appStore.useUserInfoStore.userInfo">
+        <div v-if="!appStore.useUserInfoStore.userInfo" class="logon-register-box">
           <el-button class="register-btn" @click="openRegisterDialog">注册</el-button>
           <el-button class="login-btn" type="primary" @click="openLoginDialog">登录</el-button>
         </div>
-        <div class="user-avatar-box" v-else>
+        <div v-else class="user-avatar-box">
           <el-dropdown>
             <span class="el-dropdown-link">
               <el-avatar
@@ -22,7 +22,7 @@
                 :size="45"
                 :src="appStore.useUserInfoStore.userInfo.photos.profilePic.url"
               />
-              <el-avatar :size="45" v-else>
+              <el-avatar v-else :size="45">
                 {{ appStore.useUserInfoStore.userInfo.name.split('')[0] }}
               </el-avatar>
             </span>

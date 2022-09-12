@@ -2,7 +2,7 @@
   <div class="person-box">
     <!-- 头部背景 -->
     <div class="bgc-img">
-      <img src="../../assets/images/person-bgc.png" alt="" srcset="">
+      <img src="../../assets/images/person-bgc.png" alt="" srcset="" />
     </div>
     <!-- 个人菜单卡片 -->
     <left-card-vue></left-card-vue>

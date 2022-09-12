@@ -1,12 +1,12 @@
 <template>
   <el-dialog
+    ref="ruleFormRef"
     :model-value="dialogVisible"
     width="600px"
     :show-close="false"
     :close-on-click-modal="false"
     append-to-body
     custom-class="import-json"
-    ref="ruleFormRef"
   >
     <!-- 头部 -->
     <template #title>
@@ -31,7 +31,7 @@
         <el-input v-model="ruleForm.name" />
       </el-form-item>
       <el-form-item label="邮箱:" prop="email">
-        <el-input type="email" v-model="ruleForm.email" />
+        <el-input v-model="ruleForm.email" type="email" />
       </el-form-item>
       <el-form-item label="是否验证:" prop="valid">
         <el-select v-model="ruleForm.valid" class="m-2" placeholder="请选择状态">
@@ -145,7 +145,7 @@
   const uploadAddress = () => {
     return CONFIG.serverAddress + '/huajian/upload/file';
   };
-  const handleAvatarSuccess: UploadProps['onSuccess'] = (response, uploadFile) => {
+  const handleAvatarSuccess: UploadProps['onSuccess'] = (response) => {
     ruleForm.profilePic = response.data.data.fileUrl;
   };
 
