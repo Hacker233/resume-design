@@ -116,3 +116,8 @@ export const isJSON = (str: string): boolean => {
   }
   return false;
 };
+
+// 格式化日期
+export const formatListDate = (value: string) => {
+  return moment(new Date(value)).format('YYYY-MM-DD HH:mm:ss');
+};

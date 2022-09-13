@@ -1,19 +1,25 @@
 <template>
   <el-table class="template-list-table" :data="tableData" style="width: 100%" size="default" border>
-    <el-table-column prop="name" label="昵称" />
+    <el-table-column prop="id" label="id" />
+    <el-table-column prop="name" label="名称" />
     <el-table-column prop="email" label="邮箱" />
-    <el-table-column prop="roles" label="角色" />
-    <el-table-column prop="valid" label="是否验证邮箱">
+    <el-table-column prop="link" label="跳转链接" />
+    <el-table-column prop="vaild" label="是否审核通过">
       <template #default="scope">
-        <el-tag v-if="scope.row.valid === '已验证'" type="success" size="default">{{
-          scope.row.valid
+        <el-tag v-if="scope.row.vaild === '已通过'" type="success" size="default">{{
+          scope.row.vaild
         }}</el-tag>
-        <el-tag v-else type="danger" size="default">{{ scope.row.valid }}</el-tag>
+        <el-tag v-else type="danger" size="default">{{ scope.row.vaild }}</el-tag>
       </template>
     </el-table-column>
-    <el-table-column prop="profilePic" label="头像">
+    <el-table-column prop="logo_url" label="logo">
       <template #default="scope">
-        <el-avatar :size="50" :src="scope.row.profilePic" />
+        <el-avatar :size="100" shape="square" :src="scope.row.logo_url" />
+      </template>
+    </el-table-column>
+    <el-table-column prop="sponsor_img" label="支付凭证">
+      <template #default="scope">
+        <img class="preview-img" :src="scope.row.sponsor_img" alt="" srcset="" />
       </template>
     </el-table-column>
     <el-table-column prop="createDate" label="注册日期" sortable>
@@ -30,12 +36,12 @@
         </div>
       </template>
     </el-table-column>
-    <el-table-column label="操作" width="140">
+    <!-- <el-table-column label="操作" width="140">
       <template #default="scope">
         <el-button link size="small" @click="edit(scope.row)">编辑</el-button>
         <el-button link type="primary" size="small" @click="deleteUser(scope.row)">删除</el-button>
       </template>
-    </el-table-column>
+    </el-table-column> -->
   </el-table>
 
   <!-- 分页组件 -->
@@ -46,17 +52,17 @@
   ></Pagination>
 
   <!-- 编辑弹窗 -->
-  <edit-dialog
+  <!-- <edit-dialog
     :dialog-visible="dialogVisible"
     :row="row"
     @cancle="cancle"
     @update-success="updateSuccess"
-  ></edit-dialog>
+  ></edit-dialog> -->
 </template>
 <script lang="ts" setup>
   import { formatListDate } from '@/utils/common';
   import Pagination from '@/components/Pagination/pagination.vue';
-  import { deleteUserAsync, getAllUserListAsync } from '@/http/api/user';
+  import { deleteSponsorAsync, getSponsorListAsync } from '@/http/api/sponsor';
   import { ElMessageBox } from 'element-plus';
   import 'element-plus/es/components/message-box/style/index';
   import EditDialog from './components/EditDialog.vue';
@@ -66,33 +72,35 @@
   const page = ref<number>(1);
   const limit = ref<number>(15);
   const total = ref<number>(0);
-  const getUserList = async () => {
+  const getSponsorList = async () => {
     let params = {
       page: page.value,
       limit: limit.value
     };
-    const data = await getAllUserListAsync(params);
-    if (data.data.status === 200) {
-      tableData.value = data.data.data.list;
-      total.value = data.data.data.page.count;
+    const data = await getSponsorListAsync(params);
+    if (data.status === 200) {
+      tableData.value = data.data.list;
+      total.value = data.data.page.count;
       // 过滤数据
       tableData.value = tableData.value.map((item: any) => {
         return {
-          valid: item.auth.email.valid ? '已验证' : '未验证',
+          id: item._id,
           createDate: item.createDate,
-          updateDate: item.updateDate || '-',
           email: item.email,
+          link: item.link,
+          logo_url: item.logo_url,
           name: item.name,
-          profilePic: item.photos.profilePic.url,
-          roles: item.roles
+          sponsor_img: item.sponsor_img,
+          updateDate: item.updateDate,
+          vaild: item.vaild ? '已通过' : '未通过',
+          vx: item.vx
         };
       });
-      console.log('tableData', tableData);
     } else {
       ElMessage.error(data.data.message);
     }
   };
-  getUserList();
+  getSponsorList();
 
   // 打开修改弹窗
   const row = ref<any>(null);
@@ -110,7 +118,7 @@
 
   // 更新成功
   const updateSuccess = () => {
-    getUserList();
+    getSponsorList();
     dialogVisible.value = false;
   };
 
@@ -118,7 +126,7 @@
   const handleCurrentChange = (currentPage: number) => {
     page.value = currentPage;
     console.log('页码改变', currentPage);
-    getUserList();
+    getSponsorList();
   };
 
   // 点击删除
@@ -129,13 +137,13 @@
       type: 'warning'
     })
       .then(async () => {
-        const data = await deleteUserAsync(row.email);
+        const data = await deleteSponsorAsync(row.email);
         if (data.data.status === 200) {
           ElMessage({
             type: 'success',
             message: '删除成功'
           });
-          getUserList();
+          getSponsorList();
         } else {
           ElMessage.error(data.data.message);
         }
@@ -143,3 +151,9 @@
       .catch(() => {});
   };
 </script>
+<style lang="scss" scoped>
+  .preview-img {
+    max-width: 100px;
+    cursor: pointer;
+  }
+</style>
