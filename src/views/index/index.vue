@@ -4,16 +4,20 @@
     <nav-bar :bg-color="navColor" :font-color="fontColor" :icon-color="iconColor"></nav-bar>
     <!-- 项目介绍栏 -->
     <div ref="introduceRef">
-      <project-introduce @free-make="freeMake" @custom-template="customTemple"></project-introduce>
+      <project-introduce
+        @free-make="freeMake"
+        @custom-template="customTemple"
+        @sponsor="sponsor"
+      ></project-introduce>
     </div>
     <!-- 模板选择 -->
     <template-select ref="templeTef"></template-select>
     <!-- 自定义模板 -->
     <custom-template-vue ref="customTempleRef"></custom-template-vue>
-
+    <!-- 成为赞助者 -->
+    <sponsor-com-vue ref="sponsorRefs"></sponsor-com-vue>
     <!-- footer -->
     <footer-com></footer-com>
-
     <!-- 回到顶部 -->
     <el-backtop :bottom="100">
       <div
@@ -43,6 +47,7 @@
   import ProjectIntroduce from './components/ProjectIntroduce.vue';
   import TemplateSelect from './components/TemplateSelect.vue';
   import CustomTemplateVue from './components/CustomTemplate.vue';
+  import SponsorComVue from './components/SponsorCom.vue';
   import FooterCom from '@/components/FooterCom/FooterCom.vue';
   import CallMe from './components/CallMe.vue';
   import { onBeforeUnmount, onMounted, ref } from 'vue';
@@ -85,6 +90,12 @@
   const customTempleRef = ref<any>(null);
   const customTemple = () => {
     customTempleRef.value.scrollIntoView();
+  };
+
+  // 点击成为赞助者
+  const sponsorRefs = ref<any>(null);
+  const sponsor = () => {
+    sponsorRefs.value.scrollIntoView();
   };
 </script>
 <style lang="scss" scoped>

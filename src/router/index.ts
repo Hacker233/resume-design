@@ -18,6 +18,7 @@ const AdminIndex = () => import('@/views/admin/index.vue');
 const AddTemplate = () => import('@/views/admin/templateManage/addTemplate/index.vue');
 const TemplateList = () => import('@/views/admin/templateManage/templateList/index.vue');
 const UserList = () => import('@/views/admin/userManage/uerList/index.vue');
+const SponsorList = () => import('@/views/admin/userManage/sponsorList/index.vue');
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -177,6 +178,17 @@ const routes: Array<RouteRecordRaw> = [
           requireLogin: true
         },
         component: UserList
+      },
+      {
+        path: 'sponsorList',
+        name: 'SponsorList',
+        meta: {
+          title: '赞助列表',
+          keepAlive: true,
+          isShowComNav: false,
+          requireLogin: true
+        },
+        component: SponsorList
       }
     ]
   }

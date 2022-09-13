@@ -54,6 +54,15 @@
           ></svg-icon>
           <span>用户列表</span>
         </el-menu-item>
+        <el-menu-item index="SponsorList">
+          <svg-icon
+            icon-name="icon-zhengzhi"
+            class="iconfont"
+            :color="getIconColor('SponsorList')"
+            size="18px"
+          ></svg-icon>
+          <span>赞助列表</span>
+        </el-menu-item>
       </el-sub-menu>
     </el-menu>
   </div>

@@ -180,7 +180,7 @@
     password: ''
   });
   const loginRules = reactive<FormRules>({
-    email: [{ required: true, message: '请输入邮箱', trigger: 'blur' }],
+    email: [{ required: true, message: '请输入邮箱!', trigger: 'change' }],
     password: [
       {
         required: true,
@@ -227,7 +227,7 @@
   });
   const registerRules = reactive<FormRules>({
     name: [{ required: true, message: '请输入用户名', trigger: 'change' }],
-    email: [{ required: true, message: '请输入邮箱', trigger: 'change' }],
+    email: [{ required: true, message: '请输入可接收验证消息的邮箱！', trigger: 'change' }],
     password: [
       {
         required: true,
