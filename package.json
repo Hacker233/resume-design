@@ -15,18 +15,13 @@
     "prettier:comment": "自动格式化当前目录下的所有文件",
     "prettier": "prettier .  --write",
     "commit:comment": "引导设置规范化的提交信息",
-    "commit": "git-cz"
+    "commit": "git-cz",
+    "postinstall": "husky install"
   },
   "config": {
     "commitizen": {
       "path": "node_modules/cz-customizable"
     }
-  },
-  "lint-staged": {
-    "*.{js,ts,vue}": [
-      "pnpm run eslint",
-      "pnpm run prettier"
-    ]
   },
   "dependencies": {
     "@codemirror/lang-javascript": "^6.0.2",
@@ -72,7 +67,7 @@
     "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-vue": "^8.5.0",
     "husky": "^7.0.4",
-    "lint-staged": "^12.3.7",
+    "lint-staged": "^12.4.1",
     "prettier": "^2.6.1",
     "sass": "^1.53.0",
     "terser": "^5.14.2",

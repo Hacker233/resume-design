@@ -7,7 +7,7 @@
       subtitle-color="#7f8b96"
     ></introduce-title-vue>
     <div class="sponsor-content-box">
-      <div class="top" v-if="!sponsorList.length">
+      <div v-if="!sponsorList.length" class="top">
         <img src="../../../assets/images/sponsor.svg" alt="" />
       </div>
       <div v-else class="sponsor-list-box">
@@ -107,7 +107,7 @@
       <template #footer>
         <span class="dialog-footer">
           <el-button @click="cancle">取消</el-button>
-          <el-button type="primary" @click="confirm(ruleFormRef)" :loading="isAddLoading"
+          <el-button type="primary" :loading="isAddLoading" @click="confirm(ruleFormRef)"
             >确定</el-button
           >
         </span>
