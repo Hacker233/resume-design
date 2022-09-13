@@ -1,6 +1,6 @@
-import { createRouter, createWebHashHistory, createWebHistory, RouteRecordRaw } from 'vue-router';
+import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
 import LoginDialog from '@/components/LoginDialog/LoginDialog';
-import { closeGlobalLoading, openGlobalLoading } from '@/utils/common';
+import { closeGlobalLoading } from '@/utils/common';
 
 const Designer = () => import('@/views/designer/index.vue');
 const Index = () => import('@/views/index/index.vue');
@@ -15,6 +15,7 @@ const PdfPreview = () => import('@/views/PdfPreview/index.vue');
 
 // 管理员界面
 const AdminIndex = () => import('@/views/admin/index.vue');
+const Panel = () => import('@/views/admin/panel/index.vue');
 const AddTemplate = () => import('@/views/admin/templateManage/addTemplate/index.vue');
 const TemplateList = () => import('@/views/admin/templateManage/templateList/index.vue');
 const UserList = () => import('@/views/admin/userManage/uerList/index.vue');
@@ -145,7 +146,19 @@ const routes: Array<RouteRecordRaw> = [
       requireLogin: true
     },
     component: AdminIndex,
+    redirect: '/admin/panel',
     children: [
+      {
+        path: 'panel',
+        name: 'Panel',
+        meta: {
+          title: '管理面板',
+          keepAlive: true,
+          isShowComNav: false,
+          requireLogin: true
+        },
+        component: Panel
+      },
       {
         path: 'addTemplate',
         name: 'AddTemplate',
