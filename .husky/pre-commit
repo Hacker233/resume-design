@@ -1,0 +1,5 @@
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
+echo "正在校验文件... 请不要关闭进程"
+pnpm exec lint-staged -q
