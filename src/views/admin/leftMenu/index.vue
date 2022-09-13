@@ -6,11 +6,11 @@
       unique-opened
       @select="handleSelect"
     >
-      <el-menu-item index="Admin">
+      <el-menu-item index="Panel">
         <svg-icon
           icon-name="icon-gongzuotai"
           class="iconfont"
-          :color="getIconColor('Admin')"
+          :color="getIconColor('Panel')"
           size="18px"
         ></svg-icon>
         <span>管理面板</span>
