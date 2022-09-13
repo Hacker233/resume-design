@@ -6,6 +6,15 @@
       unique-opened
       @select="handleSelect"
     >
+      <el-menu-item index="Admin">
+        <svg-icon
+          icon-name="icon-gongzuotai"
+          class="iconfont"
+          :color="getIconColor('Admin')"
+          size="18px"
+        ></svg-icon>
+        <span>管理面板</span>
+      </el-menu-item>
       <el-sub-menu index="1">
         <template #title>
           <svg-icon
