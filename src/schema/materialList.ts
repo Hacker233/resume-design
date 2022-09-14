@@ -186,6 +186,36 @@ export const MATERIAL_JSON: IMSTERIALLISTJSON = {
         pLeftRight: '25px'
       },
       data: {}
+    },
+    {
+      keyId: '',
+      model: 'BASE_INFO',
+      cptName: 'BASE_INFO_6',
+      cptOptionsName: 'BASE_INFO_OPTIONS',
+      cptTitle: '基础资料',
+      cptX: 0,
+      cptY: 0,
+      cptZ: 0,
+      cptHeight: '100px',
+      cptWidth: '100%',
+      layout: 'center',
+      show: true,
+      style: {
+        titleColor: '#fff',
+        titleFontSize: '30px',
+        textFontSize: '14px',
+        titleFontWeight: 500,
+        textFontWeight: 500,
+        textColor: '#fff',
+        mBottom: '0px',
+        mTop: '0',
+        themeColor: '#da180f',
+        firstTitleFontSize: '18px',
+        pTop: '30px',
+        pBottom: '20px',
+        pLeftRight: '25px'
+      },
+      data: {}
     }
   ],
   JOB_INTENTION: [
