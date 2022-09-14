@@ -34,7 +34,7 @@
         font-size: v-bind('modelStyle.firstTitleFontSize');
         color: #fff;
         font-weight: 600;
-        font-family: '微软雅黑';
+
         letter-spacing: 2px;
       }
       &::after {

@@ -260,6 +260,7 @@
     width: 100%;
     box-sizing: border-box;
     overflow: hidden;
+    font-family: '微软雅黑';
     .bottom {
       display: flex;
       width: 100%;
