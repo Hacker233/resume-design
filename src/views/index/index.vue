@@ -40,6 +40,9 @@
 
     <!-- 联系我 -->
     <call-me></call-me>
+
+    <!-- GitHub卡片 -->
+    <github-card></github-card>
   </div>
 </template>
 <script setup lang="ts">
@@ -52,6 +55,7 @@
   import CallMe from './components/CallMe.vue';
   import { onBeforeUnmount, onMounted, ref } from 'vue';
   import { throttle } from 'lodash';
+  import GithubCard from '@/components/GihubCard/GithubCard.vue';
 
   // 监听元素滚动
   onMounted(() => {

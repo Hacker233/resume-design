@@ -12,6 +12,7 @@ const Person = () => import('@/views/person/index.vue');
 const PersonDetail = () => import('@/views/person/personDetial/index.vue');
 const MyResume = () => import('@/views/person/myResume/index.vue');
 const PdfPreview = () => import('@/views/PdfPreview/index.vue');
+const Template = () => import('@/views/template/index.vue');
 
 // 管理员界面
 const AdminIndex = () => import('@/views/admin/index.vue');
@@ -100,6 +101,17 @@ const routes: Array<RouteRecordRaw> = [
     component: ResetPassword
   },
   {
+    path: '/template',
+    name: 'Template',
+    meta: {
+      title: '模板列表',
+      keepAlive: true,
+      isShowComNav: true,
+      requireLogin: false
+    },
+    component: Template
+  },
+  {
     path: '/person',
     name: 'Person',
     redirect: '/person/personDetail',
@@ -135,6 +147,7 @@ const routes: Array<RouteRecordRaw> = [
       }
     ]
   },
+
   // 管理员界面
   {
     path: '/admin',

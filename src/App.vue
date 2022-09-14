@@ -17,10 +17,10 @@
   import LoadingComVue from '@/components/Loading/LoadingCom.vue'; // 全局等待层
   import appStore from './store';
   import { storeToRefs } from 'pinia';
-  import { openAndCloseLoadingByTime } from './utils/common';
+  // import { openAndCloseLoadingByTime } from './utils/common';
   import zhCn from 'element-plus/lib/locale/lang/zh-cn';
   const { isLoading } = storeToRefs(appStore.useLoadingStore);
-  openAndCloseLoadingByTime(1500); // 等待动画层
+  // openAndCloseLoadingByTime(1500); // 等待动画层
   const { refreshUuid } = appStore.useRefreshStore;
   const route = useRoute();
 
