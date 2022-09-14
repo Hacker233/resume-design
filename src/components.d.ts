@@ -21,6 +21,7 @@ declare module '@vue/runtime-core' {
     ElDropdown: typeof import('element-plus/es')['ElDropdown'];
     ElDropdownItem: typeof import('element-plus/es')['ElDropdownItem'];
     ElDropdownMenu: typeof import('element-plus/es')['ElDropdownMenu'];
+    ElEmpty: typeof import('element-plus/es')['ElEmpty'];
     ElForm: typeof import('element-plus/es')['ElForm'];
     ElFormItem: typeof import('element-plus/es')['ElFormItem'];
     ElIcon: typeof import('element-plus/es')['ElIcon'];
@@ -35,6 +36,7 @@ declare module '@vue/runtime-core' {
     ElProgress: typeof import('element-plus/es')['ElProgress'];
     ElSelect: typeof import('element-plus/es')['ElSelect'];
     ElSelectV2: typeof import('element-plus/es')['ElSelectV2'];
+    ElSkeleton: typeof import('element-plus/es')['ElSkeleton'];
     ElSlider: typeof import('element-plus/es')['ElSlider'];
     ElSubMenu: typeof import('element-plus/es')['ElSubMenu'];
     ElSwitch: typeof import('element-plus/es')['ElSwitch'];
