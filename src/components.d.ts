@@ -48,6 +48,7 @@ declare module '@vue/runtime-core' {
     ElTooltip: typeof import('element-plus/es')['ElTooltip']
     ElUpload: typeof import('element-plus/es')['ElUpload']
     FooterCom: typeof import('./components/FooterCom/FooterCom.vue')['default']
+    GithubCard: typeof import('./components/GihubCard/GithubCard.vue')['default']
     HobbiesCom: typeof import('./components/ModelComs/HobbiesCom.vue')['default']
     ImportJsonDialog: typeof import('./components/ImportJsonDialog/ImportJsonDialog.vue')['default']
     InternshipExperienceCom: typeof import('./components/ModelComs/InternshipExperienceCom.vue')['default']

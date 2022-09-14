@@ -5,7 +5,11 @@
       <img src="@/assets/logo.png" alt="logo" srcset="" />
       <span>化简</span>
     </div>
-    <div class="center"> </div>
+    <div class="center">
+      <!-- <el-menu :default-active="route.name" class="el-menu-demo" @select="handleSelect">
+        <el-menu-item index="Template">模板</el-menu-item>
+      </el-menu> -->
+    </div>
     <!-- GitHub -->
     <div class="right">
       <!-- 登录注册以及用户展示区域 -->
@@ -48,12 +52,21 @@
     iconColor?: string;
     position?: string;
   }
+  // const route = useRoute();
   const props = withDefaults(defineProps<IBgcColor>(), {
     bgColor: '',
     fontColor: '',
     iconColor: '#fff',
     position: 'fixed'
   });
+
+  // 菜单
+  // const handleSelect = (key: string) => {
+  //   console.log()
+  //   router.push({
+  //     name: key
+  //   });
+  // };
 
   const nameColor = computed(() => {
     return props.fontColor ? '#2ddd9d' : 'green';
@@ -129,6 +142,10 @@
       display: flex;
       justify-content: center;
       align-items: center;
+      .el-menu {
+        border: none;
+        height: 100%;
+      }
     }
     .right {
       display: flex;
