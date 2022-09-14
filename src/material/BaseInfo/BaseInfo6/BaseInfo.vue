@@ -37,6 +37,7 @@
 <style lang="scss" scoped>
   .base-info-6-box {
     width: 100%;
+    border-bottom: 3px solid #eee !important;
     background: url(../../../assets/images/base_info.jpg) no-repeat;
     cursor: pointer;
     padding-top: v-bind('modelStyle.pTop');
@@ -50,6 +51,10 @@
       display: flex;
       flex-direction: column;
       .top {
+        display: flex;
+        align-items: center;
+        height: 198px;
+        padding: 0 0 0 20px;
         .avatar-box {
           width: 120px;
           height: 120px;
@@ -60,6 +65,7 @@
           align-items: center;
           justify-content: center;
           border: 4px solid #eee;
+          margin-right: 50px;
         }
         .right {
           h1 {
@@ -70,15 +76,17 @@
             margin-bottom: 20px;
           }
           p {
-            color: v-bind('modelStyle.textColor');
+            color: #fff;
             font-size: v-bind('modelStyle.textFontSize');
             font-weight: v-bind('modelStyle.textFontWeight');
-            margin-bottom: 20px;
           }
         }
       }
 
       .bottom {
+        height: 65px;
+        display: flex;
+        align-items: center;
         ul {
           display: flex;
           li {
@@ -87,7 +95,7 @@
             font-weight: v-bind('modelStyle.textFontWeight');
             padding-right: 12px;
             height: 20px;
-            margin-right: 10px;
+            margin-right: 20px;
             display: flex;
             align-items: center;
             justify-content: center;
