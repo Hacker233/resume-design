@@ -77,7 +77,6 @@
           font-weight: v-bind('modelStyle.textFontWeight');
           line-height: 18px;
           text-align: justify;
-          font-family: '微软雅黑';
         }
         .campusDuty {
           margin-bottom: 10px;
