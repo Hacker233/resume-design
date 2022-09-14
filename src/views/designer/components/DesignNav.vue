@@ -143,6 +143,7 @@
 
   // 导出pdf
   const generateReport = async () => {
+    await saveDataToLocal();
     emit('generateReport');
   };
 
