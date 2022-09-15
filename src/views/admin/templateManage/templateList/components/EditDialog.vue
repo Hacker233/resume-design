@@ -29,17 +29,40 @@
         />
       </div>
       <div class="right">
-        <el-upload
-          class="avatar-uploader"
-          :action="uploadAddress()"
-          :headers="{ Authorization: appStore.useTokenStore.token }"
-          :show-file-list="false"
-          :on-success="handleAvatarSuccess"
-          :before-upload="beforeAvatarUpload"
+        <el-form
+          ref="ruleFormRef"
+          :model="ruleForm"
+          :rules="rules"
+          label-width="120px"
+          class="demo-ruleForm"
+          size="default"
+          status-icon
         >
-          <img v-if="previewUrl" :src="previewUrl" class="avatar" />
-          <el-icon v-else class="avatar-uploader-icon"><Plus /></el-icon>
-        </el-upload>
+          <el-form-item label="模板分类：" prop="category">
+            <el-select v-model="ruleForm.category" placeholder="请选择模板分类" multiple>
+              <el-option
+                v-for="(item, index) in categoryList"
+                :key="index"
+                :label="item.label"
+                :value="item.value"
+              />
+            </el-select>
+          </el-form-item>
+          <el-form-item label="模板封面：">
+            <el-upload
+              class="avatar-uploader"
+              :action="uploadAddress()"
+              :headers="{ Authorization: appStore.useTokenStore.token }"
+              :show-file-list="false"
+              :on-success="handleAvatarSuccess"
+              :before-upload="beforeAvatarUpload"
+            >
+              <img v-if="previewUrl" :src="previewUrl" class="avatar" />
+              <el-icon v-else class="avatar-uploader-icon"><Plus /></el-icon>
+            </el-upload>
+          </el-form-item>
+        </el-form>
+
         <div class="confirm-btn">
           <el-button @click="cancle">取消</el-button>
           <el-button type="primary" @click="confirmJson">确定</el-button>
@@ -55,12 +78,13 @@
   import { oneDark } from '@codemirror/theme-one-dark';
   import { json } from '@codemirror/lang-json';
   import { ref } from 'vue';
-  import { ElMessage } from 'element-plus';
+  import { ElMessage, FormInstance, FormRules } from 'element-plus';
   import { isJSON } from '@/utils/common';
   import appStore from '@/store';
   import CONFIG from '@/config';
   import { UploadProps } from 'element-plus';
   import { updateTemplateAsync } from '@/http/api/resume';
+  import { getCategoryListAsync } from '@/http/api/category';
 
   const emit = defineEmits(['cancle', 'updateSuccess']);
 
@@ -72,6 +96,16 @@
     dialogVisible: false,
     row: null
   });
+  // 表单相关
+  const categoryList = ref<any>([]);
+  const ruleFormRef = ref<FormInstance>();
+  const ruleForm = reactive({
+    category: ''
+  });
+  const rules = reactive<FormRules>({
+    category: [{ required: true, message: '请选择分类', trigger: 'change' }]
+  });
+
   watch(
     () => props.row,
     (newVal) => {
@@ -79,6 +113,7 @@
         console.log(newVal);
         previewUrl.value = newVal.previewUrl;
         code.value = JSON.stringify(newVal, null, 2);
+        ruleForm.category = newVal.CATEGORY;
       }
     },
     {
@@ -86,6 +121,25 @@
     }
   );
   const previewUrl = ref<string>('');
+
+  // 查询分类列表
+  const getCategoryList = async () => {
+    const data = await getCategoryListAsync();
+    if (data.status) {
+      categoryList.value = data.data.map(
+        (item: { category_value: string; category_label: string }) => {
+          return {
+            label: item.category_label,
+            value: item.category_value
+          };
+        }
+      );
+    } else {
+      ElMessage.error(data.data.message);
+    }
+  };
+  getCategoryList();
+
   // 上传文件地址
   const uploadAddress = () => {
     return CONFIG.serverAddress + '/huajian/upload/file/templatePreview';
@@ -141,7 +195,8 @@
       TITLE: updateJSON.TITLE,
       LAYOUT: updateJSON.LAYOUT,
       COMPONENTS: updateJSON.COMPONENTS,
-      GLOBAL_STYLE: updateJSON.GLOBAL_STYLE
+      GLOBAL_STYLE: updateJSON.GLOBAL_STYLE,
+      CATEGORY: ruleForm.category
     };
     const data = await updateTemplateAsync(params);
     if (data.data.status === 200) {
@@ -188,7 +243,6 @@
         flex: 1;
         display: flex;
         flex-direction: column;
-        align-items: center;
         .avatar-uploader .avatar {
           width: 260px;
           height: 365px;
@@ -196,6 +250,8 @@
         }
         .confirm-btn {
           margin-top: 20px;
+          display: flex;
+          justify-content: flex-end;
         }
       }
     }

@@ -6,9 +6,9 @@
       <span>化简</span>
     </div>
     <div class="center">
-      <!-- <el-menu :default-active="route.name" class="el-menu-demo" @select="handleSelect">
+      <el-menu :default-active="route.name" class="el-menu-demo" @select="handleSelect">
         <el-menu-item index="Template">模板</el-menu-item>
-      </el-menu> -->
+      </el-menu>
     </div>
     <!-- GitHub -->
     <div class="right">
@@ -52,7 +52,7 @@
     iconColor?: string;
     position?: string;
   }
-  // const route = useRoute();
+  const route = useRoute();
   const props = withDefaults(defineProps<IBgcColor>(), {
     bgColor: '',
     fontColor: '',
@@ -61,12 +61,14 @@
   });
 
   // 菜单
-  // const handleSelect = (key: string) => {
-  //   console.log()
-  //   router.push({
-  //     name: key
-  //   });
-  // };
+  const currentMenu = ref<string>('');
+  const handleSelect = (key: string) => {
+    currentMenu.value = key;
+    router.push({
+      name: key
+    });
+    console.log(currentMenu.value);
+  };
 
   const nameColor = computed(() => {
     return props.fontColor ? '#2ddd9d' : 'green';
@@ -145,6 +147,33 @@
       .el-menu {
         border: none;
         height: 100%;
+        background-color: rgba(255, 255, 255, 0);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        .el-menu-item {
+          height: 100%;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          width: 100%;
+          color: v-bind('fontColor');
+          padding: 0 25px !important;
+          letter-spacing: 4px;
+          font-size: 16px;
+          border-bottom: 4px solid transparent;
+          transition: all 0.3s;
+          &:hover {
+            // color: #2ddd9d;
+            border-color: #2ddd9d;
+            background-color: rgba(#ccc, 0.1);
+          }
+        }
+        .is-active {
+          background-color: rgba(255, 255, 255, 0);
+          // color: #21a474;
+          border-color: #2ddd9d;
+        }
       }
     }
     .right {
