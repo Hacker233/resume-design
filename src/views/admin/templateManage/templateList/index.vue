@@ -9,6 +9,7 @@
       </template>
     </el-table-column>
     <el-table-column prop="TITLE" label="模板标题" />
+    <el-table-column prop="CATEGORY" label="模板分类" />
     <el-table-column prop="LAYOUT" label="布局模式">
       <template #default="scope">
         <div>

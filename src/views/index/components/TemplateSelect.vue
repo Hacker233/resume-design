@@ -12,11 +12,15 @@
         <template-card :card-data="item" @to-design="toDesign"> </template-card>
       </template>
     </div>
+    <!-- 查看更多 -->
+    <div class="more">
+      <div class="button" @click="seeMore"> 查看更多 </div>
+    </div>
   </div>
 </template>
 <script setup lang="ts">
   // import templateList from '@/template';
-  import TemplateCard from './TemplateCard.vue';
+  import TemplateCard from '@/components/TemplateCard/TemplateCard.vue';
   import IntroduceTitleVue from './IntroduceTitle.vue';
   import { ITempList } from '@/template/type';
   import { useRouter } from 'vue-router';
@@ -65,6 +69,13 @@
   };
   getTemplateList();
 
+  // 点击查看更多
+  const seeMore = () => {
+    router.push({
+      name: 'Template'
+    });
+  };
+
   defineExpose({
     scrollIntoView
   });
@@ -83,6 +94,36 @@
       display: flex;
       flex-wrap: wrap;
       max-width: 1500px;
+    }
+    .more {
+      padding: 0 0 40px 0;
+      .button {
+        width: 120px;
+        height: 38px;
+        line-height: 38px;
+        text-align: center;
+        letter-spacing: 2px;
+        color: #fff;
+        font-size: 14px;
+        background-image: -webkit-linear-gradient(to right, #2ddd9d, #1cc7cf);
+        background-image: -moz-linear-gradient(to right, #2ddd9d, #1cc7cf);
+        background-image: -ms-linear-gradient(to right, #2ddd9d, #1cc7cf);
+        background-image: linear-gradient(to right, #2ddd9d, #1cc7cf);
+        -webkit-border-radius: 50px;
+        -moz-border-radius: 50px;
+        border-radius: 50px;
+        background-color: #2ddd9d;
+        -webkit-transition: all 0.3s;
+        -moz-transition: all 0.3s;
+        -ms-transition: all 0.3s;
+        -o-transition: all 0.3s;
+        transition: all 0.3s;
+        cursor: pointer;
+        user-select: none;
+        &:hover {
+          opacity: 0.8;
+        }
+      }
     }
   }
 </style>
