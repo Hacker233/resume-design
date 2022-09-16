@@ -45,6 +45,7 @@
   <Pagination
     :total="total"
     :limit="limit"
+    :current-page="currentPage"
     @handle-current-change="handleCurrentChange"
   ></Pagination>
 
@@ -70,6 +71,7 @@
   const page = ref<number>(1);
   const limit = ref<number>(10);
   const total = ref<number>(0);
+  const currentPage = ref<number>(1);
   const getTemplateList = async () => {
     let params = {
       page: page.value,
@@ -79,6 +81,7 @@
     if (data.data.status === 200) {
       tableData.value = data.data.data.list;
       total.value = data.data.data.page.count;
+      currentPage.value = data.data.data.page.currentPage;
       console.log('tableData', tableData);
     } else {
       ElMessage.error(data.data.message);

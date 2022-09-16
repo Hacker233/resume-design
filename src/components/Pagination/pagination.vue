@@ -5,6 +5,7 @@
       layout="prev, pager, next"
       :total="total"
       :page-size="limit"
+      :current-page="currentPage"
       @current-change="handleCurrentChange"
     />
   </div>
@@ -14,6 +15,7 @@
   defineProps<{
     total: number;
     limit: number;
+    currentPage: number;
   }>();
 
   // 改变页时出发

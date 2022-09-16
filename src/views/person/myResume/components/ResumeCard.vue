@@ -3,6 +3,9 @@
     <img :src="cardData.previewUrl" alt="" srcset="" />
     <!-- 遮罩层 -->
     <div v-show="isShowLayer" class="mask-layer">
+      <div class="delete-box" @click="deleteUserResume">
+        <svg-icon icon-name="icon-shanchu" color="#fff" size="20px"></svg-icon>
+      </div>
       <div class="design-button" @click="toDesign">继续制作</div>
     </div>
   </div>
@@ -10,9 +13,12 @@
 <script setup lang="ts">
   import { ref } from 'vue';
   import { ITempList } from '@/template/type';
+  import { ElMessageBox } from 'element-plus';
+  import 'element-plus/es/components/message-box/style/index';
   const props = defineProps<{
     cardData: ITempList;
   }>();
+  const emit = defineEmits(['delete']);
 
   // 鼠标移入显示遮罩层
   let isShowLayer = ref<boolean>(false);
@@ -33,6 +39,19 @@
         id: props.cardData.ID
       }
     });
+  };
+
+  // 点击删除简历
+  const deleteUserResume = async () => {
+    ElMessageBox.confirm('删除该简历后无法恢复，确定继续？', '警告', {
+      confirmButtonText: '确定',
+      cancelButtonText: '取消',
+      type: 'warning'
+    })
+      .then(async () => {
+        emit('delete', props.cardData.ID);
+      })
+      .catch(() => {});
   };
 </script>
 <style lang="scss" scoped>
@@ -64,11 +83,25 @@
       top: 0;
       background-color: rgba(0, 0, 0, 0.5);
       transition: all 0.3s;
-      display: flex;
-      align-items: center;
-      justify-content: center;
       z-index: 1;
       transition: all 0.3s;
+      .delete-box {
+        position: absolute;
+        top: 5px;
+        right: 5px;
+        width: 30px;
+        height: 30px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 50%;
+        background-color: #2cbd99;
+        cursor: pointer;
+        transition: all 0.3s;
+        &:hover {
+          background-color: rgba(#42aa90, 0.7);
+        }
+      }
       .design-button {
         width: 100px;
         height: 30px;
@@ -81,25 +114,12 @@
         justify-content: center;
         color: #ffffff;
         transition: all 0.3s;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
         &:hover {
           background-color: rgba(#42aa90, 0.7);
-        }
-      }
-      .preview-icon {
-        position: absolute;
-        right: 15px;
-        top: 15px;
-        z-index: 12;
-        width: 30px;
-        height: 30px;
-        background-color: rgba(0, 0, 0, 0.7);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        border-radius: 4px;
-        .yulan {
-          cursor: pointer;
-          font-size: 20px;
         }
       }
     }
