@@ -38,6 +38,7 @@
   - [如何使用](#如何使用)
     - [拉取项目](#拉取项目)
     - [安装项目依赖](#安装项目依赖)
+    - [项目配置](#项目配置)
     - [运行项目](#运行项目)
     - [构建项目](#构建项目)
     - [目录说明:](#目录说明)
@@ -101,6 +102,19 @@ cd resume-design
 pnpm install
 ```
 
+### 项目配置
+若要运行项目，需要有相对应的后台，如果没有自己搭建的后台，则可以连接化简官方后台。
+**修改对应文件**：
+```
+// src/config/index.ts
+
+const CONFIG = {
+  serverAddress: 'https://huajian.smallpig.site', // 服务器地址
+};
+console.log('运行环境', CONFIG);
+export default CONFIG;
+```
+
 ### 运行项目
 ```bash
 pnpm dev
@@ -114,19 +128,26 @@ pnpm build
 ### 目录说明:
 
 ```
+├─ build		  // vite打包配置相关文件目录
 ├─ doc			  // 项目相关文档
 ├─ public         // 公共资源目录
-├─ scripts
+│  ├─ json        // 模板JSON文件存放目录
+├─ types          // 全局类型声明目录
 ├─ src
-│  ├─ api         // 请求封装，暂时未用到
 │  ├─ assets      // 资源文件存放目录
 │  ├─ components  // 公共组件存放路径
-│  ├─ router      // 项目路由配置
+│  ├─ config      // 相关配置文件
+│  ├─ dictionary  // 相关字典文件存放目录
+│  ├─ hooks       // 定义的一些Vue3的hooks
+│  ├─ http        // 全局请求封装目录
+│  ├─ interface   // 接口文件存放目录
+│  ├─ material    // 物料组件存放目录
+│  ├─ options     // 属性面板设置组件存放目录
+│  ├─ router      // 路由文件存放目录
 │  ├─ schema      // 简历模板JSON格式定义
 |  ├─ store       // 状态管理文件夹
-|  ├─ styles      // 一些样式文件
-|  ├─ template    // 简历模板文件
-|  ├─ types       // ts类型定义文件
+|  ├─ style      // 一些样式文件
+|  ├─ template    // 简历模板配置文件
 |  ├─ utils       // 工具函数
 |  ├─ views       // 页面文件
 |  └─ App.vue     // 主入口页面

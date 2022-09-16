@@ -1,13 +1,13 @@
 <template>
   <div class="design-box">
     <!-- 导航栏 -->
-    <design-nav @generate-report="generateReport" @reset="reset"></design-nav>
+    <design-nav ref="navRef" @generate-report="generateReport" @reset="reset"></design-nav>
     <!-- 内容区域 -->
     <div class="bottom">
       <!-- 左侧添加模块区域 -->
       <div ref="leftRef" class="left">
         <c-scrollbar trigger="hover">
-          <Title show-collapse @unflod-or-collapse="unflodOrCollapse"></Title>
+          <Title show-collapse @unfold-or-collapse="unfoldOrCollapse"></Title>
           <model-list :key="refreshUuid" :left-show-status="leftShowStatus"></model-list>
         </c-scrollbar>
       </div>
@@ -16,7 +16,7 @@
       <div :key="refreshUuid" class="center">
         <div ref="html2Pdf" class="design">
           <div ref="htmlContentPdf" class="design-content">
-            <component is="custom" @content-height-change="contentHeightChange" />
+            <component :is="custom" @content-height-change="contentHeightChange" />
           </div>
           <!-- 分页线 -->
           <template v-if="linesNumber > 0">
@@ -52,6 +52,13 @@
         </c-scrollbar>
       </div>
     </div>
+
+    <!-- 导出pdf进度弹窗 -->
+    <process-bar-dialog
+      :dialog-visible="dialogVisible"
+      :percentage-num="percentage"
+      @cancle="cancleProgress"
+    ></process-bar-dialog>
   </div>
 </template>
 
@@ -59,58 +66,48 @@
   import Title from './components/Title.vue';
   import ModelList from './components/ModelList.vue';
   import GlobalStyleOptionsVue from '@/options/GlobalStyleOptions.vue';
-
-  import downloadPDF from '@/utils/html2pdf'; // 下载为pdf
+  import custom from '@/template/custom/index.vue';
+  import ProcessBarDialog from '@/components/ProcessBarDialog/ProcessBarDialog.vue';
   import appStore from '@/store';
   import { storeToRefs } from 'pinia';
   import { useRoute } from 'vue-router';
   import { CScrollbar } from 'c-scrollbar'; // 滚动条
   import DesignNav from './components/DesignNav.vue';
   import { ElMessage } from 'element-plus';
-  import MODEL_DATA_JSON from '@/schema/modelData';
   import optionsComponents from '@/utils/registerMaterialOptionsCom';
-  import { getTemplateJson } from '@/http/api/getTemplateJson';
   import IDESIGNJSON from '@/interface/design';
   import { closeGlobalLoading } from '@/utils/common';
+  import { getTemplateInfoAsync, getResetTemplateInfoAsync } from '@/http/api/resume';
+  import exportPdf from '@/utils/pdf';
 
   const { cptTitle } = storeToRefs(appStore.useSelectMaterialStore);
   const { changeResumeJsonData } = appStore.useResumeJsonNewStore;
   const { refreshUuid } = storeToRefs(appStore.useUuidStore);
   const { setUuid } = appStore.useUuidStore;
-  const { resumeJsonNewStore, importJson } = storeToRefs(appStore.useResumeJsonNewStore); // store里的模板数据
+  const { resumeJsonNewStore } = storeToRefs(appStore.useResumeJsonNewStore); // store里的模板数据
+  const route = useRoute();
+  const { id } = route.query; // 模板id和模板名称
 
-  // 重置数据方法
-  const resetStoreAndLocal = async () => {
-    let TEMPLATE_JSON;
-    const url = `${location.origin}/json/${name}/template.json`;
-    const data: IDESIGNJSON = await getTemplateJson(url);
-    TEMPLATE_JSON = data;
-    TEMPLATE_JSON.ID = id as string;
-    TEMPLATE_JSON.NAME = name as string;
-    TEMPLATE_JSON.COMPONENTS.forEach((item) => {
-      item.data = MODEL_DATA_JSON[item.model];
-    });
+  // 查询简历数据，有草稿返回草稿，没有草稿返回简历数据
+  const resetStoreAndLocal = async (isReset = false) => {
+    let TEMPLATE_JSON: IDESIGNJSON;
+    let data;
+    if (isReset) {
+      data = await getResetTemplateInfoAsync(id); // 重置
+    } else {
+      data = await getTemplateInfoAsync(id);
+    }
+    if (data.data.status === 200) {
+      TEMPLATE_JSON = data.data.data as IDESIGNJSON;
+    } else {
+      ElMessage.error('查询模板失败！');
+      return;
+    }
     changeResumeJsonData(TEMPLATE_JSON); // 更改store的数据
     setUuid();
     console.log('简历JSON数据', resumeJsonNewStore.value);
   };
-  // 获取本地数据,初始化store里面的简历数据
-  const localData = localStorage.getItem('resumeDraft');
-  const route = useRoute();
-  const { id, name } = route.query; // 模板id和模板名称
-  // 模板1、模板2、模板3处理逻辑
-  resumeJsonNewStore.value.ID = id as string;
-  resumeJsonNewStore.value.NAME = name as string;
-  if (localData) {
-    let localObj = JSON.parse(localData)[id as string];
-    if (localObj) {
-      changeResumeJsonData(localObj);
-    } else {
-      resetStoreAndLocal();
-    }
-  } else {
-    resetStoreAndLocal();
-  }
+  resetStoreAndLocal();
 
   // 生命周期函数
   onMounted(async () => {
@@ -133,7 +130,6 @@
   const globalStyleSetting = () => {
     // 重置store选中模块
     resetSelectModel();
-    // console.log("reset",appStore)
   };
 
   // 导出pdf
@@ -150,21 +146,8 @@
 
   // 重置数据
   const reset = async () => {
-    resetStoreAndLocal(); // 重置store数据
+    resetStoreAndLocal(true); // 重置store数据
     globalStyleSetting(); // 重置选中模块
-    // 删除本地该条数据
-    let localData = localStorage.getItem('resumeDraft'); // 本地缓存数据
-    if (localData) {
-      let allData = JSON.parse(localData);
-      if (Object.keys(allData).length > 1) {
-        if (allData[id as string]) {
-          delete allData[id as string]; // 删除该条数据
-          localStorage.setItem('resumeDraft', JSON.stringify(allData));
-        }
-      } else {
-        localStorage.removeItem('resumeDraft');
-      }
-    }
     ElMessage({
       message: '重置成功!',
       type: 'success',
@@ -176,14 +159,29 @@
   };
 
   // 生成pdf方法
+  const dialogVisible = ref<boolean>(false);
+  const percentage = ref<number>(10);
+  let timer: any = null;
   const generateReport = async () => {
-    let temp = linesNumber.value;
-    linesNumber.value = 0;
-    resetSelectModel(); // 重置选中模块
-    await nextTick();
-    downloadPDF(html2Pdf.value, resumeJsonNewStore.value.TITLE, false, () => {
-      linesNumber.value = temp;
-    });
+    dialogVisible.value = true;
+    timer = setInterval(() => {
+      percentage.value += 5;
+      if (percentage.value > 95) {
+        percentage.value = 98;
+        clearInterval(timer);
+      }
+    }, 500);
+    let token = localStorage.getItem('token') as string;
+    let height = htmlContentPdf.value.style.height;
+    await exportPdf(token, id as string, height);
+    clearInterval(timer);
+    percentage.value = 100;
+  };
+
+  // 关闭进度弹窗
+  const cancleProgress = () => {
+    dialogVisible.value = false;
+    percentage.value = 10;
   };
 
   // 监听内容元素高度变化，绘制分割线
@@ -232,7 +230,7 @@
   // 展开或收起左侧栏
   const leftRef = ref<any>(null);
   const leftShowStatus = ref<boolean>(true);
-  const unflodOrCollapse = (status: boolean) => {
+  const unfoldOrCollapse = (status: boolean) => {
     if (status) {
       setTimeout(() => {
         leftShowStatus.value = status;
@@ -245,6 +243,18 @@
       leftRef.value.style.width = '70px';
     }
   };
+  // 页面销毁前自动保存草稿
+  const navRef = ref<any>(null);
+  onBeforeUnmount(() => {
+    navRef.value.saveDataToLocal();
+  });
+
+  // 页面销毁
+  onUnmounted(() => {
+    if (timer) {
+      clearInterval(timer);
+    } // 关闭全局等待层
+  });
 </script>
 <style lang="scss">
   @import '../../style/options.scss';
@@ -255,6 +265,7 @@
     width: 100%;
     box-sizing: border-box;
     overflow: hidden;
+    font-family: '微软雅黑';
     .bottom {
       display: flex;
       width: 100%;
@@ -272,6 +283,7 @@
         justify-content: center;
         align-items: flex-start;
         flex: 1;
+        min-width: 840px;
         height: calc(100vh - 50px);
         overflow: auto;
 

@@ -7,6 +7,7 @@
       <div class="see-more-box">
         <div class="button" @click="freeMakeResume"> 免费制作 </div>
         <div class="button" @click="toCustom"> 自定义模板 </div>
+        <div class="button" @click="toSponsor"> 成为赞助者 </div>
       </div>
     </div>
     <div class="right">
@@ -17,18 +18,22 @@
 <script lang="ts" setup>
   import { closeGlobalLoading } from '@/utils/common';
 
-  const emit = defineEmits(['freeMake', 'customTemplate']);
+  const emit = defineEmits(['freeMake', 'customTemplate', 'sponsor']);
   const freeMakeResume = () => {
     emit('freeMake');
   };
   const handleMouseover = () => {
     // console.log('鼠标移动');
   };
+  // 成为赞助者
+  const toSponsor = () => {
+    emit('sponsor');
+  };
 
   // 滚动到自定义模板
   const toCustom = () => {
-    emit('customTemplate')
-  }
+    emit('customTemplate');
+  };
 
   // 页面销毁
   onUnmounted(() => {
@@ -72,12 +77,10 @@
       .see-more-box {
         margin-top: 40px;
         display: flex;
-        & :nth-child(1) {
-          margin-right: 30px;
-        }
         .button {
           width: 120px;
           height: 38px;
+          margin-right: 20px;
           line-height: 38px;
           text-align: center;
           letter-spacing: 2px;

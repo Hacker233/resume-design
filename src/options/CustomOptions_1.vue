@@ -33,40 +33,15 @@
   </el-tabs>
 </template>
 <script setup lang="ts">
-  import { ElMessage } from 'element-plus';
-  import type { UploadProps } from 'element-plus';
   import CommonOptions from './CommonOptions.vue';
   import CommonTitleOptions from './CommonTitleOptions.vue';
   import useDesignSelectModelItem from '@/hooks/material/useDesignSelectModelItem';
   defineOptions({ name: 'CUSTOM_OPTIONS_1' });
   // 选中的模块
   const { modelItem } = useDesignSelectModelItem();
-  console.log("点击姓名与简介", modelItem)
+  console.log('点击姓名与简介', modelItem);
 
   let activeName = ref('style');
-
-  /**
-   * 数据配置
-   */
-  // 头像设置
-  const imageUrl = ref(modelItem.data.avatar);
-  const beforeAvatarUpload: UploadProps['beforeUpload'] = (rawFile) => {
-    if (rawFile.type !== 'image/jpeg') {
-      ElMessage.error('只支持jpg格式的图片');
-      return false;
-    } else if (rawFile.size / 1024 / 1024 > 2) {
-      ElMessage.error('Avatar picture size can not exceed 2MB!');
-      return false;
-    }
-    // 图片转成base64
-    let reader = new FileReader();
-    reader.readAsDataURL(rawFile);
-    reader.onload = (e) => {
-      imageUrl.value = e.target?.result as string;
-      modelItem.data.avatar = e.target?.result as string;
-    };
-    return false;
-  };
 </script>
 <style lang="scss">
   .avatar-uploader .el-upload {

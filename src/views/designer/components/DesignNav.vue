@@ -69,10 +69,10 @@
   import FileSaver from 'file-saver';
   import moment from 'moment';
   import { storeToRefs } from 'pinia';
-  import { ref, watch } from 'vue';
-  import { useRouter } from 'vue-router';
   import ImportJsonDialog from '@/components/ImportJsonDialog/ImportJsonDialog.vue';
-  import { debounce } from 'lodash';
+  import { cloneDeep, debounce } from 'lodash';
+  import { getUuid } from '@/utils/common';
+  import { updateUserresumeAsync } from '@/http/api/resume';
   let { resumeJsonNewStore } = storeToRefs(appStore.useResumeJsonNewStore); // store里的模板数据
   const emit = defineEmits(['generateReport', 'reset', 'saveDataToLocal']);
   const route = useRoute();
@@ -96,21 +96,16 @@
     isShowIpt.value = false;
   };
 
-  // 保存数据到本地
+  // 保存草稿
   let draftTips = ref<string>('');
-  const saveDataToLocal = () => {
-    let key = resumeJsonNewStore.value.ID; // 当前模板的id
-    let saveData: { [key: string]: object } = {}; // 需要保存的数据
-    let localData = localStorage.getItem('resumeDraft'); // 本地缓存数据
-    if (localData) {
-      saveData = JSON.parse(localData);
-      saveData[key] = resumeJsonNewStore.value;
+  const saveDataToLocal = async () => {
+    const data = await updateUserresumeAsync(resumeJsonNewStore.value);
+    if (data.data.status === 200) {
+      const time = moment(new Date()).format('YYYY.MM.DD HH:mm:ss');
+      draftTips.value = `已自动保存草稿  ${time}`;
     } else {
-      saveData[key] = resumeJsonNewStore.value;
+      draftTips.value = '自动保存草稿失败！';
     }
-    localStorage.setItem('resumeDraft', JSON.stringify(saveData));
-    const date = moment(new Date()).format('YYYY.MM.DD HH:mm:ss');
-    draftTips.value = `已自动保存草稿  ${date}`;
   };
 
   // 保存草稿
@@ -126,7 +121,7 @@
   // 自动保存草稿
   const debounced = debounce(() => {
     saveDataToLocal();
-  }, 1000);
+  }, 10000);
   watch(
     () => resumeJsonNewStore.value, // JSON数据发生变化，则保存草稿
     () => {
@@ -139,13 +134,16 @@
 
   // 导出JSON
   const exportJSON = () => {
-    const data = JSON.stringify(resumeJsonNewStore.value, null, 4);
+    let JSONData = cloneDeep(resumeJsonNewStore.value);
+    JSONData.ID = getUuid();
+    const data = JSON.stringify(JSONData, null, 4);
     const blob = new Blob([data], { type: '' });
     FileSaver.saveAs(blob, resumeJsonNewStore.value.TITLE + '.json');
   };
 
   // 导出pdf
-  const generateReport = () => {
+  const generateReport = async () => {
+    await saveDataToLocal();
     emit('generateReport');
   };
 
@@ -173,6 +171,10 @@
   const cancleJsonDialog = () => {
     dialogVisible.value = false;
   };
+
+  defineExpose({
+    saveDataToLocal
+  });
 </script>
 <style lang="scss" scopeds>
   .nav-box {

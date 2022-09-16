@@ -55,8 +55,8 @@
   // 锚点定位
   const { cptKeyId } = storeToRefs(appStore.useSelectMaterialStore);
   watch(
-    cptKeyId,
-    (newVal, oldVal) => {
+    () => cptKeyId.value,
+    (newVal) => {
       // 如果选中了模块
       if (newVal && modelObj[newVal]) {
         modelObj[newVal].el.scrollIntoView({ behavior: 'smooth', block: 'center' }); // 该模块显示在可视区域内
@@ -93,7 +93,7 @@
     };
   };
   // 点击选择模块
-  const { updateSelectModel, resetSelectModel } = appStore.useSelectMaterialStore;
+  const { updateSelectModel } = appStore.useSelectMaterialStore;
   const selectModel = () => {
     console.log('keyId', props.item.keyId, props.item);
     // 更新store
@@ -103,24 +103,6 @@
       props.item.cptTitle,
       props.item.keyId
     );
-  };
-
-  // 删除当前模块
-  const deleteModel = () => {
-    if (resumeJsonNewStore.value.LAYOUT === 'classical') {
-      classicalDelete();
-    } else {
-      emit('leftRightDelete', props.item.keyId);
-    }
-    resetSelectModel(); // 重置选中模块
-  };
-
-  // 传统模块删除
-  const classicalDelete = () => {
-    let index: number = resumeJsonNewStore.value.COMPONENTS.findIndex(
-      (item) => item.keyId === props.item.keyId
-    );
-    resumeJsonNewStore.value.COMPONENTS.splice(index, 1);
   };
 
   // 复制当前模块

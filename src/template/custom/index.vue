@@ -1,6 +1,6 @@
 <!-- 自定义创建的模板数据 -->
 <template>
-  <div class="content-box" ref="customContentPdf">
+  <div ref="customContentPdf" class="content-box">
     <!-- 无布局方式 -->
     <template v-if="resumeJsonNewStore.LAYOUT === 'custom'">
       <div class="upload-json-box" @click="importJson">
@@ -127,7 +127,7 @@
   }
 
   watch(
-    leftList,
+    () => leftList.value,
     () => {
       leftList.value.forEach((item: IMATERIALITEM) => {
         item.layout = 'left';
@@ -140,7 +140,7 @@
     }
   );
   watch(
-    rightList,
+    () => rightList.value,
     () => {
       rightList.value.forEach((item: IMATERIALITEM) => {
         item.layout = 'right';

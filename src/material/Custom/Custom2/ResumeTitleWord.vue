@@ -106,13 +106,14 @@
         height: 30px;
         width: 60%;
         background-color: v-bind('modelStyle.themeColor');
-        background: linear-gradient(-45deg,transparent 20px,v-bind('modelStyle.themeColor') 0) top right;
+        background: linear-gradient(-45deg, transparent 20px, v-bind('modelStyle.themeColor') 0) top
+          right;
       }
       .right {
         height: 25px;
         flex: 1;
         background-color: #74a274;
-        background: linear-gradient(135deg,transparent 18px,#74a274 0) top left,
+        background: linear-gradient(135deg, transparent 18px, #74a274 0) top left;
       }
     }
   }

@@ -44,7 +44,6 @@
   import { useCopyModel } from '@/hooks/useCopyModel';
   import { useDeleteModel } from '@/hooks/useDeleteModel';
   import { storeToRefs } from 'pinia';
-  import { useRoute } from 'vue-router';
   import { IMATERIALITEM } from '@/interface/material';
 
   const props = defineProps<{
@@ -54,8 +53,8 @@
   // 锚点定位
   const { cptKeyId } = storeToRefs(appStore.useSelectMaterialStore);
   watch(
-    cptKeyId,
-    (newVal, oldVal) => {
+    () => cptKeyId.value,
+    (newVal) => {
       // 如果选中了模块
       if (newVal && modelObj[newVal]) {
         modelObj[newVal].el.scrollIntoView({ behavior: 'smooth', block: 'center' }); // 该模块显示在可视区域内
@@ -94,7 +93,6 @@
 
   // 点击模块
   const { updateSelectModel } = appStore.useSelectMaterialStore;
-  const route = useRoute();
   const selectModel = (model: string, title: string, keyId: string) => {
     let optionsName: string = props.item.cptOptionsName;
     console.log('optionsName', optionsName);

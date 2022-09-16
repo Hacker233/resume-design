@@ -13,19 +13,19 @@
     </el-select>
   </el-form-item>
   <el-form-item label="上外边距:">
-    <el-input-number v-model="mTop" :min="-100" :max="100" @change="handleChange" />
+    <el-input-number v-model="mTop" :min="-300" :max="300" @change="handleChange" />
   </el-form-item>
   <el-form-item label="下外边距:">
-    <el-input-number v-model="mBottom" :min="-100" :max="100" @change="handleChangeMBottom" />
+    <el-input-number v-model="mBottom" :min="-300" :max="300" @change="handleChangeMBottom" />
   </el-form-item>
   <el-form-item label="上内边距:">
-    <el-input-number v-model="pTop" :min="-100" :max="100" @change="handleChangePTop" />
+    <el-input-number v-model="pTop" :min="-300" :max="300" @change="handleChangePTop" />
   </el-form-item>
   <el-form-item label="下内边距:">
-    <el-input-number v-model="pBottom" :min="-100" :max="100" @change="handleChangePBottom" />
+    <el-input-number v-model="pBottom" :min="-300" :max="300" @change="handleChangePBottom" />
   </el-form-item>
   <el-form-item label="左右内边距:">
-    <el-input-number v-model="pLeftRight" :min="-100" :max="100" @change="handleChangePLeftRight" />
+    <el-input-number v-model="pLeftRight" :min="-300" :max="300" @change="handleChangePLeftRight" />
   </el-form-item>
 </template>
 <script lang="ts" setup>

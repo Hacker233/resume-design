@@ -26,58 +26,58 @@
           <h1>{{ currentTitle }}</h1>
         </div>
         <!-- 组件列表 -->
-        <div class="cpt-list-box">
-          <!-- 拖拽组件 -->
-          <draggable
-            class="dragArea list-group"
-            :sort="false"
-            :list="cptList"
-            :clone="cloneData"
-            :group="{ name: 'custom', pull: 'clone', put: false }"
-            @start="start"
-            item-key="id"
-          >
-            <template #item="{ element }">
-              <div
-                class="list-group-item com-item"
-                :style="{
-                  height: cptOfImg[currentKey][element.cptName].height,
-                  width: cptOfImg[currentKey][element.cptName].width
-                }"
-                @click="addModel(element)"
-              >
-                <el-tooltip class="box-item" effect="light" :enterable="false">
-                  <template #content>
-                    <div class="toolTip-box">
-                      <img
-                        :src="
-                          getAssetsMaterialFile(
-                            currentKey,
-                            cptOfImg[currentKey][element.cptName].url
-                          )
-                        "
-                        style="max-width: 500px"
-                        alt="效果图"
-                        srcset=""
-                      />
-                      <div class="layout-box">
-                        建议位置：{{layoutDic[element.layout]}}
+        <c-scrollbar trigger="hover" style="height: calc(100vh - 110px)">
+          <div class="cpt-list-box">
+            <!-- 拖拽组件 -->
+            <draggable
+              class="dragArea list-group"
+              :sort="false"
+              :list="cptList"
+              :clone="cloneData"
+              :group="{ name: 'custom', pull: 'clone', put: false }"
+              item-key="id"
+              @start="start"
+            >
+              <template #item="{ element }">
+                <div
+                  class="list-group-item com-item"
+                  :style="{
+                    height: cptOfImg[currentKey][element.cptName].height,
+                    width: cptOfImg[currentKey][element.cptName].width
+                  }"
+                  @click="addModel(element)"
+                >
+                  <el-tooltip class="box-item" effect="light" :enterable="false">
+                    <template #content>
+                      <div class="toolTip-box">
+                        <img
+                          :src="
+                            getAssetsMaterialFile(
+                              currentKey,
+                              cptOfImg[currentKey][element.cptName].url
+                            )
+                          "
+                          style="max-width: 500px"
+                          alt="效果图"
+                          srcset=""
+                        />
+                        <div class="layout-box"> 建议位置：{{ layoutDic[element.layout] }} </div>
                       </div>
-                    </div>
-                  </template>
-                  <img
-                    :src="
-                      getAssetsMaterialFile(currentKey, cptOfImg[currentKey][element.cptName].url)
-                    "
-                    style="width: 100%"
-                    alt=""
-                    srcset=""
-                  />
-                </el-tooltip>
-              </div>
-            </template>
-          </draggable>
-        </div>
+                    </template>
+                    <img
+                      :src="
+                        getAssetsMaterialFile(currentKey, cptOfImg[currentKey][element.cptName].url)
+                      "
+                      style="width: 100%"
+                      alt=""
+                      srcset=""
+                    />
+                  </el-tooltip>
+                </div>
+              </template>
+            </draggable>
+          </div>
+        </c-scrollbar>
       </template>
       <div v-else>
         <el-empty description="请在左侧选择模块" />
@@ -97,10 +97,10 @@
   import MODEL_DATA_JSON from '@/schema/modelData';
   import appStore from '@/store';
   import draggable from 'vuedraggable';
-  const layoutDic:any = {
-    'left': '左',
-    'right': '右',
-    'center': '常规'
+  const layoutDic: any = {
+    left: '左',
+    right: '右',
+    center: '常规'
   };
   const cloneData = (data: IMATERIALITEM) => {
     const cptData = cloneDeep(data);

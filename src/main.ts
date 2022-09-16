@@ -12,12 +12,14 @@ import ColorPicker from 'colorpicker-v3'; // 注册组件
 import 'colorpicker-v3/style.css'; // 引入样式文件
 // 图标
 import '@/assets/iconfont/iconfont.js';
+// 字体文件
+import '@/assets/font/font.css';
 
 // 滚动条
 import CScrollbar from 'c-scrollbar';
 
 // element-plus部分组件样式
-import 'element-plus/theme-chalk/src/message.scss'
+import 'element-plus/theme-chalk/src/message.scss';
 
 // 注册store
 import { createPinia } from 'pinia';

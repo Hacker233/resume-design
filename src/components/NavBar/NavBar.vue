@@ -1,79 +1,109 @@
 <!-- 首页标题栏 -->
 <template>
   <div class="nav-bar-box">
-    <div class="logo">
+    <div class="logo" @click="toHome">
       <img src="@/assets/logo.png" alt="logo" srcset="" />
       <span>化简</span>
     </div>
-    <div class="center"> </div>
+    <div class="center">
+      <el-menu :default-active="route.name" class="el-menu-demo" @select="handleSelect">
+        <el-menu-item index="Template">模板</el-menu-item>
+      </el-menu>
+    </div>
     <!-- GitHub -->
     <div class="right">
-      <el-popover :width="200" trigger="click" teleported>
-        <template #reference>
-          <span class="contact-me">
-            <svg-icon icon-name="icon-lianxiwomen1" :color="iconColor" size="16px"></svg-icon>
-            官方交流群
-          </span>
-        </template>
-        <!-- 内容区域 -->
-        <div class="vx-box">
-          <div class="vx-title">
-            <h1>进入微信群</h1>
-            <p>进入交流群，迅速解答疑问！</p>
-          </div>
-          <div class="vx-img">
-            <img class="bgc-img" src="@/assets/images/vx-qun.jpg" alt="" />
-          </div>
+      <!-- 登录注册以及用户展示区域 -->
+      <div class="user-box">
+        <div v-if="!appStore.useUserInfoStore.userInfo" class="logon-register-box">
+          <el-button class="register-btn" @click="openRegisterDialog">注册</el-button>
+          <el-button class="login-btn" type="primary" @click="openLoginDialog">登录</el-button>
         </div>
-      </el-popover>
-
-      <el-popover :width="200" trigger="click" teleported>
-        <template #reference>
-          <span class="contact-me">
-            <svg-icon icon-name="icon-lianxiwomen1" :color="iconColor" size="16px"></svg-icon>
-            联系我
-          </span>
-        </template>
-        <!-- 内容区域 -->
-        <div class="vx-box">
-          <div class="vx-title">
-            <h1>添加微信</h1>
-            <p>进入交流群，迅速解答疑问！</p>
-          </div>
-          <div class="vx-img">
-            <img class="bgc-img" src="@/assets/images/vx.jpg" alt="" />
-          </div>
+        <div v-else class="user-avatar-box">
+          <el-dropdown>
+            <span class="el-dropdown-link">
+              <el-avatar
+                v-if="appStore.useUserInfoStore.userInfo.photos.profilePic.url"
+                :size="45"
+                :src="appStore.useUserInfoStore.userInfo.photos.profilePic.url"
+              />
+              <el-avatar v-else :size="45">
+                {{ appStore.useUserInfoStore.userInfo.name.split('')[0] }}
+              </el-avatar>
+            </span>
+            <template #dropdown>
+              <el-dropdown-menu>
+                <el-dropdown-item @click="toPerson">个人中心</el-dropdown-item>
+                <el-dropdown-item @click="loginout">退出登录</el-dropdown-item>
+              </el-dropdown-menu>
+            </template>
+          </el-dropdown>
         </div>
-      </el-popover>
-
-      <a
-        href="https://gitee.com/sharemore52/resume-design"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        <svg-icon icon-name="icon-gitee-fill-round" :color="iconColor" size="31px"></svg-icon>
-      </a>
-      <a
-        href="https://github.com/Hacker233/resume-design"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        <svg-icon icon-name="icon-github-fill" :color="iconColor" size="35px"></svg-icon>
-      </a>
+      </div>
     </div>
   </div>
 </template>
 <script setup lang="ts">
+  import appStore from '@/store';
+  import LoginDialog from '@/components/LoginDialog/LoginDialog';
+
   interface IBgcColor {
     bgColor?: string;
     fontColor?: string;
     iconColor?: string;
+    position?: string;
   }
-  withDefaults(defineProps<IBgcColor>(), {
+  const route = useRoute();
+  const props = withDefaults(defineProps<IBgcColor>(), {
     bgColor: '',
     fontColor: '',
-    iconColor: '#fff'
+    iconColor: '#fff',
+    position: 'fixed'
   });
+
+  // 菜单
+  const currentMenu = ref<string>('');
+  const handleSelect = (key: string) => {
+    currentMenu.value = key;
+    router.push({
+      name: key
+    });
+    console.log(currentMenu.value);
+  };
+
+  const nameColor = computed(() => {
+    return props.fontColor ? '#2ddd9d' : 'green';
+  });
+
+  // 打开注册弹窗
+  const openRegisterDialog = () => {
+    LoginDialog(false);
+  };
+
+  // 打开登录弹窗
+  const openLoginDialog = () => {
+    LoginDialog(true);
+  };
+
+  // 跳转至首页
+  const router = useRouter();
+  const toHome = () => {
+    router.push('/');
+  };
+  // 跳转至个人中心页
+  const toPerson = () => {
+    router.push('/person');
+  };
+
+  // 退出登录
+  const { saveToken } = appStore.useTokenStore;
+  const { saveUserInfo } = appStore.useUserInfoStore;
+  const { setUuid } = appStore.useRefreshStore;
+  const loginout = () => {
+    saveToken(''); // 清除token
+    saveUserInfo(''); // 清除用户信息
+    setUuid(); // 全局刷新
+    router.push('/');
+  };
 </script>
 <style lang="scss" scoped>
   .nav-bar-box {
@@ -87,13 +117,15 @@
     z-index: 10;
     user-select: none;
     padding: 0 40px;
-    position: fixed;
+    position: v-bind('props.position');
     top: 0;
     transition: all 0.3s;
     .logo {
       height: 100%;
       display: flex;
       align-items: center;
+      cursor: pointer;
+      user-select: none;
       img {
         width: 80px;
         height: 80px;
@@ -112,6 +144,37 @@
       display: flex;
       justify-content: center;
       align-items: center;
+      .el-menu {
+        border: none;
+        height: 100%;
+        background-color: rgba(255, 255, 255, 0);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        .el-menu-item {
+          height: 100%;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          width: 100%;
+          color: v-bind('fontColor');
+          padding: 0 25px !important;
+          letter-spacing: 4px;
+          font-size: 16px;
+          border-bottom: 4px solid transparent;
+          transition: all 0.3s;
+          &:hover {
+            // color: #2ddd9d;
+            border-color: #2ddd9d;
+            background-color: rgba(#ccc, 0.1);
+          }
+        }
+        .is-active {
+          background-color: rgba(255, 255, 255, 0);
+          // color: #21a474;
+          border-color: #2ddd9d;
+        }
+      }
     }
     .right {
       display: flex;
@@ -125,30 +188,39 @@
       .svg-icon {
         cursor: pointer;
       }
-      & :first-child {
-        margin-left: 15px;
-      }
-    }
-  }
-  .vx-box {
-    .vx-title {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      h1 {
-        font-size: 14px;
-      }
-      p {
-        font-size: 12px;
-        color: rgb(105, 105, 105);
-        margin: 6px 0;
-      }
-    }
-    .vx-img {
-      width: 100%;
-      overflow: hidden;
-      .bgc-img {
-        width: 100%;
+      .user-box {
+        display: flex;
+        .logon-register-box {
+          display: flex;
+          .el-button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 30px;
+            width: 65px;
+          }
+          .register-btn {
+            margin-left: 15px;
+          }
+          .login-btn {
+          }
+        }
+        .user-avatar-box {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          margin-left: 15px;
+          .name-content {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            color: v-bind('nameColor');
+            background-color: v-bind('iconColor');
+          }
+        }
       }
     }
   }

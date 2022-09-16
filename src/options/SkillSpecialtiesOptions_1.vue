@@ -12,7 +12,7 @@
         <el-form-item label="标题名称:">
           <el-input v-model="modelItem.data.title" type="text" maxlength="15" show-word-limit />
         </el-form-item>
-        <div v-for="(item, index) in modelItem.data.LIST" class="skill-list">
+        <div v-for="(item, index) in modelItem.data.LIST" :key="index" class="skill-list">
           <el-divider>
             <el-icon><star-filled /></el-icon>
           </el-divider>
@@ -22,10 +22,10 @@
           <el-form-item label="熟练度:">
             <el-select v-model="item.proficiency" class="m-2" placeholder="Select">
               <el-option
-                v-for="(item, index) in proficiencyList"
-                :key="index"
-                :label="item"
-                :value="item"
+                v-for="childItem in proficiencyList"
+                :key="childItem"
+                :label="childItem"
+                :value="childItem"
               />
             </el-select>
             <el-button

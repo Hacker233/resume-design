@@ -2,7 +2,11 @@
 <template>
   <div class="work-experience">
     <!-- 标题 -->
-    <model-title :title="modelData.title" :iconfont="modelData.iconfont" :model-style="modelStyle"></model-title>
+    <model-title
+      :title="modelData.title"
+      :iconfont="modelData.iconfont"
+      :model-style="modelStyle"
+    ></model-title>
     <!-- 实习经历 -->
     <div v-for="(item, index) in modelData.LIST" :key="index" class="list">
       <ul class="list-ul">
@@ -16,7 +20,7 @@
         <p v-if="modelData.isShow.posts" class="campusDuty">{{ item.posts }}</p>
         <!-- 工作内容 -->
         <ul class="campusContent">
-          <li v-for="(list, index) in item.jobContent" :key="index">{{ list.content }}</li>
+          <li v-for="(list, j) in item.jobContent" :key="j">{{ list.content }}</li>
         </ul>
       </ul>
     </div>
@@ -73,7 +77,6 @@
           font-weight: v-bind('modelStyle.textFontWeight');
           line-height: 18px;
           text-align: justify;
-          font-family: '微软雅黑';
         }
         .campusDuty {
           margin-bottom: 10px;

@@ -42,8 +42,10 @@
         <el-form-item label="头像上传:">
           <el-upload
             class="avatar-uploader"
-            action=""
+            :action="uploadAddress()"
+            :headers="{ Authorization: appStore.useTokenStore.token }"
             :show-file-list="false"
+            :on-success="handleAvatarSuccess"
             :before-upload="beforeAvatarUpload"
           >
             <img v-if="imageUrl" :src="imageUrl" class="avatar" />
@@ -60,6 +62,8 @@
   import type { UploadProps } from 'element-plus';
   import CommonOptions from './CommonOptions.vue';
   import useDesignSelectModelItem from '@/hooks/material/useDesignSelectModelItem';
+  import CONFIG from '@/config';
+  import appStore from '@/store';
   defineOptions({ name: 'BASE_INFO_OPTIONS' });
   // 选中的模块
   const { modelItem } = useDesignSelectModelItem();
@@ -71,22 +75,23 @@
    */
   // 头像设置
   const imageUrl = ref(modelItem.data.avatar);
+
+  // 上传文件地址
+  const uploadAddress = () => {
+    return CONFIG.serverAddress + '/huajian/upload/file/avatar';
+  };
+
+  const handleAvatarSuccess: UploadProps['onSuccess'] = (response) => {
+    imageUrl.value = response.data.data.fileUrl;
+    modelItem.data.avatar = response.data.data.fileUrl;
+  };
+
   const beforeAvatarUpload: UploadProps['beforeUpload'] = (rawFile) => {
-    if (rawFile.type !== 'image/jpeg') {
-      ElMessage.error('只支持jpg格式的图片');
-      return false;
-    } else if (rawFile.size / 1024 / 1024 > 2) {
-      ElMessage.error('Avatar picture size can not exceed 2MB!');
+    if (rawFile.size / 1024 / 1024 > 10) {
+      ElMessage.error('预览图不能大于10M');
       return false;
     }
-    // 图片转成base64
-    let reader = new FileReader();
-    reader.readAsDataURL(rawFile);
-    reader.onload = (e) => {
-      imageUrl.value = e.target?.result as string;
-      modelItem.data.avatar = e.target?.result as string;
-    };
-    return false;
+    return true;
   };
 </script>
 <style lang="scss">

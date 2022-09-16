@@ -3,7 +3,7 @@
   <div class="main-center-box">
     <!-- 设计区域 -->
     <div ref="html2Pdf" class="design">
-      <div class="content-box" ref="htmlContentPdf">
+      <div ref="htmlContentPdf" class="content-box">
         <!-- 传统布局 -->
         <template v-if="resumeJsonNewStore.LAYOUT === 'classical'">
           <draggable
@@ -70,10 +70,10 @@
 
         <!-- 拖拽提示 -->
         <div
-          class="drag-tip-box"
           v-if="!resumeJsonNewStore.COMPONENTS.length && resumeJsonNewStore.LAYOUT === 'classical'"
+          class="drag-tip-box"
         >
-          <svg-icon iconName="icon-jia" className="yulan" size="70px" color="#2ddd9d"></svg-icon>
+          <svg-icon icon-name="icon-jia" class-name="yulan" size="70px" color="#2ddd9d"></svg-icon>
           <p>请将组件拖拽或者点击放置此处~</p>
         </div>
         <!-- 分割线 -->
@@ -144,7 +144,6 @@
         linesNumber.value = Math.ceil(height / 1160); // 有几条分割线
         console.log('分割线数目', linesNumber.value, height);
         html2Pdf.value.style.height = 1160 * linesNumber.value + 'px'; // 整个简历的高度
-        // htmlContentPdf.value.style.height = html2Pdf.value.style.height;
       }
     });
     observer.observe(htmlContentPdf.value); // 监听元素
@@ -194,7 +193,7 @@
   const rightList = ref<any>([]);
 
   watch(
-    leftList,
+    () => leftList.value,
     () => {
       leftList.value.forEach((item: IMATERIALITEM) => {
         item.layout = 'left';
@@ -207,7 +206,7 @@
     }
   );
   watch(
-    rightList,
+    () => rightList.value,
     () => {
       rightList.value.forEach((item: IMATERIALITEM) => {
         item.layout = 'right';

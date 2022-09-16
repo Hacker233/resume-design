@@ -1,0 +1,10 @@
+@font-face {
+   
+  src: url('./微软雅黑.ttf');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: '站酷快乐体';
+  src: url('./站酷快乐体.ttf');
+}
