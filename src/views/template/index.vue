@@ -24,6 +24,7 @@
         v-if="templateList.length && templateList.length < total"
         :total="total"
         :limit="limit"
+        :current-page="currentPage"
         @handle-current-change="handleCurrentChange"
       ></Pagination>
     </div>
@@ -70,6 +71,7 @@
   const page = ref<number>(1);
   const limit = ref<number>(12);
   const total = ref<number>(0);
+  const currentPage = ref<number>(1);
   const templateList = ref<any>([]);
   const getTemplateList = async () => {
     isShowSkeleton.value = true;
@@ -82,6 +84,7 @@
     if (data.status === 200) {
       templateList.value = data.data.list;
       total.value = data.data.page.count;
+      currentPage.value = data.data.page.currentPage;
       isShowSkeleton.value = false;
     } else {
       ElMessage.error(data.message);

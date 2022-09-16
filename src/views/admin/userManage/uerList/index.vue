@@ -42,6 +42,7 @@
   <Pagination
     :total="total"
     :limit="limit"
+    :current-page="currentPage"
     @handle-current-change="handleCurrentChange"
   ></Pagination>
 
@@ -66,6 +67,7 @@
   const page = ref<number>(1);
   const limit = ref<number>(15);
   const total = ref<number>(0);
+  const currentPage = ref<number>(1);
   const getUserList = async () => {
     let params = {
       page: page.value,
@@ -75,6 +77,7 @@
     if (data.data.status === 200) {
       tableData.value = data.data.data.list;
       total.value = data.data.data.page.count;
+      currentPage.value = data.data.data.page.currentPage;
       // 过滤数据
       tableData.value = tableData.value.map((item: any) => {
         return {

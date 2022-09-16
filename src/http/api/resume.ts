@@ -78,12 +78,20 @@ export const getResumeListAllAsync: any = (params: any) => {
   });
 };
 
+// 用户删除自己的简历
+export const deleteUserResumeAsync: any = (id: string) => {
+  return http.request({
+    url: `/huajian/userresume/deleteResume/${id}`,
+    method: 'delete'
+  });
+};
+
 // 导出为pdf
 export const getResumePdfAsync: any = (params: any) => {
   return http.request({
     url: '/huajian/pdf/getPdf',
     method: 'get',
     responseType: 'blob',
-    params: params,
+    params: params
   });
 };
