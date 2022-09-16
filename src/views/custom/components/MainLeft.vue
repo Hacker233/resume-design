@@ -26,56 +26,58 @@
           <h1>{{ currentTitle }}</h1>
         </div>
         <!-- 组件列表 -->
-        <div class="cpt-list-box">
-          <!-- 拖拽组件 -->
-          <draggable
-            class="dragArea list-group"
-            :sort="false"
-            :list="cptList"
-            :clone="cloneData"
-            :group="{ name: 'custom', pull: 'clone', put: false }"
-            item-key="id"
-            @start="start"
-          >
-            <template #item="{ element }">
-              <div
-                class="list-group-item com-item"
-                :style="{
-                  height: cptOfImg[currentKey][element.cptName].height,
-                  width: cptOfImg[currentKey][element.cptName].width
-                }"
-                @click="addModel(element)"
-              >
-                <el-tooltip class="box-item" effect="light" :enterable="false">
-                  <template #content>
-                    <div class="toolTip-box">
-                      <img
-                        :src="
-                          getAssetsMaterialFile(
-                            currentKey,
-                            cptOfImg[currentKey][element.cptName].url
-                          )
-                        "
-                        style="max-width: 500px"
-                        alt="效果图"
-                        srcset=""
-                      />
-                      <div class="layout-box"> 建议位置：{{ layoutDic[element.layout] }} </div>
-                    </div>
-                  </template>
-                  <img
-                    :src="
-                      getAssetsMaterialFile(currentKey, cptOfImg[currentKey][element.cptName].url)
-                    "
-                    style="width: 100%"
-                    alt=""
-                    srcset=""
-                  />
-                </el-tooltip>
-              </div>
-            </template>
-          </draggable>
-        </div>
+        <c-scrollbar trigger="hover" style="height: calc(100vh - 110px)">
+          <div class="cpt-list-box">
+            <!-- 拖拽组件 -->
+            <draggable
+              class="dragArea list-group"
+              :sort="false"
+              :list="cptList"
+              :clone="cloneData"
+              :group="{ name: 'custom', pull: 'clone', put: false }"
+              item-key="id"
+              @start="start"
+            >
+              <template #item="{ element }">
+                <div
+                  class="list-group-item com-item"
+                  :style="{
+                    height: cptOfImg[currentKey][element.cptName].height,
+                    width: cptOfImg[currentKey][element.cptName].width
+                  }"
+                  @click="addModel(element)"
+                >
+                  <el-tooltip class="box-item" effect="light" :enterable="false">
+                    <template #content>
+                      <div class="toolTip-box">
+                        <img
+                          :src="
+                            getAssetsMaterialFile(
+                              currentKey,
+                              cptOfImg[currentKey][element.cptName].url
+                            )
+                          "
+                          style="max-width: 500px"
+                          alt="效果图"
+                          srcset=""
+                        />
+                        <div class="layout-box"> 建议位置：{{ layoutDic[element.layout] }} </div>
+                      </div>
+                    </template>
+                    <img
+                      :src="
+                        getAssetsMaterialFile(currentKey, cptOfImg[currentKey][element.cptName].url)
+                      "
+                      style="width: 100%"
+                      alt=""
+                      srcset=""
+                    />
+                  </el-tooltip>
+                </div>
+              </template>
+            </draggable>
+          </div>
+        </c-scrollbar>
       </template>
       <div v-else>
         <el-empty description="请在左侧选择模块" />

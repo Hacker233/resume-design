@@ -15,7 +15,7 @@ const MODEL_DATA_JSON: IMODELDATAJSON = {
     name: '小猪课堂',
     age: 25,
     address: '四川成都', // 所在地址
-    avatar: 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg', // 头像地址
+    avatar: 'https://smallpig.site:9000/resume/avatar/file-1663290281512.jpg', // 头像地址
     workService: 3, // 工作年限
     phoneNumber: '028-1234321', // 联系电话
     email: '12322233@qq.com', // 邮箱

@@ -26,6 +26,16 @@
         status-icon
         label-position="top"
       >
+        <el-form-item label="模板分类：" prop="category">
+          <el-select v-model="ruleForm.category" placeholder="请选择模板分类" multiple>
+            <el-option
+              v-for="(item, index) in categoryList"
+              :key="index"
+              :label="item.label"
+              :value="item.value"
+            />
+          </el-select>
+        </el-form-item>
         <el-form-item label="模板预览图:">
           <el-upload
             class="avatar-uploader"
@@ -62,6 +72,7 @@
   import appStore from '@/store';
   import CONFIG from '@/config';
   import { isJSON } from '@/utils/common';
+  import { getCategoryListAsync } from '@/http/api/category';
 
   // 上传文件地址
   const uploadAddress = () => {
@@ -79,7 +90,8 @@
   });
   const ruleForm = reactive({
     code: '',
-    imageUrl: ''
+    imageUrl: '',
+    category: ''
   });
 
   const handleAvatarSuccess: UploadProps['onSuccess'] = (response) => {
@@ -93,6 +105,25 @@
     }
     return true;
   };
+
+  // 查询分类列表
+  const categoryList = ref<any>([]);
+  const getCategoryList = async () => {
+    const data = await getCategoryListAsync();
+    if (data.status) {
+      categoryList.value = data.data.map(
+        (item: { category_value: string; category_label: string }) => {
+          return {
+            label: item.category_label,
+            value: item.category_value
+          };
+        }
+      );
+    } else {
+      ElMessage.error(data.data.message);
+    }
+  };
+  getCategoryList();
 
   // 提交
   const isAddLoading = ref<boolean>(false);
@@ -121,6 +152,7 @@
         let resumeDate = JSON.parse(ruleForm.code);
         let params = {
           previewUrl: ruleForm.imageUrl,
+          CATEGORY: ruleForm.category,
           ID: resumeDate.ID,
           NAME: resumeDate.NAME,
           TITLE: resumeDate.TITLE,
@@ -138,6 +170,7 @@
           });
           ruleForm.code = '';
           ruleForm.imageUrl = '';
+          ruleForm.category = '';
         } else {
           isAddLoading.value = false;
           ElMessage({
