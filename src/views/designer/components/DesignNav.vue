@@ -121,7 +121,7 @@
   // 自动保存草稿
   const debounced = debounce(() => {
     saveDataToLocal();
-  }, 1000);
+  }, 10000);
   watch(
     () => resumeJsonNewStore.value, // JSON数据发生变化，则保存草稿
     () => {
@@ -171,6 +171,10 @@
   const cancleJsonDialog = () => {
     dialogVisible.value = false;
   };
+
+  defineExpose({
+    saveDataToLocal
+  });
 </script>
 <style lang="scss" scopeds>
   .nav-box {

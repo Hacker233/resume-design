@@ -26,6 +26,11 @@
           <svg-icon icon-name="icon-pdf" color="#fff" size="17px"></svg-icon>
         </div>
       </el-tooltip>
+      <el-tooltip class="box-item" effect="dark" content="复制JSON数据" placement="bottom">
+        <div class="icon-box" @click="copyJSON">
+          <svg-icon icon-name="icon-fuzhi" color="#fff" size="18px"></svg-icon>
+        </div>
+      </el-tooltip>
       <el-tooltip class="box-item" effect="dark" content="导出为JSON数据" placement="bottom">
         <div class="icon-box" @click="exportJSON">
           <svg-icon icon-name="icon-xiazai" color="#fff" size="17px"></svg-icon>
@@ -56,14 +61,22 @@
   };
 
   // 导出为JSON
-  const route = useRoute();
-  const { name } = route.query; // 模板id和模板名称
   const exportJSON = () => {
-    resumeJsonNewStore.value.NAME = name as string;
+    resumeJsonNewStore.value.NAME = 'customJson';
     resumeJsonNewStore.value.ID = getUuid();
     const data = JSON.stringify(resumeJsonNewStore.value, null, 4);
     const blob = new Blob([data], { type: '' });
     FileSaver.saveAs(blob, resumeJsonNewStore.value.TITLE + '.json');
+  };
+
+  // 复制JSON数据
+  const copyJSON = () => {
+    resumeJsonNewStore.value.NAME = 'customJson';
+    resumeJsonNewStore.value.ID = getUuid();
+    const data = JSON.stringify(resumeJsonNewStore.value, null, 4);
+    navigator.clipboard.writeText(data).then(() => {
+      ElMessage.success('复制成功');
+    });
   };
 
   // 更改标题

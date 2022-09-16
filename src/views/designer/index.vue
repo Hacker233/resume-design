@@ -1,7 +1,7 @@
 <template>
   <div class="design-box">
     <!-- 导航栏 -->
-    <design-nav @generate-report="generateReport" @reset="reset"></design-nav>
+    <design-nav ref="navRef" @generate-report="generateReport" @reset="reset"></design-nav>
     <!-- 内容区域 -->
     <div class="bottom">
       <!-- 左侧添加模块区域 -->
@@ -243,6 +243,11 @@
       leftRef.value.style.width = '70px';
     }
   };
+  // 页面销毁前自动保存草稿
+  const navRef = ref<any>(null);
+  onBeforeUnmount(() => {
+    navRef.value.saveDataToLocal();
+  });
 
   // 页面销毁
   onUnmounted(() => {
