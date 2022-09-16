@@ -23,7 +23,12 @@
           />
         </p>
         <el-form-item label="日期选择:">
-          <el-date-picker v-model="item.date" type="month" placeholder="Pick a month" />
+          <el-date-picker
+            v-model="item.date"
+            type="month"
+            unlink-panels
+            placeholder="Pick a month"
+          />
           <el-switch v-model="modelItem.data.isShow.date" />
         </el-form-item>
         <el-form-item label="奖项名称:">

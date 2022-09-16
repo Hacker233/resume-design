@@ -28,6 +28,7 @@
           <el-form-item label="日期选择:">
             <el-date-picker
               v-model="item.date"
+              unlink-panels
               type="monthrange"
               range-separator="-"
               start-placeholder="开始月份"
