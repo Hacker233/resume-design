@@ -19,10 +19,9 @@
       <div v-if="isShowSkeleton" class="no-data-box">
         <common-loading></common-loading>
       </div>
-
       <!-- 分页组件 -->
       <Pagination
-        v-if="templateList.length && templateList.length > limit"
+        v-if="templateList.length && templateList.length < total"
         :total="total"
         :limit="limit"
         @handle-current-change="handleCurrentChange"
