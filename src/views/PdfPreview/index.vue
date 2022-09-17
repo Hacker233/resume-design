@@ -22,6 +22,7 @@
   const { token, id, height } = route.query; // 模板id和模板名称
   console.log({ 'route-query': route.query });
   const getResumeData = async () => {
+    // 携带了token则使用携带的token
     if (token && id) {
       localStorage.setItem('token', token as string);
       const data = await getTemplateInfoAsync(id);
@@ -33,6 +34,21 @@
       }
       changeResumeJsonData(TEMPLATE_JSON); // 更改store的数据
       setUuid();
+    } else {
+      let token = localStorage.getItem('token');
+      if (token) {
+        const data = await getTemplateInfoAsync(id);
+        if (data.data.status === 200) {
+          TEMPLATE_JSON = data.data.data as IDESIGNJSON;
+        } else {
+          ElMessage.error('查询模板失败！');
+          return;
+        }
+        changeResumeJsonData(TEMPLATE_JSON); // 更改store的数据
+        setUuid();
+      } else {
+        return;
+      }
     }
   };
   getResumeData();

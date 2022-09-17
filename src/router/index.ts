@@ -21,6 +21,7 @@ const AddTemplate = () => import('@/views/admin/templateManage/addTemplate/index
 const TemplateList = () => import('@/views/admin/templateManage/templateList/index.vue');
 const UserList = () => import('@/views/admin/userManage/uerList/index.vue');
 const SponsorList = () => import('@/views/admin/userManage/sponsorList/index.vue');
+const ResumeList = () => import('@/views/admin/resumeManage/resumeList/index.vue');
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -215,6 +216,17 @@ const routes: Array<RouteRecordRaw> = [
           requireLogin: true
         },
         component: SponsorList
+      },
+      {
+        path: 'resumeList',
+        name: 'ResumeList',
+        meta: {
+          title: '简历列表',
+          keepAlive: true,
+          isShowComNav: false,
+          requireLogin: true
+        },
+        component: ResumeList
       }
     ]
   }
