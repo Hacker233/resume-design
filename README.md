@@ -28,6 +28,8 @@
 
 <p align="center"><b>基于Vue3 + TypeScript + Vite + Element-plus + pinia实现</b></p>
 
+线上地址：https://huajian.smallpig.site/
+
 # 目录
 
 - [目录](#目录)
@@ -47,29 +49,33 @@
   - [License](#license)
 
 ## 项目介绍
+这是一个开源的简历制作项目，项目提供了多套精美的简历模板，用户可以自行设置主题色、字号、间距等等，项目提供了高清PDF打印和JSON输出功能。除此之外，用户还可以根据不同的物料组件随意组合出自己想要的简历。
 
-该项目目前为纯前端项目，所有数据存储在浏览器端，你可以利用该项目轻松制作出精美的简历。你可以随意添加删除简历模块、选择模板、更改字体大小、颜色、间距等等样式。
+该项目已发布两个纯前端版本，这两个纯前端版本之后，项目将接入后台系统，所以如果单纯想要学习前端的小伙伴可以直接下载发布的两个版本之一即可。
+
+纯前端版本：https://github.com/huajian-pro/resume-design/releases
+
 
 ## 演示
 
 **图片：**
 
-<p align="center"><img width="1000" src="https://gitee.com/sharemore52/resume-design/raw/main/doc/images/3.png"></p>
+<p align="center"><img width="1000" src="https://smallpig.site:9000/resume/templatePreview/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202022-09-17%20133332.png"></p>
 
 
-<p align="center"><img width="1000" src="https://gitee.com/sharemore52/resume-design/raw/main/doc/images/4.png"></p>
+<p align="center"><img width="1000" src="https://smallpig.site:9000/resume/templatePreview/file-1663315601969.png"></p>
 
 
 <p align="center"><img width="1000" src="https://gitee.com/sharemore52/resume-design/raw/main/doc/images/6.png"></p>
 
 ## 功能介绍
-
+- [x] 用户登录注册功能
 - [x] 简历模板提供
 - [x] 动态增删简历模块
 - [x] 自定义模板中字体样式
 - [x] 自定义调整模块间距
 - [x] 保存草稿功能
-- [x] 导出为PDF功能
+- [x] 导出为高清PDF功能
 - [x] 重置
 - [x] 自定义头像
 - [x] 自定义各模块内容
@@ -159,7 +165,6 @@ pnpm build
 添加vx：LHQfighting，进入微信交流群，可方便解决和提出问题。
 <p align="center">
     <img width="300" src="https://gitee.com/sharemore52/resume-design/raw/main/src/assets/images/vx.jpg">
-    <img width="300" src="https://gitee.com/sharemore52/resume-design/raw/main/doc/images/vx-qun.jpg">
 </p>
 
 ## 贡献者
