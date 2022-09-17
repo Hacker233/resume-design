@@ -73,6 +73,26 @@
           <span>赞助列表</span>
         </el-menu-item>
       </el-sub-menu>
+      <el-sub-menu index="3">
+        <template #title>
+          <svg-icon
+            icon-name="icon-gongzuoleixing"
+            class="iconfont"
+            color="#303133"
+            size="20px"
+          ></svg-icon>
+          <span>简历管理</span>
+        </template>
+        <el-menu-item index="ResumeList">
+          <svg-icon
+            icon-name="icon-xiangmujingli-04"
+            class="iconfont"
+            :color="getIconColor('ResumeList')"
+            size="18px"
+          ></svg-icon>
+          <span>简历列表</span>
+        </el-menu-item>
+      </el-sub-menu>
     </el-menu>
   </div>
 </template>
