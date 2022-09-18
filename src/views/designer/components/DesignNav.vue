@@ -72,7 +72,7 @@
   import ImportJsonDialog from '@/components/ImportJsonDialog/ImportJsonDialog.vue';
   import { cloneDeep, debounce } from 'lodash';
   import { getUuid } from '@/utils/common';
-  import { updateUserresumeAsync } from '@/http/api/resume';
+  import { getUserResumeListAsync, updateUserresumeAsync } from '@/http/api/resume';
   let { resumeJsonNewStore } = storeToRefs(appStore.useResumeJsonNewStore); // store里的模板数据
   const emit = defineEmits(['generateReport', 'reset', 'saveDataToLocal']);
   const route = useRoute();
@@ -98,34 +98,65 @@
 
   // 保存草稿
   let draftTips = ref<string>('');
-  const saveDataToLocal = async () => {
-    const data = await updateUserresumeAsync(resumeJsonNewStore.value);
-    if (data.data.status === 200) {
-      const time = moment(new Date()).format('YYYY.MM.DD HH:mm:ss');
-      draftTips.value = `已自动保存草稿  ${time}`;
+  const saveDataToLocal = async (isHandle?: boolean) => {
+    // 先查询个人简历是否超过4份
+    const params = {
+      page: 1,
+      limit: 10
+    };
+    const listData = await getUserResumeListAsync(params);
+    if (listData.data.status === 200) {
+      if (listData.data.data.page.count >= 4) {
+        ElMessageBox.confirm(
+          '每位用户的简历数量最多4份，您已超过4份简历，如要继续使用，请前往个人中心删除部分简历！',
+          '温馨提示',
+          {
+            confirmButtonText: '前往',
+            cancelButtonText: '取消',
+            type: 'warning'
+          }
+        )
+          .then(() => {
+            router.push('/person/myResume');
+          })
+          .catch(() => {});
+      } else {
+        const data = await updateUserresumeAsync(resumeJsonNewStore.value);
+        if (data.data.status === 200) {
+          const time = moment(new Date()).format('YYYY.MM.DD HH:mm:ss');
+          draftTips.value = `已自动保存草稿  ${time}`;
+          // 手动保存
+          if (isHandle) {
+            ElMessage({
+              message: '保存草稿成功!',
+              type: 'success',
+              center: true
+            });
+          }
+        } else {
+          draftTips.value = '自动保存草稿失败！';
+        }
+      }
     } else {
-      draftTips.value = '自动保存草稿失败！';
+      ElMessage.error(listData.data.message);
     }
   };
 
   // 保存草稿
   const saveDraft = () => {
-    saveDataToLocal();
-    ElMessage({
-      message: '保存草稿成功!',
-      type: 'success',
-      center: true
-    });
+    saveDataToLocal(true);
   };
 
   // 自动保存草稿
   const debounced = debounce(() => {
     saveDataToLocal();
-  }, 10000);
+  }, 5000);
   watch(
     () => resumeJsonNewStore.value, // JSON数据发生变化，则保存草稿
-    () => {
-      debounced();
+    (newval, oldVal) => {
+      if (newval && oldVal.ID) {
+        debounced();
+      }
     },
     {
       deep: true

@@ -2,7 +2,6 @@
   "globals": {
     "EffectScope": true,
     "ElMessage": true,
-    "ElMessageBox": true,
     "asyncComputed": true,
     "autoResetRef": true,
     "computed": true,
