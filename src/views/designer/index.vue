@@ -244,10 +244,10 @@
     }
   };
   // 页面销毁前自动保存草稿
-  const navRef = ref<any>(null);
-  onBeforeUnmount(() => {
-    navRef.value.saveDataToLocal();
-  });
+  // const navRef = ref<any>(null);
+  // onBeforeUnmount(() => {
+  //   navRef.value.saveDataToLocal();
+  // });
 
   // 页面销毁
   onUnmounted(() => {
