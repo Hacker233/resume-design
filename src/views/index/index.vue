@@ -16,6 +16,8 @@
     <custom-template-vue ref="customTempleRef"></custom-template-vue>
     <!-- 成为赞助者 -->
     <sponsor-com-vue ref="sponsorRefs"></sponsor-com-vue>
+    <!-- 网站相关数据 -->
+    <web-data></web-data>
     <!-- footer -->
     <footer-com></footer-com>
     <!-- 回到顶部 -->
@@ -56,6 +58,7 @@
   import { onBeforeUnmount, onMounted, ref } from 'vue';
   import { throttle } from 'lodash';
   import GithubCard from '@/components/GihubCard/GithubCard.vue';
+  import WebData from './components/WebData.vue';
 
   // 监听元素滚动
   onMounted(() => {

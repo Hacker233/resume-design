@@ -3,6 +3,7 @@
     <div class="left">
       <h1>一款开源的、免费的简历设计神器</h1>
       <p>快速设计、简历主题切换，支持一键导出PDF、JSON数据等。</p>
+
       <!-- 查看更多按钮 -->
       <div class="see-more-box">
         <div class="button" @click="freeMakeResume"> 免费制作 </div>

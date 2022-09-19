@@ -60,7 +60,7 @@ export const forgetPasswordAsync: any = (email: string) => {
 // 重置密码
 export const resetPasswordAsync: any = (data: any) => {
   return http.request({
-    url: `/huajian/auth/email/reset-password`,
+    url: '/huajian/auth/email/reset-password',
     method: 'post',
     headers: {
       'Content-Type': 'application/x-www-form-urlencoded'
@@ -72,7 +72,7 @@ export const resetPasswordAsync: any = (data: any) => {
 // 查询用户列表
 export const getAllUserListAsync: any = (params: any) => {
   return http.request({
-    url: `/huajian/users/getAllUser`,
+    url: '/huajian/users/getAllUser',
     method: 'get',
     params: params
   });
@@ -81,7 +81,7 @@ export const getAllUserListAsync: any = (params: any) => {
 // 管理员更新用户信息
 export const updateUserInfoByAdminAsync: any = (data: any) => {
   return http.request({
-    url: `/huajian/users/updateUserInfo`,
+    url: '/huajian/users/updateUserInfo',
     method: 'post',
     headers: {
       'Content-Type': 'application/x-www-form-urlencoded'
@@ -95,5 +95,13 @@ export const deleteUserAsync: any = (email: string) => {
   return http.request({
     url: `/huajian/users/deleteUser/${email}`,
     method: 'delete'
+  });
+};
+
+// 获取网站分析数据
+export const getWebAnalycDataAsync: any = () => {
+  return http.request({
+    url: '/huajian/common/getWebAnalycData',
+    method: 'get'
   });
 };
