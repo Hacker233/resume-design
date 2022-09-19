@@ -12,20 +12,83 @@
       <el-option v-for="(item, index) in fontWeightList" :key="index" :label="item" :value="item" />
     </el-select>
   </el-form-item>
+  <el-divider>间距调整</el-divider>
+  <el-form-item label="计数器模式:">
+    <el-switch v-model="countModel" />
+  </el-form-item>
   <el-form-item label="上外边距:">
-    <el-input-number v-model="mTop" :min="-300" :max="300" @change="handleChange" />
+    <el-slider v-show="!countModel" v-model="mTop" :min="-300" :max="300" @input="handleChange" />
+    <el-input-number
+      v-show="countModel"
+      v-model="mTop"
+      :min="-300"
+      :max="300"
+      @change="handleChange"
+    />
   </el-form-item>
   <el-form-item label="下外边距:">
-    <el-input-number v-model="mBottom" :min="-300" :max="300" @change="handleChangeMBottom" />
+    <el-slider
+      v-show="!countModel"
+      v-model="mBottom"
+      :min="-300"
+      :max="300"
+      @input="handleChangeMBottom"
+    />
+    <el-input-number
+      v-show="countModel"
+      v-model="mBottom"
+      :min="-300"
+      :max="300"
+      @change="handleChangeMBottom"
+    />
   </el-form-item>
   <el-form-item label="上内边距:">
-    <el-input-number v-model="pTop" :min="-300" :max="300" @change="handleChangePTop" />
+    <el-slider
+      v-show="!countModel"
+      v-model="pTop"
+      :min="-300"
+      :max="300"
+      @input="handleChangePTop"
+    />
+    <el-input-number
+      v-show="countModel"
+      v-model="pTop"
+      :min="-300"
+      :max="300"
+      @change="handleChangePTop"
+    />
   </el-form-item>
   <el-form-item label="下内边距:">
-    <el-input-number v-model="pBottom" :min="-300" :max="300" @change="handleChangePBottom" />
+    <el-slider
+      v-show="!countModel"
+      v-model="pBottom"
+      :min="-300"
+      :max="300"
+      @input="handleChangePBottom"
+    />
+    <el-input-number
+      v-show="countModel"
+      v-model="pBottom"
+      :min="-300"
+      :max="300"
+      @change="handleChangePBottom"
+    />
   </el-form-item>
   <el-form-item label="左右内边距:">
-    <el-input-number v-model="pLeftRight" :min="-300" :max="300" @change="handleChangePLeftRight" />
+    <el-slider
+      v-show="!countModel"
+      v-model="pLeftRight"
+      :min="-300"
+      :max="300"
+      @input="handleChangePLeftRight"
+    />
+    <el-input-number
+      v-show="countModel"
+      v-model="pLeftRight"
+      :min="-300"
+      :max="300"
+      @change="handleChangePLeftRight"
+    />
   </el-form-item>
 </template>
 <script lang="ts" setup>
@@ -33,6 +96,8 @@
   import { pxTonumber } from '@/utils/common';
   import ColorPickerCustomVue from '@/components/ColorPicker/ColorPickerCustom.vue';
   import useDesignSelectModelItem from '@/hooks/material/useDesignSelectModelItem';
+
+  const countModel = ref<boolean>(false);
 
   // 选中的模块
   const { modelItem } = useDesignSelectModelItem();

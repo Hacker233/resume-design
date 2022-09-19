@@ -122,26 +122,90 @@
           />
         </el-select>
       </el-form-item>
+      <el-divider>间距调整</el-divider>
+      <el-form-item label="计数器模式:">
+        <el-switch v-model="countModel" />
+      </el-form-item>
       <!-- 模块上下边距设置 -->
       <el-form-item label="模块上外边距:">
-        <el-input-number v-model="mTop" :min="-100" :max="100" @change="handleChange" />
+        <el-slider
+          v-show="!countModel"
+          v-model="mTop"
+          :min="-300"
+          :max="300"
+          @input="handleChange"
+        />
+        <el-input-number
+          v-show="countModel"
+          v-model="mTop"
+          :min="-100"
+          :max="100"
+          @change="handleChange"
+        />
       </el-form-item>
       <el-form-item label="模块下外边距:">
-        <el-input-number v-model="mBottom" :min="-100" :max="100" @change="handleChangeMBottom" />
+        <el-slider
+          v-show="!countModel"
+          v-model="mBottom"
+          :min="-300"
+          :max="300"
+          @input="handleChangeMBottom"
+        />
+        <el-input-number
+          v-show="countModel"
+          v-model="mBottom"
+          :min="-100"
+          :max="100"
+          @change="handleChangeMBottom"
+        />
       </el-form-item>
 
       <!-- 模块上内边距 -->
       <el-form-item label="模块上内边距:">
-        <el-input-number v-model="pTop" :min="-100" :max="100" @change="handleChangePTop" />
+        <el-slider
+          v-show="!countModel"
+          v-model="pTop"
+          :min="-300"
+          :max="300"
+          @input="handleChangePTop"
+        />
+        <el-input-number
+          v-show="countModel"
+          v-model="pTop"
+          :min="-100"
+          :max="100"
+          @change="handleChangePTop"
+        />
       </el-form-item>
       <!-- 模块下内边距 -->
       <el-form-item label="模块下内边距:">
-        <el-input-number v-model="pBottom" :min="-100" :max="100" @change="handleChangePBottom" />
+        <el-slider
+          v-show="!countModel"
+          v-model="pBottom"
+          :min="-300"
+          :max="300"
+          @input="handleChangePBottom"
+        />
+        <el-input-number
+          v-show="countModel"
+          v-model="pBottom"
+          :min="-100"
+          :max="100"
+          @change="handleChangePBottom"
+        />
       </el-form-item>
 
       <!-- 模块左右内边距 -->
       <el-form-item label="模块左右内边距:">
+        <el-slider
+          v-show="!countModel"
+          v-model="pLeftRight"
+          :min="-300"
+          :max="300"
+          @input="handleChangePLeftRight"
+        />
         <el-input-number
+          v-show="countModel"
           v-model="pLeftRight"
           :min="-100"
           :max="100"
@@ -159,6 +223,7 @@
   import { IMATERIALITEM } from '@/interface/material';
 
   const { resumeJsonNewStore } = appStore.useResumeJsonNewStore;
+  const countModel = ref<boolean>(false);
 
   // 表单数据
   const form = reactive({
