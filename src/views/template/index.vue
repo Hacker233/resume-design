@@ -106,7 +106,7 @@
       margin: 0 auto;
       min-height: 500px;
       padding: 20px 0;
-      width: 1250px;
+      width: 1300px;
       .no-data-box {
         margin-top: 80px;
       }
