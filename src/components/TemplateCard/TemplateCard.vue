@@ -1,12 +1,26 @@
 <template>
-  <div class="template-card-box" @mouseover="mouseover" @mouseleave="mouseleave">
-    <img :src="cardData.previewUrl" alt="" srcset="" />
-    <!-- 遮罩层 -->
-    <div v-show="isShowLayer" class="mask-layer">
-      <div v-if="cardData.NAME !== 'custom'" class="preview-icon" title="预览" @click="previreImg">
-        <svg-icon icon-name="icon-yulan" class-name="yulan"></svg-icon>
+  <div class="card-wraper" @mouseover="mouseover" @mouseleave="mouseleave">
+    <div class="template-card-box">
+      <img :src="cardData.previewUrl" alt="" srcset="" />
+      <!-- 遮罩层 -->
+      <div ref="maskLayerRef" class="mask-layer">
+        <div
+          v-if="cardData.NAME !== 'custom'"
+          class="preview-icon"
+          title="预览"
+          @click="previreImg"
+        >
+          <svg-icon icon-name="icon-yulan" class-name="yulan" color="#fff"></svg-icon>
+        </div>
+        <div class="design-button" @click="toDesign">立即免费制作</div>
       </div>
-      <div class="design-button" @click="toDesign">立即免费制作</div>
+    </div>
+    <!-- 使用人数 -->
+    <div class="viewer-box">
+      <div class="icon-box">
+        <svg-icon icon-name="icon-jibenziliao" color="#a3abb1" size="19px"></svg-icon>
+        <span class="number">{{ cardData.resumeActive.views }}</span>
+      </div>
     </div>
   </div>
 
@@ -22,14 +36,13 @@
     cardData: ITempList;
   }>();
   const emit = defineEmits(['toDesign']);
-
+  const maskLayerRef = ref<any>(null);
   // 鼠标移入显示遮罩层
-  let isShowLayer = ref<boolean>(false);
   const mouseover = () => {
-    isShowLayer.value = true;
+    maskLayerRef.value.style.opacity = 1;
   };
   const mouseleave = () => {
-    isShowLayer.value = false;
+    maskLayerRef.value.style.opacity = 0;
   };
 
   // 点击立即制作
@@ -47,74 +60,99 @@
   };
 </script>
 <style lang="scss" scoped>
-  .template-card-box {
-    width: 260px;
-    height: 365px;
-    background-color: #fff;
-    border-radius: 5px;
-    position: relative;
-    z-index: 0;
-    user-select: none;
-    margin: 0 20px;
-    overflow: hidden;
-    transition: all 0.3s;
+  .card-wraper {
+    display: flex;
+    flex-direction: column;
     margin-bottom: 40px;
+    border-radius: 5px;
+    overflow: hidden;
+    width: 300px;
+    height: 440px;
+    flex-basis: fit-content;
+    transition: all 0.3s;
     &:hover {
-      transition: all 0.1s;
-      box-shadow: 5px 5px 5px 0px rgba(175, 50, 50, 0.2);
+      box-shadow: 0px 16px 22px 2px rgb(0 37 58 / 24%);
+      transform: translateY(2%) scale(1.03);
+      background-color: #fff;
     }
-    img {
-      width: 100%;
-    }
-    .mask-layer {
-      height: 100%;
-      width: 100%;
-      border-radius: 5px;
-      position: absolute;
-      left: 0;
-      top: 0;
-      background-color: rgba(0, 0, 0, 0.5);
+    .template-card-box {
+      height: 400px;
+      background-color: #fff;
+      position: relative;
+      z-index: 0;
+      user-select: none;
       transition: all 0.3s;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      z-index: 1;
-      transition: all 0.3s;
-      .design-button {
-        width: 100px;
-        height: 30px;
-        font-size: 13px;
-        background-color: #2cbd99;
-        border-radius: 6px;
-        cursor: pointer;
+
+      img {
+        width: 100%;
+        height: 100%;
+      }
+      .mask-layer {
+        height: 100%;
+        width: 100%;
+        border-radius: 5px 5px 0 0;
+        position: absolute;
+        left: 0;
+        top: 0;
+        background-color: rgba(0, 0, 0, 0.5);
+        transition: all 0.3s;
         display: flex;
         align-items: center;
         justify-content: center;
-        color: #ffffff;
+        z-index: 1;
         transition: all 0.3s;
-        &:hover {
-          background-color: rgba(#42aa90, 0.7);
+        opacity: 0;
+        .design-button {
+          width: 100px;
+          height: 30px;
+          font-size: 13px;
+          background-color: #2cbd99;
+          border-radius: 6px;
+          cursor: pointer;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          color: #ffffff;
+          transition: all 0.3s;
+          &:hover {
+            background-color: rgba(#42aa90, 0.7);
+          }
+        }
+        .preview-icon {
+          position: absolute;
+          right: 15px;
+          top: 15px;
+          z-index: 12;
+          width: 30px;
+          height: 30px;
+          background-color: rgba(0, 0, 0, 0.7);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          border-radius: 4px;
+          .yulan {
+            cursor: pointer;
+            font-size: 20px;
+          }
         }
       }
-      .preview-icon {
-        position: absolute;
-        right: 15px;
-        top: 15px;
-        z-index: 12;
-        width: 30px;
-        height: 30px;
-        background-color: rgba(0, 0, 0, 0.7);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        border-radius: 4px;
-        .yulan {
-          cursor: pointer;
-          font-size: 20px;
+    }
+    .viewer-box {
+      flex: 1;
+      width: 100%;
+      color: #a3abb1;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      .icon-box {
+        margin-right: 5px;
+        .number {
+          margin-left: 5px;
         }
       }
     }
   }
+
   .previewImg {
     height: 90vh;
   }

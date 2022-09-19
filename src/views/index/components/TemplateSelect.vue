@@ -8,9 +8,9 @@
     ></introduce-title-vue>
     <!-- 模板列表 -->
     <div class="card-list">
-      <template v-for="(item, index) in templateList" :key="index">
+      <div v-for="(item, index) in templateList" :key="index" class="card-list-item-box">
         <template-card :card-data="item" @to-design="toDesign"> </template-card>
-      </template>
+      </div>
     </div>
     <!-- 查看更多 -->
     <div class="more">
@@ -53,7 +53,7 @@
 
   // 查询模板列表
   const page = 1;
-  const limit = 10;
+  const limit = 8;
   const templateList = ref<Array<any>>([]);
   const getTemplateList = async () => {
     let params = {
@@ -94,6 +94,12 @@
       display: flex;
       flex-wrap: wrap;
       max-width: 1500px;
+      justify-content: space-between;
+      .card-list-item-box {
+        flex: 0 0 25%;
+        display: flex;
+        justify-content: center;
+      }
     }
     .more {
       padding: 0 0 40px 0;

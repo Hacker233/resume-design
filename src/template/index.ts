@@ -1,4 +1,8 @@
-import { ITempList } from './type';
+interface ITempList {
+  ID: string;
+  NAME: string;
+  previewUrl: string;
+}
 const templateList: Array<ITempList> = [
   {
     ID: '1',

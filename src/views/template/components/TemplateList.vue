@@ -37,10 +37,7 @@
     padding: 30px 0 0 0;
     .card-box-item {
       &:not(:nth-child(4n)) {
-        margin-right: 70px;
-      }
-      :deep(.template-card-box) {
-        margin: 0 0px 30px 0;
+        margin-right: 33px;
       }
     }
   }

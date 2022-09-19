@@ -76,3 +76,10 @@
     resizeDOM();
   };
 </script>
+<style lang="scss">
+  .import-json {
+    .el-dialog__body {
+      padding: 0;
+    }
+  }
+</style>
