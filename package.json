@@ -45,6 +45,7 @@
     "vue-codemirror": "^6.0.1",
     "vue-router": "^4.0.14",
     "vue-uuid": "^3.0.0",
+    "vue3-count-to": "^1.1.2",
     "vuedraggable": "^4.1.0"
   },
   "devDependencies": {
