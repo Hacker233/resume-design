@@ -26,6 +26,7 @@ import JOB_INTENTION_4 from '@/material/JobIntention/JobIntention4/JobIntention.
 import JOB_INTENTION_5 from '@/material/JobIntention/JobIntention5/JobIntention.vue';
 import JOB_INTENTION_6 from '@/material/JobIntention/JobIntention6/JobIntention.vue';
 import JOB_INTENTION_7 from '@/material/JobIntention/JobIntention7/JobIntention.vue';
+import JOB_INTENTION_8 from '@/material/JobIntention/JobIntention8/JobIntention.vue';
 
 import SKILL_SPECIALTIES_1 from '@/material/SkillSpecialties/SkillSpecialties1/index.vue';
 import SKILL_SPECIALTIES_2 from '@/material/SkillSpecialties/SkillSpecialties2/SkillSpecialties.vue';
@@ -130,6 +131,7 @@ const MaterialComponents = {
   JOB_INTENTION_5: JOB_INTENTION_5,
   JOB_INTENTION_6: JOB_INTENTION_6,
   JOB_INTENTION_7: JOB_INTENTION_7,
+  JOB_INTENTION_8: JOB_INTENTION_8,
 
   SKILL_SPECIALTIES_1: SKILL_SPECIALTIES_1,
   SKILL_SPECIALTIES_2: SKILL_SPECIALTIES_2,

@@ -459,6 +459,36 @@ export const MATERIAL_JSON: IMSTERIALLISTJSON = {
         pLeftRight: '30px'
       },
       data: {}
+    },
+    {
+      keyId: '',
+      model: 'JOB_INTENTION',
+      cptName: 'JOB_INTENTION_8',
+      cptOptionsName: 'JOB_INTENTION_OPTIONS',
+      cptTitle: '求职意向',
+      cptX: 0,
+      cptY: 0,
+      cptZ: 0,
+      cptHeight: '100px',
+      cptWidth: '100%',
+      layout: 'center',
+      show: true,
+      style: {
+        textColor: '#757575',
+        textFontSize: '14px',
+        textFontWeight: 500,
+        mBottom: '0',
+        mTop: '0px',
+        themeColor: '#0b70bd',
+        firstTitleFontSize: '20px',
+        titleColor: '#254665',
+        titleFontSize: '30px',
+        titleFontWeight: 500,
+        pTop: '40px',
+        pBottom: '30px',
+        pLeftRight: '30px'
+      },
+      data: {}
     }
   ],
   EDU_BACKGROUND: [
