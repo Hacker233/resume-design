@@ -319,6 +319,9 @@
               transform: translate(-50%, -50%);
             }
           }
+          .design-content {
+            font-family: 'Microsoft YaHei';
+          }
         }
       }
 

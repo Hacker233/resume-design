@@ -82,6 +82,9 @@
     display: table;
     position: relative;
     margin: 0 auto;
-    font-family: '微软雅黑';
+    font-family: 'Microsoft YaHei';
+    .design-content {
+      font-family: 'Microsoft YaHei';
+    }
   }
 </style>
