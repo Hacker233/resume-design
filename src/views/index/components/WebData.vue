@@ -12,13 +12,31 @@
       <ul ref="ulNumberRef">
         <li>
           <svg-icon
+            icon-name="icon-fangwenliang"
+            class-name="juejin"
+            size="70px"
+            color="#00c090"
+          ></svg-icon>
+          <p>
+            <count-to
+              ref="numberRef3"
+              class="number"
+              :start-val="0"
+              :end-val="webData.trafficnumber"
+              :duration="4000"
+            ></count-to>
+            <span>人</span>
+          </p>
+          <h1>累计访问量</h1>
+        </li>
+        <li>
+          <svg-icon
             icon-name="icon-renwu-ren"
             class-name="juejin"
             size="70px"
             color="#00c090"
           ></svg-icon>
           <p>
-            <!-- {{ webData.usernumber }} -->
             <count-to
               ref="numberRef1"
               class="number"
@@ -60,17 +78,20 @@
   interface IWebData {
     usernumber: undefined | number;
     resumenumber: undefined | number;
+    trafficnumber: undefined | number;
   }
   // 获取网站分析数据
   let webData = reactive<IWebData>({
     usernumber: 0,
-    resumenumber: 0
+    resumenumber: 0,
+    trafficnumber: 0
   });
   const getWebAnalycData = async () => {
     const data = await getWebAnalycDataAsync();
     if (data.status === 200) {
       webData.usernumber = data.data.usernumber;
       webData.resumenumber = data.data.resumenumber;
+      webData.trafficnumber = data.data.trafficnumber;
     } else {
       ElMessage.error(data.message);
     }
@@ -79,6 +100,7 @@
 
   const numberRef1 = ref<any>(null);
   const numberRef2 = ref<any>(null);
+  const numberRef3 = ref<any>(null);
   const ulNumberRef = ref<any>(null);
   onMounted(() => {
     console.log('numberRef1', numberRef1);
@@ -90,6 +112,7 @@
         if (isIntersecting) {
           numberRef1.value.start();
           numberRef2.value.start();
+          numberRef3.value.start();
           stop();
         }
       }
