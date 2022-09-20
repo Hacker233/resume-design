@@ -43,8 +43,10 @@
 
   // 根据分类获取模板列表
   const category = ref<string>();
-  const getTemplateListByCategory = async (item: string) => {
-    category.value = item;
+  const sort = ref<string>();
+  const getTemplateListByCategory = async (item: any) => {
+    category.value = item.category;
+    sort.value = item.sort;
     page.value = 1;
     limit.value = 12;
     getTemplateList();
@@ -78,7 +80,8 @@
     let params = {
       page: page.value,
       limit: limit.value,
-      category: category.value
+      category: category.value,
+      sort: sort.value
     };
     const data = await getTemplateListAsync(params);
     if (data.status === 200) {

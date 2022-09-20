@@ -12,7 +12,6 @@ declare module '@vue/runtime-core' {
     ColorPickerCustom: typeof import('./components/ColorPicker/ColorPickerCustom.vue')['default'];
     CommonLoading: typeof import('./components/CommonLoading/CommonLoading.vue')['default'];
     EduBackgroundCom: typeof import('./components/ModelComs/EduBackgroundCom.vue')['default'];
-    ElAlert: typeof import('element-plus/es')['ElAlert'];
     ElAvatar: typeof import('element-plus/es')['ElAvatar'];
     ElBacktop: typeof import('element-plus/es')['ElBacktop'];
     ElButton: typeof import('element-plus/es')['ElButton'];
@@ -37,16 +36,10 @@ declare module '@vue/runtime-core' {
     ElPopover: typeof import('element-plus/es')['ElPopover'];
     ElProgress: typeof import('element-plus/es')['ElProgress'];
     ElSelect: typeof import('element-plus/es')['ElSelect'];
-    ElSelectV2: typeof import('element-plus/es')['ElSelectV2'];
-    ElSkeleton: typeof import('element-plus/es')['ElSkeleton'];
     ElSlider: typeof import('element-plus/es')['ElSlider'];
-    ElSubMenu: typeof import('element-plus/es')['ElSubMenu'];
     ElSwitch: typeof import('element-plus/es')['ElSwitch'];
-    ElTable: typeof import('element-plus/es')['ElTable'];
-    ElTableColumn: typeof import('element-plus/es')['ElTableColumn'];
     ElTabPane: typeof import('element-plus/es')['ElTabPane'];
     ElTabs: typeof import('element-plus/es')['ElTabs'];
-    ElTag: typeof import('element-plus/es')['ElTag'];
     ElTooltip: typeof import('element-plus/es')['ElTooltip'];
     ElUpload: typeof import('element-plus/es')['ElUpload'];
     FooterCom: typeof import('./components/FooterCom/FooterCom.vue')['default'];
