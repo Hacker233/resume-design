@@ -265,7 +265,7 @@
     width: 100%;
     box-sizing: border-box;
     overflow: hidden;
-    font-family: 微软雅黑;
+    font-family: 'Microsoft YaHei';
     .bottom {
       display: flex;
       width: 100%;
