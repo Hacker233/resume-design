@@ -82,5 +82,6 @@
     display: table;
     position: relative;
     margin: 0 auto;
+    font-family: '微软雅黑';
   }
 </style>
