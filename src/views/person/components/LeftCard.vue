@@ -93,11 +93,12 @@
         :deep(.el-upload) {
           width: 70px;
           height: 70px;
-          border-radius: 50%;
           overflow: hidden;
+          border: none !important;
           .avatar {
             width: 70px;
             height: 70px;
+            border-radius: 50%;
           }
         }
       }

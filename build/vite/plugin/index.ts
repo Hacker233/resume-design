@@ -4,6 +4,8 @@ import { configAutoImportPlugin } from './autoImport';
 import { configAutoComponentsPlugin } from './autocomponents';
 import { configCompressPlugin } from './compress';
 import { configSvgIconsPlugin } from './svgIcons';
+import OptimizationPersist from 'vite-plugin-optimize-persist';
+import PkgConfig from 'vite-plugin-package-config';
 import DefineOptions from 'unplugin-vue-define-options/vite';
 
 export function createVitePlugins(viteEnv: ViteEnv, isBuild: boolean) {
@@ -25,6 +27,10 @@ export function createVitePlugins(viteEnv: ViteEnv, isBuild: boolean) {
 
   // unplugin-vue-define-options
   vitePlugins.push(DefineOptions());
+
+  vitePlugins.push(PkgConfig());
+
+  vitePlugins.push(OptimizationPersist());
 
   // The following plugins only work in the production environment
   if (isBuild) {
