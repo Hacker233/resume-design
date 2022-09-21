@@ -11,56 +11,58 @@
     </el-tab-pane>
     <el-tab-pane label="数据配置" name="data">
       <div v-for="(item, index) in modelItem.data.LIST" :key="index" class="edu-list">
-        <p>
-          <span>学历{{ index + 1 }}</span>
-          <el-button
-            :disabled="index === 0"
-            type="danger"
-            :icon="Delete"
-            circle
-            @click="deleteEdu(index)"
-          />
-        </p>
-        <el-form-item label="日期选择:">
-          <el-date-picker
-            v-model="item.date"
-            type="monthrange"
-            range-separator="-"
-            start-placeholder="开始月份"
-            end-placeholder="结束月份"
-          />
-          <el-switch v-model="modelItem.data.isShow.date" />
-        </el-form-item>
-        <el-form-item label="学校名称:">
-          <el-input v-model="item.schoolName" type="text" maxlength="40" show-word-limit />
-          <el-switch v-model="modelItem.data.isShow.schoolName" />
-        </el-form-item>
-        <el-form-item label="专业名称:">
-          <el-input v-model="item.specialized" type="text" maxlength="20" show-word-limit />
-          <el-switch v-model="modelItem.data.isShow.specialized" />
-        </el-form-item>
-        <el-form-item label="学历学位:">
-          <el-select v-model="item.degree" class="m-2" placeholder="Select">
-            <el-option
-              v-for="(childItem, j) in degreeList"
-              :key="j"
-              :label="childItem"
-              :value="childItem"
+        <el-form label-width="65px" label-position="left">
+          <p>
+            <span>学历{{ index + 1 }}</span>
+            <el-button
+              :disabled="index === 0"
+              type="danger"
+              :icon="Delete"
+              circle
+              @click="deleteEdu(index)"
             />
-          </el-select>
-          <el-switch v-model="modelItem.data.isShow.degree" />
-        </el-form-item>
-        <el-form-item label="教学经历">
-          <el-input
-            v-model="item.majorCourse"
-            type="textarea"
-            maxlength="350"
-            show-word-limit
-            :rows="4"
-          />
-          <el-switch v-model="modelItem.data.isShow.majorCourse" />
-        </el-form-item>
+          </p>
+          <date-form-item
+            :model-item="modelItem"
+            :item="item"
+            @handle-start-date-change="(value:string)=>handleStartDateChange(value,item)"
+            @handle-end-date-change="(value:string)=>handleEndDateChange(value,item)"
+            @handle-radio-change="(value:string)=>handleRadioChange(value,item)"
+            @handl-switch="handlSwitch"
+          ></date-form-item>
+
+          <el-form-item label="学校名称:">
+            <el-input v-model="item.schoolName" type="text" maxlength="40" show-word-limit />
+            <el-switch v-model="modelItem.data.isShow.schoolName" />
+          </el-form-item>
+          <el-form-item label="专业名称:">
+            <el-input v-model="item.specialized" type="text" maxlength="20" show-word-limit />
+            <el-switch v-model="modelItem.data.isShow.specialized" />
+          </el-form-item>
+          <el-form-item label="学历学位:">
+            <el-select v-model="item.degree" class="m-2" placeholder="Select">
+              <el-option
+                v-for="(childItem, j) in degreeList"
+                :key="j"
+                :label="childItem"
+                :value="childItem"
+              />
+            </el-select>
+            <el-switch v-model="modelItem.data.isShow.degree" />
+          </el-form-item>
+          <el-form-item label="教学经历">
+            <el-input
+              v-model="item.majorCourse"
+              type="textarea"
+              maxlength="350"
+              show-word-limit
+              :rows="4"
+            />
+            <el-switch v-model="modelItem.data.isShow.majorCourse" />
+          </el-form-item>
+        </el-form>
       </div>
+
       <!-- 添加或删除学历 -->
       <div class="addOrdelet">
         <el-button type="primary" @click="addEdu">添加学历</el-button>
@@ -74,11 +76,25 @@
   import CommonTitleOptions from './CommonTitleOptions.vue';
   import { useDegreeList } from '@/hooks/useDegreeList';
   import useDesignSelectModelItem from '@/hooks/material/useDesignSelectModelItem';
+  import DateFormItem from '@/components/DateFormItem/DateFormItem.vue';
   defineOptions({ name: 'TEMPLATE2_EDU_BACKGROUND_OPTIONS' });
   // store
 
   // 选中的模块
   const { modelItem } = useDesignSelectModelItem();
+
+  const handleStartDateChange = (value: string, item: any) => {
+    item.date[0] = value;
+  };
+  const handleEndDateChange = (value: string, item: any) => {
+    item.date[1] = value;
+  };
+  const handleRadioChange = (value: string, item: any) => {
+    item.date[1] = value;
+  };
+  const handlSwitch = (value: boolean) => {
+    modelItem.data.isShow.date = value;
+  };
 
   let activeName = ref('style');
   const { degreeList } = useDegreeList(); // 学历列表

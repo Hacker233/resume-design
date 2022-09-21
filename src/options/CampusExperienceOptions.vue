@@ -25,16 +25,14 @@
               @click="deleteCampus(index)"
             />
           </p>
-          <el-form-item label="日期选择:">
-            <el-date-picker
-              v-model="item.date"
-              type="monthrange"
-              range-separator="-"
-              start-placeholder="开始月份"
-              end-placeholder="结束月份"
-            />
-            <el-switch v-model="modelItem.data.isShow.date" />
-          </el-form-item>
+          <date-form-item
+            :model-item="modelItem"
+            :item="item"
+            @handle-start-date-change="(value:string)=>handleStartDateChange(value,item)"
+            @handle-end-date-change="(value:string)=>handleEndDateChange(value,item)"
+            @handle-radio-change="(value:string)=>handleRadioChange(value,item)"
+            @handl-switch="handlSwitch"
+          ></date-form-item>
           <el-form-item label="经历简要:">
             <el-input v-model="item.campusBriefly" type="text" maxlength="35" show-word-limit />
             <el-switch v-model="modelItem.data.isShow.campusBriefly" />
@@ -74,6 +72,19 @@
   /**
    * 数据配置
    */
+  // 日期配置
+  const handleStartDateChange = (value: string, item: any) => {
+    item.date[0] = value;
+  };
+  const handleEndDateChange = (value: string, item: any) => {
+    item.date[1] = value;
+  };
+  const handleRadioChange = (value: string, item: any) => {
+    item.date[1] = value;
+  };
+  const handlSwitch = (value: boolean) => {
+    modelItem.data.isShow.date = value;
+  };
   // 删除技能
   const deleteCampus = (index: number): void => {
     modelItem.data.LIST.splice(index, 1);

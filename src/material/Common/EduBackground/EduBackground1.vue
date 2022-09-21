@@ -59,6 +59,9 @@
           font-weight: v-bind('modelStyle.titleFontWeight');
           letter-spacing: 2px;
           margin-bottom: 5px;
+          & :first-child {
+            min-width: 165px;
+          }
           & :last-child {
             width: 100px;
             display: flex;
