@@ -32,78 +32,80 @@
       v-model="dialogVisible"
       custom-class="sponsor-dialog-wrapper"
       title="请填写赞助信息"
-      width="45%"
+      width="840px"
       :show-close="false"
       :close-on-click-modal="false"
     >
-      <div class="dialog-content-box">
-        <div class="left">
-          <!-- <img src="../../../assets/images/sponsor_exam.png" alt="" /> -->
-          <img class="vx" src="../../../assets/images/vx-pay1.jpg" alt="" />
-          <img class="vx" src="../../../assets/images/vx-pay2.jpg" alt="" />
-          <img class="vx" src="../../../assets/images/vx-pay3.jpg" alt="" />
-          <img class="zfb" src="../../../assets/images/vx-pay4.jpg" alt="" />
-        </div>
-        <div class="right">
-          <!-- 表单填写 -->
-          <el-form
-            ref="ruleFormRef"
-            :model="ruleForm"
-            :rules="rules"
-            size="default"
-            label-width="120px"
-            class="demo-ruleForm"
-            status-icon
-          >
-            <el-form-item label="个人或企业名:" prop="name">
-              <el-input v-model="ruleForm.name" placeholder="该名称将展示在赞助栏" />
-            </el-form-item>
-            <el-form-item label="电子邮箱:">
-              <el-input
-                v-model="ruleForm.email"
-                type="email"
-                placeholder="个人或者企业的电子邮箱"
-              />
-            </el-form-item>
-            <el-form-item label="联系微信:">
-              <el-input v-model="ruleForm.vx" placeholder="便于联系的个人或企业微信" />
-            </el-form-item>
-            <el-form-item label="跳转链接:">
-              <el-input v-model="ruleForm.link" placeholder="点击赞助卡片需跳转的链接" />
-            </el-form-item>
-            <el-form-item label="上传logo:">
-              <el-upload
-                class="avatar-uploader"
-                :action="uploadAddress()"
-                :headers="{ Authorization: appStore.useTokenStore.token }"
-                :show-file-list="false"
-                :on-success="handleLogoSuccess"
-                :before-upload="beforeLogoUpload"
-              >
-                <img v-if="ruleForm.logo_url" :src="ruleForm.logo_url" class="avatar" />
-                <el-icon v-else class="avatar-uploader-icon"><Plus /></el-icon>
-              </el-upload>
-            </el-form-item>
-            <el-form-item label="上传支付凭证:">
-              <el-upload
-                class="avatar-uploader"
-                :action="uploadAddress()"
-                :headers="{ Authorization: appStore.useTokenStore.token }"
-                :show-file-list="false"
-                :on-success="handlePaySuccess"
-                :before-upload="beforePayUpload"
-              >
-                <img v-if="ruleForm.sponsor_img" :src="ruleForm.sponsor_img" class="avatar" />
-                <el-icon v-else class="avatar-uploader-icon"><Plus /></el-icon>
-              </el-upload>
-            </el-form-item>
-          </el-form>
+      <c-scrollbar trigger="hover" style="height: 500px">
+        <div class="dialog-content-box">
+          <div class="left">
+            <!-- <img src="../../../assets/images/sponsor_exam.png" alt="" /> -->
+            <img class="vx" src="../../../assets/images/vx-pay1.jpg" alt="" />
+            <img class="vx" src="../../../assets/images/vx-pay2.jpg" alt="" />
+            <img class="vx" src="../../../assets/images/vx-pay3.jpg" alt="" />
+            <img class="zfb" src="../../../assets/images/vx-pay4.jpg" alt="" />
+          </div>
+          <div class="right">
+            <!-- 表单填写 -->
+            <el-form
+              ref="ruleFormRef"
+              :model="ruleForm"
+              :rules="rules"
+              size="default"
+              label-width="120px"
+              class="demo-ruleForm"
+              status-icon
+            >
+              <el-form-item label="个人或企业名:" prop="name">
+                <el-input v-model="ruleForm.name" placeholder="该名称将展示在赞助栏" />
+              </el-form-item>
+              <el-form-item label="电子邮箱:">
+                <el-input
+                  v-model="ruleForm.email"
+                  type="email"
+                  placeholder="个人或者企业的电子邮箱"
+                />
+              </el-form-item>
+              <el-form-item label="联系微信:">
+                <el-input v-model="ruleForm.vx" placeholder="便于联系的个人或企业微信" />
+              </el-form-item>
+              <el-form-item label="跳转链接:">
+                <el-input v-model="ruleForm.link" placeholder="点击赞助卡片需跳转的链接" />
+              </el-form-item>
+              <el-form-item label="上传logo:">
+                <el-upload
+                  class="avatar-uploader"
+                  :action="uploadAddress()"
+                  :headers="{ Authorization: appStore.useTokenStore.token }"
+                  :show-file-list="false"
+                  :on-success="handleLogoSuccess"
+                  :before-upload="beforeLogoUpload"
+                >
+                  <img v-if="ruleForm.logo_url" :src="ruleForm.logo_url" class="avatar" />
+                  <el-icon v-else class="avatar-uploader-icon"><Plus /></el-icon>
+                </el-upload>
+              </el-form-item>
+              <el-form-item label="上传支付凭证:">
+                <el-upload
+                  class="avatar-uploader"
+                  :action="uploadAddress()"
+                  :headers="{ Authorization: appStore.useTokenStore.token }"
+                  :show-file-list="false"
+                  :on-success="handlePaySuccess"
+                  :before-upload="beforePayUpload"
+                >
+                  <img v-if="ruleForm.sponsor_img" :src="ruleForm.sponsor_img" class="avatar" />
+                  <el-icon v-else class="avatar-uploader-icon"><Plus /></el-icon>
+                </el-upload>
+              </el-form-item>
+            </el-form>
 
-          <p class="tips">
-            温馨提示：为了能够更好的将您的宣传信息展示在首页，还请尽量正确填写您的信息哦，后台审核通过后，我们这边将会相关信息展示在首页！
-          </p>
+            <p class="tips">
+              温馨提示：为了能够更好的将您的宣传信息展示在首页，还请尽量正确填写您的信息哦，后台审核通过后，我们这边将会相关信息展示在首页！
+            </p>
+          </div>
         </div>
-      </div>
+      </c-scrollbar>
       <template #footer>
         <span class="dialog-footer">
           <el-button @click="cancle">取消</el-button>
@@ -318,7 +320,7 @@
   .dialog-content-box {
     display: flex;
     .left {
-      width: 55%;
+      width: 430px;
       display: flex;
       justify-content: space-between;
       align-items: space-between;
@@ -329,13 +331,13 @@
         margin-bottom: 10px;
       }
       .vx {
-        width: 250px;
-        height: 320px;
+        width: 200px;
+        height: 260px;
         box-shadow: rgba(0, 0, 0, 0.117647) 0px 1px 6px, rgba(0, 0, 0, 0.117647) 0px 1px 25px;
       }
       .zfb {
-        width: 250px;
-        height: 320px;
+        width: 200px;
+        height: 260px;
         box-shadow: rgba(0, 0, 0, 0.117647) 0px 1px 6px, rgba(0, 0, 0, 0.117647) 0px 1px 25px;
       }
     }
