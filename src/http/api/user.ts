@@ -105,3 +105,21 @@ export const getWebAnalycDataAsync: any = () => {
     method: 'get'
   });
 };
+
+// 修改用户头像
+export const updateUserAvatarAsync: any = (data: any) => {
+  return http.request({
+    url: '/huajian/users/updateAvatar',
+    method: 'put',
+    data: data
+  });
+};
+
+// 更新用户个人信息
+export const updatePersonInfoAsync: any = (data: any) => {
+  return http.request({
+    url: '/huajian/users/updatePersonInfo',
+    method: 'put',
+    data: data
+  });
+};

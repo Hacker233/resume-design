@@ -32,7 +32,7 @@
       v-model="dialogVisible"
       custom-class="sponsor-dialog-wrapper"
       title="请填写赞助信息"
-      width="40%"
+      width="45%"
       :show-close="false"
       :close-on-click-modal="false"
     >
@@ -318,7 +318,7 @@
   .dialog-content-box {
     display: flex;
     .left {
-      width: 50%;
+      width: 55%;
       display: flex;
       justify-content: space-between;
       align-items: space-between;

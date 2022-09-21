@@ -6,9 +6,18 @@
           icon-name="icon-jibenziliao"
           class="iconfont"
           :color="getIconColor('PersonDetail')"
-          size="20px"
+          size="22px"
         ></svg-icon>
         <span>个人信息</span>
+      </el-menu-item>
+      <el-menu-item index="AccountSetting" @click="toAccountSetting">
+        <svg-icon
+          icon-name="icon-shezhi"
+          class="iconfont"
+          :color="getIconColor('AccountSetting')"
+          size="20px"
+        ></svg-icon>
+        <span>账号设置</span>
       </el-menu-item>
       <el-menu-item index="MyResume" @click="toMyResume">
         <svg-icon
@@ -37,6 +46,12 @@
   const toPersonDetail = (item: MenuItemClicked) => {
     currentIndex.value = item.index;
     router.push('/person/personDetail');
+  };
+
+  // 跳转至账号设置
+  const toAccountSetting = (item: MenuItemClicked) => {
+    currentIndex.value = item.index;
+    router.push('/person/accountSetting');
   };
 
   // 跳转至我的简历页面
