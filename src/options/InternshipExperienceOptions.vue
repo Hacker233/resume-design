@@ -25,16 +25,14 @@
               @click="deleteCampus(index)"
             />
           </p>
-          <el-form-item label="日期选择:">
-            <el-date-picker
-              v-model="item.date"
-              type="monthrange"
-              range-separator="-"
-              start-placeholder="开始月份"
-              end-placeholder="结束月份"
-            />
-            <el-switch v-model="modelItem.data.isShow.date" />
-          </el-form-item>
+          <date-form-item
+            :model-item="modelItem"
+            :item="item"
+            @handle-start-date-change="(value:string)=>handleStartDateChange(value,item)"
+            @handle-end-date-change="(value:string)=>handleEndDateChange(value,item)"
+            @handle-radio-change="(value:string)=>handleRadioChange(value,item)"
+            @handl-switch="handlSwitch"
+          ></date-form-item>
           <el-form-item label="公司名称:">
             <el-input v-model="item.companyName" type="text" maxlength="35" show-word-limit />
             <el-switch v-model="modelItem.data.isShow.companyName" />
@@ -87,6 +85,19 @@
   // 选中的模块
   const { modelItem } = useDesignSelectModelItem();
   let activeName = ref('style');
+
+  const handleStartDateChange = (value: string, item: any) => {
+    item.date[0] = value;
+  };
+  const handleEndDateChange = (value: string, item: any) => {
+    item.date[1] = value;
+  };
+  const handleRadioChange = (value: string, item: any) => {
+    item.date[1] = value;
+  };
+  const handlSwitch = (value: boolean) => {
+    modelItem.data.isShow.date = value;
+  };
 
   /**
    * 数据配置

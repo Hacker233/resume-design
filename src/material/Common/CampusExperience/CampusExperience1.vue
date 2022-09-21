@@ -42,6 +42,9 @@
           display: flex;
           justify-content: space-between;
           margin-bottom: 12px;
+          & :first-child {
+            min-width: 165px;
+          }
           li {
             list-style: none;
             font-size: v-bind('modelStyle.titleFontSize');
