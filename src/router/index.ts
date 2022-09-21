@@ -10,6 +10,7 @@ const ForgetPassword = () => import('@/views/forgetPassword/index.vue');
 const ResetPassword = () => import('@/views/resetPassword/index.vue');
 const Person = () => import('@/views/person/index.vue');
 const PersonDetail = () => import('@/views/person/personDetial/index.vue');
+const AccountSetting = () => import('@/views/person/accountSetting/index.vue');
 const MyResume = () => import('@/views/person/myResume/index.vue');
 const PdfPreview = () => import('@/views/PdfPreview/index.vue');
 const Template = () => import('@/views/template/index.vue');
@@ -134,6 +135,17 @@ const routes: Array<RouteRecordRaw> = [
           requireLogin: true
         },
         component: PersonDetail
+      },
+      {
+        path: 'accountSetting',
+        name: 'AccountSetting',
+        meta: {
+          title: '账号设置',
+          keepAlive: true,
+          isShowComNav: true,
+          requireLogin: true
+        },
+        component: AccountSetting
       },
       {
         path: 'myResume',
