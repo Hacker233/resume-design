@@ -74,6 +74,15 @@ export const formatDate = (dataArray: Array<string> | string): string => {
   }
 };
 
+// 日期格式话 日期格式化为 某年某月某日格式
+export const formatDateToYMD = (dateString: string): string => {
+  if (dateString) {
+    return moment(new Date(dateString)).format('YYYY 年 MM 月 DD 日');
+  } else {
+    return '暂无数据';
+  }
+};
+
 // 开启全局等待层
 export const openGlobalLoading = () => {
   const { changLoading } = appStore.useLoadingStore;
