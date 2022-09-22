@@ -5,7 +5,7 @@
     <div class="awards-list">
       <ul v-for="(item, index) in modelData.LIST" :key="index">
         <!-- 获奖日期 -->
-        <li v-show="modelData.isShow.date">{{ formatDate(item.date) }}</li>
+        <li v-show="modelData.isShow.date" class="start-end-date">{{ formatDate(item.date) }}</li>
         <!-- 奖项名称 -->
         <li v-show="modelData.isShow.awardsName">{{ item.awardsName }}</li>
         <!-- 奖项等级 -->

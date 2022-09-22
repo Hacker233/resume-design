@@ -10,6 +10,8 @@ import EDU_BACKGROUND_4 from '@/material/EduBackground/EduBackground4/EduBackgro
 import EDU_BACKGROUND_5 from '@/material/EduBackground/EduBackground5/EduBackground.vue';
 import EDU_BACKGROUND_6 from '@/material/EduBackground/EduBackground6/EduBackground.vue';
 import EDU_BACKGROUND_7 from '@/material/EduBackground/EduBackground7/EduBackground.vue';
+import EDU_BACKGROUND_8 from '@/material/EduBackground/EduBackground8/EduBackground.vue';
+import EDU_BACKGROUND_9 from '@/material/EduBackground/EduBackground9/EduBackground.vue';
 
 import BASE_INFO_1 from '@/material/BaseInfo/BaseInfo1/index.vue';
 import BASE_INFO_2 from '@/material/BaseInfo/BaseInfo2/BaseInfo.vue';
@@ -36,6 +38,8 @@ import SKILL_SPECIALTIES_5 from '@/material/SkillSpecialties/SkillSpecialties5/S
 import SKILL_SPECIALTIES_6 from '@/material/SkillSpecialties/SkillSpecialties6/SkillSpecialties.vue';
 import SKILL_SPECIALTIES_7 from '@/material/SkillSpecialties/SkillSpecialties7/SkillSpecialties.vue';
 import SKILL_SPECIALTIES_8 from '@/material/SkillSpecialties/SkillSpecialties8/SkillSpecialties.vue';
+import SKILL_SPECIALTIES_9 from '@/material/SkillSpecialties/SkillSpecialties9/SkillSpecialties.vue';
+import SKILL_SPECIALTIES_10 from '@/material/SkillSpecialties/SkillSpecialties10/SkillSpecialties.vue';
 
 import CAMPUS_EXPERIENCE_1 from '@/material/CampusExperience/CampusExperience1/index.vue';
 import CAMPUS_EXPERIENCE_2 from '@/material/CampusExperience/CampusExperience2/CampusExperience.vue';
@@ -44,6 +48,7 @@ import CAMPUS_EXPERIENCE_4 from '@/material/CampusExperience/CampusExperience4/C
 import CAMPUS_EXPERIENCE_5 from '@/material/CampusExperience/CampusExperience5/CampusExperience.vue';
 import CAMPUS_EXPERIENCE_6 from '@/material/CampusExperience/CampusExperience6/CampusExperience.vue';
 import CAMPUS_EXPERIENCE_7 from '@/material/CampusExperience/CampusExperience7/CampusExperience.vue';
+import CAMPUS_EXPERIENCE_8 from '@/material/CampusExperience/CampusExperience8/CampusExperience.vue';
 
 import INTERNSHIP_EXPERIENCE_1 from '@/material/InternshipExperience/InternshipExperience1/index.vue';
 import INTERNSHIP_EXPERIENCE_2 from '@/material/InternshipExperience/InternshipExperience2/InternshipExperience.vue';
@@ -52,6 +57,7 @@ import INTERNSHIP_EXPERIENCE_4 from '@/material/InternshipExperience/InternshipE
 import INTERNSHIP_EXPERIENCE_5 from '@/material/InternshipExperience/InternshipExperience5/InternshipExperience.vue';
 import INTERNSHIP_EXPERIENCE_6 from '@/material/InternshipExperience/InternshipExperience6/InternshipExperience.vue';
 import INTERNSHIP_EXPERIENCE_7 from '@/material/InternshipExperience/InternshipExperience7/InternshipExperience.vue';
+import INTERNSHIP_EXPERIENCE_8 from '@/material/InternshipExperience/InternshipExperience8/InternshipExperience.vue';
 
 import WORK_EXPERIENCE_1 from '@/material/WorkExperience/WorkExperience1/index.vue';
 import WORK_EXPERIENCE_2 from '@/material/WorkExperience/WorkExperience2/WorkExperience.vue';
@@ -60,6 +66,7 @@ import WORK_EXPERIENCE_4 from '@/material/WorkExperience/WorkExperience4/WorkExp
 import WORK_EXPERIENCE_5 from '@/material/WorkExperience/WorkExperience5/WorkExperience.vue';
 import WORK_EXPERIENCE_6 from '@/material/WorkExperience/WorkExperience6/WorkExperience.vue';
 import WORK_EXPERIENCE_7 from '@/material/WorkExperience/WorkExperience7/WorkExperience.vue';
+import WORK_EXPERIENCE_8 from '@/material/WorkExperience/WorkExperience8/WorkExperience.vue';
 
 import PROJECT_EXPERIENCE_1 from '@/material/ProjectExperience/ProjectExperience1/index.vue';
 import PROJECT_EXPERIENCE_2 from '@/material/ProjectExperience/ProjectExperience2/ProjectExperience.vue';
@@ -68,6 +75,7 @@ import PROJECT_EXPERIENCE_4 from '@/material/ProjectExperience/ProjectExperience
 import PROJECT_EXPERIENCE_5 from '@/material/ProjectExperience/ProjectExperience5/ProjectExperience.vue';
 import PROJECT_EXPERIENCE_6 from '@/material/ProjectExperience/ProjectExperience6/ProjectExperience.vue';
 import PROJECT_EXPERIENCE_7 from '@/material/ProjectExperience/ProjectExperience7/ProjectExperience.vue';
+import PROJECT_EXPERIENCE_8 from '@/material/ProjectExperience/ProjectExperience8/ProjectExperience.vue';
 
 import AWARDS_1 from '@/material/Awards/Awards1/index.vue';
 import AWARDS_2 from '@/material/Awards/Awards2/Awards.vue';
@@ -76,6 +84,7 @@ import AWARDS_4 from '@/material/Awards/Awards4/Awards.vue';
 import AWARDS_5 from '@/material/Awards/Awards5/Awards.vue';
 import AWARDS_6 from '@/material/Awards/Awards6/Awards.vue';
 import AWARDS_7 from '@/material/Awards/Awards7/Awards.vue';
+import AWARDS_8 from '@/material/Awards/Awards8/Awards.vue';
 
 import HOBBIES_1 from '@/material/Hobbies/Hobbies1/index.vue';
 import HOBBIES_2 from '@/material/Hobbies/Hobbies2/Hobbies.vue';
@@ -84,6 +93,7 @@ import HOBBIES_4 from '@/material/Hobbies/Hobbies4/Hobbies.vue';
 import HOBBIES_5 from '@/material/Hobbies/Hobbies5/Hobbies.vue';
 import HOBBIES_6 from '@/material/Hobbies/Hobbies6/Hobbies.vue';
 import HOBBIES_7 from '@/material/Hobbies/Hobbies7/Hobbies.vue';
+import HOBBIES_8 from '@/material/Hobbies/Hobbies8/Hobbies.vue';
 
 import SELF_EVALUATION_1 from '@/material/SelfEvaluation/SelfEvaluation1/index.vue';
 import SELF_EVALUATION_2 from '@/material/SelfEvaluation/SelfEvaluation2/SelfEvaluation.vue';
@@ -92,6 +102,7 @@ import SELF_EVALUATION_4 from '@/material/SelfEvaluation/SelfEvaluation4/SelfEva
 import SELF_EVALUATION_5 from '@/material/SelfEvaluation/SelfEvaluation5/SelfEvaluation.vue';
 import SELF_EVALUATION_6 from '@/material/SelfEvaluation/SelfEvaluation6/SelfEvaluation.vue';
 import SELF_EVALUATION_7 from '@/material/SelfEvaluation/SelfEvaluation7/SelfEvaluation.vue';
+import SELF_EVALUATION_8 from '@/material/SelfEvaluation/SelfEvaluation8/SelfEvaluation.vue';
 
 import WORKS_DISPLAY_1 from '@/material/WorksDisplay/WorksDisplay1/index.vue';
 import WORKS_DISPLAY_2 from '@/material/WorksDisplay/WorksDisplay2/WorksDisplay.vue';
@@ -100,6 +111,7 @@ import WORKS_DISPLAY_4 from '@/material/WorksDisplay/WorksDisplay4/WorksDisplay.
 import WORKS_DISPLAY_5 from '@/material/WorksDisplay/WorksDisplay5/WorksDisplay.vue';
 import WORKS_DISPLAY_6 from '@/material/WorksDisplay/WorksDisplay6/WorksDisplay.vue';
 import WORKS_DISPLAY_7 from '@/material/WorksDisplay/WorksDisplay7/WorksDisplay.vue';
+import WORKS_DISPLAY_8 from '@/material/WorksDisplay/WorksDisplay8/WorksDisplay.vue';
 
 // 注册所有物料组件
 const MaterialComponents = {
@@ -113,6 +125,8 @@ const MaterialComponents = {
   EDU_BACKGROUND_5: EDU_BACKGROUND_5,
   EDU_BACKGROUND_6: EDU_BACKGROUND_6,
   EDU_BACKGROUND_7: EDU_BACKGROUND_7,
+  EDU_BACKGROUND_8: EDU_BACKGROUND_8,
+  EDU_BACKGROUND_9: EDU_BACKGROUND_9,
 
   BASE_INFO_1: BASE_INFO_1,
   BASE_INFO_2: BASE_INFO_2,
@@ -141,6 +155,8 @@ const MaterialComponents = {
   SKILL_SPECIALTIES_6: SKILL_SPECIALTIES_6,
   SKILL_SPECIALTIES_7: SKILL_SPECIALTIES_7,
   SKILL_SPECIALTIES_8: SKILL_SPECIALTIES_8,
+  SKILL_SPECIALTIES_9: SKILL_SPECIALTIES_9,
+  SKILL_SPECIALTIES_10: SKILL_SPECIALTIES_10,
 
   CAMPUS_EXPERIENCE_1: CAMPUS_EXPERIENCE_1,
   CAMPUS_EXPERIENCE_2: CAMPUS_EXPERIENCE_2,
@@ -149,6 +165,7 @@ const MaterialComponents = {
   CAMPUS_EXPERIENCE_5: CAMPUS_EXPERIENCE_5,
   CAMPUS_EXPERIENCE_6: CAMPUS_EXPERIENCE_6,
   CAMPUS_EXPERIENCE_7: CAMPUS_EXPERIENCE_7,
+  CAMPUS_EXPERIENCE_8: CAMPUS_EXPERIENCE_8,
 
   INTERNSHIP_EXPERIENCE_1: INTERNSHIP_EXPERIENCE_1,
   INTERNSHIP_EXPERIENCE_2: INTERNSHIP_EXPERIENCE_2,
@@ -157,6 +174,7 @@ const MaterialComponents = {
   INTERNSHIP_EXPERIENCE_5: INTERNSHIP_EXPERIENCE_5,
   INTERNSHIP_EXPERIENCE_6: INTERNSHIP_EXPERIENCE_6,
   INTERNSHIP_EXPERIENCE_7: INTERNSHIP_EXPERIENCE_7,
+  INTERNSHIP_EXPERIENCE_8: INTERNSHIP_EXPERIENCE_8,
 
   WORK_EXPERIENCE_1: WORK_EXPERIENCE_1,
   WORK_EXPERIENCE_2: WORK_EXPERIENCE_2,
@@ -165,6 +183,7 @@ const MaterialComponents = {
   WORK_EXPERIENCE_5: WORK_EXPERIENCE_5,
   WORK_EXPERIENCE_6: WORK_EXPERIENCE_6,
   WORK_EXPERIENCE_7: WORK_EXPERIENCE_7,
+  WORK_EXPERIENCE_8: WORK_EXPERIENCE_8,
 
   PROJECT_EXPERIENCE_1: PROJECT_EXPERIENCE_1,
   PROJECT_EXPERIENCE_2: PROJECT_EXPERIENCE_2,
@@ -173,6 +192,7 @@ const MaterialComponents = {
   PROJECT_EXPERIENCE_5: PROJECT_EXPERIENCE_5,
   PROJECT_EXPERIENCE_6: PROJECT_EXPERIENCE_6,
   PROJECT_EXPERIENCE_7: PROJECT_EXPERIENCE_7,
+  PROJECT_EXPERIENCE_8: PROJECT_EXPERIENCE_8,
 
   AWARDS_1: AWARDS_1,
   AWARDS_2: AWARDS_2,
@@ -181,6 +201,7 @@ const MaterialComponents = {
   AWARDS_5: AWARDS_5,
   AWARDS_6: AWARDS_6,
   AWARDS_7: AWARDS_7,
+  AWARDS_8: AWARDS_8,
 
   HOBBIES_1: HOBBIES_1,
   HOBBIES_2: HOBBIES_2,
@@ -189,6 +210,7 @@ const MaterialComponents = {
   HOBBIES_5: HOBBIES_5,
   HOBBIES_6: HOBBIES_6,
   HOBBIES_7: HOBBIES_7,
+  HOBBIES_8: HOBBIES_8,
 
   SELF_EVALUATION_1: SELF_EVALUATION_1,
   SELF_EVALUATION_2: SELF_EVALUATION_2,
@@ -197,6 +219,7 @@ const MaterialComponents = {
   SELF_EVALUATION_5: SELF_EVALUATION_5,
   SELF_EVALUATION_6: SELF_EVALUATION_6,
   SELF_EVALUATION_7: SELF_EVALUATION_7,
+  SELF_EVALUATION_8: SELF_EVALUATION_8,
 
   WORKS_DISPLAY_1: WORKS_DISPLAY_1,
   WORKS_DISPLAY_2: WORKS_DISPLAY_2,
@@ -204,6 +227,7 @@ const MaterialComponents = {
   WORKS_DISPLAY_4: WORKS_DISPLAY_4,
   WORKS_DISPLAY_5: WORKS_DISPLAY_5,
   WORKS_DISPLAY_6: WORKS_DISPLAY_6,
-  WORKS_DISPLAY_7: WORKS_DISPLAY_7
+  WORKS_DISPLAY_7: WORKS_DISPLAY_7,
+  WORKS_DISPLAY_8: WORKS_DISPLAY_8
 };
 export default MaterialComponents;

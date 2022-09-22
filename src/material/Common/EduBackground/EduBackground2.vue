@@ -9,15 +9,15 @@
           <span v-if="modelData.isShow.date" class="start-end-date">
             {{ formatDate(item.date) }}
           </span>
-          <span v-if="modelData.isShow.schoolName">
+          <span v-if="modelData.isShow.schoolName" class="school-name">
             {{ item.schoolName }}
           </span>
+          <!-- 专业 -->
+          <span v-if="modelData.isShow.specialized">{{ item.specialized }}</span>
           <span v-if="modelData.isShow.degree">
             {{ item.degree }}
           </span>
         </div>
-        <!-- 专业 -->
-        <p v-if="modelData.isShow.specialized" class="special">{{ item.specialized }}</p>
         <!-- 教学经历 -->
         <p v-if="modelData.isShow.majorCourse" class="majorCourse">{{ item.majorCourse }}</p>
       </ul>
@@ -68,8 +68,10 @@
             align-items: center;
             justify-content: flex-end;
           }
+          .school-name {
+            min-width: 165px;
+          }
         }
-        .special,
         .majorCourse {
           width: 100%;
           display: flex;
