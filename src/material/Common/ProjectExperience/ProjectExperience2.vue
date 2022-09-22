@@ -6,7 +6,7 @@
       <div v-for="(item, index) in modelData.LIST" :key="index" class="list">
         <ul>
           <!-- 经历时间 -->
-          <li class="list-title">{{ formatDate(item.date) }}</li>
+          <li class="list-title start-end-date">{{ formatDate(item.date) }}</li>
           <!-- 公司名称 -->
           <li class="list-title">{{ item.projectName }}</li>
           <!-- 主要职责 -->

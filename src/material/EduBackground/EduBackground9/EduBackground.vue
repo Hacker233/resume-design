@@ -1,28 +1,30 @@
+<!-- 教育背景 -->
 <template>
-  <div class="job-intention-7">
+  <div class="edu-background">
     <!-- 标题 -->
-    <model-title :title="modelData.title" :model-style="modelStyle"></model-title>
-    <!-- 内容区域 -->
+    <model-title :title="modelData.title" :iconfont="modelData.iconfont" :model-style="modelStyle">
+    </model-title>
+    <!-- 教育背景 -->
     <div class="model-border-box">
       <div class="icon-box">
         <svg-icon :icon-name="modelData.iconfont" color="#fff" size="15px"></svg-icon>
       </div>
-      <job-intention1 :model-data="modelData" :model-style="modelStyle"></job-intention1>
+      <edu-background1-vue :model-data="modelData" :model-style="modelStyle"></edu-background1-vue>
     </div>
   </div>
 </template>
 <script setup lang="ts">
+  import { IEDUBACKGROUND } from '@/interface/model';
   import ModelTitle from '@/material/ModelTitle/ModelTitle7/ModelTitle.vue';
-  import { IJOBINTENTION } from '@/interface/model';
   import IMODELSTYLE from '@/interface/modelStyle';
-  import JobIntention1 from '../../Common/JobIntention/JobIntention1.vue';
+  import EduBackground1Vue from '@/material/Common/EduBackground/EduBackground2.vue';
   defineProps<{
-    modelData: IJOBINTENTION;
+    modelData: IEDUBACKGROUND;
     modelStyle: IMODELSTYLE; // 模块样式
   }>();
 </script>
 <style lang="scss" scoped>
-  .job-intention-7 {
+  .edu-background {
     padding-top: 10px;
     padding-left: v-bind('modelStyle.pLeftRight');
     padding-right: v-bind('modelStyle.pLeftRight');
@@ -44,12 +46,6 @@
       padding-left: 20px;
       box-sizing: border-box;
       position: relative;
-      :deep(.job-intention-content) {
-        flex: 1;
-        ul {
-          padding: 0;
-        }
-      }
       .icon-box {
         position: absolute;
         left: -13px;
@@ -62,6 +58,19 @@
         align-items: center;
         justify-content: center;
         margin-right: 8px;
+      }
+      :deep(.edu-background-content) {
+        flex: 1;
+        .edu-list {
+          ul {
+            padding: 0;
+            margin-bottom: 20px;
+            .start-end-date {
+              position: absolute;
+              left: -165px;
+            }
+          }
+        }
       }
     }
   }

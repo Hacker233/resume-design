@@ -1,28 +1,32 @@
+<!-- 技能特长 -->
 <template>
-  <div class="job-intention-7">
+  <div class="skill-specialties">
     <!-- 标题 -->
     <model-title :title="modelData.title" :model-style="modelStyle"></model-title>
-    <!-- 内容区域 -->
+    <!-- 技能特长 -->
     <div class="model-border-box">
       <div class="icon-box">
         <svg-icon :icon-name="modelData.iconfont" color="#fff" size="15px"></svg-icon>
       </div>
-      <job-intention1 :model-data="modelData" :model-style="modelStyle"></job-intention1>
+      <skill-specialties1-vue
+        :model-data="modelData"
+        :model-style="modelStyle"
+      ></skill-specialties1-vue>
     </div>
   </div>
 </template>
 <script setup lang="ts">
   import ModelTitle from '@/material/ModelTitle/ModelTitle7/ModelTitle.vue';
-  import { IJOBINTENTION } from '@/interface/model';
+  import { ISKILLSPECIALTIES } from '@/interface/model';
   import IMODELSTYLE from '@/interface/modelStyle';
-  import JobIntention1 from '../../Common/JobIntention/JobIntention1.vue';
+  import SkillSpecialties1Vue from '@/material/Common/SkillSpecialties/SkillSpecialties1.vue';
   defineProps<{
-    modelData: IJOBINTENTION;
+    modelData: ISKILLSPECIALTIES;
     modelStyle: IMODELSTYLE; // 模块样式
   }>();
 </script>
 <style lang="scss" scoped>
-  .job-intention-7 {
+  .skill-specialties {
     padding-top: 10px;
     padding-left: v-bind('modelStyle.pLeftRight');
     padding-right: v-bind('modelStyle.pLeftRight');
@@ -44,12 +48,6 @@
       padding-left: 20px;
       box-sizing: border-box;
       position: relative;
-      :deep(.job-intention-content) {
-        flex: 1;
-        ul {
-          padding: 0;
-        }
-      }
       .icon-box {
         position: absolute;
         left: -13px;
@@ -62,6 +60,12 @@
         align-items: center;
         justify-content: center;
         margin-right: 8px;
+      }
+      :deep(.skill-specialties-content) {
+        flex: 1;
+        ul {
+          padding-top: 0;
+        }
       }
     }
   }

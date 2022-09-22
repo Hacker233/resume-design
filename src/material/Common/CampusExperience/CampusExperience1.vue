@@ -6,7 +6,7 @@
       <div v-for="(item, index) in modelData.LIST" :key="index" class="list">
         <ul>
           <!-- 经历时间 -->
-          <li v-if="modelData.isShow.date">{{ formatDate(item.date) }}</li>
+          <li v-if="modelData.isShow.date" class="start-end-date">{{ formatDate(item.date) }}</li>
           <!-- 项目名称 -->
           <li v-if="modelData.isShow.campusBriefly">{{ item.campusBriefly }}</li>
           <!-- 主要职责 -->
