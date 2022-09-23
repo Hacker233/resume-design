@@ -14,6 +14,7 @@ const AccountSetting = () => import('@/views/person/accountSetting/index.vue');
 const MyResume = () => import('@/views/person/myResume/index.vue');
 const PdfPreview = () => import('@/views/PdfPreview/index.vue');
 const Template = () => import('@/views/template/index.vue');
+const MyContribute = () => import('@/views/person/myContribute/index.vue');
 
 // 管理员界面
 const AdminIndex = () => import('@/views/admin/index.vue');
@@ -23,6 +24,7 @@ const TemplateList = () => import('@/views/admin/templateManage/templateList/ind
 const UserList = () => import('@/views/admin/userManage/uerList/index.vue');
 const SponsorList = () => import('@/views/admin/userManage/sponsorList/index.vue');
 const ResumeList = () => import('@/views/admin/resumeManage/resumeList/index.vue');
+const TobeAudit = () => import('@/views/admin/templateManage/tobeAudit/index.vue');
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -132,7 +134,8 @@ const routes: Array<RouteRecordRaw> = [
           title: '个人信息',
           keepAlive: true,
           isShowComNav: true,
-          requireLogin: true
+          requireLogin: true,
+          showTitle: true
         },
         component: PersonDetail
       },
@@ -143,7 +146,8 @@ const routes: Array<RouteRecordRaw> = [
           title: '账号设置',
           keepAlive: true,
           isShowComNav: true,
-          requireLogin: true
+          requireLogin: true,
+          showTitle: true
         },
         component: AccountSetting
       },
@@ -154,9 +158,22 @@ const routes: Array<RouteRecordRaw> = [
           title: '我的简历',
           keepAlive: true,
           isShowComNav: true,
-          requireLogin: true
+          requireLogin: true,
+          showTitle: true
         },
         component: MyResume
+      },
+      {
+        path: 'myContribute',
+        name: 'MyContribute',
+        meta: {
+          title: '我的贡献',
+          keepAlive: true,
+          isShowComNav: true,
+          requireLogin: true,
+          showTitle: false
+        },
+        component: MyContribute
       }
     ]
   },
@@ -206,6 +223,17 @@ const routes: Array<RouteRecordRaw> = [
           requireLogin: true
         },
         component: TemplateList
+      },
+      {
+        path: 'TobeAudit',
+        name: 'TobeAudit',
+        meta: {
+          title: '待审核模板',
+          keepAlive: true,
+          isShowComNav: false,
+          requireLogin: true
+        },
+        component: TobeAudit
       },
       {
         path: 'userList',

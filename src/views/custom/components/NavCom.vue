@@ -21,6 +21,10 @@
       />
     </div>
     <div class="nav-right">
+      <!-- 提交审核按钮 -->
+      <el-button type="primary" class="audit-btn box-item" @click="openAuditDialog"
+        >提交审核</el-button
+      >
       <el-tooltip class="box-item" effect="dark" content="导出为PDF" placement="bottom">
         <div class="icon-box" @click="generateReport">
           <svg-icon icon-name="icon-pdf" color="#fff" size="17px"></svg-icon>
@@ -38,12 +42,22 @@
       </el-tooltip>
     </div>
   </nav>
+
+  <!-- 提交审核弹窗 -->
+  <submit-audit-dialog-vue
+    :id="templateId"
+    :preview-url="previewUrl"
+    :category="category"
+    :dialog-visible="dialogVisible"
+    @cancle="cancle"
+  ></submit-audit-dialog-vue>
 </template>
 <script lang="ts" setup>
   import appStore from '@/store';
   import { getUuid } from '@/utils/common';
   import FileSaver from 'file-saver';
   import { storeToRefs } from 'pinia';
+  import SubmitAuditDialogVue from './SubmitAuditDialog.vue';
 
   const emit = defineEmits(['generateReport']);
   const { resumeJsonNewStore } = storeToRefs(appStore.useResumeJsonNewStore);
@@ -55,15 +69,38 @@
     });
   };
 
+  // 打开审核弹窗
+  const dialogVisible = ref<boolean>(false);
+  const openAuditDialog = () => {
+    dialogVisible.value = true;
+  };
+  // 取消弹窗
+  const cancle = () => {
+    dialogVisible.value = false;
+  };
+
   // 导出为pdf
   const generateReport = async () => {
     emit('generateReport');
   };
 
+  // 模板ID、分类、预览图
+  const route = useRoute();
+  let previewUrl = ref<string>('');
+  let category = ref<Array<string>>([]);
+  let templateId = '';
+  if (route.query.ID && route.query.previewUrl && route.query.category) {
+    templateId = route.query.ID as string;
+    previewUrl.value = route.query.previewUrl as string;
+    category.value = JSON.parse(route.query.category as string);
+  } else {
+    templateId = getUuid();
+  }
+
   // 导出为JSON
   const exportJSON = () => {
     resumeJsonNewStore.value.NAME = 'customJson';
-    resumeJsonNewStore.value.ID = getUuid();
+    resumeJsonNewStore.value.ID = templateId;
     const data = JSON.stringify(resumeJsonNewStore.value, null, 4);
     const blob = new Blob([data], { type: '' });
     FileSaver.saveAs(blob, resumeJsonNewStore.value.TITLE + '.json');
@@ -72,7 +109,7 @@
   // 复制JSON数据
   const copyJSON = () => {
     resumeJsonNewStore.value.NAME = 'customJson';
-    resumeJsonNewStore.value.ID = getUuid();
+    resumeJsonNewStore.value.ID = templateId;
     const data = JSON.stringify(resumeJsonNewStore.value, null, 4);
     navigator.clipboard.writeText(data).then(() => {
       ElMessage.success('复制成功');
@@ -145,6 +182,9 @@
       display: flex;
       align-items: center;
       justify-content: flex-end;
+      .audit-btn {
+        margin-right: 15px;
+      }
       .icon-box {
         width: 35px;
         height: 35px;

@@ -1,7 +1,10 @@
 <template>
   <div class="right-content-box">
     <!-- 菜单标题 -->
-    <content-title-vue :title="(route.meta.title as string)"></content-title-vue>
+    <content-title-vue
+      v-if="route.meta.showTitle"
+      :title="(route.meta.title as string)"
+    ></content-title-vue>
     <div class="router-box">
       <router-view></router-view>
     </div>
@@ -19,7 +22,7 @@
     margin: 270px 0 0px 30px;
     box-sizing: border-box;
     .router-box {
-      padding: 20px 0;
+      padding: 0 0 20px 0;
     }
   }
 </style>

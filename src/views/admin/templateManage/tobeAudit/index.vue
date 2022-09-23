@@ -81,8 +81,8 @@
   import moment from 'moment';
   import Pagination from '@/components/Pagination/pagination.vue';
   import { deleteTemplateAsync, getResumeListAllAsync } from '@/http/api/resume';
-  import EditDialog from './components/EditDialog.vue';
-  import AuditDialogVue from './components/AuditDialog.vue';
+  import EditDialog from '../templateList/components/EditDialog.vue';
+  import AuditDialogVue from '../templateList/components/AuditDialog.vue';
   import { ElMessageBox } from 'element-plus';
   import 'element-plus/es/components/message-box/style/index';
   let tableData = ref<any>([]);
@@ -95,7 +95,8 @@
   const getTemplateList = async () => {
     let params = {
       page: page.value,
-      limit: limit.value
+      limit: limit.value,
+      audit: 3
     };
     const data = await getResumeListAllAsync(params);
     if (data.data.status === 200) {
