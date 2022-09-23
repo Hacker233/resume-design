@@ -43,6 +43,15 @@
           ></svg-icon>
           <span>模板列表</span>
         </el-menu-item>
+        <el-menu-item index="TobeAudit">
+          <svg-icon
+            icon-name="icon-caogaoxiang1"
+            class="iconfont"
+            :color="getIconColor('TobeAudit')"
+            size="16px"
+          ></svg-icon>
+          <span>待审核模板</span>
+        </el-menu-item>
       </el-sub-menu>
       <el-sub-menu index="2">
         <template #title>

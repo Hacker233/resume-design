@@ -95,3 +95,21 @@ export const getResumePdfAsync: any = (params: any) => {
     params: params
   });
 };
+
+// 审核模板
+export const auditTemplateAsync: any = (data: any) => {
+  return http.request({
+    url: '/huajian/resume/auditTemplate',
+    method: 'post',
+    data: data
+  });
+};
+
+// 用户查询自己贡献的模板列表
+export const getMyContributeTemplateListAsync: any = (params: any) => {
+  return http.request({
+    url: '/huajian/resume/getMyContributeTemplateList',
+    method: 'get',
+    params: params
+  });
+};

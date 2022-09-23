@@ -14,7 +14,7 @@
       <div class="right-box">
         <h1>丰富的物料模块组件，可随意进行搭配，还可进行主题配置等等</h1>
         <p>自定义的模板可提交至官方，将在首页展出</p>
-        <div class="button" @click="toCustom"> 开始创建模板 </div>
+        <div class="button" @click="toCustom"> 贡献模板 </div>
       </div>
     </div>
   </div>

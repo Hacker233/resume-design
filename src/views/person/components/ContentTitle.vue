@@ -14,6 +14,7 @@
 <style lang="scss" scpoed>
   .content-title-box {
     border-bottom: 1px solid #eee;
+    margin-bottom: 20px;
     h1 {
       font-size: 22px;
       height: 40px;

@@ -105,19 +105,54 @@
   import { IMATERIALITEM } from '@/interface/material';
   import { getUuid } from '@/utils/common';
   import { cloneDeep } from 'lodash';
+  import IDESIGNJSON from '@/interface/design';
+  import { getResetTemplateInfoAsync } from '@/http/api/resume';
 
   defineProps<{
     components: any;
   }>();
 
   // 生命周期函数
+  const route = useRoute();
   onMounted(async () => {
+    if (route.query.ID) {
+      resetStoreAndLocal(route.query.ID as string);
+    }
     resizeDOM();
     initClickListen();
   });
 
   // store相关数据
   const { resumeJsonNewStore } = storeToRefs(appStore.useResumeJsonNewStore);
+
+  // 如果传了ID，则通过ID查询数据
+  const { changeResumeJsonData } = appStore.useResumeJsonNewStore;
+  const { setUuid } = appStore.useUuidStore;
+  const resetStoreAndLocal = async (ID: string) => {
+    let TEMPLATE_JSON: IDESIGNJSON;
+    let data = await getResetTemplateInfoAsync(ID);
+    if (data.data.status === 200) {
+      TEMPLATE_JSON = data.data.data as IDESIGNJSON;
+    } else {
+      ElMessage.error('查询模板失败！');
+      return;
+    }
+    changeResumeJsonData(TEMPLATE_JSON); // 更改store的数据
+    // 如果是左右布局，需要手动赋值左右组件
+    if (resumeJsonNewStore.value.LAYOUT !== 'classical') {
+      resumeJsonNewStore.value.COMPONENTS.forEach((item: IMATERIALITEM) => {
+        if (item.layout === 'left') {
+          leftList.value.push(item);
+        } else {
+          rightList.value.push(item);
+        }
+      });
+    }
+    console.log('leftList', leftList.value);
+    console.log('rightList', rightList.value);
+    setUuid();
+    console.log('简历JSON数据', resumeJsonNewStore.value);
+  };
 
   // 分割线
   const linesNumber = ref<number>(1);
