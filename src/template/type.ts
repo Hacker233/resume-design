@@ -2,7 +2,8 @@ interface ITempList {
   ID: string;
   NAME: string;
   previewUrl: string;
-  resumeActive: { views: number; likes: number };
+  LIKES: number;
+  VIEWS: number;
   userInfo: {
     name: string;
     userId: string;
