@@ -24,7 +24,7 @@
       </div>
       <div class="icon-box">
         <svg-icon icon-name="icon-jibenziliao" color="#a3abb1" size="19px"></svg-icon>
-        <span class="number">{{ cardData.resumeActive.views }}</span>
+        <span class="number">{{ cardData.VIEWS }}</span>
       </div>
     </div>
   </div>

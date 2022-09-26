@@ -7,7 +7,7 @@
     </div>
     <div class="center">
       <el-menu :default-active="route.name" class="el-menu-demo" @select="handleSelect">
-        <el-menu-item index="Template">模板</el-menu-item>
+        <el-menu-item index="Template">简历模板</el-menu-item>
       </el-menu>
     </div>
     <!-- GitHub -->
