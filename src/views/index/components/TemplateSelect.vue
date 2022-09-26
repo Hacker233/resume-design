@@ -8,9 +8,16 @@
     ></introduce-title-vue>
     <!-- 模板列表 -->
     <div class="card-list">
-      <div v-for="(item, index) in templateList" :key="index" class="card-list-item-box">
-        <template-card :card-data="item" @to-design="toDesign"> </template-card>
-      </div>
+      <template v-if="templateList.length">
+        <div v-for="(item, index) in templateList" :key="index" class="card-list-item-box">
+          <template-card :card-data="item" @to-design="toDesign"> </template-card>
+        </div>
+      </template>
+      <template v-else>
+        <div v-for="index in 8" :key="index" class="card-list-item-box">
+          <skeleton-card></skeleton-card>
+        </div>
+      </template>
     </div>
     <!-- 查看更多 -->
     <div class="more">
@@ -28,6 +35,7 @@
   import { openGlobalLoading } from '@/utils/common';
   import appStore from '@/store';
   import { getTemplateListAsync } from '@/http/api/resume';
+  import SkeletonCard from '@/components/SkeletonCard/SkeletonCard.vue';
 
   // 跳转至设计页面
   const { resetResumeJson } = appStore.useResumeJsonNewStore;
@@ -93,7 +101,7 @@
     .card-list {
       display: flex;
       flex-wrap: wrap;
-      max-width: 1500px;
+      width: 1400px;
       justify-content: space-between;
       .card-list-item-box {
         flex: 0 0 25%;

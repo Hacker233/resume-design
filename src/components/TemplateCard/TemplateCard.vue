@@ -17,6 +17,11 @@
     </div>
     <!-- 使用人数 -->
     <div class="viewer-box">
+      <!-- 模板作者 -->
+      <div class="create-user">
+        <el-avatar v-if="cardData.userInfo.avatar" :size="30" :src="cardData.userInfo.avatar" />
+        <span class="name">{{ cardData.userInfo.name }}</span>
+      </div>
       <div class="icon-box">
         <svg-icon icon-name="icon-jibenziliao" color="#a3abb1" size="19px"></svg-icon>
         <span class="number">{{ cardData.resumeActive.views }}</span>
@@ -143,7 +148,16 @@
       color: #a3abb1;
       display: flex;
       align-items: center;
-      justify-content: flex-end;
+      justify-content: space-between;
+      padding: 0 5px;
+      .create-user {
+        display: flex;
+        align-items: center;
+        .name {
+          margin-left: 10px;
+          font-size: 12px;
+        }
+      }
       .icon-box {
         margin-right: 5px;
         .number {
