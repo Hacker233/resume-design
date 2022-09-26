@@ -23,6 +23,7 @@
               class="number"
               :start-val="0"
               :end-val="webData.trafficnumber"
+              separator=","
               :duration="4000"
             ></count-to>
             <span>人</span>
@@ -43,6 +44,7 @@
               :start-val="0"
               :end-val="webData.usernumber"
               :duration="4000"
+              separator=","
             ></count-to>
             <span>人</span>
           </p>
@@ -62,6 +64,7 @@
               :start-val="0"
               :end-val="webData.resumenumber"
               :duration="4000"
+              separator=","
             ></count-to>
             <span>份</span>
           </p>
