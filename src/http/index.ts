@@ -31,7 +31,11 @@ class Request {
     this.interceptorsObj = config.interceptors;
     // 拦截器执行顺序 接口请求 -> 实例请求 -> 全局请求 -> 实例响应 -> 全局响应 -> 接口响应
     this.instance.interceptors.request.use(
-      (res: AxiosRequestConfig) => res,
+      (res: AxiosRequestConfig) => {
+        console.log('res', res);
+
+        return res;
+      },
       (err: any) => err
     );
 
