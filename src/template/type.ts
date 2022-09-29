@@ -1,4 +1,5 @@
 interface ITempList {
+  _id: string;
   ID: string;
   NAME: string;
   previewUrl: string;

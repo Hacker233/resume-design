@@ -22,6 +22,11 @@
       />
     </div>
     <div class="nav-right">
+      <el-tooltip class="box-item" effect="dark" content="发布为在线简历" placement="bottom">
+        <el-button type="primary" class="audit-btn box-item" @click="publishOnlineResume"
+          >发布上线</el-button
+        >
+      </el-tooltip>
       <el-tooltip class="box-item" effect="dark" content="保存草稿" placement="bottom">
         <div class="icon-box" @click="saveDraft">
           <svg-icon icon-name="icon-caogaoxiang1" color="#fff" size="17px"></svg-icon>
@@ -61,6 +66,13 @@
     :dialog-visible="dialogVisible"
     @cancle="cancleJsonDialog"
   ></import-json-dialog>
+
+  <!-- 在线简历发布成功弹窗 -->
+  <online-success-dialog
+    :dialog-online-visible="dialogOnlineVisible"
+    :resume-id="resumeId"
+    @cancle="cancleOnlineDialog"
+  ></online-success-dialog>
 </template>
 <script lang="ts" setup>
   import appStore from '@/store';
@@ -73,6 +85,9 @@
   import { cloneDeep, debounce } from 'lodash';
   import { getUuid } from '@/utils/common';
   import { getUserResumeListAsync, updateUserresumeAsync } from '@/http/api/resume';
+  import { publishOnlineResumeAsync } from '@/http/api/userResume';
+  import OnlineSuccessDialog from './OnlineSuccessDialog.vue';
+
   let { resumeJsonNewStore } = storeToRefs(appStore.useResumeJsonNewStore); // store里的模板数据
   const emit = defineEmits(['generateReport', 'reset', 'saveDataToLocal']);
   const route = useRoute();
@@ -203,6 +218,34 @@
     dialogVisible.value = false;
   };
 
+  // 发布为线上简历
+  const resumeId = ref<string>('');
+  const { userInfo } = appStore.useUserInfoStore;
+  const { id } = route.query;
+  const publishOnlineResume = async () => {
+    // 先保存草稿
+    await saveDataToLocal();
+    let params = {
+      email: userInfo.email,
+      ID: id
+    };
+    const data = await publishOnlineResumeAsync(params);
+    if (data.data.status === 200) {
+      ElMessage.success('发布成功');
+      resumeId.value = data.data.data._id;
+      dialogOnlineVisible.value = true;
+    } else {
+      ElMessage.error(data.data.message);
+    }
+  };
+
+  // 在线简历发布成功弹窗
+  const dialogOnlineVisible = ref<boolean>(false);
+  // 关闭弹窗
+  const cancleOnlineDialog = () => {
+    dialogOnlineVisible.value = false;
+  };
+
   defineExpose({
     saveDataToLocal
   });
@@ -269,6 +312,9 @@
       align-items: center;
       justify-content: flex-end;
       padding-right: 10px;
+      .audit-btn {
+        margin-right: 15px;
+      }
       .el-button {
         margin-right: 20px;
         margin-left: 0;
