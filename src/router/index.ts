@@ -15,6 +15,8 @@ const MyResume = () => import('@/views/person/myResume/index.vue');
 const PdfPreview = () => import('@/views/PdfPreview/index.vue');
 const Template = () => import('@/views/template/index.vue');
 const MyContribute = () => import('@/views/person/myContribute/index.vue');
+const OnlinePreview = () => import('@/views/onlinePreview/index.vue');
+const MyOnlineResume = () => import('@/views/person/onlineResume/index.vue');
 
 // 管理员界面
 const AdminIndex = () => import('@/views/admin/index.vue');
@@ -164,6 +166,18 @@ const routes: Array<RouteRecordRaw> = [
         component: MyResume
       },
       {
+        path: 'myOnlineResume',
+        name: 'MyOnlineResume',
+        meta: {
+          title: '在线简历',
+          keepAlive: true,
+          isShowComNav: true,
+          requireLogin: true,
+          showTitle: true
+        },
+        component: MyOnlineResume
+      },
+      {
         path: 'myContribute',
         name: 'MyContribute',
         meta: {
@@ -176,6 +190,17 @@ const routes: Array<RouteRecordRaw> = [
         component: MyContribute
       }
     ]
+  },
+  {
+    path: '/online/:id',
+    name: 'OnlinePreview',
+    meta: {
+      title: '在线简历',
+      keepAlive: false,
+      isShowComNav: false,
+      requireLogin: false
+    },
+    component: OnlinePreview
   },
 
   // 管理员界面

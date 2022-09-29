@@ -28,6 +28,15 @@
         ></svg-icon>
         <span>我的简历</span>
       </el-menu-item>
+      <el-menu-item index="MyOnlineResume" @click="toMyOnlineResume">
+        <svg-icon
+          icon-name="icon-zaixianyonghu"
+          class="iconfont"
+          :color="getIconColor('MyOnlineResume')"
+          size="20px"
+        ></svg-icon>
+        <span>在线简历</span>
+      </el-menu-item>
       <el-menu-item index="MyContribute" @click="toMyContribute">
         <svg-icon
           icon-name="icon-caogaoxiang1"
@@ -73,6 +82,12 @@
   const toMyContribute = (item: MenuItemClicked) => {
     currentIndex.value = item.index;
     router.push('/person/myContribute');
+  };
+
+  // 跳转至我的在线简历
+  const toMyOnlineResume = (item: MenuItemClicked) => {
+    currentIndex.value = item.index;
+    router.push('/person/myOnlineResume');
   };
 </script>
 <style lang="scss" scoped>
