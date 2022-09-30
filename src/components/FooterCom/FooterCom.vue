@@ -24,10 +24,14 @@
           >会飞的猪</a
         >
       </li>
+      <!-- 备案号 -->
+      <div class="lines"></div>
+      <li>
+        <a href="https://beian.miit.gov.cn" target="_blank" rel="noopener noreferrer"
+          >蜀ICP备2020034752号-3</a
+        >
+      </li>
     </ul>
-    <!-- 访问量 -->
-    <!-- <div class="visit">
-    </div> -->
   </div>
 </template>
 <style lang="scss" scoped>
@@ -43,7 +47,6 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      width: 400px;
       li {
         list-style: none;
         display: flex;
