@@ -28,7 +28,7 @@
 
 <p align="center"><b>基于Vue3 + TypeScript + Vite + Element-plus + pinia实现</b></p>
 
-线上地址：https://huajian.smallpig.site/
+线上地址：https://91huajian.cn
 
 # 目录
 
