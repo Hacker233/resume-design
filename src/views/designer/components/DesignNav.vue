@@ -232,7 +232,7 @@
     const data = await publishOnlineResumeAsync(params);
     if (data.data.status === 200) {
       ElMessage.success('发布成功');
-      resumeId.value = data.data.data._id;
+      resumeId.value = data.data.data.ONLINE_LINK;
       dialogOnlineVisible.value = true;
     } else {
       ElMessage.error(data.data.message);

@@ -21,7 +21,7 @@
 
         <!-- 相机图标 -->
         <div class="camera-box">
-          <svg-icon icon-name="icon-xiangji" class="iconfont" color="fff" size="20px"></svg-icon>
+          <svg-icon icon-name="icon-xiangji1" class="iconfont" color="#fff" size="20px"></svg-icon>
         </div>
       </el-upload>
     </div>

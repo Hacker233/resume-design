@@ -66,6 +66,7 @@ declare module '@vue/runtime-core' {
     PreviewImage: typeof import('./components/PreviewImage/PreviewImage.vue')['default'];
     ProcessBarDialog: typeof import('./components/ProcessBarDialog/ProcessBarDialog.vue')['default'];
     ProjectExperienceCom: typeof import('./components/ModelComs/ProjectExperienceCom.vue')['default'];
+    QrCode: typeof import('./components/QrCode/QrCode.vue')['default'];
     RouterLink: typeof import('vue-router')['RouterLink'];
     RouterView: typeof import('vue-router')['RouterView'];
     SelfEvaluationCom: typeof import('./components/ModelComs/SelfEvaluationCom.vue')['default'];
