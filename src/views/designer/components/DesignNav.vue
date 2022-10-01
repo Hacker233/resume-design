@@ -1,8 +1,7 @@
 <template>
   <nav class="nav-box">
     <div class="nav-left">
-      <img src="@/assets/logo.png" alt="logo" srcset="" @click="toHome" />
-      <span @click="toHome">化简</span>
+      <logo-com icon-color="#74a274" font-color="#74a274"></logo-com>
     </div>
     <div class="nav-center">
       <span class="draft-tips">{{ draftTips }}</span>
@@ -94,11 +93,6 @@
   const { name } = route.query; // 模板id和模板名称
   // 跳转到首页
   const router = useRouter();
-  const toHome = () => {
-    router.push({
-      path: '/'
-    });
-  };
 
   // 更改标题
   const titleIpf = ref<any>(null);
@@ -265,20 +259,7 @@
       display: flex;
       align-items: center;
       user-select: none;
-      img {
-        width: 60px;
-        height: 60px;
-        margin-left: 30px;
-        cursor: pointer;
-      }
-      span {
-        letter-spacing: 4px;
-        font-size: 22px;
-        font-weight: 600;
-        font-family: cursive;
-        color: green;
-        cursor: pointer;
-      }
+      padding: 0 0 0 40px;
     }
     .nav-center {
       flex: 1;

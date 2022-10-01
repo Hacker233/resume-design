@@ -23,7 +23,7 @@
         <img src="https://img.shields.io/npm/l/vue.svg?color=91aac3&labelColor=439EFD" alt="License">
     </a>
 </p>
-<h1 align="center">😙化简</h1>
+<h1 align="center">😙91化简</h1>
 <h2 align="center">一款免费简历制作神器</h2>
 
 <p align="center"><b>基于Vue3 + TypeScript + Vite + Element-plus + pinia实现</b></p>
@@ -109,7 +109,7 @@ pnpm install
 ```
 
 ### 项目配置
-若要运行项目，需要有相对应的后台，如果没有自己搭建的后台，则可以连接化简官方后台。
+若要运行项目，需要有相对应的后台，如果没有自己搭建的后台，则可以连接91化简官方后台。
 **修改对应文件**：
 ```
 // src/config/index.ts
