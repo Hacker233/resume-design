@@ -3,8 +3,7 @@
     <!-- 导航栏 -->
     <div class="top">
       <div class="nav-left">
-        <img src="@/assets/logo.png" alt="logo" srcset="" @click="toHome" />
-        <span @click="toHome">化简</span>
+        <logo-com icon-color="#74a274" font-color="#74a274"></logo-com>
       </div>
     </div>
     <div class="bottom">
@@ -21,14 +20,6 @@
 </template>
 <script lang="ts" setup>
   import LeftMenu from './leftMenu/index.vue';
-
-  // 跳转到首页
-  const router = useRouter();
-  const toHome = () => {
-    router.push({
-      path: '/'
-    });
-  };
 </script>
 <style lang="scss" scoped>
   .admin-box {
@@ -62,8 +53,8 @@
           letter-spacing: 4px;
           font-size: 22px;
           font-weight: 600;
-          font-family: cursive;
-          color: green;
+          // font-family: cursive;
+          color: #74a274;
           cursor: pointer;
         }
       }

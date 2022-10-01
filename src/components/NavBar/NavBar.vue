@@ -1,10 +1,10 @@
 <!-- 首页标题栏 -->
 <template>
   <div class="nav-bar-box">
-    <div class="logo" @click="toHome">
-      <img src="@/assets/logo.png" alt="logo" srcset="" />
-      <span>化简</span>
-    </div>
+    <logo-com
+      :icon-color="iconColor ? iconColor : '#fff'"
+      :font-color="fontColor ? fontColor : '#fff'"
+    ></logo-com>
     <div class="center">
       <el-menu :default-active="route.name" class="el-menu-demo" @select="handleSelect">
         <el-menu-item index="Template">简历模板</el-menu-item>
@@ -84,11 +84,8 @@
     LoginDialog(true);
   };
 
-  // 跳转至首页
   const router = useRouter();
-  const toHome = () => {
-    router.push('/');
-  };
+
   // 跳转至个人中心页
   const toPerson = () => {
     router.push('/person');
@@ -108,7 +105,7 @@
 <style lang="scss" scoped>
   .nav-bar-box {
     display: flex;
-    height: 60px;
+    height: 70px;
     width: 100%;
     box-sizing: border-box;
     align-items: center;
@@ -116,28 +113,10 @@
     background-color: v-bind('bgColor');
     z-index: 10;
     user-select: none;
-    padding: 0 40px;
+    padding: 0 60px;
     position: v-bind('props.position');
     top: 0;
     transition: all 0.3s;
-    .logo {
-      height: 100%;
-      display: flex;
-      align-items: center;
-      cursor: pointer;
-      user-select: none;
-      img {
-        width: 80px;
-        height: 80px;
-      }
-      span {
-        letter-spacing: 4px;
-        font-size: 22px;
-        font-weight: 600;
-        font-family: cursive;
-        color: v-bind('fontColor');
-      }
-    }
     .center {
       flex: 1;
       height: 100%;

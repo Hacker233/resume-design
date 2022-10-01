@@ -1,6 +1,6 @@
 <template>
   <div ref="qrCodeDomRef" class="qr-code-box">
-    <h1>化简简历</h1>
+    <h1>91化简简历</h1>
     <p>{{ appStore.useUserInfoStore.userInfo.name }}</p>
     <qrcode-vue :value="value" :size="size" level="H" :foreground="foreground" />
   </div>
@@ -35,7 +35,7 @@
     let aLink = document.createElement('a');
     aLink.style.display = 'none';
     aLink.href = downloadUrl;
-    aLink.download = '化简简历.png';
+    aLink.download = '91化简简历.png';
     // 触发点击-然后移除
     document.body.appendChild(aLink);
     aLink.click();
