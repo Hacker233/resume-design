@@ -93,8 +93,8 @@
         :deep(.el-upload) {
           width: 70px;
           height: 70px;
-          overflow: hidden;
-          border: none !important;
+          border: 1px solid #ccc !important;
+          border-radius: 50%;
           .avatar {
             width: 70px;
             height: 70px;

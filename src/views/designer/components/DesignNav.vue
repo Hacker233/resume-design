@@ -90,7 +90,7 @@
   let { resumeJsonNewStore } = storeToRefs(appStore.useResumeJsonNewStore); // store里的模板数据
   const emit = defineEmits(['generateReport', 'reset', 'saveDataToLocal']);
   const route = useRoute();
-  const { name } = route.query; // 模板id和模板名称
+  const { name, id } = route.query; // 模板id和模板名称
   // 跳转到首页
   const router = useRouter();
 
@@ -108,47 +108,62 @@
   // 保存草稿
   let draftTips = ref<string>('');
   const saveDataToLocal = async (isHandle?: boolean) => {
-    // 先查询个人简历是否超过4份
-    const params = {
-      page: 1,
-      limit: 10
-    };
-    const listData = await getUserResumeListAsync(params);
-    if (listData.data.status === 200) {
-      if (listData.data.data.page.count >= 4) {
-        ElMessageBox.confirm(
-          '每位用户的简历数量最多4份，您已超过4份简历，如要继续使用，请前往个人中心删除部分简历！',
-          '温馨提示',
-          {
-            confirmButtonText: '前往',
-            cancelButtonText: '取消',
-            type: 'warning'
+    return new Promise(async (resolve, reject) => {
+      // 先查询个人简历是否超过4份
+      const params = {
+        page: 1,
+        limit: 10
+      };
+      const listData = await getUserResumeListAsync(params);
+      if (listData.data.status === 200) {
+        // 过滤掉本条数据
+        let realList = [];
+        listData.data.data.list.map((item: any) => {
+          if (item.ID !== id) {
+            realList.push(item);
           }
-        )
-          .then(() => {
-            router.push('/person/myResume');
-          })
-          .catch(() => {});
-      } else {
-        const data = await updateUserresumeAsync(resumeJsonNewStore.value);
-        if (data.data.status === 200) {
-          const time = moment(new Date()).format('YYYY.MM.DD HH:mm:ss');
-          draftTips.value = `已自动保存草稿  ${time}`;
-          // 手动保存
-          if (isHandle) {
-            ElMessage({
-              message: '保存草稿成功!',
-              type: 'success',
-              center: true
-            });
-          }
+        });
+        // 判断用户简历数量是否超过
+        if (realList.length >= 4) {
+          ElMessageBox.confirm(
+            '每位用户的简历数量最多4份，您已超过4份简历，如要继续使用，请前往个人中心删除部分简历！',
+            '温馨提示',
+            {
+              confirmButtonText: '前往',
+              cancelButtonText: '取消',
+              type: 'warning'
+            }
+          )
+            .then(() => {
+              router.push('/person/myResume');
+            })
+            .catch(() => {});
+          // 简历份数过多
+          reject(null);
         } else {
-          draftTips.value = '自动保存草稿失败！';
+          const data = await updateUserresumeAsync(resumeJsonNewStore.value);
+          if (data.data.status === 200) {
+            const time = moment(new Date()).format('YYYY.MM.DD HH:mm:ss');
+            draftTips.value = `已自动保存草稿  ${time}`;
+            // 手动保存
+            if (isHandle) {
+              ElMessage({
+                message: '保存草稿成功!',
+                type: 'success',
+                center: true
+              });
+            }
+            resolve('保存草稿成功！');
+          } else {
+            draftTips.value = '自动保存草稿失败！';
+            reject(null);
+          }
         }
+      } else {
+        ElMessage.error(listData.data.message);
+        reject(null);
       }
-    } else {
-      ElMessage.error(listData.data.message);
-    }
+    });
   };
 
   // 保存草稿
@@ -215,21 +230,22 @@
   // 发布为线上简历
   const resumeId = ref<string>('');
   const { userInfo } = appStore.useUserInfoStore;
-  const { id } = route.query;
   const publishOnlineResume = async () => {
     // 先保存草稿
-    await saveDataToLocal();
-    let params = {
-      email: userInfo.email,
-      ID: id
-    };
-    const data = await publishOnlineResumeAsync(params);
-    if (data.data.status === 200) {
-      ElMessage.success('发布成功');
-      resumeId.value = data.data.data.ONLINE_LINK;
-      dialogOnlineVisible.value = true;
-    } else {
-      ElMessage.error(data.data.message);
+    let draft = await saveDataToLocal();
+    if (draft) {
+      let params = {
+        email: userInfo.email,
+        ID: id
+      };
+      const data = await publishOnlineResumeAsync(params);
+      if (data.data.status === 200) {
+        ElMessage.success('发布成功');
+        resumeId.value = data.data.data.ONLINE_LINK;
+        dialogOnlineVisible.value = true;
+      } else {
+        ElMessage.error(data.data.message);
+      }
     }
   };
 
