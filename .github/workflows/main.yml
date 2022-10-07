@@ -1,7 +1,8 @@
 name: 部署化简到生产服务器上
 on:
   #监听push操作
-  pull_request:
+  #pull_request:
+  push:
     branches:
       # main分支，你也可以改成其他分支
       - main
