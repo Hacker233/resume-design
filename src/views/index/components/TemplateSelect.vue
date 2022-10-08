@@ -1,8 +1,8 @@
 <template>
   <div ref="templateRef" class="template-select-box">
     <introduce-title-vue
-      title="免费模板 + 用心设计"
-      subtitle="用心设计每一套模板，适合各行各业从业者"
+      title="在线简历制作"
+      subtitle="选择简历模板，点击在线制作，永久云端保存，可一键导出"
       title-color="#000"
       subtitle-color="#7f8b96"
     ></introduce-title-vue>
