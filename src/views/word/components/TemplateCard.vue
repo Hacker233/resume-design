@@ -23,7 +23,7 @@
         <span class="downloads">{{ cardData.downloads }}</span>
       </div>
       <div class="word-name">
-        <span>{{ cardData.name }}</span>
+        <span :title="cardData.name">{{ cardData.name }}</span>
       </div>
       <div class="icon-box">
         <svg-icon icon-name="icon-liulanliang1" color="#a3abb1" size="19px"></svg-icon>
@@ -174,6 +174,9 @@
       .word-name {
         flex: 1;
         padding: 0 0 0 20px;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
         span {
           font-size: 14px;
         }

@@ -98,3 +98,11 @@ export const wordDownloadUrl: any = (id: string) => {
     method: 'get'
   });
 };
+
+// 查询所有标签列表
+export const getWordTemplateTagsListAsync: any = () => {
+  return http.request({
+    url: '/huajian/common/getWordTemplateTagsList',
+    method: 'get'
+  });
+};

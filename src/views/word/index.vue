@@ -4,6 +4,7 @@
       <!-- 分类筛选 -->
       <category-vue
         :category-list="categoryList"
+        :tags-list="tagsList"
         @get-template-list-by-cate="getTemplateListByCategory"
       ></category-vue>
       <!-- 模板列表 -->
@@ -31,7 +32,11 @@
   </div>
 </template>
 <script lang="ts" setup>
-  import { getWordCategoryListAsync, getWordTemplateListAsync } from '@/http/api/wordTemplate';
+  import {
+    getWordCategoryListAsync,
+    getWordTemplateListAsync,
+    getWordTemplateTagsListAsync
+  } from '@/http/api/wordTemplate';
   import CategoryVue from './components/Category.vue';
   import TemplateListVue from './components/TemplateList.vue';
   import NoDataVue from '@/components/NoData/NoData.vue';
@@ -43,8 +48,10 @@
   // 根据分类获取模板列表
   const category = ref<string>();
   const sort = ref<string>();
+  const tag = ref<string>();
   const getTemplateListByCategory = async (item: any) => {
     category.value = item.category;
+    tag.value = item.tag;
     sort.value = item.sort;
     page.value = 1;
     limit.value = 12;
@@ -73,6 +80,18 @@
   };
   getCategoryList();
 
+  // 查询标签列表
+  const tagsList = ref<any>([]);
+  const getWordTemplateTagsList = async () => {
+    const data = await getWordTemplateTagsListAsync();
+    if (data.status === 200) {
+      tagsList.value = data.data;
+    } else {
+      ElMessage.error(data.data.message);
+    }
+  };
+  getWordTemplateTagsList();
+
   // 查询模板列表
   const page = ref<number>(1);
   const limit = ref<number>(12);
@@ -85,7 +104,8 @@
       page: page.value,
       limit: limit.value,
       category: category.value,
-      sort: sort.value
+      sort: sort.value,
+      tag: tag.value
     };
     const data = await getWordTemplateListAsync(params);
     if (data.status === 200) {

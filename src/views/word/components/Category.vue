@@ -1,17 +1,32 @@
 <template>
   <div class="category-box">
     <div class="left">
-      <span class="category-title">Word模板分类：</span>
-      <ul>
-        <li
-          v-for="(item, index) in categoryList"
-          :key="index"
-          :class="[{ active: currentValue === item.category_value }]"
-          @click="handleSelect(item)"
-        >
-          {{ item.category_label }}
-        </li>
-      </ul>
+      <div class="left-category">
+        <span class="category-title">Word模板分类：</span>
+        <ul>
+          <li
+            v-for="(item, index) in categoryList"
+            :key="index"
+            :class="[{ active: currentValue === item.category_value }]"
+            @click="handleSelect(item)"
+          >
+            {{ item.category_label }}
+          </li>
+        </ul>
+      </div>
+      <div class="left-category left-tag">
+        <span class="category-title">标签分类：</span>
+        <ul>
+          <li
+            v-for="(item, index) in tagsList"
+            :key="index"
+            :class="[{ 'tag-active': currentTag === item }]"
+            @click="handleTagsSelect(item)"
+          >
+            {{ item }}
+          </li>
+        </ul>
+      </div>
     </div>
     <!-- 右侧筛选 -->
     <div class="right">
@@ -35,9 +50,11 @@
       category_label: string;
       category_value: string;
     }>;
+    tagsList: Array<string>;
   }>();
 
-  const currentSort = ref<string>('');
+  const currentSort = ref<string>(''); // 选中的分类
+  const currentTag = ref<string>(''); // 选中的标签
 
   // 点击分类
   const currentValue = ref<string>('');
@@ -45,7 +62,24 @@
     currentValue.value = item.category_value;
     let queryParams = {
       category: currentValue.value,
-      sort: currentSort.value
+      sort: currentSort.value,
+      tag: currentTag.value
+    };
+    emit('getTemplateListByCate', queryParams);
+  };
+
+  // 点击标签
+  const handleTagsSelect = (item: string) => {
+    if (currentTag.value === item) {
+      currentTag.value = '';
+    } else {
+      currentTag.value = item;
+    }
+
+    let queryParams = {
+      category: currentValue.value,
+      sort: currentSort.value,
+      tag: currentTag.value
     };
     emit('getTemplateListByCate', queryParams);
   };
@@ -71,41 +105,75 @@
     // min-height: 100px;
     background-color: #fff;
     justify-content: space-between;
-    padding: 20px 12px;
+    padding: 10px 12px;
     .left {
       display: flex;
-      align-items: center;
+      flex-direction: column;
+      justify-content: center;
       font-size: 13px;
       color: #333;
-      .category-title {
-        margin-right: 20px;
-      }
-      ul {
+      .left-category {
         display: flex;
-        li {
-          list-style: none;
-          border-radius: 20px;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          cursor: pointer;
-          letter-spacing: 4px;
+        align-items: center;
+        margin: 10px 0;
+        .category-title {
           margin-right: 20px;
-          transition: all 0.3s;
-          border: 1px solid transparent;
-          user-select: none;
-          &:hover {
+          width: 100px;
+          display: flex;
+          justify-content: flex-end;
+        }
+        ul {
+          display: flex;
+          li {
+            list-style: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            margin-right: 20px;
+            transition: all 0.3s;
+            border: 1px solid transparent;
+            user-select: none;
+            &:hover {
+              color: green;
+            }
+          }
+          .active {
             color: green;
+            border-bottom: 1px solid green;
           }
         }
-        .active {
-          color: green;
+      }
+      .left-tag {
+        ul {
+          display: flex;
+          li {
+            list-style: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            margin-right: 20px;
+            transition: all 0.3s;
+            border: 1px solid #31eba6;
+            border-radius: 20px;
+            padding: 4px 6px;
+            user-select: none;
+            &:hover {
+              color: green;
+              border-color: green;
+            }
+          }
+          .tag-active {
+            color: green;
+            border-color: green;
+          }
         }
       }
     }
     .right {
       display: flex;
-      align-items: center;
+      align-items: flex-start;
       padding: 0 5px 0 0;
       .sort-box {
         margin-left: 10px;
