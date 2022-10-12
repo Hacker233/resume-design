@@ -387,3 +387,10 @@ template {
   background-color: rgb(159, 159, 159);
 }
 
+.el-button {
+  padding: 8px 10px;
+}
+.el-dialog__body {
+  max-height: 80vh;
+  overflow: auto;
+}

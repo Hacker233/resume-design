@@ -692,6 +692,11 @@
   }
 </style>
 <style lang="scss">
+  .login-dialog-box {
+    .el-dialog__body {
+      overflow: inherit;
+    }
+  }
   .el-dialog {
     border-radius: 4px;
   }

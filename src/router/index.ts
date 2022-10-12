@@ -14,6 +14,8 @@ const AccountSetting = () => import('@/views/person/accountSetting/index.vue');
 const MyResume = () => import('@/views/person/myResume/index.vue');
 const PdfPreview = () => import('@/views/PdfPreview/index.vue');
 const Template = () => import('@/views/template/index.vue');
+const Word = () => import('@/views/word/index.vue');
+const WordPreview = () => import('@/views/wordPreview/index.vue');
 const MyContribute = () => import('@/views/person/myContribute/index.vue');
 const OnlinePreview = () => import('@/views/onlinePreview/index.vue');
 const MyOnlineResume = () => import('@/views/person/onlineResume/index.vue');
@@ -27,6 +29,8 @@ const UserList = () => import('@/views/admin/userManage/uerList/index.vue');
 const SponsorList = () => import('@/views/admin/userManage/sponsorList/index.vue');
 const ResumeList = () => import('@/views/admin/resumeManage/resumeList/index.vue');
 const TobeAudit = () => import('@/views/admin/templateManage/tobeAudit/index.vue');
+const WordTemplateList = () => import('@/views/admin/wordTemplate/templateList/index.vue');
+const WordCategoryList = () => import('@/views/admin/wordTemplate/categoryList/index.vue');
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -116,6 +120,28 @@ const routes: Array<RouteRecordRaw> = [
       requireLogin: false
     },
     component: Template
+  },
+  {
+    path: '/word',
+    name: 'Word',
+    meta: {
+      title: '简历模板',
+      keepAlive: true,
+      isShowComNav: true,
+      requireLogin: false
+    },
+    component: Word
+  },
+  {
+    path: '/wordPreview',
+    name: 'WordPreview',
+    meta: {
+      title: 'word模板详情',
+      keepAlive: true,
+      isShowComNav: true,
+      requireLogin: false
+    },
+    component: WordPreview
   },
   {
     path: '/person',
@@ -292,6 +318,28 @@ const routes: Array<RouteRecordRaw> = [
           requireLogin: true
         },
         component: ResumeList
+      },
+      {
+        path: 'wordTemplateList',
+        name: 'WordTemplateList',
+        meta: {
+          title: 'word模板',
+          keepAlive: true,
+          isShowComNav: false,
+          requireLogin: true
+        },
+        component: WordTemplateList
+      },
+      {
+        path: 'wordCategoryList',
+        name: 'WordCategoryList',
+        meta: {
+          title: 'word分类',
+          keepAlive: true,
+          isShowComNav: false,
+          requireLogin: true
+        },
+        component: WordCategoryList
       }
     ]
   }

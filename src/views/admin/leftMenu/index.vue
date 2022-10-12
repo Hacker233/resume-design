@@ -102,6 +102,30 @@
           <span>简历列表</span>
         </el-menu-item>
       </el-sub-menu>
+      <el-sub-menu index="4">
+        <template #title>
+          <svg-icon icon-name="icon-Word" class="iconfont" color="#303133" size="20px"></svg-icon>
+          <span>World模板</span>
+        </template>
+        <el-menu-item index="WordTemplateList">
+          <svg-icon
+            icon-name="icon-Word1"
+            class="iconfont"
+            :color="getIconColor('WordTemplateList')"
+            size="18px"
+          ></svg-icon>
+          <span>模板列表</span>
+        </el-menu-item>
+        <el-menu-item index="WordCategoryList">
+          <svg-icon
+            icon-name="icon-shujuku"
+            class="iconfont"
+            :color="getIconColor('WordCategoryList')"
+            size="18px"
+          ></svg-icon>
+          <span>分类管理</span>
+        </el-menu-item>
+      </el-sub-menu>
     </el-menu>
   </div>
 </template>
