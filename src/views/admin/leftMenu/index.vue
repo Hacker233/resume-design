@@ -126,6 +126,30 @@
           <span>分类管理</span>
         </el-menu-item>
       </el-sub-menu>
+      <el-sub-menu index="5">
+        <template #title>
+          <svg-icon icon-name="icon-ppt" class="iconfont" color="#303133" size="20px"></svg-icon>
+          <span>PPT模板</span>
+        </template>
+        <el-menu-item index="PPTTemplateList">
+          <svg-icon
+            icon-name="icon-Word1"
+            class="iconfont"
+            :color="getIconColor('PPTTemplateList')"
+            size="18px"
+          ></svg-icon>
+          <span>模板列表</span>
+        </el-menu-item>
+        <el-menu-item index="PPTCategoryList">
+          <svg-icon
+            icon-name="icon-ppt-ext"
+            class="iconfont"
+            :color="getIconColor('PPTCategoryList')"
+            size="18px"
+          ></svg-icon>
+          <span>分类管理</span>
+        </el-menu-item>
+      </el-sub-menu>
     </el-menu>
   </div>
 </template>

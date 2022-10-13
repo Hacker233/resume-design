@@ -31,6 +31,8 @@ const ResumeList = () => import('@/views/admin/resumeManage/resumeList/index.vue
 const TobeAudit = () => import('@/views/admin/templateManage/tobeAudit/index.vue');
 const WordTemplateList = () => import('@/views/admin/wordTemplate/templateList/index.vue');
 const WordCategoryList = () => import('@/views/admin/wordTemplate/categoryList/index.vue');
+const PPTCategoryList = () => import('@/views/admin/pptTemplate/categoryList/index.vue');
+const PPTTemplateList = () => import('@/views/admin/pptTemplate/templateList/index.vue');
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -340,6 +342,28 @@ const routes: Array<RouteRecordRaw> = [
           requireLogin: true
         },
         component: WordCategoryList
+      },
+      {
+        path: 'pptCategoryList',
+        name: 'PPTCategoryList',
+        meta: {
+          title: 'ppt分类',
+          keepAlive: true,
+          isShowComNav: false,
+          requireLogin: true
+        },
+        component: PPTCategoryList
+      },
+      {
+        path: 'pptTemplateList',
+        name: 'PPTTemplateList',
+        meta: {
+          title: 'ppt模板',
+          keepAlive: true,
+          isShowComNav: false,
+          requireLogin: true
+        },
+        component: PPTTemplateList
       }
     ]
   }
