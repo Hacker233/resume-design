@@ -105,7 +105,7 @@
     // min-height: 100px;
     background-color: #fff;
     justify-content: space-between;
-    padding: 10px 12px;
+    padding: 10px 12px 0 12px;
     .left {
       display: flex;
       flex-direction: column;
@@ -114,7 +114,7 @@
       color: #333;
       .left-category {
         display: flex;
-        align-items: center;
+        align-items: flex-start;
         margin: 10px 0;
         .category-title {
           margin-right: 20px;
@@ -147,6 +147,7 @@
       .left-tag {
         ul {
           display: flex;
+          flex-wrap: wrap;
           li {
             list-style: none;
             display: flex;
@@ -159,6 +160,7 @@
             border-radius: 20px;
             padding: 4px 6px;
             user-select: none;
+            margin-bottom: 10px;
             &:hover {
               color: green;
               border-color: green;
@@ -186,6 +188,7 @@
         user-select: none;
         span {
           margin-left: 2px;
+          width: 30px;
         }
       }
       .active {
