@@ -101,6 +101,7 @@
         <el-upload
           v-model:file-list="previewFileList"
           class="upload-demo"
+          multiple
           :action="uploadAddress()"
           :headers="{ Authorization: appStore.useTokenStore.token }"
           :on-preview="handlePreview"

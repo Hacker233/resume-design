@@ -87,8 +87,8 @@
   };
 
   const beforeAvatarUpload: UploadProps['beforeUpload'] = (rawFile) => {
-    if (rawFile.size / 1024 / 1024 > 10) {
-      ElMessage.error('预览图不能大于10M');
+    if (rawFile.size / 1024 / 1024 > 5) {
+      ElMessage.error('预览图不能大于5M');
       return false;
     }
     return true;

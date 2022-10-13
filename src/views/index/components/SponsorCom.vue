@@ -200,8 +200,8 @@
   };
 
   const beforeLogoUpload: UploadProps['beforeUpload'] = (rawFile) => {
-    if (rawFile.size / 1024 / 1024 > 10) {
-      ElMessage.error('logo不能大于10M');
+    if (rawFile.size / 1024 / 1024 > 5) {
+      ElMessage.error('logo不能大于5M');
       return false;
     }
     return true;
@@ -213,8 +213,8 @@
   };
 
   const beforePayUpload: UploadProps['beforeUpload'] = (rawFile) => {
-    if (rawFile.size / 1024 / 1024 > 10) {
-      ElMessage.error('logo不能大于10M');
+    if (rawFile.size / 1024 / 1024 > 5) {
+      ElMessage.error('logo不能大于5M');
       return false;
     }
     return true;
