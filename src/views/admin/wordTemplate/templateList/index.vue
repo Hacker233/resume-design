@@ -22,7 +22,7 @@
     <el-table-column prop="collections" label="收藏量" />
     <el-table-column prop="fileUrl" label="文件地址">
       <template #default="scope">
-        <el-tooltip class="box-item" effect="dark" :content="scope.row.fileUrl">
+        <el-tooltip class="box-item" effect="dark" :content="JSON.parse(scope.row.fileUrl)[0].url">
           <a
             v-for="(item, index) in JSON.parse(scope.row.fileUrl)"
             :key="index"

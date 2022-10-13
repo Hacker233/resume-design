@@ -50,10 +50,11 @@ export const wordAddAsync: any = (params: any) => {
 };
 
 // 查询word模板列表
-export const wordListAsync: any = () => {
+export const wordListAsync: any = (params: any) => {
   return http.request({
     url: '/huajian/wordTemplate/wordList',
-    method: 'get'
+    method: 'get',
+    params: params
   });
 };
 
