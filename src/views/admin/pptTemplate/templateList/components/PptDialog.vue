@@ -185,6 +185,7 @@
         ruleForm.category = props.row.category;
         ruleForm.fileUrl = props.row.fileUrl ? JSON.parse(props.row.fileUrl) : [];
         ruleForm.name = props.row.name;
+        ruleForm.cover = props.row.cover ? JSON.parse(props.row.cover) : [];
         ruleForm.profile = props.row.profile;
         ruleForm.tagsValue = props.row.tags;
         ruleForm.effect = props.row.effect;
