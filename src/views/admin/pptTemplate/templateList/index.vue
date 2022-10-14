@@ -42,6 +42,20 @@
         </el-tooltip>
       </template>
     </el-table-column>
+    <el-table-column prop="cover" label="封面图">
+      <template #default="scope">
+        <div v-if="scope.row.cover" class="preview-box-div">
+          <img
+            v-for="(item, index) in JSON.parse(scope.row.cover)"
+            :key="index"
+            class="preview-img"
+            :src="item.url"
+            alt=""
+            srcset=""
+          />
+        </div>
+      </template>
+    </el-table-column>
     <el-table-column prop="previewUrl" label="预览图">
       <template #default="scope">
         <div v-if="scope.row.previewUrl" class="preview-box-div">

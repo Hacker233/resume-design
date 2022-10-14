@@ -81,6 +81,26 @@
           :autosize="{ minRows: 2, maxRows: 5 }"
         />
       </el-form-item>
+      <el-form-item label="模板封面:">
+        <el-upload
+          ref="uploadRef"
+          v-model:file-list="coverFileList"
+          class="upload-demo"
+          :action="uploadAddress()"
+          :headers="{ Authorization: appStore.useTokenStore.token }"
+          :limit="1"
+          :on-success="handlePPTCoverFileSuccess"
+          :on-remove="handlePPTCoverFileRemove"
+          :before-upload="beforePPTCoverFileUpload"
+          list-type="picture"
+        >
+          <el-button type="primary">上传封面图</el-button>
+          <template #tip>
+            <div class="el-upload__tip"> 预览图大小每张不能超过4M </div>
+          </template>
+        </el-upload>
+      </el-form-item>
+
       <el-form-item label="上传文件:">
         <el-upload
           v-model:file-list="fileList"
@@ -173,6 +193,7 @@
         ruleForm.uploadPreviewList = props.row.previewUrl ? JSON.parse(props.row.previewUrl) : [];
         fileList.value = props.row.fileUrl ? JSON.parse(props.row.fileUrl) : [];
         previewFileList.value = props.row.previewUrl ? JSON.parse(props.row.previewUrl) : [];
+        coverFileList.value = props.row.cover ? JSON.parse(props.row.cover) : [];
         console.log('ruleForm', ruleForm);
       }
     },
@@ -187,6 +208,7 @@
     category: any;
     tagsValue: any;
     fileUrl: any;
+    cover: any;
     uploadPreviewList: any;
     effect: string; // 效果
     proportion: string; // 比列
@@ -199,6 +221,7 @@
     category: [],
     tagsValue: [],
     fileUrl: [],
+    cover: [],
     uploadPreviewList: [],
     effect: '', // 效果
     proportion: '', // 比列
@@ -335,6 +358,50 @@
     }
     return true;
   };
+
+  // 上传模板封面
+  const coverFileList = ref<UploadUserFile[]>([]);
+  const handlePPTCoverFileSuccess: UploadProps['onSuccess'] = (
+    response: any,
+    uploadFile: UploadFile,
+    uploadFiles: UploadFiles
+  ) => {
+    console.log('response', response);
+    console.log('uploadFile', uploadFile);
+    console.log('UploadFiles', uploadFiles);
+    ruleForm.cover = uploadFiles.map((item: any) => {
+      if (item.response) {
+        return {
+          name: item.name,
+          url: item.response.data.data.fileUrl
+        };
+      } else {
+        return item;
+      }
+    });
+  };
+  const handlePPTCoverFileRemove: UploadProps['onRemove'] = (uploadFile, uploadFiles) => {
+    console.log('uploadFile', uploadFile);
+    ruleForm.cover = uploadFiles.map((item: any) => {
+      if (item.response) {
+        return {
+          name: item.name,
+          url: item.response.data.data.fileUrl
+        };
+      } else {
+        return item;
+      }
+    });
+  };
+
+  const beforePPTCoverFileUpload: UploadProps['beforeUpload'] = (rawFile) => {
+    if (rawFile.size / 1024 / 1024 > 20) {
+      ElMessage.error('文件不能大于20M');
+      return false;
+    }
+    return true;
+  };
+
   // 上传文件地址
   const uploadAddress = () => {
     return CONFIG.serverAddress + '/huajian/upload/file/pptTemplate';
@@ -389,6 +456,7 @@
             category: ruleForm.category, // 模板分类
             previewUrl: JSON.stringify(previewFileList.value), // 模板预览图
             fileUrl: JSON.stringify(ruleForm.fileUrl), // 文件地址
+            cover: JSON.stringify(ruleForm.cover),
             tags: ruleForm.tagsValue, // 模板标签
             effect: ruleForm.effect,
             proportion: ruleForm.proportion,
@@ -412,6 +480,7 @@
             category: ruleForm.category, // 模板分类
             previewUrl: JSON.stringify(previewFileList.value), // 模板预览图
             fileUrl: JSON.stringify(ruleForm.fileUrl), // 文件地址
+            cover: JSON.stringify(ruleForm.cover),
             tags: ruleForm.tagsValue, // 模板标签
             effect: ruleForm.effect,
             proportion: ruleForm.proportion,

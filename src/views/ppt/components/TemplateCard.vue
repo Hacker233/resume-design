@@ -1,7 +1,7 @@
 <template>
   <div class="card-wraper" @mouseover="mouseover" @mouseleave="mouseleave">
     <div class="template-card-box">
-      <img :src="getImgUrl(cardData.previewUrl)" alt="" srcset="" />
+      <img :src="getImgUrl(cardData.cover)" alt="" srcset="" />
       <!-- 遮罩层 -->
       <div ref="maskLayerRef" class="mask-layer">
         <div class="design-button" @click="toDesign">立即下载</div>
