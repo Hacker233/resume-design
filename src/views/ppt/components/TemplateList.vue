@@ -30,7 +30,7 @@
     padding: 30px 0 0 0;
     .card-box-item {
       &:not(:nth-child(4n)) {
-        margin-right: 33px;
+        margin-right: 25px;
       }
     }
   }

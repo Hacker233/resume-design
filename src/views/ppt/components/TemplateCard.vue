@@ -58,8 +58,8 @@
     margin-bottom: 40px;
     border-radius: 5px;
     overflow: hidden;
-    width: 320px;
-    height: 225px;
+    width: 306px;
+    height: 215px;
     flex-basis: fit-content;
     transition: all 0.3s;
     &:hover {
@@ -68,7 +68,7 @@
       background-color: #fff;
     }
     .template-card-box {
-      height: 180px;
+      height: 175px;
       background-color: #fff;
       position: relative;
       z-index: 0;
