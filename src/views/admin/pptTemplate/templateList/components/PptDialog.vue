@@ -99,15 +99,16 @@
       </el-form-item>
       <el-form-item label="预览图:">
         <el-upload
+          ref="uploadRef"
           v-model:file-list="previewFileList"
           class="upload-demo"
           multiple
+          :auto-upload="false"
           :action="uploadAddress()"
           :headers="{ Authorization: appStore.useTokenStore.token }"
           :on-preview="handlePreview"
           :on-remove="handleRemove"
           :before-upload="beforePPTPreviewUpload"
-          :on-success="handlePPTPreviewSuccess"
           list-type="picture"
         >
           <el-button type="primary">上传预览图</el-button>
@@ -135,11 +136,13 @@
     FormRules,
     UploadFile,
     UploadFiles,
+    UploadInstance,
     UploadProps,
     UploadUserFile
   } from 'element-plus';
   import appStore from '@/store';
   import { pptAddAsync, updatePPTAsync } from '@/http/api/pptTemplate';
+  import { filesUploadAsync } from '@/http/api/upload';
 
   const emit = defineEmits(['cancle', 'updateSuccess']);
   interface TDialog {
@@ -160,16 +163,16 @@
     (newVal) => {
       if (newVal) {
         ruleForm.category = props.row.category;
-        ruleForm.fileUrl = JSON.parse(props.row.fileUrl);
+        ruleForm.fileUrl = props.row.fileUrl ? JSON.parse(props.row.fileUrl) : [];
         ruleForm.name = props.row.name;
         ruleForm.profile = props.row.profile;
         ruleForm.tagsValue = props.row.tags;
         ruleForm.effect = props.row.effect;
         ruleForm.proportion = props.row.proportion;
         ruleForm.pages = props.row.pages;
-        ruleForm.uploadPreviewList = JSON.parse(props.row.previewUrl);
-        previewFileList.value = JSON.parse(props.row.previewUrl);
-        fileList.value = JSON.parse(props.row.fileUrl);
+        ruleForm.uploadPreviewList = props.row.previewUrl ? JSON.parse(props.row.previewUrl) : [];
+        fileList.value = props.row.fileUrl ? JSON.parse(props.row.fileUrl) : [];
+        previewFileList.value = props.row.previewUrl ? JSON.parse(props.row.previewUrl) : [];
         console.log('ruleForm', ruleForm);
       }
     },
@@ -258,6 +261,38 @@
     console.log(value, ruleForm.tagsValue);
   };
 
+  // 手动上传
+  const previewFileList = ref<any>([]);
+  const uploadRef = ref<UploadInstance>();
+  const submitUpload = async () => {
+    //判断是否有文件再上传
+    if (previewFileList.value.length === 0) {
+      ElMessage.warning('请选取文件后再上传');
+    }
+    // 下面的代码将创建一个空的FormData对象:
+    const formData = new FormData();
+    // 你可以使用FormData.append来添加键/值对到表单里面；
+    console.log('上传的文件列表', previewFileList.value);
+    previewFileList.value.forEach((file: any) => {
+      if (file.raw) {
+        formData.append('files', file.raw);
+      }
+    });
+    // 无上传的文件
+    if (!formData.get('files')) {
+      return;
+    }
+    // 添加自定义参数，不传可删除
+    const data = await filesUploadAsync(formData, 'pptTemplate');
+    if (data.data.status === 200) {
+      previewFileList.value = ruleForm.uploadPreviewList.concat(data.data.data);
+      return;
+    } else {
+      ElMessage.error(data.data.message);
+      sureLoading.value = false;
+    }
+  };
+
   // 文件上传
   const fileList = ref<UploadUserFile[]>([]);
   const handlePPTFileSuccess: UploadProps['onSuccess'] = (
@@ -303,11 +338,9 @@
   // 上传文件地址
   const uploadAddress = () => {
     return CONFIG.serverAddress + '/huajian/upload/file/pptTemplate';
-    // return 'https://91huajian.cn/huajian/upload/file/pptTemplate';
   };
 
   // 预览图列表
-  const previewFileList = ref<UploadUserFile[]>([]);
   const beforePPTPreviewUpload: UploadProps['beforeUpload'] = (rawFile) => {
     if (rawFile.size / 1024 / 1024 > 4) {
       ElMessage.error('文件不能大于4M');
@@ -315,28 +348,9 @@
     }
     return true;
   };
-  const handlePPTPreviewSuccess: UploadProps['onSuccess'] = (
-    response: any,
-    uploadFile: UploadFile,
-    uploadFiles: UploadFiles
-  ) => {
-    console.log('response', response);
-    console.log('uploadFile', uploadFile);
-    console.log('UploadFiles', uploadFiles);
-    ruleForm.uploadPreviewList = uploadFiles.map((item: any) => {
-      if (item.response) {
-        return {
-          name: item.name,
-          url: item.response.data.data.fileUrl
-        };
-      } else {
-        return item;
-      }
-    });
-  };
   const handleRemove: UploadProps['onRemove'] = (uploadFile, uploadFiles) => {
     console.log('uploadFile', uploadFile);
-    ruleForm.uploadPreviewList = uploadFiles.map((item: any) => {
+    previewFileList.value = uploadFiles.map((item: any) => {
       if (item.response) {
         return {
           name: item.name,
@@ -346,6 +360,7 @@
         return item;
       }
     });
+    console.log('移除后的ruleForm.uploadPreviewList', previewFileList.value);
   };
 
   const handlePreview: UploadProps['onPreview'] = (file) => {
@@ -364,19 +379,22 @@
     if (!formEl) return;
     await formEl.validate(async (valid, fields) => {
       if (valid) {
+        sureLoading.value = true;
+        // 上传文件
+        await submitUpload();
         if (props.title === '新增模板') {
           let params = {
             name: ruleForm.name, // ppt模板名称
             profile: ruleForm.profile, // 模板简介
             category: ruleForm.category, // 模板分类
-            previewUrl: JSON.stringify(ruleForm.uploadPreviewList), // 模板预览图
+            previewUrl: JSON.stringify(previewFileList.value), // 模板预览图
             fileUrl: JSON.stringify(ruleForm.fileUrl), // 文件地址
             tags: ruleForm.tagsValue, // 模板标签
             effect: ruleForm.effect,
             proportion: ruleForm.proportion,
             pages: ruleForm.pages
           };
-          sureLoading.value = true;
+
           const data = await pptAddAsync(params);
           if (data.data.status === 200) {
             ElMessage.success('新增成功');
@@ -392,14 +410,14 @@
             name: ruleForm.name, // ppt模板名称
             profile: ruleForm.profile, // 模板简介
             category: ruleForm.category, // 模板分类
-            previewUrl: JSON.stringify(ruleForm.uploadPreviewList), // 模板预览图
+            previewUrl: JSON.stringify(previewFileList.value), // 模板预览图
             fileUrl: JSON.stringify(ruleForm.fileUrl), // 文件地址
             tags: ruleForm.tagsValue, // 模板标签
             effect: ruleForm.effect,
             proportion: ruleForm.proportion,
             pages: ruleForm.pages
           };
-          sureLoading.value = true;
+
           const data = await updatePPTAsync(params);
           if (data.data.status === 200) {
             ElMessage.success('更新成功');

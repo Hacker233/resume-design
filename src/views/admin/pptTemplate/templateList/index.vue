@@ -25,7 +25,12 @@
     <el-table-column prop="pages" label="页数" />
     <el-table-column prop="fileUrl" label="文件地址">
       <template #default="scope">
-        <el-tooltip class="box-item" effect="dark" :content="JSON.parse(scope.row.fileUrl)[0].url">
+        <el-tooltip
+          v-if="scope.row.fileUrl"
+          class="box-item"
+          effect="dark"
+          :content="JSON.parse(scope.row.fileUrl)[0].url"
+        >
           <a
             v-for="(item, index) in JSON.parse(scope.row.fileUrl)"
             :key="index"
@@ -39,7 +44,7 @@
     </el-table-column>
     <el-table-column prop="previewUrl" label="预览图">
       <template #default="scope">
-        <div class="preview-box-div">
+        <div v-if="scope.row.previewUrl" class="preview-box-div">
           <img
             v-for="(item, index) in JSON.parse(scope.row.previewUrl)"
             :key="index"

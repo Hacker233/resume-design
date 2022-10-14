@@ -16,6 +16,8 @@ const PdfPreview = () => import('@/views/PdfPreview/index.vue');
 const Template = () => import('@/views/template/index.vue');
 const Word = () => import('@/views/word/index.vue');
 const WordPreview = () => import('@/views/wordPreview/index.vue');
+const PPT = () => import('@/views/ppt/index.vue');
+const PPTPreview = () => import('@/views/pptPreview/index.vue');
 const MyContribute = () => import('@/views/person/myContribute/index.vue');
 const OnlinePreview = () => import('@/views/onlinePreview/index.vue');
 const MyOnlineResume = () => import('@/views/person/onlineResume/index.vue');
@@ -135,6 +137,17 @@ const routes: Array<RouteRecordRaw> = [
     component: Word
   },
   {
+    path: '/ppt',
+    name: 'PPT',
+    meta: {
+      title: 'PPT模板',
+      keepAlive: true,
+      isShowComNav: true,
+      requireLogin: false
+    },
+    component: PPT
+  },
+  {
     path: '/wordPreview',
     name: 'WordPreview',
     meta: {
@@ -144,6 +157,17 @@ const routes: Array<RouteRecordRaw> = [
       requireLogin: false
     },
     component: WordPreview
+  },
+  {
+    path: '/pptPreview',
+    name: 'PPTPreview',
+    meta: {
+      title: 'ppt模板详情',
+      keepAlive: true,
+      isShowComNav: true,
+      requireLogin: false
+    },
+    component: PPTPreview
   },
   {
     path: '/person',

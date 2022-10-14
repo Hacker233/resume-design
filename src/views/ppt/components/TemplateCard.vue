@@ -4,14 +4,6 @@
       <img :src="getImgUrl(cardData.previewUrl)" alt="" srcset="" />
       <!-- 遮罩层 -->
       <div ref="maskLayerRef" class="mask-layer">
-        <div
-          v-if="cardData.NAME !== 'custom'"
-          class="preview-icon"
-          title="预览"
-          @click="previreImg"
-        >
-          <svg-icon icon-name="icon-yulan" class-name="yulan" color="#fff"></svg-icon>
-        </div>
         <div class="design-button" @click="toDesign">立即下载</div>
       </div>
     </div>
@@ -31,14 +23,9 @@
       </div>
     </div>
   </div>
-
-  <PreviewImage v-show="dialogVisible" @close="close">
-    <img class="previewImg" :src="getImgUrl(cardData.previewUrl)" alt="" srcset="" />
-  </PreviewImage>
 </template>
 <script setup lang="ts">
   import { ref } from 'vue';
-  import PreviewImage from '@/components/PreviewImage/PreviewImage.vue';
   const props = defineProps<{
     cardData: any;
   }>();
@@ -63,15 +50,6 @@
   const toDesign = () => {
     emit('toPreview', props.cardData);
   };
-
-  // 图片预览
-  const dialogVisible = ref<boolean>(false);
-  const previreImg = () => {
-    dialogVisible.value = true;
-  };
-  const close = () => {
-    dialogVisible.value = false;
-  };
 </script>
 <style lang="scss" scoped>
   .card-wraper {
@@ -80,8 +58,8 @@
     margin-bottom: 40px;
     border-radius: 5px;
     overflow: hidden;
-    width: 300px;
-    height: 440px;
+    width: 320px;
+    height: 225px;
     flex-basis: fit-content;
     transition: all 0.3s;
     &:hover {
@@ -90,7 +68,7 @@
       background-color: #fff;
     }
     .template-card-box {
-      height: 400px;
+      height: 180px;
       background-color: #fff;
       position: relative;
       z-index: 0;
@@ -159,6 +137,7 @@
       align-items: center;
       justify-content: space-between;
       padding: 0 5px;
+      background-color: #fff;
       .downloads-box {
         display: flex;
         align-items: center;

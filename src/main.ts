@@ -24,6 +24,7 @@ import 'element-plus/theme-chalk/src/message.scss';
 // 注册store
 import { createPinia } from 'pinia';
 import { registerStore } from '@/store';
+import VueViewer from 'v-viewer';
 
 // 创建vue实例
 const app = createApp(App);
@@ -37,6 +38,11 @@ app.use(component);
 app.use(elementIcons);
 app.use(ColorPicker);
 app.use(CScrollbar);
+app.use(VueViewer, {
+  defaultOptions: {
+    // 自定义默认配置
+  }
+});
 app.component('SvgIcon', SvgIcon);
 
 // 挂载实例
