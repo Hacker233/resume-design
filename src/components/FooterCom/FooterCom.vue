@@ -2,6 +2,25 @@
   <div class="footer-box">
     <ul>
       <li>
+        <svg-icon icon-name="icon-hezuo" class-name="bilibili"></svg-icon>
+        <el-popover trigger="hover" :width="200" placement="top" teleported>
+          <template #reference>
+            <a href="JavaScript: void(0)" rel="noopener noreferrer">商务合作</a>
+          </template>
+          <!-- 内容区域 -->
+          <div class="vx-box">
+            <div class="vx-title">
+              <h1>添加微信</h1>
+              <p>备注：化简商务合作</p>
+            </div>
+            <div class="vx-img">
+              <img class="bgc-img" src="@/assets/images/vx.jpg" alt="" />
+            </div>
+          </div>
+        </el-popover>
+      </li>
+      <div class="lines"></div>
+      <li>
         <svg-icon icon-name="icon-bilibili-copy" class-name="bilibili"></svg-icon>
         <a
           href="https://space.bilibili.com/493520625?spm_id_from=333.1007.0.0"
@@ -82,10 +101,33 @@
         background-color: #838799;
       }
     }
+
     .visit {
       color: rgb(201, 181, 181);
       font-size: 14px;
       letter-spacing: 3px;
+    }
+  }
+  .vx-box {
+    .vx-title {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      h1 {
+        font-size: 14px;
+      }
+      p {
+        font-size: 12px;
+        color: rgb(105, 105, 105);
+        margin: 6px 0;
+      }
+    }
+    .vx-img {
+      width: 100%;
+      overflow: hidden;
+      .bgc-img {
+        width: 100%;
+      }
     }
   }
 </style>

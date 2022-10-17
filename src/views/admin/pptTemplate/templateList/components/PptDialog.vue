@@ -442,7 +442,7 @@
 
   // 提交
   const sureLoading = ref<boolean>(false);
-  const ruleFormRef = ref<FormInstance>();
+  const ruleFormRef = ref<any>(null);
   const submit = async (formEl: FormInstance | undefined) => {
     if (!formEl) return;
     await formEl.validate(async (valid, fields) => {
@@ -469,6 +469,7 @@
             ElMessage.success('新增成功');
             sureLoading.value = false;
             emit('updateSuccess');
+            ruleFormRef.value.resetFields();
           } else {
             sureLoading.value = false;
             ElMessage.error(data.data.message);
@@ -493,6 +494,7 @@
             ElMessage.success('更新成功');
             sureLoading.value = false;
             emit('updateSuccess');
+            ruleFormRef.value.resetFields();
           } else {
             sureLoading.value = false;
             ElMessage.error(data.data.message);

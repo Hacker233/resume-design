@@ -124,6 +124,7 @@
         }
         ul {
           display: flex;
+          flex: 1;
           li {
             list-style: none;
             display: flex;
