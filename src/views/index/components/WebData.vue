@@ -26,7 +26,7 @@
               separator=","
               :duration="4000"
             ></count-to>
-            <span>人</span>
+            <span>次</span>
           </p>
           <h1>累计访问量</h1>
         </li>

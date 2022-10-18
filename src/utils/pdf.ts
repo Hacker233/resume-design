@@ -13,6 +13,7 @@ const exportPdf = async (token?: string, id?: string, height?: string) => {
     filename: '',
     format: 'A4'
   };
+  debugger;
   const pdfData = await getResumePdfAsync(params);
   if (pdfData.status) {
     ElMessage.error(pdfData.message);
