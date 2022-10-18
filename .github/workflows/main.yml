@@ -32,4 +32,4 @@ jobs:
           pass: ${{ secrets.USER_PASS }}
           connect_timeout: 10s
           local: './dist/*'
-          remote: /www/wwwroot/huajian.smallpig.site/main/dist
+          remote: /www/wwwroot/web/resume-design/dist
