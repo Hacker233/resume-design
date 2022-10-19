@@ -33,6 +33,37 @@ export const MATERIAL_JSON: IMSTERIALLISTJSON = {
         pLeftRight: '0'
       }, // 组件样式
       data: {} // 组件数据
+    },
+    {
+      keyId: '', // 组件id
+      model: 'RESUME_TITLE', // 模块
+      cptName: 'RESUME_TITLE_2', // 组件名
+      cptOptionsName: 'RESUME_TITLE_OPTIONS',
+      cptTitle: '简历标题', // 组件名
+      cptX: 0, // 组件x坐标
+      cptY: 0, // 组件y坐标
+      cptZ: 0, // 组件z坐标
+      cptHeight: '100px', // 组件高度
+      cptWidth: '100%', // 组件宽度
+      layout: 'center', // 布局在左侧还是右侧
+      show: true, // 组件是否显示
+      style: {
+        themeColor: '#0b70bd',
+        firstTitleFontSize: '20px',
+        titleColor: '#121c26',
+        titleFontSize: '30px',
+        titleFontWeight: 500,
+        textColor: '#fff',
+        textFontSize: '16px',
+        textFontWeight: 600,
+        backgroundColor: '#000',
+        mBottom: '35px',
+        mTop: '0px',
+        pTop: '0',
+        pBottom: '0px',
+        pLeftRight: '0'
+      }, // 组件样式
+      data: {} // 组件数据
     }
   ],
   BASE_INFO: [
@@ -489,6 +520,36 @@ export const MATERIAL_JSON: IMSTERIALLISTJSON = {
         pLeftRight: '30px'
       },
       data: {}
+    },
+    {
+      keyId: '',
+      model: 'JOB_INTENTION',
+      cptName: 'JOB_INTENTION_9',
+      cptOptionsName: 'JOB_INTENTION_OPTIONS',
+      cptTitle: '求职意向',
+      cptX: 0,
+      cptY: 0,
+      cptZ: 0,
+      cptHeight: '100px',
+      cptWidth: '100%',
+      layout: 'right',
+      show: true,
+      style: {
+        textColor: '#757575',
+        textFontSize: '14px',
+        textFontWeight: 500,
+        mBottom: '0px',
+        mTop: '0px',
+        themeColor: '#0b70bd',
+        firstTitleFontSize: '20px',
+        titleColor: '#121c26',
+        titleFontSize: '30px',
+        titleFontWeight: 500,
+        pTop: '0',
+        pBottom: '30px',
+        pLeftRight: '30px'
+      },
+      data: {}
     }
   ],
   EDU_BACKGROUND: [
@@ -759,6 +820,36 @@ export const MATERIAL_JSON: IMSTERIALLISTJSON = {
         firstTitleFontSize: '20px',
         pTop: '40px',
         pBottom: '30px',
+        pLeftRight: '30px'
+      },
+      data: {}
+    },
+    {
+      keyId: '',
+      model: 'EDU_BACKGROUND',
+      cptName: 'EDU_BACKGROUND_10',
+      cptOptionsName: 'EDU_BACKGROUND_OPTIONS_1',
+      cptTitle: '教育背景',
+      cptX: 0,
+      cptY: 0,
+      cptZ: 0,
+      cptHeight: '50px',
+      cptWidth: '100%',
+      layout: 'center',
+      show: true,
+      style: {
+        textColor: '#757575',
+        textFontSize: '14px',
+        textFontWeight: 500,
+        titleColor: '#666666',
+        titleFontSize: '14px',
+        titleFontWeight: 600,
+        mBottom: '0',
+        mTop: '0px',
+        themeColor: '#0b70bd',
+        firstTitleFontSize: '20px',
+        pTop: '0px',
+        pBottom: '0px',
         pLeftRight: '30px'
       },
       data: {}
@@ -1073,6 +1164,99 @@ export const MATERIAL_JSON: IMSTERIALLISTJSON = {
         pLeftRight: '30px'
       },
       data: {}
+    },
+    {
+      keyId: '',
+      model: 'SKILL_SPECIALTIES',
+      cptName: 'SKILL_SPECIALTIES_11',
+      cptOptionsName: 'SKILL_SPECIALTIES_OPTIONS_1',
+      cptTitle: '技能特长',
+      cptX: 0,
+      cptY: 0,
+      cptZ: 0,
+      cptHeight: '50px',
+      cptWidth: '100%',
+      layout: 'center',
+      show: true,
+      style: {
+        textColor: '#757575',
+        textFontSize: '14px',
+        textFontWeight: 500,
+        mBottom: '0',
+        mTop: '0px',
+        themeColor: '#0b70bd',
+        firstTitleFontSize: '20px',
+        titleColor: '#666666',
+        titleFontSize: '14px',
+        titleFontWeight: 600,
+        backgroundColor: '#000',
+        pTop: '0',
+        pBottom: '0',
+        pLeftRight: '30px'
+      },
+      data: {}
+    },
+    {
+      keyId: '',
+      model: 'SKILL_SPECIALTIES',
+      cptName: 'SKILL_SPECIALTIES_12',
+      cptOptionsName: 'SKILL_SPECIALTIES_OPTIONS_1',
+      cptTitle: '技能特长',
+      cptX: 0,
+      cptY: 0,
+      cptZ: 0,
+      cptHeight: '50px',
+      cptWidth: '100%',
+      layout: 'center',
+      show: true,
+      style: {
+        textColor: '#757575',
+        textFontSize: '14px',
+        textFontWeight: 500,
+        mBottom: '0',
+        mTop: '0px',
+        themeColor: '#0b70bd',
+        firstTitleFontSize: '20px',
+        titleColor: '#666666',
+        titleFontSize: '14px',
+        titleFontWeight: 600,
+        backgroundColor: '#000',
+        pTop: '0',
+        pBottom: '30px',
+        pLeftRight: '30px'
+      },
+      data: {}
+    },
+    {
+      keyId: '',
+      model: 'SKILL_SPECIALTIES',
+      cptName: 'SKILL_SPECIALTIES_13',
+      cptOptionsName: 'SKILL_SPECIALTIES_OPTIONS_1',
+      cptTitle: '技能特长',
+      cptX: 0,
+      cptY: 0,
+      cptZ: 0,
+      cptHeight: '50px',
+      cptWidth: '100%',
+      layout: 'center',
+      show: true,
+      style: {
+        textColor: '#757575',
+        textFontSize: '14px',
+        textFontWeight: 500,
+        mBottom: '0',
+        mTop: '0px',
+        themeColor: '#0b70bd',
+        firstTitleFontSize: '20px',
+        titleColor: '#666666',
+        titleFontSize: '14px',
+        titleFontWeight: 600,
+        backgroundColor: '#000',
+        pTop: '0',
+        pBottom: '0',
+        pLeftRight: '30px'
+      },
+      data: {}
     }
   ],
   CAMPUS_EXPERIENCE: [
@@ -1297,6 +1481,37 @@ export const MATERIAL_JSON: IMSTERIALLISTJSON = {
       keyId: '', // 组件id
       model: 'CAMPUS_EXPERIENCE', // 模块
       cptName: 'CAMPUS_EXPERIENCE_8', // 组件名
+      cptOptionsName: 'CAMPUS_EXPERIENCE_OPTIONS',
+      cptTitle: '校园经历', // 组件名
+      cptX: 0, // 组件x坐标
+      cptY: 0, // 组件y坐标
+      cptZ: 0, // 组件z坐标
+      cptHeight: '50px', // 组件高度
+      cptWidth: '100%', // 组件宽度
+      layout: 'center', // 布局在左侧还是右侧
+      show: true, // 组件是否显示
+      style: {
+        themeColor: '#0b70bd',
+        firstTitleFontSize: '20px',
+        textColor: '#757575',
+        textFontSize: '14px',
+        textFontWeight: 500,
+        titleColor: '#666666',
+        titleFontSize: '14px',
+        titleFontWeight: 600,
+        backgroundColor: '#000',
+        mBottom: '0px',
+        mTop: '0px',
+        pTop: '40px',
+        pBottom: '30px',
+        pLeftRight: '30px'
+      }, // 组件样式
+      data: {} // 组件数据
+    },
+    {
+      keyId: '', // 组件id
+      model: 'CAMPUS_EXPERIENCE', // 模块
+      cptName: 'CAMPUS_EXPERIENCE_9', // 组件名
       cptOptionsName: 'CAMPUS_EXPERIENCE_OPTIONS',
       cptTitle: '校园经历', // 组件名
       cptX: 0, // 组件x坐标
@@ -1573,6 +1788,37 @@ export const MATERIAL_JSON: IMSTERIALLISTJSON = {
         pLeftRight: '30px'
       }, // 组件样式
       data: {} // 组件数据
+    },
+    {
+      keyId: '', // 组件id
+      model: 'INTERNSHIP_EXPERIENCE', // 模块
+      cptName: 'INTERNSHIP_EXPERIENCE_9', // 组件名
+      cptOptionsName: 'INTERNSHIP_EXPERIENCE_OPTIONS',
+      cptTitle: '实习经验', // 组件名
+      cptX: 0, // 组件x坐标
+      cptY: 0, // 组件y坐标
+      cptZ: 0, // 组件z坐标
+      cptHeight: '50px', // 组件高度
+      cptWidth: '100%', // 组件宽度
+      layout: 'center', // 布局在左侧还是右侧
+      show: true, // 组件是否显示
+      style: {
+        themeColor: '#0b70bd',
+        firstTitleFontSize: '20px',
+        textColor: '#757575',
+        textFontSize: '14px',
+        textFontWeight: 500,
+        titleColor: '#666666',
+        titleFontSize: '14px',
+        titleFontWeight: 600,
+        backgroundColor: '#000',
+        mBottom: '0px',
+        mTop: '0px',
+        pTop: '40px',
+        pBottom: '30px',
+        pLeftRight: '30px'
+      }, // 组件样式
+      data: {} // 组件数据
     }
   ],
   WORK_EXPERIENCE: [
@@ -1797,6 +2043,37 @@ export const MATERIAL_JSON: IMSTERIALLISTJSON = {
       keyId: '', // 组件id
       model: 'WORK_EXPERIENCE', // 模块
       cptName: 'WORK_EXPERIENCE_8', // 组件名
+      cptOptionsName: 'WORK_EXPERIENCE_OPTIONS',
+      cptTitle: '工作经验', // 组件名
+      cptX: 0, // 组件x坐标
+      cptY: 0, // 组件y坐标
+      cptZ: 0, // 组件z坐标
+      cptHeight: '50px', // 组件高度
+      cptWidth: '100%', // 组件宽度
+      layout: 'center', // 布局在左侧还是右侧
+      show: true, // 组件是否显示
+      style: {
+        themeColor: '#0b70bd',
+        firstTitleFontSize: '20px',
+        textColor: '#757575',
+        textFontSize: '14px',
+        textFontWeight: 500,
+        titleColor: '#666666',
+        titleFontSize: '14px',
+        titleFontWeight: 600,
+        backgroundColor: '#000',
+        mBottom: '0px',
+        mTop: '0px',
+        pTop: '40px',
+        pBottom: '30px',
+        pLeftRight: '30px'
+      }, // 组件样式
+      data: {} // 组件数据
+    },
+    {
+      keyId: '', // 组件id
+      model: 'WORK_EXPERIENCE', // 模块
+      cptName: 'WORK_EXPERIENCE_9', // 组件名
       cptOptionsName: 'WORK_EXPERIENCE_OPTIONS',
       cptTitle: '工作经验', // 组件名
       cptX: 0, // 组件x坐标
@@ -2073,6 +2350,37 @@ export const MATERIAL_JSON: IMSTERIALLISTJSON = {
         pLeftRight: '30px'
       }, // 组件样式
       data: {} // 组件数据
+    },
+    {
+      keyId: '', // 组件id
+      model: 'PROJECT_EXPERIENCE', // 模块
+      cptName: 'PROJECT_EXPERIENCE_9', // 组件名
+      cptOptionsName: 'PROJECT_EXPERIENCE_OPTIONS',
+      cptTitle: '项目经验', // 组件名
+      cptX: 0, // 组件x坐标
+      cptY: 0, // 组件y坐标
+      cptZ: 0, // 组件z坐标
+      cptHeight: '50px', // 组件高度
+      cptWidth: '100%', // 组件宽度
+      layout: 'center', // 布局在左侧还是右侧
+      show: true, // 组件是否显示
+      style: {
+        themeColor: '#0b70bd',
+        firstTitleFontSize: '20px',
+        textColor: '#757575',
+        textFontSize: '14px',
+        textFontWeight: 500,
+        titleColor: '#666666',
+        titleFontSize: '14px',
+        titleFontWeight: 600,
+        backgroundColor: '#000',
+        mBottom: '0px',
+        mTop: '0px',
+        pTop: '40px',
+        pBottom: '30px',
+        pLeftRight: '30px'
+      }, // 组件样式
+      data: {} // 组件数据
     }
   ],
   AWARDS: [
@@ -2297,6 +2605,37 @@ export const MATERIAL_JSON: IMSTERIALLISTJSON = {
       keyId: '', // 组件id
       model: 'AWARDS', // 模块
       cptName: 'AWARDS_8', // 组件名
+      cptOptionsName: 'AWARDS_OPTIONS',
+      cptTitle: '荣誉奖项', // 组件名
+      cptX: 0, // 组件x坐标
+      cptY: 0, // 组件y坐标
+      cptZ: 0, // 组件z坐标
+      cptHeight: '50px', // 组件高度
+      cptWidth: '100%', // 组件宽度
+      layout: 'center', // 布局在左侧还是右侧
+      show: true, // 组件是否显示
+      style: {
+        themeColor: '#0b70bd',
+        firstTitleFontSize: '20px',
+        textColor: '#757575',
+        textFontSize: '14px',
+        textFontWeight: 500,
+        titleColor: '#666666',
+        titleFontSize: '14px',
+        titleFontWeight: 600,
+        backgroundColor: '#000',
+        mBottom: '0px',
+        mTop: '0px',
+        pTop: '40px',
+        pBottom: '30px',
+        pLeftRight: '30px'
+      }, // 组件样式
+      data: {} // 组件数据
+    },
+    {
+      keyId: '', // 组件id
+      model: 'AWARDS', // 模块
+      cptName: 'AWARDS_9', // 组件名
       cptOptionsName: 'AWARDS_OPTIONS',
       cptTitle: '荣誉奖项', // 组件名
       cptX: 0, // 组件x坐标
@@ -2573,6 +2912,37 @@ export const MATERIAL_JSON: IMSTERIALLISTJSON = {
         pLeftRight: '30px'
       }, // 组件样式
       data: {} // 组件数据
+    },
+    {
+      keyId: '', // 组件id
+      model: 'HOBBIES', // 模块
+      cptName: 'HOBBIES_9', // 组件名
+      cptOptionsName: 'HOBBIES_OPTIONS',
+      cptTitle: '兴趣爱好', // 组件名
+      cptX: 0, // 组件x坐标
+      cptY: 0, // 组件y坐标
+      cptZ: 0, // 组件z坐标
+      cptHeight: '50px', // 组件高度
+      cptWidth: '100%', // 组件宽度
+      layout: 'center', // 布局在左侧还是右侧
+      show: true, // 组件是否显示
+      style: {
+        themeColor: '#0b70bd',
+        firstTitleFontSize: '20px',
+        textColor: '#757575',
+        textFontSize: '14px',
+        textFontWeight: 500,
+        titleColor: '#666666',
+        titleFontSize: '14px',
+        titleFontWeight: 600,
+        backgroundColor: '#000',
+        mBottom: '0px',
+        mTop: '0px',
+        pTop: '40px',
+        pBottom: '30px',
+        pLeftRight: '30px'
+      }, // 组件样式
+      data: {} // 组件数据
     }
   ],
   SELF_EVALUATION: [
@@ -2823,6 +3193,37 @@ export const MATERIAL_JSON: IMSTERIALLISTJSON = {
         pLeftRight: '30px'
       }, // 组件样式
       data: {} // 组件数据
+    },
+    {
+      keyId: '', // 组件id
+      model: 'SELF_EVALUATION', // 模块
+      cptName: 'SELF_EVALUATION_9', // 组件名
+      cptOptionsName: 'SELF_EVALUATION_OPTIONS',
+      cptTitle: '自我评价', // 组件名
+      cptX: 0, // 组件x坐标
+      cptY: 0, // 组件y坐标
+      cptZ: 0, // 组件z坐标
+      cptHeight: '50px', // 组件高度
+      cptWidth: '100%', // 组件宽度
+      layout: 'center', // 布局在左侧还是右侧
+      show: true, // 组件是否显示
+      style: {
+        themeColor: '#0b70bd',
+        firstTitleFontSize: '20px',
+        textColor: '#757575',
+        textFontSize: '14px',
+        textFontWeight: 500,
+        titleColor: '#666666',
+        titleFontSize: '14px',
+        titleFontWeight: 600,
+        backgroundColor: '#000',
+        mBottom: '0px',
+        mTop: '0px',
+        pTop: '40px',
+        pBottom: '30px',
+        pLeftRight: '30px'
+      }, // 组件样式
+      data: {} // 组件数据
     }
   ],
   WORKS_DISPLAY: [
@@ -3047,6 +3448,37 @@ export const MATERIAL_JSON: IMSTERIALLISTJSON = {
       keyId: '', // 组件id
       model: 'WORKS_DISPLAY', // 模块
       cptName: 'WORKS_DISPLAY_8', // 组件名
+      cptOptionsName: 'WORKS_DISPLAY_OPTIONS',
+      cptTitle: '作评展示', // 组件名
+      cptX: 0, // 组件x坐标
+      cptY: 0, // 组件y坐标
+      cptZ: 0, // 组件z坐标
+      cptHeight: '50px', // 组件高度
+      cptWidth: '100%', // 组件宽度
+      layout: 'center', // 布局在左侧还是右侧
+      show: true, // 组件是否显示
+      style: {
+        themeColor: '#0b70bd',
+        firstTitleFontSize: '20px',
+        textColor: '#757575',
+        textFontSize: '14px',
+        textFontWeight: 500,
+        titleColor: '#666666',
+        titleFontSize: '14px',
+        titleFontWeight: 600,
+        backgroundColor: '#000',
+        mBottom: '0px',
+        mTop: '0px',
+        pTop: '40px',
+        pBottom: '30px',
+        pLeftRight: '30px'
+      }, // 组件样式
+      data: {} // 组件数据
+    },
+    {
+      keyId: '', // 组件id
+      model: 'WORKS_DISPLAY', // 模块
+      cptName: 'WORKS_DISPLAY_9', // 组件名
       cptOptionsName: 'WORKS_DISPLAY_OPTIONS',
       cptTitle: '作评展示', // 组件名
       cptX: 0, // 组件x坐标

@@ -47,7 +47,7 @@
                   }"
                   @click="addModel(element)"
                 >
-                  <el-tooltip class="box-item" effect="light" :enterable="false">
+                  <el-tooltip class="box-item" effect="light" :enterable="false" placement="right">
                     <template #content>
                       <div class="toolTip-box">
                         <img
