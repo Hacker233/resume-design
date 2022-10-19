@@ -470,6 +470,7 @@
             sureLoading.value = false;
             emit('updateSuccess');
             ruleFormRef.value.resetFields();
+            previewFileList.value = [];
           } else {
             sureLoading.value = false;
             ElMessage.error(data.data.message);
@@ -495,6 +496,7 @@
             sureLoading.value = false;
             emit('updateSuccess');
             ruleFormRef.value.resetFields();
+            previewFileList.value = [];
           } else {
             sureLoading.value = false;
             ElMessage.error(data.data.message);
