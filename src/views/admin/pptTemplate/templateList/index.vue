@@ -60,10 +60,8 @@
       <template #default="scope">
         <div v-if="scope.row.previewUrl" class="preview-box-div">
           <img
-            v-for="(item, index) in JSON.parse(scope.row.previewUrl)"
-            :key="index"
             class="preview-img"
-            :src="item.url"
+            :src="JSON.parse(scope.row.previewUrl)[0].url"
             alt=""
             srcset=""
           />

@@ -417,18 +417,21 @@
     return true;
   };
   const handleRemove: UploadProps['onRemove'] = (uploadFile, uploadFiles) => {
-    console.log('uploadFile', uploadFile);
-    previewFileList.value = uploadFiles.map((item: any) => {
-      if (item.response) {
-        return {
-          name: item.name,
-          url: item.response.data.data.fileUrl
-        };
-      } else {
-        return item;
+    console.log('uploadFile', uploadFile, uploadFiles);
+    previewFileList.value = [];
+    ruleForm.uploadPreviewList = []; // 原来已经上传的文件
+    for (let index = 0; index < uploadFiles.length; index++) {
+      if (!uploadFiles[index].raw) {
+        ruleForm.uploadPreviewList.push({
+          name: uploadFiles[index].name,
+          url: uploadFiles[index].url
+        });
       }
-    });
-    console.log('移除后的ruleForm.uploadPreviewList', previewFileList.value);
+      previewFileList.value.push(uploadFiles[index]);
+    }
+
+    console.log('移除后的previewFileList', previewFileList.value);
+    console.log('移除后的uploadPreviewList', ruleForm.uploadPreviewList);
   };
 
   const handlePreview: UploadProps['onPreview'] = (file) => {
