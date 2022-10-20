@@ -25,11 +25,11 @@
   const switchRef = ref<any>(null);
   const unfoldOrCollapse = () => {
     if (status.value) {
-      tooltipTitle.value = '展开，放至最大宽度';
+      tooltipTitle.value = '收起，收至最小宽度';
       status.value = false;
       switchRef.value.style.transform = 'rotate(180deg)';
     } else {
-      tooltipTitle.value = '收起，收至最小宽度';
+      tooltipTitle.value = '展开，放至最大宽度';
       status.value = true;
       switchRef.value.style.transform = 'rotate(0deg)';
     }
