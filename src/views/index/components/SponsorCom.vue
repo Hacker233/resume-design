@@ -12,7 +12,7 @@
       </div>
       <div v-else class="sponsor-list-box">
         <ul>
-          <li v-for="(item, index) in sponsorList" :key="index">
+          <li v-for="(item, index) in sponsorList" :key="index" @click="toSponsor(item)">
             <div class="img-box">
               <img :src="item.logo_url" alt="" />
             </div>
@@ -140,7 +140,7 @@
   const getSponsorList = async () => {
     const data = await getSponsorListAsync();
     if (data.status === 200) {
-      sponsorList.value = data.data.filter((item: any) => item.valid);
+      sponsorList.value = data.data.filter((item: any) => !item.valid);
     } else {
       ElMessage.error(data.message);
     }
@@ -220,6 +220,11 @@
     return true;
   };
 
+  // 跳转至赞助列表页
+  const toSponsor = (item: any) => {
+    window.open(item.link);
+  };
+
   defineExpose({
     scrollIntoView
   });
@@ -259,14 +264,18 @@
             display: flex;
             flex-direction: column;
             transition: 0.15s all ease-in-out;
+            border-radius: 8px;
             &:hover {
               transform: scale(1.1);
             }
             .img-box {
               width: 100%;
               height: 70%;
+              display: flex;
+              align-items: center;
+              justify-content: center;
               img {
-                width: 100%;
+                width: 80%;
               }
             }
             .name-box {
