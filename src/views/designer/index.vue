@@ -279,6 +279,7 @@
     box-sizing: border-box;
     overflow: hidden;
     font-family: 'Microsoft YaHei';
+    min-width: 1375px;
     .bottom {
       display: flex;
       width: 100%;
