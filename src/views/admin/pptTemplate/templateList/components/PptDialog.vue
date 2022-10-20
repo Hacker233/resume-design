@@ -300,7 +300,9 @@
     console.log('上传的文件列表', previewFileList.value);
     for (let index = 0; index < previewFileList.value.length; index++) {
       if (previewFileList.value[index].raw) {
+        console.log('压缩前', previewFileList.value[index].raw);
         const files: any = await compressFile(previewFileList.value[index].raw, 0.3); // 压缩图片
+        console.log('压缩后', files);
         if (files) {
           formData.append('files', files);
         }
