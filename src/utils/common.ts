@@ -1,6 +1,7 @@
 import { uuid } from 'vue-uuid';
 import moment from 'moment'; // 日期处理
 import appStore from '@/store';
+import * as imageConversion from 'image-conversion'; // 图片压缩
 // 工具方法--px转数字
 export const pxTonumber = (value: string | undefined): number => {
   if (value) {
@@ -159,4 +160,20 @@ export const downloadFileUtil = (url: string) => {
   }
   window.open(url, '_self');
   return true;
+};
+
+// 压缩文件
+export const compressFile = (file: File, mag: number) => {
+  return new Promise(async (resolve, reject) => {
+    const res = await imageConversion.compress(file, mag); // 压缩图片
+    // blob 转file
+    const files = new window.File([res], file.name, {
+      type: file.type
+    });
+    if (files) {
+      resolve(files);
+    } else {
+      reject(null);
+    }
+  });
 };

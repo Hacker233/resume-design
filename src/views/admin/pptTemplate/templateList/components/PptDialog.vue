@@ -163,6 +163,7 @@
   import appStore from '@/store';
   import { pptAddAsync, updatePPTAsync } from '@/http/api/pptTemplate';
   import { filesUploadAsync } from '@/http/api/upload';
+  import { compressFile } from '@/utils/common';
 
   const emit = defineEmits(['cancle', 'updateSuccess']);
   interface TDialog {
@@ -297,11 +298,14 @@
     const formData = new FormData();
     // 你可以使用FormData.append来添加键/值对到表单里面；
     console.log('上传的文件列表', previewFileList.value);
-    previewFileList.value.forEach((file: any) => {
-      if (file.raw) {
-        formData.append('files', file.raw);
+    for (let index = 0; index < previewFileList.value.length; index++) {
+      if (previewFileList.value[index].raw) {
+        const files: any = await compressFile(previewFileList.value[index].raw, 0.3); // 压缩图片
+        if (files) {
+          formData.append('files', files);
+        }
       }
-    });
+    }
     // 无上传的文件
     if (!formData.get('files')) {
       return;

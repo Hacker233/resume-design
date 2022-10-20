@@ -36,6 +36,7 @@
     "element-plus": "^2.1.11",
     "file-saver": "^2.0.5",
     "html2canvas": "^1.4.1",
+    "image-conversion": "^2.1.1",
     "jspdf": "^1.4.1",
     "lodash": "^4.17.21",
     "moment": "^2.29.3",
