@@ -30,6 +30,8 @@
     "@element-plus/icons-vue": "^1.1.4",
     "@types/qs": "^6.9.7",
     "@vueuse/core": "^8.2.0",
+    "@wangeditor/editor": "^5.1.22",
+    "@wangeditor/editor-for-vue": "^5.1.12",
     "axios": "^0.26.1",
     "c-scrollbar": "^1.0.2",
     "colorpicker-v3": "^2.10.2",

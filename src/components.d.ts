@@ -10,6 +10,7 @@ declare module '@vue/runtime-core' {
     AwardsCom: typeof import('./components/ModelComs/AwardsCom.vue')['default']
     CampusExperienceCom: typeof import('./components/ModelComs/CampusExperienceCom.vue')['default']
     ColorPickerCustom: typeof import('./components/ColorPicker/ColorPickerCustom.vue')['default']
+    CommEditor: typeof import('./components/CommEditor/CommEditor.vue')['default']
     CommonLoading: typeof import('./components/CommonLoading/CommonLoading.vue')['default']
     DateFormItem: typeof import('./components/DateFormItem/DateFormItem.vue')['default']
     EduBackgroundCom: typeof import('./components/ModelComs/EduBackgroundCom.vue')['default']

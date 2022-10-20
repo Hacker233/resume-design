@@ -339,8 +339,7 @@
       }
 
       .config {
-        min-width: 355px;
-        // max-width: 1000px;
+        width: 355px;
         background-color: #fff;
         overflow-y: auto;
         display: flex;

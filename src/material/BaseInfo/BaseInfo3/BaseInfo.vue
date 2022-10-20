@@ -4,7 +4,7 @@
     <div class="user-info">
       <div class="head">
         <h1>{{ modelData.name }}</h1>
-        <p>{{ modelData.abstract }}</p>
+        <p v-show="isShow.abstract">{{ modelData.abstract }}</p>
       </div>
       <div class="detail">
         <ul>
