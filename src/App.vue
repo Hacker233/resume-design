@@ -32,7 +32,8 @@
   }
 </script>
 <style>
+  /* 设置了打印会出现问题 */
   #app {
-    min-width: 1300px;
+    /* min-width: 1300px; */
   }
 </style>
