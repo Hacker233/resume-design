@@ -34,8 +34,9 @@
         </div>
       </div>
       <!-- 属性设置面板 -->
-      <div :key="refreshUuid" class="config">
-        <Title :title="cptTitle"></Title>
+      <div :key="refreshUuid" ref="configRef" class="config">
+        <title-config :title="cptTitle" @unfold-or-collapse="unfoldOrCollapseConfig">
+        </title-config>
         <c-scrollbar
           trigger="hover"
           :h-thumb-style="{
@@ -64,6 +65,7 @@
 
 <script setup lang="ts">
   import Title from './components/Title.vue';
+  import TitleConfig from './components/TitleConfig.vue';
   import ModelList from './components/ModelList.vue';
   import GlobalStyleOptionsVue from '@/options/GlobalStyleOptions.vue';
   import custom from '@/template/custom/index.vue';
@@ -243,6 +245,17 @@
       leftRef.value.style.width = '70px';
     }
   };
+
+  // 展开或收起属性面板设置
+  const configRef = ref<any>(null);
+  const unfoldOrCollapseConfig = (status: boolean) => {
+    if (status) {
+      configRef.value.style.width = '355px';
+      configRef.value.style.flex = 'inherit';
+    } else {
+      configRef.value.style.flex = 1;
+    }
+  };
   // 页面销毁前自动保存草稿
   // const navRef = ref<any>(null);
   // onBeforeUnmount(() => {
@@ -326,12 +339,14 @@
       }
 
       .config {
-        width: 355px;
+        min-width: 355px;
+        // max-width: 1000px;
         background-color: #fff;
         overflow-y: auto;
         display: flex;
         flex-direction: column;
         height: calc(100vh - 50px);
+        transition: all 0.3s;
       }
     }
   }

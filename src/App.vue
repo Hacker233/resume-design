@@ -33,6 +33,6 @@
 </script>
 <style>
   #app {
-    /* min-width: 1500px; */
+    min-width: 1300px;
   }
 </style>
