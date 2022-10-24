@@ -3,7 +3,11 @@
   <div class="skill-specialties-content">
     <!-- 技能特长 -->
     <ul>
-      <li v-for="(item, index) in modelData.LIST" :key="index">{{ item.introduce }}</li>
+      <li
+        v-for="(item, index) in modelData.LIST"
+        :key="index"
+        v-dompurify-html="item.introduce"
+      ></li>
     </ul>
   </div>
 </template>

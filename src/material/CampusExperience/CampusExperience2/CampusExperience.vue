@@ -19,7 +19,11 @@
         <!-- 主要职责 -->
         <p v-if="modelData.isShow.campusDuty" class="campusDuty">{{ item.campusDuty }}</p>
         <!-- 简述 -->
-        <p v-if="modelData.isShow.campusContent" class="campusContent">{{ item.campusContent }}</p>
+        <p
+          v-if="modelData.isShow.campusContent"
+          v-dompurify-html="item.campusContent"
+          class="campusContent"
+        ></p>
       </ul>
     </div>
   </div>
@@ -73,7 +77,6 @@
         .campusDuty,
         .campusContent {
           width: 100%;
-          display: flex;
           font-size: v-bind('modelStyle.textFontSize');
           color: v-bind('modelStyle.textColor');
           font-weight: v-bind('modelStyle.textFontWeight');

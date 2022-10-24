@@ -17,7 +17,11 @@
           <p class="left">工作内容</p>
           <div class="content-list">
             <ul>
-              <li v-for="(list, j) in item.jobContent" :key="j">{{ list.content }}</li>
+              <li
+                v-for="(list, j) in item.jobContent"
+                :key="j"
+                v-dompurify-html="list.content"
+              ></li>
             </ul>
           </div>
         </div>

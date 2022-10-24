@@ -8,13 +8,13 @@
       <!-- 左边部分 -->
       <div class="left">
         <template v-for="(item, index) in modelData.LIST" :key="index">
-          <li v-if="index % 2 === 0">{{ item.introduce }}</li>
+          <li v-if="index % 2 === 0" v-dompurify-html="item.introduce"></li>
         </template>
       </div>
       <!-- 右边部分 -->
       <div class="right">
         <template v-for="(item, index) in modelData.LIST" :key="index">
-          <li v-if="index % 2 != 0">{{ item.introduce }}</li>
+          <li v-if="index % 2 != 0" v-dompurify-html="item.introduce"></li>
         </template>
       </div>
     </ul>

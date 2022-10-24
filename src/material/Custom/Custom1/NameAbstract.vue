@@ -2,7 +2,7 @@
 <template>
   <div v-if="modelData" class="name-introduce">
     <h1>{{ modelData.name }}</h1>
-    <p v-show="modelData.isShow.abstract">{{ modelData.abstract }}</p>
+    <p v-show="modelData.isShow.abstract" v-dompurify-html="modelData.abstract"></p>
   </div>
 </template>
 <script lang="ts" setup>

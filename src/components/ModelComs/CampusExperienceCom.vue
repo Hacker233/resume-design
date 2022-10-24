@@ -15,7 +15,7 @@
           <li v-if="modelData.isShow.campusDuty">{{ item.campusDuty }}</li>
         </ul>
         <!-- 简述 -->
-        <p v-if="modelData.isShow.campusContent">{{ item.campusContent }}</p>
+        <p v-if="modelData.isShow.campusContent" v-dompurify-html="item.campusContent"></p>
       </div>
     </div>
   </div>

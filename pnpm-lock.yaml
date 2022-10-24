@@ -26,6 +26,7 @@ specifiers:
   commitlint-config-cz: ^0.13.3
   cz-conventional-changelog: ^3.3.0
   cz-customizable: ^6.3.0
+  default-passive-events: ^2.0.0
   element-plus: ^2.1.11
   eslint: ^8.12.0
   eslint-config-prettier: ^8.5.0
@@ -59,6 +60,7 @@ specifiers:
   vue: ^3.2.25
   vue-clipboard3: ^2.0.0
   vue-codemirror: ^6.0.1
+  vue-dompurify-html: ^3.1.1
   vue-global-api: ^0.4.1
   vue-router: ^4.0.14
   vue-tsc: ^0.29.8
@@ -78,6 +80,7 @@ dependencies:
   axios: 0.26.1
   c-scrollbar: 1.0.2
   colorpicker-v3: 2.10.2
+  default-passive-events: 2.0.0
   element-plus: 2.1.11_vue@3.2.33
   file-saver: 2.0.5
   html2canvas: 1.4.1
@@ -92,6 +95,7 @@ dependencies:
   vue: 3.2.33
   vue-clipboard3: 2.0.0
   vue-codemirror: 6.0.1_a6s6ti2w4rkpdpgv37ymiej27m
+  vue-dompurify-html: 3.1.1_vue@3.2.33
   vue-router: 4.0.15_vue@3.2.33
   vue-uuid: 3.0.0_vue@3.2.33
   vue3-count-to: 1.1.2_vue@3.2.33
@@ -2375,6 +2379,10 @@ packages:
   /deep-is/0.1.4:
     resolution: {integrity: sha512-oIPzksmTg4/MriiaYGO+okXDT7ztn/w3Eptv/+gSIdMdKsJo0u4CfYNFJPy+4SKMuCqGw2wxnA+URMg3t8a/bQ==}
 
+  /default-passive-events/2.0.0:
+    resolution: {integrity: sha512-eMtt76GpDVngZQ3ocgvRcNCklUMwID1PaNbCNxfpDXuiOXttSh0HzBbda1HU9SIUsDc02vb7g9+3I5tlqe/qMQ==}
+    dev: false
+
   /define-property/0.2.5:
     resolution: {integrity: sha512-Rr7ADjQZenceVOAKop6ALkkRAmH1A4Gx9hV/7ZujPUN2rkATqFO0JZLZInbAjpZYoJ1gUx8MRMQVkYemcbMSTA==}
     engines: {node: '>=0.10.0'}
@@ -2479,6 +2487,10 @@ packages:
     dependencies:
       domelementtype: 2.3.0
     dev: true
+
+  /dompurify/2.4.0:
+    resolution: {integrity: sha512-Be9tbQMZds4a3C6xTmz68NlMfeONA//4dOavl/1rNw50E+/QO0KVpbcU0PcaW0nsQxurXls9ZocqFxk8R2mWEA==}
+    dev: false
 
   /domutils/1.7.0:
     resolution: {integrity: sha512-Lgd2XcJ/NjEw+7tFvfKxOzCYKZsdct5lczQ2ZaQY8Djz7pfAD3Gbp8ySJWtreII/vDlMVmxwa6pHmdxIYgttDg==}
@@ -6477,6 +6489,18 @@ packages:
         optional: true
     dependencies:
       vue: 3.2.33
+
+  /vue-dompurify-html/3.1.1_vue@3.2.33:
+    resolution: {integrity: sha512-6ozMTqVlLdfVKh/FIdKT6e7yrwo4NlOKNr/7rTrNsLbjzhNjY3YvRKn2o65LpnghcdUbIETWlkMlvzJbwP+SQw==}
+    peerDependencies:
+      vue: ^2.7.0 || ^3.0.0
+    dependencies:
+      dompurify: 2.4.0
+      vue: 3.2.33
+      vue-demi: 0.13.11_vue@3.2.33
+    transitivePeerDependencies:
+      - '@vue/composition-api'
+    dev: false
 
   /vue-eslint-parser/8.3.0_eslint@8.15.0:
     resolution: {integrity: sha512-dzHGG3+sYwSf6zFBa0Gi9ZDshD7+ad14DGOdTLjruRVgZXe2J+DcZ9iUhyR48z5g1PqRa20yt3Njna/veLJL/g==}

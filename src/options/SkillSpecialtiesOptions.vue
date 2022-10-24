@@ -14,7 +14,7 @@
         </el-form-item>
         <div v-for="(item, index) in modelItem.data.LIST" :key="index" class="skill-list">
           <el-form-item :label="`技能${index + 1}:`">
-            <el-input v-model="item.introduce" type="textarea" show-word-limit :rows="4" />
+            <comm-editor v-model="item.introduce"></comm-editor>
             <el-button
               :disabled="index === 0"
               type="danger"

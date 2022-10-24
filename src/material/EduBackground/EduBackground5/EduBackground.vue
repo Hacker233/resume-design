@@ -9,7 +9,7 @@
     ></model-title>
     <!-- 教育背景 -->
     <div class="edu-list">
-      <ul v-for="(item, index) in modelData.LIST" :key="index">
+      <div v-for="(item, index) in modelData.LIST" :key="index" class="list-item">
         <!-- 日期和学校 -->
         <div class="date-school-box">
           <span v-if="modelData.isShow.date">
@@ -25,8 +25,12 @@
         <!-- 专业 -->
         <p v-if="modelData.isShow.specialized" class="special">{{ item.specialized }}</p>
         <!-- 教学经历 -->
-        <p v-if="modelData.isShow.majorCourse" class="majorCourse">{{ item.majorCourse }}</p>
-      </ul>
+        <p
+          v-if="modelData.isShow.majorCourse"
+          v-dompurify-html="item.majorCourse"
+          class="majorCourse"
+        ></p>
+      </div>
     </div>
   </div>
 </template>
@@ -65,7 +69,7 @@
       width: 100%;
       flex-direction: column;
 
-      ul {
+      .list-item {
         display: flex;
         flex-direction: column;
         justify-content: space-between;
@@ -95,7 +99,7 @@
         .special,
         .majorCourse {
           width: 100%;
-          display: flex;
+          // display: flex;
           font-size: v-bind('modelStyle.textFontSize');
           color: v-bind('modelStyle.textColor');
           font-weight: v-bind('modelStyle.textFontWeight');

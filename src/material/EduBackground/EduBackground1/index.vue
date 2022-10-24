@@ -4,7 +4,7 @@
     <model-title :title="modelData.title" :model-style="modelStyle"></model-title>
     <!-- 教育背景 -->
     <div class="edu-list">
-      <ul v-for="(item, index) in modelData.LIST" :key="index">
+      <ul v-for="(item, index) in modelData.LIST" :key="index" class="list-item">
         <!-- 学历日期 -->
         <li v-if="modelData.isShow.date">{{ formatDate(item.date) }}</li>
         <!-- 学校名称 -->
@@ -42,7 +42,7 @@
       flex-direction: column;
       margin-top: 25px;
 
-      ul {
+      .list-item {
         display: flex;
         justify-content: space-between;
         align-items: center;

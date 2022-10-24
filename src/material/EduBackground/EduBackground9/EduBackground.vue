@@ -62,7 +62,7 @@
       :deep(.edu-background-content) {
         flex: 1;
         .edu-list {
-          ul {
+          .list-item {
             padding: 0;
             margin-bottom: 20px;
             .start-end-date {

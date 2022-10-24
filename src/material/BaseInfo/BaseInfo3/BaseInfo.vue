@@ -4,7 +4,7 @@
     <div class="user-info">
       <div class="head">
         <h1>{{ modelData.name }}</h1>
-        <p v-show="isShow.abstract">{{ modelData.abstract }}</p>
+        <p v-show="isShow.abstract" v-dompurify-html="modelData.abstract"></p>
       </div>
       <div class="detail">
         <ul>

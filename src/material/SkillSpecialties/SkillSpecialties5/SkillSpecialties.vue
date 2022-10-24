@@ -5,7 +5,11 @@
     <model-title :title="modelData.title" :model-style="modelStyle"></model-title>
     <!-- 技能特长 -->
     <ul>
-      <li v-for="(item, index) in modelData.LIST" :key="index">{{ item.introduce }}</li>
+      <li
+        v-for="(item, index) in modelData.LIST"
+        :key="index"
+        v-dompurify-html="item.introduce"
+      ></li>
     </ul>
   </div>
 </template>

@@ -3,7 +3,7 @@
     <div class="top">
       <div class="left">
         <h1>{{ modelData.name }}</h1>
-        <p>{{ modelData.abstract }}</p>
+        <p v-dompurify-html="modelData.abstract"></p>
       </div>
       <div class="right">
         <div class="icon-box">

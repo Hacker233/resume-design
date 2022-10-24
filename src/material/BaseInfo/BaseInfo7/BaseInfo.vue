@@ -8,7 +8,11 @@
         </div>
         <div class="right">
           <h1>{{ modelData.name }}</h1>
-          <p v-show="isShow.abstract" class="user-abstract">{{ modelData.abstract }}</p>
+          <p
+            v-show="isShow.abstract"
+            v-dompurify-html="modelData.abstract"
+            class="user-abstract"
+          ></p>
           <div class="bottom">
             <!-- 年龄、地点、经验等信息 -->
             <ul>

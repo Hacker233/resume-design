@@ -15,13 +15,7 @@
           <el-input v-model="modelItem.data.name" type="text" maxlength="15" show-word-limit />
         </el-form-item>
         <el-form-item label="一句话:">
-          <el-input
-            v-model="modelItem.data.abstract"
-            type="textarea"
-            maxlength="50"
-            show-word-limit
-            :rows="4"
-          />
+          <comm-editor v-model="modelItem.data.abstract"></comm-editor>
           <el-switch v-model="modelItem.data.isShow.abstract" />
         </el-form-item>
       </el-form>

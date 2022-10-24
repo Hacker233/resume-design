@@ -26,6 +26,10 @@ import { createPinia } from 'pinia';
 import { registerStore } from '@/store';
 import VueViewer from 'v-viewer';
 
+import 'default-passive-events';
+
+import VueDOMPurifyHTML from 'vue-dompurify-html';
+
 // 创建vue实例
 const app = createApp(App);
 // app.use(store);
@@ -36,6 +40,7 @@ registerStore();
 app.use(router);
 app.use(component);
 app.use(elementIcons);
+app.use(VueDOMPurifyHTML);
 app.use(ColorPicker);
 app.use(CScrollbar);
 app.use(VueViewer, {

@@ -5,7 +5,7 @@
     <slot name="model-title"></slot>
     <!-- 兴趣爱好 -->
     <div class="hobbies-content">
-      <p>{{ modelData.content }}</p>
+      <p v-dompurify-html="modelData.content"></p>
     </div>
   </div>
 </template>

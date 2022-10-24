@@ -9,7 +9,7 @@
     ></model-title>
     <!-- 教育背景 -->
     <div class="edu-list">
-      <ul v-for="(item, index) in modelData.LIST" :key="index">
+      <div v-for="(item, index) in modelData.LIST" :key="index" class="list-item">
         <!-- 日期和学校 -->
         <div class="date-school-box">
           <span v-if="modelData.isShow.date">
@@ -21,7 +21,7 @@
         </div>
         <!-- 奖项等级 -->
         <p v-if="modelData.isShow.awardsGrade" class="majorCourse">{{ item.awardsGrade }}</p>
-      </ul>
+      </div>
     </div>
   </div>
 </template>
@@ -50,7 +50,7 @@
       width: 100%;
       flex-direction: column;
 
-      ul {
+      .list-item {
         display: flex;
         flex-direction: column;
         justify-content: space-between;
@@ -69,7 +69,7 @@
         }
         .majorCourse {
           width: 100%;
-          display: flex;
+          // display: flex;
           font-size: v-bind('modelStyle.textFontSize');
           color: v-bind('modelStyle.textColor');
           font-weight: v-bind('modelStyle.textFontWeight');

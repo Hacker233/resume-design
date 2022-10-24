@@ -13,13 +13,7 @@
           <el-input v-model="modelItem.data.title" type="text" maxlength="15" show-word-limit />
         </el-form-item>
         <el-form-item label="兴趣爱好:">
-          <el-input
-            v-model="modelItem.data.content"
-            type="textarea"
-            maxlength="500"
-            show-word-limit
-            :rows="5"
-          />
+          <comm-editor v-model="modelItem.data.content"></comm-editor>
         </el-form-item>
       </el-form>
     </el-tab-pane>

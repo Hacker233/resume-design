@@ -19,14 +19,7 @@
           <el-input v-model="modelItem.data.name" type="text" maxlength="15" show-word-limit />
         </el-form-item>
         <el-form-item label="简介:">
-          <!-- <comm-editor></comm-editor> -->
-          <el-input
-            v-model="modelItem.data.abstract"
-            type="textarea"
-            maxlength="100"
-            show-word-limit
-            :rows="4"
-          />
+          <comm-editor v-model="modelItem.data.abstract"></comm-editor>
           <el-switch v-model="modelItem.data.isShow.abstract" />
         </el-form-item>
         <el-form-item label="年龄:">

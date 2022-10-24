@@ -5,7 +5,7 @@
       <div class="left">
         <h1>{{ modelData.name }}</h1>
         <!-- 一句话简介 -->
-        <p v-show="isShow.abstract" class="user-abstract">{{ modelData.abstract }}</p>
+        <p v-show="isShow.abstract" v-dompurify-html="modelData.abstract" class="user-abstract"></p>
         <!-- 年龄、地点、经验等信息 -->
         <ul>
           <li v-show="isShow.age" class="li-border">{{ modelData.age }}岁</li>

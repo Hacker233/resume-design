@@ -1,58 +1,54 @@
 <template>
-  <div style="border: 1px solid #ccc">
+  <div class="editor-box">
     <Toolbar
-      style="border-bottom: 1px solid #ccc"
+      style="border-bottom: 1px solid #eee"
       :editor="editorRef"
       :default-config="toolbarConfig"
       :mode="mode"
     />
     <Editor
-      v-model="valueHtml"
-      style="height: 500px; overflow-y: hidden"
+      v-model="htmlContent"
+      class="editor-content"
       :default-config="editorConfig"
       :mode="mode"
-      @onCreated="handleCreated"
+      @on-created="handleCreated"
     />
   </div>
 </template>
 <script setup lang="ts">
   import '@wangeditor/editor/dist/css/style.css'; // 引入 css
   import { IToolbarConfig } from '@wangeditor/editor';
-  import { onBeforeUnmount, ref, shallowRef, onMounted } from 'vue';
+  import { onBeforeUnmount, ref, shallowRef } from 'vue';
   import { Editor, Toolbar } from '@wangeditor/editor-for-vue';
+
+  const props = defineProps<{
+    modelValue: any;
+  }>();
+  const emit = defineEmits(['update:modelValue']);
 
   // 编辑器实例，必须用 shallowRef
   const editorRef = shallowRef();
 
-  // 内容 HTML
-  const valueHtml = ref('<p>hello</p>');
+  // 编辑器内容
+  const htmlContent = ref<string>(props.modelValue);
+
+  watch(
+    () => htmlContent.value,
+    (newVal) => {
+      emit('update:modelValue', newVal);
+    },
+    {
+      deep: true
+    }
+  );
 
   // 模式
   const mode = ref<string>('simple');
 
-  // 模拟 ajax 异步获取内容
-  onMounted(() => {
-    setTimeout(() => {
-      valueHtml.value = '<p>模拟 Ajax 异步设置内容</p>';
-    }, 1500);
-  });
-
   // 工具栏配置
   const toolbarConfig: Partial<IToolbarConfig> = {
     /* 工具栏配置 */
-    toolbarKeys: [
-      'bold',
-      'clearStyle',
-      'color',
-      'bgColor',
-      '|',
-      'divider',
-      'emotion',
-      'blockquote',
-      'headerSelect',
-      'redo',
-      'undo'
-    ]
+    toolbarKeys: ['bold', 'clearStyle', 'bulletedList', 'numberedList', 'lineHeight']
   };
 
   const editorConfig = { placeholder: '请输入内容...' };
@@ -69,3 +65,13 @@
     console.log(editor.getAllMenuKeys());
   };
 </script>
+<style lang="scss" scoped>
+  .editor-box {
+    width: 100%;
+    border: 1px solid #eee;
+    .editor-content {
+      height: 150px !important;
+      overflow-y: auto;
+    }
+  }
+</style>

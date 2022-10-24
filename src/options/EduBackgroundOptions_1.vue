@@ -51,13 +51,7 @@
             <el-switch v-model="modelItem.data.isShow.degree" />
           </el-form-item>
           <el-form-item label="教学经历">
-            <el-input
-              v-model="item.majorCourse"
-              type="textarea"
-              maxlength="350"
-              show-word-limit
-              :rows="4"
-            />
+            <comm-editor v-model="item.majorCourse"></comm-editor>
             <el-switch v-model="modelItem.data.isShow.majorCourse" />
           </el-form-item>
         </el-form>

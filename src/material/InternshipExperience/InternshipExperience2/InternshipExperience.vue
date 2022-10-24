@@ -20,7 +20,7 @@
         <p v-if="modelData.isShow.posts" class="campusDuty">{{ item.posts }}</p>
         <!-- 实习内容 -->
         <ul class="campusContent">
-          <li v-for="(list, j) in item.jobContent" :key="j">{{ list.content }}</li>
+          <li v-for="(list, j) in item.jobContent" :key="j" v-dompurify-html="list.content"></li>
         </ul>
       </ul>
     </div>
@@ -74,7 +74,6 @@
         .campusDuty,
         .campusContent {
           width: 100%;
-          display: flex;
           font-size: v-bind('modelStyle.textFontSize');
           color: v-bind('modelStyle.textColor');
           font-weight: v-bind('modelStyle.textFontWeight');
@@ -85,7 +84,6 @@
           margin-bottom: 10px;
         }
         .campusContent {
-          display: flex;
           flex-direction: column;
           padding: 0 0 0 18px;
           box-sizing: border-box;

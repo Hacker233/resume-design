@@ -42,13 +42,7 @@
             <el-switch v-model="modelItem.data.isShow.campusDuty" />
           </el-form-item>
           <el-form-item label="经历简述:">
-            <el-input
-              v-model="item.campusContent"
-              type="textarea"
-              maxlength="200"
-              show-word-limit
-              :rows="4"
-            />
+            <comm-editor v-model="item.campusContent"></comm-editor>
             <el-switch v-model="modelItem.data.isShow.campusContent" />
           </el-form-item>
         </div>
