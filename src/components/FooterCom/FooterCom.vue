@@ -102,7 +102,7 @@
           transition: all 0.3s;
           margin-left: 10px;
           &:hover {
-            color: green;
+            color: rgb(123, 238, 123);
           }
         }
       }
