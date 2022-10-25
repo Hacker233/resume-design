@@ -309,7 +309,11 @@
             ElMessage.success('新增成功');
             sureLoading.value = false;
             emit('updateSuccess');
+            // 重置表单
             ruleFormRef.value.resetFields();
+            fileList.value = [];
+            previewFileList.value = [];
+            ruleForm.tagsValue = [];
           } else {
             sureLoading.value = false;
             ElMessage.error(data.data.message);
@@ -330,7 +334,11 @@
             ElMessage.success('更新成功');
             sureLoading.value = false;
             emit('updateSuccess');
+            // 重置表单
             ruleFormRef.value.resetFields();
+            fileList.value = [];
+            previewFileList.value = [];
+            ruleForm.tagsValue = [];
           } else {
             sureLoading.value = false;
             ElMessage.error(data.data.message);

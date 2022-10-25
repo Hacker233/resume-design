@@ -63,6 +63,11 @@
             width: 50px;
           }
         }
+        .right {
+          .el-button {
+            padding: 0;
+          }
+        }
       }
     }
   }

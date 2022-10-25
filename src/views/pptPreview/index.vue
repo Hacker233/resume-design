@@ -307,6 +307,8 @@
               font-size: 14px;
               color: #555;
               margin-right: 15px;
+              flex-grow: 0;
+              flex-shrink: 0;
             }
             p {
               font-size: 14px;

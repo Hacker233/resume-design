@@ -121,6 +121,7 @@
           width: 100px;
           display: flex;
           justify-content: flex-end;
+          flex-shrink: 0;
         }
         ul {
           display: flex;
