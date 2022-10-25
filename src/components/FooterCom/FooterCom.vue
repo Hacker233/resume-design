@@ -50,6 +50,17 @@
           >蜀ICP备2020034752号-3</a
         >
       </li>
+      <!-- 公安备案号 -->
+      <div class="lines"></div>
+      <li>
+        <img src="@/assets/images/beian-icon.png" alt="" srcset="" />
+        <a
+          target="_blank"
+          href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=51010802001313"
+          style="display: inline-block; text-decoration: none; height: 20px; line-height: 20px"
+          >川公网安备 51010802001313号</a
+        >
+      </li>
     </ul>
   </div>
 </template>
