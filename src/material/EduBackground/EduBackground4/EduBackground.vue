@@ -99,7 +99,7 @@
         .special,
         .majorCourse {
           width: 100%;
-          display: flex;
+          // display: flex;
           font-size: v-bind('modelStyle.textFontSize');
           color: v-bind('modelStyle.textColor');
           font-weight: v-bind('modelStyle.textFontWeight');
