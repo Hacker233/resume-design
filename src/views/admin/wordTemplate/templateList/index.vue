@@ -95,6 +95,7 @@
     wordListAsync
   } from '@/http/api/wordTemplate';
   import WordDialog from './components/WordDialog.vue';
+  import 'element-plus/es/components/message-box/style/index';
   import { downloadFileUtil, formatListDate } from '@/utils/common';
   import { ElMessageBox } from 'element-plus';
 
