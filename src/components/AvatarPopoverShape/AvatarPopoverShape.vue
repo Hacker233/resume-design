@@ -1,5 +1,5 @@
 <template>
-  <el-popover placement="bottom" :width="200" trigger="click">
+  <el-popover placement="bottom" :width="250" trigger="click">
     <template #reference>
       <div class="avatar-img-box">
         <img
@@ -24,7 +24,11 @@
         class="item-box"
         @click="handleAvatarShape(key)"
       >
-        <component :is="val" width="80px" height="80px"></component>
+        <component
+          :is="val"
+          :width="avatarDic[key].miniWidth"
+          :height="avatarDic[key].miniHeight"
+        ></component>
       </div>
     </div>
   </el-popover>
@@ -32,14 +36,30 @@
 <script lang="ts" setup>
   import { IMATERIALITEM } from '@/interface/material';
   import avatarComponents from '@/utils/registerAvatarCom';
+  import { avatarDic } from '@/dictionary/avatarShapeDic';
   const emit = defineEmits(['changeShape']);
   defineProps<{
     modelItem: IMATERIALITEM; // 模块数据
   }>();
 
+  // 头像变化
   const handleAvatarShape = (key: string | number) => {
     emit('changeShape', key);
   };
+
+  // 返回宽度
+  // const getMiniWidth = (key: string | number) => {
+  //   let keyStr = key.toString();
+  //   console.log('1111', key);
+
+  //   console.log(avatarDic[keyStr].miniWidth);
+  //   return avatarDic[keyStr].miniWidth;
+  // };
+  // // 返回高度
+  // const getMiniHeight = (key: string | number) => {
+  //   let keyStr = key.toString();
+  //   return avatarDic[keyStr].miniHeight;
+  // };
 </script>
 <style lang="scss" scoped>
   // 头像形状样式
@@ -49,5 +69,12 @@
   .custom-avatar-shape-box {
     display: flex;
     cursor: pointer;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    .item-box {
+      display: flex;
+      align-items: center;
+      margin-bottom: 10px;
+    }
   }
 </style>

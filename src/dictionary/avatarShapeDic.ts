@@ -1,14 +1,23 @@
-export default {
+import { IAvatarShapeDic } from './types/avatarShapeDic';
+
+const avatarDic: IAvatarShapeDic = {
   // 正方形
-  square: {
-    cptName: 'SQUARE_AVATAR'
+  SQUARE_AVATAR: {
+    cptName: 'SQUARE_AVATAR',
+    miniWidth: '60px',
+    miniHeight: '60px'
   },
   // 长方形
-  rectangle: {
-    cptName: 'RECTANGLE_AVATAR'
+  RECTANGLE_AVATAR: {
+    cptName: 'RECTANGLE_AVATAR',
+    miniWidth: '60px',
+    miniHeight: '80px'
   },
   // 圆形
-  circle: {
-    cptName: 'CIRCLE_AVATAR'
+  CIRCLE_AVATAR: {
+    cptName: 'CIRCLE_AVATAR',
+    miniWidth: '70px',
+    miniHeight: '70px'
   }
 };
+export { avatarDic };

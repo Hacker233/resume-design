@@ -3,9 +3,17 @@
     <!-- 基本信息 -->
     <div class="user-info">
       <div class="top">
-        <div v-show="modelData.isShow.avatar" class="avatar-box">
-          <el-image style="width: 120px; height: 150px" :src="modelData.avatar" />
-        </div>
+        <!-- 个人头像 -->
+        <template v-if="!modelData.avatarShape">
+          <div v-show="modelData.isShow.avatar" class="avatar-box">
+            <el-image style="width: 115px; height: 115px" :src="modelData.avatar" />
+          </div>
+        </template>
+        <template v-else>
+          <div v-show="isShow.avatar" class="avatar-shape-box">
+            <component :is="avatarComponents[modelData.avatarShape]"></component>
+          </div>
+        </template>
         <div class="right">
           <h1>{{ modelData.name }}</h1>
           <p
@@ -31,6 +39,7 @@
 <script lang="ts" setup>
   import { IBASEINFO } from '@/interface/model';
   import IMODELSTYLE from '@/interface/modelStyle';
+  import avatarComponents from '@/utils/registerAvatarCom';
 
   const props = defineProps<{
     modelData: IBASEINFO; // 模块数据
@@ -60,15 +69,18 @@
         height: 198px;
         padding: 0 0 0 20px;
         .avatar-box {
-          width: 120px;
-          height: 120px;
+          width: 117px;
+          height: 117px;
           border-radius: 50%;
           overflow: hidden;
           background-color: #eee;
           display: flex;
           align-items: center;
           justify-content: center;
-          border: 4px solid #eee;
+          border: 3px solid #eee;
+          margin-right: 50px;
+        }
+        .avatar-shape-box {
           margin-right: 50px;
         }
         .right {
