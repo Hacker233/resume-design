@@ -1,9 +1,15 @@
 <template>
   <div class="base-info">
     <!-- 个人头像 -->
-    <div v-show="modelData.isShow.avatar" class="avatar-box">
-      <el-image style="width: 115px; height: 115px" :src="modelData.avatar" />
-    </div>
+    <template v-if="!modelData.avatarShape">
+      <div v-show="modelData.isShow.avatar" class="avatar-box">
+        <el-image style="width: 115px; height: 115px" :src="modelData.avatar" />
+      </div>
+    </template>
+    <template v-else>
+      <component :is="avatarComponents[modelData.avatarShape]"></component>
+    </template>
+
     <!-- 基础信息 -->
     <div class="user-info">
       <h1>{{ modelData.name }}</h1>
@@ -23,7 +29,7 @@
 <script lang="ts" setup>
   import { IBASEINFO } from '@/interface/model';
   import IMODELSTYLE from '@/interface/modelStyle.js';
-  import { reactive } from 'vue';
+  import avatarComponents from '@/utils/registerAvatarCom';
   defineOptions({
     name: 'BASE_INFO_1'
   });

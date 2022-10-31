@@ -32,6 +32,7 @@ interface IBASEINFO {
   model: string;
   show: boolean;
   title: string;
+  avatarShape: string;
   name: string;
   age: number;
   address: string; // 所在地址

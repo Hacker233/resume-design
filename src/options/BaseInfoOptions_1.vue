@@ -3,6 +3,10 @@
   <el-tabs v-model="activeName" type="card" class="demo-tabs" stretch>
     <el-tab-pane label="样式设置" name="style">
       <el-form label-width="100px" label-position="left">
+        <!-- 头像形状选择 -->
+        <el-form-item label="头像形状选择:">
+          <el-input v-model="modelItem.data.name" type="text" maxlength="15" show-word-limit />
+        </el-form-item>
         <!-- 公共样式属性 -->
         <common-options></common-options>
       </el-form>

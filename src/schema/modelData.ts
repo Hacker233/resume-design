@@ -14,6 +14,7 @@ const MODEL_DATA_JSON: IMODELDATAJSON = {
     title: '基本资料',
     name: '小猪课堂',
     age: 25,
+    avatarShape: '', // 头像形状
     address: '四川成都', // 所在地址
     avatar: 'https://smallpig.site:9000/resume/avatar/file-1663290281512.jpg', // 头像地址
     workService: 3, // 工作年限

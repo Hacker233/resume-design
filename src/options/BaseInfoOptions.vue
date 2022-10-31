@@ -3,6 +3,13 @@
   <el-tabs v-model="activeName" type="card" class="demo-tabs" stretch>
     <el-tab-pane label="样式设置" name="style">
       <el-form label-width="100px" label-position="left">
+        <!-- 头像形状选择 -->
+        <el-form-item label="头像形状选择:">
+          <avatar-popover-shape-vue
+            :model-item="modelItem"
+            @change-shape="handleChangeShape"
+          ></avatar-popover-shape-vue>
+        </el-form-item>
         <!-- 标题样式属性 -->
         <common-title-options
           color-label="姓名字体颜色"
@@ -76,6 +83,7 @@
   import CommonOptions from './CommonOptions.vue';
   import CommonTitleOptions from './CommonTitleOptions.vue';
   import useDesignSelectModelItem from '@/hooks/material/useDesignSelectModelItem';
+  import AvatarPopoverShapeVue from '@/components/AvatarPopoverShape/AvatarPopoverShape.vue';
   import appStore from '@/store';
   import CONFIG from '@/config';
   defineOptions({ name: 'BASE_INFO_OPTIONS' });
@@ -106,6 +114,11 @@
       return false;
     }
     return true;
+  };
+
+  // 改变头像形状
+  const handleChangeShape = (value: string | number) => {
+    modelItem.data.avatarShape = value;
   };
 </script>
 <style lang="scss">
