@@ -86,10 +86,9 @@
           ref="uploadRef"
           v-model:file-list="coverFileList"
           class="upload-demo"
-          :action="uploadAddress()"
-          :headers="{ Authorization: appStore.useTokenStore.token }"
+          multiple
+          :auto-upload="false"
           :limit="1"
-          :on-success="handlePPTCoverFileSuccess"
           :on-remove="handlePPTCoverFileRemove"
           :before-upload="beforePPTCoverFileUpload"
           list-type="picture"
@@ -194,6 +193,7 @@
         ruleForm.pages = props.row.pages;
         ruleForm.uploadPreviewList = props.row.previewUrl ? JSON.parse(props.row.previewUrl) : [];
         fileList.value = props.row.fileUrl ? JSON.parse(props.row.fileUrl) : [];
+
         previewFileList.value = props.row.previewUrl ? JSON.parse(props.row.previewUrl) : [];
         coverFileList.value = props.row.cover ? JSON.parse(props.row.cover) : [];
         console.log('ruleForm', ruleForm);
@@ -286,7 +286,43 @@
     console.log(value, ruleForm.tagsValue);
   };
 
-  // 手动上传
+  // 手动上传封面图
+  const coverFileList = ref<any>([]);
+  const submitCoverUpload = async () => {
+    //判断是否有文件再上传
+    if (coverFileList.value.length === 0) {
+      ElMessage.warning('请选取文件后再上传');
+    }
+    // 下面的代码将创建一个空的FormData对象:
+    const formData = new FormData();
+    // 你可以使用FormData.append来添加键/值对到表单里面；
+    console.log('上传的文件列表', coverFileList.value);
+    for (let index = 0; index < coverFileList.value.length; index++) {
+      if (coverFileList.value[index].raw) {
+        console.log('压缩前', coverFileList.value[index].raw);
+        const files: any = await compressFile(coverFileList.value[index].raw, 0.3); // 压缩图片
+        console.log('压缩后', files);
+        if (files) {
+          formData.append('files', files);
+        }
+      }
+    }
+    // 无上传的文件
+    if (!formData.get('files')) {
+      return;
+    }
+    // 添加自定义参数，不传可删除
+    const data = await filesUploadAsync(formData, 'pptTemplate');
+    if (data.data.status === 200) {
+      coverFileList.value = ruleForm.cover.concat(data.data.data);
+      return;
+    } else {
+      ElMessage.error(data.data.message);
+      sureLoading.value = false;
+    }
+  };
+
+  // 手动上传预览图
   const previewFileList = ref<any>([]);
   const uploadRef = ref<UploadInstance>();
   const submitUpload = async () => {
@@ -366,44 +402,28 @@
     return true;
   };
 
-  // 上传模板封面
-  const coverFileList = ref<UploadUserFile[]>([]);
-  const handlePPTCoverFileSuccess: UploadProps['onSuccess'] = (
-    response: any,
-    uploadFile: UploadFile,
-    uploadFiles: UploadFiles
-  ) => {
-    console.log('response', response);
-    console.log('uploadFile', uploadFile);
-    console.log('UploadFiles', uploadFiles);
-    ruleForm.cover = uploadFiles.map((item: any) => {
-      if (item.response) {
-        return {
-          name: item.name,
-          url: item.response.data.data.fileUrl
-        };
-      } else {
-        return item;
-      }
-    });
-  };
+  // 移除封面图
   const handlePPTCoverFileRemove: UploadProps['onRemove'] = (uploadFile, uploadFiles) => {
-    console.log('uploadFile', uploadFile);
-    ruleForm.cover = uploadFiles.map((item: any) => {
-      if (item.response) {
-        return {
-          name: item.name,
-          url: item.response.data.data.fileUrl
-        };
-      } else {
-        return item;
+    console.log('uploadFile', uploadFile, uploadFiles);
+    coverFileList.value = [];
+    ruleForm.cover = []; // 原来已经上传的文件
+    for (let index = 0; index < uploadFiles.length; index++) {
+      if (!uploadFiles[index].raw) {
+        ruleForm.cover.push({
+          name: uploadFiles[index].name,
+          url: uploadFiles[index].url
+        });
       }
-    });
+      coverFileList.value.push(uploadFiles[index]);
+    }
+
+    console.log('coverFileList', coverFileList.value);
+    console.log('移除后的cover', ruleForm.cover);
   };
 
   const beforePPTCoverFileUpload: UploadProps['beforeUpload'] = (rawFile) => {
-    if (rawFile.size / 1024 / 1024 > 20) {
-      ElMessage.error('文件不能大于20M');
+    if (rawFile.size / 1024 / 1024 > 4) {
+      ElMessage.error('文件不能大于4M');
       return false;
     }
     return true;
@@ -422,6 +442,7 @@
     }
     return true;
   };
+  // 移除预览图
   const handleRemove: UploadProps['onRemove'] = (uploadFile, uploadFiles) => {
     console.log('uploadFile', uploadFile, uploadFiles);
     previewFileList.value = [];
@@ -459,6 +480,8 @@
         sureLoading.value = true;
         // 上传文件
         await submitUpload();
+        // 上传封面图
+        await submitCoverUpload();
         if (props.title === '新增模板') {
           let params = {
             name: ruleForm.name, // ppt模板名称
@@ -466,7 +489,7 @@
             category: ruleForm.category, // 模板分类
             previewUrl: JSON.stringify(previewFileList.value), // 模板预览图
             fileUrl: JSON.stringify(ruleForm.fileUrl), // 文件地址
-            cover: JSON.stringify(ruleForm.cover),
+            cover: JSON.stringify(coverFileList.value),
             tags: ruleForm.tagsValue, // 模板标签
             effect: ruleForm.effect,
             proportion: ruleForm.proportion,
@@ -480,6 +503,7 @@
             emit('updateSuccess');
             ruleFormRef.value.resetFields();
             previewFileList.value = [];
+            coverFileList.valuee = [];
           } else {
             sureLoading.value = false;
             ElMessage.error(data.data.message);
@@ -492,7 +516,7 @@
             category: ruleForm.category, // 模板分类
             previewUrl: JSON.stringify(previewFileList.value), // 模板预览图
             fileUrl: JSON.stringify(ruleForm.fileUrl), // 文件地址
-            cover: JSON.stringify(ruleForm.cover),
+            cover: JSON.stringify(coverFileList.value),
             tags: ruleForm.tagsValue, // 模板标签
             effect: ruleForm.effect,
             proportion: ruleForm.proportion,
@@ -506,6 +530,7 @@
             emit('updateSuccess');
             ruleFormRef.value.resetFields();
             previewFileList.value = [];
+            coverFileList.valuee = [];
           } else {
             sureLoading.value = false;
             ElMessage.error(data.data.message);

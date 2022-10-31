@@ -76,14 +76,16 @@
       </el-form-item>
       <el-form-item label="预览图:">
         <el-upload
+          ref="uploadRef"
           v-model:file-list="previewFileList"
           class="upload-demo"
+          multiple
+          :auto-upload="false"
           :action="uploadAddress()"
           :headers="{ Authorization: appStore.useTokenStore.token }"
           :on-preview="handlePreview"
           :on-remove="handleRemove"
           :before-upload="beforeWordPreviewUpload"
-          :on-success="handleWordPreviewSuccess"
           list-type="picture"
         >
           <el-button type="primary">上传预览图</el-button>
@@ -116,6 +118,8 @@
     UploadUserFile
   } from 'element-plus';
   import appStore from '@/store';
+  import { compressFile } from '@/utils/common';
+  import { filesUploadAsync } from '@/http/api/upload';
 
   const emit = defineEmits(['cancle', 'updateSuccess']);
   interface TDialog {
@@ -140,8 +144,8 @@
         ruleForm.name = props.row.name;
         ruleForm.profile = props.row.profile;
         ruleForm.tagsValue = props.row.tags;
-        ruleForm.uploadPreviewList = JSON.parse(props.row.previewUrl);
-        previewFileList.value = JSON.parse(props.row.previewUrl);
+        ruleForm.uploadPreviewList = props.row.previewUrl ? JSON.parse(props.row.previewUrl) : [];
+        previewFileList.value = props.row.previewUrl ? JSON.parse(props.row.previewUrl) : [];
         fileList.value = JSON.parse(props.row.fileUrl);
         console.log('ruleForm', ruleForm);
       }
@@ -237,49 +241,68 @@
   };
 
   // 预览图列表
-  const previewFileList = ref<UploadUserFile[]>([]);
   const beforeWordPreviewUpload: UploadProps['beforeUpload'] = (rawFile) => {
     if (rawFile.size / 1024 / 1024 > 4) {
       ElMessage.error('文件不能大于4M');
       return false;
     }
-    return true;
-  };
-  const handleWordPreviewSuccess: UploadProps['onSuccess'] = (
-    response: any,
-    uploadFile: UploadFile,
-    uploadFiles: UploadFiles
-  ) => {
-    console.log('response', response);
-    console.log('uploadFile', uploadFile);
-    console.log('UploadFiles', uploadFiles);
-    ruleForm.uploadPreviewList = uploadFiles.map((item: any) => {
-      if (item.response) {
-        return {
-          name: item.name,
-          url: item.response.data.data.fileUrl
-        };
-      } else {
-        return item;
-      }
-    });
   };
   const handleRemove: UploadProps['onRemove'] = (uploadFile, uploadFiles) => {
-    console.log('uploadFile', uploadFile);
-    ruleForm.uploadPreviewList = uploadFiles.map((item: any) => {
-      if (item.response) {
-        return {
-          name: item.name,
-          url: item.response.data.data.fileUrl
-        };
-      } else {
-        return item;
+    console.log('uploadFile', uploadFile, uploadFiles);
+    previewFileList.value = [];
+    ruleForm.uploadPreviewList = []; // 原来已经上传的文件
+    for (let index = 0; index < uploadFiles.length; index++) {
+      if (!uploadFiles[index].raw) {
+        ruleForm.uploadPreviewList.push({
+          name: uploadFiles[index].name,
+          url: uploadFiles[index].url
+        });
       }
-    });
+      previewFileList.value.push(uploadFiles[index]);
+    }
+
+    console.log('移除后的previewFileList', previewFileList.value);
+    console.log('移除后的uploadPreviewList', ruleForm.uploadPreviewList);
   };
 
   const handlePreview: UploadProps['onPreview'] = (file) => {
     console.log(file);
+  };
+
+  // 手动上传预览图
+  const previewFileList = ref<any[]>([]);
+  const submitUpload = async () => {
+    //判断是否有文件再上传
+    if (previewFileList.value.length === 0) {
+      ElMessage.warning('请选取文件后再上传');
+    }
+    // 下面的代码将创建一个空的FormData对象:
+    const formData = new FormData();
+    // 你可以使用FormData.append来添加键/值对到表单里面；
+    console.log('上传的文件列表', previewFileList.value);
+    for (let index = 0; index < previewFileList.value.length; index++) {
+      if (previewFileList.value[index].raw) {
+        console.log('压缩前', previewFileList.value[index].raw);
+        const files: any = await compressFile(previewFileList.value[index].raw, 0.3); // 压缩图片
+        console.log('压缩后', files);
+        if (files) {
+          formData.append('files', files);
+        }
+      }
+    }
+    // 无上传的文件
+    if (!formData.get('files')) {
+      return;
+    }
+    // 添加自定义参数，不传可删除
+    const data = await filesUploadAsync(formData, 'wordTemplate');
+    if (data.data.status === 200) {
+      previewFileList.value = ruleForm.uploadPreviewList.concat(data.data.data);
+      return;
+    } else {
+      ElMessage.error(data.data.message);
+      sureLoading.value = false;
+    }
   };
 
   // 取消
@@ -294,12 +317,14 @@
     if (!formEl) return;
     await formEl.validate(async (valid, fields) => {
       if (valid) {
+        // 上传预览图文件
+        await submitUpload();
         if (props.title === '新增模板') {
           let params = {
             name: ruleForm.name, // word模板名称
             profile: ruleForm.profile, // 模板简介
             category: ruleForm.category, // 模板分类
-            previewUrl: JSON.stringify(ruleForm.uploadPreviewList), // 模板预览图
+            previewUrl: JSON.stringify(previewFileList.value), // 模板预览图
             fileUrl: JSON.stringify(ruleForm.fileUrl), // 文件地址
             tags: ruleForm.tagsValue // 模板标签
           };
@@ -324,7 +349,7 @@
             name: ruleForm.name, // word模板名称
             profile: ruleForm.profile, // 模板简介
             category: ruleForm.category, // 模板分类
-            previewUrl: JSON.stringify(ruleForm.uploadPreviewList), // 模板预览图
+            previewUrl: JSON.stringify(previewFileList.value), // 模板预览图
             fileUrl: JSON.stringify(ruleForm.fileUrl), // 文件地址
             tags: ruleForm.tagsValue // 模板标签
           };
