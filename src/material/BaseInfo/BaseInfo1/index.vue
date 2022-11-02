@@ -2,12 +2,14 @@
   <div class="base-info">
     <!-- 个人头像 -->
     <template v-if="!modelData.avatarShape">
-      <div v-show="modelData.isShow.avatar" class="avatar-box">
+      <div v-show="isShow.avatar" class="avatar-box">
         <el-image style="width: 115px; height: 115px" :src="modelData.avatar" />
       </div>
     </template>
     <template v-else>
-      <component :is="avatarComponents[modelData.avatarShape]"></component>
+      <div v-show="isShow.avatar" class="avatar-shape-box">
+        <component :is="avatarComponents[modelData.avatarShape]"></component>
+      </div>
     </template>
 
     <!-- 基础信息 -->
@@ -64,6 +66,9 @@
       .el-image {
         border-radius: 8%;
       }
+    }
+    .avatar-shape-box {
+      margin-right: 40px;
     }
     .user-info {
       flex: 1;

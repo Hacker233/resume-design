@@ -1,9 +1,16 @@
 <template>
   <div class="base-info">
     <!-- 个人头像 -->
-    <div v-show="modelData.isShow.avatar" class="avatar-box">
-      <el-image style="width: 120px; height: 150px" :src="modelData.avatar" />
-    </div>
+    <template v-if="!modelData.avatarShape">
+      <div v-show="isShow.avatar" class="avatar-box">
+        <el-image style="width: 115px; height: 146px" :src="modelData.avatar" />
+      </div>
+    </template>
+    <template v-else>
+      <div v-show="isShow.avatar" class="avatar-shape-box">
+        <component :is="avatarComponents[modelData.avatarShape]"></component>
+      </div>
+    </template>
     <!-- 基础信息 -->
     <div class="user-info">
       <ul>
@@ -34,7 +41,7 @@
 <script lang="ts" setup>
   import { IBASEINFO } from '@/interface/model';
   import IMODELSTYLE from '@/interface/modelStyle';
-  import { reactive } from 'vue';
+  import avatarComponents from '@/utils/registerAvatarCom';
   const props = defineProps<{
     modelData: IBASEINFO; // 模块数据
     modelStyle: IMODELSTYLE; // 模块样式
@@ -56,12 +63,17 @@
     margin-top: v-bind('modelStyle.mTop');
 
     .avatar-box {
+      width: 115px;
+      height: 150px;
       border: 3px solid #e5e5e5;
       overflow: hidden;
       background-color: #eee;
       display: flex;
       align-items: center;
       justify-content: center;
+      margin-bottom: 40px;
+    }
+    .avatar-shape-box {
       margin-bottom: 40px;
     }
     .user-info {

@@ -16,16 +16,23 @@
         </ul>
       </div>
     </div>
-    <!-- 头像 -->
-    <div v-show="isShow.avatar" class="avatar-box">
-      <el-image style="width: 116px; height: 146px" :src="modelData.avatar" />
-    </div>
+    <!-- 个人头像 -->
+    <template v-if="!modelData.avatarShape">
+      <div v-show="isShow.avatar" class="avatar-box">
+        <el-image style="width: 116px; height: 146px" :src="modelData.avatar" />
+      </div>
+    </template>
+    <template v-else>
+      <div v-show="isShow.avatar" class="avatar-shape-box">
+        <component :is="avatarComponents[modelData.avatarShape]"></component>
+      </div>
+    </template>
   </div>
 </template>
 <script lang="ts" setup>
   import { IBASEINFO } from '@/interface/model';
   import IMODELSTYLE from '@/interface/modelStyle';
-  import { reactive } from 'vue';
+  import avatarComponents from '@/utils/registerAvatarCom';
 
   const props = defineProps<{
     modelData: IBASEINFO; // 模块数据
@@ -93,9 +100,12 @@
       }
     }
     .avatar-box {
-      width: 116px;
-      height: 146px;
+      width: 118px;
+      height: 150px;
       border: 3px solid #eee;
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
   }
 </style>

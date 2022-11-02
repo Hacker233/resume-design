@@ -1,5 +1,5 @@
 <template>
-  <div class="square-avatar-box">
+  <div class="circle-avatar-box">
     <el-image v-if="modelData" style="width: 115px; height: 115px" :src="modelData.avatar" />
     <el-image v-else style="width: 100%; height: 100%" :src="defaultImg" fit="cover" />
   </div>
@@ -9,7 +9,7 @@
   import defaultAvatar from '@/assets/images/people.jpg';
 
   defineOptions({
-    name: 'SQUARE_AVATAR'
+    name: 'RECTABGLE_AVATAR'
   });
 
   interface IAvatar {
@@ -18,15 +18,15 @@
     modelData?: IBASEINFO | null; // 模块数据
   }
   const props = withDefaults(defineProps<IAvatar>(), {
-    width: '120px',
-    height: '120px',
+    width: '118px',
+    height: '118px',
     modelData: null
   });
 
   const defaultImg = defaultAvatar;
 </script>
 <style lang="scss" scoped>
-  .square-avatar-box {
+  .circle-avatar-box {
     width: v-bind('props.width');
     height: v-bind('props.height');
     border: 3px solid #e5e5e5;
@@ -35,9 +35,6 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 8%;
-    .el-image {
-      border-radius: 8%;
-    }
+    border-radius: 50%;
   }
 </style>
