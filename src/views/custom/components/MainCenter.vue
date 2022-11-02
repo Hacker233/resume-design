@@ -2,7 +2,11 @@
   <!-- <c-scrollbar trigger="hover"> -->
   <div class="main-center-box">
     <!-- 设计区域 -->
-    <div ref="html2Pdf" class="design">
+    <!-- <div ref="html2Pdf" class="design"> -->
+    <component
+      :is="resumeBackgroundComponents[resumeJsonNewStore.GLOBAL_STYLE.resumeBackgroundCom]"
+      ref="html2Pdf"
+    >
       <div ref="htmlContentPdf" class="content-box">
         <!-- 传统布局 -->
         <template v-if="resumeJsonNewStore.LAYOUT === 'classical'">
@@ -92,8 +96,9 @@
       </div>
       <!-- 布局模式切换组件 -->
       <mode-switch></mode-switch>
-    </div>
+    </component>
   </div>
+  <!-- </div> -->
 </template>
 <script lang="ts" setup>
   import appStore from '@/store';
@@ -107,6 +112,7 @@
   import { cloneDeep } from 'lodash';
   import IDESIGNJSON from '@/interface/design';
   import { getResetTemplateInfoAsync } from '@/http/api/resume';
+  import resumeBackgroundComponents from '@/utils/registerResumeBackgroundCom';
 
   defineProps<{
     components: any;
@@ -178,7 +184,8 @@
         console.log('htmlContentPdf高度发生变化', height);
         linesNumber.value = Math.ceil(height / 1160); // 有几条分割线
         console.log('分割线数目', linesNumber.value, height);
-        html2Pdf.value.style.height = 1160 * linesNumber.value + 'px'; // 整个简历的高度
+        console.log('htmlPdf', html2Pdf.value);
+        html2Pdf.value.$el.style.height = 1160 * linesNumber.value + 'px'; // 整个简历的高度
       }
     });
     observer.observe(htmlContentPdf.value); // 监听元素
@@ -214,7 +221,7 @@
     linesNumber.value = 0;
     resetSelectModel(); // 重置选中模块
     await nextTick();
-    downloadPDF(html2Pdf.value, resumeJsonNewStore.value.TITLE, false, () => {
+    downloadPDF(html2Pdf.value.$el, resumeJsonNewStore.value.TITLE, false, () => {
       linesNumber.value = temp;
     });
   };
@@ -304,7 +311,6 @@
     box-sizing: border-box;
     overflow: auto;
     .design {
-      background: white;
       width: 820px;
       min-height: 1160px;
       display: table;
@@ -316,7 +322,7 @@
           min-height: 300px;
           width: 820px;
           min-height: 1160px;
-          background-color: #fff;
+          // background-color: #fff;
           box-sizing: border-box;
           position: relative;
           z-index: 0;

@@ -15,6 +15,7 @@
       <!-- 预览区域 -->
       <div :key="refreshUuid" class="center">
         <div ref="html2Pdf" class="design">
+          <!-- 内容区域 -->
           <div ref="htmlContentPdf" class="design-content">
             <component :is="custom" @content-height-change="contentHeightChange" />
           </div>
