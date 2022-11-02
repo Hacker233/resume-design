@@ -12,16 +12,16 @@ const MODEL_DATA_JSON: IMODELDATAJSON = {
     model: 'BASE_INFO',
     show: true,
     title: '基本资料',
-    name: '小猪课堂',
+    name: '化简',
     age: 25,
     avatarShape: '', // 头像形状
-    address: '四川成都', // 所在地址
+    address: '所在地区', // 所在地址
     avatar: 'https://smallpig.site:9000/resume/avatar/file-1663290281512.jpg', // 头像地址
     workService: 3, // 工作年限
     phoneNumber: '028-1234321', // 联系电话
     email: '12322233@qq.com', // 邮箱
-    abstract: '我是一个没有感情的工作机器', // 简介
-    degree: '本科',
+    abstract: '一句话简介，尽量不要太长', // 简介
+    degree: '学历',
     isShow: {
       age: true,
       address: true, // 所在地址
@@ -38,8 +38,8 @@ const MODEL_DATA_JSON: IMODELDATAJSON = {
     model: 'JOB_INTENTION',
     show: true,
     title: '求职意向',
-    intendedPositions: '前端开发工程师', // 意向岗位
-    intendedCity: '成都', // 意向城市
+    intendedPositions: '求职岗位名称', // 意向岗位
+    intendedCity: '城市', // 意向城市
     expectSalary: '8000-10000', // 期望薪资
     jobStatus: '随时入职', // 求职状态
     jobSearchType: '求职类型',
@@ -59,17 +59,17 @@ const MODEL_DATA_JSON: IMODELDATAJSON = {
     LIST: [
       {
         date: ['2015-5', '2019-6'],
-        schoolName: '野鸡大学', // 学校名称
-        specialized: '通信工程', // 专业
-        degree: '本科', // 学历
-        majorCourse: '主修计算机技术、Java、c++等等' // 主修课程
+        schoolName: '学校名称', // 学校名称
+        specialized: '专业名称', // 专业
+        degree: '学历', // 学历
+        majorCourse: '主修的一些专业课程等等' // 主修课程
       },
       {
         date: ['2015-5', '2019-6'],
-        schoolName: '野鸡大学', // 学校名称
-        specialized: '通信工程', // 专业
-        degree: '本科', // 学历
-        majorCourse: '主修计算机技术、Java、c++等等' // 主修课程
+        schoolName: '学校名称', // 学校名称
+        specialized: '专业名称', // 专业
+        degree: '学历', // 学历
+        majorCourse: '主修的一些专业课程等等' // 主修课程
       }
     ],
     isShow: {
@@ -87,24 +87,24 @@ const MODEL_DATA_JSON: IMODELDATAJSON = {
     title: '技能特长',
     LIST: [
       {
-        skillName: 'JavaScript', // 技能名称
+        skillName: 'PPT', // 技能名称
         proficiency: '了解', // 熟练度
-        introduce: '熟练掌握该项技术' // 介绍
+        introduce: '简要概述对该项技能的掌握及运用程度等等' // 介绍
       },
       {
-        skillName: 'JavaScript', // 技能名称
+        skillName: 'EXCEL', // 技能名称
         proficiency: '一般', // 熟练度
-        introduce: '熟练掌握该项技术熟练掌握该项技术熟练掌握该项技术熟练掌握该项技术' // 介绍
+        introduce: '简要概述对该项技能的掌握及运用程度等等' // 介绍
       },
       {
-        skillName: 'JavaScript', // 技能名称
+        skillName: 'Word', // 技能名称
         proficiency: '熟悉', // 熟练度
-        introduce: '熟练掌握该项技术熟练掌握该项技术熟练掌握该项技术熟练掌握该项技术' // 介绍
+        introduce: '简要概述对该项技能的掌握及运用程度等等' // 介绍
       },
       {
         skillName: 'JavaScript', // 技能名称
         proficiency: '精通', // 熟练度
-        introduce: '熟练掌握该项技术' // 介绍
+        introduce: '简要概述对该项技能的掌握及运用程度等等' // 介绍
       }
     ]
   },
@@ -118,14 +118,13 @@ const MODEL_DATA_JSON: IMODELDATAJSON = {
         date: ['2021-9', '2022-10'], // 经历时间
         campusBriefly: '经历简要，如社团名称',
         campusDuty: '主要职责',
-        campusContent: '经历描述'
+        campusContent: '简要概述经历内容或者工作内容等等'
       },
       {
         date: ['2021-9', '2022-10'], // 经历时间
         campusBriefly: '经历简要，如社团名称',
         campusDuty: '主要职责',
-        campusContent:
-          '经历经历描述经历描述经历描经历描述经历描述经历描述经历描述经历描述述经历描述经历描述经历描述经历描述经历描述描述'
+        campusContent: '简要概述经历内容或者工作内容等等'
       }
     ],
     isShow: {
@@ -143,35 +142,17 @@ const MODEL_DATA_JSON: IMODELDATAJSON = {
     LIST: [
       {
         date: ['2021-9', '2022-10'], // 实习时间
-        companyName: '业绩公司', // 公司名称
-        posts: '前端开发工程师', // 职位
+        companyName: '公司名称', // 公司名称
+        posts: '所担任岗位', // 职位
         jobContent: [
           {
-            content: '主要工作内容是打杂'
+            content: '简要概述在岗时的工作内容'
           },
           {
-            content:
-              '主要工作内容是打杂主要工作内容是打杂主要工作内容是打杂主要工作内容是打杂主要工作内容是打杂'
+            content: '简要概述在岗时的工作内容'
           },
           {
-            content: '主要工作内容是打杂'
-          }
-        ]
-      },
-      {
-        date: ['2021-9', '2022-10'], // 实习时间
-        companyName: '业绩公司', // 公司名称
-        posts: '前端开发工程师', // 职位
-        jobContent: [
-          {
-            content: '主要工作内容是打杂'
-          },
-          {
-            content:
-              '主要工作内容是打杂主要工作内容是打杂主要工作内容是打杂主要工作内容是打杂主要工作内容是打杂'
-          },
-          {
-            content: '主要工作内容是打杂'
+            content: '简要概述在岗时的工作内容'
           }
         ]
       }
@@ -191,11 +172,11 @@ const MODEL_DATA_JSON: IMODELDATAJSON = {
     LIST: [
       {
         date: ['2021-9', '2022-10'], // 工作时间
-        companyName: '业绩公司', // 公司名称
-        posts: '前端开发工程师', // 职位
+        companyName: '公司名称', // 公司名称
+        posts: '所担任岗位', // 职位
         jobContent: [
           {
-            content: '主要工作内容是打杂'
+            content: '简要概述在岗时的工作内容'
           }
         ]
       }
@@ -215,10 +196,10 @@ const MODEL_DATA_JSON: IMODELDATAJSON = {
       {
         date: ['2021-9', '2022-10'], // 项目时间
         projectName: '项目名称', // 项目名称
-        posts: '前端开发工程师', // 项目职责
+        posts: '所担任项目角色', // 项目职责
         projectContent: [
           {
-            content: '该项目是一个打杂项目'
+            content: '简要介绍该项目以及你在项目内的主要工作内容'
           }
         ]
       }
@@ -252,7 +233,7 @@ const MODEL_DATA_JSON: IMODELDATAJSON = {
     model: 'HOBBIES',
     show: true,
     title: '兴趣爱好',
-    content: '我喜欢打杂我喜欢打杂我喜欢打杂我喜欢打杂我喜欢打杂我喜欢打杂我喜欢打杂我喜欢打杂',
+    content: '简要介绍一些自己的兴趣爱好，比如逛技术博客、运动等等',
     style: {
       textColor: '#757575',
       textFontSize: '14px',
@@ -266,7 +247,7 @@ const MODEL_DATA_JSON: IMODELDATAJSON = {
     model: 'SELF_EVALUATION',
     show: true,
     title: '自我评价',
-    content: '我是一个没有责任感的人'
+    content: '对自己做一个简单的评价，比如有较强的责任心等等'
   },
   WORKS_DISPLAY: {
     iconfont: 'icon-zhuanyezhishijineng',
@@ -276,13 +257,8 @@ const MODEL_DATA_JSON: IMODELDATAJSON = {
     LIST: [
       {
         worksName: '作品名称',
-        worksLink: 'https://www.baidu.com',
-        worksIntroduce: '这是一个千万级作品'
-      },
-      {
-        worksName: '作品名称',
-        worksLink: 'https://www.baidu.com',
-        worksIntroduce: '这是一个千万级作品'
+        worksLink: 'https://91huajian.cn',
+        worksIntroduce: '简要介绍该作品是什么，解决了什么问题等等'
       }
     ]
   },
@@ -291,8 +267,8 @@ const MODEL_DATA_JSON: IMODELDATAJSON = {
     model: 'CUSTOM_1',
     show: true,
     title: '姓名简介',
-    name: '小猪课堂',
-    abstract: '用一句话来概括一下自己把！',
+    name: '化简',
+    abstract: '一句话介绍自己，不宜过长',
     isShow: {
       abstract: true,
       name: true
