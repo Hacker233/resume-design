@@ -2,6 +2,10 @@
 <template>
   <div class="resume-theme-box">
     <el-form label-width="120px" label-position="left">
+      <!-- 简历背景选择 -->
+      <el-form-item label="背景选择:">
+        <resume-background-popover></resume-background-popover>
+      </el-form-item>
       <!-- 左右布局时主题颜色配置 -->
       <template v-if="resumeJsonNewStore.LAYOUT === 'leftRight'">
         <el-form-item label="左侧主题颜色:">
@@ -221,6 +225,7 @@
   import { useFontSizeList } from '@/hooks/useFontSizeList';
   import ColorPickerCustomVue from '@/components/ColorPicker/ColorPickerCustom.vue';
   import { IMATERIALITEM } from '@/interface/material';
+  import ResumeBackgroundPopover from '@/components/ResumeBackgroundPopover/ResumeBackgroundPopover.vue';
 
   const { resumeJsonNewStore } = appStore.useResumeJsonNewStore;
   const countModel = ref<boolean>(false);

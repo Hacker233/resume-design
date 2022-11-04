@@ -54,6 +54,11 @@ export const getAssetsFile = (url: string) => {
   return new URL(`../assets/images/${url}`, import.meta.url).href;
 };
 
+// 获取简历背景小图片资源
+export const getAssetsResumeBgcFile = (url: string) => {
+  return new URL(`../assets/images/resumeBackground/${url}`, import.meta.url).href;
+};
+
 // 获取assets/material下的静态资源
 export const getAssetsMaterialFile = (path: string, url: string) => {
   return new URL(`../assets/images/material/${path}/${url}`, import.meta.url).href;

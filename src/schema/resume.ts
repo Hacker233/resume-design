@@ -24,7 +24,7 @@ const RESUME_JSON: IRESUMEJSON = {
     rightWidth: '', // 左右布局时右侧宽度
     leftThemeColor: '', // 左侧布局时左侧背景色
     rightThemeColor: '', // 右侧布局时右侧背景色
-    resumeBackgroundCom: 'RESUME_BACKGROUND_2'
+    resumeBackgroundCom: ''
   }
 };
 export default RESUME_JSON;

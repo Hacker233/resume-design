@@ -14,7 +14,8 @@
 
       <!-- 预览区域 -->
       <div :key="refreshUuid" class="center">
-        <div ref="html2Pdf" class="design">
+        <!-- <div ref="html2Pdf" class="design"> -->
+        <component :is="resumeBackgroundName" ref="html2Pdf">
           <!-- 内容区域 -->
           <div ref="htmlContentPdf" class="design-content">
             <component :is="custom" @content-height-change="contentHeightChange" />
@@ -32,7 +33,8 @@
               <p class="page">{{ index + 1 }}/{{ linesNumber }}</p>
             </div>
           </template>
-        </div>
+        </component>
+        <!-- </div> -->
       </div>
       <!-- 属性设置面板 -->
       <div :key="refreshUuid" ref="configRef" class="config">
@@ -82,6 +84,7 @@
   import { closeGlobalLoading } from '@/utils/common';
   import { getTemplateInfoAsync, getResetTemplateInfoAsync } from '@/http/api/resume';
   import exportPdf from '@/utils/pdf';
+  import resumeBackgroundComponents from '@/utils/registerResumeBackgroundCom';
 
   const { cptTitle } = storeToRefs(appStore.useSelectMaterialStore);
   const { changeResumeJsonData } = appStore.useResumeJsonNewStore;
@@ -111,6 +114,12 @@
     console.log('简历JSON数据', resumeJsonNewStore.value);
   };
   resetStoreAndLocal();
+
+  const resumeBackgroundName = computed(() => {
+    return resumeJsonNewStore.value.GLOBAL_STYLE.resumeBackgroundCom
+      ? resumeBackgroundComponents[resumeJsonNewStore.value.GLOBAL_STYLE.resumeBackgroundCom]
+      : resumeBackgroundComponents['RESUME_BACKGROUND_DEFAULT'];
+  });
 
   // 生命周期函数
   onMounted(async () => {
@@ -197,8 +206,8 @@
       for (let entry of entries) {
         height = (entry.target as HTMLElement).offsetHeight;
         linesNumber.value = Math.ceil(height / 1160); // 有几条分割线
-        html2Pdf.value.style.height = 1160 * linesNumber.value + 'px'; // 整个简历的高度
-        htmlContentPdf.value.style.height = html2Pdf.value.style.height;
+        html2Pdf.value.$el.style.height = 1160 * linesNumber.value + 'px'; // 整个简历的高度
+        htmlContentPdf.value.style.height = html2Pdf.value.$el.style.height;
       }
     });
     observer.observe(htmlContentPdf.value); // 监听元素
@@ -303,7 +312,7 @@
         overflow: auto;
 
         .design {
-          background: white;
+          // background: white;
           width: 820px;
           min-height: 1160px;
           margin: 30px 0;

@@ -18,8 +18,6 @@ declare module '@vue/runtime-core' {
     ElAvatar: typeof import('element-plus/es')['ElAvatar'];
     ElBacktop: typeof import('element-plus/es')['ElBacktop'];
     ElButton: typeof import('element-plus/es')['ElButton'];
-    ElCarousel: typeof import('element-plus/es')['ElCarousel'];
-    ElCarouselItem: typeof import('element-plus/es')['ElCarouselItem'];
     ElConfigProvider: typeof import('element-plus/es')['ElConfigProvider'];
     ElDatePicker: typeof import('element-plus/es')['ElDatePicker'];
     ElDialog: typeof import('element-plus/es')['ElDialog'];
@@ -27,7 +25,6 @@ declare module '@vue/runtime-core' {
     ElDropdown: typeof import('element-plus/es')['ElDropdown'];
     ElDropdownItem: typeof import('element-plus/es')['ElDropdownItem'];
     ElDropdownMenu: typeof import('element-plus/es')['ElDropdownMenu'];
-    ElEmpty: typeof import('element-plus/es')['ElEmpty'];
     ElForm: typeof import('element-plus/es')['ElForm'];
     ElFormItem: typeof import('element-plus/es')['ElFormItem'];
     ElIcon: typeof import('element-plus/es')['ElIcon'];
@@ -37,7 +34,6 @@ declare module '@vue/runtime-core' {
     ElMenu: typeof import('element-plus/es')['ElMenu'];
     ElMenuItem: typeof import('element-plus/es')['ElMenuItem'];
     ElOption: typeof import('element-plus/es')['ElOption'];
-    ElPagination: typeof import('element-plus/es')['ElPagination'];
     ElPopover: typeof import('element-plus/es')['ElPopover'];
     ElProgress: typeof import('element-plus/es')['ElProgress'];
     ElRadio: typeof import('element-plus/es')['ElRadio'];
@@ -45,10 +41,7 @@ declare module '@vue/runtime-core' {
     ElSkeleton: typeof import('element-plus/es')['ElSkeleton'];
     ElSkeletonItem: typeof import('element-plus/es')['ElSkeletonItem'];
     ElSlider: typeof import('element-plus/es')['ElSlider'];
-    ElSubMenu: typeof import('element-plus/es')['ElSubMenu'];
     ElSwitch: typeof import('element-plus/es')['ElSwitch'];
-    ElTable: typeof import('element-plus/es')['ElTable'];
-    ElTableColumn: typeof import('element-plus/es')['ElTableColumn'];
     ElTabPane: typeof import('element-plus/es')['ElTabPane'];
     ElTabs: typeof import('element-plus/es')['ElTabs'];
     ElTooltip: typeof import('element-plus/es')['ElTooltip'];
@@ -70,6 +63,7 @@ declare module '@vue/runtime-core' {
     ProcessBarDialog: typeof import('./components/ProcessBarDialog/ProcessBarDialog.vue')['default'];
     ProjectExperienceCom: typeof import('./components/ModelComs/ProjectExperienceCom.vue')['default'];
     QrCode: typeof import('./components/QrCode/QrCode.vue')['default'];
+    ResumeBackgroundPopover: typeof import('./components/ResumeBackgroundPopover/ResumeBackgroundPopover.vue')['default'];
     RouterLink: typeof import('vue-router')['RouterLink'];
     RouterView: typeof import('vue-router')['RouterView'];
     SelfEvaluationCom: typeof import('./components/ModelComs/SelfEvaluationCom.vue')['default'];

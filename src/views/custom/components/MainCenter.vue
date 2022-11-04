@@ -3,10 +3,7 @@
   <div class="main-center-box">
     <!-- 设计区域 -->
     <!-- <div ref="html2Pdf" class="design"> -->
-    <component
-      :is="resumeBackgroundComponents[resumeJsonNewStore.GLOBAL_STYLE.resumeBackgroundCom]"
-      ref="html2Pdf"
-    >
+    <component :is="resumeBackgroundName" ref="html2Pdf">
       <div ref="htmlContentPdf" class="content-box">
         <!-- 传统布局 -->
         <template v-if="resumeJsonNewStore.LAYOUT === 'classical'">
@@ -130,6 +127,11 @@
 
   // store相关数据
   const { resumeJsonNewStore } = storeToRefs(appStore.useResumeJsonNewStore);
+  const resumeBackgroundName = computed(() => {
+    return resumeJsonNewStore.value.GLOBAL_STYLE.resumeBackgroundCom
+      ? resumeBackgroundComponents[resumeJsonNewStore.value.GLOBAL_STYLE.resumeBackgroundCom]
+      : resumeBackgroundComponents['RESUME_BACKGROUND_DEFAULT'];
+  });
 
   // 如果传了ID，则通过ID查询数据
   const { changeResumeJsonData } = appStore.useResumeJsonNewStore;
