@@ -316,7 +316,7 @@
           width: 820px;
           min-height: 1160px;
           margin: 30px 0;
-          display: table;
+          display: flex;
           position: relative;
           .lines {
             z-index: 10;

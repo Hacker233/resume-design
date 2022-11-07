@@ -2,7 +2,6 @@
   <!-- <c-scrollbar trigger="hover"> -->
   <div class="main-center-box">
     <!-- 设计区域 -->
-    <!-- <div ref="html2Pdf" class="design"> -->
     <component :is="resumeBackgroundName" ref="html2Pdf">
       <div ref="htmlContentPdf" class="content-box">
         <!-- 传统布局 -->
@@ -95,7 +94,6 @@
       <mode-switch></mode-switch>
     </component>
   </div>
-  <!-- </div> -->
 </template>
 <script lang="ts" setup>
   import appStore from '@/store';

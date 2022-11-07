@@ -1,9 +1,9 @@
 <template>
-  <div :key="refreshUuid" ref="html2Pdf" class="design">
+  <component :is="resumeBackgroundName" :key="refreshUuid" ref="html2Pdf">
     <div ref="htmlContentPdf" class="design-content">
       <component :is="custom" @content-height-change="contentHeightChange" />
     </div>
-  </div>
+  </component>
 </template>
 <script lang="ts" setup>
   import { getTemplateInfoAsync } from '@/http/api/resume';
@@ -12,7 +12,16 @@
   import { closeGlobalLoading } from '@/utils/common';
   import { storeToRefs } from 'pinia';
   import custom from '@/template/custom/index.vue';
+  import resumeBackgroundComponents from '@/utils/registerResumeBackgroundCom';
   closeGlobalLoading();
+
+  // store相关数据
+  const { resumeJsonNewStore } = storeToRefs(appStore.useResumeJsonNewStore);
+  const resumeBackgroundName = computed(() => {
+    return resumeJsonNewStore.value.GLOBAL_STYLE.resumeBackgroundCom
+      ? resumeBackgroundComponents[resumeJsonNewStore.value.GLOBAL_STYLE.resumeBackgroundCom]
+      : resumeBackgroundComponents['RESUME_BACKGROUND_DEFAULT'];
+  });
 
   const route = useRoute();
   let TEMPLATE_JSON: IDESIGNJSON;
@@ -61,8 +70,8 @@
     observer = new ResizeObserver(async (entries: ResizeObserverEntry[]) => {
       // eslint-disable-next-line @typescript-eslint/no-unused-vars, no-unused-vars
       for (let entry of entries) {
-        html2Pdf.value.style.height = height; // 整个简历的高度
-        htmlContentPdf.value.style.height = html2Pdf.value.style.height;
+        html2Pdf.value.$el.style.height = height; // 整个简历的高度
+        htmlContentPdf.value.style.height = html2Pdf.value.$el.style.height;
       }
     });
     observer.observe(htmlContentPdf.value); // 监听元素
@@ -76,10 +85,9 @@
 </script>
 <style lang="scss" scoped>
   .design {
-    background: white;
     width: 820px;
     min-height: 1160px;
-    display: table;
+    display: flex;
     position: relative;
     margin: 0 auto;
     font-family: 'Microsoft YaHei';

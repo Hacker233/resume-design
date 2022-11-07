@@ -92,7 +92,7 @@
       background: white;
       width: 820px;
       min-height: 1160px;
-      display: table;
+      display: flex;
       position: relative;
       margin: 0 auto;
       border-radius: 5px;
