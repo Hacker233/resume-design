@@ -2,7 +2,11 @@
   <!-- <c-scrollbar trigger="hover"> -->
   <div class="main-center-box">
     <!-- 设计区域 -->
-    <component :is="resumeBackgroundName" ref="html2Pdf">
+    <component
+      :is="resumeBackgroundName"
+      ref="html2Pdf"
+      @content-height-change="contentHeightChange"
+    >
       <div ref="htmlContentPdf" class="content-box">
         <!-- 传统布局 -->
         <template v-if="resumeJsonNewStore.LAYOUT === 'classical'">
@@ -189,6 +193,13 @@
       }
     });
     observer.observe(htmlContentPdf.value); // 监听元素
+  };
+
+  // 子组件内容高度发生变化---需要重新计算高度，触发resizeDOM
+  const contentHeightChange = async () => {
+    await nextTick();
+    resizeDOM();
+    console.log('子组件内容高度发生变化---需要重新计算高度', htmlContentPdf.value.style.height);
   };
 
   // 全局样式设置

@@ -156,7 +156,7 @@
     }
     .edit-box {
       position: absolute;
-      right: 0px;
+      right: 40px;
       top: -35px;
       display: flex;
       .copy,
