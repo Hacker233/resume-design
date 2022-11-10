@@ -43,7 +43,13 @@
           <el-switch v-model="modelItem.data.isShow.intendedCity" />
         </el-form-item>
         <el-form-item label="期望薪酬:">
-          <el-select v-model="modelItem.data.expectSalary" class="m-2" placeholder="Select">
+          <el-select
+            v-model="modelItem.data.expectSalary"
+            class="m-2"
+            placeholder="请选择期望薪酬"
+            filterable
+            allow-create
+          >
             <el-option
               v-for="(item, index) in expectSalaryList"
               :key="index"
@@ -89,7 +95,8 @@
     '8000-10000￥',
     '10000-12000￥',
     '12000-15000￥',
-    '15000￥以上'
+    '15000￥以上',
+    '面议'
   ]);
 </script>
 <style lang="scss"></style>
