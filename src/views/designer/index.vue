@@ -288,7 +288,6 @@
     width: 100%;
     box-sizing: border-box;
     overflow: hidden;
-    font-family: 'Microsoft YaHei';
     min-width: 1375px;
     .bottom {
       display: flex;
@@ -344,7 +343,9 @@
             }
           }
           .design-content {
-            font-family: 'Microsoft YaHei';
+            font-family: v-bind(
+              'resumeJsonNewStore.GLOBAL_STYLE.fontFamily ? resumeJsonNewStore.GLOBAL_STYLE.fontFamily : "微软雅黑"'
+            );
           }
         }
       }

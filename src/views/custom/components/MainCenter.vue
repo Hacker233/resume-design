@@ -333,7 +333,9 @@
           min-height: 300px;
           width: 820px;
           min-height: 1160px;
-          // background-color: #fff;
+          font-family: v-bind(
+            'resumeJsonNewStore.GLOBAL_STYLE.fontFamily ? resumeJsonNewStore.GLOBAL_STYLE.fontFamily : "微软雅黑"'
+          );
           box-sizing: border-box;
           position: relative;
           z-index: 0;

@@ -16,5 +16,6 @@ interface IGlobalStyle {
   rightWidth: string; // 左右布局时右侧宽度
   leftThemeColor: string; // 左侧布局时左侧背景色
   rightThemeColor: string; // 右侧布局时右侧背景色
+  fontFamily: string; // 字体
 }
 export default IGlobalStyle;

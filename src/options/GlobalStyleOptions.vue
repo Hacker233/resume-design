@@ -36,6 +36,23 @@
           @change="changeThemeColor"
         ></color-picker-custom-vue>
       </el-form-item>
+      <!-- 字体选择 -->
+      <el-form-item label="字体选择:">
+        <el-select
+          v-model="resumeJsonNewStore.GLOBAL_STYLE.fontFamily"
+          class="m-2"
+          placeholder="请选择字体"
+          @change="secondFontFamilyChange"
+        >
+          <el-option
+            v-for="(item, index) in fontFamilyList"
+            :key="index"
+            :label="item"
+            :value="item"
+            :style="{ fontFamily: item }"
+          />
+        </el-select>
+      </el-form-item>
       <!-- 字体大小设置 -->
       <el-form-item label="模块标题字体大小:">
         <el-select
@@ -226,6 +243,7 @@
   import ColorPickerCustomVue from '@/components/ColorPicker/ColorPickerCustom.vue';
   import { IMATERIALITEM } from '@/interface/material';
   import ResumeBackgroundPopover from '@/components/ResumeBackgroundPopover/ResumeBackgroundPopover.vue';
+  import { useFontFamilyList } from '@/hooks/useFontFamlyList';
 
   const { resumeJsonNewStore } = appStore.useResumeJsonNewStore;
   const countModel = ref<boolean>(false);
@@ -267,8 +285,16 @@
   // 字体大小
   const fontSizeList = useFontSizeList();
 
+  // 字体列表
+  const fontFamilyList = useFontFamilyList();
+
   // 字体粗细
   const fontWeightList = reactive<Array<number>>([100, 200, 300, 400, 500, 600, 700, 800, 900]);
+
+  // 字体变化
+  const secondFontFamilyChange = (value: string) => {
+    console.log(value);
+  };
 
   // 二级标题字体大小发生变化时
   const secondTitleFontSizeChange = (value: string) => {

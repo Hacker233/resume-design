@@ -15,7 +15,6 @@
 
 <style lang="scss" scoped>
   .title {
-    font-family: '微软雅黑';
     width: 100%;
     padding-top: v-bind('modelStyle.pTop');
     padding-bottom: v-bind('modelStyle.pBottom');

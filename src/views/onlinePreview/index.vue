@@ -33,6 +33,7 @@
   const { setUuid } = appStore.useUuidStore;
   const { refreshUuid } = storeToRefs(appStore.useUuidStore);
   const { changeResumeJsonData } = appStore.useResumeJsonNewStore;
+  const { resumeJsonNewStore } = storeToRefs(appStore.useResumeJsonNewStore); // store里的模板数据
 
   // 查询在线简历数据
   const getOnlineResume = async () => {
@@ -99,7 +100,9 @@
       overflow: hidden;
       box-shadow: 0px 16px 22px 2px rgb(0 37 58 / 10%);
       .design-content {
-        font-family: 'Microsoft YaHei';
+        font-family: v-bind(
+          'resumeJsonNewStore.GLOBAL_STYLE.fontFamily ? resumeJsonNewStore.GLOBAL_STYLE.fontFamily : "微软雅黑"'
+        );
       }
 
       .lines {

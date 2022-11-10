@@ -53,7 +53,6 @@
           letter-spacing: 4px;
           font-size: 22px;
           font-weight: 600;
-          // font-family: cursive;
           color: #74a274;
           cursor: pointer;
         }

@@ -35,7 +35,6 @@
     overflow: hidden;
     display: flex;
     flex-direction: column;
-    font-family: '微软雅黑';
     .main-box {
       flex: 1;
       display: flex;

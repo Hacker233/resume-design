@@ -1,7 +1,23 @@
 @font-face {
+  font-family: '方正仿宋';
+  src: url('./方正仿宋.ttf');
+}
+@font-face {
+  font-family: '方正书宋简体';
+  src: url('./方正书宋简体.ttf');
+}
+@font-face {
+  font-family: '手书体';
+  src: url('./手书体.ttf');
+}
+@font-face {
   src: url('./微软雅黑.ttf');
   font-weight: normal;
   font-style: normal;
+}
+@font-face {
+  font-family: '站酷酷黑';
+  src: url('./站酷酷黑.ttf');
 }
 @font-face {
   font-family: '站酷快乐体';

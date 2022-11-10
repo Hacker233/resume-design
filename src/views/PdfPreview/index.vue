@@ -90,9 +90,10 @@
     display: flex;
     position: relative;
     margin: 0 auto;
-    font-family: 'Microsoft YaHei';
     .design-content {
-      font-family: 'Microsoft YaHei';
+      font-family: v-bind(
+        'resumeJsonNewStore.GLOBAL_STYLE.fontFamily ? resumeJsonNewStore.GLOBAL_STYLE.fontFamily : "微软雅黑"'
+      );
     }
   }
 </style>
