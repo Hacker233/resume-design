@@ -10,6 +10,7 @@
         <el-menu-item index="Template">在线制作</el-menu-item>
         <el-menu-item index="Word">简历模板</el-menu-item>
         <el-menu-item index="PPT">PPT模板</el-menu-item>
+        <!-- <el-menu-item index="WebCode">私有部署</el-menu-item> -->
       </el-menu>
     </div>
     <!-- GitHub -->

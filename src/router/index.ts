@@ -21,6 +21,7 @@ const PPTPreview = () => import('@/views/pptPreview/index.vue');
 const MyContribute = () => import('@/views/person/myContribute/index.vue');
 const OnlinePreview = () => import('@/views/onlinePreview/index.vue');
 const MyOnlineResume = () => import('@/views/person/onlineResume/index.vue');
+const WebCode = () => import('@/views/webCode/index.vue');
 
 // 管理员界面
 const AdminIndex = () => import('@/views/admin/index.vue');
@@ -146,6 +147,17 @@ const routes: Array<RouteRecordRaw> = [
       requireLogin: false
     },
     component: PPT
+  },
+  {
+    path: '/webCode',
+    name: 'WebCode',
+    meta: {
+      title: '私有部署',
+      keepAlive: true,
+      isShowComNav: true,
+      requireLogin: false
+    },
+    component: WebCode
   },
   {
     path: '/wordPreview',
