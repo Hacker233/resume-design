@@ -22,7 +22,7 @@
               ref="numberRef3"
               class="number"
               :start-val="0"
-              :end-val="10000"
+              :end-val="webData.trafficnumber"
               separator=","
               :duration="4000"
             ></count-to>
