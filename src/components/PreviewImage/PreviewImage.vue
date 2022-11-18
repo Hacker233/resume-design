@@ -1,8 +1,10 @@
 <template>
-  <div class="preview-box">
-    <slot></slot>
+  <div class="preview-box" @click="close">
+    <div @click="notHidden">
+      <slot></slot>
+    </div>
     <!-- 关闭按钮 -->
-    <div class="close" @click="close">
+    <div class="close">
       <el-icon color="#fff"><CloseBold /></el-icon>
     </div>
   </div>
@@ -11,6 +13,9 @@
   const emit = defineEmits(['close']);
   const close = () => {
     emit('close');
+  };
+  const notHidden = (e: Event) => {
+    e.stopPropagation();
   };
 </script>
 <style lang="scss" scoped>

@@ -79,6 +79,10 @@
       box-shadow: 0px 16px 22px 2px rgb(0 37 58 / 24%);
       transform: translateY(2%) scale(1.03);
       background-color: #fff;
+      .viewer-box {
+        color: #949ba0;
+        transform: translateY(0%) scale(1);
+      }
     }
     .template-card-box {
       height: 400px;
@@ -159,6 +163,8 @@
         }
       }
       .icon-box {
+        display: flex;
+        align-items: center;
         margin-right: 5px;
         .number {
           margin-left: 5px;
