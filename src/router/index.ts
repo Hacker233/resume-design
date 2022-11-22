@@ -22,6 +22,8 @@ const MyContribute = () => import('@/views/person/myContribute/index.vue');
 const OnlinePreview = () => import('@/views/onlinePreview/index.vue');
 const MyOnlineResume = () => import('@/views/person/onlineResume/index.vue');
 const WebCode = () => import('@/views/webCode/index.vue');
+// 软件分享
+const SoftShare = () => import('@/views/softShare/inde.vue');
 
 // 管理员界面
 const AdminIndex = () => import('@/views/admin/index.vue');
@@ -147,6 +149,17 @@ const routes: Array<RouteRecordRaw> = [
       requireLogin: false
     },
     component: PPT
+  },
+  {
+    path: '/soft',
+    name: 'Soft',
+    meta: {
+      title: '软件分享',
+      keepAlive: true,
+      isShowComNav: true,
+      requireLogin: false
+    },
+    component: SoftShare
   },
   {
     path: '/webCode',

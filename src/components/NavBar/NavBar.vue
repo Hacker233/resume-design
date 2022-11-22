@@ -6,11 +6,29 @@
       :font-color="fontColor ? fontColor : '#fff'"
     ></logo-com>
     <div class="center">
-      <el-menu :default-active="route.name" class="el-menu-demo" @select="handleSelect">
-        <el-menu-item index="Template">在线制作</el-menu-item>
-        <el-menu-item index="Word">简历模板</el-menu-item>
-        <el-menu-item index="PPT">PPT模板</el-menu-item>
-        <!-- <el-menu-item index="WebCode">私有部署</el-menu-item> -->
+      <el-menu
+        :default-active="route.name"
+        class="el-menu-demo"
+        mode="horizontal"
+        :ellipsis="false"
+        @select="handleSelect"
+      >
+        <template v-for="(item, index) in menuList" :key="index">
+          <template v-if="item.children">
+            <el-sub-menu :index="item.name" popper-class="navbar-popper-box">
+              <template #title>{{ item.title }}</template>
+              <el-menu-item
+                v-for="(childItem, childIndex) in item.children"
+                :key="childIndex"
+                :index="childItem.name"
+                >{{ childItem.title }}</el-menu-item
+              >
+            </el-sub-menu>
+          </template>
+          <template v-else>
+            <el-menu-item :index="item.name">{{ item.title }}</el-menu-item>
+          </template>
+        </template>
       </el-menu>
     </div>
     <!-- GitHub -->
@@ -62,6 +80,59 @@
     iconColor: '#fff',
     position: 'fixed'
   });
+
+  // 菜单列表
+  const menuList = reactive([
+    {
+      iconfont: '',
+      name: 'Template',
+      title: '在线制作',
+      children: null,
+      path: '/template'
+    },
+    {
+      iconfont: '',
+      name: 'TemplateDownload',
+      title: '模板下载',
+      children: [
+        {
+          iconfont: '',
+          name: 'Word',
+          title: '简历模板',
+          children: null,
+          path: '/word'
+        },
+        {
+          iconfont: '',
+          name: 'PPT',
+          title: 'PPT模板',
+          children: null,
+          path: '/ppt'
+        }
+      ]
+    },
+    {
+      iconfont: '',
+      name: 'Resourceshare',
+      title: '资源分享',
+      children: [
+        {
+          iconfont: '',
+          name: 'Soft',
+          title: '软件分享',
+          children: null,
+          path: '/soft'
+        }
+      ]
+    },
+    {
+      iconfont: '',
+      name: 'WebCode',
+      title: '私有部署',
+      children: null,
+      path: '/webcode'
+    }
+  ]);
 
   // 菜单
   const currentMenu = ref<string>('');
@@ -140,8 +211,8 @@
           align-items: center;
           width: 100%;
           color: v-bind('fontColor');
-          padding: 0 25px !important;
-          letter-spacing: 4px;
+          padding: 0 15px !important;
+          letter-spacing: 3px;
           font-size: 16px;
           border-bottom: 4px solid transparent;
           transition: all 0.3s;
@@ -149,6 +220,17 @@
             // color: #2ddd9d;
             border-color: #2ddd9d;
             background-color: rgba(#ccc, 0.1);
+          }
+        }
+        .el-sub-menu {
+          height: 100%;
+          border-bottom: 4px solid transparent;
+          color: v-bind('fontColor');
+          :deep(.el-sub-menu__title) {
+            border-bottom: none !important;
+            letter-spacing: 3px;
+            font-size: 16px;
+            color: v-bind('fontColor');
           }
         }
         .is-active {
@@ -203,6 +285,26 @@
             background-color: v-bind('iconColor');
           }
         }
+      }
+    }
+  }
+</style>
+<style lang="scss">
+  .navbar-popper-box {
+    border-radius: 6px;
+    overflow: hidden;
+    border: none;
+    .el-menu {
+      padding: 0;
+      min-width: 130px;
+      .el-menu-item {
+        height: 50px;
+        font-size: 14px;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        letter-spacing: 2px;
       }
     }
   }
