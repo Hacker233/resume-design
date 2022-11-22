@@ -15,7 +15,12 @@
       >
         <template v-for="(item, index) in menuList" :key="index">
           <template v-if="item.children">
-            <el-sub-menu :index="item.name" popper-class="navbar-popper-box">
+            <el-sub-menu
+              :index="item.name"
+              popper-class="navbar-popper-box"
+              :show-timeout="0"
+              :hide-timeout="100"
+            >
               <template #title>{{ item.title }}</template>
               <el-menu-item
                 v-for="(childItem, childIndex) in item.children"
@@ -224,19 +229,26 @@
         }
         .el-sub-menu {
           height: 100%;
-          border-bottom: 4px solid transparent;
           color: v-bind('fontColor');
+          border-bottom: 4px solid transparent;
+          &:hover {
+            border-bottom: 4px solid #2ddd9d !important;
+            background-color: rgba(#ccc, 0.1);
+          }
           :deep(.el-sub-menu__title) {
-            border-bottom: none !important;
             letter-spacing: 3px;
             font-size: 16px;
             color: v-bind('fontColor');
+            border: none;
+            &:hover {
+              background-color: rgba(#ccc, 0.1);
+            }
           }
         }
         .is-active {
           background-color: rgba(255, 255, 255, 0);
           // color: #21a474;
-          border-color: #2ddd9d;
+          border-bottom: 4px solid #2ddd9d !important;
         }
       }
     }
@@ -291,12 +303,12 @@
 </style>
 <style lang="scss">
   .navbar-popper-box {
-    border-radius: 6px;
     overflow: hidden;
     border: none;
+    border-radius: 0;
     .el-menu {
       padding: 0;
-      min-width: 130px;
+      min-width: 134px;
       .el-menu-item {
         height: 50px;
         font-size: 14px;

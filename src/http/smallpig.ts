@@ -1,11 +1,15 @@
 import Request from './index';
 import { AxiosResponse } from 'axios';
-const baiduHttp = new Request({
-  baseURL: 'https://data.zz.baidu.com',
+import CONFIG from '@/config/index';
+const smallpigHttp = new Request({
+  baseURL: CONFIG.smallpigAddress,
   timeout: 1000 * 60 * 5,
   interceptors: {
     // 请求拦截器
     requestInterceptors: (config) => {
+      config.validateStatus = (status) => {
+        return status >= 200 && status < 400;
+      };
       return config;
     },
     // 响应拦截器
@@ -14,4 +18,4 @@ const baiduHttp = new Request({
     }
   }
 });
-export default baiduHttp;
+export default smallpigHttp;

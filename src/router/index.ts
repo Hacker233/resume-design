@@ -23,7 +23,7 @@ const OnlinePreview = () => import('@/views/onlinePreview/index.vue');
 const MyOnlineResume = () => import('@/views/person/onlineResume/index.vue');
 const WebCode = () => import('@/views/webCode/index.vue');
 // 软件分享
-const SoftShare = () => import('@/views/softShare/inde.vue');
+const SoftShare = () => import('@/views/softShare/index.vue');
 
 // 管理员界面
 const AdminIndex = () => import('@/views/admin/index.vue');
