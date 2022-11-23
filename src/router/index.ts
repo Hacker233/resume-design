@@ -24,6 +24,7 @@ const MyOnlineResume = () => import('@/views/person/onlineResume/index.vue');
 const WebCode = () => import('@/views/webCode/index.vue');
 // 软件分享
 const SoftShare = () => import('@/views/softShare/index.vue');
+const SoftDetail = () => import('@/views/softDetail/index.vue');
 
 // 管理员界面
 const AdminIndex = () => import('@/views/admin/index.vue');
@@ -160,6 +161,17 @@ const routes: Array<RouteRecordRaw> = [
       requireLogin: false
     },
     component: SoftShare
+  },
+  {
+    path: '/softDetail',
+    name: 'SoftDetail',
+    meta: {
+      title: '软件详情',
+      keepAlive: true,
+      isShowComNav: true,
+      requireLogin: false
+    },
+    component: SoftDetail
   },
   {
     path: '/webCode',

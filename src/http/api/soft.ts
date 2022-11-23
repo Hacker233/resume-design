@@ -16,3 +16,12 @@ export const getSoftListAsync: any = (params: any) => {
     params: params
   });
 };
+
+// 根据软件id查询详细信息
+export const getySoftInfoByIdAsync: any = (params: any) => {
+  return smallpigHttp.request({
+    url: '/api/source/querySourceById',
+    method: 'get',
+    params: params
+  });
+};

@@ -5,71 +5,31 @@
         <li
           v-for="(item, index) in categoryList"
           :key="index"
-          :class="[{ active: currentValue === item.category_value }]"
+          :class="[{ active: currentValue === item.socategory_name }]"
           @click="handleSelect(item)"
         >
-          {{ item.category_label }}
+          {{ item.socategory_name }}
         </li>
       </ul>
-    </div>
-    <!-- 右侧筛选 -->
-    <div class="right">
-      <!-- <div :class="['sort-box', { active: currentSort === 'hot' }]" @click="handleSort('hot')">
-        <svg-icon
-          icon-name="icon-icon1"
-          class-name="juejin"
-          size="17px"
-          :color="currentSort === 'hot' ? '#018060' : '#ccc'"
-        ></svg-icon>
-        <span>热度</span>
-      </div> -->
-      <div :class="['sort-box', { active: currentSort === 'time' }]" @click="handleSort('time')">
-        <svg-icon
-          icon-name="icon-shijian"
-          class-name="juejin"
-          size="20px"
-          :color="currentSort === 'time' ? '#018060' : '#ccc'"
-        ></svg-icon>
-        <span>时间</span>
-      </div>
     </div>
   </div>
 </template>
 <script lang="ts" setup>
-  const emit = defineEmits(['getTemplateListByCate']);
+  const emit = defineEmits(['getSoftListByCate']);
 
   defineProps<{
     categoryList: Array<{
-      category_label: string;
-      category_value: string;
+      socategory_icon: string;
+      socategory_name: string;
+      socategory_id: string;
     }>;
   }>();
 
-  const currentSort = ref<string>('');
-
   // 点击分类
-  const currentValue = ref<string>('');
+  const currentValue = ref<string>('影视');
   const handleSelect = (item: any) => {
-    currentValue.value = item.category_value;
-    let queryParams = {
-      category: currentValue.value,
-      sort: currentSort.value
-    };
-    emit('getTemplateListByCate', queryParams);
-  };
-
-  const handleSort = (value: string) => {
-    if (currentSort.value) {
-      currentSort.value = '';
-    } else {
-      currentSort.value = value;
-    }
-
-    let queryParams = {
-      category: currentValue.value,
-      sort: currentSort.value
-    };
-    emit('getTemplateListByCate', queryParams);
+    currentValue.value = item.socategory_name;
+    emit('getSoftListByCate', currentValue.value);
   };
 </script>
 <style lang="scss" scoped>
