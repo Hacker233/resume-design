@@ -24,6 +24,8 @@ import 'element-plus/theme-chalk/src/message.scss';
 // 注册store
 import { createPinia } from 'pinia';
 import { registerStore } from '@/store';
+
+import 'viewerjs/dist/viewer.css';
 import VueViewer from 'v-viewer';
 
 import 'default-passive-events';

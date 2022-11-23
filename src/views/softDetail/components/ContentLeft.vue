@@ -8,7 +8,7 @@
     <!-- 预览图 -->
     <div class="preview-img-box">
       <com-title title="预览图"></com-title>
-      <div class="img-list">
+      <div v-viewer class="img-list">
         <img
           v-for="(item, index) in content.source_screen"
           :key="index"
@@ -56,6 +56,7 @@
           box-shadow: 0px 16px 22px 2px rgb(0 37 58 / 6%);
           margin-bottom: 15px;
           border-radius: 10px;
+          cursor: pointer;
         }
       }
     }
