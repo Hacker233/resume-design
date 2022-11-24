@@ -6,7 +6,7 @@
     :show-close="false"
     lock-scroll
     destroy-on-close
-    custom-class="import-json"
+    class="import-json"
     :close-on-click-modal="false"
     title="预览简历"
   >

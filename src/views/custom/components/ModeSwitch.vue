@@ -42,7 +42,7 @@
       :show-close="false"
       :close-on-click-modal="false"
       append-to-body
-      custom-class="base-options"
+      class="base-options"
     >
       <!-- 属性设置区域 -->
       <div class="base-options-box">

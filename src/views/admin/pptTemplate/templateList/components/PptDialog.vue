@@ -7,7 +7,7 @@
     :show-close="false"
     :close-on-click-modal="false"
     append-to-body
-    custom-class="ppt-template-dialog"
+    class="ppt-template-dialog"
   >
     <el-form
       ref="ruleFormRef"

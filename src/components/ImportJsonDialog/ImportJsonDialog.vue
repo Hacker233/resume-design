@@ -5,7 +5,7 @@
     :show-close="false"
     :close-on-click-modal="false"
     append-to-body
-    custom-class="import-json"
+    class="import-json"
   >
     <!-- 头部 -->
     <template #title>

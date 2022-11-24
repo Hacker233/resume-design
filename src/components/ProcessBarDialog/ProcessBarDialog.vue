@@ -4,7 +4,7 @@
     width="40%"
     :show-close="false"
     :close-on-click-modal="false"
-    custom-class="pdf-progress"
+    class="pdf-progress"
     append-to-body
     destroy-on-close
   >

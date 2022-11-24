@@ -7,7 +7,7 @@
     :show-close="false"
     :close-on-click-modal="false"
     append-to-body
-    custom-class="template-audit"
+    class="template-audit"
   >
     <el-form
       ref="ruleFormRef"
