@@ -83,6 +83,7 @@
   // 根据分类获取软件列表
   const getSoftListByCate = async (value: string) => {
     sourceCategory.value = value;
+    page.value = 1;
     getSoftList();
   };
 
