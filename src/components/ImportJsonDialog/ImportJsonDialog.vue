@@ -8,7 +8,7 @@
     class="import-json"
   >
     <!-- 头部 -->
-    <template #title>
+    <template #header>
       <div class="header">
         <div class="header-left">
           <h1 class="title">请在编辑器内输入简历JSON数据，格式如下：</h1>

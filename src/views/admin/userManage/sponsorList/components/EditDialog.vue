@@ -9,7 +9,7 @@
     class="import-json"
   >
     <!-- 头部 -->
-    <template #title>
+    <template #header>
       <div class="header">
         <div class="header-left">
           <h1 class="title">请在编辑器内修改简历模板数据：</h1>
