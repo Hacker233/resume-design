@@ -26,6 +26,9 @@ const WebCode = () => import('@/views/webCode/index.vue');
 const SoftShare = () => import('@/views/softShare/index.vue');
 const SoftDetail = () => import('@/views/softDetail/index.vue');
 
+// 图片压缩
+const ImgCompress = () => import('@/views/imgCompress/index.vue');
+
 // 管理员界面
 const AdminIndex = () => import('@/views/admin/index.vue');
 const Panel = () => import('@/views/admin/panel/index.vue');
@@ -172,6 +175,17 @@ const routes: Array<RouteRecordRaw> = [
       requireLogin: false
     },
     component: SoftDetail
+  },
+  {
+    path: '/imgCompress',
+    name: 'ImgCompress',
+    meta: {
+      title: '图片压缩',
+      keepAlive: true,
+      isShowComNav: true,
+      requireLogin: false
+    },
+    component: ImgCompress
   },
   {
     path: '/webCode',

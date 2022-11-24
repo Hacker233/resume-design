@@ -129,14 +129,28 @@
           path: '/soft'
         }
       ]
+    },
+    {
+      iconfont: '',
+      name: 'OnlineTool',
+      title: '在线工具',
+      children: [
+        {
+          iconfont: '',
+          name: 'ImgCompress',
+          title: '图片压缩',
+          children: null,
+          path: '/imgCompress'
+        }
+      ]
+    },
+    {
+      iconfont: '',
+      name: 'WebCode',
+      title: '私有部署',
+      children: null,
+      path: '/webcode'
     }
-    // {
-    //   iconfont: '',
-    //   name: 'WebCode',
-    //   title: '私有部署',
-    //   children: null,
-    //   path: '/webcode'
-    // }
   ]);
 
   // 菜单

@@ -6,7 +6,6 @@ const CONFIG = {
   serverAddress: serverAddress,
   smallpigAddress: 'https://smallpig.site'
 };
-console.log('运行环境', CONFIG);
 export default CONFIG;
 
 // /www/wwwroot/huajian.smallpig.site/resume-server/resume-server/node_modules/_puppeteer@17.1.3@puppeteer/.local-chromium/linux-1036745/chrome-linux/chrome: error while loading shared libraries: libnss3.so: cannot open shared object file: No such file or directory

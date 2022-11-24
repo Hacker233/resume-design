@@ -28,10 +28,13 @@ declare module '@vue/runtime-core' {
     ElIcon: typeof import('element-plus/es')['ElIcon'];
     ElImage: typeof import('element-plus/es')['ElImage'];
     ElInput: typeof import('element-plus/es')['ElInput'];
+    ElInputNumber: typeof import('element-plus/es')['ElInputNumber'];
     ElMenu: typeof import('element-plus/es')['ElMenu'];
     ElMenuItem: typeof import('element-plus/es')['ElMenuItem'];
+    ElOption: typeof import('element-plus/es')['ElOption'];
     ElPagination: typeof import('element-plus/es')['ElPagination'];
     ElPopover: typeof import('element-plus/es')['ElPopover'];
+    ElSelect: typeof import('element-plus/es')['ElSelect'];
     ElSkeleton: typeof import('element-plus/es')['ElSkeleton'];
     ElSkeletonItem: typeof import('element-plus/es')['ElSkeletonItem'];
     ElSlider: typeof import('element-plus/es')['ElSlider'];
