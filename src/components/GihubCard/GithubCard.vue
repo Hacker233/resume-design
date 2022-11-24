@@ -270,6 +270,11 @@
       letter-spacing: 2px;
       font-size: 16px;
       text-decoration: none;
+      display: flex;
+      width: 100%;
+      height: 100%;
+      align-items: center;
+      justify-content: center;
     }
   }
   .button-box:hover {

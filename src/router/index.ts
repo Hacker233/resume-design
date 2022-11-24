@@ -471,6 +471,7 @@ router.beforeEach((to, from, next) => {
             email: JSON.parse(userInfo as string).email
           }
         });
+        closeGlobalLoading(); // 关闭全局等待层
       }
     } else {
       closeGlobalLoading(); // 关闭全局等待层
