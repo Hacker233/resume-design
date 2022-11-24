@@ -21,6 +21,7 @@
           @click="toDownload(item.link)"
         >
           {{ item.name }}
+          <span v-if="item.pass">{{ `(提取码:${item.pass})` }}</span>
         </div>
       </div>
     </div>
