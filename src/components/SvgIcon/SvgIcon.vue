@@ -1,6 +1,6 @@
 <template>
-  <svg :class="svgClass" aria-hidden="true">
-    <use :xlink:href="iconClassName" :fill="color" />
+  <svg :class="svgClass" aria-hidden="true" @mouseover="mouseover" @mouseleave="mouseleave">
+    <use :xlink:href="iconClassName" :fill="defaultColor" />
   </svg>
 </template>
 
@@ -22,6 +22,14 @@
     size: {
       type: String,
       default: '14px'
+    },
+    hoverColor: {
+      type: String,
+      default: ''
+    },
+    isHover: {
+      type: Boolean,
+      default: false
     }
   });
   const iconClassName = computed(() => {
@@ -33,6 +41,20 @@
     }
     return 'svg-icon';
   });
+
+  const defaultColor = ref<any>(props.color);
+  const mouseover = () => {
+    if (props.isHover) {
+      defaultColor.value = props.hoverColor || '#2ddd9d';
+    }
+    return;
+  };
+  const mouseleave = () => {
+    if (props.isHover) {
+      defaultColor.value = props.color;
+    }
+    return;
+  };
 </script>
 
 <style scoped lang="scss">
