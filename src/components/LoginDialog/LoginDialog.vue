@@ -5,7 +5,7 @@
     :show-close="false"
     :close-on-click-modal="false"
     :before-close="handleClose"
-    custom-class="login-dialog-box"
+    class="login-dialog-box"
   >
     <section class="user">
       <div class="user_options-container">

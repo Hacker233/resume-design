@@ -7,7 +7,7 @@
     :show-close="false"
     :close-on-click-modal="false"
     append-to-body
-    custom-class="import-json"
+    class="import-json"
   >
     <!-- 代码编辑器 -->
     <div class="code-mirror-box">

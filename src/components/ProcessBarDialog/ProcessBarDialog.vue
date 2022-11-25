@@ -4,11 +4,11 @@
     width="40%"
     :show-close="false"
     :close-on-click-modal="false"
-    custom-class="pdf-progress"
+    class="pdf-progress"
     append-to-body
     destroy-on-close
   >
-    <template #title>
+    <template #header>
       <div class="header">
         <h1>{{ statusText }}</h1>
       </div>
