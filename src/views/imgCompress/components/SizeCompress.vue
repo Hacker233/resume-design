@@ -174,6 +174,10 @@
       ruleForm.height = '';
     }
   };
+
+  defineExpose({
+    ruleForm
+  });
 </script>
 <style lang="scss" scoped>
   .el-form {

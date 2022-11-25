@@ -29,7 +29,7 @@
 
     <!-- 赞助弹窗 -->
     <el-dialog
-      v-model="dialogVisible"
+      :model-value="dialogVisible"
       class="sponsor-dialog-wrapper"
       title="请填写赞助信息"
       width="840px"
