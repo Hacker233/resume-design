@@ -35,12 +35,25 @@
   }>();
 
   // 点击下载
+  const router = useRouter();
   const toDownload = (link: string) => {
-    let token = localStorage.getItem('token');
+    const token = localStorage.getItem('token'); // 判断是否登录
+    const userInfo = localStorage.getItem('userInfo');
     if (!token) {
       LoginDialog(true);
     } else {
-      window.open(link, '_blank');
+      // 判断邮箱是否验证
+      const emailVerify = JSON.parse(userInfo as string).auth.email.valid;
+      if (emailVerify) {
+        window.open(link, '_blank');
+      } else {
+        router.push({
+          path: '/emailVerify',
+          query: {
+            email: JSON.parse(userInfo as string).email
+          }
+        });
+      }
     }
   };
 </script>
