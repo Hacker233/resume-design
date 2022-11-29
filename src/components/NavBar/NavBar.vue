@@ -143,14 +143,14 @@
           path: '/imgCompress'
         }
       ]
+    },
+    {
+      iconfont: '',
+      name: 'WebCode',
+      title: '私有部署',
+      children: null,
+      path: '/webcode'
     }
-    // {
-    //   iconfont: '',
-    //   name: 'WebCode',
-    //   title: '私有部署',
-    //   children: null,
-    //   path: '/webcode'
-    // }
   ]);
 
   // 菜单

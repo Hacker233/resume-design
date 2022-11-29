@@ -7,7 +7,16 @@
       <!-- 头部标题位置 -->
       <div class="title-box">
         <h1>将91化简私有化部署为你自己的网站</h1>
+        <div class="button" @click="openDialog"> 立即获得 </div>
       </div>
+
+      <!-- 卡片盒子title -->
+      <introduce-title-vue
+        title="你将获得超多资料"
+        subtitle="资料远不止如此，作者解答才是最贴心的~"
+        title-color="#000"
+        subtitle-color="#7f8b96"
+      ></introduce-title-vue>
 
       <!-- 介绍卡片 -->
       <div class="card-list-box">
@@ -16,10 +25,22 @@
         </div>
       </div>
     </div>
+
+    <!-- 购买弹窗 -->
+    <el-dialog v-model="dialogVisible" class="pay-dialog-wrapper" width="500px">
+      <div class="pay-img-box">
+        <img src="@/assets/images/vx-pay1.jpg" alt="购买" />
+      </div>
+      <div class="pay-tips">
+        <p>支付成功后，添加作者微信，凭支付记录获取资源包！</p>
+        <p class="vx">作者微信：LHQfighting</p>
+      </div>
+    </el-dialog>
   </div>
 </template>
 <script lang="ts" setup>
   import IntroduceCardVue from './components/IntroduceCard.vue';
+  import IntroduceTitleVue from './components/IntroduceTitle.vue';
 
   // 卡片内容
   const cardList = ref<Array<any>>([
@@ -69,6 +90,12 @@
       introduce: '添加源作者微信，及时解决相关问题，给你贴心的服务。'
     }
   ]);
+
+  // 打开弹窗
+  const dialogVisible = ref<boolean>(false);
+  const openDialog = () => {
+    dialogVisible.value = true;
+  };
 </script>
 <style lang="scss" scoped>
   .web-code-box {
@@ -90,6 +117,7 @@
         position: relative;
         z-index: 2;
         display: flex;
+        flex-direction: column;
         justify-content: center;
         height: 300px;
         align-items: center;
@@ -99,6 +127,36 @@
           font-size: 60px;
           font-family: '站酷快乐体';
           letter-spacing: 2px;
+          margin-bottom: 40px;
+          margin-top: 50px;
+        }
+        .button {
+          width: 120px;
+          height: 38px;
+          margin-right: 20px;
+          line-height: 38px;
+          text-align: center;
+          letter-spacing: 2px;
+          color: #fff;
+          font-size: 14px;
+          background-image: -webkit-linear-gradient(to right, #2ddd9d, #1cc7cf);
+          background-image: -moz-linear-gradient(to right, #2ddd9d, #1cc7cf);
+          background-image: -ms-linear-gradient(to right, #2ddd9d, #1cc7cf);
+          background-image: linear-gradient(to right, #2ddd9d, #1cc7cf);
+          -webkit-border-radius: 50px;
+          -moz-border-radius: 50px;
+          border-radius: 50px;
+          background-color: #2ddd9d;
+          -webkit-transition: all 0.3s;
+          -moz-transition: all 0.3s;
+          -ms-transition: all 0.3s;
+          -o-transition: all 0.3s;
+          transition: all 0.3s;
+          cursor: pointer;
+          user-select: none;
+          &:hover {
+            opacity: 0.8;
+          }
         }
       }
 
@@ -115,6 +173,34 @@
           margin-bottom: 40px;
         }
       }
+    }
+  }
+
+  .pay-img-box {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+    img {
+      width: 300px;
+      height: 420px;
+      border-radius: 5px;
+      box-shadow: 0px 16px 22px 2px rgb(0 37 58 / 10%);
+    }
+  }
+  .pay-tips {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    p {
+      line-height: 2;
+    }
+    .vx {
+      font-size: 16px;
+      font-weight: 600;
     }
   }
 </style>
