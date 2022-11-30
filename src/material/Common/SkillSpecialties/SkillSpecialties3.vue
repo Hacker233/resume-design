@@ -41,8 +41,13 @@
           color: v-bind('modelStyle.textColor');
           font-weight: v-bind('modelStyle.textFontWeight');
           line-height: 1.5;
+          text-align: justify;
           &:not(:last-child) {
             margin-bottom: 10px;
+          }
+          :deep(p) {
+            display: inline;
+            text-align: justify;
           }
         }
       }

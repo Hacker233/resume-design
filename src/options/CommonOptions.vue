@@ -14,7 +14,7 @@
   </el-form-item>
   <el-divider>间距调整</el-divider>
   <el-form-item label="计数器模式:">
-    <el-switch v-model="countModel" />
+    <el-switch v-model="countModel" @change="handleChangeCountModel" />
   </el-form-item>
   <el-form-item label="上外边距:">
     <el-slider v-show="!countModel" v-model="mTop" :min="-300" :max="300" @input="handleChange" />
@@ -98,6 +98,21 @@
   import useDesignSelectModelItem from '@/hooks/material/useDesignSelectModelItem';
 
   const countModel = ref<boolean>(false);
+  const localCountModel = localStorage.getItem('countModel');
+  if (localCountModel === '1') {
+    countModel.value = true;
+  } else {
+    countModel.value = false;
+  }
+
+  // 计数器模式变化
+  const handleChangeCountModel = (value: boolean) => {
+    if (value) {
+      localStorage.setItem('countModel', '1');
+    } else {
+      localStorage.setItem('countModel', '0');
+    }
+  };
 
   // 选中的模块
   const { modelItem } = useDesignSelectModelItem();
