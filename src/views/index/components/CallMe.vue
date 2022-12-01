@@ -46,14 +46,14 @@
         <svg-icon icon-name="icon-gitee-fill-round" color="#fff" size="20px"></svg-icon>
       </a>
     </el-tooltip>
-    <el-tooltip class="box-item" effect="light" content="github求个star" placement="left">
+    <el-tooltip class="box-item" effect="light" content="问题或建议反馈" placement="left">
       <a
-        href="https://github.com/Hacker233/resume-design"
+        href="https://github.com/huajian-pro/resume-design/issues"
         target="_blank"
         rel="noopener noreferrer"
         class="contact-me"
       >
-        <svg-icon icon-name="icon-github-fill" color="#fff" size="20px"></svg-icon>
+        <svg-icon icon-name="icon-wenti" color="#fff" size="20px"></svg-icon>
       </a>
     </el-tooltip>
     <!-- 管理员入口 -->
