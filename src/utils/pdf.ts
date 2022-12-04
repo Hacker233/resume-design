@@ -2,7 +2,7 @@ import { getResumePdfAsync } from '@/http/api/resume';
 import appStore from '@/store';
 
 // 生成pdf方法
-const exportPdf = async (token?: string, id?: string, height?: string) => {
+export const exportPdf = async (token?: string, id?: string, height?: string) => {
   const { resumeJsonNewStore } = appStore.useResumeJsonNewStore;
   const fileName = resumeJsonNewStore.TITLE;
   const params = {
@@ -30,4 +30,6 @@ const exportPdf = async (token?: string, id?: string, height?: string) => {
   }
 };
 
-export default exportPdf;
+export const getPdfUrl = (token?: string, id?: string, height?: string) => {
+  return `${location.origin}/pdfPreview?token=${token}&&id=${id}&&height=${height}`;
+};

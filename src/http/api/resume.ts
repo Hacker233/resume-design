@@ -96,6 +96,14 @@ export const getResumePdfAsync: any = (params: any) => {
   });
 };
 
+// 增加resume导出次数
+export const addMakeResumeCountAsync: any = () => {
+  return http.request({
+    url: '/huajian/pdf/addMakeResumeCount',
+    method: 'get'
+  });
+};
+
 // 审核模板
 export const auditTemplateAsync: any = (data: any) => {
   return http.request({

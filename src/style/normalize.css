@@ -395,3 +395,8 @@ template {
   max-height: 80vh;
   overflow: auto;
 }
+
+* {
+  -webkit-print-color-adjust: exact !important; /*Chrome, Safari */
+  color-adjust: exact !important;  /*Firefox*/
+}

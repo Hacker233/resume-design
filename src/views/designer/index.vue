@@ -1,7 +1,7 @@
 <template>
   <div class="design-box">
     <!-- 导航栏 -->
-    <design-nav ref="navRef" @generate-report="generateReport" @reset="reset"></design-nav>
+    <design-nav ref="navRef" @generate-report-new="generateReportNew" @reset="reset"></design-nav>
     <!-- 内容区域 -->
     <div class="bottom">
       <!-- 左侧添加模块区域 -->
@@ -11,9 +11,8 @@
           <model-list :key="refreshUuid" :left-show-status="leftShowStatus"></model-list>
         </c-scrollbar>
       </div>
-
       <!-- 预览区域 -->
-      <div :key="refreshUuid" class="center">
+      <div id="print" :key="refreshUuid" class="center">
         <!-- <div ref="html2Pdf" class="design"> -->
         <component :is="resumeBackgroundName" ref="html2Pdf">
           <!-- 内容区域 -->
@@ -21,7 +20,7 @@
             <component :is="custom" @content-height-change="contentHeightChange" />
           </div>
           <!-- 分页线 -->
-          <template v-if="linesNumber > 0">
+          <template v-if="linesNumber > 0 && !isprinting">
             <div
               v-for="(item, index) in linesNumber"
               :ref="(el) => setLinesRef(el, index)"
@@ -82,8 +81,12 @@
   import optionsComponents from '@/utils/registerMaterialOptionsCom';
   import IDESIGNJSON from '@/interface/design';
   import { closeGlobalLoading } from '@/utils/common';
-  import { getTemplateInfoAsync, getResetTemplateInfoAsync } from '@/http/api/resume';
-  import exportPdf from '@/utils/pdf';
+  import {
+    getTemplateInfoAsync,
+    getResetTemplateInfoAsync,
+    addMakeResumeCountAsync
+  } from '@/http/api/resume';
+  import printHtml from '@/utils/print';
   import resumeBackgroundComponents from '@/utils/registerResumeBackgroundCom';
 
   const { cptTitle } = storeToRefs(appStore.useSelectMaterialStore);
@@ -174,20 +177,41 @@
   const dialogVisible = ref<boolean>(false);
   const percentage = ref<number>(10);
   let timer: any = null;
-  const generateReport = async () => {
-    dialogVisible.value = true;
-    timer = setInterval(() => {
-      percentage.value += 5;
-      if (percentage.value > 95) {
-        percentage.value = 98;
-        clearInterval(timer);
-      }
-    }, 500);
-    let token = localStorage.getItem('token') as string;
-    let height = htmlContentPdf.value.style.height;
-    await exportPdf(token, id as string, height);
-    clearInterval(timer);
-    percentage.value = 100;
+  // const generateReport = async () => {
+  //   dialogVisible.value = true;
+  //   timer = setInterval(() => {
+  //     percentage.value += 5;
+  //     if (percentage.value > 95) {
+  //       percentage.value = 98;
+  //       clearInterval(timer);
+  //     }
+  //   }, 500);
+  //   let token = localStorage.getItem('token') as string;
+  //   let height = htmlContentPdf.value.style.height;
+  //   await exportPdf(token, id as string, height);
+  //   clearInterval(timer);
+  //   percentage.value = 100;
+  // };
+
+  // 另存为PDF，新的方法
+  const isprinting = ref<boolean>(false);
+  const generateReportNew = async () => {
+    addMakeResumeCountAsync(); // 增加pdf导出次数
+    isprinting.value = true; // 去掉分割线
+    // 重置store选中模块
+    resetSelectModel();
+    await nextTick();
+    const target = document.getElementById('print');
+    if (target) {
+      printHtml(target.innerHTML);
+    }
+    // 打印取消和完成
+    window.onbeforeprint = () => {
+      isprinting.value = true;
+    };
+    window.onafterprint = () => {
+      isprinting.value = false;
+    };
   };
 
   // 关闭进度弹窗

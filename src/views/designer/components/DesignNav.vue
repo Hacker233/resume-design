@@ -32,10 +32,15 @@
         </div>
       </el-tooltip>
       <el-tooltip class="box-item" effect="dark" content="导出为PDF" placement="bottom">
-        <div class="icon-box" @click="generateReport">
+        <div class="icon-box" @click="generateReportNew">
           <svg-icon icon-name="icon-pdf" color="#fff" size="17px"></svg-icon>
         </div>
       </el-tooltip>
+      <!-- <el-tooltip class="box-item" effect="dark" content="导出为PDF" placement="bottom">
+        <div class="icon-box" @click="generateReport">
+          <svg-icon icon-name="icon-pdf" color="#fff" size="17px"></svg-icon>
+        </div>
+      </el-tooltip> -->
       <el-tooltip class="box-item" effect="dark" content="导出为JSON数据" placement="bottom">
         <div class="icon-box" @click="exportJSON">
           <svg-icon icon-name="icon-xiazai" color="#fff" size="17px"></svg-icon>
@@ -88,7 +93,7 @@
   import OnlineSuccessDialog from './OnlineSuccessDialog.vue';
 
   let { resumeJsonNewStore } = storeToRefs(appStore.useResumeJsonNewStore); // store里的模板数据
-  const emit = defineEmits(['generateReport', 'reset', 'saveDataToLocal']);
+  const emit = defineEmits(['generateReport', 'generateReportNew', 'reset', 'saveDataToLocal']);
   const route = useRoute();
   const { name, id } = route.query; // 模板id和模板名称
   // 跳转到首页
@@ -197,9 +202,15 @@
   };
 
   // 导出pdf
-  const generateReport = async () => {
+  // const generateReport = async () => {
+  //   await saveDataToLocal();
+  //   emit('generateReport');
+  // };
+
+  // 导出为pdf新方法
+  const generateReportNew = async () => {
     await saveDataToLocal();
-    emit('generateReport');
+    emit('generateReportNew');
   };
 
   // 重置
