@@ -54,7 +54,12 @@ class Request {
       (res: AxiosResponse) => {
         return res.data;
       },
-      (err: any) => err
+      (err: any) => {
+        return {
+          status: 500,
+          message: err
+        };
+      }
     );
   }
   /**
@@ -118,7 +123,6 @@ class Request {
           if (config.interceptors?.responseInterceptors) {
             res = config.interceptors.responseInterceptors(res);
           }
-
           resolve(res);
         })
         .catch((err: any) => {

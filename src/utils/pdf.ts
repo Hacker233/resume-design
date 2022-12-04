@@ -15,7 +15,7 @@ const exportPdf = async (token?: string, id?: string, height?: string) => {
   };
   const pdfData = await getResumePdfAsync(params);
   if (pdfData.status) {
-    ElMessage.error(pdfData.message);
+    ElMessage.error('网络过慢，请求超时，请重新尝试导出');
     return;
   } else {
     const blob = new Blob([pdfData], { type: 'application/pdf' });
