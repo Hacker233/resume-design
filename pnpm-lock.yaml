@@ -67,7 +67,6 @@ specifiers:
   vue-tsc: ^0.29.8
   vue-uuid: ^3.0.0
   vue3-count-to: ^1.1.2
-  vue3-print-nb: ^0.1.4
   vuedraggable: ^4.1.0
 
 dependencies:
@@ -102,7 +101,6 @@ dependencies:
   vue-router: 4.0.15_vue@3.2.33
   vue-uuid: 3.0.0_vue@3.2.33
   vue3-count-to: 1.1.2_vue@3.2.33
-  vue3-print-nb: 0.1.4
   vuedraggable: 4.1.0_vue@3.2.33
 
 devDependencies:
@@ -6390,12 +6388,6 @@ packages:
       core-js: 3.25.2
       vue: 3.2.33
       vue-count-to: 1.0.13
-    dev: false
-
-  /vue3-print-nb/0.1.4:
-    resolution: {integrity: sha512-LExI7viEzplR6ZKQ2b+V4U0cwGYbVD4fut/XHvk3UPGlT5CcvIGs6VlwGp107aKgk6P8Pgx4rco3Rehv2lti3A==}
-    dependencies:
-      vue: 3.2.33
     dev: false
 
   /vuedraggable/4.1.0_vue@3.2.33:
