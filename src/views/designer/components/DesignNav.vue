@@ -36,11 +36,11 @@
           <svg-icon icon-name="icon-pdf" color="#fff" size="17px"></svg-icon>
         </div>
       </el-tooltip>
-      <!-- <el-tooltip class="box-item" effect="dark" content="导出为PDF" placement="bottom">
+      <el-tooltip class="box-item" effect="dark" content="导出高清PDF，备用方案" placement="bottom">
         <div class="icon-box" @click="generateReport">
           <svg-icon icon-name="icon-pdf" color="#fff" size="17px"></svg-icon>
         </div>
-      </el-tooltip> -->
+      </el-tooltip>
       <el-tooltip class="box-item" effect="dark" content="导出为JSON数据" placement="bottom">
         <div class="icon-box" @click="exportJSON">
           <svg-icon icon-name="icon-xiazai" color="#fff" size="17px"></svg-icon>
@@ -202,10 +202,10 @@
   };
 
   // 导出pdf
-  // const generateReport = async () => {
-  //   await saveDataToLocal();
-  //   emit('generateReport');
-  // };
+  const generateReport = async () => {
+    await saveDataToLocal();
+    emit('generateReport');
+  };
 
   // 导出为pdf新方法
   const generateReportNew = async () => {

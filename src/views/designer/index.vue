@@ -1,7 +1,12 @@
 <template>
   <div class="design-box">
     <!-- 导航栏 -->
-    <design-nav ref="navRef" @generate-report-new="generateReportNew" @reset="reset"></design-nav>
+    <design-nav
+      ref="navRef"
+      @generate-report="generateReport"
+      @generate-report-new="generateReportNew"
+      @reset="reset"
+    ></design-nav>
     <!-- 内容区域 -->
     <div class="bottom">
       <!-- 左侧添加模块区域 -->
@@ -88,6 +93,7 @@
   } from '@/http/api/resume';
   import printHtml from '@/utils/print';
   import resumeBackgroundComponents from '@/utils/registerResumeBackgroundCom';
+  import { exportPdf } from '@/utils/pdf';
 
   const { cptTitle } = storeToRefs(appStore.useSelectMaterialStore);
   const { changeResumeJsonData } = appStore.useResumeJsonNewStore;
@@ -177,21 +183,21 @@
   const dialogVisible = ref<boolean>(false);
   const percentage = ref<number>(10);
   let timer: any = null;
-  // const generateReport = async () => {
-  //   dialogVisible.value = true;
-  //   timer = setInterval(() => {
-  //     percentage.value += 5;
-  //     if (percentage.value > 95) {
-  //       percentage.value = 98;
-  //       clearInterval(timer);
-  //     }
-  //   }, 500);
-  //   let token = localStorage.getItem('token') as string;
-  //   let height = htmlContentPdf.value.style.height;
-  //   await exportPdf(token, id as string, height);
-  //   clearInterval(timer);
-  //   percentage.value = 100;
-  // };
+  const generateReport = async () => {
+    dialogVisible.value = true;
+    timer = setInterval(() => {
+      percentage.value += 5;
+      if (percentage.value > 95) {
+        percentage.value = 98;
+        clearInterval(timer);
+      }
+    }, 500);
+    let token = localStorage.getItem('token') as string;
+    let height = htmlContentPdf.value.style.height;
+    await exportPdf(token, id as string, height);
+    clearInterval(timer);
+    percentage.value = 100;
+  };
 
   // 另存为PDF，新的方法
   const isprinting = ref<boolean>(false);
