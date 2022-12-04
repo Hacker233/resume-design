@@ -89,7 +89,7 @@ export const deleteUserResumeAsync: any = (id: string) => {
 // 导出为pdf
 export const getResumePdfAsync: any = (params: any) => {
   return http.request({
-    url: '/huajian/pdf/getPdf',
+    url: '/huajian/pdf/html2Pdf',
     method: 'get',
     responseType: 'blob',
     params: params
