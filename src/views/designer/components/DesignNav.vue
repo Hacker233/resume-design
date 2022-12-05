@@ -21,31 +21,37 @@
       />
     </div>
     <div class="nav-right">
-      <el-tooltip class="box-item" effect="dark" content="发布为在线简历" placement="bottom">
-        <el-button type="primary" class="audit-btn box-item" @click="publishOnlineResume"
-          >发布上线</el-button
-        >
-      </el-tooltip>
-      <el-tooltip class="box-item" effect="dark" content="保存草稿" placement="bottom">
-        <div class="icon-box" @click="saveDraft">
-          <svg-icon icon-name="icon-caogaoxiang1" color="#fff" size="17px"></svg-icon>
-        </div>
-      </el-tooltip>
-      <el-tooltip class="box-item" effect="dark" content="导出为PDF" placement="bottom">
-        <div class="icon-box" @click="generateReportNew">
-          <svg-icon icon-name="icon-pdf" color="#fff" size="17px"></svg-icon>
-        </div>
-      </el-tooltip>
-      <el-tooltip class="box-item" effect="dark" content="导出高清PDF" placement="bottom">
-        <div class="icon-box" @click="generateReport">
-          <svg-icon icon-name="icon-pdf" color="#fff" size="17px"></svg-icon>
-        </div>
-      </el-tooltip>
-      <el-tooltip class="box-item" effect="dark" content="导出为JSON数据" placement="bottom">
-        <div class="icon-box" @click="exportJSON">
+      <el-tooltip effect="dark" content="下载到本地" placement="bottom">
+        <div class="icon-box icon-download" @click="generateReport">
           <svg-icon icon-name="icon-xiazai" color="#fff" size="17px"></svg-icon>
+          <span class="icon-tips">下载</span>
         </div>
       </el-tooltip>
+      <el-tooltip effect="dark" content="保存为草稿" placement="bottom">
+        <div class="icon-box" @click="saveDraft">
+          <svg-icon icon-name="icon-caogaoxiang1" color="#555" size="17px"></svg-icon>
+          <span class="icon-tips">暂存</span>
+        </div>
+      </el-tooltip>
+      <el-tooltip effect="dark" content="重置所有设置" placement="bottom">
+        <div class="icon-box" @click="reset">
+          <svg-icon icon-name="icon-zhongzhi" color="#555" size="17px"></svg-icon>
+          <span class="icon-tips">重置</span>
+        </div>
+      </el-tooltip>
+      <el-tooltip effect="dark" content="导出为JSON数据" placement="bottom">
+        <div class="icon-box" @click="exportJSON">
+          <svg-icon icon-name="icon-xiazai" color="#555" size="17px"></svg-icon>
+          <span class="icon-tips">JSON</span>
+        </div>
+      </el-tooltip>
+      <el-tooltip effect="dark" content="将你的简历分享给别人" placement="bottom">
+        <div class="icon-box" @click="publishOnlineResume">
+          <svg-icon icon-name="icon-fenxiang" color="#555" size="17px"></svg-icon>
+          <span class="icon-tips">分享</span>
+        </div>
+      </el-tooltip>
+
       <el-tooltip
         v-if="name === 'custom'"
         class="box-item"
@@ -55,11 +61,6 @@
       >
         <div class="icon-box" @click="importJson">
           <svg-icon icon-name="icon-yunduanshangchuan" color="#fff" size="19px"></svg-icon>
-        </div>
-      </el-tooltip>
-      <el-tooltip class="box-item" effect="dark" content="重置所有设置" placement="bottom">
-        <div class="icon-box" @click="reset">
-          <svg-icon icon-name="icon-zhongzhi" color="#fff" size="17px"></svg-icon>
         </div>
       </el-tooltip>
     </div>
@@ -208,10 +209,10 @@
   };
 
   // 导出为pdf新方法
-  const generateReportNew = async () => {
-    await saveDataToLocal();
-    emit('generateReportNew');
-  };
+  // const generateReportNew = async () => {
+  //   await saveDataToLocal();
+  //   emit('generateReportNew');
+  // };
 
   // 重置
   const reset = () => {
@@ -247,11 +248,11 @@
     if (draft) {
       let params = {
         email: userInfo.email,
-        ID: id
+        ID: route.query.id
       };
       const data = await publishOnlineResumeAsync(params);
       if (data.data.status === 200) {
-        ElMessage.success('发布成功');
+        ElMessage.success('分享链接已生成');
         resumeId.value = data.data.data.ONLINE_LINK;
         dialogOnlineVisible.value = true;
       } else {
@@ -273,7 +274,7 @@
 </script>
 <style lang="scss" scopeds>
   .nav-box {
-    height: 50px;
+    height: 60px;
     width: 100%;
     background-color: #fff;
     position: sticky;
@@ -319,27 +320,32 @@
       display: flex;
       align-items: center;
       justify-content: flex-end;
-      padding-right: 10px;
-      .audit-btn {
-        margin-right: 15px;
-      }
-      .el-button {
-        margin-right: 20px;
-        margin-left: 0;
-      }
+      padding-right: 50px;
       .icon-box {
-        width: 35px;
-        height: 35px;
-        background-color: #74a274;
-        border-radius: 50%;
         display: flex;
+        flex-direction: column;
         align-items: center;
         justify-content: center;
+        color: #555;
         cursor: pointer;
-        margin-right: 15px;
+        padding: 0 15px;
+        height: 100%;
         transition: all 0.3s;
         &:hover {
-          background-color: rgba(0, 192, 145, 0.8);
+          background-color: rgba($color: #74a274, $alpha: 0.1);
+          color: #74a274;
+        }
+        .icon-tips {
+          font-size: 12px;
+          margin-top: 8px;
+        }
+      }
+      .icon-download {
+        background-color: rgba($color: #74a274, $alpha: 1);
+        color: #fff;
+        &:hover {
+          background-color: rgba($color: #74a274, $alpha: 0.9);
+          color: #fff;
         }
       }
     }

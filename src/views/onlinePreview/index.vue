@@ -97,7 +97,6 @@
       position: relative;
       margin: 0 auto;
       border-radius: 5px;
-      overflow: hidden;
       box-shadow: 0px 16px 22px 2px rgb(0 37 58 / 10%);
       .design-content {
         font-family: v-bind(
@@ -107,14 +106,15 @@
 
       .lines {
         z-index: 10;
-        width: 820px;
+        width: 880px;
         height: 24px;
-        background: #f3f3f3 url(@/assets/images/paging_bg.png) center top no-repeat;
+        background: #f3f3f3;
         user-select: none;
         pointer-events: none;
         position: absolute;
         display: flex;
         align-items: center;
+        left: -30px;
         .page {
           font-size: 9px;
           color: #999999;
