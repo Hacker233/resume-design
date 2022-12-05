@@ -36,7 +36,7 @@
           <svg-icon icon-name="icon-pdf" color="#fff" size="17px"></svg-icon>
         </div>
       </el-tooltip>
-      <el-tooltip class="box-item" effect="dark" content="导出高清PDF，备用方案" placement="bottom">
+      <el-tooltip class="box-item" effect="dark" content="导出高清PDF" placement="bottom">
         <div class="icon-box" @click="generateReport">
           <svg-icon icon-name="icon-pdf" color="#fff" size="17px"></svg-icon>
         </div>
