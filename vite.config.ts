@@ -30,7 +30,7 @@ export default defineConfig(({ command, mode }: ConfigEnv) => {
     },
     plugins: createVitePlugins(viteEnv, isBuild),
     server: {
-      port: 8080, //启动端口
+      port: 8888, //启动端口
       host: '0.0.0.0',
       open: true,
       hmr: {
