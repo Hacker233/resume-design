@@ -4,21 +4,37 @@
       <logo-com icon-color="#74a274" font-color="#74a274"></logo-com>
     </div>
     <div class="nav-center">
-      <span class="draft-tips">{{ draftTips }}</span>
-      <p v-show="!isShowIpt">
-        {{ resumeJsonNewStore.TITLE }}
-        <el-icon :size="20" color="#409eff" @click="changeTitle">
-          <Edit />
-        </el-icon>
-      </p>
-      <el-input
-        v-show="isShowIpt"
-        ref="titleIpf"
-        v-model="resumeJsonNewStore.TITLE"
-        autofocus
-        placeholder="请输入标题"
-        @blur="blurTitle"
-      />
+      <!-- 左侧菜单 -->
+      <div class="left">
+        <div class="nav-center-left-box">
+          <el-tooltip v-if="false" effect="dark" content="新增任意简历模块" placement="bottom">
+            <div class="icon-box" @click="openAddDrawer">
+              <svg-icon icon-name="icon-ai-module" color="#555" size="17px"></svg-icon>
+              <span class="icon-tips">添加模块</span>
+            </div>
+          </el-tooltip>
+        </div>
+        <div class="draft-tips-box">
+          <span class="draft-tips">{{ draftTips }}</span>
+        </div>
+      </div>
+      <div class="center">
+        <p v-show="!isShowIpt">
+          {{ resumeJsonNewStore.TITLE }}
+          <el-icon :size="20" color="#409eff" @click="changeTitle">
+            <Edit />
+          </el-icon>
+        </p>
+        <el-input
+          v-show="isShowIpt"
+          ref="titleIpf"
+          v-model="resumeJsonNewStore.TITLE"
+          autofocus
+          placeholder="请输入标题"
+          @blur="blurTitle"
+        />
+      </div>
+      <div class="right"></div>
     </div>
     <div class="nav-right">
       <el-tooltip effect="dark" content="下载到本地" placement="bottom">
@@ -78,6 +94,13 @@
     :resume-id="resumeId"
     @cancle="cancleOnlineDialog"
   ></online-success-dialog>
+
+  <!-- 增加自定义模块抽屉 -->
+  <add-custom-model-drawer
+    :drawer-visible="drawerVisible"
+    :before-close-add-drawer="beforeCloseAddDrawer"
+  >
+  </add-custom-model-drawer>
 </template>
 <script lang="ts" setup>
   import appStore from '@/store';
@@ -92,6 +115,7 @@
   import { getUserResumeListAsync, updateUserresumeAsync } from '@/http/api/resume';
   import { publishOnlineResumeAsync } from '@/http/api/userResume';
   import OnlineSuccessDialog from './OnlineSuccessDialog.vue';
+  import AddCustomModelDrawer from './AddCustomModelDrawer.vue';
 
   let { resumeJsonNewStore } = storeToRefs(appStore.useResumeJsonNewStore); // store里的模板数据
   const emit = defineEmits(['generateReport', 'generateReportNew', 'reset', 'saveDataToLocal']);
@@ -268,6 +292,18 @@
     dialogOnlineVisible.value = false;
   };
 
+  // 打开添加自定义模块抽屉
+  const drawerVisible = ref<boolean>(false);
+  const openAddDrawer = () => {
+    drawerVisible.value = true;
+  };
+
+  // 关闭抽屉
+  const beforeCloseAddDrawer = () => {
+    console.log('关闭抽屉');
+    drawerVisible.value = false;
+  };
+
   defineExpose({
     saveDataToLocal
   });
@@ -292,28 +328,63 @@
     .nav-center {
       flex: 1;
       display: flex;
-      justify-content: center;
+      justify-content: space-between;
       align-items: center;
       position: relative;
-      .draft-tips {
-        position: absolute;
-        top: 50%;
-        left: 0;
-        transform: translate(0, -50%);
-        font-size: 10px;
-        color: #999999;
-      }
-      p {
+      height: 100%;
+      .left {
         display: flex;
-        align-items: center;
-        font-size: 16px;
-        .el-icon {
+        height: 100%;
+        .nav-center-left-box {
+          height: 100%;
+          .icon-box {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: #555;
+            cursor: pointer;
+            padding: 0 15px;
+            height: 100%;
+            transition: all 0.3s;
+            &:hover {
+              background-color: rgba($color: #74a274, $alpha: 0.1);
+              color: #74a274;
+            }
+            .icon-tips {
+              font-size: 12px;
+              margin-top: 8px;
+            }
+          }
+        }
+        .draft-tips-box {
+          height: 100%;
+          display: flex;
+          align-items: center;
           margin-left: 10px;
-          cursor: pointer;
+          .draft-tips {
+            font-size: 10px;
+            color: #999999;
+          }
         }
       }
-      .el-input {
-        width: 200px;
+      .center {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        p {
+          display: flex;
+          align-items: center;
+          font-size: 16px;
+          .el-icon {
+            margin-left: 10px;
+            cursor: pointer;
+          }
+        }
+        .el-input {
+          width: 200px;
+        }
       }
     }
     .nav-right {
