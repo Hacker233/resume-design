@@ -406,3 +406,7 @@ template {
   -webkit-print-color-adjust: exact !important; /*Chrome, Safari */
   color-adjust: exact !important; /*Firefox*/
 }
+
+.el-message {
+  z-index: 99999 !important;
+}
