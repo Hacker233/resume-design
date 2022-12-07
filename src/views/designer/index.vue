@@ -22,7 +22,7 @@
         <component :is="resumeBackgroundName" ref="html2Pdf">
           <!-- 内容区域 -->
           <div ref="htmlContentPdf" class="design-content">
-            <component :is="custom" @content-height-change="contentHeightChange" />
+            <component :is="custom" ref="customRef" @content-height-change="contentHeightChange" />
           </div>
           <!-- 分页线 -->
           <template v-if="linesNumber > 0 && !isprinting">
@@ -296,6 +296,17 @@
       configRef.value.style.flex = 1;
     }
   };
+
+  // 添加自定义模块时，所有布局单独处理
+  const customRef = ref<any>(null);
+  const addCustomModelLeftRight = (item: any) => {
+    if (item.layout === 'left') {
+      customRef.value.leftList.push(item);
+    } else {
+      customRef.value.rightList.push(item);
+    }
+  };
+  provide('addCustomModelLeftRight', addCustomModelLeftRight);
   // 页面销毁前自动保存草稿
   // const navRef = ref<any>(null);
   // onBeforeUnmount(() => {

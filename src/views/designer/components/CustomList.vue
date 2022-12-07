@@ -91,14 +91,20 @@
   };
 
   // 点击组件，添加模块
+  const { resumeJsonNewStore } = appStore.useResumeJsonNewStore;
   const { pushComponent } = appStore.useResumeJsonNewStore;
+  const addCustomModelLeftRight: any = inject('addCustomModelLeftRight'); // 左右布局时，需要单独处理左右列表
   const addModel = async (item: IMATERIALITEM) => {
     let cptData = cloneDeep(item);
     cptData.data = cloneDeep(MODEL_DATA_JSON[cptData.model]); // 为模块添加数据
     cptData.keyId = getUuid();
     cptData.show = true;
     console.log('cptData', cptData);
-    pushComponent(cptData); // 添加模块
+    if (resumeJsonNewStore.LAYOUT === 'leftRight') {
+      addCustomModelLeftRight(cptData);
+    } else {
+      pushComponent(cptData); // 添加模块
+    }
     await nextTick();
     selectStoreModel(cptData);
     ElMessage.success('添加成功');
