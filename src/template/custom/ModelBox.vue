@@ -122,6 +122,7 @@
     );
     let insert = cloneDeep(props.item);
     insert.keyId = getUuid();
+    console.log('复制当前模块', insert);
     resumeJsonNewStore.value.COMPONENTS.splice(index, 0, insert);
   };
 </script>

@@ -7,7 +7,7 @@
       <!-- 左侧菜单 -->
       <div class="left">
         <div class="nav-center-left-box">
-          <el-tooltip v-if="false" effect="dark" content="新增任意简历模块" placement="bottom">
+          <el-tooltip effect="dark" content="新增任意简历模块" placement="bottom">
             <div class="icon-box" @click="openAddDrawer">
               <svg-icon icon-name="icon-ai-module" color="#555" size="17px"></svg-icon>
               <span class="icon-tips">添加模块</span>
@@ -96,10 +96,7 @@
   ></online-success-dialog>
 
   <!-- 增加自定义模块抽屉 -->
-  <add-custom-model-drawer
-    :drawer-visible="drawerVisible"
-    :before-close-add-drawer="beforeCloseAddDrawer"
-  >
+  <add-custom-model-drawer :drawer-visible="drawerVisible" @close-add-drawer="closeAddDrawer">
   </add-custom-model-drawer>
 </template>
 <script lang="ts" setup>
@@ -296,12 +293,13 @@
   const drawerVisible = ref<boolean>(false);
   const openAddDrawer = () => {
     drawerVisible.value = true;
+    console.log('打开抽屉', drawerVisible.value);
   };
 
   // 关闭抽屉
-  const beforeCloseAddDrawer = () => {
-    console.log('关闭抽屉');
+  const closeAddDrawer = () => {
     drawerVisible.value = false;
+    console.log('关闭抽屉', drawerVisible.value);
   };
 
   defineExpose({

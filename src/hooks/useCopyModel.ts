@@ -10,7 +10,7 @@ import { cloneDeep } from 'lodash'; // 深拷贝
 export const useCopyModel = (modelItem: any) => {
   console.log('modelItem', modelItem);
   const { resumeJsonNewStore } = appStore.useResumeJsonNewStore;
-  let index = resumeJsonNewStore.COMPONENTS.findIndex((item) => item.keyId === modelItem.keyId); // 需要复制的模块的索引
+  const index = resumeJsonNewStore.COMPONENTS.findIndex((item) => item.keyId === modelItem.keyId); // 需要复制的模块的索引
   const deepItem = cloneDeep(modelItem);
   deepItem.keyId = getUuid();
   resumeJsonNewStore.COMPONENTS.splice(index, 0, deepItem);
