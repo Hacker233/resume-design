@@ -9,8 +9,14 @@
         <div class="nav-center-left-box">
           <el-tooltip effect="dark" content="新增任意简历模块" placement="bottom">
             <div class="icon-box" @click="openAddDrawer">
-              <svg-icon icon-name="icon-ai-module" color="#555" size="17px"></svg-icon>
+              <svg-icon icon-name="icon-database" color="#555" size="17px"></svg-icon>
               <span class="icon-tips">添加模块</span>
+            </div>
+          </el-tooltip>
+          <el-tooltip effect="dark" content="切换另一个模板" placement="bottom">
+            <div class="icon-box" @click="switchDrawer">
+              <svg-icon icon-name="icon-word" color="#555" size="17px"></svg-icon>
+              <span class="icon-tips">切换模板</span>
             </div>
           </el-tooltip>
         </div>
@@ -302,6 +308,9 @@
     console.log('关闭抽屉', drawerVisible.value);
   };
 
+  // 打开切换模板抽屉
+  const switchDrawer = () => {};
+
   defineExpose({
     saveDataToLocal
   });
@@ -335,6 +344,7 @@
         height: 100%;
         .nav-center-left-box {
           height: 100%;
+          display: flex;
           .icon-box {
             display: flex;
             flex-direction: column;
