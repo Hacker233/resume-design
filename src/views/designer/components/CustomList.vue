@@ -215,7 +215,7 @@
                 padding: 5px 15px;
                 letter-spacing: 2px;
                 color: #fff;
-                font-size: 14px;
+                font-size: 12px;
                 display: flex;
                 align-items: center;
                 justify-content: center;

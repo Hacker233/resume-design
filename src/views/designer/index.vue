@@ -104,13 +104,13 @@
   const { id } = route.query; // 模板id和模板名称
 
   // 查询简历数据，有草稿返回草稿，没有草稿返回简历数据
-  const resetStoreAndLocal = async (isReset = false) => {
+  const resetStoreAndLocal = async (isReset = false, ID = id) => {
     let TEMPLATE_JSON: IDESIGNJSON;
     let data;
     if (isReset) {
-      data = await getResetTemplateInfoAsync(id); // 重置
+      data = await getResetTemplateInfoAsync(ID); // 重置
     } else {
-      data = await getTemplateInfoAsync(id);
+      data = await getTemplateInfoAsync(ID);
     }
     if (data.data.status === 200) {
       TEMPLATE_JSON = data.data.data as IDESIGNJSON;
@@ -123,6 +123,7 @@
     console.log('简历JSON数据', resumeJsonNewStore.value);
   };
   resetStoreAndLocal();
+  provide('resetStoreAndLocal', resetStoreAndLocal);
 
   const resumeBackgroundName = computed(() => {
     return resumeJsonNewStore.value.GLOBAL_STYLE.resumeBackgroundCom
@@ -297,7 +298,7 @@
     }
   };
 
-  // 添加自定义模块时，所有布局单独处理
+  // 添加自定义模块时，左右布局单独处理
   const customRef = ref<any>(null);
   const addCustomModelLeftRight = (item: any) => {
     if (item.layout === 'left') {
@@ -307,11 +308,6 @@
     }
   };
   provide('addCustomModelLeftRight', addCustomModelLeftRight);
-  // 页面销毁前自动保存草稿
-  // const navRef = ref<any>(null);
-  // onBeforeUnmount(() => {
-  //   navRef.value.saveDataToLocal();
-  // });
 
   // 页面销毁
   onUnmounted(() => {

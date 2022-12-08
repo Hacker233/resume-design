@@ -15,7 +15,7 @@
           </el-tooltip>
           <el-tooltip effect="dark" content="切换另一个模板" placement="bottom">
             <div class="icon-box" @click="switchDrawer">
-              <svg-icon icon-name="icon-word" color="#555" size="17px"></svg-icon>
+              <svg-icon icon-name="icon-shangchengmoban" color="#555" size="17px"></svg-icon>
               <span class="icon-tips">切换模板</span>
             </div>
           </el-tooltip>
@@ -104,6 +104,12 @@
   <!-- 增加自定义模块抽屉 -->
   <add-custom-model-drawer :drawer-visible="drawerVisible" @close-add-drawer="closeAddDrawer">
   </add-custom-model-drawer>
+
+  <!-- 切换模板抽屉 -->
+  <switch-template-drawer
+    :drawer-switch-visible="drawerSwitchVisible"
+    @close-switch-drawer="closeSwitchDrawer"
+  ></switch-template-drawer>
 </template>
 <script lang="ts" setup>
   import appStore from '@/store';
@@ -119,6 +125,7 @@
   import { publishOnlineResumeAsync } from '@/http/api/userResume';
   import OnlineSuccessDialog from './OnlineSuccessDialog.vue';
   import AddCustomModelDrawer from './AddCustomModelDrawer.vue';
+  import SwitchTemplateDrawer from './SwitchTemplateDrawer.vue';
 
   let { resumeJsonNewStore } = storeToRefs(appStore.useResumeJsonNewStore); // store里的模板数据
   const emit = defineEmits(['generateReport', 'generateReportNew', 'reset', 'saveDataToLocal']);
@@ -309,7 +316,15 @@
   };
 
   // 打开切换模板抽屉
-  const switchDrawer = () => {};
+  const drawerSwitchVisible = ref<boolean>(false);
+  const switchDrawer = () => {
+    drawerSwitchVisible.value = true;
+  };
+
+  // 关闭切换模板抽屉
+  const closeSwitchDrawer = () => {
+    drawerSwitchVisible.value = false;
+  };
 
   defineExpose({
     saveDataToLocal
