@@ -44,7 +44,7 @@
     </div>
     <div class="nav-right">
       <el-tooltip effect="dark" content="下载到本地" placement="bottom">
-        <div class="icon-box icon-download" @click="generateReport">
+        <div class="icon-box icon-download" @click="downloadResume">
           <svg-icon icon-name="icon-xiazai" color="#fff" size="17px"></svg-icon>
           <span class="icon-tips">下载</span>
         </div>
@@ -110,6 +110,13 @@
     :drawer-switch-visible="drawerSwitchVisible"
     @close-switch-drawer="closeSwitchDrawer"
   ></switch-template-drawer>
+
+  <!-- 下载弹窗 -->
+  <download-dialog
+    :dialog-download-visible="dialogDownloadVisible"
+    @close-download-dialog="closeDownloadDialog"
+    @download-file="downloadResumeFile"
+  ></download-dialog>
 </template>
 <script lang="ts" setup>
   import appStore from '@/store';
@@ -126,6 +133,7 @@
   import OnlineSuccessDialog from './OnlineSuccessDialog.vue';
   import AddCustomModelDrawer from './AddCustomModelDrawer.vue';
   import SwitchTemplateDrawer from './SwitchTemplateDrawer.vue';
+  import DownloadDialog from './DownloadDialog.vue';
 
   let { resumeJsonNewStore } = storeToRefs(appStore.useResumeJsonNewStore); // store里的模板数据
   const emit = defineEmits(['generateReport', 'generateReportNew', 'reset', 'saveDataToLocal']);
@@ -236,10 +244,22 @@
     FileSaver.saveAs(blob, resumeJsonNewStore.value.TITLE + '.json');
   };
 
-  // 导出pdf
-  const generateReport = async () => {
+  // 打开导出弹窗
+  const dialogDownloadVisible = ref<boolean>(false);
+  const downloadResume = () => {
+    dialogDownloadVisible.value = true;
+  };
+
+  // 关闭弹窗
+  const closeDownloadDialog = () => {
+    dialogDownloadVisible.value = false;
+  };
+
+  // 点击下载
+  const downloadResumeFile = async (type: string) => {
     await saveDataToLocal();
-    emit('generateReport');
+    emit('generateReport', type);
+    closeDownloadDialog();
   };
 
   // 导出为pdf新方法

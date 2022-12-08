@@ -93,7 +93,7 @@
   } from '@/http/api/resume';
   import printHtml from '@/utils/print';
   import resumeBackgroundComponents from '@/utils/registerResumeBackgroundCom';
-  import { exportPdf } from '@/utils/pdf';
+  import { exportPdf, exportPNG } from '@/utils/pdf';
 
   const { cptTitle } = storeToRefs(appStore.useSelectMaterialStore);
   const { changeResumeJsonData } = appStore.useResumeJsonNewStore;
@@ -184,7 +184,7 @@
   const dialogVisible = ref<boolean>(false);
   const percentage = ref<number>(10);
   let timer: any = null;
-  const generateReport = async () => {
+  const generateReport = async (type: string) => {
     dialogVisible.value = true;
     timer = setInterval(() => {
       percentage.value += 5;
@@ -195,7 +195,12 @@
     }, 500);
     let token = localStorage.getItem('token') as string;
     let height = htmlContentPdf.value.style.height;
-    await exportPdf(token, id as string, height);
+    if (type === 'pdf') {
+      await exportPdf(token, id as string, height);
+    } else {
+      await exportPNG(token, id as string, height);
+    }
+
     clearInterval(timer);
     percentage.value = 100;
   };

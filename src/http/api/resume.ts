@@ -96,6 +96,16 @@ export const getResumePdfAsync: any = (params: any) => {
   });
 };
 
+// 导出为PNG
+export const getPNGAsync: any = (params: any) => {
+  return http.request({
+    url: '/huajian/pdf/getPNG',
+    method: 'get',
+    responseType: 'blob',
+    params: params
+  });
+};
+
 // 增加resume导出次数
 export const addMakeResumeCountAsync: any = () => {
   return http.request({
