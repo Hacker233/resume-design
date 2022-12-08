@@ -101,14 +101,15 @@
       border-radius: 10px;
       padding: 0 20px 20px 20px;
       .img-list {
-        padding: 30px 0;
+        padding: 15px 0;
         display: flex;
-        flex-direction: column;
+        justify-content: space-evenly;
         align-items: center;
+        flex-wrap: wrap;
         img {
-          width: 80%;
+          width: 35%;
           box-shadow: 0px 16px 22px 2px rgb(0 37 58 / 6%);
-          margin-bottom: 15px;
+          margin: 15px;
           border-radius: 10px;
           cursor: pointer;
         }
