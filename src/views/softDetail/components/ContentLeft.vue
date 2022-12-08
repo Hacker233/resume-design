@@ -56,7 +56,15 @@
         letter-spacing: 1px;
         font-size: 16px;
         color: #333;
-        line-height: 1.5;
+        line-height: 2;
+        :deep(p) {
+          line-height: 2;
+        }
+        :deep(ul) {
+          li {
+            list-style: inside;
+          }
+        }
       }
 
       .article-data-box {
@@ -107,7 +115,7 @@
         align-items: center;
         flex-wrap: wrap;
         img {
-          width: 35%;
+          width: 44%;
           box-shadow: 0px 16px 22px 2px rgb(0 37 58 / 6%);
           margin: 15px;
           border-radius: 10px;
