@@ -195,6 +195,11 @@
   const cancleJsonDialog = () => {
     dialogVisible.value = false;
   };
+
+  defineExpose({
+    leftList,
+    rightList
+  });
 </script>
 <style lang="scss" scoped>
   @import '../../style/options.scss';
