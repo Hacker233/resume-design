@@ -31,10 +31,9 @@
               :ref="(el) => setLinesRef(el, index)"
               :key="index"
               class="lines"
-              :style="{ top: `${1128 + 1132 * index}px` }"
+              :style="{ top: `${1158 + 1160 * index}px` }"
             >
-              <p class="tips">如果分割线遮挡内容，请通过调整模块上下边距以显示内容！</p>
-              <p class="page">{{ index + 1 }}/{{ linesNumber }}</p>
+              <span class="page-tips-one">第{{ index + 1 }}页</span>
             </div>
           </template>
         </component>
@@ -362,26 +361,22 @@
           .lines {
             z-index: 10;
             width: 820px;
-            height: 24px;
+            height: 4px;
             background: #f3f3f3 url(@/assets/images/paging_bg.png) center top no-repeat;
             user-select: none;
             pointer-events: none;
             position: absolute;
             display: flex;
             align-items: center;
-            .tips {
-              font-size: 9px;
-              color: #c7c7c7;
-            }
-            .page {
-              font-size: 9px;
-              color: #999999;
-            }
-            .page {
+            .page-tips-one {
               position: absolute;
-              left: 50%;
-              top: 50%;
-              transform: translate(-50%, -50%);
+              top: -17px;
+              right: 0px;
+              font-size: 12px;
+              background: #ff9971;
+              color: #fff;
+              padding: 2px 8px;
+              border-radius: 8px 0 0 0;
             }
           }
           .design-content {
