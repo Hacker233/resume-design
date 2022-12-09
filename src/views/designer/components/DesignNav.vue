@@ -49,6 +49,12 @@
           <span class="icon-tips">下载</span>
         </div>
       </el-tooltip>
+      <el-tooltip effect="dark" content="预览简历" placement="bottom">
+        <div class="icon-box" @click="previewResume">
+          <svg-icon icon-name="icon-yulan1" color="#555" size="19px"></svg-icon>
+          <span class="icon-tips">预览</span>
+        </div>
+      </el-tooltip>
       <el-tooltip effect="dark" content="保存为草稿" placement="bottom">
         <div class="icon-box" @click="saveDraft">
           <svg-icon icon-name="icon-caogaoxiang1" color="#555" size="17px"></svg-icon>
@@ -117,6 +123,11 @@
     @close-download-dialog="closeDownloadDialog"
     @download-file="downloadResumeFile"
   ></download-dialog>
+
+  <!-- 预览窗口 -->
+  <PreviewImage v-show="dialogPreviewVisible" @close="closePreview">
+    <resume-preview></resume-preview>
+  </PreviewImage>
 </template>
 <script lang="ts" setup>
   import appStore from '@/store';
@@ -212,6 +223,17 @@
         reject(null);
       }
     });
+  };
+
+  // 预览简历
+  const dialogPreviewVisible = ref<boolean>(false);
+  const previewResume = () => {
+    dialogPreviewVisible.value = true;
+  };
+
+  // 关闭预览弹窗
+  const closePreview = () => {
+    dialogPreviewVisible.value = false;
   };
 
   // 保存草稿

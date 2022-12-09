@@ -18,7 +18,8 @@
       </div>
       <!-- 预览区域 -->
       <div id="print" :key="refreshUuid" class="center">
-        <!-- <div ref="html2Pdf" class="design"> -->
+        <!-- 放大缩小 -->
+        <zoom-and-out @add-size="addSize" @reduce-size="reduceSize"></zoom-and-out>
         <component :is="resumeBackgroundName" ref="html2Pdf">
           <!-- 内容区域 -->
           <div ref="htmlContentPdf" class="design-content">
@@ -37,7 +38,6 @@
             </div>
           </template>
         </component>
-        <!-- </div> -->
       </div>
       <!-- 属性设置面板 -->
       <div :key="refreshUuid" ref="configRef" class="config">
@@ -313,6 +313,15 @@
   };
   provide('addCustomModelLeftRight', addCustomModelLeftRight);
 
+  // 放大缩小center
+  const sizeCenter = ref<number>(1);
+  const addSize = (number: number) => {
+    sizeCenter.value = number;
+  };
+  const reduceSize = (number: number) => {
+    sizeCenter.value = number;
+  };
+
   // 页面销毁
   onUnmounted(() => {
     if (timer) {
@@ -355,9 +364,10 @@
           // background: white;
           width: 820px;
           min-height: 1160px;
-          margin: 30px 0;
+          margin: 40px 0;
           display: flex;
           position: relative;
+          zoom: v-bind('sizeCenter');
           .lines {
             z-index: 10;
             width: 820px;

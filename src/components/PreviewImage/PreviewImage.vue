@@ -27,7 +27,7 @@
     left: 0;
     display: flex;
     justify-content: center;
-    align-items: center;
+    padding: 40px 0;
     overflow: auto;
     background-color: rgba(0, 0, 0, 0.5);
     z-index: 90;

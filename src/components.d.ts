@@ -66,12 +66,14 @@ declare module '@vue/runtime-core' {
     ModelBox: typeof import('./components/ModelBox/ModelBox.vue')['default'];
     NavBar: typeof import('./components/NavBar/NavBar.vue')['default'];
     NoData: typeof import('./components/NoData/NoData.vue')['default'];
+    OnlineResume: typeof import('./components/ResumePreview/components/OnlineResume.vue')['default'];
     Pagination: typeof import('./components/Pagination/pagination.vue')['default'];
     PreviewImage: typeof import('./components/PreviewImage/PreviewImage.vue')['default'];
     ProcessBarDialog: typeof import('./components/ProcessBarDialog/ProcessBarDialog.vue')['default'];
     ProjectExperienceCom: typeof import('./components/ModelComs/ProjectExperienceCom.vue')['default'];
     QrCode: typeof import('./components/QrCode/QrCode.vue')['default'];
     ResumeBackgroundPopover: typeof import('./components/ResumeBackgroundPopover/ResumeBackgroundPopover.vue')['default'];
+    ResumePreview: typeof import('./components/ResumePreview/ResumePreview.vue')['default'];
     RouterLink: typeof import('vue-router')['RouterLink'];
     RouterView: typeof import('vue-router')['RouterView'];
     SelfEvaluationCom: typeof import('./components/ModelComs/SelfEvaluationCom.vue')['default'];
@@ -82,5 +84,6 @@ declare module '@vue/runtime-core' {
     TipJsonDialog: typeof import('./components/TipJsonDialog/TipJsonDialog.vue')['default'];
     WorkExperienceCom: typeof import('./components/ModelComs/WorkExperienceCom.vue')['default'];
     WorksDisplayCom: typeof import('./components/ModelComs/WorksDisplayCom.vue')['default'];
+    ZoomAndOut: typeof import('./components/ZoomAndOut/ZoomAndOut.vue')['default'];
   }
 }
