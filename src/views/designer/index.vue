@@ -38,6 +38,8 @@
             </div>
           </template>
         </component>
+
+        <comment-com></comment-com>
       </div>
       <!-- 属性设置面板 -->
       <div :key="refreshUuid" ref="configRef" class="config">
@@ -352,9 +354,9 @@
       }
 
       .center {
-        display: flex;
-        justify-content: center;
-        align-items: flex-start;
+        // display: flex;
+        // justify-content: center;
+        // align-items: flex-start;
         flex: 1;
         min-width: 840px;
         height: calc(100vh - 50px);
@@ -364,7 +366,7 @@
           // background: white;
           width: 820px;
           min-height: 1160px;
-          margin: 40px 0;
+          margin: 40px auto;
           display: flex;
           position: relative;
           zoom: v-bind('sizeCenter');

@@ -32,10 +32,14 @@ import 'default-passive-events';
 
 import VueDOMPurifyHTML from 'vue-dompurify-html';
 
+import UndrawUi from 'undraw-ui';
+import 'undraw-ui/dist/style.css';
+
 // 创建vue实例
 const app = createApp(App);
 // app.use(store);
 app.use(createPinia());
+
 // 注册pinia状态管理库
 registerStore();
 
@@ -51,6 +55,6 @@ app.use(VueViewer, {
   }
 });
 app.component('SvgIcon', SvgIcon);
-
+app.use(UndrawUi);
 // 挂载实例
 app.mount('#app');
