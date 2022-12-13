@@ -89,6 +89,8 @@ export const formatDateToYMD = (dateString: string): string => {
   }
 };
 
+//
+
 // 开启全局等待层
 export const openGlobalLoading = () => {
   const { changLoading } = appStore.useLoadingStore;

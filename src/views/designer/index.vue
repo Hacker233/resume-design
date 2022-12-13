@@ -39,7 +39,7 @@
           </template>
         </component>
 
-        <comment-com></comment-com>
+        <comment-com :comment-type-id="id" comment-type="resumeTemplate"></comment-com>
       </div>
       <!-- 属性设置面板 -->
       <div :key="refreshUuid" ref="configRef" class="config">
