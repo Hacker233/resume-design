@@ -9,7 +9,10 @@
       @remove="remove"
       @report="report"
     >
-      <!-- <template #list-title>全部评论</template> -->
+      <template v-if="config.comments.length" #list-title
+        >全部评论（{{ initCommentList.length }}）</template
+      >
+      <template v-else #list-title>暂无评论</template>
     </u-comment>
   </div>
 </template>
@@ -17,9 +20,17 @@
   import { reactive } from 'vue';
   import { CommentApi, ConfigApi } from 'undraw-ui';
   import emoji from './emoji';
-  import { addCommentAsync, getCommentListAsync } from '@/http/api/comment';
+  import {
+    addCommentAsync,
+    cancleLikeCommentAsync,
+    deleteOneCommentAsync,
+    getCommentListAsync,
+    getUserLikeCommentIdsAsync,
+    liseCommentAsync
+  } from '@/http/api/comment';
   import { formatListDate, showtime } from '@/utils/common';
   import appStore from '@/store';
+  import { cloneDeep } from 'lodash';
 
   interface IComment {
     commentType: string;
@@ -43,6 +54,7 @@
   });
 
   // 查询评论列表
+  const initCommentList = ref<Array<any>>([]); // 出事评论列表
   const getCommentList = async () => {
     let params = {
       commentTypeId: props.commentTypeId,
@@ -50,16 +62,31 @@
     };
     const data = await getCommentListAsync(params);
     if (data.data.status === 200) {
+      initCommentList.value = data.data.data;
       config.comments = formatComment(data.data.data);
       console.log('config.comments', config.comments);
     } else {
-      ElMessage.error(data.message);
+      ElMessage.error(data.data.message);
     }
   };
   getCommentList();
 
-  // 提交评论事件
+  // 查询用户点赞ids
+  const getUserLikeCommentIds = async () => {
+    const params = {
+      commentType: props.commentType,
+      commentTypeId: props.commentTypeId
+    };
+    const data = await getUserLikeCommentIdsAsync(params);
+    if (data.data.status === 200) {
+      config.user.likeIds = data.data.data.like_comment_ids;
+    } else {
+      ElMessage.error(data.data.message);
+    }
+  };
+  getUserLikeCommentIds();
 
+  // 提交评论事件
   const submit = async (
     content: string,
     parentId: string,
@@ -93,20 +120,27 @@
         createTime: createTime,
         reply: null
       };
-      console.log('comment', comment);
       finish(comment);
+      getCommentList();
       ElMessage.success('评论发表成功');
     } else {
-      ElMessage.error(data.message);
+      ElMessage.error(data.data.message);
     }
   };
 
   // 删除评论
-  const remove = (id: number, finish: () => void) => {
-    setTimeout(() => {
+  const remove = async (id: number, finish: () => void) => {
+    let params = {
+      id: id
+    };
+    const data = await deleteOneCommentAsync(params);
+    if (data.data.status === 200) {
       finish();
-      alert(`删除成功: ${id}`);
-    }, 200);
+      getCommentList();
+      ElMessage.success('删除成功');
+    } else {
+      ElMessage.error(data.data.message);
+    }
   };
 
   //举报用户
@@ -119,45 +153,98 @@
   };
 
   // 点赞按钮事件
-  const like = (id: number, finish: () => void) => {
-    console.log(id);
-    setTimeout(() => {
-      finish();
-    }, 200);
+  const like = async (id: string, finish: () => void) => {
+    const isLike = (config.user.likeIds as Array<string>).indexOf(id) > -1 ? true : false;
+    if (!isLike) {
+      const params = {
+        id: id, // 评论id
+        commetnTypeId: props.commentTypeId, // 评论类型id
+        commentType: props.commentType
+      };
+      const data = await liseCommentAsync(params);
+      if (data.data.status === 200) {
+        finish();
+        getUserLikeCommentIds(); // 更新点赞ids
+        ElMessage.success('点赞成功');
+      } else {
+        ElMessage.error(data.data.message);
+      }
+    } else {
+      const params = {
+        id: id, // 评论id
+        commetnTypeId: props.commentTypeId, // 评论类型id
+        commentType: props.commentType
+      };
+      const data = await cancleLikeCommentAsync(params);
+      if (data.data.status === 200) {
+        finish();
+        getUserLikeCommentIds(); // 更新点赞ids
+        ElMessage.success('取消点赞成功');
+      } else {
+        ElMessage.error(data.data.message);
+      }
+    }
   };
 
   // 格式化评论数据
   const formatComment = (data: Array<any>) => {
-    for (let index = 0; index < data.length; index++) {
-      const createTime = showtime(formatListDate(data[index].createDate));
-      console.log(' data[index]', data[index]);
-
-      data[index] = {
-        id: data[index]._id,
-        parentId: data[index].parentId,
-        uid: data[index].uid,
-        username: data[index].username,
-        avatar: data[index].avatar,
-        level: data[index].level,
-        link: data[index].link,
-        address: data[index].address,
-        content: data[index].content,
-        like: data[index].like_users.length,
-        createTime: createTime,
-        commentTypeId: data[index].comment_type_id,
-        commentType: data[index].comment_type,
-        reply: data[index].reply
+    let filterData = cloneDeep(data);
+    // 处理时间
+    filterData = data.map((item: any) => {
+      const temp = {
+        id: item._id,
+        parentId: item.parentId,
+        uid: item.uid,
+        username: item.username,
+        avatar: item.avatar,
+        level: item.level,
+        link: item.link,
+        address: item.address,
+        content: item.content,
+        like: 0,
+        like_users: item.like_users,
+        createTime: showtime(formatListDate(item.createDate))
       };
+      return temp;
+    });
 
-      if (data[index].reply && data[index].reply.list.length) {
-        let childComment = formatComment(data[index].reply.list);
-        data[index].reply.total = childComment.length;
-        data[index].reply.list = childComment;
-      } else {
-        data[index].reply = null;
+    // 筛选出一级评论
+    const parentCommentList = filterData.filter((item: any) => {
+      if (!item.parentId) {
+        item.reply = {
+          total: 0,
+          list: []
+        };
+        item.like = item.like_users.length;
+        return item;
+      }
+    });
+
+    // 筛选出子评论
+    const childCommentList = filterData.filter((item: any) => {
+      if (item.parentId) {
+        item.like = item.like_users.length;
+        return item;
+      }
+    });
+
+    console.log('一级评论', parentCommentList);
+    console.log('子评论', childCommentList);
+    for (let i = 0; i < childCommentList.length; i++) {
+      const parentId = childCommentList[i].parentId;
+      for (let j = 0; j < parentCommentList.length; j++) {
+        const id = parentCommentList[j].id;
+        if (parentId === id) {
+          parentCommentList[j].reply.list.push(childCommentList[i]);
+          parentCommentList[j].reply.total = parentCommentList[j].reply.list.length;
+          break;
+        }
       }
     }
-    return data;
+
+    console.log('最终结果', parentCommentList);
+
+    return parentCommentList;
   };
 
   // config.comments = [
