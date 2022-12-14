@@ -6,154 +6,160 @@
       unique-opened
       @select="handleSelect"
     >
-      <el-menu-item index="Panel">
-        <svg-icon
-          icon-name="icon-gongzuotai"
-          class="iconfont"
-          :color="getIconColor('Panel')"
-          size="18px"
-        ></svg-icon>
-        <span>管理面板</span>
-      </el-menu-item>
-      <el-sub-menu index="1">
-        <template #title>
-          <svg-icon
-            icon-name="icon-gongzuoleixing"
-            class="iconfont"
-            color="#303133"
-            size="20px"
-          ></svg-icon>
-          <span>模板管理</span>
+      <template v-for="(item, index) in menuList">
+        <template v-if="!item.children">
+          <el-menu-item :key="index" :index="item.index">
+            <svg-icon
+              :icon-name="item.iconfont"
+              class="iconfont"
+              :color="getIconColor(item.index)"
+              size="18px"
+            ></svg-icon>
+            <span>{{ item.title }}</span>
+          </el-menu-item>
         </template>
-        <el-menu-item index="AddTemplate">
-          <svg-icon
-            icon-name="icon-jia"
-            class="iconfont"
-            :color="getIconColor('AddTemplate')"
-            size="18px"
-          ></svg-icon>
-          <span>添加模板</span>
-        </el-menu-item>
-        <el-menu-item index="TemplateList">
-          <svg-icon
-            icon-name="icon-hengxiangbuju"
-            class="iconfont"
-            :color="getIconColor('TemplateList')"
-            size="16px"
-          ></svg-icon>
-          <span>模板列表</span>
-        </el-menu-item>
-        <el-menu-item index="TobeAudit">
-          <svg-icon
-            icon-name="icon-caogaoxiang1"
-            class="iconfont"
-            :color="getIconColor('TobeAudit')"
-            size="16px"
-          ></svg-icon>
-          <span>待审核模板</span>
-        </el-menu-item>
-      </el-sub-menu>
-      <el-sub-menu index="2">
-        <template #title>
-          <svg-icon
-            icon-name="icon-guanliyuan_jiaoseguanli"
-            class="iconfont"
-            color="#303133"
-            size="20px"
-          ></svg-icon>
-          <span>用户管理</span>
+        <template v-else>
+          <el-sub-menu :key="index" :index="item.index">
+            <template #title>
+              <svg-icon
+                :icon-name="item.iconfont"
+                class="iconfont"
+                color="#303133"
+                size="20px"
+              ></svg-icon>
+              <span>{{ item.title }}</span>
+            </template>
+            <el-menu-item
+              v-for="(childItem, childIndex) in item.children"
+              :key="childIndex"
+              :index="childItem.index"
+            >
+              <svg-icon
+                :icon-name="childItem.iconfont"
+                class="iconfont"
+                :color="getIconColor(childItem.index)"
+                size="18px"
+              ></svg-icon>
+              <span>{{ childItem.title }}</span>
+            </el-menu-item>
+          </el-sub-menu>
         </template>
-        <el-menu-item index="UserList">
-          <svg-icon
-            icon-name="icon-qunzuduoren"
-            class="iconfont"
-            :color="getIconColor('UserList')"
-            size="18px"
-          ></svg-icon>
-          <span>用户列表</span>
-        </el-menu-item>
-        <el-menu-item index="SponsorList">
-          <svg-icon
-            icon-name="icon-zhengzhi"
-            class="iconfont"
-            :color="getIconColor('SponsorList')"
-            size="18px"
-          ></svg-icon>
-          <span>赞助列表</span>
-        </el-menu-item>
-      </el-sub-menu>
-      <el-sub-menu index="3">
-        <template #title>
-          <svg-icon
-            icon-name="icon-gongzuoleixing"
-            class="iconfont"
-            color="#303133"
-            size="20px"
-          ></svg-icon>
-          <span>简历管理</span>
-        </template>
-        <el-menu-item index="ResumeList">
-          <svg-icon
-            icon-name="icon-xiangmujingli-04"
-            class="iconfont"
-            :color="getIconColor('ResumeList')"
-            size="18px"
-          ></svg-icon>
-          <span>简历列表</span>
-        </el-menu-item>
-      </el-sub-menu>
-      <el-sub-menu index="4">
-        <template #title>
-          <svg-icon icon-name="icon-Word" class="iconfont" color="#303133" size="20px"></svg-icon>
-          <span>World模板</span>
-        </template>
-        <el-menu-item index="WordTemplateList">
-          <svg-icon
-            icon-name="icon-Word1"
-            class="iconfont"
-            :color="getIconColor('WordTemplateList')"
-            size="18px"
-          ></svg-icon>
-          <span>模板列表</span>
-        </el-menu-item>
-        <el-menu-item index="WordCategoryList">
-          <svg-icon
-            icon-name="icon-shujuku"
-            class="iconfont"
-            :color="getIconColor('WordCategoryList')"
-            size="18px"
-          ></svg-icon>
-          <span>分类管理</span>
-        </el-menu-item>
-      </el-sub-menu>
-      <el-sub-menu index="5">
-        <template #title>
-          <svg-icon icon-name="icon-ppt" class="iconfont" color="#303133" size="20px"></svg-icon>
-          <span>PPT模板</span>
-        </template>
-        <el-menu-item index="PPTTemplateList">
-          <svg-icon
-            icon-name="icon-Word1"
-            class="iconfont"
-            :color="getIconColor('PPTTemplateList')"
-            size="18px"
-          ></svg-icon>
-          <span>模板列表</span>
-        </el-menu-item>
-        <el-menu-item index="PPTCategoryList">
-          <svg-icon
-            icon-name="icon-ppt-ext"
-            class="iconfont"
-            :color="getIconColor('PPTCategoryList')"
-            size="18px"
-          ></svg-icon>
-          <span>分类管理</span>
-        </el-menu-item>
-      </el-sub-menu>
+      </template>
     </el-menu>
   </div>
 </template>
 <script lang="ts" setup>
+  // 菜单列表
+  const menuList = reactive<Array<any>>([
+    {
+      index: 'Panel',
+      iconfont: 'icon-gongzuotai',
+      title: '管理面板'
+    },
+    {
+      index: '1',
+      iconfont: 'icon-gongzuoleixing',
+      title: '模板管理',
+      children: [
+        {
+          index: 'AddTemplate',
+          iconfont: 'icon-jia',
+          title: '添加模板'
+        },
+        {
+          index: 'TemplateList',
+          iconfont: 'icon-hengxiangbuju',
+          title: '模板列表'
+        },
+        {
+          index: 'TobeAudit',
+          iconfont: 'icon-caogaoxiang1',
+          title: '待审核模板'
+        }
+      ]
+    },
+    {
+      index: '2',
+      iconfont: 'icon-guanliyuan_jiaoseguanli',
+      title: '用户管理',
+      children: [
+        {
+          index: 'UserList',
+          iconfont: 'icon-qunzuduoren',
+          title: '用户列表'
+        },
+        {
+          index: 'SponsorList',
+          iconfont: 'icon-zhengzhi',
+          title: '赞助列表'
+        }
+      ]
+    },
+    {
+      index: '3',
+      iconfont: 'icon-gongzuoleixing',
+      title: '简历管理',
+      children: [
+        {
+          index: 'ResumeList',
+          iconfont: 'icon-xiangmujingli-04',
+          title: '简历列表'
+        },
+        {
+          index: 'SponsorList',
+          iconfont: 'icon-zhengzhi',
+          title: '赞助列表'
+        }
+      ]
+    },
+    {
+      index: '4',
+      iconfont: 'icon-Word',
+      title: 'World模板',
+      children: [
+        {
+          index: 'WordTemplateList',
+          iconfont: 'icon-Word1',
+          title: '模板列表'
+        },
+        {
+          index: 'WordCategoryList',
+          iconfont: 'icon-shujuku',
+          title: '分类管理'
+        }
+      ]
+    },
+    {
+      index: '5',
+      iconfont: 'icon-ppt',
+      title: 'PPT模板',
+      children: [
+        {
+          index: 'PPTTemplateList',
+          iconfont: 'icon-Word1',
+          title: '模板列表'
+        },
+        {
+          index: 'PPTCategoryList',
+          iconfont: 'icon-ppt-ext',
+          title: '分类管理'
+        }
+      ]
+    },
+    {
+      index: '6',
+      iconfont: 'icon-contact',
+      title: '评论管理',
+      children: [
+        {
+          index: 'CommentList',
+          iconfont: 'icon-lianxiwomen',
+          title: '评论列表'
+        }
+      ]
+    }
+  ]);
+
   const router = useRouter();
   const route = useRoute();
   // 点击菜单

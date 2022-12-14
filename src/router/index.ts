@@ -42,6 +42,7 @@ const WordTemplateList = () => import('@/views/admin/wordTemplate/templateList/i
 const WordCategoryList = () => import('@/views/admin/wordTemplate/categoryList/index.vue');
 const PPTCategoryList = () => import('@/views/admin/pptTemplate/categoryList/index.vue');
 const PPTTemplateList = () => import('@/views/admin/pptTemplate/templateList/index.vue');
+const CommentList = () => import('@/views/admin/commentManage/commentList/index.vue');
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -439,6 +440,17 @@ const routes: Array<RouteRecordRaw> = [
           requireLogin: true
         },
         component: PPTTemplateList
+      },
+      {
+        path: 'commentList',
+        name: 'CommentList',
+        meta: {
+          title: '评论列表',
+          keepAlive: true,
+          isShowComNav: false,
+          requireLogin: true
+        },
+        component: CommentList
       }
     ]
   }
