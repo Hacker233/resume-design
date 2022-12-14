@@ -1,0 +1,29 @@
+$themes: (
+  blue: (
+    //字体
+		font_color1: var(--u-text-color-primary),
+		//背景
+		background_color1: var(--u-color-primary),
+		background_color2: var(--u-color-primary-light-3),
+		background_color3: var(--u-color-primary-light-7),
+  ),
+
+
+  purple: (
+    //字体
+		font_color1: var(--u-text-color-placeholder),
+		//背景
+		background_color1: var(--u-color-error),
+		background_color2: var(--u-color-error-light-3),
+		background_color3: var(--u-color-error-light-7),
+  ),
+
+	red: (
+		//字体
+		font_color1: var(--u-text-color-placeholder),
+		//背景
+		background_color1: var(--u-color-error),
+		background_color2: var(--u-color-error-light-3),
+		background_color3: var(--u-color-error-light-7),
+	)
+);

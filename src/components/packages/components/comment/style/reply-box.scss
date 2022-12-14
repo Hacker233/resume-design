@@ -1,0 +1,36 @@
+.reply-box {
+  margin-top: 16px;
+  background: var(--u-bg-color-overlay);
+  color: var(--u-text-color-regular);
+
+  .el-pagination {
+    --el-pagination-button-disabled-bg-color: none;
+    --el-pagination-bg-color: none;
+    padding: 0;
+  }
+
+  .reply-list {
+    padding: 16px;
+    border-radius: 4px;
+  }
+
+  .fetch-more {
+    margin-left: 36px;
+    margin-top: 10px;
+    color: #6d757a;
+    font-size: 12px;
+    line-height: 22px;
+    .fetch-more-comment {
+      color: var(--u-color-primary);
+      box-sizing: border-box;
+      cursor: pointer;
+      svg {
+        fill: currentColor;
+        margin-bottom: 3px;
+      }
+    }
+  }
+}
+
+html.dark {
+}

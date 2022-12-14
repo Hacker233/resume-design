@@ -12,7 +12,12 @@
       <template v-if="config.comments.length" #list-title
         >全部评论（{{ initCommentList.length }}）</template
       >
-      <template v-else #list-title>暂无评论</template>
+      <template v-else #list-title>
+        <div class="comment-no-data-box">
+          <no-data-vue width="200px" height="200px"></no-data-vue>
+          <p>快来添加一条评论吧~~</p>
+        </div>
+      </template>
     </u-comment>
   </div>
 </template>
@@ -31,6 +36,7 @@
   import { formatListDate, showtime } from '@/utils/common';
   import appStore from '@/store';
   import { cloneDeep } from 'lodash';
+  import NoDataVue from '@/components/NoData/NoData.vue';
 
   interface IComment {
     commentType: string;
@@ -47,7 +53,7 @@
       id: userInfo._id,
       username: userInfo.name,
       avatar: userInfo.photos.profilePic.url,
-      likeIds: userInfo.likeCommentIds[props.commentType]
+      likeIds: []
     },
     emoji: emoji,
     comments: []
@@ -79,7 +85,7 @@
     };
     const data = await getUserLikeCommentIdsAsync(params);
     if (data.data.status === 200) {
-      config.user.likeIds = data.data.data.like_comment_ids;
+      config.user.likeIds = data.data.data.like_comment_ids || [];
     } else {
       ElMessage.error(data.data.message);
     }
@@ -101,7 +107,7 @@
       content: content,
       reply: null,
       commentTypeId: props.commentTypeId,
-      commentType: 'resumeTemplate'
+      commentType: props.commentType
     };
     const data = await addCommentAsync(params);
     if (data.data.status === 200) {
@@ -246,77 +252,24 @@
 
     return parentCommentList;
   };
-
-  // config.comments = [
-  //   {
-  //     id: '1',
-  //     parentId: null,
-  //     uid: '1',
-  //     username: '落🤍尘',
-  //     avatar:
-  //       'https://static.juzicon.com/avatars/avatar-200602130320-HMR2.jpeg?x-oss-process=image/resize,w_100',
-  //     level: 6,
-  //     link: '/1',
-  //     address: '来自上海',
-  //     content:
-  //       '缘生缘灭，缘起缘落，我在看别人的故事，别人何尝不是在看我的故事?别人在演绎人生，我又何尝不是在这场戏里?谁的眼神沧桑了谁?我的眼神，只是沧桑了自己[喝酒]',
-  //     like: 2,
-  //     createTime: '1分钟前'
-  //   },
-  //   {
-  //     id: '2',
-  //     parentId: null,
-  //     uid: '2',
-  //     username: '悟二空',
-  //     avatar:
-  //       'https://static.juzicon.com/user/avatar-bf22291e-ea5c-4280-850d-88bc288fcf5d-220408002256-ZBQQ.jpeg',
-  //     level: 1,
-  //     link: '/2',
-  //     address: '来自苏州',
-  //     content: '知道在学校为什么感觉这么困吗？因为学校，是梦开始的地方。[脱单doge]',
-  //     like: 11,
-  //     createTime: '1天前',
-  //     reply: {
-  //       total: 2,
-  //       list: [
-  //         {
-  //           id: '21',
-  //           parentId: '2',
-  //           uid: '3',
-  //           username: '别扰我清梦*ぁ',
-  //           avatar:
-  //             'https://static.juzicon.com/user/avatar-8b6206c1-b28f-4636-8952-d8d9edec975d-191001105631-MDTM.jpg?x-oss-process=image/resize,m_fill,w_100,h_100',
-  //           level: 5,
-  //           link: '/21',
-  //           address: '来自重庆',
-  //           content: '说的对，所以，综上所述，上课睡觉不怪我呀💤',
-  //           like: 3,
-  //           createTime: '1分钟前'
-  //         },
-  //         {
-  //           id: '22',
-  //           parentId: '2',
-  //           uid: '4',
-  //           username: 'Blizzard',
-  //           avatar:
-  //             'https://static.juzicon.com/user/avatar-3cb86a0c-08e7-4305-9ac6-34e0cf4937cc-180320123405-BCV6.jpg?x-oss-process=image/resize,m_fill,w_100,h_100',
-  //           level: 3,
-  //           link: '/22',
-  //           content:
-  //             '回复 <span style="color: blue;"">@别扰我清梦*ぁ:</span> 看完打了一个哈切。。。会传染。。。[委屈]',
-  //           address: '来自广州',
-  //           like: 9,
-  //           createTime: '1天前'
-  //         }
-  //       ]
-  //     }
-  //   }
-  // ];
 </script>
 <style lang="scss" scoped>
   .comment-view {
     width: 820px;
-    margin: 30px auto;
+    margin: 40px auto;
     position: relative;
+    .comment-no-data-box {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      :deep(.no-data-box) {
+        min-height: 100px;
+      }
+      p {
+        font-size: 14px;
+        color: rgb(116, 114, 114);
+      }
+    }
   }
 </style>

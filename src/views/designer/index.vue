@@ -17,10 +17,10 @@
         </c-scrollbar>
       </div>
       <!-- 预览区域 -->
-      <div id="print" :key="refreshUuid" class="center">
+      <div id="print" class="center">
         <!-- 放大缩小 -->
         <zoom-and-out @add-size="addSize" @reduce-size="reduceSize"></zoom-and-out>
-        <component :is="resumeBackgroundName" ref="html2Pdf">
+        <component :is="resumeBackgroundName" :key="refreshUuid" ref="html2Pdf">
           <!-- 内容区域 -->
           <div ref="htmlContentPdf" class="design-content">
             <component :is="custom" ref="customRef" @content-height-change="contentHeightChange" />
@@ -39,7 +39,27 @@
           </template>
         </component>
 
-        <comment-com :comment-type-id="id" comment-type="resumeTemplate"></comment-com>
+        <!-- 评论组件 -->
+        <comment-com :comment-type-id="id" comment-type="resumeOnline"></comment-com>
+        <!-- 回到顶部 -->
+        <el-backtop :right="365" :bottom="50" target="#print">
+          <div
+            style="
+              height: 100%;
+              width: 100%;
+              background-color: var(--el-bg-color-overlay);
+              box-shadow: var(--el-box-shadow-lighter);
+              text-align: center;
+              line-height: 40px;
+              color: #1989fa;
+              user-select: none;
+              border-radius: 50%;
+              font-size: 14px;
+            "
+          >
+            UP
+          </div>
+        </el-backtop>
       </div>
       <!-- 属性设置面板 -->
       <div :key="refreshUuid" ref="configRef" class="config">

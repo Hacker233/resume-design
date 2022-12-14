@@ -1,0 +1,74 @@
+.u-comment {
+  a {
+    color: inherit;
+    text-decoration: inherit;
+  }
+
+  a:hover {
+    text-decoration: underline;
+  }
+
+  .underline {
+    -webkit-text-decoration-line: underline;
+    text-decoration-line: underline;
+  }
+
+  img,
+  svg {
+    //用来指定行内元素（inline）或表格单元格（table-cell）元素的垂直对齐方式。
+    vertical-align: middle;
+  }
+
+  .select-none {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+
+  .cursor-pointer {
+    cursor: pointer;
+  }
+
+  /*定义滚动条高宽及背景 高宽分别对应横竖滚动条的尺寸*/
+  .u-scrollbar::-webkit-scrollbar {
+    width: 6px;
+    /*滚动条宽度*/
+    height: 8px;
+    /*滚动条高度*/
+  }
+
+  /*定义滑块 内阴影+圆角*/
+  .u-scrollbar::-webkit-scrollbar-track {
+    background-color: rgba(73, 177, 245, 0.2);
+    border-radius: 2em;
+  }
+
+  .u-scrollbar::-webkit-scrollbar-thumb {
+    background-color: #49b1f5;
+    background-image: -webkit-linear-gradient(45deg,
+        rgba(255, 255, 255, 0.4) 25%,
+        transparent 25%,
+        transparent 50%,
+        rgba(255, 255, 255, 0.4) 50%,
+        rgba(255, 255, 255, 0.4) 75%,
+        transparent 75%,
+        transparent);
+    border-radius: 2em;
+  }
+
+  .u-scrollbar::-webkit-scrollbar-corner {
+    background-color: transparent;
+  }
+
+  .u-ellipsis {
+    //象作为弹性伸缩盒子模型显示。
+    display: -webkit-box;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    //设置或检索伸缩盒对象的子元素的排列方式。
+    -webkit-box-orient: vertical;
+    //用来限制在一个块元素显示的文本的行数。
+    -webkit-line-clamp: 1;
+  }
+}

@@ -1,0 +1,37 @@
+$minHeight: 30 !default;
+$padding: 4px 10px !default;
+
+.u-editor {
+  transition: all 0.3s;
+  background: var(--u-bg-color-secondary);
+  border: 1px solid var(--u-bg-color-overlay);
+  color: var(--u-text-color-regular);
+  border-radius: 4px;
+  font-size: 14px;
+
+  .rich-input {
+    min-height: $minHeight;
+    line-height: 22px;
+    padding: $padding;
+    outline: none;
+    display: inline-block;
+    width: 100%;
+    box-sizing: border-box;
+    resize: both;
+    background-position: 120% -10px;
+    transition: background 0.3s;
+  }
+  .rich-input:empty::before {
+    cursor: text;
+    content: attr(placeholder);
+    color: var(--u-text-color-placeholder);
+  }
+}
+.active {
+  border-color: var(--u-color-primary);
+  background: var(--u-bg-color);
+}
+
+// .active .rich-input {
+//   background: url('/static/img/commentBack.webp') no-repeat 95% -10px/19%;
+// }

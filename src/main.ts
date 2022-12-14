@@ -32,8 +32,7 @@ import 'default-passive-events';
 
 import VueDOMPurifyHTML from 'vue-dompurify-html';
 
-import UndrawUi from 'undraw-ui';
-import 'undraw-ui/dist/style.css';
+import UndrawUi from './components/packages/index';
 
 // 创建vue实例
 const app = createApp(App);

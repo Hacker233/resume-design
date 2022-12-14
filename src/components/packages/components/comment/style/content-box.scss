@@ -1,0 +1,77 @@
+.comment {
+  display: flex;
+  margin: 32px 0;
+  a:hover {
+    text-decoration: none;
+  }
+  .u-icon {
+    font-size: 16px;
+  }
+}
+
+.content {
+  flex: 1;
+  margin-left: 16px;
+  overflow: hidden;
+  .user-box {
+    display: flex;
+    align-items: center;
+    .username {
+      display: flex;
+      align-items: center;
+      .name {
+        max-width: 10rem;
+        font-weight: 500;
+        font-size: 15px;
+        color: var(--u-text-color-secondary);
+        line-height: 32px;
+        margin-right: 4px;
+      }
+    }
+
+    .time {
+      margin-left: auto;
+      font-size: 14px;
+      line-height: 22px;
+      color: #8a919f;
+    }
+  }
+}
+
+.action-box {
+  display: flex;
+  align-items: center;
+  position: relative;
+
+  .item {
+    margin-right: 16px;
+    line-height: 20px;
+    line-height: 22px;
+    font-size: 14px;
+    cursor: pointer;
+    color: var(--u-text-color-secondary);
+    .u-icon {
+      margin-right: 4px;
+    }
+  }
+  .item:hover, .active {
+    color: var(--u-color-primary);
+  }
+}
+
+.u-fold {
+  margin-top: 8px;
+}
+
+.small {
+  .content-box {
+    margin-left: 12px;
+  }
+  .el-avatar {
+    --el-avatar-size: 24px !important;
+  }
+  margin: 0;
+}
+.small:not(:first-child) {
+  margin-top: 32px;
+}
