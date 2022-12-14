@@ -8,7 +8,7 @@
         :key="index"
         class="list-group-item"
       >
-        <model-box :components="MaterialComponents" :item="element"></model-box>
+        <model-preview-box :components="MaterialComponents" :item="element"></model-preview-box>
       </div>
     </template>
 
@@ -16,12 +16,12 @@
     <template v-else-if="resumeJsonNewStore.LAYOUT === 'leftRight'">
       <div class="left-box">
         <div v-for="(element, index) in leftList" :key="index" class="list-group-item">
-          <model-box :components="MaterialComponents" :item="element"></model-box>
+          <model-preview-box :components="MaterialComponents" :item="element"></model-preview-box>
         </div>
       </div>
       <div class="right-box">
         <div v-for="(element, index) in rightList" :key="index" class="list-group-item">
-          <model-box :components="MaterialComponents" :item="element"></model-box>
+          <model-preview-box :components="MaterialComponents" :item="element"></model-preview-box>
         </div>
       </div>
     </template>
@@ -29,7 +29,7 @@
 </template>
 <script lang="ts" setup>
   import appStore from '@/store';
-  import ModelBox from './ModelBox.vue';
+  import ModelPreviewBox from './ModelPreviewBox.vue';
   import { IMATERIALITEM } from '@/interface/material';
   import MaterialComponents from '@/utils/registerMaterialCom'; // 所有物料组件
   defineOptions({ name: 'onlinePreview' });

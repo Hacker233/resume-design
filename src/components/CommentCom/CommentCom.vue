@@ -23,7 +23,7 @@
 </template>
 <script lang="ts" setup>
   import { reactive } from 'vue';
-  import { CommentApi, ConfigApi } from 'undraw-ui';
+  import { CommentApi, ConfigApi } from '@/components/packages/index';
   import emoji from './emoji';
   import {
     addCommentAsync,

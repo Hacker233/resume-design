@@ -3,7 +3,7 @@
     <!-- 简历 -->
     <div :key="refreshUuid" ref="html2Pdf" class="design">
       <div ref="htmlContentPdf" class="design-content">
-        <component :is="ResumePreview" @content-height-change="contentHeightChange" />
+        <component :is="ResumePreviewCom" @content-height-change="contentHeightChange" />
       </div>
 
       <!-- 分页线 -->
@@ -23,7 +23,7 @@
 <script lang="ts" setup>
   import appStore from '@/store';
   import { storeToRefs } from 'pinia';
-  import ResumePreview from './components/ResumePreview.vue';
+  import ResumePreviewCom from './components/ResumePreviewCom.vue';
 
   const { refreshUuid } = storeToRefs(appStore.useUuidStore);
   const { resumeJsonNewStore } = storeToRefs(appStore.useResumeJsonNewStore); // store里的模板数据
