@@ -23,6 +23,8 @@
         <span class="name">{{ cardData.userInfo.name }}</span>
       </div>
       <div class="icon-box">
+        <svg-icon icon-name="icon-pinglun1" color="#a3abb1" size="19px"></svg-icon>
+        <span class="number">{{ cardData.commentCount }}</span>
         <svg-icon icon-name="icon-jibenziliao" color="#a3abb1" size="19px"></svg-icon>
         <span class="number">{{ cardData.VIEWS }}</span>
       </div>
@@ -166,6 +168,9 @@
         display: flex;
         align-items: center;
         margin-right: 5px;
+        .svg-icon {
+          margin-left: 10px;
+        }
         .number {
           margin-left: 5px;
         }

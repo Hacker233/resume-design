@@ -80,3 +80,12 @@ export const recoverCommentByAdminAsync: any = (params: any) => {
     params
   });
 };
+
+// 查询单个软件的评论数量
+export const getSoftCommentCountAsync: any = (params: any) => {
+  return http.request({
+    url: '/huajian/common/getSoftCommentCount',
+    method: 'get',
+    params
+  });
+};

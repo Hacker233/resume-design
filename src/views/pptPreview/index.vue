@@ -33,13 +33,17 @@
             <div class="button" @click="download"> 立即下载 </div>
           </div>
           <div class="views-downs-box">
-            <div class="downloads-box">
+            <div class="icon-box">
               <svg-icon icon-name="icon-xiazailiang" color="#a3abb1" size="22px"></svg-icon>
               <span class="downloads">{{ pptInfo.downloads }}</span>
             </div>
             <div class="icon-box">
               <svg-icon icon-name="icon-liulanliang1" color="#a3abb1" size="22px"></svg-icon>
               <span class="number">{{ pptInfo.views }}</span>
+            </div>
+            <div class="icon-box">
+              <svg-icon icon-name="icon-pinglun1" color="#a3abb1" size="22px"></svg-icon>
+              <span class="number">{{ pptInfo.commentCount }}</span>
             </div>
           </div>
         </div>
@@ -70,7 +74,9 @@
           </div>
           <div class="profile-box">
             <span class="label">标签</span>
-            <p v-for="(item, index) in pptInfo.tags" :key="index" class="category">{{ item }}</p>
+            <div class="tags-box">
+              <p v-for="(item, index) in pptInfo.tags" :key="index" class="category">{{ item }}</p>
+            </div>
           </div>
         </div>
       </div>
@@ -79,6 +85,9 @@
       <!-- 轮播图 -->
       <ppt-carousel v-if="pptInfo.previewUrl" :preview-url-list="pptInfo.previewUrl"></ppt-carousel>
     </div>
+
+    <!-- 评论组件 -->
+    <comment-com width="1200px" :comment-type-id="id" comment-type="pptTemplate"></comment-com>
   </div>
 </template>
 <script lang="ts" setup>
@@ -167,7 +176,7 @@
       margin: 0 auto;
       min-height: 500px;
       padding: 20px 0;
-      width: 1300px;
+      width: 1200px;
       display: flex;
       .left {
         display: flex;
@@ -227,12 +236,14 @@
           display: flex;
           flex-direction: column;
           h1 {
-            font-size: 30px;
+            font-size: 18px;
             margin-bottom: 30px;
+            text-align: justify;
+            line-height: 1.5;
           }
           .download-btn {
             .button {
-              width: 50%;
+              width: 100%;
               height: 38px;
               margin-right: 20px;
               line-height: 38px;
@@ -267,22 +278,17 @@
             color: #b2bcc3;
             display: flex;
             align-items: center;
-            .downloads-box {
-              display: flex;
-              align-items: center;
-              margin-right: 30px;
-              .downloads {
-                margin-left: 6px;
-                font-size: 18px;
-              }
-            }
             .icon-box {
-              margin-right: 5px;
+              margin-right: 30px;
               display: flex;
               align-items: center;
               .number {
-                margin-left: 5px;
                 padding-top: 1px;
+                font-size: 18px;
+                margin-left: 10px;
+              }
+              .downloads {
+                margin-left: 6px;
                 font-size: 18px;
               }
             }
@@ -291,7 +297,7 @@
         .info-box {
           width: 100%;
           background-color: #fff;
-          padding: 20px 30px 20px 20px;
+          padding: 20px 30px 0 20px;
           display: flex;
           flex-direction: column;
           h1 {
@@ -309,14 +315,25 @@
               margin-right: 15px;
               flex-grow: 0;
               flex-shrink: 0;
+              padding-top: 3px;
             }
             p {
               font-size: 14px;
               color: #999999;
-              padding: 0 15px;
+              padding: 0 0 0 15px;
+              text-align: justify;
+              line-height: 1.5;
             }
             .category {
               border-right: 1px solid #eee;
+              margin-bottom: 15px;
+            }
+            .tags-box {
+              display: flex;
+              flex-wrap: wrap;
+              p {
+                padding: 0 15px;
+              }
             }
           }
         }
@@ -327,7 +344,7 @@
       margin: 30px auto;
       min-height: 500px;
       padding: 20px 0;
-      width: 1300px;
+      width: 1200px;
       display: flex;
       background-color: #fff;
       display: flex;

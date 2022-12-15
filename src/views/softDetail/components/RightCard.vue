@@ -59,7 +59,7 @@
 </script>
 <style lang="scss" scoped>
   .right-card-box {
-    width: 400px;
+    width: 350px;
     min-height: 400px;
     .tags-box {
       background-color: #fff;

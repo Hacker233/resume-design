@@ -14,6 +14,13 @@
           </div>
           <span>{{ content.source_views }}</span>
         </div>
+        <!-- 评论量 -->
+        <div class="view-box">
+          <div class="icon-box">
+            <svg-icon icon-name="icon-pinglun1" color="#ccc" size="22px"></svg-icon>
+          </div>
+          <span>{{ commentCount }}</span>
+        </div>
       </div>
 
       <!-- 特别说明 -->
@@ -34,17 +41,23 @@
         />
       </div>
     </div>
+
+    <!-- 评论组件 -->
+    <comment-com width="100%" :comment-type-id="sourceId" comment-type="soft"></comment-com>
   </div>
 </template>
 <script lang="ts" setup>
   import ComTitle from './ComTitle.vue';
   defineProps<{
     content: any;
+    commentCount: any;
   }>();
+
+  const { sourceId } = useRoute().query;
 </script>
 <style lang="scss" scoped>
   .content-left-box {
-    width: 850px;
+    width: 800px;
     min-height: 300px;
     .introduce-box {
       background-color: #fff;
@@ -78,6 +91,7 @@
           display: flex;
           flex-direction: column;
           align-items: center;
+          margin: 0 10px;
           .icon-box {
             border-radius: 50%;
             width: 50px;

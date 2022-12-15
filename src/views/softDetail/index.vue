@@ -11,12 +11,13 @@
     </div>
     <!-- 底部区域 -->
     <div class="soft-detail-bottom">
-      <content-left-vue :content="softInfo"></content-left-vue>
+      <content-left-vue :content="softInfo" :comment-count="commentCount"></content-left-vue>
       <right-card-vue :content="softInfo"></right-card-vue>
     </div>
   </div>
 </template>
 <script lang="ts" setup>
+  import { getSoftCommentCountAsync } from '@/http/api/comment';
   import { getySoftInfoByIdAsync } from '@/http/api/soft';
   import ContentLeftVue from './components/ContentLeft.vue';
   import RightCardVue from './components/RightCard.vue';
@@ -36,10 +37,26 @@
     }
   };
   getySoftInfoById();
+
+  // 查询评论数量
+  const commentCount = ref<number>(0);
+  const getCommentCount = async () => {
+    const params = {
+      commentTypeId: sourceId,
+      commentType: 'soft'
+    };
+    const data = await getSoftCommentCountAsync(params);
+    if (data.status === 200) {
+      commentCount.value = data.data;
+    } else {
+      ElMessage.error(data.message);
+    }
+  };
+  getCommentCount();
 </script>
 <style lang="scss" scoped>
   .soft-detail-box {
-    width: 1300px;
+    width: 1200px;
     min-height: 500px;
     margin: 0 auto;
     padding: 30px 0;

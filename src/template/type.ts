@@ -6,6 +6,7 @@ interface ITempList {
   previewUrl: string;
   LIKES: number;
   VIEWS: number;
+  commentCount: number;
   userInfo: {
     name: string;
     userId: string;

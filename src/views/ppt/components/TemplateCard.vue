@@ -18,6 +18,8 @@
         <span :title="cardData.name">{{ cardData.name }}</span>
       </div>
       <div class="icon-box">
+        <svg-icon icon-name="icon-pinglun1" color="#a3abb1" size="19px"></svg-icon>
+        <span class="number comment-icon">{{ cardData.commentCount }}</span>
         <svg-icon icon-name="icon-liulanliang1" color="#a3abb1" size="19px"></svg-icon>
         <span class="number">{{ cardData.views }}</span>
       </div>
@@ -166,6 +168,9 @@
         .number {
           margin-left: 5px;
           padding-top: 1px;
+        }
+        .comment-icon {
+          margin-right: 10px;
         }
       }
     }

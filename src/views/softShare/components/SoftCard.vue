@@ -14,19 +14,22 @@
     <div class="views-date-box">
       <!-- 浏览量 -->
       <div class="icon-box">
+        <svg-icon icon-name="icon-pinglun1" color="#a3abb1" size="19px"></svg-icon>
+        <span class="number">{{ commentCount }}</span>
         <svg-icon icon-name="icon-jibenziliao" color="#a3abb1" size="19px"></svg-icon>
         <span class="number">{{ cardData.source_views }}</span>
       </div>
       <!-- 日期 -->
       <div class="icon-box">
         <svg-icon icon-name="icon-shijian" color="#a3abb1" size="19px"></svg-icon>
-        <span class="number">{{ showtime(cardData.source_create_date) }}</span>
+        <span class="number number-date">{{ showtime(cardData.source_create_date) }}</span>
       </div>
     </div>
   </div>
 </template>
 <script lang="ts" setup>
   import { showtime } from '@/utils/common';
+  import { getSoftCommentCountAsync } from '@/http/api/comment';
   const props = defineProps<{
     cardData: any;
   }>();
@@ -42,6 +45,22 @@
     });
     window.open(newpage.href, '_blank');
   };
+
+  // 查询评论数量
+  const commentCount = ref<number>(0);
+  const getCommentCount = async () => {
+    const params = {
+      commentTypeId: props.cardData.source_id,
+      commentType: 'soft'
+    };
+    const data = await getSoftCommentCountAsync(params);
+    if (data.status === 200) {
+      commentCount.value = data.data;
+    } else {
+      ElMessage.error(data.message);
+    }
+  };
+  getCommentCount();
 </script>
 <style lang="scss" scoped>
   .soft-card-box {
@@ -121,6 +140,10 @@
         .number {
           margin-left: 5px;
           letter-spacing: 1px;
+          margin-right: 10px;
+        }
+        .number-date {
+          margin-right: 0;
         }
       }
     }
