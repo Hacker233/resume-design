@@ -1,12 +1,13 @@
 <template>
   <div class="logo" @click="toHome">
-    <svg-icon
+    <!-- <svg-icon
       icon-name="icon-huojian"
       class-name="bilibili"
       :color="iconColor"
       size="25px"
     ></svg-icon>
-    <span>91化简</span>
+    <span>91化简</span> -->
+    <img src="@/assets/images/91huajian-caise.svg" />
   </div>
 </template>
 <script lang="ts" setup>
@@ -16,8 +17,9 @@
   }
   withDefaults(defineProps<IBgcColor>(), {
     fontColor: '#74a274',
-    iconColor: '#74a274'
+    iconColor: ''
   });
+
   const router = useRouter();
   const toHome = () => {
     router.push('/');
@@ -31,8 +33,7 @@
     cursor: pointer;
     user-select: none;
     img {
-      width: 80px;
-      height: 80px;
+      width: 120px;
     }
     span {
       letter-spacing: 2px;
