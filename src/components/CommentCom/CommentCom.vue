@@ -1,14 +1,21 @@
 <template>
   <!-- 评论组件 -->
-  <div class="comment-view">
+  <div :key="refreshUuid" class="comment-view">
     <u-comment
       :config="config"
       :show-size="2"
+      :is-login="isLogin"
       @submit="submit"
       @like="like"
       @remove="remove"
       @report="report"
     >
+      <!-- 未登录展示 -->
+      <template v-if="!isLogin" #is-not-login>
+        <div class="login-content-box" @click="openLoginDialog">
+          <p>请先登录</p>
+        </div>
+      </template>
       <template v-if="config.comments.length" #list-title
         >全部评论（{{ initCommentList.length }}）</template
       >
@@ -25,6 +32,7 @@
   import { reactive } from 'vue';
   import { CommentApi, ConfigApi } from '@/components/packages/index';
   import emoji from './emoji';
+  import LoginDialog from '@/components/LoginDialog/LoginDialog';
   import {
     addCommentAsync,
     cancleLikeCommentAsync,
@@ -36,28 +44,52 @@
   import { formatListDate, showtime } from '@/utils/common';
   import appStore from '@/store';
   import { cloneDeep } from 'lodash';
-  import NoDataVue from '@/components/NoData/NoData.vue';
+  import NoDataVue from '../NoData/NoData.vue';
+  import { storeToRefs } from 'pinia';
 
   interface IComment {
     commentType: string;
     commentTypeId: string;
+    width: string;
   }
   const props = withDefaults(defineProps<IComment>(), {
     commentType: '',
-    commentTypeId: ''
+    commentTypeId: '',
+    width: '820px'
   });
 
-  const { userInfo } = appStore.useUserInfoStore;
+  // 处理登录情况
   const config = reactive<ConfigApi>({
     user: {
-      id: userInfo._id,
-      username: userInfo.name,
-      avatar: userInfo.photos.profilePic.url,
+      id: '',
+      username: '',
+      avatar: '',
       likeIds: []
     },
     emoji: emoji,
     comments: []
   });
+  const { refreshUuid } = storeToRefs(appStore.useUuidStore);
+  const isLogin = computed(() => {
+    let token = appStore.useTokenStore.token;
+    if (token) {
+      const { userInfo } = appStore.useUserInfoStore;
+      config.user = {
+        id: userInfo._id,
+        username: userInfo.name,
+        avatar: userInfo.photos.profilePic.url,
+        likeIds: []
+      };
+      return true;
+    } else {
+      return false;
+    }
+  });
+
+  // 打开登录弹窗
+  const openLoginDialog = () => {
+    LoginDialog(true);
+  };
 
   // 查询评论列表
   const initCommentList = ref<Array<any>>([]); // 出事评论列表
@@ -67,12 +99,12 @@
       commentType: props.commentType
     };
     const data = await getCommentListAsync(params);
-    if (data.data.status === 200) {
-      initCommentList.value = data.data.data;
-      config.comments = formatComment(data.data.data);
+    if (data.status === 200) {
+      initCommentList.value = data.data;
+      config.comments = formatComment(data.data);
       console.log('config.comments', config.comments);
     } else {
-      ElMessage.error(data.data.message);
+      ElMessage.error(data.message);
     }
   };
   getCommentList();
@@ -90,7 +122,9 @@
       ElMessage.error(data.data.message);
     }
   };
-  getUserLikeCommentIds();
+  if (isLogin.value) {
+    getUserLikeCommentIds();
+  }
 
   // 提交评论事件
   const submit = async (
@@ -255,9 +289,29 @@
 </script>
 <style lang="scss" scoped>
   .comment-view {
-    width: 820px;
+    width: v-bind('props.width');
     margin: 40px auto;
     position: relative;
+    .login-content-box {
+      width: 100%;
+      height: 100px;
+      background-color: rgba($color: #eee, $alpha: 0.7);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 30px;
+      cursor: pointer;
+      border-radius: 10px;
+      p {
+        color: #028e6b;
+        font-size: 16px;
+        letter-spacing: 2px;
+        transition: all 0.3s;
+        &:hover {
+          color: #06b78b;
+        }
+      }
+    }
     .comment-no-data-box {
       display: flex;
       flex-direction: column;

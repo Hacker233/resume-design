@@ -70,6 +70,9 @@
         :preview-url-list="wordInfo.previewUrl"
       ></word-carousel>
     </div>
+
+    <!-- 评论组件 -->
+    <comment-com width="1300px" :comment-type-id="id" comment-type="resumeTemplate"></comment-com>
   </div>
 </template>
 <script lang="ts" setup>

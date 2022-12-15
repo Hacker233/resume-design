@@ -1,9 +1,9 @@
 <template>
   <div class="word-carousel-box">
     <h1 class="title">详情</h1>
-    <el-carousel :interval="4000" height="930px">
+    <el-carousel :interval="4000" height="700px">
       <el-carousel-item v-for="(item, index) in previewUrlList" :key="index">
-        <div class="img-box">
+        <div v-viewer class="img-box">
           <el-image style="width: 100%; height: 100%" :src="item.url" fit />
         </div>
       </el-carousel-item>
@@ -30,9 +30,10 @@
       border-bottom: 1px solid #eee;
     }
     .img-box {
-      width: 700px;
-      height: 900px;
+      width: 500px;
+      height: 680px;
       box-shadow: 2px 2px 20px rgba(119, 119, 119, 0.5);
+      cursor: pointer;
     }
   }
   .el-carousel__item {

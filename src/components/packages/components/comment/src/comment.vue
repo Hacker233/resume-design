@@ -4,7 +4,7 @@
       <div class="header">
         <div class="header-title">参与评论</div>
       </div>
-      <div class="content">
+      <div v-if="isLogin" class="content">
         <div class="avatar-box">
           <el-avatar :size="40" :src="config.user.avatar">
             <img src="https://cube.elemecdn.com/e/fd/0fc7d20532fdaf769a25683617711png.png" />
@@ -12,6 +12,7 @@
         </div>
         <CommentBox placeholder="输入评论（Enter换行，Ctrl + Enter发送）" content-btn="发表评论" />
       </div>
+      <slot name="is-not-login"> </slot>
     </div>
     <!-- <div class="hot-list"></div> -->
     <div class="comment-list-wrapper">
@@ -52,11 +53,13 @@
     // 显示评论的数量
     showSize?: number;
     page?: boolean;
+    isLogin: boolean;
   }
 
   const props = withDefaults(defineProps<Props>(), {
     showSize: 3,
-    page: false
+    page: false,
+    isLogin: true
   });
   const slots = useSlots();
   // 将这个属性转换为响应式数据。

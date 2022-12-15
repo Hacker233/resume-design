@@ -12,7 +12,7 @@ export const addCommentAsync: any = (data: any) => {
 // 查询评论列表
 export const getCommentListAsync: any = (params: any) => {
   return http.request({
-    url: '/huajian/comment/getCommentList',
+    url: '/huajian/common/getCommentList',
     method: 'get',
     params
   });
