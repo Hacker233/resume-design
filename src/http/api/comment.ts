@@ -73,11 +73,11 @@ export const deleteCommentByAdminAsync: any = (params: any) => {
 };
 
 // 管理员恢复一条评论
-export const recoverCommentByAdminAsync: any = (params: any) => {
+export const recoverCommentByAdminAsync: any = (data: any) => {
   return http.request({
     url: '/huajian/comment/recoverCommentByAdmin',
     method: 'post',
-    params
+    data
   });
 };
 
@@ -85,6 +85,15 @@ export const recoverCommentByAdminAsync: any = (params: any) => {
 export const getSoftCommentCountAsync: any = (params: any) => {
   return http.request({
     url: '/huajian/common/getSoftCommentCount',
+    method: 'get',
+    params
+  });
+};
+
+// 用户查询个人评论列表
+export const getPersonCommentPageAsync: any = (params: any) => {
+  return http.request({
+    url: '/huajian/comment/getPersonCommentPage',
     method: 'get',
     params
   });

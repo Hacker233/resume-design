@@ -44,7 +44,7 @@
       </el-table-column>
       <el-table-column prop="comment_type" label="评论所属">
         <template #default="scope">
-          <div>{{ commentType[scope.row.comment_type] }}</div>
+          <div>{{ commentType[scope.row.comment_type].label }}</div>
         </template>
       </el-table-column>
       <el-table-column prop="like" label="点赞数" />

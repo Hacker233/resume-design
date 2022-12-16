@@ -1,6 +1,18 @@
 export const commentType: any = {
-  resumeOnline: '在线制作',
-  resumeTemplate: '简历模板',
-  soft: '软件分享',
-  pptTemplate: 'PPT模板'
+  resumeOnline: {
+    label: '在线制作',
+    path: '/designer'
+  },
+  resumeTemplate: {
+    label: '简历模板',
+    path: '/wordPreview'
+  },
+  soft: {
+    label: '软件分享',
+    path: '/softDetail'
+  },
+  pptTemplate: {
+    label: 'PPT模板',
+    path: '/pptPreview'
+  }
 };
