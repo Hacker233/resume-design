@@ -32,6 +32,7 @@
     "@vueuse/core": "^8.2.0",
     "@wangeditor/editor": "^5.1.22",
     "@wangeditor/editor-for-vue": "^5.1.12",
+    "autoprefixer": "10.4.5",
     "axios": "^0.26.1",
     "c-scrollbar": "^1.0.2",
     "colorpicker-v3": "^2.10.2",

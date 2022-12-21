@@ -34,11 +34,14 @@ import VueDOMPurifyHTML from 'vue-dompurify-html';
 
 import UndrawUi from './components/packages/index';
 
+import { userAgent } from '@/utils/userAgent';
+
+userAgent();
+
 // 创建vue实例
 const app = createApp(App);
 // app.use(store);
 app.use(createPinia());
-
 // 注册pinia状态管理库
 registerStore();
 
