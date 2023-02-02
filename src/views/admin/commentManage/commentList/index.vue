@@ -78,6 +78,7 @@
           <el-button v-else type="primary" size="small" @click="recoverComment(scope.row)"
             >恢复</el-button
           >
+          <el-button type="primary" size="small" @click="toDetail(scope.row)">详情</el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -101,6 +102,7 @@
   import { ElMessageBox } from 'element-plus';
   import 'element-plus/es/components/message-box/style/index';
   import { commentType } from '@/dictionary/commentType';
+  import { toCommentDetail } from '@/utils/commentToDetail';
 
   // 表单查询
   const formInline = reactive({
@@ -217,5 +219,11 @@
     } else {
       ElMessage.error(data.data.message);
     }
+  };
+
+  // 跳转至评论详情
+  const router = useRouter();
+  const toDetail = (item: any) => {
+    toCommentDetail(item, router);
   };
 </script>

@@ -39,7 +39,7 @@
   import NoDataVue from '@/components/NoData/NoData.vue';
   import { ElMessageBox } from 'element-plus';
   import 'element-plus/es/components/message-box/style/index';
-  import { commentType } from '@/dictionary/commentType';
+  import { toCommentDetail } from '@/utils/commentToDetail';
 
   // 查询个人评论列表
   const myCommentList = ref<any>([]);
@@ -116,36 +116,7 @@
   // 跳转至评论详情
   const router = useRouter();
   const toDetail = (item: any) => {
-    const path = commentType[item.comment_type].path;
-    if (item.comment_type === 'resumeOnline') {
-      router.push({
-        path: path,
-        query: {
-          id: item.comment_type_id
-        }
-      });
-    } else if (item.comment_type === 'resumeTemplate') {
-      router.push({
-        path: path,
-        query: {
-          id: item.comment_type_id
-        }
-      });
-    } else if (item.comment_type === 'soft') {
-      router.push({
-        path: path,
-        query: {
-          sourceId: item.comment_type_id
-        }
-      });
-    } else if (item.comment_type === 'pptTemplate') {
-      router.push({
-        path: path,
-        query: {
-          id: item.comment_type_id
-        }
-      });
-    }
+    toCommentDetail(item, router);
   };
 </script>
 <style lang="scss" scoped>
