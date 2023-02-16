@@ -47,6 +47,8 @@ const CommentList = () => import('@/views/admin/commentManage/commentList/index.
 const AddArticle = () => import('@/views/admin/ArticleManage/AddArticle/index.vue');
 const ArticleList = () => import('@/views/admin/ArticleManage/ArticleList/index.vue');
 const ArticleCategory = () => import('@/views/admin/ArticleManage/ArticleCategory/index.vue');
+const PublishSuccess = () =>
+  import('@/views/admin/ArticleManage/AddArticle/pages/publishSuccess.vue');
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -500,6 +502,17 @@ const routes: Array<RouteRecordRaw> = [
           requireLogin: true
         },
         component: ArticleCategory
+      },
+      {
+        path: 'publishSuccess',
+        name: 'PublishSuccess',
+        meta: {
+          title: '文章发布成功',
+          keepAlive: true,
+          isShowComNav: false,
+          requireLogin: true
+        },
+        component: PublishSuccess
       }
     ]
   }

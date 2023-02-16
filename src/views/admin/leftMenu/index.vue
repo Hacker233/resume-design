@@ -174,6 +174,18 @@
           title: '文章分类'
         }
       ]
+    },
+    {
+      index: '8',
+      iconfont: 'icon-fufeizhifu',
+      title: '付费管理',
+      children: [
+        {
+          index: 'AddArticle',
+          iconfont: 'icon-codepen',
+          title: '源码购买用户'
+        }
+      ]
     }
   ]);
 

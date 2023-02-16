@@ -59,3 +59,20 @@ export const articleDeleteAsync: any = (id: string) => {
     method: 'delete'
   });
 };
+
+// 查询单条文章信息
+export const getArticleInfoAsync: any = (id: string) => {
+  return http.request({
+    url: `/huajian/article/getArticleInfo/${id}`,
+    method: 'get'
+  });
+};
+
+// 更新文章
+export const articleUpdateAsync: any = (data: any) => {
+  return http.request({
+    url: '/huajian/article/articleUpdate',
+    method: 'post',
+    data: data
+  });
+};

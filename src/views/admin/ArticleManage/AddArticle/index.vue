@@ -7,7 +7,7 @@
         :title="title"
         :value-html="valueHtml"
         :editor="editorRef"
-        @get-article-text="getArticleText"
+        :publish-info="publishInfo"
       ></publish-pop>
     </div>
 
@@ -40,6 +40,11 @@
   import PublishPop from './components/PublishPop.vue';
   import CONFIG from '@/config';
   import appStore from '@/store';
+  import { getArticleInfoAsync } from '@/http/api/article';
+
+  const route = useRoute();
+  const { articleId } = route.query;
+  console.log('articleId', route.query);
 
   // 模式
   const mode = ref<string>('default');
@@ -53,7 +58,29 @@
   const valueHtml = ref<string>('');
 
   // 模拟 ajax 异步获取内容
-  onMounted(() => {});
+  const articleInfo = ref<any>('');
+  const publishInfo = ref<any>(null);
+  onMounted(async () => {
+    // 编辑文章
+    if (articleId) {
+      const data = await getArticleInfoAsync(articleId);
+      if (data.data.status === 200) {
+        articleInfo.value = data.data.data;
+        title.value = articleInfo.value.article_title;
+        valueHtml.value = articleInfo.value.article_html_content;
+        publishInfo.value = {
+          id: articleInfo.value._id,
+          category: articleInfo.value.article_category, // 分类
+          abstract: articleInfo.value.article_abstract, // 摘要
+          imageUrl: articleInfo.value.article_cover, // 封面图
+          dynamicTags: articleInfo.value.article_tags, // 标签
+          isNeedAuth: articleInfo.value.article_code_buy_code
+        };
+      } else {
+        ElMessage.error(data.data.message);
+      }
+    }
+  });
 
   const toolbarConfig = {};
 
@@ -66,16 +93,6 @@
 
   const handleCreated = (editor: any) => {
     editorRef.value = editor; // 记录 editor 实例，重要！
-  };
-
-  // 获取文章纯文本内容
-  const valueText = ref<string>('');
-  const getArticleText = () => {
-    const editor = editorRef.value;
-    valueText.value = editor.getText();
-    console.log('内容', valueText.value, editor);
-
-    debugger;
   };
 
   // 编辑器配置

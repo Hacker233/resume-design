@@ -116,8 +116,12 @@
           <el-form-item>
             <div class="footer-bottom-box">
               <el-button size="default" @click="closePopover">取消</el-button>
-              <el-button size="default" type="primary" @click="submitForm(ruleFormRef)"
-                >确认发布</el-button
+              <el-button
+                size="default"
+                :loading="isLoading"
+                type="primary"
+                @click="submitForm(ruleFormRef)"
+                >{{ btnText }}</el-button
               >
             </div>
           </el-form-item>
@@ -129,7 +133,11 @@
 
 <script setup lang="ts">
   import CONFIG from '@/config';
-  import { articleAddAsync, getArticleCategoryListAsync } from '@/http/api/article';
+  import {
+    articleAddAsync,
+    articleUpdateAsync,
+    getArticleCategoryListAsync
+  } from '@/http/api/article';
   import appStore from '@/store';
   import {
     ClickOutside as vClickOutside,
@@ -144,11 +152,30 @@
     unref(popoverRef).popperRef?.delayHide?.();
   };
 
+  // 发布按钮
+  const btnText = ref<string>('发布文章');
+
   const props = defineProps<{
     valueHtml: string; // html内容
     title: string; // 文章标题
     editor: any; // 编辑器实例
+    publishInfo: any; // 编辑文章则此变量有值
   }>();
+
+  watch(
+    () => props.publishInfo,
+    (newVal) => {
+      ruleForm.category = newVal.category;
+      ruleForm.abstract = newVal.abstract;
+      ruleForm.imageUrl = newVal.imageUrl;
+      ruleForm.dynamicTags = newVal.dynamicTags;
+      ruleForm.isNeedAuth = newVal.isNeedAuth;
+      btnText.value = '确认修改';
+    },
+    {
+      deep: true
+    }
+  );
 
   // 是否需要权限下拉选项
   const options = [
@@ -244,6 +271,7 @@
   };
 
   // 确认发布
+  const isLoading = ref<boolean>(false);
   const submitForm = async (formEl: FormInstance | undefined) => {
     if (!formEl) return;
     await formEl.validate((valid, fields) => {
@@ -273,8 +301,13 @@
           ElMessage.warning('文章内容不能为空');
           return;
         }
-        publishArticle();
-        popoverRef.value.hide();
+
+        // 新发布文章
+        if (!props.publishInfo) {
+          publishArticle();
+        } else {
+          updateArticle(); // 修改文章
+        }
       } else {
         console.log('error submit!', fields);
       }
@@ -282,7 +315,9 @@
   };
 
   // 发布文章
+  const router = useRouter();
   const publishArticle = async () => {
+    isLoading.value = true;
     const params = {
       title: props.title,
       content: props.valueHtml,
@@ -292,8 +327,38 @@
     const data = await articleAddAsync(params);
     if (data.data.status === 200) {
       ElMessage.success('文章发布成功');
+      isLoading.value = false;
+      popoverRef.value.hide();
+      router.push({
+        path: '/admin/publishSuccess',
+        query: {
+          articleId: data.data.data
+        }
+      });
     } else {
       ElMessage.error(data.data.message);
+      isLoading.value = false;
+    }
+  };
+
+  // 修改文章
+  const updateArticle = async () => {
+    isLoading.value = true;
+    const params = {
+      id: props.publishInfo.id,
+      title: props.title,
+      content: props.valueHtml,
+      valueText: props.editor.getText(),
+      ...ruleForm
+    };
+    const data = await articleUpdateAsync(params);
+    if (data.data.status === 200) {
+      ElMessage.success('文章修改成功');
+      isLoading.value = false;
+      popoverRef.value.hide();
+    } else {
+      ElMessage.error(data.data.message);
+      isLoading.value = false;
     }
   };
 </script>

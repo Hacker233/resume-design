@@ -11,6 +11,21 @@
       <el-table-column prop="article_title" label="文章标题" />
       <el-table-column prop="article_abstract" label="文章摘要" />
       <el-table-column prop="article_auther_email" label="作者邮箱" />
+      <el-table-column prop="article_category" label="文章分类" />
+      <el-table-column prop="article_tags" label="文章标签">
+        <template #default="scope">
+          <div class="article-tags-box">
+            <el-tag
+              v-for="(item, index) of scope.row.article_tags"
+              :key="index"
+              size="default"
+              :hit="false"
+              type="success"
+              >{{ item }}</el-tag
+            >
+          </div>
+        </template>
+      </el-table-column>
       <el-table-column prop="article_html_content" label="文章内容">
         <template #default="scope">
           <el-tooltip effect="light" :content="scope.row.article_html_content" raw-content>
@@ -98,8 +113,14 @@
   };
 
   // 编辑文章
+  const router = useRouter();
   const edit = (row: any) => {
-    console.log(row);
+    router.push({
+      path: '/admin/addArticle',
+      query: {
+        articleId: row._id
+      }
+    });
   };
 
   // 删除文章
@@ -138,6 +159,12 @@
         white-space: nowrap;
         text-overflow: ellipsis;
         overflow: hidden;
+      }
+
+      .article-tags-box {
+        .el-tag {
+          margin-right: 5px;
+        }
       }
     }
   }
