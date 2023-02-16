@@ -44,6 +44,9 @@ const WordCategoryList = () => import('@/views/admin/wordTemplate/categoryList/i
 const PPTCategoryList = () => import('@/views/admin/pptTemplate/categoryList/index.vue');
 const PPTTemplateList = () => import('@/views/admin/pptTemplate/templateList/index.vue');
 const CommentList = () => import('@/views/admin/commentManage/commentList/index.vue');
+const AddArticle = () => import('@/views/admin/ArticleManage/AddArticle/index.vue');
+const ArticleList = () => import('@/views/admin/ArticleManage/ArticleList/index.vue');
+const ArticleCategory = () => import('@/views/admin/ArticleManage/ArticleCategory/index.vue');
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -464,6 +467,39 @@ const routes: Array<RouteRecordRaw> = [
           requireLogin: true
         },
         component: CommentList
+      },
+      {
+        path: 'addArticle',
+        name: 'AddArticle',
+        meta: {
+          title: '新增文章',
+          keepAlive: true,
+          isShowComNav: false,
+          requireLogin: true
+        },
+        component: AddArticle
+      },
+      {
+        path: 'articleList',
+        name: 'ArticleList',
+        meta: {
+          title: '文章列表',
+          keepAlive: true,
+          isShowComNav: false,
+          requireLogin: true
+        },
+        component: ArticleList
+      },
+      {
+        path: 'articleCategory',
+        name: 'ArticleCategory',
+        meta: {
+          title: '文章分类',
+          keepAlive: true,
+          isShowComNav: false,
+          requireLogin: true
+        },
+        component: ArticleCategory
       }
     ]
   }

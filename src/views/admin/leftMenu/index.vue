@@ -104,11 +104,6 @@
           index: 'ResumeList',
           iconfont: 'icon-xiangmujingli-04',
           title: '简历列表'
-        },
-        {
-          index: 'SponsorList',
-          iconfont: 'icon-zhengzhi',
-          title: '赞助列表'
         }
       ]
     },
@@ -155,6 +150,28 @@
           index: 'CommentList',
           iconfont: 'icon-lianxiwomen',
           title: '评论列表'
+        }
+      ]
+    },
+    {
+      index: '7',
+      iconfont: 'icon-wenzhangliebiaoxiangqing',
+      title: '文章管理',
+      children: [
+        {
+          index: 'AddArticle',
+          iconfont: 'icon-wenzhang',
+          title: '新增文章'
+        },
+        {
+          index: 'ArticleList',
+          iconfont: 'icon-wenzhangliebiao',
+          title: '文章列表'
+        },
+        {
+          index: 'ArticleCategory',
+          iconfont: 'icon-ai-module',
+          title: '文章分类'
         }
       ]
     }

@@ -30,7 +30,7 @@
     "@element-plus/icons-vue": "^1.1.4",
     "@types/qs": "^6.9.7",
     "@vueuse/core": "^8.2.0",
-    "@wangeditor/editor": "^5.1.22",
+    "@wangeditor/editor": "^5.1.23",
     "@wangeditor/editor-for-vue": "^5.1.12",
     "autoprefixer": "10.4.5",
     "axios": "^0.26.1",
