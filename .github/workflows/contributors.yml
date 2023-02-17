@@ -12,7 +12,7 @@ jobs:
   add-contributors:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
     - uses: BobAnkh/add-contributors@master
       with:
         CONTRIBUTOR: '## 贡献者'
