@@ -49,6 +49,7 @@ const ArticleList = () => import('@/views/admin/ArticleManage/ArticleList/index.
 const ArticleCategory = () => import('@/views/admin/ArticleManage/ArticleCategory/index.vue');
 const PublishSuccess = () =>
   import('@/views/admin/ArticleManage/AddArticle/pages/publishSuccess.vue');
+const PayList = () => import('@/views/admin/payStats/payList/index.vue');
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -513,6 +514,17 @@ const routes: Array<RouteRecordRaw> = [
           requireLogin: true
         },
         component: PublishSuccess
+      },
+      {
+        path: 'payList',
+        name: 'PayList',
+        meta: {
+          title: '付费列表',
+          keepAlive: true,
+          isShowComNav: false,
+          requireLogin: true
+        },
+        component: PayList
       }
     ]
   }

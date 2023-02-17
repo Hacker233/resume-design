@@ -178,10 +178,10 @@
     {
       index: '8',
       iconfont: 'icon-fufeizhifu',
-      title: '付费管理',
+      title: '付费列表',
       children: [
         {
-          index: 'AddArticle',
+          index: 'PayList',
           iconfont: 'icon-codepen',
           title: '源码购买用户'
         }
