@@ -140,7 +140,7 @@
   const getSponsorList = async () => {
     const data = await getSponsorListAsync();
     if (data.status === 200) {
-      sponsorList.value = data.data.filter((item: any) => !item.valid);
+      sponsorList.value = data.data.filter((item: any) => item.vaild);
     } else {
       ElMessage.error(data.message);
     }
