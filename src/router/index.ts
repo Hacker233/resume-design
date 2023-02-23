@@ -50,6 +50,7 @@ const ArticleCategory = () => import('@/views/admin/ArticleManage/ArticleCategor
 const PublishSuccess = () =>
   import('@/views/admin/ArticleManage/AddArticle/pages/publishSuccess.vue');
 const PayList = () => import('@/views/admin/payStats/payList/index.vue');
+const DeployDoc = () => import('@/views/deployDoc/index.vue');
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -199,12 +200,23 @@ const routes: Array<RouteRecordRaw> = [
     path: '/webCode',
     name: 'WebCode',
     meta: {
-      title: '私有部署',
+      title: '源码获取',
       keepAlive: true,
       isShowComNav: true,
       requireLogin: false
     },
     component: WebCode
+  },
+  {
+    path: '/deployDoc',
+    name: 'DeployDoc',
+    meta: {
+      title: '部署指南',
+      keepAlive: true,
+      isShowComNav: true,
+      requireLogin: true
+    },
+    component: DeployDoc
   },
   {
     path: '/wordPreview',

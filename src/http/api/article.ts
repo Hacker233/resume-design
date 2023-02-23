@@ -76,3 +76,14 @@ export const articleUpdateAsync: any = (data: any) => {
     data: data
   });
 };
+
+// 用户查询文章列表
+export const userGetArticleListAsync: any = (params: any) => {
+  return http.request({
+    url: '/huajian/article/userGetArticleList',
+    method: 'get',
+    params: params
+  });
+};
+
+// 查询用户是否付费过，即是否有查看权限

@@ -148,8 +148,22 @@
       iconfont: '',
       name: 'WebCode',
       title: '私有部署',
-      children: null,
-      path: '/webcode'
+      children: [
+        {
+          iconfont: '',
+          name: 'WebCode',
+          title: '源码获取',
+          children: null,
+          path: '/webcode'
+        }
+        // {
+        //   iconfont: '',
+        //   name: 'DeployDoc',
+        //   title: '部署指南',
+        //   children: null,
+        //   path: '/deployDoc'
+        // }
+      ]
     }
   ]);
 
