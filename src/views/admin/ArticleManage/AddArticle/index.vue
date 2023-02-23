@@ -24,6 +24,7 @@
           ></el-input>
         </div>
         <Editor
+          id="markdown-body"
           v-model="valueHtml"
           :default-config="editorConfig"
           :mode="mode"
@@ -167,7 +168,7 @@
       align-items: flex-start;
       .editor-box {
         background-color: #fff;
-        width: 900px;
+        width: 858px;
         min-height: 1000px;
         padding: 20px 50px 50px 50px;
         border: 1px solid #e8e8e8;

@@ -166,7 +166,7 @@
         justify-content: flex-end;
         align-items: center;
         img {
-          width: 150px;
+          width: 170px;
           height: 110px;
           border-radius: 3px;
         }

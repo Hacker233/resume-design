@@ -39,6 +39,7 @@
     "default-passive-events": "^2.0.0",
     "element-plus": "^2.1.11",
     "file-saver": "^2.0.5",
+    "github-markdown-css": "^5.2.0",
     "html2canvas": "^1.4.1",
     "image-conversion": "^2.1.1",
     "jspdf": "^1.4.1",

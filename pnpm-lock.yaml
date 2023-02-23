@@ -34,6 +34,7 @@ specifiers:
   eslint-plugin-prettier: ^4.0.0
   eslint-plugin-vue: ^8.5.0
   file-saver: ^2.0.5
+  github-markdown-css: ^5.2.0
   html2canvas: ^1.4.1
   husky: ^7.0.4
   image-conversion: ^2.1.1
@@ -86,6 +87,7 @@ dependencies:
   default-passive-events: 2.0.0
   element-plus: registry.npmmirror.com/element-plus/2.2.25_vue@3.2.33
   file-saver: 2.0.5
+  github-markdown-css: 5.2.0
   html2canvas: 1.4.1
   image-conversion: 2.1.1
   jspdf: 1.4.1
@@ -3297,6 +3299,10 @@ packages:
       split2: 3.2.2
       through2: 4.0.2
     dev: true
+
+  /github-markdown-css/5.2.0:
+    resolution: {integrity: sha512-hq5RaCInSUZ48bImOZpkppW2/MT44StRgsbsZ8YA4vJFwLKB/Vo3k7R2t+pUGqO+ThG0QDMi96TewV/B3vyItg==}
+    dev: false
 
   /glob-parent/5.1.2:
     resolution: {integrity: sha512-AOIgSQCepiJYwP3ARnGx+5VnTu2HBYdzbGP45eLw1vr3zB3vZLeyed1sC9hnbcOc9/SrMyM5RPQrkGz4aS9Zow==}

@@ -54,6 +54,7 @@
   import CategoryDialog from './components/CategoryDialog.vue';
   import { formatListDate } from '@/utils/common';
   import { ElMessageBox } from 'element-plus';
+  import 'element-plus/es/components/message-box/style/index';
 
   const dialogArticleVisible = ref<boolean>(false);
   const row = ref<any>(null);

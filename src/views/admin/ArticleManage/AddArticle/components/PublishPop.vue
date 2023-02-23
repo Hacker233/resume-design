@@ -356,6 +356,12 @@
       ElMessage.success('文章修改成功');
       isLoading.value = false;
       popoverRef.value.hide();
+      router.push({
+        path: '/admin/publishSuccess',
+        query: {
+          articleId: props.publishInfo.id
+        }
+      });
     } else {
       ElMessage.error(data.data.message);
       isLoading.value = false;

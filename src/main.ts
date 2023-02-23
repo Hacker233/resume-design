@@ -36,6 +36,8 @@ import UndrawUi from './components/packages/index';
 
 import { userAgent } from '@/utils/userAgent';
 
+import '@/style/article/github-markdown-light.css'; // 文章样式
+
 userAgent();
 
 // 创建vue实例

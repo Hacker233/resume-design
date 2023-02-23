@@ -155,14 +155,14 @@
           title: '源码获取',
           children: null,
           path: '/webcode'
+        },
+        {
+          iconfont: '',
+          name: 'DeployDoc',
+          title: '知识库',
+          children: null,
+          path: '/deployDoc'
         }
-        // {
-        //   iconfont: '',
-        //   name: 'DeployDoc',
-        //   title: '部署指南',
-        //   children: null,
-        //   path: '/deployDoc'
-        // }
       ]
     }
   ]);

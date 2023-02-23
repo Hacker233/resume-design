@@ -42,8 +42,12 @@
   const currentValue = ref<string>('');
   const currentLabel = ref<string>('');
   const handleSelect = (item: any) => {
+    if (item.category_label === '全部') {
+      currentLabel.value = '';
+    } else {
+      currentLabel.value = item.category_label;
+    }
     currentValue.value = item.category_value;
-    currentLabel.value = item.category_label;
     let queryParams = {
       category: currentLabel.value,
       sort: currentSort.value
