@@ -1,5 +1,5 @@
 <template>
-  <div class="article-card-box">
+  <div class="article-card-box" @click="toArticleDetail">
     <!-- 用户展示和区域 -->
     <div class="article-top">
       <div class="user-info-box">
@@ -49,12 +49,18 @@
 </template>
 <script lang="ts" setup>
   import { formatListDate } from '@/utils/common';
+  const emit = defineEmits(['toArticleDetail']);
   interface IArticleInfo {
     articleInfo: any;
   }
-  withDefaults(defineProps<IArticleInfo>(), {
+  const props = withDefaults(defineProps<IArticleInfo>(), {
     articleInfo: null
   });
+
+  // 跳转至文章详情
+  const toArticleDetail = () => {
+    emit('toArticleDetail', props.articleInfo);
+  };
 </script>
 <style lang="scss" scoped>
   .article-card-box {

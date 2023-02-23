@@ -9,7 +9,15 @@
       border
     >
       <el-table-column prop="article_title" label="文章标题" />
-      <el-table-column prop="article_abstract" label="文章摘要" />
+      <el-table-column prop="article_abstract" label="文章摘要">
+        <template #default="scope">
+          <el-tooltip effect="light" :content="scope.row.article_abstract" raw-content>
+            <div class="article-content-box">
+              {{ scope.row.article_abstract }}
+            </div>
+          </el-tooltip>
+        </template>
+      </el-table-column>
       <el-table-column prop="article_auther_email" label="作者邮箱" />
       <el-table-column prop="article_category" label="文章分类" />
       <el-table-column prop="article_tags" label="文章标签">
@@ -155,7 +163,7 @@
 
       // 文章内容
       :deep(.article-content-box) {
-        width: 200px;
+        max-width: 200px;
         white-space: nowrap;
         text-overflow: ellipsis;
         overflow: hidden;

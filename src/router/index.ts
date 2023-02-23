@@ -51,6 +51,7 @@ const PublishSuccess = () =>
   import('@/views/admin/ArticleManage/AddArticle/pages/publishSuccess.vue');
 const PayList = () => import('@/views/admin/payStats/payList/index.vue');
 const DeployDoc = () => import('@/views/deployDoc/index.vue');
+const ArticleDetail = () => import('@/views/deployDoc/pages/articleDetails.vue');
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -336,6 +337,17 @@ const routes: Array<RouteRecordRaw> = [
       requireLogin: false
     },
     component: OnlinePreview
+  },
+  {
+    path: '/articleDetail',
+    name: 'ArticleDetail',
+    meta: {
+      title: '文章详情',
+      keepAlive: true,
+      isShowComNav: true,
+      requireLogin: true
+    },
+    component: ArticleDetail
   },
 
   // 管理员界面

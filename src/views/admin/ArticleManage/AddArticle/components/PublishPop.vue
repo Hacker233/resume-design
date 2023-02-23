@@ -369,8 +369,7 @@
     align-items: center;
     position: absolute;
     right: 0;
-    top: 50%;
-    transform: translate(0, -50%);
+    top: 100px;
   }
 </style>
 <style lang="scss">

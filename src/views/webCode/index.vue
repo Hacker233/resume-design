@@ -32,7 +32,7 @@
         <img src="@/assets/images/vx-pay1.jpg" alt="购买" />
       </div>
       <div class="pay-tips">
-        <p>支付成功后，添加作者微信，凭支付记录获取资源包！</p>
+        <p>支付成功后，添加作者微信，凭支付记录获取相关权限！</p>
         <p class="vx">作者微信：LHQfighting</p>
       </div>
     </el-dialog>

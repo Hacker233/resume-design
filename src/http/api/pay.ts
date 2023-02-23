@@ -34,3 +34,11 @@ export const paystatsUpdateAsync: any = (data: any) => {
     data: data
   });
 };
+
+// 查询用户是否付费过，即是否有查看权限
+export const userIsPayCodeAsync: any = () => {
+  return http.request({
+    url: '/huajian/paystats/userIsPayCode',
+    method: 'get'
+  });
+};

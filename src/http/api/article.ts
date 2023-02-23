@@ -86,4 +86,11 @@ export const userGetArticleListAsync: any = (params: any) => {
   });
 };
 
-// 查询用户是否付费过，即是否有查看权限
+// 查询部署文章详情
+export const userGetArticleDetailAsync: any = (params: any) => {
+  return http.request({
+    url: '/huajian/article/userGetArticleDetail',
+    method: 'get',
+    params: params
+  });
+};

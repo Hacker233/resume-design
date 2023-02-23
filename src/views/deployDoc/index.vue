@@ -12,6 +12,7 @@
           v-for="(item, index) in articleList"
           :key="index"
           :article-info="item"
+          @to-article-detail="toArticleDetail"
         ></article-card>
       </template>
       <!-- 暂无数据 -->
@@ -31,6 +32,11 @@
         @handle-current-change="handleCurrentChange"
       ></Pagination>
     </div>
+    <!-- 提示购买源码弹窗 -->
+    <pay-tips-dialog
+      :dialog-pay-tips-visible="dialogPayTipsVisible"
+      @close-dialog="closeDialog"
+    ></pay-tips-dialog>
   </div>
 </template>
 <script lang="ts" setup>
@@ -39,6 +45,8 @@
   import CommonLoading from '@/components/CommonLoading/CommonLoading.vue';
   import ArticleCard from './components/ArticleCard.vue';
   import { getArticleCategoryListAsync, userGetArticleListAsync } from '@/http/api/article';
+  import { userIsPayCodeAsync } from '@/http/api/pay';
+  import PayTipsDialog from './components/PayTipsDialog.vue';
 
   // 是否显示骨架
   const isShowSkeleton = ref<boolean>(true);
@@ -77,6 +85,18 @@
   };
   getCategoryList();
 
+  // 查询用户是否购买过源码
+  const isPay = ref<boolean>(false);
+  const getUserPayStatus = async () => {
+    const data = await userIsPayCodeAsync();
+    if (data.data.status === 200) {
+      isPay.value = data.data.data;
+    } else {
+      ElMessage.error(data.data.message);
+    }
+  };
+  getUserPayStatus();
+
   // 查询文章列表
   const page = ref<number>(1);
   const limit = ref<number>(8);
@@ -108,6 +128,30 @@
   const handleCurrentChange = (currentPage: number) => {
     page.value = currentPage;
     userGetArticleList();
+  };
+
+  // 跳转至文章详情
+  const dialogPayTipsVisible = ref<boolean>(false);
+  const router = useRouter();
+  const toArticleDetail = (articleInfo: any) => {
+    if (!articleInfo.article_code_buy_code || isPay.value) {
+      // 跳转至文章详情
+      const newpage = router.resolve({
+        path: '/articleDetail',
+        query: {
+          articleId: articleInfo._id
+        }
+      });
+      window.open(newpage.href, '_blank');
+    } else {
+      // 弹出提示弹窗
+      dialogPayTipsVisible.value = true;
+    }
+  };
+
+  // 关闭弹窗回调
+  const closeDialog = () => {
+    dialogPayTipsVisible.value = false;
   };
 </script>
 <style lang="scss" scoped>
