@@ -11,25 +11,30 @@
       ></publish-pop>
     </div>
 
-    <!-- 编辑器 -->
-    <div class="add-article-editor-container">
-      <div class="editor-box">
-        <div class="title-container">
-          <el-input
-            v-model.trim="title"
-            placeholder="请输入标题"
-            :maxlength="40"
-            show-word-limit
-            size="large"
-          ></el-input>
+    <div class="content-box">
+      <!-- 文章目录 -->
+      <catalog-card ref="catalogRef" container=".w-e-text-container"></catalog-card>
+
+      <!-- 编辑器 -->
+      <div class="add-article-editor-container">
+        <div class="editor-box">
+          <div class="title-container">
+            <el-input
+              v-model.trim="title"
+              placeholder="请输入标题"
+              :maxlength="40"
+              show-word-limit
+              size="large"
+            ></el-input>
+          </div>
+          <Editor
+            id="markdown-body"
+            v-model="valueHtml"
+            :default-config="editorConfig"
+            :mode="mode"
+            @on-created="handleCreated"
+          />
         </div>
-        <Editor
-          id="markdown-body"
-          v-model="valueHtml"
-          :default-config="editorConfig"
-          :mode="mode"
-          @on-created="handleCreated"
-        />
       </div>
     </div>
   </div>
@@ -57,6 +62,14 @@
 
   // 内容 HTML
   const valueHtml = ref<string>('');
+  const catalogRef = ref<any>(null);
+  watch(
+    () => valueHtml.value,
+    () => {
+      catalogRef.value.getTitles();
+    },
+    { deep: true }
+  );
 
   // 模拟 ajax 异步获取内容
   const articleInfo = ref<any>('');
@@ -77,6 +90,8 @@
           dynamicTags: articleInfo.value.article_tags, // 标签
           isNeedAuth: articleInfo.value.article_code_buy_code
         };
+        await nextTick();
+        catalogRef.value.getTitles();
       } else {
         ElMessage.error(data.data.message);
       }
@@ -144,7 +159,6 @@
     flex-direction: column;
     width: 100%;
     .add-article-toolbar-container {
-      height: 50px;
       width: 100%;
       display: flex;
       justify-content: center;
@@ -160,45 +174,60 @@
       }
     }
 
-    // 编辑器
-    .add-article-editor-container {
+    .content-box {
       display: flex;
-      padding: 30px 20px;
       justify-content: center;
       align-items: flex-start;
-      .editor-box {
-        background-color: #fff;
-        width: 858px;
-        min-height: 1000px;
-        padding: 20px 50px 50px 50px;
-        border: 1px solid #e8e8e8;
-        box-shadow: 0 2px 10px rgb(0 0 0 / 12%);
-        .title-container {
-          padding: 20px 0;
-          border-bottom: 1px solid #e8e8e8;
-          :deep(.el-input) {
-            .el-input__wrapper {
-              border: none;
-              padding: 0;
-              box-shadow: none;
-              .el-input__inner {
-                font-size: 30px;
-                border: 0;
-                outline: none;
-                width: 100%;
-                line-height: 1;
+      padding: 30px 20px;
+      width: 100%;
+      :deep(.catalog-card) {
+        width: 200px;
+        box-shadow: 0px 5 5 2px rgba(119, 136, 146, 0.54);
+        position: sticky;
+        top: 40px;
+        margin-left: 0;
+        flex: none;
+      }
+      // 编辑器
+      .add-article-editor-container {
+        display: flex;
+        padding: 0 20px;
+        justify-content: center;
+        align-items: flex-start;
+        .editor-box {
+          background-color: #fff;
+          width: 858px;
+          min-height: 1000px;
+          padding: 20px 50px 50px 50px;
+          border: 1px solid #e8e8e8;
+          box-shadow: 0 2px 10px rgb(0 0 0 / 12%);
+          .title-container {
+            padding: 20px 0;
+            border-bottom: 1px solid #e8e8e8;
+            :deep(.el-input) {
+              .el-input__wrapper {
+                border: none;
+                padding: 0;
+                box-shadow: none;
+                .el-input__inner {
+                  font-size: 30px;
+                  border: 0;
+                  outline: none;
+                  width: 100%;
+                  line-height: 1;
+                }
               }
             }
           }
-        }
-        :deep(.w-e-scroll) {
-          min-height: 1000px;
-          #w-e-textarea-1 {
-            min-height: 700px;
+          :deep(.w-e-scroll) {
+            min-height: 1000px;
+            #w-e-textarea-1 {
+              min-height: 700px;
+            }
           }
-        }
-        :deep(.w-e-text-container) {
-          min-height: 1000px;
+          :deep(.w-e-text-container) {
+            min-height: 1000px;
+          }
         }
       }
     }
