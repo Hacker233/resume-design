@@ -14,5 +14,9 @@ export const commentType: any = {
   pptTemplate: {
     label: 'PPT模板',
     path: '/pptPreview'
+  },
+  article: {
+    label: 'PPT模板',
+    path: '/articleDetail'
   }
 };
