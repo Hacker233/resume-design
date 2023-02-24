@@ -159,7 +159,6 @@
     flex-direction: column;
     width: 100%;
     .add-article-toolbar-container {
-      height: 50px;
       width: 100%;
       display: flex;
       justify-content: center;

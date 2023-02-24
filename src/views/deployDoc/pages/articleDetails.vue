@@ -41,15 +41,30 @@
           <el-skeleton v-else :rows="10" animated />
         </div>
 
-        <comment-com
-          width="820px"
-          :comment-type-id="articleId"
-          comment-type="article"
-        ></comment-com>
+        <div ref="commentRef">
+          <comment-com
+            width="820px"
+            :comment-type-id="articleId"
+            comment-type="article"
+          ></comment-com>
+        </div>
       </div>
 
       <!-- 文章目录 -->
       <catalog-card ref="catalogRef" container=".article-content"></catalog-card>
+    </div>
+
+    <!-- 评论等小插件 -->
+    <div class="left-pop-box">
+      <div class="icon-box" @click="toComment">
+        <svg-icon
+          icon-name="icon-pinglun"
+          size="20px"
+          color="#8a919f"
+          class-name="bilibili"
+        ></svg-icon>
+        <span class="numbers">{{ articleDetail.commentCount }}</span>
+      </div>
     </div>
 
     <el-backtop :right="50" :bottom="80" />
@@ -78,6 +93,12 @@
     }
   };
   userGetArticleDetail();
+
+  // 滚动至评论区
+  const commentRef = ref<any>(null);
+  const toComment = () => {
+    commentRef.value.scrollIntoView({ behavior: 'smooth' });
+  };
 </script>
 <style lang="scss" scoped>
   .article-wrapper {
@@ -86,6 +107,7 @@
     align-items: flex-start;
     width: 1200px;
     margin: 0 auto;
+    position: relative;
     :deep(.comment-view) {
       margin: 0;
     }
@@ -101,7 +123,7 @@
       .article-left {
         width: 820px;
 
-        margin-right: 20px;
+        margin-right: 10px;
         .top {
           background-color: #fff;
           padding: 45px 40px;
@@ -140,6 +162,41 @@
     .comment-box {
       display: flex;
       justify-content: space-between;
+    }
+
+    .left-pop-box {
+      position: absolute;
+      left: -70px;
+      top: 200px;
+      .icon-box {
+        width: 44px;
+        height: 44px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        border-radius: 50%;
+        background-color: #fff;
+        position: relative;
+        box-shadow: 0 2px 4px 0 rgb(0 0 0 / 4%);
+        cursor: pointer;
+        .numbers {
+          position: absolute;
+          top: -1px;
+          right: -5px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          height: 17px;
+          padding: 0 5px;
+          border-radius: 9px;
+          font-size: 11px;
+          text-align: center;
+          white-space: nowrap;
+          background-color: #c2c8d1;
+          color: #fff;
+        }
+      }
     }
   }
 </style>

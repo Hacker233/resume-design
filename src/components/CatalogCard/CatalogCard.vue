@@ -109,10 +109,10 @@
       }
 
       serialNumbers[level] += 1;
-      let serialNumber = serialNumbers.slice(0, level + 1).join('.');
+      // let serialNumber = serialNumbers.slice(0, level + 1).join('.');
 
       node.isVisible = node.parent == null;
-      node.name = serialNumber + '. ' + element.innerText;
+      node.name = element.innerText;
       titleList.push(node);
     }
 
@@ -179,7 +179,7 @@
     box-shadow: 0px 5 5 2px rgba(119, 136, 146, 0.14);
     padding: 20px 24px;
     flex: 1;
-    margin-left: 20px;
+    margin-left: 10px;
     box-sizing: border-box;
     position: sticky;
     top: 90px;
