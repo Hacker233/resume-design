@@ -16,7 +16,7 @@ export const commentType: any = {
     path: '/pptPreview'
   },
   article: {
-    label: 'PPT模板',
+    label: '文章',
     path: '/articleDetail'
   }
 };

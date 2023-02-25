@@ -31,5 +31,12 @@ export const toCommentDetail = (item: any, router: Router) => {
         id: item.comment_type_id
       }
     });
+  } else if (item.comment_type === 'article') {
+    router.push({
+      path: path,
+      query: {
+        articleId: item.comment_type_id
+      }
+    });
   }
 };
