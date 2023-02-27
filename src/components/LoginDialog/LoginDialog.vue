@@ -1,156 +1,128 @@
 <template>
   <el-dialog
     :model-value="show"
-    width="750px"
+    width="768px"
     :show-close="false"
-    :close-on-click-modal="false"
     :before-close="handleClose"
     class="login-dialog-box"
   >
-    <section class="user">
-      <div class="user_options-container">
-        <div class="user_options-text">
-          <div class="user_options-unregistered">
-            <h2 class="user_unregistered-title">还没有账号？</h2>
-            <p class="user_unregistered-text">为了方便数据存储，赶紧来注册一个吧~</p>
-            <button class="user_unregistered-signup" @click="toRegister">去注册</button>
-          </div>
-
-          <div class="user_options-registered">
-            <h2 class="user_registered-title">已经有帐号了</h2>
-            <p class="user_registered-text">赶紧试试登录吧~</p>
-            <button class="user_registered-login" @click="toLogin">登 录</button>
-          </div>
-        </div>
-
-        <div :class="['user_options-forms', { bounceRight: bounceRight, bounceLeft: bounceLeft }]">
-          <div class="user_forms-login">
-            <h2 class="forms_title">登录</h2>
-            <el-form
-              ref="loginRuleFormRef"
-              class="forms_form"
-              :model="loginForm"
-              :rules="loginRules"
-            >
-              <fieldset class="forms_fieldset">
-                <div class="forms_field">
-                  <el-form-item prop="email">
-                    <el-input
-                      v-model="loginForm.email"
-                      type="email"
-                      class="forms_field-input"
-                      maxlength="40"
-                      placeholder="电子邮箱"
-                      @keyup.enter="login(loginRuleFormRef)"
-                    />
-                  </el-form-item>
-                </div>
-                <div class="forms_field">
-                  <el-form-item prop="password">
-                    <el-input
-                      v-model="loginForm.password"
-                      type="password"
-                      class="forms_field-input"
-                      placeholder="密码"
-                      @keyup.enter="login(loginRuleFormRef)"
-                    />
-                  </el-form-item>
-                </div>
-              </fieldset>
-              <div class="forms_buttons">
-                <button type="button" class="forms_buttons-forgot" @click="forgetPassword"
-                  >忘记密码？</button
-                >
-                <el-button
-                  class="forms_buttons-action"
-                  :loading="isLoginLoading"
-                  @click="login(loginRuleFormRef)"
-                  >登 录</el-button
-                >
-              </div>
-            </el-form>
-          </div>
-          <div class="user_forms-signup">
-            <h2 class="forms_title">注册</h2>
-            <el-form
-              ref="registerRuleFormRef"
-              class="forms_form"
-              :model="registerForm"
-              :rules="registerRules"
-            >
-              <fieldset class="forms_fieldset">
-                <div class="forms_field">
-                  <!-- 昵称 -->
-                  <el-form-item prop="name">
-                    <el-input
-                      v-model="registerForm.name"
-                      type="text"
-                      maxlength="16"
-                      class="forms_field-input"
-                      placeholder="昵称"
-                      @keyup.enter="register(registerRuleFormRef)"
-                    />
-                  </el-form-item>
-                </div>
-                <div class="forms_field">
-                  <!-- 邮箱 -->
-                  <el-form-item prop="email">
-                    <el-input
-                      v-model="registerForm.email"
-                      type="email"
-                      class="forms_field-input"
-                      maxlength="40"
-                      placeholder="电子邮箱"
-                      @keyup.enter="register(registerRuleFormRef)"
-                    />
-                  </el-form-item>
-                </div>
-                <div class="forms_field">
-                  <!-- 密码 -->
-                  <el-form-item prop="password">
-                    <el-input
-                      v-model="registerForm.password"
-                      type="password"
-                      class="forms_field-input"
-                      placeholder="密码"
-                      @keyup.enter="register(registerRuleFormRef)"
-                    />
-                  </el-form-item>
-                </div>
-                <div class="forms_field">
-                  <!-- 确认密码 -->
-                  <el-form-item prop="surePassword">
-                    <el-input
-                      v-model="registerForm.surePassword"
-                      type="password"
-                      class="forms_field-input"
-                      placeholder="确认密码"
-                      @keyup.enter="register(registerRuleFormRef)"
-                    />
-                  </el-form-item>
-                </div>
-              </fieldset>
-              <div class="forms_buttons">
-                <el-button
-                  class="forms_buttons-action"
-                  :loading="isRegisterLoading"
-                  @click="register(registerRuleFormRef)"
-                  >注 册</el-button
-                >
-              </div>
-            </el-form>
-          </div>
-        </div>
-      </div>
-
+    <div class="login-dialog-form-box">
       <!-- 关闭按钮 -->
-      <div class="close" @click="handleClose">
-        <svg-icon icon-name="icon-guanbi" color="#eee" size="40px"></svg-icon>
+      <div class="close-loding-dialog-box" @click="handleClose">
+        <svg-icon icon-name="icon-guanbi2" color="#ccc" size="18px"></svg-icon>
       </div>
-    </section>
+      <div :class="['container', { 'right-panel-active': isSignUp }]">
+        <div class="form-container sign-up-container">
+          <h1>创建账号</h1>
+          <div class="social-container"> </div>
+          <el-form
+            ref="registerRuleFormRef"
+            class="forms_form"
+            :model="registerForm"
+            :rules="registerRules"
+          >
+            <!-- 昵称 -->
+            <el-form-item prop="name">
+              <el-input
+                v-model="registerForm.name"
+                type="text"
+                maxlength="16"
+                class="forms_field-input"
+                placeholder="昵称"
+                @keyup.enter="register(registerRuleFormRef)"
+              />
+            </el-form-item>
+            <!-- 邮箱 -->
+            <el-form-item prop="email">
+              <el-input
+                v-model="registerForm.email"
+                type="email"
+                class="forms_field-input"
+                maxlength="40"
+                placeholder="电子邮箱"
+                @keyup.enter="register(registerRuleFormRef)"
+              />
+            </el-form-item>
+            <!-- 密码 -->
+            <el-form-item prop="password">
+              <el-input
+                v-model="registerForm.password"
+                type="password"
+                class="forms_field-input"
+                placeholder="密码"
+                @keyup.enter="register(registerRuleFormRef)"
+              />
+            </el-form-item>
+            <!-- 确认密码 -->
+            <el-form-item prop="surePassword">
+              <el-input
+                v-model="registerForm.surePassword"
+                type="password"
+                class="forms_field-input"
+                placeholder="确认密码"
+                @keyup.enter="register(registerRuleFormRef)"
+              />
+            </el-form-item>
+          </el-form>
+          <el-button
+            class="forms_buttons-action"
+            :loading="isRegisterLoading"
+            @click="register(registerRuleFormRef)"
+            >注 册</el-button
+          >
+        </div>
+        <!-- 登录界面 -->
+        <div class="form-container sign-in-container">
+          <h1>登录</h1>
+          <div class="social-container"> </div>
+          <el-form ref="loginRuleFormRef" class="forms_form" :model="loginForm" :rules="loginRules">
+            <el-form-item prop="email">
+              <el-input
+                v-model="loginForm.email"
+                type="email"
+                class="forms_field-input"
+                maxlength="40"
+                placeholder="电子邮箱"
+                @keyup.enter="login(loginRuleFormRef)"
+              />
+            </el-form-item>
+            <el-form-item prop="password">
+              <el-input
+                v-model="loginForm.password"
+                type="password"
+                class="forms_field-input"
+                placeholder="密码"
+                @keyup.enter="login(loginRuleFormRef)"
+              />
+            </el-form-item>
+          </el-form>
+          <a href="#" @click.prevent="forgetPassword">忘记密码？</a>
+          <el-button
+            class="forms_buttons-action"
+            :loading="isLoginLoading"
+            @click="login(loginRuleFormRef)"
+            >登 录</el-button
+          >
+        </div>
+        <!-- 注册登录浮窗切换 -->
+        <div class="overlay-container">
+          <div class="overlay">
+            <div class="overlay-panel overlay-left">
+              <h1>欢迎回来！</h1>
+              <p>已有帐号，立即登录！</p>
+              <button class="ghost" @click="signIn">立即登录</button>
+            </div>
+            <div class="overlay-panel overlay-right">
+              <h1>你好, 简友！</h1>
+              <p>还没有账号？快来注册吧！</p>
+              <button class="ghost" @click="signUp">立即注册</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </el-dialog>
 </template>
-
 <script lang="ts" setup>
   import { ElMessage, FormInstance, FormRules } from 'element-plus';
   import { loginAsync, registerAsync } from '@/http/api/user';
@@ -238,18 +210,6 @@
     surePassword: [{ required: true, validator: surePassValidator, trigger: 'change' }]
   });
 
-  // 点击去注册
-  const bounceRight = ref<boolean>(props.isLogin);
-  const bounceLeft = ref<boolean>(!props.isLogin);
-  const toRegister = () => {
-    bounceRight.value = false;
-    bounceLeft.value = true;
-  };
-  const toLogin = () => {
-    bounceRight.value = true;
-    bounceLeft.value = false;
-  };
-
   const show = ref<boolean>(true);
 
   // 取消登录
@@ -327,8 +287,7 @@
         const data = await registerAsync(params);
         if (data.status === 200) {
           isRegisterLoading.value = false;
-          bounceRight.value = true;
-          bounceLeft.value = false; // 注册成功前去登录
+          isSignUp.value = false;
           ElMessage({
             message: '注册成功',
             type: 'success'
@@ -352,372 +311,261 @@
     show.value = false;
     props.confirm();
   };
+
+  const isSignUp = ref<boolean>(!props.isLogin);
+  // 点击去注册
+  const signUp = () => {
+    isSignUp.value = true;
+  };
+  // 点击去登录
+  const signIn = () => {
+    isSignUp.value = false;
+  };
 </script>
 <style lang="scss" scoped>
-  button {
-    background-color: transparent;
-    padding: 0;
-    border: 0;
-    outline: 0;
-    cursor: pointer;
-  }
-
-  input {
-    background-color: transparent;
-    padding: 0;
-    border: 0;
-    outline: 0;
-  }
-  input[type='submit'] {
-    cursor: pointer;
-  }
-  input::-moz-placeholder {
-    font-size: 0.85rem;
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 300;
-    letter-spacing: 0.1rem;
-    color: #ccc;
-  }
-  input:-ms-input-placeholder {
-    font-size: 0.85rem;
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 300;
-    letter-spacing: 0.1rem;
-    color: #ccc;
-  }
-  input::placeholder {
-    font-size: 0.85rem;
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 300;
-    letter-spacing: 0.1rem;
-    color: #ccc;
-  }
-
-  /**
- * * Bounce to the left side
- * */
-  @-webkit-keyframes bounceLeft {
-    0% {
-      transform: translate3d(100%, -50%, 0);
-    }
-    50% {
-      transform: translate3d(-30px, -50%, 0);
-    }
-    100% {
-      transform: translate3d(0, -50%, 0);
-    }
-  }
-  @keyframes bounceLeft {
-    0% {
-      transform: translate3d(100%, -50%, 0);
-    }
-    50% {
-      transform: translate3d(-30px, -50%, 0);
-    }
-    100% {
-      transform: translate3d(0, -50%, 0);
-    }
-  }
-  /**
- * * Bounce to the left side
- * */
-  @-webkit-keyframes bounceRight {
-    0% {
-      transform: translate3d(0, -50%, 0);
-    }
-    50% {
-      transform: translate3d(calc(100% + 30px), -50%, 0);
-    }
-    100% {
-      transform: translate3d(100%, -50%, 0);
-    }
-  }
-  @keyframes bounceRight {
-    0% {
-      transform: translate3d(0, -50%, 0);
-    }
-    50% {
-      transform: translate3d(calc(100% + 30px), -50%, 0);
-    }
-    100% {
-      transform: translate3d(100%, -50%, 0);
-    }
-  }
-  /**
- * * Show Sign Up form
- * */
-  @-webkit-keyframes showSignUp {
-    100% {
-      opacity: 1;
-      visibility: visible;
-      transform: translate3d(0, 0, 0);
-    }
-  }
-  @keyframes showSignUp {
-    100% {
-      opacity: 1;
-      visibility: visible;
-      transform: translate3d(0, 0, 0);
-    }
-  }
-  /**
- * * Page background
- * */
-  .user {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    background-size: cover;
+  .login-dialog-form-box {
     position: relative;
-  }
-  .user_options-container {
-    position: relative;
-    width: 100%;
-  }
-  .user_options-text {
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-    height: 380px;
-    background-color: rgba(34, 34, 34, 0.85);
-    border-radius: 3px;
-  }
-
-  /**
- * * Registered and Unregistered user box and text
- * */
-  .user_options-registered,
-  .user_options-unregistered {
-    width: 50%;
-    padding: 100px 45px;
-    color: #fff;
-    font-weight: 300;
-  }
-
-  .user_registered-title,
-  .user_unregistered-title {
-    margin-bottom: 15px;
-    font-size: 1.66rem;
-    line-height: 1em;
-  }
-
-  .user_unregistered-text,
-  .user_registered-text {
-    font-size: 0.83rem;
-    line-height: 1.4em;
-  }
-
-  .user_registered-login,
-  .user_unregistered-signup {
-    margin-top: 30px;
-    border: 1px solid #ccc;
-    border-radius: 3px;
-    padding: 10px 30px;
-    color: #fff;
-    text-transform: uppercase;
-    line-height: 1em;
-    letter-spacing: 0.2rem;
-    transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
-  }
-  .user_registered-login:hover,
-  .user_unregistered-signup:hover {
-    color: rgba(34, 34, 34, 0.85);
-    background-color: #ccc;
-  }
-
-  /**
- * * Login and signup forms
- * */
-  .user_options-forms {
-    position: absolute;
-    top: 50%;
-    left: 30px;
-    width: calc(50% - 30px);
-    min-height: 420px;
-    background-color: #fff;
-    border-radius: 3px;
-    box-shadow: 2px 0 15px rgba(0, 0, 0, 0.25);
-    overflow: hidden;
-    transform: translate3d(100%, -50%, 0);
-    transition: transform 0.4s ease-in-out;
-  }
-  .user_options-forms .user_forms-login {
-    transition: opacity 0.4s ease-in-out, visibility 0.4s ease-in-out;
-  }
-  .user_options-forms .forms_title {
-    margin-bottom: 45px;
-    font-size: 1.5rem;
-    font-weight: 500;
-    line-height: 1em;
-    text-transform: uppercase;
-    color: #e8716d;
-    letter-spacing: 0.1rem;
-  }
-  .forms_field {
-    user-select: none;
-  }
-  .user_options-forms .forms_field:not(:last-of-type) {
-    margin-bottom: 20px;
-  }
-  .user_options-forms .forms_field-input {
-    width: 100%;
-    border-bottom: 1px solid #ccc;
-    padding: 6px 20px 6px 6px;
-    box-sizing: border-box;
-    font-family: 'Montserrat', sans-serif;
-    font-size: 1rem;
-    font-weight: 300;
-    color: gray;
-    letter-spacing: 0.1rem;
-    transition: border-color 0.2s ease-in-out;
-  }
-  .user_options-forms .forms_field-input:focus {
-    border-color: gray;
-  }
-  .user_options-forms .forms_buttons {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: 35px;
-  }
-  .user_options-forms .forms_buttons-forgot {
-    font-family: 'Montserrat', sans-serif;
-    letter-spacing: 0.1rem;
-    color: #ccc;
-    text-decoration: underline;
-    transition: color 0.2s ease-in-out;
-  }
-  .user_options-forms .forms_buttons-forgot:hover {
-    color: #b3b3b3;
-  }
-  .user_options-forms .forms_buttons-action {
-    background-color: #e8716d;
-    border-radius: 3px;
-    padding: 20px 35px;
-    font-size: 1rem;
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 300;
-    color: #fff;
-    text-transform: uppercase;
-    letter-spacing: 0.1rem;
-    transition: background-color 0.2s ease-in-out;
-    cursor: pointer;
-  }
-  .user_options-forms .forms_buttons-action:hover {
-    background-color: #e14641;
-  }
-  .user_options-forms .user_forms-signup,
-  .user_options-forms .user_forms-login {
-    position: absolute;
-    top: 0;
-    left: 40px;
-    width: calc(100% - 80px);
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.4s ease-in-out, visibility 0.4s ease-in-out, transform 0.5s ease-in-out;
-  }
-  .user_options-forms .user_forms-signup {
-    transform: translate3d(120px, 0, 0);
-  }
-  .user_options-forms .user_forms-signup .forms_buttons {
-    justify-content: flex-end;
-  }
-  .user_options-forms .user_forms-login {
-    transform: translate3d(0, 0, 0);
-    opacity: 1;
-    visibility: visible;
-  }
-
-  /**
- * * Triggers
- * */
-  .user_options-forms.bounceLeft {
-    -webkit-animation: bounceLeft 1s forwards;
-    animation: bounceLeft 1s forwards;
-  }
-  .user_options-forms.bounceLeft .user_forms-signup {
-    -webkit-animation: showSignUp 1s forwards;
-    animation: showSignUp 1s forwards;
-  }
-  .user_options-forms.bounceLeft .user_forms-login {
-    opacity: 0;
-    visibility: hidden;
-    transform: translate3d(-120px, 0, 0);
-  }
-  .user_options-forms.bounceRight {
-    -webkit-animation: bounceRight 1s forwards;
-    animation: bounceRight 1s forwards;
-  }
-
-  /**
- * * Responsive 990px
- * */
-  @media screen and (max-width: 990px) {
-    .user_options-forms {
-      min-height: 350px;
+    .close-loding-dialog-box {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      z-index: 999;
+      cursor: pointer;
     }
-    .user_options-forms .forms_buttons {
+    h1 {
+      font-weight: bold;
+      margin: 0;
+    }
+
+    h2 {
+      text-align: center;
+    }
+
+    p {
+      font-size: 14px;
+      font-weight: 100;
+      line-height: 20px;
+      letter-spacing: 0.5px;
+      margin: 20px 0 30px;
+    }
+
+    span {
+      font-size: 12px;
+    }
+
+    a {
+      color: #333;
+      font-size: 14px;
+      text-decoration: none;
+      margin: 0 0 15px 0;
+    }
+
+    button {
+      border-radius: 20px;
+      border: 1px solid #00c091;
+      background-color: #00c091;
+      color: #ffffff;
+      font-size: 12px;
+      font-weight: bold;
+      padding: 18px 45px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      transition: transform 80ms ease-in;
+      cursor: pointer;
+    }
+
+    button:active {
+      transform: scale(0.95);
+    }
+
+    button:focus {
+      outline: none;
+    }
+
+    button.ghost {
+      background-color: transparent;
+      border-color: #ffffff;
+      cursor: pointer;
+      padding: 12px 45px;
+    }
+
+    .container {
+      background-color: #fff;
+      border-radius: 10px;
+      box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+      position: relative;
+      overflow: hidden;
+      width: 768px;
+      max-width: 100%;
+      min-height: 480px;
+    }
+
+    .form-container {
+      position: absolute;
+      top: 0;
+      height: 100%;
+      transition: all 0.6s ease-in-out;
+      display: flex;
       flex-direction: column;
-    }
-    .user_options-forms .user_forms-login .forms_buttons-action {
-      margin-top: 30px;
-    }
-    .user_options-forms .user_forms-signup,
-    .user_options-forms .user_forms-login {
-      top: 40px;
+      justify-content: center;
+      align-items: center;
+      padding: 0 50px;
+      :deep(.forms_form) {
+        width: 100%;
+        input {
+          border: none;
+          padding: 10px 12px;
+          margin: 8px 0;
+          width: 100%;
+          font-size: 14px;
+          color: #333;
+        }
+        input:-webkit-autofill {
+          -webkit-box-shadow: 0 0 0px 1000px #ffffff inset !important;
+        }
+        .el-form-item {
+          margin-bottom: 30px;
+        }
+        .el-input__inner {
+          background-color: none !important;
+        }
+      }
     }
 
-    .user_options-registered,
-    .user_options-unregistered {
-      padding: 50px 45px;
+    .sign-in-container {
+      left: 0;
+      width: 50%;
+      z-index: 2;
     }
-  }
 
-  .close {
-    position: absolute;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    right: -60px;
-    top: -100px;
-    transition: all 0.3s;
-    &:hover {
-      opacity: 0.7;
+    .container.right-panel-active .sign-in-container {
+      transform: translateX(100%);
+    }
+
+    .sign-up-container {
+      left: 0;
+      width: 50%;
+      opacity: 0;
+      z-index: 1;
+    }
+
+    .container.right-panel-active .sign-up-container {
+      transform: translateX(100%);
+      opacity: 1;
+      z-index: 5;
+      animation: show 0.6s;
+      background-color: #fff;
+    }
+
+    @keyframes show {
+      0%,
+      49.99% {
+        opacity: 0;
+        z-index: 1;
+      }
+
+      50%,
+      100% {
+        opacity: 1;
+        z-index: 5;
+      }
+    }
+
+    .overlay-container {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      width: 50%;
+      height: 100%;
+      overflow: hidden;
+      transition: transform 0.6s ease-in-out;
+      z-index: 100;
+    }
+
+    .container.right-panel-active .overlay-container {
+      transform: translateX(-100%);
+    }
+
+    .overlay {
+      background: #b0db7d;
+      background: linear-gradient(to bottom right, #73b722 40%, #9dc6ae 100%);
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: 0 0;
+      color: #ffffff;
+      position: relative;
+      left: -100%;
+      height: 100%;
+      width: 200%;
+      transform: translateX(0);
+      transition: transform 0.6s ease-in-out;
+    }
+
+    .container.right-panel-active .overlay {
+      transform: translateX(50%);
+    }
+
+    .overlay-panel {
+      position: absolute;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      padding: 0 40px;
+      text-align: center;
+      top: 0;
+      height: 100%;
+      width: 50%;
+      transform: translateX(0);
+      transition: transform 0.6s ease-in-out;
+    }
+
+    .overlay-left {
+      transform: translateX(-20%);
+    }
+
+    .container.right-panel-active .overlay-left {
+      transform: translateX(0);
+    }
+
+    .overlay-right {
+      right: 0;
+      transform: translateX(0);
+    }
+
+    .container.right-panel-active .overlay-right {
+      transform: translateX(20%);
+    }
+
+    .social-container {
+      margin: 20px 0;
+    }
+
+    .social-container a {
+      border: 1px solid #dddddd;
+      border-radius: 50%;
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      margin: 0 5px;
+      height: 40px;
+      width: 40px;
+      cursor: pointer;
+      &:hover {
+        color: #ff4b2b;
+      }
     }
   }
 </style>
 <style lang="scss">
   .login-dialog-box {
-    .el-dialog__body {
-      overflow: inherit;
-    }
-  }
-  .el-dialog {
-    border-radius: 4px;
-  }
-  .login-dialog-box {
+    border-radius: 12px;
     .el-dialog__header {
       display: none;
     }
     .el-dialog__body {
       padding: 0;
+      min-height: 480px;
     }
-    // 表单
-    .el-input__wrapper {
-      border: none !important;
-      padding: 0 !important;
-      box-shadow: none !important;
-    }
-  }
-  input:-webkit-autofill {
-    -webkit-box-shadow: 0 0 0 1000px #fff inset !important;
-  }
-  input:-webkit-autofill {
-    -webkit-text-fill-color: gray !important;
   }
 </style>
