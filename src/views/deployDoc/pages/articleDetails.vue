@@ -2,6 +2,19 @@
   <div class="article-wrapper">
     <!-- 文章相关 -->
     <div id="article-detail-box" class="article-detail-box">
+      <!-- 评论等小插件 -->
+      <div class="left-pop-box">
+        <div class="icon-box" @click="toComment">
+          <svg-icon
+            icon-name="icon-pinglun"
+            size="20px"
+            color="#8a919f"
+            class-name="bilibili"
+          ></svg-icon>
+          <span class="numbers">{{ articleDetail.commentCount }}</span>
+        </div>
+      </div>
+
       <div class="article-left">
         <div class="top">
           <!-- 标题 -->
@@ -52,19 +65,6 @@
 
       <!-- 文章目录 -->
       <catalog-card ref="catalogRef" container=".article-content"></catalog-card>
-    </div>
-
-    <!-- 评论等小插件 -->
-    <div class="left-pop-box">
-      <div class="icon-box" @click="toComment">
-        <svg-icon
-          icon-name="icon-pinglun"
-          size="20px"
-          color="#8a919f"
-          class-name="bilibili"
-        ></svg-icon>
-        <span class="numbers">{{ articleDetail.commentCount }}</span>
-      </div>
     </div>
 
     <el-backtop :right="50" :bottom="80" />
@@ -157,46 +157,45 @@
           }
         }
       }
+      .left-pop-box {
+        position: sticky;
+        top: 200px;
+        margin-right: 20px;
+        .icon-box {
+          width: 44px;
+          height: 44px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          flex-direction: column;
+          border-radius: 50%;
+          background-color: #fff;
+          position: relative;
+          box-shadow: 0 2px 4px 0 rgb(0 0 0 / 4%);
+          cursor: pointer;
+          .numbers {
+            position: absolute;
+            top: -1px;
+            right: -5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 17px;
+            padding: 0 5px;
+            border-radius: 9px;
+            font-size: 11px;
+            text-align: center;
+            white-space: nowrap;
+            background-color: #c2c8d1;
+            color: #fff;
+          }
+        }
+      }
     }
 
     .comment-box {
       display: flex;
       justify-content: space-between;
-    }
-
-    .left-pop-box {
-      position: absolute;
-      left: -70px;
-      top: 200px;
-      .icon-box {
-        width: 44px;
-        height: 44px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-direction: column;
-        border-radius: 50%;
-        background-color: #fff;
-        position: relative;
-        box-shadow: 0 2px 4px 0 rgb(0 0 0 / 4%);
-        cursor: pointer;
-        .numbers {
-          position: absolute;
-          top: -1px;
-          right: -5px;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          height: 17px;
-          padding: 0 5px;
-          border-radius: 9px;
-          font-size: 11px;
-          text-align: center;
-          white-space: nowrap;
-          background-color: #c2c8d1;
-          color: #fff;
-        }
-      }
     }
   }
 </style>
