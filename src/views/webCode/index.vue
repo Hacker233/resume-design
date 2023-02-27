@@ -24,23 +24,27 @@
           <introduce-card-vue :card-data="item"></introduce-card-vue>
         </div>
       </div>
+
+      <!-- 定价表title -->
+      <div ref="priceRef">
+        <introduce-title-vue
+          title="定价表"
+          subtitle="一次付费，获得源源不断的价值！"
+          title-color="#000"
+          subtitle-color="#7f8b96"
+        ></introduce-title-vue>
+        <!-- 定价表格 -->
+        <price-table></price-table>
+      </div>
     </div>
 
-    <!-- 购买弹窗 -->
-    <el-dialog v-model="dialogVisible" class="pay-dialog-wrapper" width="500px">
-      <div class="pay-img-box">
-        <img src="@/assets/images/vx-pay1.jpg" alt="购买" />
-      </div>
-      <div class="pay-tips">
-        <p>支付成功后，添加作者微信，凭支付记录获取相关权限！</p>
-        <p class="vx">作者微信：LHQfighting</p>
-      </div>
-    </el-dialog>
+    <el-backtop :right="50" :bottom="80" />
   </div>
 </template>
 <script lang="ts" setup>
   import IntroduceCardVue from './components/IntroduceCard.vue';
   import IntroduceTitleVue from './components/IntroduceTitle.vue';
+  import PriceTable from './components/PriceTable.vue';
 
   // 卡片内容
   const cardList = ref<Array<any>>([
@@ -91,10 +95,10 @@
     }
   ]);
 
-  // 打开弹窗
-  const dialogVisible = ref<boolean>(false);
+  // 价目表
+  const priceRef = ref<any>(null);
   const openDialog = () => {
-    dialogVisible.value = true;
+    priceRef.value.scrollIntoView({ behavior: 'smooth' });
   };
 </script>
 <style lang="scss" scoped>
@@ -173,34 +177,6 @@
           margin-bottom: 40px;
         }
       }
-    }
-  }
-
-  .pay-img-box {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 20px;
-    img {
-      width: 300px;
-      height: 420px;
-      border-radius: 5px;
-      box-shadow: 0px 16px 22px 2px rgb(0 37 58 / 10%);
-    }
-  }
-  .pay-tips {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    p {
-      line-height: 2;
-    }
-    .vx {
-      font-size: 16px;
-      font-weight: 600;
     }
   }
 </style>
