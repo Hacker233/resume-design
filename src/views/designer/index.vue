@@ -6,6 +6,7 @@
       @generate-report="generateReport"
       @generate-report-new="generateReportNew"
       @reset="reset"
+      @publish-comment="publishComment"
     ></design-nav>
     <!-- 内容区域 -->
     <div class="bottom">
@@ -40,7 +41,9 @@
         </component>
 
         <!-- 评论组件 -->
-        <comment-com :comment-type-id="id" comment-type="resumeOnline"></comment-com>
+        <div ref="commentRef">
+          <comment-com :comment-type-id="id" comment-type="resumeOnline"></comment-com>
+        </div>
         <!-- 回到顶部 -->
         <el-backtop :right="365" :bottom="50" target="#print">
           <div
@@ -344,6 +347,12 @@
     sizeCenter.value = number;
   };
 
+  // 滚动到发表评论区域
+  const commentRef = ref<any>(null);
+  const publishComment = () => {
+    commentRef.value.scrollIntoView({ behavior: 'smooth' });
+  };
+
   // 页面销毁
   onUnmounted(() => {
     if (timer) {
@@ -366,7 +375,7 @@
       width: 100%;
 
       .left {
-        width: 300px;
+        width: 270px;
         background-color: #fff;
         height: calc(100vh - 50px);
         overflow: auto;

@@ -3,7 +3,7 @@
     <!-- 头像 -->
     <div class="avatar-box">
       <el-upload
-        class="avatar-uploader"
+        class="person-avatar-uploader"
         :action="uploadAddress()"
         :headers="{ Authorization: appStore.useTokenStore.token }"
         :show-file-list="false"
@@ -79,7 +79,7 @@
       align-items: center;
       justify-content: center;
       height: 140px;
-      .avatar-uploader {
+      .person-avatar-uploader {
         width: 70px;
         height: 70px;
         border-radius: 50%;
