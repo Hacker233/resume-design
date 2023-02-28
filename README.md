@@ -199,6 +199,13 @@ pnpm build
             <sub style="font-size:14px"><b>- luozha -</b></sub>
         </a>
     </td>
+    <td align="center" style="word-wrap: break-word; width: 75.0; height: 75.0">
+        <a href=https://github.com/Hbisedm>
+            <img src=https://avatars.githubusercontent.com/u/51397088?v=4 width="50;"  style="border-radius:50%;align-items:center;justify-content:center;overflow:hidden;padding-top:10px" alt=Sam/>
+            <br />
+            <sub style="font-size:14px"><b>Sam</b></sub>
+        </a>
+    </td>
 </tr>
 </table>
 
