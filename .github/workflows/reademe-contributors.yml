@@ -1,0 +1,19 @@
+on:
+  pull_request:
+    branches:
+      - main
+    types: [closed]
+
+# action 名称
+name: 自动添加贡献者
+
+jobs:
+  # 任务
+  contrib-readme-en-job:
+    runs-on: ubuntu-latest
+    name: A job to automate contrib in readme
+    steps:
+      - name: Contribute List
+        uses: akhilmhdh/contributors-readme-action@v2.3.4
+        env:
+          GITHUB_TOKEN: ${{ secrets.RESUME_TOKEN }}
