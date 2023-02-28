@@ -46,7 +46,7 @@
       <el-tooltip effect="dark" content="下载到本地" placement="bottom">
         <div class="icon-box icon-download" @click="downloadResume">
           <svg-icon icon-name="icon-xiazai" color="#fff" size="17px"></svg-icon>
-          <span class="icon-tips">下载</span>
+          <span class="icon-tips">导出</span>
         </div>
       </el-tooltip>
       <el-tooltip effect="dark" content="预览简历" placement="bottom">
@@ -77,6 +77,12 @@
         <div class="icon-box" @click="publishOnlineResume">
           <svg-icon icon-name="icon-fenxiang" color="#555" size="17px"></svg-icon>
           <span class="icon-tips">分享</span>
+        </div>
+      </el-tooltip>
+      <el-tooltip effect="dark" content="快来一起参与评论吧！" placement="bottom">
+        <div class="icon-box" @click="publishComment">
+          <svg-icon icon-name="icon-pinglun" color="#555" size="18px"></svg-icon>
+          <span class="icon-tips">评论</span>
         </div>
       </el-tooltip>
 
@@ -147,7 +153,13 @@
   import DownloadDialog from './DownloadDialog.vue';
 
   let { resumeJsonNewStore } = storeToRefs(appStore.useResumeJsonNewStore); // store里的模板数据
-  const emit = defineEmits(['generateReport', 'generateReportNew', 'reset', 'saveDataToLocal']);
+  const emit = defineEmits([
+    'generateReport',
+    'generateReportNew',
+    'reset',
+    'saveDataToLocal',
+    'publishComment'
+  ]);
   const route = useRoute();
   const { name, id } = route.query; // 模板id和模板名称
   // 跳转到首页
@@ -335,6 +347,11 @@
         ElMessage.error(data.data.message);
       }
     }
+  };
+
+  // 发表评论
+  const publishComment = () => {
+    emit('publishComment');
   };
 
   // 在线简历发布成功弹窗
