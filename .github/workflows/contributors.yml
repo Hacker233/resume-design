@@ -1,25 +1,25 @@
-# name: 自动添加贡献者
-# on:
-#   schedule:
-#     - cron:  '20 20 * * *'
-#   workflow_dispatch:
-#   pull_request:
-#     branches:
-#       - main
-#     types: [closed]
+name: 自动添加贡献者
+on:
+  schedule:
+    - cron:  '20 20 * * *'
+  workflow_dispatch:
+  pull_request:
+    branches:
+      - main
+    types: [closed]
 
-# jobs:
-#   add-contributors:
-#     runs-on: ubuntu-latest
-#     steps:
-#     - uses: actions/checkout@v3
-#     - uses: BobAnkh/add-contributors@master
-#       with:
-#         CONTRIBUTOR: '## 贡献者'
-#         COLUMN_PER_ROW: '6'
-#         ACCESS_TOKEN: ${{secrets.RESUME_TOKEN}}
-#         IMG_WIDTH: '50'
-#         FONT_SIZE: '14'
-#         PATH: '/README.md'
-#         COMMIT_MESSAGE: 'docs(README): update contributors'
-#         AVATAR_SHAPE: 'round'
+jobs:
+  add-contributors:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - uses: BobAnkh/add-contributors@master
+      with:
+        CONTRIBUTOR: '## 贡献者'
+        COLUMN_PER_ROW: '6'
+        ACCESS_TOKEN: ${{secrets.CONTRIBUTORS_TOKEN}}
+        IMG_WIDTH: '50'
+        FONT_SIZE: '14'
+        PATH: '/README.md'
+        COMMIT_MESSAGE: 'docs(README): update contributors'
+        AVATAR_SHAPE: 'round'
