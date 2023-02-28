@@ -57,20 +57,6 @@
         <p>已验证验证邮箱总数</p>
       </div>
     </div>
-    <div class="add-user-box">
-      <div class="left">
-        <svg-icon
-          icon-name="icon-yuedukaohe"
-          class-name="juejin"
-          size="70px"
-          color="#fff"
-        ></svg-icon>
-      </div>
-      <div class="right">
-        <h1>{{ panelData.usersTotalMonth }}</h1>
-        <p>本月累计新增用户</p>
-      </div>
-    </div>
   </div>
 </template>
 <script lang="ts" setup>
@@ -80,14 +66,12 @@
     todayUsers: number;
     unVaildEamil: number;
     usersTotal: number;
-    usersTotalMonth: number;
     validEmail: number;
   }
   const panelData = reactive<IUserPanel>({
     todayUsers: 0,
     unVaildEamil: 0,
     usersTotal: 0,
-    usersTotalMonth: 0,
     validEmail: 0
   });
   const getUserPanel = async () => {
@@ -96,7 +80,6 @@
       panelData.todayUsers = data.data.data.todayUsers;
       panelData.unVaildEamil = data.data.data.unVaildEamil;
       panelData.usersTotal = data.data.data.usersTotal;
-      panelData.usersTotalMonth = data.data.data.usersTotalMonth;
       panelData.validEmail = data.data.data.validEmail;
     } else {
       ElMessage.error(data.data.message);
@@ -112,7 +95,7 @@
       border-radius: 8px;
       overflow: hidden;
       height: 150px;
-      width: 18%;
+      width: 24%;
       box-shadow: rgba(0, 0, 0, 0.117647) 0px 1px 6px, rgba(0, 0, 0, 0.117647) 0px 1px 4px;
       display: flex;
       .left {
