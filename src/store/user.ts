@@ -7,12 +7,16 @@ export const useUserInfoStore = defineStore('userInfoStore', () => {
   const userInfo = ref<any>(
     localStorage.getItem('userInfo') ? JSON.parse(localStorage.getItem('userInfo') as string) : ''
   );
-  // 用户积分
+  // 用户简币
   const userIntegralInfo = ref<any>(0);
 
   function saveUserInfo(userInfoObj: any) {
     userInfo.value = userInfoObj;
     localStorage.setItem('userInfo', JSON.stringify(userInfo.value));
+  }
+
+  function saveIntegralInfo(integalInfo: any) {
+    userIntegralInfo.value = integalInfo;
   }
 
   // 查询用户信息
@@ -29,11 +33,11 @@ export const useUserInfoStore = defineStore('userInfoStore', () => {
     }
   }
 
-  // 查询用户当前用户积分信息
+  // 查询用户当前用户简币信息
   async function getUserIntegralTotal() {
     const data = await getUserIntegralTotalAsync();
     if (data.data.status === 200) {
-      userIntegralInfo.value = data.data.data;
+      saveIntegralInfo(data.data.data);
     } else {
       ElMessage({
         message: data.message,
@@ -45,6 +49,7 @@ export const useUserInfoStore = defineStore('userInfoStore', () => {
     userInfo,
     userIntegralInfo,
     saveUserInfo,
+    saveIntegralInfo,
     getAndUpdateUserInfo,
     getUserIntegralTotal
   };

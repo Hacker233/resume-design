@@ -46,6 +46,7 @@
   import { cloneDeep } from 'lodash';
   import NoDataVue from '../NoData/NoData.vue';
   import { storeToRefs } from 'pinia';
+  import { addIntegralLogAsync } from '@/http/api/integral';
 
   interface IComment {
     commentType: string;
@@ -163,6 +164,11 @@
       finish(comment);
       getCommentList();
       ElMessage.success('评论发表成功');
+      // 评论得简币
+      const integralInfo = appStore.useUserInfoStore.userIntegralInfo.todayGetIntegralTotal;
+      if (integralInfo && integralInfo < 10) {
+        toAttendance();
+      }
     } else {
       ElMessage.error(data.data.message);
     }
@@ -178,6 +184,21 @@
       finish();
       getCommentList();
       ElMessage.success('删除成功');
+    } else {
+      ElMessage.error(data.data.message);
+    }
+  };
+
+  // 评论添加简币
+  const toAttendance = async () => {
+    let params = {
+      integralAddType: '2'
+    };
+    const data = await addIntegralLogAsync(params);
+    if (data.data.status === 200) {
+      ElMessage.success('评论成功！简币+1！');
+      // 更新用户简币信息
+      appStore.useUserInfoStore.getUserIntegralTotal();
     } else {
       ElMessage.error(data.data.message);
     }

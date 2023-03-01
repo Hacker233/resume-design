@@ -30,7 +30,7 @@
     {
       index: 'PersonIntegral',
       iconfont: 'icon-jibenziliao',
-      title: '我的积分',
+      title: '我的资产',
       path: '/person/personIntegral'
     },
     {

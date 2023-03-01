@@ -270,7 +270,7 @@ const routes: Array<RouteRecordRaw> = [
         path: 'personIntegral',
         name: 'PersonIntegral',
         meta: {
-          title: '我的积分',
+          title: '我的资产',
           keepAlive: true,
           isShowComNav: true,
           requireLogin: true,

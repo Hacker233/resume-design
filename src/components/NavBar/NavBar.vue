@@ -47,7 +47,9 @@
         >
           签到
         </div>
-        <div v-else class="button have-attend">已签到</div>
+        <el-tooltip v-else content="今天您已经签过到啦~">
+          <div class="have-attend">已签到</div>
+        </el-tooltip>
       </div>
       <!-- 登录注册以及用户展示区域 -->
       <div class="user-box">
@@ -214,9 +216,11 @@
   const { saveToken } = appStore.useTokenStore;
   const { saveUserInfo } = appStore.useUserInfoStore;
   const { setUuid } = appStore.useRefreshStore;
+  const { saveIntegralInfo } = appStore.useUserInfoStore;
   const loginout = () => {
     saveToken(''); // 清除token
     saveUserInfo(''); // 清除用户信息
+    saveIntegralInfo(''); // 清除用户简币信息
     setUuid(); // 全局刷新
     router.push('/');
   };
@@ -227,8 +231,12 @@
       integralAddType: '1'
     };
     const data = await addIntegralLogAsync(params);
-    if (data) {
+    if (data.data.status === 200) {
+      ElMessage.success('签到成功！简币+1！');
+      // 更新用户简币信息
+      appStore.useUserInfoStore.getUserIntegralTotal();
     } else {
+      ElMessage.error(data.data.message);
     }
   };
 </script>
@@ -322,7 +330,7 @@
       .attendance-box {
         margin-right: 10px;
         .button {
-          padding: 8px 10px;
+          padding: 7px 10px;
           display: flex;
           align-items: center;
           justify-content: center;
@@ -350,6 +358,15 @@
         .have-attend {
           border: 1px solid #a0a0a0;
           color: #a0a0a0;
+          padding: 7px 10px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          align-items: center;
+          text-align: center;
+          letter-spacing: 4px;
+          font-size: 14px;
+          border-radius: 3px;
         }
       }
       .user-box {

@@ -31,7 +31,7 @@
     getAndUpdateUserInfo();
   }
 
-  // 查询用户积分信息
+  // 查询用简币信息
   const { getUserIntegralTotal } = appStore.useUserInfoStore;
   if (token) {
     getUserIntegralTotal();
