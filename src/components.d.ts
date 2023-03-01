@@ -26,6 +26,7 @@ declare module '@vue/runtime-core' {
     ElBacktop: typeof import('element-plus/es')['ElBacktop'];
     ElButton: typeof import('element-plus/es')['ElButton'];
     ElConfigProvider: typeof import('element-plus/es')['ElConfigProvider'];
+    ElDatePicker: typeof import('element-plus/es')['ElDatePicker'];
     ElDialog: typeof import('element-plus/es')['ElDialog'];
     ElDropdown: typeof import('element-plus/es')['ElDropdown'];
     ElDropdownItem: typeof import('element-plus/es')['ElDropdownItem'];
@@ -46,6 +47,9 @@ declare module '@vue/runtime-core' {
     ElSubMenu: typeof import('element-plus/es')['ElSubMenu'];
     ElTable: typeof import('element-plus/es')['ElTable'];
     ElTableColumn: typeof import('element-plus/es')['ElTableColumn'];
+    ElTabPane: typeof import('element-plus/es')['ElTabPane'];
+    ElTabs: typeof import('element-plus/es')['ElTabs'];
+    ElTag: typeof import('element-plus/es')['ElTag'];
     ElTooltip: typeof import('element-plus/es')['ElTooltip'];
     ElUpload: typeof import('element-plus/es')['ElUpload'];
     Emoji: typeof import('./components/packages/components/emoji/emoji.vue')['default'];

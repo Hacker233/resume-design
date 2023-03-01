@@ -38,6 +38,17 @@
     </div>
     <!-- GitHub -->
     <div class="right">
+      <!-- 签到按钮 -->
+      <div class="attendance-box">
+        <div
+          v-if="!appStore.useUserInfoStore.userIntegralInfo.isattendance"
+          class="button"
+          @click="toAttendance"
+        >
+          签到
+        </div>
+        <div v-else class="button have-attend">已签到</div>
+      </div>
       <!-- 登录注册以及用户展示区域 -->
       <div class="user-box">
         <div v-if="!appStore.useUserInfoStore.userInfo" class="logon-register-box">
@@ -71,6 +82,7 @@
 <script setup lang="ts">
   import appStore from '@/store';
   import LoginDialog from '@/components/LoginDialog/LoginDialog';
+  import { addIntegralLogAsync } from '@/http/api/integral';
 
   interface IBgcColor {
     bgColor?: string;
@@ -208,6 +220,17 @@
     setUuid(); // 全局刷新
     router.push('/');
   };
+
+  // 签到
+  const toAttendance = async () => {
+    let params = {
+      integralAddType: '1'
+    };
+    const data = await addIntegralLogAsync(params);
+    if (data) {
+    } else {
+    }
+  };
 </script>
 <style lang="scss" scoped>
   .nav-bar-box {
@@ -217,7 +240,7 @@
     box-sizing: border-box;
     align-items: center;
     justify-content: space-between;
-    background-color: v-bind('bgColor');
+    background-color: #fff;
     z-index: 10;
     user-select: none;
     padding: 0 60px;
@@ -243,7 +266,8 @@
           justify-content: center;
           align-items: center;
           width: 100%;
-          color: v-bind('fontColor');
+          // color: v-bind('fontColor');
+          color: green;
           padding: 0 15px !important;
           letter-spacing: 3px;
           font-size: 16px;
@@ -257,7 +281,8 @@
         }
         .el-sub-menu {
           height: 100%;
-          color: v-bind('fontColor');
+          // color: v-bind('fontColor');
+          color: green;
           border-bottom: 4px solid transparent;
           &:hover {
             border-bottom: 4px solid #2ddd9d !important;
@@ -266,7 +291,8 @@
           :deep(.el-sub-menu__title) {
             letter-spacing: 3px;
             font-size: 16px;
-            color: v-bind('fontColor');
+            // color: v-bind('fontColor');
+            color: green;
             border: none;
             &:hover {
               background-color: rgba(#ccc, 0.1);
@@ -291,6 +317,40 @@
       }
       .svg-icon {
         cursor: pointer;
+      }
+
+      .attendance-box {
+        margin-right: 10px;
+        .button {
+          padding: 8px 10px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          align-items: center;
+          border: 1px solid green;
+          text-align: center;
+          color: green;
+          letter-spacing: 4px;
+          font-size: 14px;
+          border-radius: 3px;
+          cursor: pointer;
+          -webkit-transition: all 0.2s;
+          -moz-transition: all 0.2s;
+          -ms-transition: all 0.2s;
+          transition: all 0.2s;
+          -webkit-user-select: none;
+          -moz-user-select: none;
+          -ms-user-select: none;
+          user-select: none;
+          transition: all 0.3s;
+          &:hover {
+            opacity: 0.7;
+          }
+        }
+        .have-attend {
+          border: 1px solid #a0a0a0;
+          color: #a0a0a0;
+        }
       }
       .user-box {
         display: flex;

@@ -30,6 +30,12 @@
   if (token) {
     getAndUpdateUserInfo();
   }
+
+  // 查询用户积分信息
+  const { getUserIntegralTotal } = appStore.useUserInfoStore;
+  if (token) {
+    getUserIntegralTotal();
+  }
 </script>
 <style>
   /* 设置了打印会出现问题 */
