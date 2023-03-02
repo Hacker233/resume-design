@@ -7,8 +7,9 @@
             <span>可用简币：</span>
             <p
               >{{ appStore.useUserInfoStore.userIntegralInfo.integralTotal
-              }}<img width="24" src="@/assets/images/jianB.png" alt=""
+              }}<img width="24" src="@/assets/images/jianB.png" alt="简币"
             /></p>
+            <div class="get-bi-method" @click="openGetDialog">获取积分</div>
           </div>
         </div>
       </el-tab-pane>
@@ -51,12 +52,19 @@
         ></Pagination>
       </el-tab-pane>
     </el-tabs>
+
+    <!-- 如何获取简币弹窗 -->
+    <get-integral-dialog
+      :dialog-get-integral-visible="dialogGetIntegralVisible"
+      @cancle="cancleDialog"
+    ></get-integral-dialog>
   </div>
 </template>
 <script lang="ts" setup>
   import { getUserIntegralLogsAsync } from '@/http/api/integral';
   import appStore from '@/store';
   import { formatListDate } from '@/utils/common';
+  import NoDataVue from '@/components/NoData/NoData.vue';
 
   const activeName = ref('myIntegral');
   const handleChange = () => {};
@@ -104,8 +112,19 @@
     if (value > 0) {
       return '+' + value;
     } else {
-      return '-' + value;
+      return value;
     }
+  };
+
+  // 打开获取简币弹窗
+  const dialogGetIntegralVisible = ref<boolean>(false);
+  const openGetDialog = () => {
+    dialogGetIntegralVisible.value = true;
+  };
+
+  // 关闭弹窗
+  const cancleDialog = () => {
+    dialogGetIntegralVisible.value = false;
   };
 </script>
 <style lang="scss" scoped>
@@ -139,6 +158,20 @@
           user-select: none;
           img {
             margin-left: 10px;
+          }
+        }
+        .get-bi-method {
+          font-size: 12px;
+          border: 1px solid burlywood;
+          padding: 2px 5px;
+          border-radius: 10px;
+          cursor: pointer;
+          color: burlywood;
+          margin-left: 5px;
+          margin-top: 2px;
+          transition: all 0.3s;
+          &:hover {
+            opacity: 0.7;
           }
         }
       }

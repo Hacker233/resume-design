@@ -25,3 +25,21 @@ export const getUserIntegralLogsAsync: any = (params: any) => {
     params: params
   });
 };
+
+// 用户消费简币
+export const payIntegralLogAsync: any = (data: any) => {
+  return http.request({
+    url: '/huajian/integral/payIntegralLog',
+    method: 'post',
+    data: data
+  });
+};
+
+// 查询用户是否消费过该资源
+export const getUserIsPayGoodsAsync: any = (params: any) => {
+  return http.request({
+    url: '/huajian/integral/getUserIsPayGoods',
+    method: 'get',
+    params: params
+  });
+};

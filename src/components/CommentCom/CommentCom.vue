@@ -47,6 +47,7 @@
   import NoDataVue from '../NoData/NoData.vue';
   import { storeToRefs } from 'pinia';
   import { addIntegralLogAsync } from '@/http/api/integral';
+  import { Most_Integral } from '@/config/integral';
 
   interface IComment {
     commentType: string;
@@ -166,7 +167,7 @@
       ElMessage.success('评论发表成功');
       // 评论得简币
       const integralInfo = appStore.useUserInfoStore.userIntegralInfo.todayGetIntegralTotal;
-      if (integralInfo && integralInfo < 10) {
+      if (integralInfo && integralInfo < Most_Integral) {
         toAttendance();
       }
     } else {

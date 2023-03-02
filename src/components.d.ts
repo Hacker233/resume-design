@@ -47,16 +47,14 @@ declare module '@vue/runtime-core' {
     ElSkeletonItem: typeof import('element-plus/es')['ElSkeletonItem'];
     ElSlider: typeof import('element-plus/es')['ElSlider'];
     ElSubMenu: typeof import('element-plus/es')['ElSubMenu'];
-    ElTable: typeof import('element-plus/es')['ElTable'];
-    ElTableColumn: typeof import('element-plus/es')['ElTableColumn'];
     ElTabPane: typeof import('element-plus/es')['ElTabPane'];
     ElTabs: typeof import('element-plus/es')['ElTabs'];
-    ElTag: typeof import('element-plus/es')['ElTag'];
     ElTooltip: typeof import('element-plus/es')['ElTooltip'];
     ElUpload: typeof import('element-plus/es')['ElUpload'];
     Emoji: typeof import('./components/packages/components/emoji/emoji.vue')['default'];
     Fold: typeof import('./components/packages/components/fold/fold.vue')['default'];
     FooterCom: typeof import('./components/FooterCom/FooterCom.vue')['default'];
+    GetIntegralDialog: typeof import('./components/GetIntegralDialog/GetIntegralDialog.vue')['default'];
     GithubCard: typeof import('./components/GihubCard/GithubCard.vue')['default'];
     HobbiesCom: typeof import('./components/ModelComs/HobbiesCom.vue')['default'];
     Icon: typeof import('./components/packages/components/icon/icon.vue')['default'];
