@@ -38,6 +38,21 @@
     </div>
     <!-- GitHub -->
     <div class="right">
+      <!-- 今日签到总人数 -->
+      <span class="attendance-total">今日已签到{{ attendanceTotal }}人</span>
+      <!-- 签到按钮 -->
+      <div class="attendance-box">
+        <div
+          v-if="!appStore.useUserInfoStore.userIntegralInfo.isattendance"
+          class="button"
+          @click="toAttendance"
+        >
+          签到
+        </div>
+        <el-tooltip v-else content="今天您已经签过到啦~">
+          <div class="have-attend">已签到</div>
+        </el-tooltip>
+      </div>
       <!-- 登录注册以及用户展示区域 -->
       <div class="user-box">
         <div v-if="!appStore.useUserInfoStore.userInfo" class="logon-register-box">
@@ -71,6 +86,7 @@
 <script setup lang="ts">
   import appStore from '@/store';
   import LoginDialog from '@/components/LoginDialog/LoginDialog';
+  import { addIntegralLogAsync, getTodayAttendancePersonTotalAsync } from '@/http/api/integral';
 
   interface IBgcColor {
     bgColor?: string;
@@ -202,22 +218,52 @@
   const { saveToken } = appStore.useTokenStore;
   const { saveUserInfo } = appStore.useUserInfoStore;
   const { setUuid } = appStore.useRefreshStore;
+  const { saveIntegralInfo } = appStore.useUserInfoStore;
   const loginout = () => {
     saveToken(''); // 清除token
     saveUserInfo(''); // 清除用户信息
+    saveIntegralInfo(''); // 清除用户简币信息
     setUuid(); // 全局刷新
     router.push('/');
   };
+
+  // 签到
+  const toAttendance = async () => {
+    let params = {
+      integralAddType: '1'
+    };
+    const data = await addIntegralLogAsync(params);
+    if (data.data.status === 200) {
+      ElMessage.success('签到成功！简币+1！');
+      // 更新用户简币信息
+      appStore.useUserInfoStore.getUserIntegralTotal();
+      getTodayAttendancePersonTotal();
+    } else {
+      ElMessage.error(data.data.message);
+    }
+  };
+
+  // 获取今日签到总人数
+  const attendanceTotal = ref<number>(0);
+  const getTodayAttendancePersonTotal = async () => {
+    const data = await getTodayAttendancePersonTotalAsync();
+    if (data.status === 200) {
+      attendanceTotal.value = data.data;
+    } else {
+      ElMessage.error(data.message);
+    }
+  };
+  getTodayAttendancePersonTotal();
 </script>
 <style lang="scss" scoped>
   .nav-bar-box {
     display: flex;
-    height: 70px;
+    height: 65px;
     width: 100%;
     box-sizing: border-box;
     align-items: center;
     justify-content: space-between;
-    background-color: v-bind('bgColor');
+    background-color: rgba($color: #fff, $alpha: 0.95);
     z-index: 10;
     user-select: none;
     padding: 0 60px;
@@ -243,7 +289,8 @@
           justify-content: center;
           align-items: center;
           width: 100%;
-          color: v-bind('fontColor');
+          // color: v-bind('fontColor');
+          color: green;
           padding: 0 15px !important;
           letter-spacing: 3px;
           font-size: 16px;
@@ -257,7 +304,8 @@
         }
         .el-sub-menu {
           height: 100%;
-          color: v-bind('fontColor');
+          // color: v-bind('fontColor');
+          color: green;
           border-bottom: 4px solid transparent;
           &:hover {
             border-bottom: 4px solid #2ddd9d !important;
@@ -266,7 +314,8 @@
           :deep(.el-sub-menu__title) {
             letter-spacing: 3px;
             font-size: 16px;
-            color: v-bind('fontColor');
+            // color: v-bind('fontColor');
+            color: green;
             border: none;
             &:hover {
               background-color: rgba(#ccc, 0.1);
@@ -283,6 +332,12 @@
     .right {
       display: flex;
       align-items: center;
+      .attendance-total {
+        font-size: 12px;
+        color: green;
+        margin-right: 20px;
+        letter-spacing: 2px;
+      }
       .contact-me {
         cursor: pointer;
         margin-right: 15px;
@@ -291,6 +346,49 @@
       }
       .svg-icon {
         cursor: pointer;
+      }
+
+      .attendance-box {
+        margin-right: 10px;
+        .button {
+          padding: 6px 9px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          align-items: center;
+          border: 1px solid green;
+          text-align: center;
+          color: green;
+          letter-spacing: 4px;
+          font-size: 13px;
+          border-radius: 3px;
+          cursor: pointer;
+          -webkit-transition: all 0.2s;
+          -moz-transition: all 0.2s;
+          -ms-transition: all 0.2s;
+          transition: all 0.2s;
+          -webkit-user-select: none;
+          -moz-user-select: none;
+          -ms-user-select: none;
+          user-select: none;
+          transition: all 0.3s;
+          &:hover {
+            opacity: 0.7;
+          }
+        }
+        .have-attend {
+          border: 1px solid #a0a0a0;
+          color: #a0a0a0;
+          padding: 6px 9px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          align-items: center;
+          text-align: center;
+          letter-spacing: 4px;
+          font-size: 13px;
+          border-radius: 3px;
+        }
       }
       .user-box {
         display: flex;

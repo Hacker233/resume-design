@@ -20,6 +20,7 @@ const WordPreview = () => import('@/views/wordPreview/index.vue');
 const PPT = () => import('@/views/ppt/index.vue');
 const PPTPreview = () => import('@/views/pptPreview/index.vue');
 const MyContribute = () => import('@/views/person/myContribute/index.vue');
+const PersonIntegral = () => import('@/views/person/integralDetail/index.vue');
 const OnlinePreview = () => import('@/views/onlinePreview/index.vue');
 const MyOnlineResume = () => import('@/views/person/onlineResume/index.vue');
 const WebCode = () => import('@/views/webCode/index.vue');
@@ -264,6 +265,18 @@ const routes: Array<RouteRecordRaw> = [
           showTitle: true
         },
         component: PersonDetail
+      },
+      {
+        path: 'personIntegral',
+        name: 'PersonIntegral',
+        meta: {
+          title: '我的资产',
+          keepAlive: true,
+          isShowComNav: true,
+          requireLogin: true,
+          showTitle: false
+        },
+        component: PersonIntegral
       },
       {
         path: 'accountSetting',

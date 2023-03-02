@@ -28,6 +28,12 @@
       path: '/person/personDetail'
     },
     {
+      index: 'PersonIntegral',
+      iconfont: 'icon-jibenziliao',
+      title: '我的资产',
+      path: '/person/personIntegral'
+    },
+    {
       index: 'AccountSetting',
       iconfont: 'icon-shezhi',
       title: '账号设置',

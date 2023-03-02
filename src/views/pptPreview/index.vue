@@ -30,7 +30,12 @@
         <div class="top">
           <h1>{{ pptInfo.name }}</h1>
           <div class="download-btn">
-            <div class="button" @click="download"> 立即下载 </div>
+            <div class="button" @click="download">
+              <div class="how-much"
+                >3<img width="20" src="@/assets/images/jianB.png" alt="简币"
+              /></div>
+              <span>立即下载</span>
+            </div>
           </div>
           <div class="views-downs-box">
             <div class="icon-box">
@@ -88,17 +93,27 @@
 
     <!-- 评论组件 -->
     <comment-com width="1200px" :comment-type-id="id" comment-type="pptTemplate"></comment-com>
+
+    <!-- 获取简币弹窗 -->
+    <get-integral-dialog
+      :dialog-get-integral-visible="dialogGetIntegralVisible"
+      @cancle="cancleDialog"
+    ></get-integral-dialog>
   </div>
 </template>
 <script lang="ts" setup>
   import LoginDialog from '@/components/LoginDialog/LoginDialog';
   import PptCarousel from './components/PptCarousel.vue';
   import { downloadFileUtil } from '@/utils/common';
+  import { ElMessageBox } from 'element-plus';
+  import 'element-plus/es/components/message-box/style/index';
   import {
     getPPTCategoryListAsync,
     getPPTTemplateInfoAsync,
     pptDownloadUrl
   } from '@/http/api/pptTemplate';
+  import appStore from '@/store';
+  import { getUserIsPayGoodsAsync, payIntegralLogAsync } from '@/http/api/integral';
 
   // 获取ppt模板id
   const route = useRoute();
@@ -151,20 +166,83 @@
     console.log(e);
   };
 
+  // 查询用户是否消费过该资源
+  const isPay = ref<boolean>(false);
+  const getUserIsPayGoods = async () => {
+    let params = {
+      integralPayGoodsId: id
+    };
+    const data = await getUserIsPayGoodsAsync(params);
+    if (data.data.status === 200) {
+      isPay.value = data.data.data;
+    } else {
+      ElMessage.error(data.data.message);
+    }
+  };
+  getUserIsPayGoods();
+
   // 点击立即下载
   const download = async () => {
     let token = localStorage.getItem('token');
     if (!token) {
       LoginDialog(true);
     } else {
-      const data = await pptDownloadUrl(id);
-      if (data.data.status === 200) {
-        ElMessage.success('即将开始下载');
-        let url = JSON.parse(data.data.data.fileUrl)[0].url;
-        downloadFileUtil(url);
+      // 判断用户是否支付过
+      if (isPay.value) {
+        downloadTemplate();
       } else {
-        ElMessage.error(data.data.message);
+        // 判断当前用户简币是否充足
+        const userIntegralTotal = appStore.useUserInfoStore.userIntegralInfo.integralTotal;
+        if (userIntegralTotal < 3) {
+          ElMessage.warning('您的简币数量不足！');
+          openGetDialog();
+          return;
+        } else {
+          ElMessageBox.confirm('确定消费-3简币下载模板？只需一次支付，即可多次下载！', '警告', {
+            confirmButtonText: '确定',
+            cancelButtonText: '取消',
+            type: 'warning'
+          })
+            .then(async () => {
+              // 消费金币
+              let params = {
+                integralPayType: '2', // 下载ppt模板
+                integralPayGoodsId: id // 模板id
+              };
+              const payData = await payIntegralLogAsync(params);
+              if (payData.data.status === 200) {
+                downloadTemplate();
+              } else {
+                ElMessage.error('简币扣除错误！');
+              }
+            })
+            .catch(() => {});
+        }
       }
+    }
+  };
+
+  // 打开获取简币弹窗
+  const dialogGetIntegralVisible = ref<boolean>(false);
+  const openGetDialog = () => {
+    dialogGetIntegralVisible.value = true;
+  };
+
+  // 关闭弹窗
+  const cancleDialog = () => {
+    dialogGetIntegralVisible.value = false;
+  };
+
+  // 下载文件
+  const downloadTemplate = async () => {
+    const data = await pptDownloadUrl(id);
+    if (data.data.status === 200) {
+      ElMessage.success('即将开始下载');
+      let url = JSON.parse(data.data.data.fileUrl)[0].url;
+      downloadFileUtil(url);
+      getUserIsPayGoods(); // 更新用户是否支付过的状态
+    } else {
+      ElMessage.error(data.data.message);
     }
   };
 </script>
@@ -266,8 +344,19 @@
               transition: all 0.3s;
               cursor: pointer;
               user-select: none;
+              display: flex;
+              align-items: center;
+              justify-content: center;
               &:hover {
                 opacity: 0.8;
+              }
+              .how-much {
+                display: flex;
+                align-items: center;
+                margin-right: 5px;
+                img {
+                  margin: 0 5px;
+                }
               }
             }
           }
