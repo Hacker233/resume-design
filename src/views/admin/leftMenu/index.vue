@@ -87,11 +87,6 @@
           index: 'UserList',
           iconfont: 'icon-qunzuduoren',
           title: '用户列表'
-        },
-        {
-          index: 'SponsorList',
-          iconfont: 'icon-zhengzhi',
-          title: '赞助列表'
         }
       ]
     },
@@ -184,6 +179,11 @@
           index: 'PayList',
           iconfont: 'icon-codepen',
           title: '源码购买用户'
+        },
+        {
+          index: 'SponsorList',
+          iconfont: 'icon-zhengzhi',
+          title: '赞助列表'
         }
       ]
     }
