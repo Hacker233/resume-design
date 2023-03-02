@@ -43,3 +43,11 @@ export const getUserIsPayGoodsAsync: any = (params: any) => {
     params: params
   });
 };
+
+// 获取今日签到总人数
+export const getTodayAttendancePersonTotalAsync: any = () => {
+  return http.request({
+    url: '/huajian/common/getTodayAttendancePersonTotal',
+    method: 'get'
+  });
+};

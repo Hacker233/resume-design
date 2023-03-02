@@ -38,6 +38,8 @@
     </div>
     <!-- GitHub -->
     <div class="right">
+      <!-- 今日签到总人数 -->
+      <span class="attendance-total">今日已签到{{ attendanceTotal }}人</span>
       <!-- 签到按钮 -->
       <div class="attendance-box">
         <div
@@ -84,7 +86,7 @@
 <script setup lang="ts">
   import appStore from '@/store';
   import LoginDialog from '@/components/LoginDialog/LoginDialog';
-  import { addIntegralLogAsync } from '@/http/api/integral';
+  import { addIntegralLogAsync, getTodayAttendancePersonTotalAsync } from '@/http/api/integral';
 
   interface IBgcColor {
     bgColor?: string;
@@ -235,20 +237,33 @@
       ElMessage.success('签到成功！简币+1！');
       // 更新用户简币信息
       appStore.useUserInfoStore.getUserIntegralTotal();
+      getTodayAttendancePersonTotal();
     } else {
       ElMessage.error(data.data.message);
     }
   };
+
+  // 获取今日签到总人数
+  const attendanceTotal = ref<number>(0);
+  const getTodayAttendancePersonTotal = async () => {
+    const data = await getTodayAttendancePersonTotalAsync();
+    if (data.status === 200) {
+      attendanceTotal.value = data.data;
+    } else {
+      ElMessage.error(data.message);
+    }
+  };
+  getTodayAttendancePersonTotal();
 </script>
 <style lang="scss" scoped>
   .nav-bar-box {
     display: flex;
-    height: 70px;
+    height: 65px;
     width: 100%;
     box-sizing: border-box;
     align-items: center;
     justify-content: space-between;
-    background-color: #fff;
+    background-color: rgba($color: #fff, $alpha: 0.95);
     z-index: 10;
     user-select: none;
     padding: 0 60px;
@@ -317,6 +332,12 @@
     .right {
       display: flex;
       align-items: center;
+      .attendance-total {
+        font-size: 12px;
+        color: green;
+        margin-right: 20px;
+        letter-spacing: 2px;
+      }
       .contact-me {
         cursor: pointer;
         margin-right: 15px;
@@ -330,7 +351,7 @@
       .attendance-box {
         margin-right: 10px;
         .button {
-          padding: 7px 10px;
+          padding: 6px 9px;
           display: flex;
           align-items: center;
           justify-content: center;
@@ -339,7 +360,7 @@
           text-align: center;
           color: green;
           letter-spacing: 4px;
-          font-size: 14px;
+          font-size: 13px;
           border-radius: 3px;
           cursor: pointer;
           -webkit-transition: all 0.2s;
@@ -358,14 +379,14 @@
         .have-attend {
           border: 1px solid #a0a0a0;
           color: #a0a0a0;
-          padding: 7px 10px;
+          padding: 6px 9px;
           display: flex;
           align-items: center;
           justify-content: center;
           align-items: center;
           text-align: center;
           letter-spacing: 4px;
-          font-size: 14px;
+          font-size: 13px;
           border-radius: 3px;
         }
       }
