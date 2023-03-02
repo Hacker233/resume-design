@@ -28,3 +28,12 @@ export const deleteSponsorAsync: any = (id: string) => {
     method: 'delete'
   });
 };
+
+// 管理员审核赞助
+export const auditSponsorAsync: any = (data: any) => {
+  return http.request({
+    url: '/huajian/paystats/auditSponsor',
+    method: 'post',
+    data: data
+  });
+};

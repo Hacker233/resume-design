@@ -6,10 +6,10 @@
     <el-table-column prop="link" label="跳转链接" />
     <el-table-column prop="vaild" label="是否审核通过">
       <template #default="scope">
-        <el-tag v-if="scope.row.vaild === '已通过'" type="success" size="default">{{
-          scope.row.vaild
+        <el-tag v-if="scope.row.vaildLabel === '已通过'" type="success" size="default">{{
+          scope.row.vaildLabel
         }}</el-tag>
-        <el-tag v-else type="danger" size="default">{{ scope.row.vaild }}</el-tag>
+        <el-tag v-else type="danger" size="default">{{ scope.row.vaildLabel }}</el-tag>
       </template>
     </el-table-column>
     <el-table-column prop="logo_url" label="logo">
@@ -19,7 +19,9 @@
     </el-table-column>
     <el-table-column prop="sponsor_img" label="支付凭证">
       <template #default="scope">
-        <img class="preview-img" :src="scope.row.sponsor_img" alt="" srcset="" />
+        <div v-viewer>
+          <img class="preview-img" :src="scope.row.sponsor_img" alt="" srcset="" />
+        </div>
       </template>
     </el-table-column>
     <el-table-column prop="createDate" label="注册日期" sortable>
@@ -36,6 +38,11 @@
         </div>
       </template>
     </el-table-column>
+    <el-table-column label="操作" width="270">
+      <template #default="scope">
+        <el-button type="primary" size="small" @click="audit(scope.row)">审核</el-button>
+      </template>
+    </el-table-column>
   </el-table>
 
   <!-- 分页组件 -->
@@ -45,12 +52,21 @@
     :current-page="currentPage"
     @handle-current-change="handleCurrentChange"
   ></Pagination>
+
+  <!-- 审核弹窗 -->
+  <audit-dialog-vue
+    :dialog-audit-visible="dialogAuditVisible"
+    :row="row"
+    @cancle="cancleAudit"
+    @update-success="updateAuditSuccess"
+  ></audit-dialog-vue>
 </template>
 <script lang="ts" setup>
   import { formatListDate } from '@/utils/common';
   import Pagination from '@/components/Pagination/pagination.vue';
   import { getSponsorListAsync } from '@/http/api/sponsor';
   import 'element-plus/es/components/message-box/style/index';
+  import AuditDialogVue from './components/AuditDialog.vue';
   let tableData = ref<any>([]);
 
   // 获取用户列表
@@ -79,7 +95,8 @@
           name: item.name,
           sponsor_img: item.sponsor_img,
           updateDate: item.updateDate,
-          vaild: item.vaild ? '已通过' : '未通过',
+          vaildLabel: item.vaild ? '已通过' : '未通过',
+          vaild: item.vaild,
           vx: item.vx
         };
       });
@@ -94,6 +111,25 @@
     page.value = currentPage;
     console.log('页码改变', currentPage);
     getSponsorList();
+  };
+
+  // 打开审核弹窗
+  const row = ref<any>(null);
+  const dialogAuditVisible = ref<boolean>(false);
+  const audit = (rowData: any) => {
+    row.value = rowData;
+    console.log('row', row.value);
+    dialogAuditVisible.value = true;
+  };
+  // 取消审核弹窗
+  const cancleAudit = () => {
+    dialogAuditVisible.value = false;
+  };
+
+  // 审核成功
+  const updateAuditSuccess = () => {
+    getSponsorList();
+    dialogAuditVisible.value = false;
   };
 </script>
 <style lang="scss" scoped>
