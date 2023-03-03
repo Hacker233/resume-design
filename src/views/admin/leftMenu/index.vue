@@ -186,6 +186,18 @@
           title: '赞助列表'
         }
       ]
+    },
+    {
+      index: '9',
+      iconfont: 'icon-jifen',
+      title: '简币管理',
+      children: [
+        {
+          index: 'IntegralList',
+          iconfont: 'icon-jifen1',
+          title: '简币列表'
+        }
+      ]
     }
   ]);
 

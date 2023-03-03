@@ -5,6 +5,7 @@ export interface CommentSubmitParam {
   content: string;
   parentId: string | null;
   finish: () => void;
+  closeLoading: () => void;
 }
 
 export interface CommentApi {

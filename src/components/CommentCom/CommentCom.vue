@@ -132,10 +132,18 @@
   const submit = async (
     content: string,
     parentId: string,
-    finish: (comment: CommentApi) => void
+    finish: (comment: CommentApi) => void,
+    closeLoading: () => void
   ) => {
     console.log('评论提交parentId', parentId);
-
+    const searchRegExp = /&nbsp;/gi;
+    const replaceWith = '';
+    let contentFilter = content.replace(searchRegExp, replaceWith);
+    if (!contentFilter.trim()) {
+      ElMessage.error('请输入有效评论，营造良好社区氛围！');
+      closeLoading();
+      return;
+    }
     // 添加评论
     const params = {
       parentId: parentId,

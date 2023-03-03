@@ -71,7 +71,8 @@
       e: 'submit',
       content: string,
       parentId: string | null,
-      finish: (comment: CommentApi) => void
+      finish: (comment: CommentApi) => void,
+      closeLoading: () => void
     ): void;
     (e: 'like', id: string, finish: () => void): void;
     (e: 'replyPage', { parentId, pageNum, pageSize, finish }: ReplyPageParam): void;
@@ -81,27 +82,33 @@
   }>();
 
   const submit = (obj: CommentSubmitParam) => {
-    emit('submit', obj.content, obj.parentId, (comment: CommentApi) => {
-      // 添加内容回调处理,添加到评论列表
-      obj.finish();
-      if (obj.parentId) {
-        let raw_comment = comments.value.find((v) => v.id == obj.parentId);
-        if (raw_comment) {
-          let reply = raw_comment.reply;
-          if (reply) {
-            reply.list.unshift(comment);
-            reply.total++;
-          } else {
-            raw_comment.reply = {
-              total: 1,
-              list: [comment]
-            };
+    emit(
+      'submit',
+      obj.content,
+      obj.parentId,
+      (comment: CommentApi) => {
+        // 添加内容回调处理,添加到评论列表
+        obj.finish();
+        if (obj.parentId) {
+          let raw_comment = comments.value.find((v) => v.id == obj.parentId);
+          if (raw_comment) {
+            let reply = raw_comment.reply;
+            if (reply) {
+              reply.list.unshift(comment);
+              reply.total++;
+            } else {
+              raw_comment.reply = {
+                total: 1,
+                list: [comment]
+              };
+            }
           }
+        } else {
+          comments.value.unshift(comment);
         }
-      } else {
-        comments.value.unshift(comment);
-      }
-    });
+      },
+      obj.closeLoading
+    );
   };
 
   // contentBox点赞事件提供

@@ -51,3 +51,20 @@ export const getTodayAttendancePersonTotalAsync: any = () => {
     method: 'get'
   });
 };
+
+// 管理员查询所有简币列表
+export const getAllIntegralListAsync: any = (params: any) => {
+  return http.request({
+    url: '/huajian/integral/getAllIntegralList',
+    method: 'get',
+    params: params
+  });
+};
+
+// 管理员删除简币记录
+export const integralDeleteAsync: any = (id: string) => {
+  return http.request({
+    url: `/huajian/integral/integralDelete/${id}`,
+    method: 'delete'
+  });
+};

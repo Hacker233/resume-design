@@ -81,6 +81,9 @@
         submitLoading.value = false;
         // 关闭评论框事件
         emit('close');
+      },
+      closeLoading: () => {
+        submitLoading.value = false;
       }
     });
   };

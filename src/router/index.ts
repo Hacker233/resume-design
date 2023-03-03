@@ -53,6 +53,7 @@ const PublishSuccess = () =>
 const PayList = () => import('@/views/admin/payStats/payList/index.vue');
 const DeployDoc = () => import('@/views/deployDoc/index.vue');
 const ArticleDetail = () => import('@/views/deployDoc/pages/articleDetails.vue');
+const IntegralList = () => import('@/views/admin/integralManage/IntegralList/index.vue');
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -562,6 +563,17 @@ const routes: Array<RouteRecordRaw> = [
           requireLogin: true
         },
         component: PayList
+      },
+      {
+        path: 'integralList',
+        name: 'IntegralList',
+        meta: {
+          title: '简币列表',
+          keepAlive: true,
+          isShowComNav: false,
+          requireLogin: true
+        },
+        component: IntegralList
       }
     ]
   }
