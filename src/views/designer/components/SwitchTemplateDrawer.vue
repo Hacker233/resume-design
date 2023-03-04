@@ -36,6 +36,8 @@
 <script lang="ts" setup>
   import { getTemplateListAsync } from '@/http/api/resume';
   import appStore from '@/store';
+  import { ElMessageBox } from 'element-plus';
+  import 'element-plus/es/components/message-box/style/index';
 
   const emit = defineEmits(['closeSwitchDrawer']);
   interface IDrawer {
@@ -80,14 +82,22 @@
   const { setUuid } = appStore.useUuidStore;
   const { resetSelectModel } = appStore.useSelectMaterialStore;
   const switchTemplate = async (item: { ID: any }) => {
-    const path = route.path;
-    router.replace(`${path}?id=${item.ID}`);
-    resetSelectModel(); // 重置选中模块
-    resetStoreAndLocal(false, item.ID);
-    await nextTick();
-    setUuid();
-    ElMessage.success('切换成功');
-    emit('closeSwitchDrawer');
+    ElMessageBox.confirm('请确保当前简历数据已保存草稿，切换新模板后需要重新填写数据！', '警告', {
+      confirmButtonText: '确定',
+      cancelButtonText: '取消',
+      type: 'warning'
+    })
+      .then(async () => {
+        const path = route.path;
+        router.replace(`${path}?id=${item.ID}`);
+        resetSelectModel(); // 重置选中模块
+        resetStoreAndLocal(false, item.ID);
+        await nextTick();
+        setUuid();
+        ElMessage.success('切换成功');
+        emit('closeSwitchDrawer');
+      })
+      .catch(() => {});
   };
 </script>
 <style lang="scss" scoped>
