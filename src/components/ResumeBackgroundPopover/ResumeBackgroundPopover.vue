@@ -1,10 +1,13 @@
 <template>
-  <el-popover placement="left" :width="250" trigger="click">
+  <el-popover placement="left" :width="350" trigger="click">
     <template #reference>
       <div class="background-img-box">
-        <div v-if="!resumeJsonNewStore.GLOBAL_STYLE.resumeBackgroundCom" class="default-img"></div>
+        <div v-if="!resumeJsonNewStore.GLOBAL_STYLE.resumeBackgroundCom" class="default-img"
+          >默认背景</div
+        >
         <div v-else class="bgc-img">
           <img
+            v-if="resumeBackgroundList[resumeJsonNewStore.GLOBAL_STYLE.resumeBackgroundCom].url"
             :src="
               getAssetsResumeBgcFile(
                 resumeBackgroundList[resumeJsonNewStore.GLOBAL_STYLE.resumeBackgroundCom].url
@@ -13,6 +16,7 @@
             alt="背景图选择"
             srcset=""
           />
+          <div v-else class="default-img">默认背景</div>
         </div>
       </div>
     </template>
@@ -25,7 +29,8 @@
         class="item-box"
         @click="handleResumeBackground(key)"
       >
-        <img :src="getAssetsResumeBgcFile(value.url)" alt="背景图选择" srcset="" />
+        <img v-if="value.url" :src="getAssetsResumeBgcFile(value.url)" alt="背景图选择" srcset="" />
+        <div v-else class="default-img-pop">默认背景</div>
       </div>
     </div>
   </el-popover>
@@ -41,28 +46,24 @@
 
   // 选择背景
   const handleResumeBackground = (key: string | number) => {
-    resumeJsonNewStore.value.GLOBAL_STYLE.resumeBackgroundCom = key;
+    if (key) {
+      resumeJsonNewStore.value.GLOBAL_STYLE.resumeBackgroundCom = key;
+    } else {
+      resumeJsonNewStore.value.GLOBAL_STYLE.resumeBackgroundCom = '';
+    }
   };
 </script>
 <style lang="scss" scoped>
   .background-img-box {
     cursor: pointer;
     .default-img {
-      width: 80px;
-      height: 100px;
+      width: 100px;
+      height: 120px;
       background: #c6ffdd; /* fallback for old browsers */
-      background: -webkit-linear-gradient(
-        to right,
-        #f7797d,
-        #fbd786,
-        #c6ffdd
-      ); /* Chrome 10-25, Safari 5.1-6 */
-      background: linear-gradient(
-        to right,
-        #f7797d,
-        #fbd786,
-        #c6ffdd
-      ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+      box-shadow: rgba(99, 100, 99, 0.2) 0px 0px 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
     .bgc-img {
       img {
@@ -85,6 +86,16 @@
         height: 100%;
         cursor: pointer;
         box-shadow: rgba(99, 100, 99, 0.4) 0px 0px 10px;
+      }
+      .default-img-pop {
+        width: 100%;
+        height: 100%;
+        cursor: pointer;
+        box-shadow: rgba(99, 100, 99, 0.4) 0px 0px 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: green;
       }
     }
   }

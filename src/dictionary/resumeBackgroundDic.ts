@@ -4,6 +4,9 @@ interface IResumeBackgroundList {
   };
 }
 const resumeBackgroundList: IResumeBackgroundList = {
+  RESUME_BACKGROUND_DEFAULT: {
+    url: ''
+  },
   RESUME_BACKGROUND_1: {
     url: 'RESUME_BACKGROUND_1.png'
   },
