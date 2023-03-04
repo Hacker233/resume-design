@@ -12,7 +12,7 @@
           <h1>进入微信群</h1>
           <p>进入交流群，迅速解答疑问！</p>
         </div>
-        <div class="vx-img">
+        <div v-viewer class="vx-img">
           <img class="bgc-img" src="@/assets/images/vx-qun.jpg" alt="" />
         </div>
       </div>
