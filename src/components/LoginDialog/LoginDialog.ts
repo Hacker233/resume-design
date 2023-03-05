@@ -2,7 +2,7 @@ import { createApp } from 'vue';
 import LoginDialog from '@/components/LoginDialog/LoginDialog.vue';
 import router from '@/router';
 
-const createDialog = (isLogin = false, to?: string) => {
+const createDialog = (isLogin = false, to = '', fn?: () => any) => {
   const mountNode = document.createElement('div');
   const Instance = createApp(LoginDialog, {
     isLogin: isLogin,
@@ -12,10 +12,13 @@ const createDialog = (isLogin = false, to?: string) => {
     },
     confirm: () => {
       if (to) {
-        router.push(to);
+        router.push(to); // 登录成功后跳转目标路径
       }
       Instance.unmount();
       document.body.removeChild(mountNode);
+      if (fn) {
+        fn();
+      }
     }
   });
   console.log(Instance);

@@ -31,7 +31,7 @@
           <h1>{{ wordInfo.name }}</h1>
           <div class="download-btn">
             <div class="button" @click="download">
-              <div class="how-much"
+              <div v-if="!isPay" class="how-much"
                 >3<img width="20" src="@/assets/images/jianB.png" alt="简币"
               /></div>
               <span>立即下载</span>
@@ -99,8 +99,9 @@
     wordDownloadUrl
   } from '@/http/api/wordTemplate';
   import { downloadFileUtil } from '@/utils/common';
-  import { getUserIsPayGoodsAsync, payIntegralLogAsync } from '@/http/api/integral';
+  import { payIntegralLogAsync } from '@/http/api/integral';
   import appStore from '@/store';
+  import { useUserIsPayGoods } from '@/hooks/useUsrIsPayGoods';
 
   // 获取word模板id
   const route = useRoute();
@@ -153,25 +154,19 @@
   };
 
   // 查询用户是否消费过该资源
-  const isPay = ref<boolean>(false);
-  const getUserIsPayGoods = async () => {
-    let params = {
-      integralPayGoodsId: id
-    };
-    const data = await getUserIsPayGoodsAsync(params);
-    if (data.data.status === 200) {
-      isPay.value = data.data.data;
-    } else {
-      ElMessage.error(data.data.message);
-    }
-  };
-  getUserIsPayGoods();
+  const isPay = ref<any>(false);
+  onMounted(async () => {
+    isPay.value = await useUserIsPayGoods(id);
+  });
 
   // 点击立即下载
   const download = async () => {
     let token = localStorage.getItem('token');
     if (!token) {
       LoginDialog(true);
+      LoginDialog(true, '', async () => {
+        isPay.value = await useUserIsPayGoods(id);
+      });
     } else {
       // 判断用户是否支付过
       if (isPay.value) {
@@ -226,7 +221,7 @@
       ElMessage.success('即将开始下载');
       let url = JSON.parse(data.data.data.fileUrl)[0].url;
       downloadFileUtil(url);
-      getUserIsPayGoods(); // 更新用户是否支付过的状态
+      isPay.value = await useUserIsPayGoods(id); // 更新用户是否支付过的状态
     } else {
       ElMessage.error(data.data.message);
     }

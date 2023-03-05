@@ -20,32 +20,100 @@
           class="button"
           @click="toDownload(item.link)"
         >
+          <div v-if="!isPay" class="how-much"
+            >1 <img width="20" src="@/assets/images/jianB.png" alt="简币"
+          /></div>
           {{ item.name }}
           <span v-if="item.pass">{{ `(提取码:${item.pass})` }}</span>
         </div>
       </div>
     </div>
+
+    <!-- 获取简币弹窗 -->
+    <get-integral-dialog
+      :dialog-get-integral-visible="dialogGetIntegralVisible"
+      @cancle="cancleDialog"
+    ></get-integral-dialog>
   </div>
 </template>
 <script lang="ts" setup>
   import LoginDialog from '@/components/LoginDialog/LoginDialog';
+  import { payIntegralLogAsync } from '@/http/api/integral';
+  import appStore from '@/store';
+  import { ElMessageBox } from 'element-plus';
   import ComTitle from './ComTitle.vue';
+  import 'element-plus/es/components/message-box/style/index';
+  import { useUserIsPayGoods } from '@/hooks/useUsrIsPayGoods';
   defineProps<{
     content: any;
   }>();
 
+  const { sourceId } = useRoute().query;
+
+  // 打开获取简币弹窗
+  const dialogGetIntegralVisible = ref<boolean>(false);
+  const openGetDialog = () => {
+    dialogGetIntegralVisible.value = true;
+  };
+
+  // 关闭弹窗
+  const cancleDialog = () => {
+    dialogGetIntegralVisible.value = false;
+  };
+
+  // 查询用户是否消费过该资源
+  const isPay = ref<any>(false);
+  onMounted(async () => {
+    isPay.value = await useUserIsPayGoods(sourceId);
+  });
+
   // 点击下载
   const router = useRouter();
-  const toDownload = (link: string) => {
+  const toDownload = async (link: string) => {
     const token = localStorage.getItem('token'); // 判断是否登录
     const userInfo = localStorage.getItem('userInfo');
     if (!token) {
-      LoginDialog(true);
+      LoginDialog(true, '', async () => {
+        isPay.value = await useUserIsPayGoods(sourceId);
+      });
     } else {
       // 判断邮箱是否验证
       const emailVerify = JSON.parse(userInfo as string).auth.email.valid;
       if (emailVerify) {
-        window.open(link, '_blank');
+        // 判断用户是否支付过
+        if (isPay.value) {
+          window.open(link, '_blank');
+          isPay.value = await useUserIsPayGoods(sourceId);
+        } else {
+          // 判断当前用户简币是否充足
+          const userIntegralTotal = appStore.useUserInfoStore.userIntegralInfo.integralTotal;
+          if (userIntegralTotal < 1) {
+            ElMessage.warning('您的简币数量不足！');
+            openGetDialog();
+            return;
+          } else {
+            ElMessageBox.confirm('确定消费-1下载当前软件？只需一次支付，即可多次下载！', '警告', {
+              confirmButtonText: '确定',
+              cancelButtonText: '取消',
+              type: 'warning'
+            })
+              .then(async () => {
+                // 消费金币
+                let params = {
+                  integralPayType: '3', // 下载软件
+                  integralPayGoodsId: sourceId // 软件id
+                };
+                const payData = await payIntegralLogAsync(params);
+                if (payData.data.status === 200) {
+                  window.open(link, '_blank');
+                  isPay.value = await useUserIsPayGoods(sourceId);
+                } else {
+                  ElMessage.error('简币扣除错误！');
+                }
+              })
+              .catch(() => {});
+          }
+        }
       } else {
         router.push({
           path: '/emailVerify',
@@ -117,8 +185,19 @@
           transition: all 0.3s;
           cursor: pointer;
           user-select: none;
+          display: flex;
+          align-items: center;
+          justify-content: center;
           &:hover {
             opacity: 0.8;
+          }
+          .how-much {
+            display: flex;
+            align-items: center;
+            margin-right: 5px;
+            img {
+              margin: 0 5px;
+            }
           }
         }
       }

@@ -24,7 +24,7 @@
       <!-- 方式一 -->
       <div class="way way-1">
         <p class="way-tips"
-          >每日可通过签到获得+1<img width="24" src="@/assets/images/jianB.png" alt="简币"
+          >每日可通过签到免费获得+1<img width="24" src="@/assets/images/jianB.png" alt="简币"
         /></p>
         <!-- 签到按钮 -->
         <div class="attendance-box">
@@ -44,7 +44,7 @@
       <!-- 方式二 -->
       <div class="way way-2">
         <p class="way-tips"
-          >每次评论获得+1<img width="24" src="@/assets/images/jianB.png" alt="简币" />
+          >每次评论免费获得+1<img width="24" src="@/assets/images/jianB.png" alt="简币" />
           <span class="small-tips">（每日最多+9）</span>
         </p>
       </div>
