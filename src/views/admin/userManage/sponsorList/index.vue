@@ -3,6 +3,7 @@
     <el-table-column prop="id" label="id" />
     <el-table-column prop="name" label="名称" />
     <el-table-column prop="email" label="邮箱" />
+    <el-table-column prop="vx" label="微信" />
     <el-table-column prop="link" label="跳转链接" />
     <el-table-column prop="vaild" label="是否审核通过">
       <template #default="scope">
