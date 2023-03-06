@@ -92,11 +92,15 @@
             openGetDialog();
             return;
           } else {
-            ElMessageBox.confirm('确定消费-1下载当前软件？只需一次支付，即可多次下载！', '警告', {
-              confirmButtonText: '确定',
-              cancelButtonText: '取消',
-              type: 'warning'
-            })
+            ElMessageBox.confirm(
+              '确定消费-1简币下载当前软件？只需一次支付，即可多次下载！',
+              '警告',
+              {
+                confirmButtonText: '确定',
+                cancelButtonText: '取消',
+                type: 'warning'
+              }
+            )
               .then(async () => {
                 // 消费金币
                 let params = {
