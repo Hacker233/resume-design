@@ -1,7 +1,10 @@
-export const HJSchema = {
+import { IHJSchema } from '../types';
+
+export const HJSchema: IHJSchema = {
   version: '', // 当前JSON版本号
   componentsTree: [
     {
+      id: '', // 组件唯一性id
       componentName: '', // 组件name，用户渲染组件
       commentType: '', // 组件类型
       props: {}, // 组件属性
@@ -34,9 +37,9 @@ export const HJSchema = {
   i18n: {}, // 国际化语料库
   constants: {}, // 全局常量
   css: {
-    width: '',
-    height: '',
-    background: '',
+    width: '820px',
+    height: '1160px',
+    background: '#fff',
     themeColor: '',
     paddingTop: '',
     paddingRight: '',

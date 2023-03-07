@@ -4,7 +4,7 @@
 <style lang="scss" scoped>
   .left-com-list-box {
     background-color: #fff;
-    height: 100%;
+    height: calc(100vh - 60px);
     width: 300px;
   }
 </style>

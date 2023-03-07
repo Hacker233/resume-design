@@ -4,7 +4,7 @@
 <style lang="scss" scoped>
   .right-setter-box {
     background-color: #fff;
-    height: 100%;
+    height: calc(100vh - 60px);
     width: 400px;
   }
 </style>
