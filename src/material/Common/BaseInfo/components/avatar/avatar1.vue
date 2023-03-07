@@ -6,7 +6,7 @@
   </template>
   <template v-else>
     <div v-show="isShow.avatar" class="avatar-shape-box">
-      <component :is="avatarComponents[modelData.avatarShape]"></component>
+      <component :is="avatarComponents[modelData.avatarShape]" :model-data="modelData"></component>
     </div>
   </template>
 </template>
