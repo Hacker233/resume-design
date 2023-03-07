@@ -69,6 +69,7 @@ specifiers:
   vue-tsc: ^0.29.8
   vue-uuid: ^3.0.0
   vue3-count-to: ^1.1.2
+  vue3-draggable-resizable: ^1.6.5
   vuedraggable: ^4.1.0
 
 dependencies:
@@ -105,6 +106,7 @@ dependencies:
   vue-router: 4.0.15_vue@3.2.33
   vue-uuid: 3.0.0_vue@3.2.33
   vue3-count-to: 1.1.2_vue@3.2.33
+  vue3-draggable-resizable: 1.6.5
   vuedraggable: 4.1.0_vue@3.2.33
 
 devDependencies:
@@ -6457,6 +6459,10 @@ packages:
       core-js: 3.25.2
       vue: 3.2.33
       vue-count-to: 1.0.13
+    dev: false
+
+  /vue3-draggable-resizable/1.6.5:
+    resolution: {integrity: sha512-31142E31fGNnq3HKqvmFLSsqIbhck7TyGuQWhUKrDw6DOcGAuRx4ddRjaxvT6fe7dgeKH53qAh+i0ZlWtPLl2g==}
     dev: false
 
   /vuedraggable/4.1.0_vue@3.2.33:

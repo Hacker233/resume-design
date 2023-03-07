@@ -1,16 +1,22 @@
-export const WIDGET_CONFIG = [
+export const WIDGET_CONFIG_LIST = [
   {
-    title: '文本',
+    title: '头像',
+    dataSource: {}, // 该分类下公用数据源
     list: [
       {
         id: '', // 组件唯一性id
-        componentName: '', // 组件名
+        componentName: 'avatar-1', // 组件名
         commentType: '', // 组件类型
         icon: '', // 组件icon
         title: '', // 组件中文名称
-        description: '', // 组件描述信息
-        screenShot: '', // 组件快照
-        keywords: '', // 组件关键词，用于搜索
+        description: '正方形头像', // 组件描述信息
+        screenShot: {
+          src: '',
+          width: '80px',
+          height: '80px'
+        }, // 组件快照
+        keywords: '头像', // 组件关键词，用于搜索
+        category: 'avatar', // 组件分类
         props: {}, // 组件属性
         css: {
           width: '',
@@ -19,7 +25,7 @@ export const WIDGET_CONFIG = [
           fontFamily: '',
           fontWeight: '',
           color: '',
-          backgroundColor: '',
+          backgroundColor: 'green',
           marginTop: '',
           marginRight: '',
           marginBottom: '',
@@ -38,6 +44,5 @@ export const WIDGET_CONFIG = [
         dataSource: {} // 组件单独数据
       }
     ]
-  },
-  {}
+  }
 ];

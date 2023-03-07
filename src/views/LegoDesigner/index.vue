@@ -11,7 +11,12 @@
       <div class="designer-box">
         <c-scrollbar trigger="hover">
           <!-- 画布区域 -->
-          <div class="designer"></div>
+          <div class="designer">
+            <DraggableContainer @drop="drop" @dragover.prevent>
+              <Vue3DraggableResizable> 123gfdsh </Vue3DraggableResizable>
+              <Vue3DraggableResizable> Another test </Vue3DraggableResizable>
+            </DraggableContainer>
+          </div>
         </c-scrollbar>
       </div>
       <!-- 设置器面板区域 -->
@@ -28,6 +33,11 @@
 
   // 初始页面JSON
   const HJSchemaJson = ref<IHJSchema>(HJSchema);
+
+  const drop = (e: { preventDefault: () => void }) => {
+    e.preventDefault();
+    // 将拖动元素旋转到目标区域中
+  };
 </script>
 <style lang="scss" scoped>
   .lego-designer-box {
@@ -41,6 +51,8 @@
         box-sizing: border-box;
         height: calc(100vh - 60px);
         .designer {
+          position: relative;
+          height: 1160px;
           margin: 30px auto;
           width: v-bind('HJSchemaJson.css.width');
           min-height: v-bind('HJSchemaJson.css.height');
