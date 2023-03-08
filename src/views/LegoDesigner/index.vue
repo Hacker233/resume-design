@@ -34,9 +34,11 @@
   // 初始页面JSON
   const HJSchemaJson = ref<IHJSchema>(HJSchema);
 
-  const drop = (e: { preventDefault: () => void }) => {
-    e.preventDefault();
+  const drop = (event: any) => {
+    const widgetItem = JSON.parse(event.dataTransfer.getData('widgetItem'));
+    event.preventDefault();
     // 将拖动元素旋转到目标区域中
+    console.log('目标区放下', widgetItem);
   };
 </script>
 <style lang="scss" scoped>

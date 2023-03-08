@@ -6,9 +6,9 @@ import { cloneDeep } from 'lodash';
 
 // 新的简历store
 export const useResumeJsonNewStore = defineStore('resumeJsonNew', () => {
-  let resume_json = cloneDeep(RESUME_JSON); // 简历数据
-  let importJson = ref<IRESUMEJSON>(resume_json); // 导入的JSON数据
-  let resumeJsonNewStore = ref<IRESUMEJSON>(resume_json);
+  const resume_json = cloneDeep(RESUME_JSON); // 简历数据
+  const importJson = ref<IRESUMEJSON>(resume_json); // 导入的JSON数据
+  const resumeJsonNewStore = ref<IRESUMEJSON>(resume_json);
   function changeResumeJsonData(obj: IRESUMEJSON) {
     resumeJsonNewStore.value = cloneDeep(obj);
   }

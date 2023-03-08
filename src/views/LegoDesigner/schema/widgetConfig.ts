@@ -1,7 +1,12 @@
-export const WIDGET_CONFIG_LIST = [
+import { IWidgetTab } from '../types';
+
+export const WIDGET_CONFIG_LIST: Array<IWidgetTab> = [
   {
     title: '头像',
-    dataSource: {}, // 该分类下公用数据源
+    category: 'avatar',
+    dataSource: {
+      src: '' // 默认头像地址
+    }, // 该分类下公用数据源
     list: [
       {
         id: '', // 组件唯一性id

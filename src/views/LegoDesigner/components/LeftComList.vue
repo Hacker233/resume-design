@@ -4,28 +4,16 @@
       <el-collapse>
         <el-collapse-item :title="item.title" :name="item.title">
           <div
-            style="width: 100px; height: 100px; background-color: aquamarine"
+            v-for="(itemCom, itemIndex) in item.list"
+            :key="itemIndex"
             draggable="true"
-          ></div>
-          <draggable
-            class="dragArea list-group"
-            :list="item.list"
-            item-key="id"
-            ghost-class="ghost"
-            chosen-class="chosenClass"
-            animation="300"
-            @start="onStart"
-            @end="onEnd"
+            class="widget-item"
+            :style="{ width: itemCom.screenShot.width, height: itemCom.screenShot.height }"
+            @dragstart="dragStart($event, item, itemCom)"
+            @dragend="dragEnd($event)"
           >
-            <template #item="{ element }">
-              <div
-                class="widget-item"
-                :style="{ width: element.screenShot.width, height: element.screenShot.height }"
-                >123
-                <el-image :src="element.screenShot.src" lazy />
-              </div>
-            </template>
-          </draggable>
+            <el-image :src="itemCom.screenShot.src" lazy />
+          </div>
         </el-collapse-item>
       </el-collapse>
     </div>
@@ -33,16 +21,20 @@
 </template>
 <script lang="ts" setup>
   import { WIDGET_CONFIG_LIST } from '../schema/widgetConfig';
-  import draggable from 'vuedraggable';
+  import { IWidget, IWidgetTab } from '../types';
 
   //拖拽开始的事件
-  const onStart = (data: any) => {
-    console.log('开始拖拽', data);
+  const dragStart = (event: any, item: IWidgetTab, itemCom: IWidget) => {
+    console.log('拖拽开始', itemCom);
+    const commonData = JSON.stringify(item.dataSource); // 该组件分类下公用数据源
+    const itemData = JSON.stringify(itemCom);
+    event.dataTransfer.setData('widgetItem', commonData, itemData);
   };
 
-  //拖拽结束的事件
-  const onEnd = () => {
-    console.log('结束拖拽');
+  // 拖拽结束事件
+  const dragEnd = (event: any) => {
+    console.log('拖拽结束');
+    event.dataTransfer.clearData();
   };
 </script>
 <style lang="scss" scoped>
