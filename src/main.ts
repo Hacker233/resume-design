@@ -38,11 +38,6 @@ import { userAgent } from '@/utils/userAgent';
 
 import '@/style/article/github-markdown-light.css'; // 文章样式
 
-// 拖拽有对齐线
-import Vue3DraggableResizable from 'vue3-draggable-resizable';
-//需引入默认样式
-import 'vue3-draggable-resizable/dist/Vue3DraggableResizable.css';
-
 userAgent();
 
 // 创建vue实例
@@ -65,6 +60,5 @@ app.use(VueViewer, {
 });
 app.component('SvgIcon', SvgIcon);
 app.use(UndrawUi);
-app.use(Vue3DraggableResizable);
 // 挂载实例
 app.mount('#app');

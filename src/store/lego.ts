@@ -4,7 +4,7 @@ import { cloneDeep } from 'lodash';
 import { defineStore } from 'pinia';
 
 // 积木搭建的页面schema JSON store
-export const useLegoJsonStore = defineStore('resumeJsonNew', () => {
+export const useLegoJsonStore = defineStore('legoJsonStore', () => {
   const HJ_JSON = cloneDeep(HJSchema); // 页面数据数据
   const importJson = ref<IHJSchema>(HJ_JSON); // 导入的JSON数据
   const HJSchemaJson = ref<IHJSchema>(HJ_JSON);

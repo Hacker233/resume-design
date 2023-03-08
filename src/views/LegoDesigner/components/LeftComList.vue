@@ -12,7 +12,7 @@
             @dragstart="dragStart($event, item, itemCom)"
             @dragend="dragEnd($event)"
           >
-            <el-image :src="itemCom.screenShot.src" lazy />
+            <img :src="getAssetsFile(itemCom.screenShot.src)" lazy />
           </div>
         </el-collapse-item>
       </el-collapse>
@@ -20,15 +20,17 @@
   </div>
 </template>
 <script lang="ts" setup>
+  import { cloneDeep } from 'lodash';
   import { WIDGET_CONFIG_LIST } from '../schema/widgetConfig';
   import { IWidget, IWidgetTab } from '../types';
+  import { getAssetsFile } from '../utils/common';
 
   //拖拽开始的事件
   const dragStart = (event: any, item: IWidgetTab, itemCom: IWidget) => {
     console.log('拖拽开始', itemCom);
-    const commonData = JSON.stringify(item.dataSource); // 该组件分类下公用数据源
-    const itemData = JSON.stringify(itemCom);
-    event.dataTransfer.setData('widgetItem', commonData, itemData);
+    const widgetItem = cloneDeep(itemCom);
+    widgetItem.dataSource = Object.assign(item.dataSource, itemCom.dataSource);
+    event.dataTransfer.setData('widgetItem', JSON.stringify(widgetItem));
   };
 
   // 拖拽结束事件
@@ -55,9 +57,12 @@
           border-radius: 2px;
           cursor: move;
           transition: all 0.3s;
-          background-color: green;
           &:hover {
             box-shadow: rgba(0, 0, 0, 0.25) 0px 1px 4px;
+          }
+          img {
+            width: 100%;
+            height: 100%;
           }
         }
       }

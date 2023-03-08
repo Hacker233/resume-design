@@ -38,8 +38,8 @@ interface IWidget {
   category: string; // 组件分类
   props: any; // 组件属性
   css: {
-    width: string;
-    height: string;
+    width: Number;
+    height: Number;
     fontSize: string;
     fontFamily: string;
     fontWeight: string;
@@ -53,12 +53,15 @@ interface IWidget {
     paddingRight: string;
     paddingBottom: string;
     paddingLeft: string;
+    borderRadius: string;
+    borderWidth: string;
+    borderColor: String;
+    boderStyle: String;
+    zIndex: Number;
   }; // 组件样式
   location: {
-    x: string;
-    y: string;
-    w: string;
-    h: string;
+    x: Number;
+    y: Number;
   }; // 组件位置信息
   dataSource: any; // 组件单独数据
 }
