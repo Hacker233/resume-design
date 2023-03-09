@@ -35,7 +35,6 @@
 
   // 拖拽结束事件
   const dragEnd = (event: any) => {
-    console.log('拖拽结束');
     event.dataTransfer.clearData();
   };
 </script>

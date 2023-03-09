@@ -44,6 +44,10 @@ const VdrProps = {
     type: Number,
     default: 0
   },
+  zIndex: {
+    type: Number,
+    default: 0
+  },
   draggable: {
     type: Boolean,
     default: true
@@ -180,12 +184,13 @@ const VueDraggableResizable = defineComponent({
     };
   },
   computed: {
-    style(): { [propName: string]: string } {
+    style(): { [propName: string]: string | number } {
       return {
-        width: this.width + 'px',
-        height: this.height + 'px',
+        width: this.width + 2 + 'px',
+        height: this.height + 2 + 'px',
         top: this.top + 'px',
-        left: this.left + 'px'
+        left: this.left + 'px',
+        'z-index': this.zIndex
       };
     },
     klass(): { [propName: string]: string | boolean } {

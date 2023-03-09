@@ -20,8 +20,12 @@
                 v-model:y="item.location.y"
                 v-model:w="item.css.width"
                 v-model:h="item.css.height"
+                :active="widgetActive(item.id)"
                 :init-w="item.css.width"
                 :init-h="item.css.height"
+                :z-index="item.css.zIndex"
+                @deactivated="handleDeactivated"
+                @activated="activatedHandle(item)"
               >
                 <component :is="getWidgetCom(item)" :widget-data="item"></component>
               </Vue3DraggableResizable>
@@ -45,19 +49,40 @@
   import { IWidget } from './types';
   import { WIDGET_MAP } from './widgets';
   import { storeToRefs } from 'pinia';
+  import { getUuid } from '@/utils/common';
 
   // 初始页面JSON
   const { HJSchemaJson } = storeToRefs(appStore.useLegoJsonStore);
   const { pushComponent } = appStore.useLegoJsonStore;
 
+  // 组件是否选中
+  const widgetActive = (id: string) => {
+    return id === widgetId.value;
+  };
+
+  // 组件放下
+  const widgetId = ref<string>(''); // 选中的组件id
   const drop = (event: any) => {
     const widgetItem: IWidget = JSON.parse(event.dataTransfer.getData('widgetItem'));
     event.preventDefault();
     // 将拖动元素旋转到目标区域中
     widgetItem.location.x = event.offsetX;
     widgetItem.location.y = event.offsetY;
+    widgetItem.id = getUuid();
+    widgetId.value = widgetItem.id;
     pushComponent(widgetItem);
+    activatedHandle(widgetItem); // 组件从非活跃状态变为活跃状态
     console.log('目标区放下', event, event.offsetX, event.offsetY);
+  };
+
+  // 组件从活跃状态变为非活跃状态
+  const handleDeactivated = () => {
+    widgetId.value = '';
+  };
+
+  // 组件从非活跃状态变为活跃状态
+  const activatedHandle = (widgetItem: IWidget) => {
+    console.log('widgetItem', widgetItem);
   };
 
   // 返回渲染组件
@@ -77,8 +102,8 @@
         box-sizing: border-box;
         height: calc(100vh - 60px);
         .designer {
+          display: grid;
           position: relative;
-          height: 1160px;
           margin: 30px auto;
           width: v-bind('HJSchemaJson.css.width');
           min-height: v-bind('HJSchemaJson.css.height');
