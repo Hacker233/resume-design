@@ -37,28 +37,7 @@ interface IWidget {
   keywords: string; // 组件关键词，用于搜索
   category: string; // 组件分类
   props: any; // 组件属性
-  css: {
-    width: Number;
-    height: Number;
-    fontSize: string;
-    fontFamily: string;
-    fontWeight: string;
-    color: string;
-    backgroundColor: string;
-    marginTop: string;
-    marginRight: string;
-    marginBottom: string;
-    marginLeft: string;
-    paddingTop: string;
-    paddingRight: string;
-    paddingBottom: string;
-    paddingLeft: string;
-    borderRadius: string;
-    borderWidth: string;
-    borderColor: String;
-    boderStyle: String;
-    zIndex: Number;
-  }; // 组件样式
+  css: any; // 组件样式
   location: {
     x: Number;
     y: Number;

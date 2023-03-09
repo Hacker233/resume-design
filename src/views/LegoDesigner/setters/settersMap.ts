@@ -1,6 +1,9 @@
+import { ISetterMap } from '../types/widgetMap';
+import widthEditor from './widthEditor.vue';
+
 // 属性设置组件对应关系
-export const SETTERS_MAP = {
-  width: 'widthEditor',
+export const SETTERS_MAP: ISetterMap = {
+  width: widthEditor,
   height: 'heightEditor',
   fontSize: 'fontSizeEditor',
   fontFamily: 'fontFimalyEditor',

@@ -11,7 +11,7 @@
       <div class="designer-box">
         <c-scrollbar trigger="hover">
           <!-- 画布区域 -->
-          <div class="designer">
+          <div ref="designerRef" class="designer">
             <DraggableContainer @drop="drop" @dragover.prevent>
               <Vue3DraggableResizable
                 v-for="(item, index) in HJSchemaJson.componentsTree"
@@ -20,12 +20,12 @@
                 v-model:y="item.location.y"
                 v-model:w="item.css.width"
                 v-model:h="item.css.height"
-                :active="widgetActive(item.id)"
+                v-model:active="widgetActive[index].isActive"
                 :init-w="item.css.width"
                 :init-h="item.css.height"
                 :z-index="item.css.zIndex"
-                @deactivated="handleDeactivated"
-                @activated="activatedHandle(item)"
+                @deactivated="handleDeactivated(index)"
+                @activated="activatedHandle(item, index)"
               >
                 <component :is="getWidgetCom(item)" :widget-data="item"></component>
               </Vue3DraggableResizable>
@@ -34,7 +34,7 @@
         </c-scrollbar>
       </div>
       <!-- 设置器面板区域 -->
-      <right-setter></right-setter>
+      <right-setter :widget-id="widgetId"></right-setter>
     </div>
   </div>
 </template>
@@ -51,14 +51,22 @@
   import { storeToRefs } from 'pinia';
   import { getUuid } from '@/utils/common';
 
+  const rightSetterRef = ref<any>(null);
+  onMounted(() => {
+    console.log('rightSetterRef', rightSetterRef);
+    window.addEventListener('mousedown', handleKeepActive);
+  });
+  onBeforeUnmount(() => {
+    window.removeEventListener('mousedown', handleKeepActive);
+  });
+
   // 初始页面JSON
   const { HJSchemaJson } = storeToRefs(appStore.useLegoJsonStore);
   const { pushComponent } = appStore.useLegoJsonStore;
 
-  // 组件是否选中
-  const widgetActive = (id: string) => {
-    return id === widgetId.value;
-  };
+  // 组件是否选中列表
+  const widgetActive = ref<any>([]);
+  const widgetActiveIndex = ref<any>('');
 
   // 组件放下
   const widgetId = ref<string>(''); // 选中的组件id
@@ -70,24 +78,57 @@
     widgetItem.location.y = event.offsetY;
     widgetItem.id = getUuid();
     widgetId.value = widgetItem.id;
-    pushComponent(widgetItem);
-    activatedHandle(widgetItem); // 组件从非活跃状态变为活跃状态
+    widgetActiveIndex.value = pushComponent(widgetItem);
+    // 组件选中状态
+    widgetActive.value.push({
+      id: widgetItem.id,
+      isActive: true
+    });
+    activatedHandle(widgetItem, widgetActiveIndex.value); // 组件从非活跃状态变为活跃状态
     console.log('目标区放下', event, event.offsetX, event.offsetY);
   };
 
   // 组件从活跃状态变为非活跃状态
-  const handleDeactivated = () => {
-    widgetId.value = '';
+  const handleDeactivated = (index: number) => {
+    // 切换选中状态
+    widgetActive.value[index].isActive = false;
   };
 
   // 组件从非活跃状态变为活跃状态
-  const activatedHandle = (widgetItem: IWidget) => {
-    console.log('widgetItem', widgetItem);
+  const activatedHandle = (widgetItem: IWidget, index: number) => {
+    widgetId.value = widgetItem.id;
+    widgetActiveIndex.value = index;
+    // 切换选中状态
+    widgetActive.value[index].isActive = true;
+    console.log('组件选中', widgetItem);
   };
 
   // 返回渲染组件
   const getWidgetCom = (item: IWidget) => {
     return WIDGET_MAP[item.componentName];
+  };
+
+  // 处理监听，在画布外需要保持选中状态
+  const designerRef = ref<any>(null);
+  const handleKeepActive = (e: any) => {
+    const target = e.target || e.srcElement;
+    if (designerRef.value.contains(target)) {
+      // 插叙是否选中组件
+      const index = widgetActive.value.findIndex(
+        (item: { isActive: boolean }) => item.isActive === true
+      );
+      if (index === -1) {
+        widgetActiveIndex.value = '';
+        widgetId.value = '';
+      } else {
+        widgetActiveIndex.value = index;
+      }
+    } else {
+      // 点击画布外，如果选中的索引不为空，则持续选中
+      if (widgetActiveIndex.value !== '') {
+        widgetActive.value[widgetActiveIndex.value].isActive = true;
+      }
+    }
   };
 </script>
 <style lang="scss" scoped>

@@ -15,7 +15,7 @@ export const useLegoJsonStore = defineStore('legoJsonStore', () => {
     importJson.value = cloneDeep(obj);
   }
   function pushComponent(data: any) {
-    HJSchemaJson.value.componentsTree.push(data);
+    return HJSchemaJson.value.componentsTree.push(data) - 1; // 返回插入后的索引
   }
   function resetHJSchemaJsonData() {
     HJSchemaJson.value = cloneDeep(HJ_JSON);
