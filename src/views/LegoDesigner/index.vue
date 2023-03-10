@@ -245,6 +245,7 @@
           left: 0;
           z-index: 9;
           margin-bottom: 30px;
+          z-index: 10000;
         }
         .designer {
           display: grid;
