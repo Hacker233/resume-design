@@ -13,29 +13,34 @@
           <!-- 画布相关设置 -->
           <div class="designer-setting-box"></div>
           <!-- 画布区域 -->
-          <div
-            v-for="(pages, pageIndex) in HJSchemaJson.componentsTree"
-            :key="pageIndex"
-            :ref="(el) => setDesignerRef(el, pageIndex)"
-            class="designer"
-          >
-            <DraggableContainer @drop="drop($event, pageIndex)" @dragover.prevent>
-              <Vue3DraggableResizable
-                v-for="(item, index) in pages.children"
-                :key="index"
-                v-model:x="item.location.x"
-                v-model:y="item.location.y"
-                v-model:w="item.css.width"
-                v-model:h="item.css.height"
-                v-model:active="widgetActive[pageIndex][index].isActive"
-                :init-w="item.css.width"
-                :init-h="item.css.height"
-                :z-index="item.css.zIndex"
-                @deactivated="handleDeactivated(index, pageIndex)"
-                @activated="activatedHandle(item, index, pageIndex)"
+          <div ref="designerRef" class="designer">
+            <DraggableContainer>
+              <div
+                v-for="(pages, pageIndex) in HJSchemaJson.componentsTree"
+                :key="pageIndex"
+                class="pages"
+                @drop="drop($event, pageIndex)"
+                @dragover.prevent
               >
-                <component :is="getWidgetCom(item)" :widget-data="item"></component>
-              </Vue3DraggableResizable>
+                <!-- 分割块 -->
+                <div class="split-block" :style="{ top: pageIndex * 1210 + 'px' }"></div>
+                <Vue3DraggableResizable
+                  v-for="(item, index) in pages.children"
+                  :key="index"
+                  v-model:x="item.location.x"
+                  v-model:y="item.location.y"
+                  v-model:w="item.css.width"
+                  v-model:h="item.css.height"
+                  v-model:active="widgetActive[pageIndex][index].isActive"
+                  :init-w="item.css.width"
+                  :init-h="item.css.height"
+                  :z-index="item.css.zIndex"
+                  @deactivated="handleDeactivated(index, pageIndex)"
+                  @activated="activatedHandle(item, index, pageIndex)"
+                >
+                  <component :is="getWidgetCom(item)" :widget-data="item"></component>
+                </Vue3DraggableResizable>
+              </div>
             </DraggableContainer>
           </div>
           <!-- 添加一页 -->
@@ -99,12 +104,18 @@
   const addWidget = (widgetItem: IWidget, pageIndex: number, x = 0, y = 0) => {
     // 将拖动元素旋转到目标区域中
     widgetItem.location.x = x;
-    widgetItem.location.y = y;
+    widgetItem.location.y = 1160 * pageIndex + y;
     widgetItem.id = getUuid();
     widgetId.value = widgetItem.id;
     // 取消原来选中的组件
     if (widgetActiveIndex.value !== '') {
-      widgetActive.value[pageIndex][widgetActiveIndex.value].isActive = false;
+      for (const key in widgetActive.value) {
+        widgetActive.value[key].forEach((item: { isActive: any }, index: string | number) => {
+          if (item.isActive) {
+            widgetActive.value[key][index].isActive = false;
+          }
+        });
+      }
     }
     pageActiveIndex.value = pageIndex;
     widgetActiveIndex.value = pushComponent(widgetItem, pageIndex); // 当前选中组件的索引
@@ -123,7 +134,6 @@
         }
       ];
     }
-
     activatedHandle(widgetItem, widgetActiveIndex.value, pageActiveIndex.value); // 组件从非活跃状态变为活跃状态
   };
 
@@ -156,21 +166,14 @@
     HJSchemaJson.value.componentsTree.push(copyDate);
   };
 
-  // 处理监听，在画布外需要保持选中状态
-  let designerRefs = ref<Array<any>>([]);
-  const setDesignerRef = (el: any, pageIndex: number) => {
-    if (el) {
-      designerRefs.value[pageIndex] = el;
-    }
-  };
-
+  const designerRef = ref<any>(null);
   const handleKeepActive = (e: any) => {
     const target = e.target || e.srcElement;
     if (pageActiveIndex.value < 0) {
       return;
     }
     // 点击画布内
-    if (designerRefs.value[pageActiveIndex.value].contains(target)) {
+    if (designerRef.value.contains(target)) {
       // 插叙是否选中组件
       const index = widgetActive.value[pageActiveIndex.value].findIndex(
         (item: { isActive: boolean }) => item.isActive === true
@@ -252,6 +255,20 @@
           width: v-bind('HJSchemaJson.css.width');
           min-height: v-bind('HJSchemaJson.css.height');
           background: v-bind('HJSchemaJson.css.background');
+          .pages {
+            height: 1160px;
+            margin-top: 50px;
+            box-shadow: 0 2px 8px rgba(14, 19, 24, 0.07);
+            .split-block {
+              width: 100%;
+              height: 50px;
+              position: absolute;
+              top: -50px;
+              left: 0;
+              background-color: #2ddd9d;
+              z-index: 9999;
+            }
+          }
         }
         .add-page-box {
           height: 60px;
