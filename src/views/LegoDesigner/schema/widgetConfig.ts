@@ -24,14 +24,20 @@ export const WIDGET_CONFIG_LIST: Array<IWidgetTab> = [
         category: 'avatar', // 组件分类
         props: {}, // 组件属性
         css: {
+          zIndex: 0,
           width: 120,
           height: 150,
           backgroundColor: '#eee',
-          borderRadius: '10px',
-          borderWidth: '3px',
+          padding: {
+            top: 0,
+            right: 0,
+            bottom: 0,
+            left: 0
+          },
+          borderWidth: 3,
+          borderRadius: 10,
           borderColor: '#eee',
-          boderStyle: 'solid',
-          zIndex: 0
+          borderStyle: 'solid'
         }, // 组件样式
         location: {
           x: 0,

@@ -11,8 +11,9 @@
             :style="{ width: itemCom.screenShot.width, height: itemCom.screenShot.height }"
             @dragstart="dragStart($event, item, itemCom)"
             @dragend="dragEnd($event)"
+            @click="addWidgetToCenter(item, itemCom)"
           >
-            <img :src="getAssetsFile(itemCom.screenShot.src)" lazy />
+            <img :src="getAssetsFile(itemCom.screenShot.src)" />
           </div>
         </el-collapse-item>
       </el-collapse>
@@ -25,12 +26,21 @@
   import { IWidget, IWidgetTab } from '../types';
   import { getAssetsFile } from '../utils/common';
 
+  const emit = defineEmits(['addWidget']);
+
   //拖拽开始的事件
   const dragStart = (event: any, item: IWidgetTab, itemCom: IWidget) => {
     console.log('拖拽开始', itemCom);
     const widgetItem = cloneDeep(itemCom);
     widgetItem.dataSource = Object.assign(item.dataSource, itemCom.dataSource);
     event.dataTransfer.setData('widgetItem', JSON.stringify(widgetItem));
+  };
+
+  // 点击组件
+  const addWidgetToCenter = (item: IWidgetTab, itemCom: IWidget) => {
+    const widgetItem = cloneDeep(itemCom);
+    widgetItem.dataSource = Object.assign(item.dataSource, itemCom.dataSource);
+    emit('addWidget', widgetItem);
   };
 
   // 拖拽结束事件

@@ -29,17 +29,21 @@
   .avatar-1-box {
     width: v-bind('props.widgetData?.css.width + "px"');
     height: v-bind('props.widgetData?.css.height + "px"');
-    border-style: v-bind('props.widgetData?.css.boderStyle');
-    border-width: v-bind('props.widgetData?.css.borderWidth');
+    border-style: v-bind('props.widgetData?.css.borderStyle');
+    border-width: v-bind('props.widgetData?.css.borderWidth + "px"');
+    padding: v-bind('props.widgetData?.css.padding.top  + "px"')
+      v-bind('props.widgetData?.css.padding.right + "px"')
+      v-bind('props.widgetData?.css.padding.bottom + "px"')
+      v-bind('props.widgetData?.css.padding.left + "px"');
     border-color: v-bind('props.widgetData?.css.borderColor');
     overflow: hidden;
     background-color: v-bind('props.widgetData?.css.backgroundColor');
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: v-bind('props.widgetData?.css.borderRadius');
+    border-radius: v-bind('props.widgetData?.css.borderRadius + "px"');
     .el-image {
-      border-radius: v-bind('props.widgetData?.css.borderRadius');
+      border-radius: v-bind('props.widgetData?.css.borderRadius + "px"');
     }
   }
 </style>
