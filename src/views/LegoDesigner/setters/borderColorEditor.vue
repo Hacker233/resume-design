@@ -11,8 +11,9 @@
 
   const props = defineProps<{
     id: string;
+    pageIndex: number;
   }>();
 
   // 选中的widgetItem
-  const { widgetItem } = useSelectWidgetItem(props.id);
+  const { widgetItem } = useSelectWidgetItem(props.id, props.pageIndex);
 </script>

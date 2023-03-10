@@ -1,7 +1,7 @@
 <template>
   <div class="border-style-editor-box">
     <el-form-item label="边框样式:">
-      <el-popover placement="top" :width="300" trigger="hover">
+      <el-popover placement="top" :width="300" trigger="click">
         <!-- 边框样式选项 -->
         <div class="border-editor-style-list">
           <div
@@ -24,10 +24,11 @@
 
   const props = defineProps<{
     id: string;
+    pageIndex: number;
   }>();
 
   // 选中的widgetItem
-  const { widgetItem } = useSelectWidgetItem(props.id);
+  const { widgetItem } = useSelectWidgetItem(props.id, props.pageIndex);
 
   // 边框样式映射表
   const borderStyleList = ['dashed', 'dotted', 'double', 'groove', 'inset', 'outset', 'solid'];
@@ -54,13 +55,10 @@
     }
     .border-style {
       width: 120px;
-      height: 0;
+      height: 30px;
       border-width: 5px;
       border-color: v-bind('widgetItem.css.borderColor');
       border-style: v-bind('widgetItem.css.borderStyle');
-      border-left: none;
-      border-right: none;
-      border-bottom: none;
       cursor: pointer;
       transition: all 0.3s;
     }
@@ -71,12 +69,12 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    height: 70px;
+    height: 140px;
     align-content: space-evenly;
     .border {
       cursor: pointer;
       width: 30%;
-      height: 0;
+      height: 30px;
       border-width: 3px;
       border-left: none;
       border-right: none;

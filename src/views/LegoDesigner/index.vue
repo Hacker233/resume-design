@@ -10,31 +10,42 @@
       <!-- 设计面板容器区域 -->
       <div class="designer-box">
         <c-scrollbar trigger="hover">
+          <!-- 画布相关设置 -->
+          <div class="designer-setting-box"></div>
           <!-- 画布区域 -->
-          <div ref="designerRef" class="designer">
-            <DraggableContainer @drop="drop" @dragover.prevent>
+          <div
+            v-for="(pages, pageIndex) in HJSchemaJson.componentsTree"
+            :key="pageIndex"
+            :ref="(el) => setDesignerRef(el, pageIndex)"
+            class="designer"
+          >
+            <DraggableContainer @drop="drop($event, pageIndex)" @dragover.prevent>
               <Vue3DraggableResizable
-                v-for="(item, index) in HJSchemaJson.componentsTree"
+                v-for="(item, index) in pages.children"
                 :key="index"
                 v-model:x="item.location.x"
                 v-model:y="item.location.y"
                 v-model:w="item.css.width"
                 v-model:h="item.css.height"
-                v-model:active="widgetActive[index].isActive"
+                v-model:active="widgetActive[pageIndex][index].isActive"
                 :init-w="item.css.width"
                 :init-h="item.css.height"
                 :z-index="item.css.zIndex"
-                @deactivated="handleDeactivated(index)"
-                @activated="activatedHandle(item, index)"
+                @deactivated="handleDeactivated(index, pageIndex)"
+                @activated="activatedHandle(item, index, pageIndex)"
               >
                 <component :is="getWidgetCom(item)" :widget-data="item"></component>
               </Vue3DraggableResizable>
             </DraggableContainer>
           </div>
+          <!-- 添加一页 -->
+          <div class="add-page-box">
+            <div class="add-page-btn" @click="addOnePage">添加一页</div>
+          </div>
         </c-scrollbar>
       </div>
       <!-- 设置器面板区域 -->
-      <right-setter :widget-id="widgetId"></right-setter>
+      <right-setter :page-index="pageActiveIndex" :widget-id="widgetId"></right-setter>
     </div>
   </div>
 </template>
@@ -50,37 +61,42 @@
   import { WIDGET_MAP } from './widgets';
   import { storeToRefs } from 'pinia';
   import { getUuid } from '@/utils/common';
+  import { cloneDeep } from 'lodash';
 
   onMounted(async () => {
-    window.addEventListener('mousedown', handleKeepActive);
+    window.addEventListener('mousedown', handleKeepActive); // 监听页面鼠标点击事件
+    document.addEventListener('keydown', handleKeyDown); // 监听页面键盘点击事件
   });
   onBeforeUnmount(() => {
     window.removeEventListener('mousedown', handleKeepActive);
+    document.removeEventListener('keydown', handleKeyDown);
   });
 
   // 初始页面JSON
   const { HJSchemaJson } = storeToRefs(appStore.useLegoJsonStore);
   const { pushComponent } = appStore.useLegoJsonStore;
+  console.log('页面初始化JSON', HJSchemaJson);
 
   // 当前页面每个组件对应的选中关系
-  const widgetActive = ref<any>([]);
+  const widgetActive = ref<any>({});
   const widgetActiveIndex = ref<any>(''); // 选中的组件的索引
+  const pageActiveIndex = ref<any>(-1); // 当前选中组件对应的页码
 
   // 组件放下
   const widgetId = ref<string>(''); // 选中的组件id
-  const drop = (event: any) => {
+  const drop = (event: any, pageIndex: number) => {
     const widgetItem: IWidget = JSON.parse(event.dataTransfer.getData('widgetItem'));
     event.preventDefault();
-    addWidget(widgetItem, event.offsetX, event.offsetY);
+    addWidget(widgetItem, pageIndex, event.offsetX, event.offsetY);
   };
 
   // 点击左侧添加组件
   const addWidgetToCenter = (widgetItem: IWidget) => {
-    addWidget(widgetItem);
+    addWidget(widgetItem, 0);
   };
 
   // 中间区域新增组件
-  const addWidget = (widgetItem: IWidget, x = 0, y = 0) => {
+  const addWidget = (widgetItem: IWidget, pageIndex: number, x = 0, y = 0) => {
     // 将拖动元素旋转到目标区域中
     widgetItem.location.x = x;
     widgetItem.location.y = y;
@@ -88,29 +104,44 @@
     widgetId.value = widgetItem.id;
     // 取消原来选中的组件
     if (widgetActiveIndex.value !== '') {
-      widgetActive.value[widgetActiveIndex.value].isActive = false;
+      widgetActive.value[pageIndex][widgetActiveIndex.value].isActive = false;
     }
-    widgetActiveIndex.value = pushComponent(widgetItem);
-    // 组件选中状态
-    widgetActive.value.push({
-      id: widgetItem.id,
-      isActive: true
-    });
-    activatedHandle(widgetItem, widgetActiveIndex.value); // 组件从非活跃状态变为活跃状态
+    pageActiveIndex.value = pageIndex;
+    widgetActiveIndex.value = pushComponent(widgetItem, pageIndex); // 当前选中组件的索引
+
+    // 存储组件选中状态
+    if (widgetActive.value[pageIndex]) {
+      widgetActive.value[pageIndex].push({
+        id: widgetItem.id,
+        isActive: true
+      });
+    } else {
+      widgetActive.value[pageIndex] = [
+        {
+          id: widgetItem.id,
+          isActive: true
+        }
+      ];
+    }
+
+    activatedHandle(widgetItem, widgetActiveIndex.value, pageActiveIndex.value); // 组件从非活跃状态变为活跃状态
   };
 
   // 组件从活跃状态变为非活跃状态
-  const handleDeactivated = (index: number) => {
+  const handleDeactivated = (index: number, pageIndex: number) => {
+    // console.log('组件切换为未选中状态：', pageIndex, index);
     // 切换选中状态
-    widgetActive.value[index].isActive = false;
+    widgetActive.value[pageIndex][index].isActive = false;
   };
 
   // 组件从非活跃状态变为活跃状态
-  const activatedHandle = (widgetItem: IWidget, index: number) => {
+  const activatedHandle = (widgetItem: IWidget, index: number, pageIndex: number) => {
+    // console.log('组件切换为选中状态：', pageIndex, index);
     widgetId.value = widgetItem.id;
     widgetActiveIndex.value = index;
+    pageActiveIndex.value = pageIndex; // 当前选中组件所属页面索引
     // 切换选中状态
-    widgetActive.value[index].isActive = true;
+    widgetActive.value[pageIndex][index].isActive = true;
   };
 
   // 返回渲染组件
@@ -118,13 +149,30 @@
     return WIDGET_MAP[item.componentName];
   };
 
+  // 点击添加一页
+  const addOnePage = () => {
+    const copyDate = cloneDeep(HJSchemaJson.value.componentsTree[0]);
+    copyDate.children = [];
+    HJSchemaJson.value.componentsTree.push(copyDate);
+  };
+
   // 处理监听，在画布外需要保持选中状态
-  const designerRef = ref<any>(null);
+  let designerRefs = ref<Array<any>>([]);
+  const setDesignerRef = (el: any, pageIndex: number) => {
+    if (el) {
+      designerRefs.value[pageIndex] = el;
+    }
+  };
+
   const handleKeepActive = (e: any) => {
     const target = e.target || e.srcElement;
-    if (designerRef.value.contains(target)) {
+    if (pageActiveIndex.value < 0) {
+      return;
+    }
+    // 点击画布内
+    if (designerRefs.value[pageActiveIndex.value].contains(target)) {
       // 插叙是否选中组件
-      const index = widgetActive.value.findIndex(
+      const index = widgetActive.value[pageActiveIndex.value].findIndex(
         (item: { isActive: boolean }) => item.isActive === true
       );
       if (index === -1) {
@@ -136,8 +184,40 @@
     } else {
       // 点击画布外，如果选中的索引不为空，则持续选中
       if (widgetActiveIndex.value !== '') {
-        widgetActive.value[widgetActiveIndex.value].isActive = true;
+        widgetActive.value[pageActiveIndex.value][widgetActiveIndex.value].isActive = true;
       }
+    }
+  };
+
+  // 处理页面的上下左右按键事件
+  const handleKeyDown = (event: any) => {
+    //键盘按键判断:左箭头-37;上箭头-38；右箭头-39;下箭头-40
+    if (event && event.keyCode === 37) {
+      handleWidgetMove('leftRight', -1);
+    } else if (event && event.keyCode === 39) {
+      handleWidgetMove('leftRight', 1);
+    } else if (event && event.keyCode === 40) {
+      handleWidgetMove('topBottom', 1);
+    } else if (event && event.keyCode === 38) {
+      handleWidgetMove('topBottom', -1);
+    }
+  };
+  // 组件移动
+  const handleWidgetMove = (direction: string, value: number) => {
+    // 判断是否选中组件
+    if (widgetActiveIndex.value !== '') {
+      if (direction === 'leftRight') {
+        HJSchemaJson.value.componentsTree[pageActiveIndex.value].children[
+          widgetActiveIndex.value
+        ].location.x += value;
+      } else {
+        HJSchemaJson.value.componentsTree[pageActiveIndex.value].children[
+          widgetActiveIndex.value
+        ].location.y += value;
+      }
+      return;
+    } else {
+      return;
     }
   };
 </script>
@@ -152,13 +232,60 @@
         flex: 1;
         box-sizing: border-box;
         height: calc(100vh - 60px);
+        .designer-setting-box {
+          width: 100%;
+          height: 50px;
+          background-color: #fff;
+          border-top: 1px solid #eee;
+          position: sticky;
+          top: 0;
+          left: 0;
+          z-index: 9;
+          margin-bottom: 30px;
+        }
         .designer {
           display: grid;
           position: relative;
-          margin: 30px auto;
+          margin: 0 auto;
+          overflow: hidden;
+          margin-bottom: 30px;
           width: v-bind('HJSchemaJson.css.width');
           min-height: v-bind('HJSchemaJson.css.height');
           background: v-bind('HJSchemaJson.css.background');
+        }
+        .add-page-box {
+          height: 60px;
+          display: flex;
+          justify-content: center;
+          .add-page-btn {
+            width: 100px;
+            height: 30px;
+            margin-right: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            letter-spacing: 2px;
+            color: #fff;
+            font-size: 14px;
+            background-image: -webkit-linear-gradient(to right, #2ddd9d, #1cc7cf);
+            background-image: -moz-linear-gradient(to right, #2ddd9d, #1cc7cf);
+            background-image: -ms-linear-gradient(to right, #2ddd9d, #1cc7cf);
+            background-image: linear-gradient(to right, #2ddd9d, #1cc7cf);
+            -webkit-border-radius: 50px;
+            -moz-border-radius: 50px;
+            border-radius: 50px;
+            background-color: #2ddd9d;
+            -webkit-transition: all 0.3s;
+            -moz-transition: all 0.3s;
+            -ms-transition: all 0.3s;
+            -o-transition: all 0.3s;
+            transition: all 0.3s;
+            cursor: pointer;
+            user-select: none;
+            &:hover {
+              opacity: 0.8;
+            }
+          }
         }
       }
     }

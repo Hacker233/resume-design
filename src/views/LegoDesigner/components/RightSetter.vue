@@ -5,10 +5,17 @@
         <el-tab-pane label="样式" name="style">
           <el-form label-width="80px" label-position="left">
             <div
-              v-for="(value, key, index) in HJSchemaJson.componentsTree[widgetIndex].css"
+              v-for="(value, key, index) in HJSchemaJson.componentsTree[pageIndex].children[
+                widgetIndex
+              ].css"
               :key="index"
             >
-              <component :is="getSetterCom(key)" :id="widgetId" :value="value"></component>
+              <component
+                :is="getSetterCom(key)"
+                :id="widgetId"
+                :page-index="pageIndex"
+                :value="value"
+              ></component>
             </div>
           </el-form>
         </el-tab-pane>
@@ -29,9 +36,11 @@
 
   interface ISetter {
     widgetId: string;
+    pageIndex: number;
   }
   const props = withDefaults(defineProps<ISetter>(), {
-    widgetId: ''
+    widgetId: '',
+    pageIndex: 0
   });
 
   // HJSchemaJSON数据
@@ -43,8 +52,8 @@
     () => props.widgetId,
     (newVal) => {
       if (newVal) {
-        widgetIndex.value = HJSchemaJson.value.componentsTree.findIndex(
-          (item) => props.widgetId === item.id
+        widgetIndex.value = HJSchemaJson.value.componentsTree[props.pageIndex].children.findIndex(
+          (item: { id: string }) => props.widgetId === item.id
         );
       }
     }
