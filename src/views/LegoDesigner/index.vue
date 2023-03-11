@@ -18,12 +18,20 @@
               <div
                 v-for="(pages, pageIndex) in HJSchemaJson.componentsTree"
                 :key="pageIndex"
+                :ref="(el) => setPagesRef(el, pageIndex)"
                 class="pages"
                 @drop="drop($event, pageIndex)"
                 @dragover.prevent
               >
                 <!-- 分割块 -->
-                <div class="split-block" :style="{ top: pageIndex * 1210 + 'px' }"></div>
+                <div class="split-block" :style="{ top: pageIndex * 1210 + 'px' }">
+                  <!-- 左侧 -->
+                  <div class="split-left">
+                    <h3>第{{ pageIndex + 1 }}页</h3>
+                  </div>
+                  <!-- 右侧 -->
+                  <div class="split-right"></div>
+                </div>
                 <Vue3DraggableResizable
                   v-for="(item, index) in pages.children"
                   :key="index"
@@ -160,10 +168,22 @@
   };
 
   // 点击添加一页
-  const addOnePage = () => {
+  const addOnePage = async () => {
     const copyDate = cloneDeep(HJSchemaJson.value.componentsTree[0]);
     copyDate.children = [];
     HJSchemaJson.value.componentsTree.push(copyDate);
+
+    // 滚动到可视区
+    await nextTick();
+    pagesRefs[HJSchemaJson.value.componentsTree.length - 1].scrollIntoView({ behavior: 'smooth' });
+  };
+
+  // 添加一页后，滚动到可视区
+  let pagesRefs: { [key: number]: any } = {};
+  const setPagesRef = (el: any, pageIndex: number) => {
+    if (el) {
+      pagesRefs[pageIndex] = el;
+    }
   };
 
   const designerRef = ref<any>(null);
@@ -200,8 +220,10 @@
     } else if (event && event.keyCode === 39) {
       handleWidgetMove('leftRight', 1);
     } else if (event && event.keyCode === 40) {
+      event.preventDefault();
       handleWidgetMove('topBottom', 1);
     } else if (event && event.keyCode === 38) {
+      event.preventDefault();
       handleWidgetMove('topBottom', -1);
     }
   };
@@ -260,14 +282,26 @@
             height: 1160px;
             margin-top: 50px;
             box-shadow: 0 2px 8px rgba(14, 19, 24, 0.07);
+            border-radius: 2px;
             .split-block {
               width: 100%;
               height: 50px;
               position: absolute;
               top: -50px;
               left: 0;
-              background-color: #2ddd9d;
+              background-color: #f3f3f3;
               z-index: 9999;
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+              .split-left {
+                h3 {
+                  font-size: 14px;
+                  font-weight: 600;
+                  letter-spacing: 2px;
+                  color: #0d1216;
+                }
+              }
             }
           }
         }
