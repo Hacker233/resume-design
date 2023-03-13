@@ -10,3 +10,4 @@ declare module 'jspdf';
 declare module 'colorpicker-v3';
 declare module 'vue3-pdfjs/esm';
 declare module 'vue3-print-nb';
+declare module 'v-contextmenu';

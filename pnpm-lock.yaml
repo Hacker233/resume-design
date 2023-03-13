@@ -51,6 +51,7 @@ specifiers:
   unplugin-auto-import: ^0.9.5
   unplugin-vue-components: ^0.21.2
   unplugin-vue-define-options: ^0.9.2
+  v-contextmenu: ^3.0.0
   v-viewer: ^3.0.11
   viewerjs: ^1.11.1
   vite: ^3.0.4
@@ -95,6 +96,7 @@ dependencies:
   pinia: 2.0.14_ytvqwwdyss532bvoq2clv4ed5m
   qrcode.vue: 3.3.3_vue@3.2.33
   qs: 6.11.0
+  v-contextmenu: 3.0.0_vue@3.2.33
   v-viewer: registry.npmmirror.com/v-viewer/3.0.11_vue@3.2.33
   viewerjs: registry.npmmirror.com/viewerjs/1.11.1
   vue: 3.2.33
@@ -6066,6 +6068,15 @@ packages:
   /uuid/8.3.2:
     resolution: {integrity: sha512-+NYs2QeMWy+GWFOEm9xnn6HCDp0l7QBD7ml8zLUmJ+93Q5NF0NocErnwkTkXVFNiX3/fpC6afS8Dhb/gz7R7eg==}
     hasBin: true
+    dev: false
+
+  /v-contextmenu/3.0.0_vue@3.2.33:
+    resolution: {integrity: sha512-zi38JxmTt66TmljgV1JbfEa9WvoQkpzRuEwZK7Tjb2XoRejbWLozQtkyTWXJa6x6Y3FrVDfgT36w01gpTpo41A==}
+    engines: {node: '>=10.16.0'}
+    peerDependencies:
+      vue: ^3.0.0
+    dependencies:
+      vue: 3.2.33
     dev: false
 
   /v8-compile-cache-lib/3.0.1:

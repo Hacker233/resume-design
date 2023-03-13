@@ -32,22 +32,27 @@
                   <!-- 右侧 -->
                   <div class="split-right"></div>
                 </div>
-                <Vue3DraggableResizable
+                <div
                   v-for="(item, index) in pages.children"
                   :key="index"
-                  v-model:x="item.location.x"
-                  v-model:y="item.location.y"
-                  v-model:w="item.css.width"
-                  v-model:h="item.css.height"
-                  v-model:active="widgetActive[pageIndex][index].isActive"
-                  :init-w="item.css.width"
-                  :init-h="item.css.height"
-                  :z-index="item.css.zIndex"
-                  @deactivated="handleDeactivated(index, pageIndex)"
-                  @activated="activatedHandle(item, index, pageIndex)"
+                  v-contextmenu:contextmenu
+                  @contextmenu.prevent="handleContextMenu(pageIndex, index)"
                 >
-                  <component :is="getWidgetCom(item)" :widget-data="item"></component>
-                </Vue3DraggableResizable>
+                  <Vue3DraggableResizable
+                    v-model:x="item.location.x"
+                    v-model:y="item.location.y"
+                    v-model:w="item.css.width"
+                    v-model:h="item.css.height"
+                    v-model:active="widgetActive[pageIndex][index].isActive"
+                    :init-w="item.css.width"
+                    :init-h="item.css.height"
+                    :z-index="item.css.zIndex"
+                    @deactivated="handleDeactivated(index, pageIndex)"
+                    @activated="activatedHandle(item, index, pageIndex)"
+                  >
+                    <component :is="getWidgetCom(item)" :widget-data="item"></component>
+                  </Vue3DraggableResizable>
+                </div>
               </div>
             </DraggableContainer>
           </div>
@@ -60,6 +65,16 @@
       <!-- 设置器面板区域 -->
       <right-setter :page-index="pageActiveIndex" :widget-id="widgetId"></right-setter>
     </div>
+
+    <!-- 右键菜单 -->
+    <v-contextmenu ref="contextmenu">
+      <v-contextmenu-item @click="handleContextMenuItem(1)">向上一层</v-contextmenu-item>
+      <v-contextmenu-item @click="handleContextMenuItem(2)">向下一层</v-contextmenu-item>
+      <v-contextmenu-item @click="handleContextMenuItem(3)">置于顶层</v-contextmenu-item>
+      <v-contextmenu-item @click="handleContextMenuItem(4)">置于底层</v-contextmenu-item>
+      <v-contextmenu-item @click="handleContextMenuItem(5)">复制组件</v-contextmenu-item>
+      <v-contextmenu-item @click="handleContextMenuItem(6)">删除组件</v-contextmenu-item>
+    </v-contextmenu>
   </div>
 </template>
 <script lang="ts" setup>
@@ -109,7 +124,7 @@
   };
 
   // 中间区域新增组件
-  const addWidget = (widgetItem: IWidget, pageIndex: number, x = 0, y = 0) => {
+  const addWidget = (widgetItem: IWidget, pageIndex: number, x = 0, y = 50) => {
     // 将拖动元素旋转到目标区域中
     widgetItem.location.x = x;
     widgetItem.location.y = 1160 * pageIndex + y;
@@ -186,6 +201,7 @@
     }
   };
 
+  // 点击画布外不取消组件选择状态
   const designerRef = ref<any>(null);
   const handleKeepActive = (e: any) => {
     const target = e.target || e.srcElement;
@@ -243,6 +259,77 @@
       return;
     } else {
       return;
+    }
+  };
+
+  // 右键菜单选中的组件页面以及索引
+  const contextPageIndex = ref<any>(-1);
+  const contextComIndex = ref<any>(-1);
+  const handleContextMenu = (pageIndex: number, index: number) => {
+    contextPageIndex.value = pageIndex;
+    contextComIndex.value = index;
+  };
+
+  // 右键菜单点击事件
+  const handleContextMenuItem = (value: number) => {
+    if (value === 1) {
+      // 向上一层
+      HJSchemaJson.value.componentsTree[contextPageIndex.value].children[contextComIndex.value].css
+        .zIndex++;
+    } else if (value === 2) {
+      // 向下一层
+      HJSchemaJson.value.componentsTree[contextPageIndex.value].children[contextComIndex.value].css
+        .zIndex--;
+    } else if (value === 3) {
+      // 置于顶层
+      let indexMaxList: Array<number> = [];
+      HJSchemaJson.value.componentsTree.forEach((item) => {
+        let temp = item.children[0].css.zIndex; // 以第一个为标准
+        item.children.forEach((cItem: { css: { zIndex: number } }) => {
+          if (cItem.css.zIndex > temp) {
+            temp = cItem.css.zIndex;
+          }
+        });
+        indexMaxList.push(temp);
+      });
+      HJSchemaJson.value.componentsTree[contextPageIndex.value].children[
+        contextComIndex.value
+      ].css.zIndex = indexMaxList.sort()[indexMaxList.length - 1] + 1;
+    } else if (value === 4) {
+      // 置于底层
+      HJSchemaJson.value.componentsTree[contextPageIndex.value].children[
+        contextComIndex.value
+      ].css.zIndex = 0;
+    } else if (value === 5) {
+      // 复制当前组件
+      const currentWidget = cloneDeep(
+        HJSchemaJson.value.componentsTree[contextPageIndex.value].children[contextComIndex.value]
+      );
+
+      currentWidget.location.x =
+        HJSchemaJson.value.componentsTree[contextPageIndex.value].children[contextComIndex.value]
+          .location.x + 30;
+      currentWidget.location.y =
+        HJSchemaJson.value.componentsTree[contextPageIndex.value].children[contextComIndex.value]
+          .location.y + 30;
+      addWidget(
+        currentWidget,
+        contextPageIndex.value,
+        currentWidget.location.x,
+        currentWidget.location.y
+      );
+    } else if (value === 6) {
+      // 取消选中
+      widgetId.value = '';
+      pageActiveIndex.value = -1;
+      widgetActiveIndex.value = ''; // 选中的组件的索引
+      // 删除组件
+      HJSchemaJson.value.componentsTree[contextPageIndex.value].children.splice(
+        contextComIndex.value,
+        1
+      );
+      // 删除选中状态索引数组中的元素
+      widgetActive.value[contextPageIndex.value].splice(contextComIndex.value, 1);
     }
   };
 </script>
@@ -339,6 +426,34 @@
             }
           }
         }
+      }
+    }
+  }
+</style>
+<style lang="scss">
+  .v-contextmenu {
+    z-index: 10001;
+    border: none;
+    .v-contextmenu-inner {
+      padding: 0;
+      width: 100px;
+      border-radius: 5px;
+      overflow: hidden;
+      border: none;
+      .v-contextmenu-item {
+        padding: 0;
+        height: 100%;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 10px 5px;
+        border: none;
+      }
+      .v-contextmenu-item--hover {
+        color: #fff;
+        background-image: linear-gradient(to right, #2ddd9d, #1cc7cf);
+        transition: all 0.1s;
       }
     }
   }

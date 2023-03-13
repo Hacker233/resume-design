@@ -5,7 +5,7 @@
       style="width: 115px; height: 115px"
       :src="widgetData.dataSource.src"
     />
-    <el-image v-else style="width: 100%; height: 100%" :src="defaultImg" fit="cover" />
+    <img v-else :src="defaultImg" style="width: 100%; height: 100%" alt="touxiang" srcset="" />
   </div>
 </template>
 <script lang="ts" setup>
