@@ -8,6 +8,7 @@ import borderStyleEditor from './borderStyleEditor.vue';
 import borderRadiusEditor from './borderRadiusEditor.vue';
 import backgroundColorEditor from './backgroundColorEditor.vue';
 import paddingEditor from './paddingEditor.vue';
+import rotateEditor from './rotateEditor.vue';
 
 // 属性设置组件对应关系
 export const SETTERS_MAP: ISetterMap = {
@@ -18,6 +19,7 @@ export const SETTERS_MAP: ISetterMap = {
   fontFamily: 'fontFimalyEditor',
   fontWeight: 'fontWeightEditor',
   color: 'colorEditor',
+  rotate: rotateEditor,
   backgroundColor: backgroundColorEditor,
   padding: paddingEditor,
   borderRadius: borderRadiusEditor,

@@ -5,7 +5,7 @@
         <el-tab-pane label="样式" name="style">
           <el-form label-width="80px" label-position="left">
             <div
-              v-for="(value, key, index) in HJSchemaJson.componentsTree[pageIndex].children[
+              v-for="(value, key, index) in HJSchemaJsonStore.componentsTree[pageIndex].children[
                 widgetIndex
               ].css"
               :key="index"
@@ -44,7 +44,7 @@
   });
 
   // HJSchemaJSON数据
-  const { HJSchemaJson } = storeToRefs(appStore.useLegoJsonStore);
+  const { HJSchemaJsonStore } = storeToRefs(appStore.useLegoJsonStore);
 
   // 返回选中组件的索引
   const widgetIndex = ref(0);
@@ -52,9 +52,9 @@
     () => props.widgetId,
     (newVal) => {
       if (newVal) {
-        widgetIndex.value = HJSchemaJson.value.componentsTree[props.pageIndex].children.findIndex(
-          (item: { id: string }) => props.widgetId === item.id
-        );
+        widgetIndex.value = HJSchemaJsonStore.value.componentsTree[
+          props.pageIndex
+        ].children.findIndex((item: { id: string }) => props.widgetId === item.id);
       }
     }
   );

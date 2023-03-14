@@ -7,8 +7,8 @@
   import appStore from '@/store';
 
   const jsonView = () => {
-    const { HJSchemaJson } = appStore.useLegoJsonStore;
-    console.log('HJSchemaJson', HJSchemaJson);
+    const { HJSchemaJsonStore } = appStore.useLegoJsonStore;
+    console.log('HJSchemaJsonStore', HJSchemaJsonStore);
   };
 </script>
 <style lang="scss" scoped>

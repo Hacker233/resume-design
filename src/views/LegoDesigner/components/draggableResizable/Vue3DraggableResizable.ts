@@ -48,6 +48,10 @@ const VdrProps = {
     type: Number,
     default: 0
   },
+  rotate: {
+    type: Number,
+    default: 0
+  },
   draggable: {
     type: Boolean,
     default: true
@@ -190,7 +194,8 @@ const VueDraggableResizable = defineComponent({
         height: this.height + 2 + 'px',
         top: this.top + 'px',
         left: this.left + 'px',
-        'z-index': this.zIndex
+        'z-index': this.zIndex,
+        transform: `rotate(${this.rotate}deg)`
       };
     },
     klass(): { [propName: string]: string | boolean } {

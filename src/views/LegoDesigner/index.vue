@@ -13,28 +13,21 @@
           <!-- 画布相关设置 -->
           <div class="designer-setting-box"></div>
           <!-- 画布区域 -->
-          <div ref="designerRef" class="designer">
+          <div :key="refreshUuid" ref="designerRef" class="designer">
             <DraggableContainer>
               <div
-                v-for="(pages, pageIndex) in HJSchemaJson.componentsTree"
-                :key="pageIndex"
+                v-for="(pages, pageIndex) in HJSchemaJsonStore.componentsTree"
+                :key="pages.id"
                 :ref="(el) => setPagesRef(el, pageIndex)"
                 class="pages"
                 @drop="drop($event, pageIndex)"
                 @dragover.prevent
               >
                 <!-- 分割块 -->
-                <div class="split-block" :style="{ top: pageIndex * 1210 + 'px' }">
-                  <!-- 左侧 -->
-                  <div class="split-left">
-                    <h3>第{{ pageIndex + 1 }}页</h3>
-                  </div>
-                  <!-- 右侧 -->
-                  <div class="split-right"></div>
-                </div>
+                <split-block :page-index="pageIndex"></split-block>
                 <div
                   v-for="(item, index) in pages.children"
-                  :key="index"
+                  :key="item.id"
                   v-contextmenu:contextmenu
                   @contextmenu.prevent="handleContextMenu(pageIndex, index)"
                 >
@@ -47,6 +40,7 @@
                     :init-w="item.css.width"
                     :init-h="item.css.height"
                     :z-index="item.css.zIndex"
+                    :rotate="item.css.rotate"
                     @deactivated="handleDeactivated(index, pageIndex)"
                     @activated="activatedHandle(item, index, pageIndex)"
                   >
@@ -81,6 +75,7 @@
   import LegoNav from './components/LegoNav.vue';
   import LeftComList from './components/LeftComList.vue';
   import RightSetter from './components/RightSetter.vue';
+  import SplitBlock from './components/SplitBlock/SplitBlock.vue';
   import Vue3DraggableResizable from './components/draggableResizable/Vue3DraggableResizable';
   import DraggableContainer from './components/draggableResizable/DraggableContainer';
 
@@ -90,6 +85,10 @@
   import { storeToRefs } from 'pinia';
   import { getUuid } from '@/utils/common';
   import { cloneDeep } from 'lodash';
+  import { HJSchema } from './schema/index';
+
+  // 设计区刷新id
+  const { refreshUuid } = storeToRefs(appStore.useUuidStore);
 
   onMounted(async () => {
     window.addEventListener('mousedown', handleKeepActive); // 监听页面鼠标点击事件
@@ -101,9 +100,9 @@
   });
 
   // 初始页面JSON
-  const { HJSchemaJson } = storeToRefs(appStore.useLegoJsonStore);
+  const { HJSchemaJsonStore } = storeToRefs(appStore.useLegoJsonStore);
   const { pushComponent } = appStore.useLegoJsonStore;
-  console.log('页面初始化JSON', HJSchemaJson);
+  console.log('页面初始化JSON', HJSchemaJsonStore);
 
   // 当前页面每个组件对应的选中关系
   const widgetActive = ref<any>({});
@@ -162,7 +161,6 @@
 
   // 组件从活跃状态变为非活跃状态
   const handleDeactivated = (index: number, pageIndex: number) => {
-    // console.log('组件切换为未选中状态：', pageIndex, index);
     // 切换选中状态
     widgetActive.value[pageIndex][index].isActive = false;
   };
@@ -184,13 +182,16 @@
 
   // 点击添加一页
   const addOnePage = async () => {
-    const copyDate = cloneDeep(HJSchemaJson.value.componentsTree[0]);
+    const copyDate = cloneDeep(HJSchema.componentsTree[0]);
+    copyDate.id = getUuid();
     copyDate.children = [];
-    HJSchemaJson.value.componentsTree.push(copyDate);
+    HJSchemaJsonStore.value.componentsTree.push(copyDate);
 
     // 滚动到可视区
     await nextTick();
-    pagesRefs[HJSchemaJson.value.componentsTree.length - 1].scrollIntoView({ behavior: 'smooth' });
+    pagesRefs[HJSchemaJsonStore.value.componentsTree.length - 1].scrollIntoView({
+      behavior: 'smooth'
+    });
   };
 
   // 添加一页后，滚动到可视区
@@ -248,11 +249,11 @@
     // 判断是否选中组件
     if (widgetActiveIndex.value !== '') {
       if (direction === 'leftRight') {
-        HJSchemaJson.value.componentsTree[pageActiveIndex.value].children[
+        HJSchemaJsonStore.value.componentsTree[pageActiveIndex.value].children[
           widgetActiveIndex.value
         ].location.x += value;
       } else {
-        HJSchemaJson.value.componentsTree[pageActiveIndex.value].children[
+        HJSchemaJsonStore.value.componentsTree[pageActiveIndex.value].children[
           widgetActiveIndex.value
         ].location.y += value;
       }
@@ -274,16 +275,16 @@
   const handleContextMenuItem = (value: number) => {
     if (value === 1) {
       // 向上一层
-      HJSchemaJson.value.componentsTree[contextPageIndex.value].children[contextComIndex.value].css
-        .zIndex++;
+      HJSchemaJsonStore.value.componentsTree[contextPageIndex.value].children[contextComIndex.value]
+        .css.zIndex++;
     } else if (value === 2) {
       // 向下一层
-      HJSchemaJson.value.componentsTree[contextPageIndex.value].children[contextComIndex.value].css
-        .zIndex--;
+      HJSchemaJsonStore.value.componentsTree[contextPageIndex.value].children[contextComIndex.value]
+        .css.zIndex--;
     } else if (value === 3) {
       // 置于顶层
       let indexMaxList: Array<number> = [];
-      HJSchemaJson.value.componentsTree.forEach((item) => {
+      HJSchemaJsonStore.value.componentsTree.forEach((item) => {
         let temp = item.children[0].css.zIndex; // 以第一个为标准
         item.children.forEach((cItem: { css: { zIndex: number } }) => {
           if (cItem.css.zIndex > temp) {
@@ -292,26 +293,30 @@
         });
         indexMaxList.push(temp);
       });
-      HJSchemaJson.value.componentsTree[contextPageIndex.value].children[
+      HJSchemaJsonStore.value.componentsTree[contextPageIndex.value].children[
         contextComIndex.value
       ].css.zIndex = indexMaxList.sort()[indexMaxList.length - 1] + 1;
     } else if (value === 4) {
       // 置于底层
-      HJSchemaJson.value.componentsTree[contextPageIndex.value].children[
+      HJSchemaJsonStore.value.componentsTree[contextPageIndex.value].children[
         contextComIndex.value
       ].css.zIndex = 0;
     } else if (value === 5) {
       // 复制当前组件
       const currentWidget = cloneDeep(
-        HJSchemaJson.value.componentsTree[contextPageIndex.value].children[contextComIndex.value]
+        HJSchemaJsonStore.value.componentsTree[contextPageIndex.value].children[
+          contextComIndex.value
+        ]
       );
 
       currentWidget.location.x =
-        HJSchemaJson.value.componentsTree[contextPageIndex.value].children[contextComIndex.value]
-          .location.x + 30;
+        HJSchemaJsonStore.value.componentsTree[contextPageIndex.value].children[
+          contextComIndex.value
+        ].location.x + 30;
       currentWidget.location.y =
-        HJSchemaJson.value.componentsTree[contextPageIndex.value].children[contextComIndex.value]
-          .location.y + 30;
+        HJSchemaJsonStore.value.componentsTree[contextPageIndex.value].children[
+          contextComIndex.value
+        ].location.y + 30;
       addWidget(
         currentWidget,
         contextPageIndex.value,
@@ -324,7 +329,7 @@
       pageActiveIndex.value = -1;
       widgetActiveIndex.value = ''; // 选中的组件的索引
       // 删除组件
-      HJSchemaJson.value.componentsTree[contextPageIndex.value].children.splice(
+      HJSchemaJsonStore.value.componentsTree[contextPageIndex.value].children.splice(
         contextComIndex.value,
         1
       );
@@ -362,34 +367,14 @@
           margin: 0 auto;
           overflow: hidden;
           margin-bottom: 30px;
-          width: v-bind('HJSchemaJson.css.width');
-          min-height: v-bind('HJSchemaJson.css.height');
-          background: v-bind('HJSchemaJson.css.background');
+          width: v-bind('HJSchemaJsonStore.css.width');
+          min-height: v-bind('HJSchemaJsonStore.css.height');
+          background: v-bind('HJSchemaJsonStore.css.background');
           .pages {
             height: 1160px;
             margin-top: 50px;
             box-shadow: 0 2px 8px rgba(14, 19, 24, 0.07);
             border-radius: 2px;
-            .split-block {
-              width: 100%;
-              height: 50px;
-              position: absolute;
-              top: -50px;
-              left: 0;
-              background-color: #f3f3f3;
-              z-index: 9999;
-              display: flex;
-              justify-content: space-between;
-              align-items: center;
-              .split-left {
-                h3 {
-                  font-size: 14px;
-                  font-weight: 600;
-                  letter-spacing: 2px;
-                  color: #0d1216;
-                }
-              }
-            }
           }
         }
         .add-page-box {
