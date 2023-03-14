@@ -48,6 +48,7 @@
           >
             <comm-editor v-model="content.content"></comm-editor>
             <el-button
+              :disabled="cIndex === 0"
               type="danger"
               :icon="SemiSelect"
               circle
