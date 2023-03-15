@@ -1,12 +1,17 @@
-// import appStore from '@/store';
-// import { storeToRefs } from 'pinia';
-
 // 获取assets静态资源
 export const getAssetsFile = (url: string) => {
   return new URL(`../screenShot/${url}`, import.meta.url).href;
 };
 
 // 重新计算每个组件的top值
-export const computeWidgetTop = () => {
-  // const { HJSchemaJsonStore } = storeToRefs(appStore.useLegoJsonStore);
+export const computeWidgetTop = (HJSchemaJsonStore: any) => {
+  for (let i = 0; i < HJSchemaJsonStore.value.componentsTree.length; i++) {
+    const oldPageIndex = i + 1;
+    for (let j = 0; j < HJSchemaJsonStore.value.componentsTree[i].children.length; j++) {
+      const oldTop = HJSchemaJsonStore.value.componentsTree[i].children[j].css.top; // 原来的top值
+      const currentPageTop = oldTop - (1160 * oldPageIndex + 50 * (oldPageIndex + 1)); // 原来在当前页面的top值
+      const newTop = 1160 * i + 50 * (i + 1) + currentPageTop; // 最新的top值
+      HJSchemaJsonStore.value.componentsTree[i].children[j].css.top = newTop;
+    }
+  }
 };

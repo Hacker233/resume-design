@@ -6,7 +6,11 @@
     </div>
     <!-- 右侧 -->
     <div class="split-right">
-      <div :class="['icon-box', { disabled: pageIndex === 0 }]" title="删除" @click="deletePage">
+      <div
+        :class="['icon-box', { disabled: HJSchemaJsonStore.componentsTree.length < 2 }]"
+        title="删除"
+        @click="deletePage"
+      >
         <svg-icon icon-name="icon-shanchu" color="green" size="17px"></svg-icon> </div
     ></div>
   </div>
@@ -16,6 +20,7 @@
   import { storeToRefs } from 'pinia';
   import { ElMessageBox } from 'element-plus';
   import 'element-plus/es/components/message-box/style/index';
+  import { computeWidgetTop } from '../../utils/common';
 
   const props = defineProps<{
     pageIndex: number;
@@ -25,7 +30,7 @@
 
   // 删除当前页
   const deletePage = () => {
-    if (HJSchemaJsonStore.value.componentsTree.length === 1) {
+    if (HJSchemaJsonStore.value.componentsTree.length < 2) {
       return;
     }
     if (HJSchemaJsonStore.value.componentsTree[props.pageIndex].children.length) {
@@ -36,10 +41,12 @@
       })
         .then(async () => {
           HJSchemaJsonStore.value.componentsTree.splice(props.pageIndex, 1);
+          computeWidgetTop(HJSchemaJsonStore); // 重新计算所有组件的top
         })
         .catch(() => {});
     } else {
       HJSchemaJsonStore.value.componentsTree.splice(props.pageIndex, 1);
+      computeWidgetTop(HJSchemaJsonStore); // 重新计算所有组件的top
     }
   };
 </script>

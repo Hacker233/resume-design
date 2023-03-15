@@ -43,6 +43,7 @@
                     :rotate="item.css.rotate"
                     @deactivated="handleDeactivated(item.id)"
                     @activated="activatedHandle(item, pageIndex)"
+                    @drag-end="dragEndHandle(item, index, pageIndex)"
                   >
                     <component :is="getWidgetCom(item)" :widget-data="item"></component>
                   </Vue3DraggableResizable>
@@ -57,7 +58,11 @@
         </c-scrollbar>
       </div>
       <!-- 设置器面板区域 -->
-      <right-setter :page-index="pageActiveIndex" :widget-id="widgetId"></right-setter>
+      <right-setter
+        :key="refreshUuid"
+        :page-index="pageActiveIndex"
+        :widget-id="widgetId"
+      ></right-setter>
     </div>
 
     <!-- 右键菜单 -->
@@ -89,6 +94,7 @@
 
   // 设计区刷新id
   const { refreshUuid } = storeToRefs(appStore.useUuidStore);
+  const { setUuid } = appStore.useUuidStore;
 
   onMounted(async () => {
     window.addEventListener('mousedown', handleKeepActive); // 监听页面鼠标点击事件
@@ -159,6 +165,54 @@
     widgetActive.value[widgetItem.id] = true;
   };
 
+  // 组件拖拽结束，处理组件拖入下一页的情况
+  const dragEndHandle = (widgetItem: IWidget, index: number, pageIndex: number) => {
+    let maxTop = 0;
+    let minTop = 0;
+    const pages = HJSchemaJsonStore.value.componentsTree.length;
+    // 只有一页，无需处理
+    if (pages === 1) {
+      return;
+    }
+    // 第一页，处理移出下边界
+    if (pageIndex === 0) {
+      maxTop = 1160 + 50;
+      // 移入下一页
+      if (widgetItem.css.top > maxTop && pages > 1) {
+        HJSchemaJsonStore.value.componentsTree[pageIndex].children.splice(index, 1);
+        HJSchemaJsonStore.value.componentsTree[pageIndex + 1].children.push(widgetItem);
+        pageActiveIndex.value = pageIndex + 1;
+        setUuid();
+      }
+    } else if (pageIndex === HJSchemaJsonStore.value.componentsTree.length - 1) {
+      // 第二页，处理移出上边界
+      minTop = 1160 * pageIndex + 50 * pageIndex;
+      if (widgetItem.css.top < minTop) {
+        HJSchemaJsonStore.value.componentsTree[pageIndex].children.splice(index, 1);
+        HJSchemaJsonStore.value.componentsTree[pageIndex - 1].children.push(widgetItem);
+        pageActiveIndex.value = pageIndex - 1;
+        setUuid();
+      }
+    } else {
+      maxTop = 1160 * (pageIndex + 1) + 50 * (pageIndex + 1);
+      minTop = 1160 * pageIndex + 50 * pageIndex;
+      if (widgetItem.css.top > maxTop) {
+        HJSchemaJsonStore.value.componentsTree[pageIndex].children.splice(index, 1);
+        HJSchemaJsonStore.value.componentsTree[pageIndex + 1].children.push(widgetItem);
+        pageActiveIndex.value = pageIndex + 1;
+        setUuid();
+      } else if (widgetItem.css.top < minTop) {
+        HJSchemaJsonStore.value.componentsTree[pageIndex].children.splice(index, 1);
+        HJSchemaJsonStore.value.componentsTree[pageIndex - 1].children.push(widgetItem);
+        pageActiveIndex.value = pageIndex - 1;
+        setUuid();
+      } else {
+        debugger;
+        pageActiveIndex.value = pageIndex;
+      }
+    }
+  };
+
   // 返回渲染组件
   const getWidgetCom = (item: IWidget) => {
     return WIDGET_MAP[item.componentName];
@@ -195,6 +249,16 @@
     }
     // 点击画布内
     if (designerRef.value.contains(target)) {
+      // 查询是否选中组件
+      let isHaveActive = false;
+      for (const key in widgetActive.value) {
+        if (widgetActive.value[key]) {
+          isHaveActive = true;
+        }
+      }
+      if (!isHaveActive) {
+        widgetId.value = '';
+      }
     } else {
       // 点击画布外，如果选中的索引不为空，则持续选中
       if (widgetId.value !== '') {
@@ -302,16 +366,17 @@
         currentWidget.css.top
       );
     } else if (value === 6) {
+      // 删除组件的选中状态
+      delete widgetActive.value[widgetId.value];
       // 取消选中
       widgetId.value = '';
       pageActiveIndex.value = -1;
+
       // 删除组件
       HJSchemaJsonStore.value.componentsTree[contextPageIndex.value].children.splice(
         contextComIndex.value,
         1
       );
-      // 删除选中状态索引数组中的元素
-      widgetActive.value[contextPageIndex.value].splice(contextComIndex.value, 1);
     }
   };
 </script>
