@@ -25,7 +25,6 @@
 </template>
 <script lang="ts" setup>
   import appStore from '@/store';
-  import { cloneDeep } from 'lodash';
   import { storeToRefs } from 'pinia';
 
   const props = defineProps<{
@@ -39,12 +38,8 @@
       return;
     }
     console.log('交换前', HJSchemaJsonStore.value.componentsTree, props.pageIndex);
-    const currentWidget = cloneDeep(HJSchemaJsonStore.value.componentsTree[props.pageIndex]);
-    const preWidget = cloneDeep(HJSchemaJsonStore.value.componentsTree[props.pageIndex - 1]);
     // 交换顺序
-    HJSchemaJsonStore.value.componentsTree[props.pageIndex] = currentWidget;
-    HJSchemaJsonStore.value.componentsTree[props.pageIndex - 1] = preWidget;
-    console.log('交换后', HJSchemaJsonStore.value.componentsTree, props.pageIndex);
+    swapArrayLocs(props.pageIndex, props.pageIndex - 1);
     setUuid();
   };
 
@@ -54,13 +49,39 @@
       return;
     }
     console.log('交换前', HJSchemaJsonStore.value.componentsTree, props.pageIndex);
-    const currentWidget = cloneDeep(HJSchemaJsonStore.value.componentsTree[props.pageIndex]);
-    const nextWidget = cloneDeep(HJSchemaJsonStore.value.componentsTree[props.pageIndex + 1]);
     // 交换顺序
-    HJSchemaJsonStore.value.componentsTree[props.pageIndex] = currentWidget;
-    HJSchemaJsonStore.value.componentsTree[props.pageIndex + 1] = nextWidget;
+    swapArrayLocs(props.pageIndex, props.pageIndex + 1);
     setUuid();
+  };
+
+  // 交换顺序
+  const swapArrayLocs = (index1: number, index2: number) => {
+    const temp = HJSchemaJsonStore.value.componentsTree[index1];
+    HJSchemaJsonStore.value.componentsTree[index1] = HJSchemaJsonStore.value.componentsTree[index2];
+    HJSchemaJsonStore.value.componentsTree[index2] = temp;
     console.log('交换后', HJSchemaJsonStore.value.componentsTree, props.pageIndex);
+    debugger;
+    if (index1 < index2) {
+      for (let i = 0; i < HJSchemaJsonStore.value.componentsTree[index1].children.length; i++) {
+        HJSchemaJsonStore.value.componentsTree[index1].children[i].location.y =
+          HJSchemaJsonStore.value.componentsTree[index1].children[i].location.y - 1160 - 50;
+      }
+
+      for (let i = 0; i < HJSchemaJsonStore.value.componentsTree[index2].children.length; i++) {
+        HJSchemaJsonStore.value.componentsTree[index2].children[i].location.y =
+          HJSchemaJsonStore.value.componentsTree[index2].children[i].location.y + 1160 + 50;
+      }
+    } else {
+      for (let i = 0; i < HJSchemaJsonStore.value.componentsTree[index1].children.length; i++) {
+        HJSchemaJsonStore.value.componentsTree[index1].children[i].location.y =
+          HJSchemaJsonStore.value.componentsTree[index1].children[i].location.y + 1160 + 50;
+      }
+
+      for (let i = 0; i < HJSchemaJsonStore.value.componentsTree[index2].children.length; i++) {
+        HJSchemaJsonStore.value.componentsTree[index2].children[i].location.y =
+          HJSchemaJsonStore.value.componentsTree[index2].children[i].location.y - 1160 - 50;
+      }
+    }
   };
 </script>
 <style lang="scss" scoped>
