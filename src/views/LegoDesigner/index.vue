@@ -36,13 +36,13 @@
                     v-model:y="item.css.top"
                     v-model:w="item.css.width"
                     v-model:h="item.css.height"
-                    v-model:active="widgetActive[pageIndex][index].isActive"
+                    v-model:active="widgetActive[item.id]"
                     :init-w="item.css.width"
                     :init-h="item.css.height"
                     :z-index="item.css.zIndex"
                     :rotate="item.css.rotate"
-                    @deactivated="handleDeactivated(index, pageIndex)"
-                    @activated="activatedHandle(item, index, pageIndex)"
+                    @deactivated="handleDeactivated(item.id)"
+                    @activated="activatedHandle(item, pageIndex)"
                   >
                     <component :is="getWidgetCom(item)" :widget-data="item"></component>
                   </Vue3DraggableResizable>
@@ -106,11 +106,10 @@
 
   // 当前页面每个组件对应的选中关系
   const widgetActive = ref<any>({});
-  const widgetActiveIndex = ref<any>(''); // 选中的组件的索引
   const pageActiveIndex = ref<any>(-1); // 当前选中组件对应的页码
+  const widgetId = ref<string>(''); // 选中的组件id
 
   // 组件放下
-  const widgetId = ref<string>(''); // 选中的组件id
   const drop = (event: any, pageIndex: number) => {
     const widgetItem: IWidget = JSON.parse(event.dataTransfer.getData('widgetItem'));
     event.preventDefault();
@@ -130,48 +129,34 @@
     widgetItem.id = getUuid();
     widgetId.value = widgetItem.id;
     // 取消原来选中的组件
-    if (widgetActiveIndex.value !== '') {
+    if (widgetId.value !== '') {
       for (const key in widgetActive.value) {
-        widgetActive.value[key].forEach((item: { isActive: any }, index: string | number) => {
-          if (item.isActive) {
-            widgetActive.value[key][index].isActive = false;
-          }
-        });
+        if (widgetActive.value[key]) {
+          widgetActive.value[key] = false;
+        }
       }
     }
     pageActiveIndex.value = pageIndex;
-    widgetActiveIndex.value = pushComponent(widgetItem, pageIndex); // 当前选中组件的索引
+    pushComponent(widgetItem, pageIndex); // 压入组件
 
     // 存储组件选中状态
-    if (widgetActive.value[pageIndex]) {
-      widgetActive.value[pageIndex].push({
-        id: widgetItem.id,
-        isActive: true
-      });
-    } else {
-      widgetActive.value[pageIndex] = [
-        {
-          id: widgetItem.id,
-          isActive: true
-        }
-      ];
-    }
-    activatedHandle(widgetItem, widgetActiveIndex.value, pageActiveIndex.value); // 组件从非活跃状态变为活跃状态
+    widgetActive.value[widgetItem.id] = true;
+
+    activatedHandle(widgetItem, pageActiveIndex.value); // 组件从非活跃状态变为活跃状态
   };
 
   // 组件从活跃状态变为非活跃状态
-  const handleDeactivated = (index: number, pageIndex: number) => {
+  const handleDeactivated = (id: string) => {
     // 切换选中状态
-    widgetActive.value[pageIndex][index].isActive = false;
+    widgetActive.value[id] = false;
   };
 
   // 组件从非活跃状态变为活跃状态
-  const activatedHandle = (widgetItem: IWidget, index: number, pageIndex: number) => {
+  const activatedHandle = (widgetItem: IWidget, pageIndex: number) => {
     widgetId.value = widgetItem.id;
-    widgetActiveIndex.value = index;
     pageActiveIndex.value = pageIndex; // 当前选中组件所属页面索引
     // 切换选中状态
-    widgetActive.value[pageIndex][index].isActive = true;
+    widgetActive.value[widgetItem.id] = true;
   };
 
   // 返回渲染组件
@@ -210,20 +195,10 @@
     }
     // 点击画布内
     if (designerRef.value.contains(target)) {
-      // 插叙是否选中组件
-      const index = widgetActive.value[pageActiveIndex.value].findIndex(
-        (item: { isActive: boolean }) => item.isActive === true
-      );
-      if (index === -1) {
-        widgetActiveIndex.value = '';
-        widgetId.value = '';
-      } else {
-        widgetActiveIndex.value = index;
-      }
     } else {
       // 点击画布外，如果选中的索引不为空，则持续选中
-      if (widgetActiveIndex.value !== '') {
-        widgetActive.value[pageActiveIndex.value][widgetActiveIndex.value].isActive = true;
+      if (widgetId.value !== '') {
+        widgetActive.value[widgetId.value] = true;
       }
     }
   };
@@ -246,14 +221,18 @@
   // 组件移动
   const handleWidgetMove = (direction: string, value: number) => {
     // 判断是否选中组件
-    if (widgetActiveIndex.value !== '') {
+    if (widgetId.value !== '') {
+      // 组件在children中的索引
+      const widgetIndex = HJSchemaJsonStore.value.componentsTree[
+        pageActiveIndex.value
+      ].children.findIndex((item: { id: string }) => item.id === widgetId.value);
       if (direction === 'leftRight') {
         HJSchemaJsonStore.value.componentsTree[pageActiveIndex.value].children[
-          widgetActiveIndex.value
+          widgetIndex
         ].css.left += value;
       } else {
         HJSchemaJsonStore.value.componentsTree[pageActiveIndex.value].children[
-          widgetActiveIndex.value
+          widgetIndex
         ].css.top += value;
       }
       return;
@@ -326,7 +305,6 @@
       // 取消选中
       widgetId.value = '';
       pageActiveIndex.value = -1;
-      widgetActiveIndex.value = ''; // 选中的组件的索引
       // 删除组件
       HJSchemaJsonStore.value.componentsTree[contextPageIndex.value].children.splice(
         contextComIndex.value,
@@ -358,7 +336,7 @@
           left: 0;
           z-index: 9;
           margin-bottom: 30px;
-          z-index: 10000;
+          z-index: 1001;
         }
         .designer {
           display: grid;

@@ -14,6 +14,8 @@
 <script lang="ts" setup>
   import appStore from '@/store';
   import { storeToRefs } from 'pinia';
+  import { ElMessageBox } from 'element-plus';
+  import 'element-plus/es/components/message-box/style/index';
 
   const props = defineProps<{
     pageIndex: number;
@@ -23,7 +25,22 @@
 
   // 删除当前页
   const deletePage = () => {
-    HJSchemaJsonStore.value.componentsTree.splice(props.pageIndex, 1);
+    if (HJSchemaJsonStore.value.componentsTree.length === 1) {
+      return;
+    }
+    if (HJSchemaJsonStore.value.componentsTree[props.pageIndex].children.length) {
+      ElMessageBox.confirm('该页面内的组件将一同删除，且无法恢复，确定继续？', '警告', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
+      })
+        .then(async () => {
+          HJSchemaJsonStore.value.componentsTree.splice(props.pageIndex, 1);
+        })
+        .catch(() => {});
+    } else {
+      HJSchemaJsonStore.value.componentsTree.splice(props.pageIndex, 1);
+    }
   };
 </script>
 <style lang="scss" scoped>
@@ -34,7 +51,7 @@
     top: -50px;
     left: 0;
     background-color: #f3f3f3;
-    z-index: 9999;
+    z-index: 1000;
     display: flex;
     justify-content: space-between;
     align-items: center;
