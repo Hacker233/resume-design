@@ -32,8 +32,8 @@
                   @contextmenu.prevent="handleContextMenu(pageIndex, index)"
                 >
                   <Vue3DraggableResizable
-                    v-model:x="item.location.x"
-                    v-model:y="item.location.y"
+                    v-model:x="item.css.left"
+                    v-model:y="item.css.top"
                     v-model:w="item.css.width"
                     v-model:h="item.css.height"
                     v-model:active="widgetActive[pageIndex][index].isActive"
@@ -125,8 +125,8 @@
   // 中间区域新增组件
   const addWidget = (widgetItem: IWidget, pageIndex: number, x = 0, y = 50) => {
     // 将拖动元素旋转到目标区域中
-    widgetItem.location.x = x;
-    widgetItem.location.y = 1160 * pageIndex + y;
+    widgetItem.css.left = x;
+    widgetItem.css.top = 1160 * pageIndex + y;
     widgetItem.id = getUuid();
     widgetId.value = widgetItem.id;
     // 取消原来选中的组件
@@ -167,7 +167,6 @@
 
   // 组件从非活跃状态变为活跃状态
   const activatedHandle = (widgetItem: IWidget, index: number, pageIndex: number) => {
-    // console.log('组件切换为选中状态：', pageIndex, index);
     widgetId.value = widgetItem.id;
     widgetActiveIndex.value = index;
     pageActiveIndex.value = pageIndex; // 当前选中组件所属页面索引
@@ -251,11 +250,11 @@
       if (direction === 'leftRight') {
         HJSchemaJsonStore.value.componentsTree[pageActiveIndex.value].children[
           widgetActiveIndex.value
-        ].location.x += value;
+        ].css.left += value;
       } else {
         HJSchemaJsonStore.value.componentsTree[pageActiveIndex.value].children[
           widgetActiveIndex.value
-        ].location.y += value;
+        ].css.top += value;
       }
       return;
     } else {
@@ -309,19 +308,19 @@
         ]
       );
 
-      currentWidget.location.x =
+      currentWidget.css.left =
         HJSchemaJsonStore.value.componentsTree[contextPageIndex.value].children[
           contextComIndex.value
-        ].location.x + 30;
-      currentWidget.location.y =
+        ].css.left + 30;
+      currentWidget.css.top =
         HJSchemaJsonStore.value.componentsTree[contextPageIndex.value].children[
           contextComIndex.value
-        ].location.y + 30;
+        ].css.top + 30;
       addWidget(
         currentWidget,
         contextPageIndex.value,
-        currentWidget.location.x,
-        currentWidget.location.y
+        currentWidget.css.left,
+        currentWidget.css.top
       );
     } else if (value === 6) {
       // 取消选中

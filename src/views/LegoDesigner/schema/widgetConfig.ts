@@ -24,6 +24,8 @@ export const WIDGET_CONFIG_LIST: Array<IWidgetTab> = [
         category: 'avatar', // 组件分类
         props: {}, // 组件属性
         css: {
+          left: 0,
+          top: 0,
           zIndex: 0,
           width: 120,
           height: 150,
@@ -40,10 +42,6 @@ export const WIDGET_CONFIG_LIST: Array<IWidgetTab> = [
           borderColor: '#eee',
           borderStyle: 'solid'
         }, // 组件样式
-        location: {
-          x: 0,
-          y: 0
-        }, // 组件位置信息
         dataSource: {} // 组件单独数据
       }
     ]

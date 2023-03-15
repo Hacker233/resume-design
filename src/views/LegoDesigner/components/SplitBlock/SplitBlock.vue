@@ -6,21 +6,9 @@
     </div>
     <!-- 右侧 -->
     <div class="split-right">
-      <div :class="['icon-box', { disabled: pageIndex === 0 }]" title="上移" @click="up">
-        <svg-icon icon-name="icon-shangyi" color="green" size="17px"></svg-icon>
-      </div>
-      <div
-        :class="[
-          'icon-box',
-          'icon-shangyi',
-          { disabled: pageIndex === HJSchemaJsonStore.componentsTree.length - 1 }
-        ]"
-        title="下移"
-        @click="down"
-      >
-        <svg-icon icon-name="icon-shangyi" color="green" size="17px"></svg-icon>
-      </div>
-    </div>
+      <div :class="['icon-box', { disabled: pageIndex === 0 }]" title="删除" @click="deletePage">
+        <svg-icon icon-name="icon-shanchu" color="green" size="17px"></svg-icon> </div
+    ></div>
   </div>
 </template>
 <script lang="ts" setup>
@@ -30,58 +18,12 @@
   const props = defineProps<{
     pageIndex: number;
   }>();
+
   const { HJSchemaJsonStore } = storeToRefs(appStore.useLegoJsonStore);
-  const { setUuid } = appStore.useUuidStore;
-  // 上移
-  const up = () => {
-    if (props.pageIndex === 0) {
-      return;
-    }
-    console.log('交换前', HJSchemaJsonStore.value.componentsTree, props.pageIndex);
-    // 交换顺序
-    swapArrayLocs(props.pageIndex, props.pageIndex - 1);
-    setUuid();
-  };
 
-  // 下移
-  const down = () => {
-    if (props.pageIndex === HJSchemaJsonStore.value.componentsTree.length - 1) {
-      return;
-    }
-    console.log('交换前', HJSchemaJsonStore.value.componentsTree, props.pageIndex);
-    // 交换顺序
-    swapArrayLocs(props.pageIndex, props.pageIndex + 1);
-    setUuid();
-  };
-
-  // 交换顺序
-  const swapArrayLocs = (index1: number, index2: number) => {
-    const temp = HJSchemaJsonStore.value.componentsTree[index1];
-    HJSchemaJsonStore.value.componentsTree[index1] = HJSchemaJsonStore.value.componentsTree[index2];
-    HJSchemaJsonStore.value.componentsTree[index2] = temp;
-    console.log('交换后', HJSchemaJsonStore.value.componentsTree, props.pageIndex);
-    debugger;
-    if (index1 < index2) {
-      for (let i = 0; i < HJSchemaJsonStore.value.componentsTree[index1].children.length; i++) {
-        HJSchemaJsonStore.value.componentsTree[index1].children[i].location.y =
-          HJSchemaJsonStore.value.componentsTree[index1].children[i].location.y - 1160 - 50;
-      }
-
-      for (let i = 0; i < HJSchemaJsonStore.value.componentsTree[index2].children.length; i++) {
-        HJSchemaJsonStore.value.componentsTree[index2].children[i].location.y =
-          HJSchemaJsonStore.value.componentsTree[index2].children[i].location.y + 1160 + 50;
-      }
-    } else {
-      for (let i = 0; i < HJSchemaJsonStore.value.componentsTree[index1].children.length; i++) {
-        HJSchemaJsonStore.value.componentsTree[index1].children[i].location.y =
-          HJSchemaJsonStore.value.componentsTree[index1].children[i].location.y + 1160 + 50;
-      }
-
-      for (let i = 0; i < HJSchemaJsonStore.value.componentsTree[index2].children.length; i++) {
-        HJSchemaJsonStore.value.componentsTree[index2].children[i].location.y =
-          HJSchemaJsonStore.value.componentsTree[index2].children[i].location.y - 1160 - 50;
-      }
-    }
+  // 删除当前页
+  const deletePage = () => {
+    HJSchemaJsonStore.value.componentsTree.splice(props.pageIndex, 1);
   };
 </script>
 <style lang="scss" scoped>

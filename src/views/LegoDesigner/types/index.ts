@@ -38,10 +38,6 @@ interface IWidget {
   category: string; // 组件分类
   props: any; // 组件属性
   css: any; // 组件样式
-  location: {
-    x: Number;
-    y: Number;
-  }; // 组件位置信息
   dataSource: any; // 组件单独数据
 }
 
