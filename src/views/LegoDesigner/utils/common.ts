@@ -6,7 +6,7 @@ export const getAssetsFile = (url: string) => {
 // 重新计算每个组件的top值
 export const computeWidgetTop = (HJSchemaJsonStore: any) => {
   for (let i = 0; i < HJSchemaJsonStore.value.componentsTree.length; i++) {
-    const oldPageIndex = i + 1;
+    const oldPageIndex = HJSchemaJsonStore.value.componentsTree[i].oldPageIndex; // 以前的页码
     for (let j = 0; j < HJSchemaJsonStore.value.componentsTree[i].children.length; j++) {
       const oldTop = HJSchemaJsonStore.value.componentsTree[i].children[j].css.top; // 原来的top值
       const currentPageTop = oldTop - (1160 * oldPageIndex + 50 * (oldPageIndex + 1)); // 原来在当前页面的top值

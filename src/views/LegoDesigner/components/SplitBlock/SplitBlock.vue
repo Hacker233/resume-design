@@ -33,6 +33,10 @@
     if (HJSchemaJsonStore.value.componentsTree.length < 2) {
       return;
     }
+    // 存储未删除之前的页面
+    for (let i = 0; i < HJSchemaJsonStore.value.componentsTree.length; i++) {
+      HJSchemaJsonStore.value.componentsTree[i].oldPageIndex = i;
+    }
     if (HJSchemaJsonStore.value.componentsTree[props.pageIndex].children.length) {
       ElMessageBox.confirm('该页面内的组件将一同删除，且无法恢复，确定继续？', '警告', {
         confirmButtonText: '确定',

@@ -8,6 +8,7 @@ export const HJSchema: IHJSchema = {
       id: getUuid(), // 组件唯一性id
       componentName: 'page', // 组件名
       commentType: 'page', // 组件类型
+      oldPageIndex: '', // 旧的索引
       children: []
     }
   ], // 描述组件/区块/模板的组件树

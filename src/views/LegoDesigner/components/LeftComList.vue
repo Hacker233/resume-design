@@ -1,51 +1,58 @@
 <template>
   <div class="left-com-list-box">
-    <div v-for="(item, index) in WIDGET_CONFIG_LIST" :key="index" class="com-list-box">
-      <el-collapse>
-        <el-collapse-item :title="item.title" :name="item.title">
-          <div
-            v-for="(itemCom, itemIndex) in item.list"
-            :key="itemIndex"
-            draggable="true"
-            class="widget-item"
-            :style="{ width: itemCom.screenShot.width, height: itemCom.screenShot.height }"
-            @dragstart="dragStart($event, item, itemCom)"
-            @dragend="dragEnd($event)"
-            @click="addWidgetToCenter(item, itemCom)"
-          >
-            <img :src="getAssetsFile(itemCom.screenShot.src)" />
-          </div>
-        </el-collapse-item>
-      </el-collapse>
+    <div class="left-tab-box">
+      <div
+        v-for="item in tabList"
+        :key="item.id"
+        :class="['icon-box', { 'icon-active': activeTab === item.id }]"
+        @click="selectTab(item.id)"
+      >
+        <el-tooltip
+          class="left-icon-box-item"
+          effect="light"
+          :content="item.title"
+          placement="right"
+        >
+          <svg-icon :icon-name="item.iconfont" color="#67c23a" size="20px"></svg-icon>
+        </el-tooltip>
+      </div>
+    </div>
+    <div class="right-content-box">
+      <!-- 组件列表 -->
+      <widget-list v-show="activeTab === 1" @add-widget="addWidget"></widget-list>
+      <!-- 图层管理 -->
+      <layer-manage v-show="activeTab === 2"></layer-manage>
     </div>
   </div>
 </template>
 <script lang="ts" setup>
-  import { cloneDeep } from 'lodash';
-  import { WIDGET_CONFIG_LIST } from '../schema/widgetConfig';
-  import { IWidget, IWidgetTab } from '../types';
-  import { getAssetsFile } from '../utils/common';
+  import { IWidget } from '../types';
+  import WidgetList from './WidgetList/WidgetList.vue';
+  import LayerManage from './LayerManage/LayerManage.vue';
+
+  // 默认选中tab
+  const activeTab = ref<number>(1);
+  const tabList = reactive<Array<any>>([
+    {
+      id: 1,
+      iconfont: 'icon-zujian1',
+      title: '组件'
+    },
+    {
+      id: 2,
+      iconfont: 'icon-023tuceng',
+      title: '图层'
+    }
+  ]);
+  // 点击tab
+  const selectTab = (id: number) => {
+    activeTab.value = id;
+  };
 
   const emit = defineEmits(['addWidget']);
-
-  //拖拽开始的事件
-  const dragStart = (event: any, item: IWidgetTab, itemCom: IWidget) => {
-    console.log('拖拽开始', itemCom);
-    const widgetItem = cloneDeep(itemCom);
-    widgetItem.dataSource = Object.assign(item.dataSource, itemCom.dataSource);
-    event.dataTransfer.setData('widgetItem', JSON.stringify(widgetItem));
-  };
-
-  // 点击组件
-  const addWidgetToCenter = (item: IWidgetTab, itemCom: IWidget) => {
-    const widgetItem = cloneDeep(itemCom);
-    widgetItem.dataSource = Object.assign(item.dataSource, itemCom.dataSource);
+  // 点击添加组件
+  const addWidget = (widgetItem: IWidget) => {
     emit('addWidget', widgetItem);
-  };
-
-  // 拖拽结束事件
-  const dragEnd = (event: any) => {
-    event.dataTransfer.clearData();
   };
 </script>
 <style lang="scss" scoped>
@@ -53,28 +60,36 @@
     background-color: #fff;
     height: calc(100vh - 60px);
     width: 300px;
-    .com-list-box {
-      :deep(.el-collapse) {
-        .el-collapse-item__header {
-          padding: 0 15px;
+    display: flex;
+    .left-tab-box {
+      width: 50px;
+      height: 100%;
+      border-right: 1px solid #eee;
+      .icon-box {
+        width: 100%;
+        height: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-bottom: 1px solid #eee;
+        cursor: pointer;
+        transition: all 0.3s;
+        user-select: none;
+        &:hover {
+          background-color: rgba(#67c23a, 0.1);
         }
-        .el-collapse-item__content {
-          padding: 15px;
-        }
-        .widget-item {
-          box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
-          border-radius: 2px;
-          cursor: move;
-          transition: all 0.3s;
-          &:hover {
-            box-shadow: rgba(0, 0, 0, 0.25) 0px 1px 4px;
-          }
-          img {
-            width: 100%;
-            height: 100%;
+        .svg-icon {
+          &:focus {
+            outline: 0;
           }
         }
       }
+      .icon-active {
+        background-color: rgba(#67c23a, 0.1);
+      }
+    }
+    .right-content-box {
+      flex: 1;
     }
   }
 </style>

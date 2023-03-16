@@ -28,8 +28,6 @@
 
   // 数值发生改变
   const handleCHange = (value: number) => {
-    console.log('number', value);
-
     widgetItem.css.top = value + 50 * (props.pageIndex + 1) + props.pageIndex * 1160;
   };
 </script>

@@ -280,6 +280,10 @@
     } else if (event && event.keyCode === 38) {
       event.preventDefault();
       handleWidgetMove('topBottom', -1);
+    } else if (event && event.keyCode === 46) {
+      // 删除键
+      event.preventDefault();
+      deleteWidget();
     }
   };
   // 组件移动
@@ -299,6 +303,28 @@
           widgetIndex
         ].css.top += value;
       }
+      return;
+    } else {
+      return;
+    }
+  };
+
+  // 删除组件
+  const deleteWidget = () => {
+    // 判断是否选中组件
+    if (widgetId.value !== '') {
+      // 组件在children中的索引
+      const widgetIndex = HJSchemaJsonStore.value.componentsTree[
+        pageActiveIndex.value
+      ].children.findIndex((item: { id: string }) => item.id === widgetId.value);
+      const pageIndex = pageActiveIndex.value;
+      // 删除组件的选中状态
+      delete widgetActive.value[widgetId.value];
+      // 取消选中
+      widgetId.value = '';
+      pageActiveIndex.value = -1;
+      // 删除组件
+      HJSchemaJsonStore.value.componentsTree[pageIndex].children.splice(widgetIndex, 1);
       return;
     } else {
       return;
@@ -395,7 +421,6 @@
           width: 100%;
           height: 50px;
           background-color: #fff;
-          border-top: 1px solid #eee;
           position: sticky;
           top: 0;
           left: 0;
