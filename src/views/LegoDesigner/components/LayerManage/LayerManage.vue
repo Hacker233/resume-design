@@ -13,7 +13,7 @@
               v-for="(itemCom, itemIndex) in item.children"
               :key="itemIndex"
               :class="['widget-item', { 'widget-active': selectedWidgetId === itemCom.id }]"
-              @click="selectWidget(itemCom)"
+              @click="selectWidget(index, itemCom)"
             >
               <span>{{ itemCom.keywords }}</span>
               <div class="icon-box" title="删除组件" @click.stop="deleteWidget(index, itemCom)">
@@ -54,7 +54,7 @@
   });
 
   // 点击选中组件
-  const selectWidget = (widgetItem: IWidget) => {
+  const selectWidget = (pageIndex: number, widgetItem: IWidget) => {
     selectedWidgetId.value = widgetItem.id;
     // 取消选中所有组件
     for (const key in widgetActiveObj.value) {
@@ -63,6 +63,7 @@
       }
     }
     widgetActiveObj.value[selectedWidgetId.value] = true;
+    pageActiveIndex.value = pageIndex;
   };
 
   // 删除组件

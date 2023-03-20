@@ -11,7 +11,10 @@
       <div class="designer-box">
         <c-scrollbar trigger="hover">
           <!-- 画布相关设置 -->
-          <div class="designer-setting-box"></div>
+          <designer-top-setting
+            @add-size="addSize"
+            @reduce-size="reduceSize"
+          ></designer-top-setting>
           <!-- 画布区域 -->
           <div :key="refreshUuid" ref="designerRef" class="designer">
             <DraggableContainer>
@@ -58,11 +61,7 @@
         </c-scrollbar>
       </div>
       <!-- 设置器面板区域 -->
-      <right-setter
-        :key="refreshUuid"
-        :widget-id="selectedWidgetId"
-        :page-index="pageActiveIndex"
-      ></right-setter>
+      <right-setter :key="refreshUuid"></right-setter>
     </div>
 
     <!-- 右键菜单 -->
@@ -83,6 +82,7 @@
   import SplitBlock from './components/SplitBlock/SplitBlock.vue';
   import Vue3DraggableResizable from './components/draggableResizable/Vue3DraggableResizable';
   import DraggableContainer from './components/draggableResizable/DraggableContainer';
+  import DesignerTopSetting from './components/DesignerTopSetting.vue/DesignerTopSetting.vue';
 
   import appStore from '@/store';
   import { IWidget } from './types';
@@ -406,6 +406,15 @@
       );
     }
   };
+
+  // 放大缩小center
+  const sizeCenter = ref<number>(1);
+  const addSize = (number: number) => {
+    sizeCenter.value = number;
+  };
+  const reduceSize = (number: number) => {
+    sizeCenter.value = number;
+  };
 </script>
 <style lang="scss" scoped>
   .lego-designer-box {
@@ -418,17 +427,7 @@
         flex: 1;
         box-sizing: border-box;
         height: calc(100vh - 60px);
-        .designer-setting-box {
-          width: 100%;
-          height: 50px;
-          background-color: #fff;
-          position: sticky;
-          top: 0;
-          left: 0;
-          z-index: 9;
-          margin-bottom: 30px;
-          z-index: 1001;
-        }
+
         .designer {
           display: grid;
           position: relative;
@@ -438,6 +437,7 @@
           width: v-bind('HJSchemaJsonStore.css.width');
           min-height: v-bind('HJSchemaJsonStore.css.height');
           background: v-bind('HJSchemaJsonStore.css.background');
+          zoom: v-bind('sizeCenter');
           .pages {
             height: 1160px;
             margin-top: 50px;

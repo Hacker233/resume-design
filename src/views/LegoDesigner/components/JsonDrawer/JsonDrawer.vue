@@ -9,7 +9,7 @@
     @open="handleOpen"
   >
     <codemirror
-      :model-value="code"
+      v-model="code"
       placeholder="请编写JSON"
       :style="{ height: '100%' }"
       :autofocus="true"
@@ -23,10 +23,10 @@
 </template>
 <script lang="ts" setup>
   import { Codemirror } from 'vue-codemirror';
-  import { json } from '@codemirror/lang-json';
   import { oneDark } from '@codemirror/theme-one-dark';
   import appStore from '@/store';
   import { storeToRefs } from 'pinia';
+  import { json } from '@codemirror/lang-json';
 
   const { HJSchemaJsonStore } = storeToRefs(appStore.useLegoJsonStore);
 
@@ -43,13 +43,14 @@
     emit('closeJsonDrawer');
   };
 
+  const code = ref(JSON.stringify(HJSchemaJsonStore.value, null, 4));
+
   // 打开弹窗
   const handleOpen = () => {
-    code.value = JSON.stringify(HJSchemaJsonStore.value, null, 2);
+    code.value = JSON.stringify(HJSchemaJsonStore.value, null, 4);
   };
 
   const extensions = [json(), oneDark];
-  const code = ref('');
 
   // Codemirror EditorView instance ref
   const handleReady = () => {
@@ -63,6 +64,7 @@
     }
     .cm-editor {
       height: 100%;
+      font-size: 16px;
     }
   }
 </style>

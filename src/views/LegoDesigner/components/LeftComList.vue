@@ -77,7 +77,7 @@
   .left-com-list-box {
     background-color: #fff;
     height: calc(100vh - 60px);
-    width: 300px;
+    width: 350px;
     display: flex;
     .left-tab-box {
       width: 50px;
