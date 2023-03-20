@@ -36,7 +36,7 @@
                     v-model:y="item.css.top"
                     v-model:w="item.css.width"
                     v-model:h="item.css.height"
-                    v-model:active="widgetActive[item.id]"
+                    v-model:active="widgetActiveObj[item.id]"
                     :init-w="item.css.width"
                     :init-h="item.css.height"
                     :z-index="item.css.zIndex"
@@ -60,8 +60,8 @@
       <!-- 设置器面板区域 -->
       <right-setter
         :key="refreshUuid"
+        :widget-id="selectedWidgetId"
         :page-index="pageActiveIndex"
-        :widget-id="widgetId"
       ></right-setter>
     </div>
 
@@ -111,9 +111,9 @@
   console.log('页面初始化JSON', HJSchemaJsonStore);
 
   // 当前页面每个组件对应的选中关系
-  const widgetActive = ref<any>({});
-  const pageActiveIndex = ref<any>(-1); // 当前选中组件对应的页码
-  const widgetId = ref<string>(''); // 选中的组件id
+  const { selectedWidgetId, widgetActiveObj, pageActiveIndex } = storeToRefs(
+    appStore.useLegoSelectWidgetStore
+  ); // 选中的组件id
 
   // 组件放下
   const drop = (event: any, pageIndex: number) => {
@@ -133,12 +133,12 @@
     widgetItem.css.left = x;
     widgetItem.css.top = 1160 * pageIndex + y;
     widgetItem.id = getUuid();
-    widgetId.value = widgetItem.id;
+    selectedWidgetId.value = widgetItem.id;
     // 取消原来选中的组件
-    if (widgetId.value !== '') {
-      for (const key in widgetActive.value) {
-        if (widgetActive.value[key]) {
-          widgetActive.value[key] = false;
+    if (selectedWidgetId.value !== '') {
+      for (const key in widgetActiveObj.value) {
+        if (widgetActiveObj.value[key]) {
+          widgetActiveObj.value[key] = false;
         }
       }
     }
@@ -146,23 +146,24 @@
     pushComponent(widgetItem, pageIndex); // 压入组件
 
     // 存储组件选中状态
-    widgetActive.value[widgetItem.id] = true;
-
+    widgetActiveObj.value[widgetItem.id] = true;
     activatedHandle(widgetItem, pageActiveIndex.value); // 组件从非活跃状态变为活跃状态
   };
 
   // 组件从活跃状态变为非活跃状态
   const handleDeactivated = (id: string) => {
     // 切换选中状态
-    widgetActive.value[id] = false;
+    widgetActiveObj.value[id] = false;
   };
 
   // 组件从非活跃状态变为活跃状态
   const activatedHandle = (widgetItem: IWidget, pageIndex: number) => {
-    widgetId.value = widgetItem.id;
+    selectedWidgetId.value = widgetItem.id;
     pageActiveIndex.value = pageIndex; // 当前选中组件所属页面索引
     // 切换选中状态
-    widgetActive.value[widgetItem.id] = true;
+    widgetActiveObj.value[widgetItem.id] = true;
+
+    // console.log('选中', selectedWidgetId.value, widgetActiveObj.value);
   };
 
   // 组件拖拽结束，处理组件拖入下一页的情况
@@ -251,18 +252,18 @@
     if (designerRef.value.contains(target)) {
       // 查询是否选中组件
       let isHaveActive = false;
-      for (const key in widgetActive.value) {
-        if (widgetActive.value[key]) {
+      for (const key in widgetActiveObj.value) {
+        if (widgetActiveObj.value[key]) {
           isHaveActive = true;
         }
       }
       if (!isHaveActive) {
-        widgetId.value = '';
+        selectedWidgetId.value = '';
       }
     } else {
       // 点击画布外，如果选中的索引不为空，则持续选中
-      if (widgetId.value !== '') {
-        widgetActive.value[widgetId.value] = true;
+      if (selectedWidgetId.value !== '') {
+        widgetActiveObj.value[selectedWidgetId.value] = true;
       }
     }
   };
@@ -289,11 +290,11 @@
   // 组件移动
   const handleWidgetMove = (direction: string, value: number) => {
     // 判断是否选中组件
-    if (widgetId.value !== '') {
+    if (selectedWidgetId.value !== '') {
       // 组件在children中的索引
       const widgetIndex = HJSchemaJsonStore.value.componentsTree[
         pageActiveIndex.value
-      ].children.findIndex((item: { id: string }) => item.id === widgetId.value);
+      ].children.findIndex((item: { id: string }) => item.id === selectedWidgetId.value);
       if (direction === 'leftRight') {
         HJSchemaJsonStore.value.componentsTree[pageActiveIndex.value].children[
           widgetIndex
@@ -312,16 +313,16 @@
   // 删除组件
   const deleteWidget = () => {
     // 判断是否选中组件
-    if (widgetId.value !== '') {
+    if (selectedWidgetId.value !== '') {
       // 组件在children中的索引
       const widgetIndex = HJSchemaJsonStore.value.componentsTree[
         pageActiveIndex.value
-      ].children.findIndex((item: { id: string }) => item.id === widgetId.value);
+      ].children.findIndex((item: { id: string }) => item.id === selectedWidgetId.value);
       const pageIndex = pageActiveIndex.value;
       // 删除组件的选中状态
-      delete widgetActive.value[widgetId.value];
+      delete widgetActiveObj.value[selectedWidgetId.value];
       // 取消选中
-      widgetId.value = '';
+      selectedWidgetId.value = '';
       pageActiveIndex.value = -1;
       // 删除组件
       HJSchemaJsonStore.value.componentsTree[pageIndex].children.splice(widgetIndex, 1);
@@ -393,9 +394,9 @@
       );
     } else if (value === 6) {
       // 删除组件的选中状态
-      delete widgetActive.value[widgetId.value];
+      delete widgetActiveObj.value[selectedWidgetId.value];
       // 取消选中
-      widgetId.value = '';
+      selectedWidgetId.value = '';
       pageActiveIndex.value = -1;
 
       // 删除组件

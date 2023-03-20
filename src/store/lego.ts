@@ -30,3 +30,26 @@ export const useLegoJsonStore = defineStore('legoJsonStore', () => {
     resetHJSchemaJsonData
   };
 });
+
+// 页面中选中的widget相关信息
+export const useLegoSelectWidgetStore = defineStore('legoSelectWidgetStore', () => {
+  const selectedWidgetId = ref<string>(''); // 选中的组件id
+  const widgetActiveObj = ref<any>({}); // 组件选中状态对象
+  const pageActiveIndex = ref<number>(-1); // 当前页码
+
+  function setSelectedWidgetId(value: string) {
+    selectedWidgetId.value = value;
+  }
+
+  function setWidgetActiveObj(id: string, value: boolean) {
+    widgetActiveObj.value[id] = value;
+  }
+
+  return {
+    selectedWidgetId,
+    widgetActiveObj,
+    pageActiveIndex,
+    setSelectedWidgetId,
+    setWidgetActiveObj
+  };
+});

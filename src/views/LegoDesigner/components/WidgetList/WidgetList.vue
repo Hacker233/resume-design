@@ -19,7 +19,6 @@
         </el-collapse-item>
       </el-collapse>
     </div>
-    <!-- 图层管理 -->
   </div>
 </template>
 <script lang="ts" setup>

@@ -22,6 +22,8 @@
       <widget-list v-show="activeTab === 1" @add-widget="addWidget"></widget-list>
       <!-- 图层管理 -->
       <layer-manage v-show="activeTab === 2"></layer-manage>
+      <!-- JSON查看 -->
+      <json-drawer :drawer="drawer" @close-json-drawer="closeJsonDrawer"></json-drawer>
     </div>
   </div>
 </template>
@@ -29,6 +31,7 @@
   import { IWidget } from '../types';
   import WidgetList from './WidgetList/WidgetList.vue';
   import LayerManage from './LayerManage/LayerManage.vue';
+  import JsonDrawer from './JsonDrawer/JsonDrawer.vue';
 
   // 默认选中tab
   const activeTab = ref<number>(1);
@@ -42,11 +45,26 @@
       id: 2,
       iconfont: 'icon-023tuceng',
       title: '图层'
+    },
+    {
+      id: 3,
+      iconfont: 'icon-json1',
+      title: 'JSON'
     }
   ]);
   // 点击tab
+  const drawer = ref<boolean>(false);
   const selectTab = (id: number) => {
-    activeTab.value = id;
+    // json抽屉
+    if (id === 3) {
+      drawer.value = true;
+    } else {
+      activeTab.value = id;
+    }
+  };
+  // 关闭抽屉
+  const closeJsonDrawer = () => {
+    drawer.value = false;
   };
 
   const emit = defineEmits(['addWidget']);
@@ -90,6 +108,7 @@
     }
     .right-content-box {
       flex: 1;
+      min-width: 200px;
     }
   }
 </style>
