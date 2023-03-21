@@ -30,6 +30,7 @@
 </template>
 <script lang="ts" setup>
   import appStore from '@/store';
+  import { cloneDeep, isEqual } from 'lodash';
   import { storeToRefs } from 'pinia';
 
   const number = ref<number>(100);
@@ -37,22 +38,48 @@
   const { HJSchemaJsonStore } = storeToRefs(appStore.useLegoJsonStore);
 
   onMounted(() => {
+    // 鼠标事件
     window.addEventListener('mousedown', handleMousedown);
     window.addEventListener('mouseup', handleMouseup);
+    //键盘事件
+    document.addEventListener('keyup', keyboard);
+    document.addEventListener('keydown', keydown);
   });
 
   onBeforeUnmount(() => {
     window.removeEventListener('mousedown', handleMousedown);
-    document.removeEventListener('mouseup', handleMouseup);
+    window.removeEventListener('mouseup', handleMouseup);
+
+    document.removeEventListener('keyup', keyboard);
+    document.removeEventListener('keydown', keydown);
   });
 
   // 鼠标按下事件
+  const oldHJSchemaJsonStore = ref<any>(cloneDeep(HJSchemaJsonStore.value));
+  const newHJSchemaJsonStore = ref<any>(cloneDeep(HJSchemaJsonStore.value));
   const handleMousedown = () => {
-    console.log('鼠标按下');
+    oldHJSchemaJsonStore.value = cloneDeep(HJSchemaJsonStore.value);
   };
   // 鼠标松开
   const handleMouseup = () => {
-    console.log('鼠标松开');
+    newHJSchemaJsonStore.value = cloneDeep(HJSchemaJsonStore.value);
+    const isEqualJson = isEqual(oldHJSchemaJsonStore.value, newHJSchemaJsonStore.value);
+    if (!isEqualJson) {
+      console.log('执行缓存操作');
+    }
+    oldHJSchemaJsonStore.value = cloneDeep(HJSchemaJsonStore.value);
+  };
+  // 键盘按下
+  const keydown = () => {
+    oldHJSchemaJsonStore.value = ref<any>(cloneDeep(HJSchemaJsonStore.value));
+  };
+  // 键盘松开
+  const keyboard = () => {
+    newHJSchemaJsonStore.value = cloneDeep(HJSchemaJsonStore.value);
+    const isEqualJson = isEqual(oldHJSchemaJsonStore.value, newHJSchemaJsonStore.value);
+    if (!isEqualJson) {
+      console.log('执行缓存操作');
+    }
   };
 
   // 加
@@ -73,21 +100,6 @@
       number.value -= 5;
       emit('reduceSize', number.value / 100);
     }
-  };
-
-  // 监听JSON数据变化，实现撤销恢复功能
-  watch(
-    () => HJSchemaJsonStore.value,
-    () => {
-      pushItem();
-    },
-    {
-      deep: true
-    }
-  );
-
-  const pushItem = () => {
-    console.log('123');
   };
 </script>
 <style lang="scss" scoped>

@@ -1,7 +1,8 @@
 import { HJSchema } from '@/views/LegoDesigner/schema';
 import { IHJSchema } from '@/views/LegoDesigner/types';
 import { cloneDeep } from 'lodash';
-import { defineStore } from 'pinia';
+import { defineStore, storeToRefs } from 'pinia';
+import appStore from '.';
 
 // 积木搭建的页面schema JSON store
 export const useLegoJsonStore = defineStore('legoJsonStore', () => {
@@ -51,5 +52,30 @@ export const useLegoSelectWidgetStore = defineStore('legoSelectWidgetStore', () 
     pageActiveIndex,
     setSelectedWidgetId,
     setWidgetActiveObj
+  };
+});
+
+// 撤销与恢复相关store
+export const useUndoAndRedoStore = defineStore('undoAndRedoStore', () => {
+  const limit = 10; // 可缓存的步骤数
+  const undoCommands = ref<any>([]); // 撤销数组
+  const redoCommands = ref<any>([]); // 恢复数组
+  const { HJSchemaJsonStore } = storeToRefs(appStore.useLegoJsonStore);
+  // 撤销
+  function undo() {
+    if (!undoCommands.value.length) {
+      return;
+    }
+    const last = cloneDeep(undoCommands.value[undoCommands.value.lenght - 1]);
+    HJSchemaJsonStore.value = last;
+  }
+  // 恢复
+  function redo() {}
+  return {
+    limit,
+    undoCommands,
+    redoCommands,
+    undo,
+    redo
   };
 });
