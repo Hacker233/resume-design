@@ -1,7 +1,7 @@
 import { HJSchema } from '@/views/LegoDesigner/schema';
 import { IHJSchema } from '@/views/LegoDesigner/types';
 import { cloneDeep } from 'lodash';
-import { defineStore, storeToRefs } from 'pinia';
+import { defineStore } from 'pinia';
 import appStore from '.';
 
 // 积木搭建的页面schema JSON store
@@ -46,12 +46,20 @@ export const useLegoSelectWidgetStore = defineStore('legoSelectWidgetStore', () 
     widgetActiveObj.value[id] = value;
   }
 
+  // 重置选中状态
+  function resetSelectWidget() {
+    selectedWidgetId.value = '';
+    widgetActiveObj.value = {};
+    pageActiveIndex.value = -1;
+  }
+
   return {
     selectedWidgetId,
     widgetActiveObj,
     pageActiveIndex,
     setSelectedWidgetId,
-    setWidgetActiveObj
+    setWidgetActiveObj,
+    resetSelectWidget
   };
 });
 
@@ -60,22 +68,54 @@ export const useUndoAndRedoStore = defineStore('undoAndRedoStore', () => {
   const limit = 10; // 可缓存的步骤数
   const undoCommands = ref<any>([]); // 撤销数组
   const redoCommands = ref<any>([]); // 恢复数组
-  const { HJSchemaJsonStore } = storeToRefs(appStore.useLegoJsonStore);
+  const { changeHJSchemaJsonData } = appStore.useLegoJsonStore;
   // 撤销
   function undo() {
     if (!undoCommands.value.length) {
       return;
     }
-    const last = cloneDeep(undoCommands.value[undoCommands.value.lenght - 1]);
-    HJSchemaJsonStore.value = last;
+    console.log('undoCommands', undoCommands);
+    const last = cloneDeep(undoCommands.value[undoCommands.value.length - 1]);
+    changeHJSchemaJsonData(last);
+    undoCommands.value.pop();
+    if (redoCommands.value.length >= limit) {
+      redoCommands.value.shift();
+      redoCommands.value.push(last);
+    } else {
+      redoCommands.value.push(last); // 插入恢复数组
+    }
   }
   // 恢复
-  function redo() {}
+  function redo() {
+    if (!redoCommands.value.length) {
+      return;
+    }
+    const { changeHJSchemaJsonData } = appStore.useLegoJsonStore;
+    const last = cloneDeep(redoCommands.value[redoCommands.value.length - 1]);
+    changeHJSchemaJsonData(last);
+    redoCommands.value.pop();
+    if (undoCommands.value.length >= limit) {
+      undoCommands.value.shift();
+      undoCommands.value.push(last);
+    } else {
+      undoCommands.value.push(last); // 插入恢复数组
+    }
+  }
+  // 缓存
+  function insertCache(HJJson: IHJSchema) {
+    if (undoCommands.value.length >= 10) {
+      undoCommands.value.shift();
+      undoCommands.value.push(cloneDeep(HJJson));
+    } else {
+      undoCommands.value.push(cloneDeep(HJJson));
+    }
+  }
   return {
     limit,
     undoCommands,
     redoCommands,
     undo,
-    redo
+    redo,
+    insertCache
   };
 });

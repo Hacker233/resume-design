@@ -2,18 +2,19 @@
   <div class="designer-setting-box">
     <!-- 撤销和恢复 -->
     <div class="left">
-      <div class="icon-box">
-        <svg-icon
-          icon-name="icon-shujuhuifu"
-          class-name="undo"
-          color="#aeaeae"
-          size="22px"
-        ></svg-icon>
-        <span>撤销</span>
+      <div
+        :class="['icon-box', { 'is-disabled': undoCommands.length > 0 ? false : true }]"
+        @click="handleUndo"
+      >
+        <el-icon :color="undoColor" size="22px"><RefreshLeft /></el-icon>
+        <span class="undo-span">撤销</span>
       </div>
-      <div class="icon-box">
-        <svg-icon icon-name="icon-shujuhuifu" color="#aeaeae" size="22px"></svg-icon>
-        <span>还原</span>
+      <div
+        :class="['icon-box', { 'is-disabled': redoCommands.length > 0 ? false : true }]"
+        @click="handleRedo"
+      >
+        <el-icon :color="redoColor" size="22px"><RefreshRight /></el-icon>
+        <span class="redo-span">还原</span>
       </div>
     </div>
     <!-- 缩放画布 -->
@@ -32,6 +33,7 @@
   import appStore from '@/store';
   import { cloneDeep, isEqual } from 'lodash';
   import { storeToRefs } from 'pinia';
+  import { IHJSchema } from '../../types';
 
   const number = ref<number>(100);
   const emit = defineEmits(['addSize', 'reduceSize']);
@@ -66,6 +68,7 @@
     const isEqualJson = isEqual(oldHJSchemaJsonStore.value, newHJSchemaJsonStore.value);
     if (!isEqualJson) {
       console.log('执行缓存操作');
+      handleCache(oldHJSchemaJsonStore.value);
     }
     oldHJSchemaJsonStore.value = cloneDeep(HJSchemaJsonStore.value);
   };
@@ -79,6 +82,7 @@
     const isEqualJson = isEqual(oldHJSchemaJsonStore.value, newHJSchemaJsonStore.value);
     if (!isEqualJson) {
       console.log('执行缓存操作');
+      handleCache(oldHJSchemaJsonStore.value);
     }
   };
 
@@ -100,6 +104,35 @@
       number.value -= 5;
       emit('reduceSize', number.value / 100);
     }
+  };
+
+  // 返回撤销恢复按钮颜色
+  const { undo, redo, insertCache } = appStore.useUndoAndRedoStore;
+  const { undoCommands, redoCommands } = storeToRefs(appStore.useUndoAndRedoStore);
+  const { setUuid } = appStore.useRefreshStore;
+  const undoColor = computed(() => {
+    return undoCommands.value.length > 0 ? 'green' : '#aeaeae';
+  });
+
+  const redoColor = computed(() => {
+    return redoCommands.value.length > 0 ? 'green' : '#aeaeae';
+  });
+
+  // 撤销
+  const handleUndo = () => {
+    undo();
+    setUuid();
+  };
+
+  // 恢复
+  const handleRedo = () => {
+    redo();
+    setUuid();
+  };
+
+  // 缓存步骤
+  const handleCache = (oldHJSchemaJsonStore: IHJSchema) => {
+    insertCache(oldHJSchemaJsonStore);
   };
 </script>
 <style lang="scss" scoped>
@@ -129,13 +162,17 @@
         justify-content: space-evenly;
         cursor: pointer;
         user-select: none;
-        span {
+        .undo-span {
           font-size: 12px;
-          color: #aeaeae;
+          color: v-bind('undoColor');
         }
-        .undo {
-          transform: rotateY(180deg);
+        .redo-span {
+          font-size: 12px;
+          color: v-bind('redoColor');
         }
+      }
+      .is-disabled {
+        cursor: not-allowed;
       }
     }
     .right {

@@ -67,7 +67,7 @@
   .right-setter-box {
     background-color: #fff;
     height: calc(100vh - 60px);
-    width: 380px;
+    width: 350px;
     :deep(.el-tabs) {
       height: 100%;
       .el-tabs__header {
