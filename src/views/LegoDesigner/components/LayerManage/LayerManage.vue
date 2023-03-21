@@ -37,6 +37,8 @@
   import { storeToRefs } from 'pinia';
   import { IWidget } from '../../types';
 
+  const emit = defineEmits(['selectWidget']);
+
   // 初始页面JSON
   const { HJSchemaJsonStore } = storeToRefs(appStore.useLegoJsonStore);
   const { selectedWidgetId, widgetActiveObj, pageActiveIndex } = storeToRefs(
@@ -64,6 +66,8 @@
     }
     widgetActiveObj.value[selectedWidgetId.value] = true;
     pageActiveIndex.value = pageIndex;
+    // 滚动到可是区域
+    emit('selectWidget');
   };
 
   // 删除组件

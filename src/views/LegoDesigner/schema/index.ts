@@ -2,7 +2,7 @@ import { getUuid } from '@/utils/common';
 import { IHJSchema } from '../types';
 
 export const HJSchema: IHJSchema = {
-  version: '', // 当前JSON版本号
+  version: '1.0.0', // 当前JSON版本号
   componentsTree: [
     {
       id: getUuid(), // 组件唯一性id
@@ -15,8 +15,8 @@ export const HJSchema: IHJSchema = {
   i18n: {}, // 国际化语料库
   constants: {}, // 全局常量
   css: {
-    width: '820px',
-    height: '1160px',
+    width: 820,
+    height: 1160,
     background: '#fff',
     themeColor: '',
     paddingTop: '',

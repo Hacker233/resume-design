@@ -5,8 +5,8 @@ interface IHJSchema {
   i18n: any; // 国际化语料库
   constants: any; // 全局常量
   css: {
-    width: string;
-    height: string;
+    width: number;
+    height: number;
     background: string;
     themeColor: string;
     paddingTop: string;

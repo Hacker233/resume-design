@@ -67,21 +67,33 @@
     newHJSchemaJsonStore.value = cloneDeep(HJSchemaJsonStore.value);
     const isEqualJson = isEqual(oldHJSchemaJsonStore.value, newHJSchemaJsonStore.value);
     if (!isEqualJson) {
-      console.log('执行缓存操作');
       handleCache(oldHJSchemaJsonStore.value);
     }
     oldHJSchemaJsonStore.value = cloneDeep(HJSchemaJsonStore.value);
   };
   // 键盘按下
-  const keydown = () => {
-    oldHJSchemaJsonStore.value = ref<any>(cloneDeep(HJSchemaJsonStore.value));
+  const keydown = (event: any) => {
+    const crtlZ = event.ctrlKey && event.keyCode === 90;
+    const ctrlY = event.ctrlKey && event.keyCode === 89;
+    const ctrlC = event.ctrlKey && event.keyCode === 67;
+    // 撤销和恢复
+    if (crtlZ || ctrlY || ctrlC) {
+      return;
+    }
+    oldHJSchemaJsonStore.value = cloneDeep(HJSchemaJsonStore.value);
   };
   // 键盘松开
-  const keyboard = () => {
+  const keyboard = (event: any) => {
+    const crtlZ = event.ctrlKey && event.keyCode === 90;
+    const ctrlY = event.ctrlKey && event.keyCode === 89;
+    const ctrlC = event.ctrlKey && event.keyCode === 67;
+    // 撤销和恢复
+    if (crtlZ || ctrlY || ctrlC) {
+      return;
+    }
     newHJSchemaJsonStore.value = cloneDeep(HJSchemaJsonStore.value);
     const isEqualJson = isEqual(oldHJSchemaJsonStore.value, newHJSchemaJsonStore.value);
     if (!isEqualJson) {
-      console.log('执行缓存操作');
       handleCache(oldHJSchemaJsonStore.value);
     }
   };

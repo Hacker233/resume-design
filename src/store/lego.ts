@@ -69,20 +69,24 @@ export const useUndoAndRedoStore = defineStore('undoAndRedoStore', () => {
   const undoCommands = ref<any>([]); // 撤销数组
   const redoCommands = ref<any>([]); // 恢复数组
   const { changeHJSchemaJsonData } = appStore.useLegoJsonStore;
+  const { resetSelectWidget } = appStore.useLegoSelectWidgetStore;
   // 撤销
   function undo() {
     if (!undoCommands.value.length) {
       return;
     }
-    console.log('undoCommands', undoCommands);
+    // 重置选项
+    resetSelectWidget();
+    const { HJSchemaJsonStore } = appStore.useLegoJsonStore;
+    const nowJson = cloneDeep(HJSchemaJsonStore);
     const last = cloneDeep(undoCommands.value[undoCommands.value.length - 1]);
     changeHJSchemaJsonData(last);
     undoCommands.value.pop();
     if (redoCommands.value.length >= limit) {
       redoCommands.value.shift();
-      redoCommands.value.push(last);
+      redoCommands.value.push(nowJson);
     } else {
-      redoCommands.value.push(last); // 插入恢复数组
+      redoCommands.value.push(nowJson); // 插入恢复数组
     }
   }
   // 恢复
@@ -90,15 +94,19 @@ export const useUndoAndRedoStore = defineStore('undoAndRedoStore', () => {
     if (!redoCommands.value.length) {
       return;
     }
+    // 重置选项
+    resetSelectWidget();
+    const { HJSchemaJsonStore } = appStore.useLegoJsonStore;
+    const nowJson = cloneDeep(HJSchemaJsonStore);
     const { changeHJSchemaJsonData } = appStore.useLegoJsonStore;
     const last = cloneDeep(redoCommands.value[redoCommands.value.length - 1]);
     changeHJSchemaJsonData(last);
     redoCommands.value.pop();
     if (undoCommands.value.length >= limit) {
       undoCommands.value.shift();
-      undoCommands.value.push(last);
+      undoCommands.value.push(nowJson);
     } else {
-      undoCommands.value.push(last); // 插入恢复数组
+      undoCommands.value.push(nowJson); // 插入恢复数组
     }
   }
   // 缓存

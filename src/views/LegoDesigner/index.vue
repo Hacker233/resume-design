@@ -6,7 +6,7 @@
     <!-- 主设计区 -->
     <div class="main-designer-box">
       <!-- 物料列表区域 -->
-      <left-com-list @add-widget="addWidgetToCenter"></left-com-list>
+      <left-com-list @add-widget="addWidgetToCenter" @select-widget="selectWidget"></left-com-list>
       <!-- 设计面板容器区域 -->
       <div class="designer-box">
         <c-scrollbar trigger="hover">
@@ -148,6 +148,9 @@
     // 存储组件选中状态
     widgetActiveObj.value[widgetItem.id] = true;
     activatedHandle(widgetItem, pageActiveIndex.value); // 组件从非活跃状态变为活跃状态
+
+    // 滚动到可视区
+    selectWidget();
   };
 
   // 组件从活跃状态变为非活跃状态
@@ -241,6 +244,13 @@
     }
   };
 
+  // 点击图层组件，滚动到可视区
+  const selectWidget = () => {
+    pagesRefs[pageActiveIndex.value].scrollIntoView({
+      behavior: 'smooth'
+    });
+  };
+
   // 点击画布外不取消组件选择状态
   const designerRef = ref<any>(null);
   const handleKeepActive = (e: any) => {
@@ -269,6 +279,7 @@
   };
 
   // 处理页面的上下左右按键事件
+  const { undo, redo } = appStore.useUndoAndRedoStore;
   const handleKeyDown = (event: any) => {
     //键盘按键判断:左箭头-37;上箭头-38；右箭头-39;下箭头-40
     if (event && event.keyCode === 37) {
@@ -285,6 +296,23 @@
       // 删除键
       event.preventDefault();
       deleteWidget();
+    } else if (event.ctrlKey && event.keyCode === 90) {
+      // ctrl+z
+      undo();
+      setUuid();
+    } else if (event.ctrlKey && event.keyCode === 89) {
+      // ctrl+y
+      redo();
+      setUuid();
+    } else if (event.ctrlKey && event.keyCode === 67) {
+      // ctrl + c
+      if (selectedWidgetId.value) {
+        contextPageIndex.value = pageActiveIndex.value;
+        contextComIndex.value = HJSchemaJsonStore.value.componentsTree[
+          pageActiveIndex.value
+        ].children.findIndex((item: { id: string }) => item.id === selectedWidgetId.value);
+        copyWidget();
+      }
     }
   };
   // 组件移动
@@ -371,27 +399,7 @@
         contextComIndex.value
       ].css.zIndex = 0;
     } else if (value === 5) {
-      // 复制当前组件
-      const currentWidget = cloneDeep(
-        HJSchemaJsonStore.value.componentsTree[contextPageIndex.value].children[
-          contextComIndex.value
-        ]
-      );
-
-      currentWidget.css.left =
-        HJSchemaJsonStore.value.componentsTree[contextPageIndex.value].children[
-          contextComIndex.value
-        ].css.left + 30;
-      currentWidget.css.top =
-        HJSchemaJsonStore.value.componentsTree[contextPageIndex.value].children[
-          contextComIndex.value
-        ].css.top + 30;
-      addWidget(
-        currentWidget,
-        contextPageIndex.value,
-        currentWidget.css.left,
-        currentWidget.css.top
-      );
+      copyWidget();
     } else if (value === 6) {
       // 删除组件的选中状态
       delete widgetActiveObj.value[selectedWidgetId.value];
@@ -405,6 +413,24 @@
         1
       );
     }
+  };
+
+  // 复制当前组件
+  const copyWidget = () => {
+    // 复制当前组件
+    const currentWidget = cloneDeep(
+      HJSchemaJsonStore.value.componentsTree[contextPageIndex.value].children[contextComIndex.value]
+    );
+
+    currentWidget.css.left =
+      HJSchemaJsonStore.value.componentsTree[contextPageIndex.value].children[contextComIndex.value]
+        .css.left + 30;
+    currentWidget.css.top =
+      HJSchemaJsonStore.value.componentsTree[contextPageIndex.value].children[contextComIndex.value]
+        .css.top +
+      30 -
+      1160 * contextPageIndex.value;
+    addWidget(currentWidget, contextPageIndex.value, currentWidget.css.left, currentWidget.css.top);
   };
 
   // 放大缩小center
@@ -434,8 +460,8 @@
           margin: 0 auto;
           overflow: hidden;
           margin-bottom: 30px;
-          width: v-bind('HJSchemaJsonStore.css.width');
-          min-height: v-bind('HJSchemaJsonStore.css.height');
+          width: v-bind('HJSchemaJsonStore.css.width + "px"');
+          min-height: v-bind('HJSchemaJsonStore.css.height + "px"');
           background: v-bind('HJSchemaJsonStore.css.background');
           zoom: v-bind('sizeCenter');
           .pages {

@@ -21,7 +21,7 @@
       <!-- 组件列表 -->
       <widget-list v-show="activeTab === 1" @add-widget="addWidget"></widget-list>
       <!-- 图层管理 -->
-      <layer-manage v-show="activeTab === 2"></layer-manage>
+      <layer-manage v-show="activeTab === 2" @select-widget="selectWidget"></layer-manage>
       <!-- JSON查看 -->
       <json-drawer :drawer="drawer" @close-json-drawer="closeJsonDrawer"></json-drawer>
     </div>
@@ -67,10 +67,15 @@
     drawer.value = false;
   };
 
-  const emit = defineEmits(['addWidget']);
+  const emit = defineEmits(['addWidget', 'selectWidget']);
   // 点击添加组件
   const addWidget = (widgetItem: IWidget) => {
     emit('addWidget', widgetItem);
+  };
+
+  // 选中组件
+  const selectWidget = () => {
+    emit('selectWidget');
   };
 </script>
 <style lang="scss" scoped>
