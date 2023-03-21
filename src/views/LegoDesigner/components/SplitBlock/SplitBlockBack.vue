@@ -66,22 +66,30 @@
     if (index1 < index2) {
       for (let i = 0; i < HJSchemaJsonStore.value.componentsTree[index1].children.length; i++) {
         HJSchemaJsonStore.value.componentsTree[index1].children[i].css.top =
-          HJSchemaJsonStore.value.componentsTree[index1].children[i].css.top - 1160 - 50;
+          HJSchemaJsonStore.value.componentsTree[index1].children[i].css.top -
+          HJSchemaJsonStore.value.css.height -
+          50;
       }
 
       for (let i = 0; i < HJSchemaJsonStore.value.componentsTree[index2].children.length; i++) {
         HJSchemaJsonStore.value.componentsTree[index2].children[i].css.top =
-          HJSchemaJsonStore.value.componentsTree[index2].children[i].css.top + 1160 + 50;
+          HJSchemaJsonStore.value.componentsTree[index2].children[i].css.top +
+          HJSchemaJsonStore.value.css.height +
+          50;
       }
     } else {
       for (let i = 0; i < HJSchemaJsonStore.value.componentsTree[index1].children.length; i++) {
         HJSchemaJsonStore.value.componentsTree[index1].children[i].css.top =
-          HJSchemaJsonStore.value.componentsTree[index1].children[i].css.top + 1160 + 50;
+          HJSchemaJsonStore.value.componentsTree[index1].children[i].css.top +
+          HJSchemaJsonStore.value.css.height +
+          50;
       }
 
       for (let i = 0; i < HJSchemaJsonStore.value.componentsTree[index2].children.length; i++) {
         HJSchemaJsonStore.value.componentsTree[index2].children[i].css.top =
-          HJSchemaJsonStore.value.componentsTree[index2].children[i].css.top - 1160 - 50;
+          HJSchemaJsonStore.value.componentsTree[index2].children[i].css.top -
+          HJSchemaJsonStore.value.css.height -
+          50;
       }
     }
     console.log('交换后', HJSchemaJsonStore.value.componentsTree, props.pageIndex);

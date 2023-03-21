@@ -7,25 +7,23 @@
       type="card"
       class="demo-tabs"
     >
-      <c-scrollbar trigger="hover">
-        <el-tab-pane label="样式" name="style">
-          <el-form label-width="80px" label-position="left">
-            <div
-              v-for="(value, key, index) in HJSchemaJsonStore.componentsTree[pageActiveIndex]
-                .children[widgetIndex].css"
-              :key="index"
-            >
-              <component
-                :is="getSetterCom(key)"
-                :id="selectedWidgetId"
-                :page-index="pageActiveIndex"
-                :value="value"
-              ></component>
-            </div>
-          </el-form>
-        </el-tab-pane>
-        <el-tab-pane label="数据" name="second">数据设置</el-tab-pane>
-      </c-scrollbar>
+      <el-tab-pane label="样式" name="style">
+        <el-form label-width="80px" label-position="left">
+          <div
+            v-for="(value, key, index) in HJSchemaJsonStore.componentsTree[pageActiveIndex]
+              .children[widgetIndex].css"
+            :key="index"
+          >
+            <component
+              :is="getSetterCom(key)"
+              :id="selectedWidgetId"
+              :page-index="pageActiveIndex"
+              :value="value"
+            ></component>
+          </div>
+        </el-form>
+      </el-tab-pane>
+      <el-tab-pane label="数据" name="second">数据设置</el-tab-pane>
     </el-tabs>
     <!-- 没有选中组件时展示 -->
     <div v-else class="no-data">
@@ -68,6 +66,7 @@
     background-color: #fff;
     height: calc(100vh - 60px);
     width: 350px;
+    min-width: 350px;
     :deep(.el-tabs) {
       height: 100%;
       .el-tabs__header {
@@ -94,6 +93,10 @@
       .el-tabs__content {
         display: flex;
         justify-content: center;
+        padding: 30px 30px 10px 30px;
+        box-sizing: border-box;
+        height: calc(100vh - 170px);
+        overflow: auto;
         .c-scrollbar {
           padding: 30px 20px;
         }

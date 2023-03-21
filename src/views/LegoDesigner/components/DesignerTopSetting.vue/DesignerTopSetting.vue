@@ -17,14 +17,37 @@
         <span class="redo-span">还原</span>
       </div>
     </div>
+
     <!-- 缩放画布 -->
     <div class="right">
-      <div class="icon-box" @click="reduce">
-        <svg-icon icon-name="icon-suoxiao" color="#aeaeae" size="22px"></svg-icon>
+      <!-- 全局主题设置 -->
+      <div class="global-setting-box">
+        <el-popover
+          placement="bottom"
+          :width="200"
+          trigger="click"
+          content="this is content, this is content, this is content"
+        >
+          <template #reference>
+            <div class="global-setting-btn">
+              <svg-icon
+                icon-name="icon-quanju_qianduanjiemian"
+                color="#67c23a"
+                size="18px"
+              ></svg-icon>
+              全局设置
+            </div>
+          </template>
+        </el-popover>
       </div>
-      <span>{{ number }}%</span>
-      <div class="icon-box" @click="add">
-        <svg-icon icon-name="icon-fangda" color="#aeaeae" size="22px"></svg-icon>
+      <div class="zoom-box">
+        <div class="icon-box" @click="reduce">
+          <svg-icon icon-name="icon-suoxiao" color="#aeaeae" size="22px"></svg-icon>
+        </div>
+        <span>{{ number }}%</span>
+        <div class="icon-box" @click="add">
+          <svg-icon icon-name="icon-fangda" color="#aeaeae" size="22px"></svg-icon>
+        </div>
       </div>
     </div>
   </div>
@@ -75,9 +98,8 @@
   const keydown = (event: any) => {
     const crtlZ = event.ctrlKey && event.keyCode === 90;
     const ctrlY = event.ctrlKey && event.keyCode === 89;
-    const ctrlC = event.ctrlKey && event.keyCode === 67;
     // 撤销和恢复
-    if (crtlZ || ctrlY || ctrlC) {
+    if (crtlZ || ctrlY) {
       return;
     }
     oldHJSchemaJsonStore.value = cloneDeep(HJSchemaJsonStore.value);
@@ -86,9 +108,8 @@
   const keyboard = (event: any) => {
     const crtlZ = event.ctrlKey && event.keyCode === 90;
     const ctrlY = event.ctrlKey && event.keyCode === 89;
-    const ctrlC = event.ctrlKey && event.keyCode === 67;
     // 撤销和恢复
-    if (crtlZ || ctrlY || ctrlC) {
+    if (crtlZ || ctrlY) {
       return;
     }
     newHJSchemaJsonStore.value = cloneDeep(HJSchemaJsonStore.value);
@@ -188,25 +209,54 @@
       }
     }
     .right {
-      width: 120px;
+      width: 230px;
       justify-content: space-between;
       display: flex;
       color: #8a8a8a;
       align-items: center;
       font-size: 14px;
       user-select: none;
-      .icon-box {
-        height: 30px;
-        width: 30px;
+      .global-setting-box {
         display: flex;
         align-items: center;
-        justify-content: center;
-        background-color: rgba($color: #ccc, $alpha: 0);
-        transition: all 0.3s;
-        border-radius: 4px;
-        cursor: pointer;
-        &:hover {
-          background-color: rgba($color: #ccc, $alpha: 0.2);
+        .svg-icon {
+          margin-right: 10px;
+        }
+        span {
+          color: #67c23a;
+          font-size: 14px;
+        }
+        .global-setting-btn {
+          display: flex;
+          align-items: center;
+          height: 30px;
+          border-radius: 5px;
+          padding: 0 10px;
+          transition: all 0.3s;
+          cursor: pointer;
+          &:hover {
+            background-color: rgba($color: #ccc, $alpha: 0.2);
+          }
+        }
+      }
+      .zoom-box {
+        width: 120px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        .icon-box {
+          height: 30px;
+          width: 30px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          background-color: rgba($color: #ccc, $alpha: 0);
+          transition: all 0.3s;
+          border-radius: 4px;
+          cursor: pointer;
+          &:hover {
+            background-color: rgba($color: #ccc, $alpha: 0.2);
+          }
         }
       }
     }

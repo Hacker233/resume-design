@@ -1,79 +1,84 @@
 <template>
-  <div class="lego-designer-box">
-    <!-- 导航栏 -->
-    <lego-nav></lego-nav>
+  <c-scrollbar trigger="hover">
+    <div class="lego-designer-box">
+      <!-- 导航栏 -->
+      <lego-nav></lego-nav>
 
-    <!-- 主设计区 -->
-    <div class="main-designer-box">
-      <!-- 物料列表区域 -->
-      <left-com-list @add-widget="addWidgetToCenter" @select-widget="selectWidget"></left-com-list>
-      <!-- 设计面板容器区域 -->
-      <div class="designer-box">
-        <c-scrollbar trigger="hover">
-          <!-- 画布相关设置 -->
-          <designer-top-setting
-            @add-size="addSize"
-            @reduce-size="reduceSize"
-          ></designer-top-setting>
-          <!-- 画布区域 -->
-          <div :key="refreshUuid" ref="designerRef" class="designer">
-            <DraggableContainer>
-              <div
-                v-for="(pages, pageIndex) in HJSchemaJsonStore.componentsTree"
-                :key="pages.id"
-                :ref="(el) => setPagesRef(el, pageIndex)"
-                class="pages"
-                @drop="drop($event, pageIndex)"
-                @dragover.prevent
-              >
-                <!-- 分割块 -->
-                <split-block :page-index="pageIndex"></split-block>
+      <!-- 主设计区 -->
+      <div class="main-designer-box">
+        <!-- 物料列表区域 -->
+        <left-com-list
+          @add-widget="addWidgetToCenter"
+          @select-widget="selectWidget"
+        ></left-com-list>
+        <!-- 设计面板容器区域 -->
+        <div class="designer-box">
+          <c-scrollbar trigger="hover">
+            <!-- 画布相关设置 -->
+            <designer-top-setting
+              @add-size="addSize"
+              @reduce-size="reduceSize"
+            ></designer-top-setting>
+            <!-- 画布区域 -->
+            <div :key="refreshUuid" ref="designerRef" class="designer">
+              <DraggableContainer>
                 <div
-                  v-for="(item, index) in pages.children"
-                  :key="item.id"
-                  v-contextmenu:contextmenu
-                  @contextmenu.prevent="handleContextMenu(pageIndex, index)"
+                  v-for="(pages, pageIndex) in HJSchemaJsonStore.componentsTree"
+                  :key="pages.id"
+                  :ref="(el) => setPagesRef(el, pageIndex)"
+                  class="pages"
+                  @drop="drop($event, pageIndex)"
+                  @dragover.prevent
                 >
-                  <Vue3DraggableResizable
-                    v-model:x="item.css.left"
-                    v-model:y="item.css.top"
-                    v-model:w="item.css.width"
-                    v-model:h="item.css.height"
-                    v-model:active="widgetActiveObj[item.id]"
-                    :init-w="item.css.width"
-                    :init-h="item.css.height"
-                    :z-index="item.css.zIndex"
-                    :rotate="item.css.rotate"
-                    @deactivated="handleDeactivated(item.id)"
-                    @activated="activatedHandle(item, pageIndex)"
-                    @drag-end="dragEndHandle(item, index, pageIndex)"
+                  <!-- 分割块 -->
+                  <split-block :page-index="pageIndex"></split-block>
+                  <div
+                    v-for="(item, index) in pages.children"
+                    :key="item.id"
+                    v-contextmenu:contextmenu
+                    @contextmenu.prevent="handleContextMenu(pageIndex, index)"
                   >
-                    <component :is="getWidgetCom(item)" :widget-data="item"></component>
-                  </Vue3DraggableResizable>
+                    <Vue3DraggableResizable
+                      v-model:x="item.css.left"
+                      v-model:y="item.css.top"
+                      v-model:w="item.css.width"
+                      v-model:h="item.css.height"
+                      v-model:active="widgetActiveObj[item.id]"
+                      :init-w="item.css.width"
+                      :init-h="item.css.height"
+                      :z-index="item.css.zIndex"
+                      :rotate="item.css.rotate"
+                      @deactivated="handleDeactivated(item.id)"
+                      @activated="activatedHandle(item, pageIndex)"
+                      @drag-end="dragEndHandle(item, index, pageIndex)"
+                    >
+                      <component :is="getWidgetCom(item)" :widget-data="item"></component>
+                    </Vue3DraggableResizable>
+                  </div>
                 </div>
-              </div>
-            </DraggableContainer>
-          </div>
-          <!-- 添加一页 -->
-          <div class="add-page-box">
-            <div class="add-page-btn" @click="addOnePage">添加一页</div>
-          </div>
-        </c-scrollbar>
+              </DraggableContainer>
+            </div>
+            <!-- 添加一页 -->
+            <div class="add-page-box">
+              <div class="add-page-btn" @click="addOnePage">添加一页</div>
+            </div>
+          </c-scrollbar>
+        </div>
+        <!-- 设置器面板区域 -->
+        <right-setter :key="refreshUuid"></right-setter>
       </div>
-      <!-- 设置器面板区域 -->
-      <right-setter :key="refreshUuid"></right-setter>
-    </div>
 
-    <!-- 右键菜单 -->
-    <v-contextmenu ref="contextmenu">
-      <v-contextmenu-item @click="handleContextMenuItem(1)">向上一层</v-contextmenu-item>
-      <v-contextmenu-item @click="handleContextMenuItem(2)">向下一层</v-contextmenu-item>
-      <v-contextmenu-item @click="handleContextMenuItem(3)">置于顶层</v-contextmenu-item>
-      <v-contextmenu-item @click="handleContextMenuItem(4)">置于底层</v-contextmenu-item>
-      <v-contextmenu-item @click="handleContextMenuItem(5)">复制组件</v-contextmenu-item>
-      <v-contextmenu-item @click="handleContextMenuItem(6)">删除组件</v-contextmenu-item>
-    </v-contextmenu>
-  </div>
+      <!-- 右键菜单 -->
+      <v-contextmenu ref="contextmenu">
+        <v-contextmenu-item @click="handleContextMenuItem(1)">向上一层</v-contextmenu-item>
+        <v-contextmenu-item @click="handleContextMenuItem(2)">向下一层</v-contextmenu-item>
+        <v-contextmenu-item @click="handleContextMenuItem(3)">置于顶层</v-contextmenu-item>
+        <v-contextmenu-item @click="handleContextMenuItem(4)">置于底层</v-contextmenu-item>
+        <v-contextmenu-item @click="handleContextMenuItem(5)">复制组件</v-contextmenu-item>
+        <v-contextmenu-item @click="handleContextMenuItem(6)">删除组件</v-contextmenu-item>
+      </v-contextmenu>
+    </div>
+  </c-scrollbar>
 </template>
 <script lang="ts" setup>
   import LegoNav from './components/LegoNav.vue';
@@ -125,13 +130,15 @@
   // 点击左侧添加组件
   const addWidgetToCenter = (widgetItem: IWidget) => {
     addWidget(widgetItem, 0);
+    // 滚动到可视区
+    selectWidget();
   };
 
   // 中间区域新增组件
   const addWidget = (widgetItem: IWidget, pageIndex: number, x = 0, y = 50) => {
     // 将拖动元素旋转到目标区域中
     widgetItem.css.left = x;
-    widgetItem.css.top = 1160 * pageIndex + y;
+    widgetItem.css.top = HJSchemaJsonStore.value.css.height * pageIndex + y;
     widgetItem.id = getUuid();
     selectedWidgetId.value = widgetItem.id;
     // 取消原来选中的组件
@@ -148,9 +155,6 @@
     // 存储组件选中状态
     widgetActiveObj.value[widgetItem.id] = true;
     activatedHandle(widgetItem, pageActiveIndex.value); // 组件从非活跃状态变为活跃状态
-
-    // 滚动到可视区
-    selectWidget();
   };
 
   // 组件从活跃状态变为非活跃状态
@@ -180,7 +184,7 @@
     }
     // 第一页，处理移出下边界
     if (pageIndex === 0) {
-      maxTop = 1160 + 50;
+      maxTop = HJSchemaJsonStore.value.css.height + 50;
       // 移入下一页
       if (widgetItem.css.top > maxTop && pages > 1) {
         HJSchemaJsonStore.value.componentsTree[pageIndex].children.splice(index, 1);
@@ -190,7 +194,7 @@
       }
     } else if (pageIndex === HJSchemaJsonStore.value.componentsTree.length - 1) {
       // 第二页，处理移出上边界
-      minTop = 1160 * pageIndex + 50 * pageIndex;
+      minTop = HJSchemaJsonStore.value.css.height * pageIndex + 50 * pageIndex;
       if (widgetItem.css.top < minTop) {
         HJSchemaJsonStore.value.componentsTree[pageIndex].children.splice(index, 1);
         HJSchemaJsonStore.value.componentsTree[pageIndex - 1].children.push(widgetItem);
@@ -198,8 +202,8 @@
         setUuid();
       }
     } else {
-      maxTop = 1160 * (pageIndex + 1) + 50 * (pageIndex + 1);
-      minTop = 1160 * pageIndex + 50 * pageIndex;
+      maxTop = HJSchemaJsonStore.value.css.height * (pageIndex + 1) + 50 * (pageIndex + 1);
+      minTop = HJSchemaJsonStore.value.css.height * pageIndex + 50 * pageIndex;
       if (widgetItem.css.top > maxTop) {
         HJSchemaJsonStore.value.componentsTree[pageIndex].children.splice(index, 1);
         HJSchemaJsonStore.value.componentsTree[pageIndex + 1].children.push(widgetItem);
@@ -429,7 +433,7 @@
       HJSchemaJsonStore.value.componentsTree[contextPageIndex.value].children[contextComIndex.value]
         .css.top +
       30 -
-      1160 * contextPageIndex.value;
+      HJSchemaJsonStore.value.css.height * contextPageIndex.value;
     addWidget(currentWidget, contextPageIndex.value, currentWidget.css.left, currentWidget.css.top);
   };
 
@@ -445,14 +449,16 @@
 <style lang="scss" scoped>
   .lego-designer-box {
     height: 100vh;
-    overflow: hidden;
+    min-width: 1200px;
     .main-designer-box {
       display: flex;
       justify-content: space-between;
       .designer-box {
         flex: 1;
+        overflow: auto;
         box-sizing: border-box;
         height: calc(100vh - 60px);
+        min-width: 850px;
 
         .designer {
           display: grid;
