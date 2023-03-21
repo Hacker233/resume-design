@@ -24,6 +24,7 @@ const PersonIntegral = () => import('@/views/person/integralDetail/index.vue');
 const OnlinePreview = () => import('@/views/onlinePreview/index.vue');
 const MyOnlineResume = () => import('@/views/person/onlineResume/index.vue');
 const WebCode = () => import('@/views/webCode/index.vue');
+const LegoDesigner = () => import('@/views/LegoDesigner/index.vue');
 // 软件分享
 const SoftShare = () => import('@/views/softShare/index.vue');
 const SoftDetail = () => import('@/views/softDetail/index.vue');
@@ -77,6 +78,17 @@ const routes: Array<RouteRecordRaw> = [
       requireLogin: true
     },
     component: Designer
+  },
+  {
+    path: '/legoDesigner',
+    name: 'LegoDesigner',
+    meta: {
+      title: '积木搭建',
+      keepAlive: true,
+      isShowComNav: false,
+      requireLogin: true
+    },
+    component: LegoDesigner
   },
   {
     path: '/custom',

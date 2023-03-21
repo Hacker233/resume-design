@@ -102,6 +102,7 @@
   import { payIntegralLogAsync } from '@/http/api/integral';
   import appStore from '@/store';
   import { useUserIsPayGoods } from '@/hooks/useUsrIsPayGoods';
+  import { ElMessageBox } from 'element-plus';
 
   // 获取word模板id
   const route = useRoute();

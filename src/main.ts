@@ -38,6 +38,9 @@ import { userAgent } from '@/utils/userAgent';
 
 import '@/style/article/github-markdown-light.css'; // 文章样式
 
+import contextmenu from 'v-contextmenu';
+import 'v-contextmenu/dist/themes/default.css';
+
 userAgent();
 
 // 创建vue实例
@@ -58,6 +61,7 @@ app.use(VueViewer, {
     // 自定义默认配置
   }
 });
+app.use(contextmenu);
 app.component('SvgIcon', SvgIcon);
 app.use(UndrawUi);
 // 挂载实例

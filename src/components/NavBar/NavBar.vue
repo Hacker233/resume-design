@@ -107,9 +107,23 @@
     {
       iconfont: '',
       name: 'Template',
-      title: '在线制作',
-      children: null,
-      path: '/template'
+      title: '简历制作',
+      children: [
+        {
+          iconfont: '',
+          name: 'Template',
+          title: '在线制作',
+          children: null,
+          path: '/template'
+        },
+        {
+          iconfont: '',
+          name: 'LegoDesigner',
+          title: '积木创作',
+          children: null,
+          path: '/legoDesigner'
+        }
+      ]
     },
     {
       iconfont: '',
