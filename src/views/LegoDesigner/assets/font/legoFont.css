@@ -35,10 +35,6 @@
   src: url('./蒙黑体.ttf');
 }
 @font-face {
-  font-family: '手写体';
-  src: url('./手写体.ttf');
-}
-@font-face {
   font-family: '圆体';
   src: url('./圆体.ttf');
 }
