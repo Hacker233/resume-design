@@ -14,6 +14,7 @@ import 'colorpicker-v3/style.css'; // 引入样式文件
 import '@/assets/iconfont/iconfont.js';
 // 字体文件
 import '@/assets/font/font.css';
+import '@/views/LegoDesigner/assets/font/legoFont.css';
 
 // 滚动条
 import CScrollbar from 'c-scrollbar';

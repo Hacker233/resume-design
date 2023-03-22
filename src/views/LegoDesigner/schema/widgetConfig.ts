@@ -26,7 +26,7 @@ export const WIDGET_CONFIG_LIST: Array<IWidgetTab> = [
         css: {
           left: 0,
           top: 0,
-          zIndex: 0,
+          zIndex: 1,
           width: 120,
           height: 150,
           rotate: 0, // 旋转角度

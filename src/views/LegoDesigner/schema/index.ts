@@ -20,6 +20,7 @@ export const HJSchema: IHJSchema = {
     backgroundColor: '#ffffff',
     opacity: 1,
     backgroundImage: '',
+    fontFamily: '',
     themeColor: ''
   }, // 全局范围的css样式
   config: {

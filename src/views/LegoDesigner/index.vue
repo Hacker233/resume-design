@@ -380,6 +380,14 @@
       HJSchemaJsonStore.value.componentsTree[contextPageIndex.value].children[contextComIndex.value]
         .css.zIndex++;
     } else if (value === 2) {
+      if (
+        HJSchemaJsonStore.value.componentsTree[contextPageIndex.value].children[
+          contextComIndex.value
+        ].css.zIndex === 0
+      ) {
+        ElMessage.warning('已在最底层');
+        return;
+      }
       // 向下一层
       HJSchemaJsonStore.value.componentsTree[contextPageIndex.value].children[contextComIndex.value]
         .css.zIndex--;

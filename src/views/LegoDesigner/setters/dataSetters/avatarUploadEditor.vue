@@ -39,7 +39,7 @@
   };
 
   const handleAvatarSuccess: UploadProps['onSuccess'] = (response) => {
-    widgetItem.dataSource.src.value = response.data.data.fileUrl;
+    widgetItem.dataSource.avatarSrc = response.data.data.fileUrl;
   };
 
   const beforeAvatarUpload: UploadProps['beforeUpload'] = (rawFile) => {

@@ -1,9 +1,9 @@
 <template>
   <div class="avatar-1-box">
     <el-image
-      v-if="widgetData?.dataSource.src"
+      v-if="widgetData?.dataSource.avatarSrc"
       style="width: 115px; height: 115px"
-      :src="widgetData.dataSource.src"
+      :src="widgetData.dataSource.avatarSrc"
     />
     <img v-else :src="defaultImg" style="width: 100%; height: 100%" alt="touxiang" srcset="" />
   </div>

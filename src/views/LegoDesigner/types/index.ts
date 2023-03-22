@@ -10,6 +10,7 @@ interface IHJSchema {
     backgroundColor: string;
     opacity: number;
     backgroundImage: string;
+    fontFamily: string;
     themeColor: string;
   }; // 全局范围的css样式
   config: {
