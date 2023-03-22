@@ -8,6 +8,8 @@ interface IHJSchema {
     width: number;
     height: number;
     backgroundColor: string;
+    opacity: number;
+    backgroundImage: string;
     themeColor: string;
   }; // 全局范围的css样式
   config: {

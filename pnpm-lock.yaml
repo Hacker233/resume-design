@@ -66,6 +66,7 @@ specifiers:
   vue-codemirror: ^6.0.1
   vue-dompurify-html: ^3.1.1
   vue-global-api: ^0.4.1
+  vue-json-viewer: '3'
   vue-router: ^4.0.14
   vue-tsc: ^0.29.8
   vue-uuid: ^3.0.0
@@ -105,6 +106,7 @@ dependencies:
   vue-clipboard3: 2.0.0
   vue-codemirror: 6.0.1_a6s6ti2w4rkpdpgv37ymiej27m
   vue-dompurify-html: 3.1.1_vue@3.2.33
+  vue-json-viewer: 3.0.4_vue@3.2.33
   vue-router: 4.0.15_vue@3.2.33
   vue-uuid: 3.0.0_vue@3.2.33
   vue3-count-to: 1.1.2_vue@3.2.33
@@ -6402,6 +6404,15 @@ packages:
       - '@vue/composition-api'
       - vue
     dev: true
+
+  /vue-json-viewer/3.0.4_vue@3.2.33:
+    resolution: {integrity: sha512-pnC080rTub6YjccthVSNQod2z9Sl5IUUq46srXtn6rxwhW8QM4rlYn+CTSLFKXWfw+N3xv77Cioxw7B4XUKIbQ==}
+    peerDependencies:
+      vue: ^3.2.2
+    dependencies:
+      clipboard: 2.0.11
+      vue: 3.2.33
+    dev: false
 
   /vue-router/4.0.15_vue@3.2.33:
     resolution: {integrity: sha512-xa+pIN9ZqORdIW1MkN2+d9Ui2pCM1b/UMgwYUCZOiFYHAvz/slKKBDha8DLrh5aCG/RibtrpyhKjKOZ85tYyWg==}

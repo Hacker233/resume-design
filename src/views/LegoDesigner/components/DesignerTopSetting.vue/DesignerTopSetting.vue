@@ -22,7 +22,7 @@
     <div class="right">
       <!-- 全局主题设置 -->
       <div class="global-setting-box">
-        <el-popover placement="bottom" :width="300" trigger="click">
+        <el-popover placement="bottom" :width="400" trigger="click">
           <template #reference>
             <div class="global-setting-btn">
               <svg-icon
