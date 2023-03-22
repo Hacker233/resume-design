@@ -11,6 +11,7 @@ import paddingEditor from './paddingEditor.vue';
 import rotateEditor from './rotateEditor.vue';
 import leftEditorVue from './leftEditor.vue';
 import topEditor from './topEditor.vue';
+import avatarUploadEditor from './dataSetters/avatarUploadEditor.vue';
 
 // 属性设置组件对应关系
 export const SETTERS_MAP: ISetterMap = {
@@ -30,4 +31,9 @@ export const SETTERS_MAP: ISetterMap = {
   borderWidth: borderWidthEditor,
   borderColor: borderColorEditor,
   borderStyle: borderStyleEditor
+};
+
+// 数据设置组件对应关系
+export const DATA_SETTERS_MAP: ISetterMap = {
+  avatarSrc: avatarUploadEditor
 };

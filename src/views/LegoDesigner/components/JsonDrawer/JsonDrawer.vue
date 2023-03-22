@@ -13,9 +13,8 @@
       :value="code"
       copyable
       sort
-      expanded
       show-double-quotes
-      preview-mode
+      :expand-depth="3"
       theme="my-awesome-json-theme"
     ></json-viewer>
   </el-drawer>

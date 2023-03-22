@@ -5,7 +5,7 @@ export const WIDGET_CONFIG_LIST: Array<IWidgetTab> = [
     title: '头像',
     category: 'avatar',
     dataSource: {
-      src: '' // 默认头像地址
+      avatarSrc: '' // 默认头像地址
     }, // 该分类下公用数据源
     list: [
       {

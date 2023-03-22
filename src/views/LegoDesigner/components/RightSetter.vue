@@ -23,7 +23,22 @@
           </div>
         </el-form>
       </el-tab-pane>
-      <el-tab-pane label="数据" name="second">数据设置</el-tab-pane>
+      <el-tab-pane label="数据" name="second">
+        <el-form label-width="80px" label-position="left">
+          <div
+            v-for="(value, key, index) in HJSchemaJsonStore.componentsTree[pageActiveIndex]
+              .children[widgetIndex].dataSource"
+            :key="index"
+          >
+            <component
+              :is="getDataSetterCom(key)"
+              :id="selectedWidgetId"
+              :page-index="pageActiveIndex"
+              :value="value"
+            ></component>
+          </div>
+        </el-form>
+      </el-tab-pane>
     </el-tabs>
     <!-- 没有选中组件时展示 -->
     <div v-else class="no-data">
@@ -35,7 +50,7 @@
   import NoData from './NoData/NoData.vue';
   import appStore from '@/store';
   import { storeToRefs } from 'pinia';
-  import { SETTERS_MAP } from '../setters/settersMap';
+  import { DATA_SETTERS_MAP, SETTERS_MAP } from '../setters/settersMap';
 
   // HJSchemaJSON数据
   const { HJSchemaJsonStore } = storeToRefs(appStore.useLegoJsonStore);
@@ -57,6 +72,11 @@
   // 返回属性设置组件
   const getSetterCom = (key: string | number) => {
     return SETTERS_MAP[key];
+  };
+
+  // 返回数据设置组件
+  const getDataSetterCom = (key: string | number) => {
+    return DATA_SETTERS_MAP[key];
   };
 
   const activeName = ref('style');
@@ -92,7 +112,7 @@
 
       .el-tabs__content {
         display: flex;
-        justify-content: center;
+        // justify-content: center;
         padding: 30px 30px 10px 30px;
         box-sizing: border-box;
         height: calc(100vh - 170px);
