@@ -22,12 +22,7 @@
     <div class="right">
       <!-- 全局主题设置 -->
       <div class="global-setting-box">
-        <el-popover
-          placement="bottom"
-          :width="200"
-          trigger="click"
-          content="this is content, this is content, this is content"
-        >
+        <el-popover placement="bottom" :width="300" trigger="click">
           <template #reference>
             <div class="global-setting-btn">
               <svg-icon
@@ -38,6 +33,7 @@
               全局设置
             </div>
           </template>
+          <global-setting></global-setting>
         </el-popover>
       </div>
       <div class="zoom-box">
@@ -53,6 +49,7 @@
   </div>
 </template>
 <script lang="ts" setup>
+  import GlobalSetting from '../GlobalSetting/GlobalSetting.vue';
   import appStore from '@/store';
   import { cloneDeep, isEqual } from 'lodash';
   import { storeToRefs } from 'pinia';

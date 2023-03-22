@@ -17,12 +17,8 @@ export const HJSchema: IHJSchema = {
   css: {
     width: 820,
     height: 1160,
-    background: '#fff',
-    themeColor: '',
-    paddingTop: '',
-    paddingRight: '',
-    paddingBottom: '',
-    paddingLeft: ''
+    backgroundColor: '#fff',
+    themeColor: ''
   }, // 全局范围的css样式
   config: {
     title: '' // 页面标题

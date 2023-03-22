@@ -7,12 +7,8 @@ interface IHJSchema {
   css: {
     width: number;
     height: number;
-    background: string;
+    backgroundColor: string;
     themeColor: string;
-    paddingTop: string;
-    paddingRight: string;
-    paddingBottom: string;
-    paddingLeft: string;
   }; // 全局范围的css样式
   config: {
     title: string; // 页面标题

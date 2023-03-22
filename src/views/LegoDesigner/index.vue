@@ -468,10 +468,10 @@
           margin-bottom: 30px;
           width: v-bind('HJSchemaJsonStore.css.width + "px"');
           min-height: v-bind('HJSchemaJsonStore.css.height + "px"');
-          background: v-bind('HJSchemaJsonStore.css.background');
+          background: v-bind('HJSchemaJsonStore.css.backgroundColor');
           zoom: v-bind('sizeCenter');
           .pages {
-            height: 1160px;
+            height: v-bind('HJSchemaJsonStore.css.height + "px"');
             margin-top: 50px;
             box-shadow: 0 2px 8px rgba(14, 19, 24, 0.07);
             border-radius: 2px;

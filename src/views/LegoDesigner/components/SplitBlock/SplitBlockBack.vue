@@ -1,5 +1,8 @@
 <template>
-  <div class="split-block-box" :style="{ top: pageIndex * 1210 + 'px' }">
+  <div
+    class="split-block-box"
+    :style="{ top: pageIndex * (50 + HJSchemaJsonStore.css.height) + 'px' }"
+  >
     <!-- 左侧 -->
     <div class="split-left">
       <h3>第{{ pageIndex + 1 }}页</h3>
