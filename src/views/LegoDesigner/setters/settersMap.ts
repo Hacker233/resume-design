@@ -12,6 +12,9 @@ import rotateEditor from './rotateEditor.vue';
 import leftEditorVue from './leftEditor.vue';
 import topEditor from './topEditor.vue';
 import avatarUploadEditor from './dataSetters/avatarUploadEditor.vue';
+import fontColorEditor from './fontColorEditor.vue';
+import fontFamilyEditor from './fontFamilyEditor.vue';
+import fontWeightEditor from './fontWeightEditor.vue';
 
 // 属性设置组件对应关系
 export const SETTERS_MAP: ISetterMap = {
@@ -19,9 +22,9 @@ export const SETTERS_MAP: ISetterMap = {
   width: widthEditor,
   height: heightEditor,
   fontSize: 'fontSizeEditor',
-  fontFamily: 'fontFimalyEditor',
-  fontWeight: 'fontWeightEditor',
-  color: 'colorEditor',
+  fontFamily: fontFamilyEditor,
+  fontWeight: fontWeightEditor,
+  fontColor: fontColorEditor,
   left: leftEditorVue,
   top: topEditor,
   rotate: rotateEditor,

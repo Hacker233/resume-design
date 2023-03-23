@@ -116,6 +116,9 @@
           border-radius: 50%;
         }
       }
+      .zs-color-picker-panel {
+        z-index: 5;
+      }
     }
   }
 </style>

@@ -1,8 +1,8 @@
 <template>
-  <div class="global-font-family-editor-box">
+  <div class="font-family-editor-box">
     <el-form-item label="字体选择:">
       <el-select
-        v-model="HJSchemaJsonStore.css.fontFamily"
+        v-model="widgetItem.css.fontFamily"
         :teleported="false"
         placeholder="请选择字体"
         @change="secondFontFamilyChange"
@@ -19,11 +19,16 @@
   </div>
 </template>
 <script lang="ts" setup>
-  import appStore from '@/store';
-  import { storeToRefs } from 'pinia';
   import { useFontFamilyList } from '../hooks/useFontFamlyList';
+  import useSelectWidgetItem from '../hooks/useSelectWidgetItem';
 
-  const { HJSchemaJsonStore } = storeToRefs(appStore.useLegoJsonStore);
+  const props = defineProps<{
+    id: string;
+    pageIndex: number;
+  }>();
+
+  // 选中的widgetItem
+  const { widgetItem } = useSelectWidgetItem(props.id, props.pageIndex);
 
   // 字体列表
   const fontFamilyList = useFontFamilyList();
