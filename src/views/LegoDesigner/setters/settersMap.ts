@@ -15,13 +15,17 @@ import avatarUploadEditor from './dataSetters/avatarUploadEditor.vue';
 import fontColorEditor from './fontColorEditor.vue';
 import fontFamilyEditor from './fontFamilyEditor.vue';
 import fontWeightEditor from './fontWeightEditor.vue';
+import fontSizeEditor from './fontSizeEditor.vue';
+import lineHeightEditor from './lineHeightEditor.vue';
+import textAlignEditor from './textAlignEditor.vue';
+import textEditEditor from './dataSetters/textEditEditor.vue';
 
 // 属性设置组件对应关系
 export const SETTERS_MAP: ISetterMap = {
   zIndex: zIndexEditor,
   width: widthEditor,
   height: heightEditor,
-  fontSize: 'fontSizeEditor',
+  fontSize: fontSizeEditor,
   fontFamily: fontFamilyEditor,
   fontWeight: fontWeightEditor,
   fontColor: fontColorEditor,
@@ -33,10 +37,13 @@ export const SETTERS_MAP: ISetterMap = {
   borderRadius: borderRadiusEditor,
   borderWidth: borderWidthEditor,
   borderColor: borderColorEditor,
-  borderStyle: borderStyleEditor
+  borderStyle: borderStyleEditor,
+  lineHeight: lineHeightEditor,
+  textAlign: textAlignEditor
 };
 
 // 数据设置组件对应关系
 export const DATA_SETTERS_MAP: ISetterMap = {
-  avatarSrc: avatarUploadEditor
+  avatarSrc: avatarUploadEditor,
+  text: textEditEditor
 };

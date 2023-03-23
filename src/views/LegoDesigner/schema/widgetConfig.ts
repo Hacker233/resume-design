@@ -61,9 +61,9 @@ export const WIDGET_CONFIG_LIST: Array<IWidgetTab> = [
         title: '', // 组件中文名称
         description: '正方形头像', // 组件描述信息
         screenShot: {
-          src: 'screenShot.png',
-          width: '70px',
-          height: '90px'
+          src: 'text-1.png',
+          width: '125px',
+          height: '28px'
         }, // 组件快照
         keywords: '文本-1', // 组件关键词，用于搜索
         category: 'avatar', // 组件分类
@@ -75,8 +75,11 @@ export const WIDGET_CONFIG_LIST: Array<IWidgetTab> = [
           width: 165,
           height: 20,
           rotate: 0, // 旋转角度
+          fontSize: 14,
+          lineHeight: 1.5,
           fontFamily: '方正黑体简体',
           fontWeight: 500,
+          textAlign: 'justify',
           fontColor: '#333333',
           padding: {
             top: 0,

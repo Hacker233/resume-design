@@ -1,12 +1,12 @@
 <template>
   <div class="font-weight-editor-box">
-    <el-form-item label="字体粗细:">
-      <el-input-number v-model="widgetItem.css.fontWeight" :min="0" :max="1000" :step="100" />
+    <el-form-item label="文本内容:">
+      <el-input v-model="widgetItem.dataSource.text" type="textarea" :rows="4" />
     </el-form-item>
   </div>
 </template>
 <script lang="ts" setup>
-  import useSelectWidgetItem from '../hooks/useSelectWidgetItem';
+  import useSelectWidgetItem from '../../hooks/useSelectWidgetItem';
 
   const props = defineProps<{
     id: string;

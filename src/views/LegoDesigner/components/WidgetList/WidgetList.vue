@@ -59,7 +59,7 @@
           padding: 0 15px;
         }
         .el-collapse-item__content {
-          padding: 15px;
+          padding: 10px;
         }
         .widget-item {
           box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;

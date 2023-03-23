@@ -52,7 +52,11 @@
                       @activated="activatedHandle(item, pageIndex)"
                       @drag-end="dragEndHandle(item, index, pageIndex)"
                     >
-                      <component :is="getWidgetCom(item)" :widget-data="item"></component>
+                      <component
+                        :is="getWidgetCom(item)"
+                        class="drag-component"
+                        :widget-data="item"
+                      ></component>
                     </Vue3DraggableResizable>
                   </div>
                 </div>
@@ -496,6 +500,9 @@
             background-image: v-bind('"url(" + HJSchemaJsonStore.css.backgroundImage + ")"');
             background-size: 100% 100%;
             fill-opacity: v-bind('HJSchemaJsonStore.css.opacity');
+            .drag-component {
+              cursor: move;
+            }
           }
         }
         .add-page-box {

@@ -89,6 +89,7 @@
     min-width: 350px;
     :deep(.el-tabs) {
       height: 100%;
+      overflow: auto;
       .el-tabs__header {
         margin-bottom: 0;
         height: 50px;
@@ -115,7 +116,7 @@
         // justify-content: center;
         padding: 30px 30px 10px 30px;
         box-sizing: border-box;
-        height: calc(100vh - 170px);
+        // height: calc(100vh - 170px);
         overflow: auto;
         .c-scrollbar {
           padding: 30px 20px;

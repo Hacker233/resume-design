@@ -32,5 +32,8 @@
     color: v-bind('props.widgetData?.css.fontColor');
     font-family: v-bind('props.widgetData?.css.fontFamily');
     font-weight: v-bind('props.widgetData?.css.fontWeight');
+    font-size: v-bind('props.widgetData?.css.fontSize + "px"');
+    line-height: v-bind('props.widgetData?.css.lineHeight');
+    text-align: v-bind('props.widgetData?.css.textAlign');
   }
 </style>
