@@ -32,6 +32,7 @@ interface IWidget {
     src: string;
     width: string;
     height: string;
+    borderRadius: string;
   }; // 组件快照
   keywords: string; // 组件关键词，用于搜索
   category: string; // 组件分类

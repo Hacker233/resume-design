@@ -1,5 +1,5 @@
 <template>
-  <div class="avatar-1-box">
+  <div class="avatar-2-box">
     <el-image
       v-if="widgetData?.dataSource.avatarSrc"
       style="width: 115px; height: 115px"
@@ -11,6 +11,7 @@
 <script lang="ts" setup>
   import defaultAvatar from '@/assets/images/people.jpg';
   import { IWidget } from '@/views/LegoDesigner/types';
+
   interface IAvatar {
     widgetData: IWidget | null; // 模块数据
   }
@@ -21,7 +22,7 @@
   const defaultImg = defaultAvatar;
 </script>
 <style lang="scss" scoped>
-  .avatar-1-box {
+  .avatar-2-box {
     width: v-bind('props.widgetData?.css.width + "px"');
     height: v-bind('props.widgetData?.css.height + "px"');
     border-style: v-bind('props.widgetData?.css.borderStyle');
@@ -36,7 +37,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: v-bind('props.widgetData?.css.borderRadius + "px"');
+    border-radius: 50%;
     .el-image {
       border-radius: v-bind('props.widgetData?.css.borderRadius + "px"');
     }

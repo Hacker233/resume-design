@@ -16,12 +16,13 @@ export const WIDGET_CONFIG_LIST: Array<IWidgetTab> = [
         title: '', // 组件中文名称
         description: '正方形头像', // 组件描述信息
         screenShot: {
-          src: 'screenShot.png',
+          src: 'avatar-1.png',
           width: '70px',
-          height: '90px'
+          height: '90px',
+          borderRadius: '10px'
         }, // 组件快照
         keywords: '头像', // 组件关键词，用于搜索
-        category: 'avatar', // 组件分类
+        category: 'avatar-1', // 组件分类
         props: {}, // 组件属性
         css: {
           left: 0,
@@ -41,6 +42,76 @@ export const WIDGET_CONFIG_LIST: Array<IWidgetTab> = [
           borderRadius: 10,
           borderColor: '#eee',
           borderStyle: 'solid'
+        }, // 组件样式
+        dataSource: {} // 组件单独数据
+      },
+      {
+        id: '', // 组件唯一性id
+        componentName: 'hj-avatar-2', // 组件名
+        commentType: '', // 组件类型
+        icon: '', // 组件icon
+        title: '', // 组件中文名称
+        description: '圆形头像', // 组件描述信息
+        screenShot: {
+          src: 'avatar-2.png',
+          width: '90px',
+          height: '90px',
+          borderRadius: '50%'
+        }, // 组件快照
+        keywords: '头像', // 组件关键词，用于搜索
+        category: 'avatar-2', // 组件分类
+        props: {}, // 组件属性
+        css: {
+          left: 0,
+          top: 0,
+          zIndex: 1,
+          width: 120,
+          height: 120,
+          rotate: 0, // 旋转角度
+          backgroundColor: '#eee',
+          padding: {
+            top: 0,
+            right: 0,
+            bottom: 0,
+            left: 0
+          },
+          borderWidth: 3,
+          borderColor: '#eee',
+          borderStyle: 'solid'
+        }, // 组件样式
+        dataSource: {} // 组件单独数据
+      },
+      {
+        id: '', // 组件唯一性id
+        componentName: 'hj-avatar-3', // 组件名
+        commentType: '', // 组件类型
+        icon: '', // 组件icon
+        title: '', // 组件中文名称
+        description: '六边形头像', // 组件描述信息
+        screenShot: {
+          src: 'avatar-3.png',
+          width: '90px',
+          height: '90px',
+          borderRadius: '10px'
+        }, // 组件快照
+        keywords: '圆头像', // 组件关键词，用于搜索
+        category: 'avatar-3', // 组件分类
+        props: {}, // 组件属性
+        css: {
+          left: 0,
+          top: 0,
+          zIndex: 1,
+          width: 120,
+          height: 130,
+          rotate: 0, // 旋转角度
+          padding: {
+            top: 0,
+            right: 0,
+            bottom: 0,
+            left: 0
+          },
+          borderWidth: 3,
+          borderColor: '#eee'
         }, // 组件样式
         dataSource: {} // 组件单独数据
       }
@@ -63,10 +134,11 @@ export const WIDGET_CONFIG_LIST: Array<IWidgetTab> = [
         screenShot: {
           src: 'text-1.png',
           width: '125px',
-          height: '28px'
+          height: '28px',
+          borderRadius: '4px'
         }, // 组件快照
         keywords: '文本-1', // 组件关键词，用于搜索
-        category: 'avatar', // 组件分类
+        category: 'text', // 组件分类
         props: {}, // 组件属性
         css: {
           left: 0,

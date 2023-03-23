@@ -9,7 +9,11 @@
             :key="itemIndex"
             draggable="true"
             class="widget-item"
-            :style="{ width: itemCom.screenShot.width, height: itemCom.screenShot.height }"
+            :style="{
+              width: itemCom.screenShot.width,
+              height: itemCom.screenShot.height,
+              borderRadius: itemCom.screenShot.borderRadius
+            }"
             @dragstart="dragStart($event, item, itemCom)"
             @dragend="dragEnd($event)"
             @click="addWidgetToCenter(item, itemCom)"
@@ -60,14 +64,18 @@
         }
         .el-collapse-item__content {
           padding: 10px;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
         }
         .widget-item {
-          box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
           border-radius: 2px;
+          // box-shadow: rgba(0, 0, 0, 0.25) 0px 1px 1px;
+          overflow: hidden;
           cursor: move;
           transition: all 0.3s;
           &:hover {
-            box-shadow: rgba(0, 0, 0, 0.25) 0px 1px 4px;
+            box-shadow: rgba(0, 0, 0, 0.25) 0px 1px 3px;
           }
           img {
             width: 100%;
