@@ -98,7 +98,6 @@
   import { WIDGET_MAP } from './widgets';
   import { storeToRefs } from 'pinia';
   import { getUuid } from '@/utils/common';
-  import { hexToRgba } from './utils/common';
   import { cloneDeep } from 'lodash';
   import { HJSchema } from './schema/index';
 
@@ -458,14 +457,6 @@
   const reduceSize = (number: number) => {
     sizeCenter.value = number;
   };
-
-  // 页面背景
-  const pageBackground = computed(() => {
-    return hexToRgba(
-      HJSchemaJsonStore.value.css.backgroundColor,
-      HJSchemaJsonStore.value.css.opacity
-    );
-  });
 </script>
 <style lang="scss" scoped>
   .lego-designer-box {
@@ -489,7 +480,7 @@
           margin-bottom: 30px;
           width: v-bind('HJSchemaJsonStore.css.width + "px"');
           min-height: v-bind('HJSchemaJsonStore.css.height + "px"');
-          background-color: v-bind('pageBackground');
+          background: v-bind('HJSchemaJsonStore.css.background');
           zoom: v-bind('sizeCenter');
 
           .pages {

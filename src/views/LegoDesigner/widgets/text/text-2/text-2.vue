@@ -1,5 +1,5 @@
 <template>
-  <p class="text-1-box">
+  <p class="text-2-box">
     {{ widgetData?.dataSource.text }}
   </p>
 </template>
@@ -14,7 +14,7 @@
   });
 </script>
 <style lang="scss" scoped>
-  .text-1-box {
+  .text-2-box {
     width: v-bind('props.widgetData?.css.width + "px"');
     height: v-bind('props.widgetData?.css.height + "px"');
     border-style: v-bind('props.widgetData?.css.borderStyle');
@@ -25,11 +25,14 @@
       v-bind('props.widgetData?.css.padding.left + "px"');
     border-color: v-bind('props.widgetData?.css.borderColor');
     border-radius: v-bind('props.widgetData?.css.borderRadius + "px"');
-    color: v-bind('props.widgetData?.css.fontColor');
+    // color: v-bind('props.widgetData?.css.fontColor');
     font-family: v-bind('props.widgetData?.css.fontFamily');
     font-weight: v-bind('props.widgetData?.css.fontWeight');
     font-size: v-bind('props.widgetData?.css.fontSize + "px"');
     line-height: v-bind('props.widgetData?.css.lineHeight');
     text-align: v-bind('props.widgetData?.css.textAlign');
+    background: linear-gradient(to bottom right, #25cc0f 0%, #9e3212 100%);
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
   }
 </style>

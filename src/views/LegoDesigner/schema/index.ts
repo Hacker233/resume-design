@@ -17,7 +17,7 @@ export const HJSchema: IHJSchema = {
   css: {
     width: 820,
     height: 1160,
-    backgroundColor: '#ffffff',
+    background: '#ffffff',
     opacity: 1,
     backgroundImage: '',
     fontFamily: '',

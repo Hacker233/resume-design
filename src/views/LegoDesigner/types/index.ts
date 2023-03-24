@@ -7,7 +7,7 @@ interface IHJSchema {
   css: {
     width: number;
     height: number;
-    backgroundColor: string;
+    background: string;
     opacity: number;
     backgroundImage: string;
     fontFamily: string;

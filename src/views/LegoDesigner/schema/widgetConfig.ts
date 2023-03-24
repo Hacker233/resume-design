@@ -223,7 +223,7 @@ export const WIDGET_CONFIG_LIST: Array<IWidgetTab> = [
     title: '文本',
     category: 'text',
     dataSource: {
-      text: '91化简，就是要简单！' // 文本内容
+      text: '91化简' // 文本内容
     }, // 该分类下公用数据源
     list: [
       {
@@ -235,8 +235,8 @@ export const WIDGET_CONFIG_LIST: Array<IWidgetTab> = [
         description: '正方形头像', // 组件描述信息
         screenShot: {
           src: 'text-1.png',
-          width: '125px',
-          height: '28px',
+          width: '116px',
+          height: '37px',
           borderRadius: '4px'
         }, // 组件快照
         keywords: '文本-1', // 组件关键词，用于搜索
@@ -246,7 +246,7 @@ export const WIDGET_CONFIG_LIST: Array<IWidgetTab> = [
           left: 0,
           top: 0,
           zIndex: 1,
-          width: 165,
+          width: 60,
           height: 20,
           rotate: 0, // 旋转角度
           fontSize: 14,
@@ -255,6 +255,129 @@ export const WIDGET_CONFIG_LIST: Array<IWidgetTab> = [
           fontWeight: 500,
           textAlign: 'justify',
           fontColor: '#333333',
+          padding: {
+            top: 0,
+            right: 0,
+            bottom: 0,
+            left: 0
+          },
+          borderWidth: 0,
+          borderRadius: 10,
+          borderColor: '#eee',
+          borderStyle: 'solid'
+        }, // 组件样式
+        dataSource: {} // 组件单独数据
+      },
+      {
+        id: '', // 组件唯一性id
+        componentName: 'hj-text-2', // 组件名
+        commentType: '', // 组件类型
+        icon: '', // 组件icon
+        title: '', // 组件中文名称
+        description: '渐变文本-1', // 组件描述信息
+        screenShot: {
+          src: 'text-2.png',
+          width: '116px',
+          height: '37px',
+          borderRadius: '4px'
+        }, // 组件快照
+        keywords: '文本-2', // 组件关键词，用于搜索
+        category: 'text', // 组件分类
+        props: {}, // 组件属性
+        css: {
+          left: 0,
+          top: 0,
+          zIndex: 1,
+          width: 60,
+          height: 20,
+          rotate: 0, // 旋转角度
+          fontSize: 14,
+          lineHeight: 1.5,
+          fontFamily: '方正黑体简体',
+          fontWeight: 500,
+          textAlign: 'justify',
+          padding: {
+            top: 0,
+            right: 0,
+            bottom: 0,
+            left: 0
+          },
+          borderWidth: 0,
+          borderRadius: 10,
+          borderColor: '#eee',
+          borderStyle: 'solid'
+        }, // 组件样式
+        dataSource: {} // 组件单独数据
+      },
+      {
+        id: '', // 组件唯一性id
+        componentName: 'hj-text-3', // 组件名
+        commentType: '', // 组件类型
+        icon: '', // 组件icon
+        title: '', // 组件中文名称
+        description: '渐变文本-2', // 组件描述信息
+        screenShot: {
+          src: 'text-3.png',
+          width: '116px',
+          height: '37px',
+          borderRadius: '4px'
+        }, // 组件快照
+        keywords: '文本-3', // 组件关键词，用于搜索
+        category: 'text', // 组件分类
+        props: {}, // 组件属性
+        css: {
+          left: 0,
+          top: 0,
+          zIndex: 1,
+          width: 60,
+          height: 20,
+          rotate: 0, // 旋转角度
+          fontSize: 14,
+          lineHeight: 1.5,
+          fontFamily: '方正黑体简体',
+          fontWeight: 500,
+          textAlign: 'justify',
+          padding: {
+            top: 0,
+            right: 0,
+            bottom: 0,
+            left: 0
+          },
+          borderWidth: 0,
+          borderRadius: 10,
+          borderColor: '#eee',
+          borderStyle: 'solid'
+        }, // 组件样式
+        dataSource: {} // 组件单独数据
+      },
+      {
+        id: '', // 组件唯一性id
+        componentName: 'hj-text-4', // 组件名
+        commentType: '', // 组件类型
+        icon: '', // 组件icon
+        title: '', // 组件中文名称
+        description: '渐变文本-3', // 组件描述信息
+        screenShot: {
+          src: 'text-4.png',
+          width: '116px',
+          height: '37px',
+          borderRadius: '4px'
+        }, // 组件快照
+        keywords: '文本-4', // 组件关键词，用于搜索
+        category: 'text', // 组件分类
+        props: {}, // 组件属性
+        css: {
+          left: 0,
+          top: 0,
+          zIndex: 1,
+          width: 60,
+          height: 20,
+          rotate: 0, // 旋转角度
+          fontSize: 14,
+          lineHeight: 1.5,
+          fontFamily: '方正黑体简体',
+          fontWeight: 500,
+          textAlign: 'justify',
           padding: {
             top: 0,
             right: 0,

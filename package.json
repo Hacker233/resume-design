@@ -59,6 +59,7 @@
     "vue-json-viewer": "3",
     "vue-router": "^4.0.14",
     "vue-uuid": "^3.0.0",
+    "vue3-colorpicker": "^2.1.2",
     "vue3-count-to": "^1.1.2",
     "vuedraggable": "^4.1.0"
   },
