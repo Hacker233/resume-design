@@ -75,7 +75,7 @@
           overflow: hidden;
           cursor: move;
           transition: all 0.3s;
-          margin-bottom: 15px;
+          margin-bottom: 20px;
           &:hover {
             box-shadow: rgba(0, 0, 0, 0.25) 0px 1px 3px;
           }

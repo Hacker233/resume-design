@@ -135,7 +135,7 @@
   const addWidgetToCenter = (widgetItem: IWidget) => {
     addWidget(widgetItem, 0);
     // 滚动到可视区
-    selectWidget();
+    // selectWidget();
   };
 
   // 中间区域新增组件

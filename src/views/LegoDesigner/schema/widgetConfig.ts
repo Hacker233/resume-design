@@ -390,6 +390,252 @@ export const WIDGET_CONFIG_LIST: Array<IWidgetTab> = [
           borderStyle: 'solid'
         }, // 组件样式
         dataSource: {} // 组件单独数据
+      },
+      {
+        id: '', // 组件唯一性id
+        componentName: 'hj-text-5', // 组件名
+        commentType: '', // 组件类型
+        icon: '', // 组件icon
+        title: '', // 组件中文名称
+        description: '渐变文本-4', // 组件描述信息
+        screenShot: {
+          src: 'text-5.png',
+          width: '116px',
+          height: '37px',
+          borderRadius: '4px'
+        }, // 组件快照
+        keywords: '文本-5', // 组件关键词，用于搜索
+        category: 'text', // 组件分类
+        props: {}, // 组件属性
+        css: {
+          left: 0,
+          top: 0,
+          zIndex: 1,
+          width: 60,
+          height: 20,
+          rotate: 0, // 旋转角度
+          fontSize: 14,
+          lineHeight: 1.5,
+          fontFamily: '方正黑体简体',
+          fontWeight: 500,
+          textAlign: 'justify',
+          padding: {
+            top: 0,
+            right: 0,
+            bottom: 0,
+            left: 0
+          },
+          borderWidth: 0,
+          borderRadius: 10,
+          borderColor: '#eee',
+          borderStyle: 'solid'
+        }, // 组件样式
+        dataSource: {} // 组件单独数据
+      },
+      {
+        id: '', // 组件唯一性id
+        componentName: 'hj-text-6', // 组件名
+        commentType: '', // 组件类型
+        icon: '', // 组件icon
+        title: '', // 组件中文名称
+        description: '渐变文本-5', // 组件描述信息
+        screenShot: {
+          src: 'text-6.png',
+          width: '116px',
+          height: '37px',
+          borderRadius: '4px'
+        }, // 组件快照
+        keywords: '文本-6', // 组件关键词，用于搜索
+        category: 'text', // 组件分类
+        props: {}, // 组件属性
+        css: {
+          left: 0,
+          top: 0,
+          zIndex: 1,
+          width: 60,
+          height: 20,
+          rotate: 0, // 旋转角度
+          fontSize: 14,
+          lineHeight: 1.5,
+          fontFamily: '方正黑体简体',
+          fontWeight: 500,
+          textAlign: 'justify',
+          padding: {
+            top: 0,
+            right: 0,
+            bottom: 0,
+            left: 0
+          },
+          borderWidth: 0,
+          borderRadius: 10,
+          borderColor: '#eee',
+          borderStyle: 'solid'
+        }, // 组件样式
+        dataSource: {} // 组件单独数据
+      },
+      {
+        id: '', // 组件唯一性id
+        componentName: 'hj-text-7', // 组件名
+        commentType: '', // 组件类型
+        icon: '', // 组件icon
+        title: '', // 组件中文名称
+        description: '渐变文本-6', // 组件描述信息
+        screenShot: {
+          src: 'text-7.png',
+          width: '116px',
+          height: '37px',
+          borderRadius: '4px'
+        }, // 组件快照
+        keywords: '文本-7', // 组件关键词，用于搜索
+        category: 'text', // 组件分类
+        props: {}, // 组件属性
+        css: {
+          left: 0,
+          top: 0,
+          zIndex: 1,
+          width: 60,
+          height: 20,
+          rotate: 0, // 旋转角度
+          fontSize: 14,
+          lineHeight: 1.5,
+          fontFamily: '方正黑体简体',
+          fontWeight: 500,
+          textAlign: 'justify',
+          padding: {
+            top: 0,
+            right: 0,
+            bottom: 0,
+            left: 0
+          },
+          borderWidth: 0,
+          borderRadius: 10,
+          borderColor: '#eee',
+          borderStyle: 'solid'
+        }, // 组件样式
+        dataSource: {} // 组件单独数据
+      },
+      {
+        id: '', // 组件唯一性id
+        componentName: 'hj-text-8', // 组件名
+        commentType: '', // 组件类型
+        icon: '', // 组件icon
+        title: '', // 组件中文名称
+        description: '渐变文本-7', // 组件描述信息
+        screenShot: {
+          src: 'text-8.png',
+          width: '116px',
+          height: '37px',
+          borderRadius: '4px'
+        }, // 组件快照
+        keywords: '文本-8', // 组件关键词，用于搜索
+        category: 'text', // 组件分类
+        props: {}, // 组件属性
+        css: {
+          left: 0,
+          top: 0,
+          zIndex: 1,
+          width: 60,
+          height: 20,
+          rotate: 0, // 旋转角度
+          fontSize: 14,
+          lineHeight: 1.5,
+          fontFamily: '方正黑体简体',
+          fontWeight: 500,
+          textAlign: 'justify',
+          padding: {
+            top: 0,
+            right: 0,
+            bottom: 0,
+            left: 0
+          },
+          borderWidth: 0,
+          borderRadius: 10,
+          borderColor: '#eee',
+          borderStyle: 'solid'
+        }, // 组件样式
+        dataSource: {} // 组件单独数据
+      },
+      {
+        id: '', // 组件唯一性id
+        componentName: 'hj-text-9', // 组件名
+        commentType: '', // 组件类型
+        icon: '', // 组件icon
+        title: '', // 组件中文名称
+        description: '渐变文本-8', // 组件描述信息
+        screenShot: {
+          src: 'text-9.png',
+          width: '116px',
+          height: '37px',
+          borderRadius: '4px'
+        }, // 组件快照
+        keywords: '文本-9', // 组件关键词，用于搜索
+        category: 'text', // 组件分类
+        props: {}, // 组件属性
+        css: {
+          left: 0,
+          top: 0,
+          zIndex: 1,
+          width: 60,
+          height: 20,
+          rotate: 0, // 旋转角度
+          fontSize: 14,
+          lineHeight: 1.5,
+          fontFamily: '方正黑体简体',
+          fontWeight: 500,
+          textAlign: 'justify',
+          padding: {
+            top: 0,
+            right: 0,
+            bottom: 0,
+            left: 0
+          },
+          borderWidth: 0,
+          borderRadius: 10,
+          borderColor: '#eee',
+          borderStyle: 'solid'
+        }, // 组件样式
+        dataSource: {} // 组件单独数据
+      },
+      {
+        id: '', // 组件唯一性id
+        componentName: 'hj-text-10', // 组件名
+        commentType: '', // 组件类型
+        icon: '', // 组件icon
+        title: '', // 组件中文名称
+        description: '渐变文本-9', // 组件描述信息
+        screenShot: {
+          src: 'text-10.png',
+          width: '116px',
+          height: '37px',
+          borderRadius: '4px'
+        }, // 组件快照
+        keywords: '文本-10', // 组件关键词，用于搜索
+        category: 'text', // 组件分类
+        props: {}, // 组件属性
+        css: {
+          left: 0,
+          top: 0,
+          zIndex: 1,
+          width: 60,
+          height: 20,
+          rotate: 0, // 旋转角度
+          fontSize: 14,
+          lineHeight: 1.5,
+          fontFamily: '方正黑体简体',
+          fontWeight: 500,
+          textAlign: 'justify',
+          padding: {
+            top: 0,
+            right: 0,
+            bottom: 0,
+            left: 0
+          },
+          borderWidth: 0,
+          borderRadius: 10,
+          borderColor: '#eee',
+          borderStyle: 'solid'
+        }, // 组件样式
+        dataSource: {} // 组件单独数据
       }
     ]
   }
