@@ -67,6 +67,7 @@
           display: flex;
           align-items: center;
           justify-content: space-between;
+          flex-wrap: wrap;
         }
         .widget-item {
           border-radius: 2px;
@@ -74,6 +75,7 @@
           overflow: hidden;
           cursor: move;
           transition: all 0.3s;
+          margin-bottom: 10px;
           &:hover {
             box-shadow: rgba(0, 0, 0, 0.25) 0px 1px 3px;
           }

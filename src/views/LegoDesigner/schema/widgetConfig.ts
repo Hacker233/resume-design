@@ -114,6 +114,108 @@ export const WIDGET_CONFIG_LIST: Array<IWidgetTab> = [
           borderColor: '#eee'
         }, // 组件样式
         dataSource: {} // 组件单独数据
+      },
+      {
+        id: '', // 组件唯一性id
+        componentName: 'hj-avatar-4', // 组件名
+        commentType: '', // 组件类型
+        icon: '', // 组件icon
+        title: '', // 组件中文名称
+        description: '内置矩形头像', // 组件描述信息
+        screenShot: {
+          src: 'avatar-4.png',
+          width: '75px',
+          height: '75px',
+          borderRadius: '10px'
+        }, // 组件快照
+        keywords: '头像', // 组件关键词，用于搜索
+        category: 'avatar-4', // 组件分类
+        props: {}, // 组件属性
+        css: {
+          left: 0,
+          top: 0,
+          zIndex: 1,
+          width: 130,
+          height: 130,
+          rotate: 0, // 旋转角度
+          padding: {
+            top: 0,
+            right: 0,
+            bottom: 0,
+            left: 0
+          },
+          borderWidth: 3,
+          borderColor: '#eee'
+        }, // 组件样式
+        dataSource: {} // 组件单独数据
+      },
+      {
+        id: '', // 组件唯一性id
+        componentName: 'hj-avatar-5', // 组件名
+        commentType: '', // 组件类型
+        icon: '', // 组件icon
+        title: '', // 组件中文名称
+        description: '正五边形头像', // 组件描述信息
+        screenShot: {
+          src: 'avatar-5.png',
+          width: '90px',
+          height: '90px',
+          borderRadius: '10px'
+        }, // 组件快照
+        keywords: '头像', // 组件关键词，用于搜索
+        category: 'avatar-5', // 组件分类
+        props: {}, // 组件属性
+        css: {
+          left: 0,
+          top: 0,
+          zIndex: 1,
+          width: 120,
+          height: 116,
+          rotate: 0, // 旋转角度
+          padding: {
+            top: 0,
+            right: 0,
+            bottom: 0,
+            left: 0
+          },
+          borderWidth: 3,
+          borderColor: '#eee'
+        }, // 组件样式
+        dataSource: {} // 组件单独数据
+      },
+      {
+        id: '', // 组件唯一性id
+        componentName: 'hj-avatar-6', // 组件名
+        commentType: '', // 组件类型
+        icon: '', // 组件icon
+        title: '', // 组件中文名称
+        description: '正七边形头像', // 组件描述信息
+        screenShot: {
+          src: 'avatar-6.png',
+          width: '90px',
+          height: '90px',
+          borderRadius: '10px'
+        }, // 组件快照
+        keywords: '头像', // 组件关键词，用于搜索
+        category: 'avatar-6', // 组件分类
+        props: {}, // 组件属性
+        css: {
+          left: 0,
+          top: 0,
+          zIndex: 1,
+          width: 120,
+          height: 120,
+          rotate: 0, // 旋转角度
+          padding: {
+            top: 0,
+            right: 0,
+            bottom: 0,
+            left: 0
+          },
+          borderWidth: 3,
+          borderColor: '#eee'
+        }, // 组件样式
+        dataSource: {} // 组件单独数据
       }
     ]
   },
