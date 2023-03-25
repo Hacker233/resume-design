@@ -10,7 +10,10 @@
             <img src="https://cube.elemecdn.com/e/fd/0fc7d20532fdaf769a25683617711png.png" />
           </el-avatar>
         </div>
-        <CommentBox placeholder="输入评论（Enter换行，Ctrl + Enter发送）" content-btn="发表评论" />
+        <CommentBox
+          placeholder="请认真评论哦~否则将面临封号或扣除简币处理！（删除评论将扣除已获得的简币）"
+          content-btn="发表评论"
+        />
       </div>
       <slot name="is-not-login"> </slot>
     </div>
