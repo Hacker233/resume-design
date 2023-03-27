@@ -84,6 +84,14 @@
     </el-table>
   </div>
 
+  <!-- 删除评论弹窗 -->
+  <delete-comment-dialog
+    :dialog-delete-visible="dialogDeleteVisible"
+    :row="row"
+    @cancle="cancle"
+    @update-success="updateSuccess"
+  ></delete-comment-dialog>
+
   <!-- 分页组件 -->
   <Pagination
     :total="total"
@@ -93,16 +101,11 @@
   ></Pagination>
 </template>
 <script lang="ts" setup>
-  import {
-    deleteCommentByAdminAsync,
-    getAllCommentPageAsync,
-    recoverCommentByAdminAsync
-  } from '@/http/api/comment';
+  import { getAllCommentPageAsync, recoverCommentByAdminAsync } from '@/http/api/comment';
   import { formatListDate } from '@/utils/common';
-  import { ElMessageBox } from 'element-plus';
-  import 'element-plus/es/components/message-box/style/index';
   import { commentType } from '@/dictionary/commentType';
   import { toCommentDetail } from '@/utils/commentToDetail';
+  import DeleteCommentDialog from './components/DeleteCommentDialog.vue';
 
   // 表单查询
   const formInline = reactive({
@@ -178,32 +181,26 @@
     initCommentList();
   };
 
-  // 删除评论
-  const deleteComment = (row: any) => {
-    ElMessageBox.confirm('是否删除该条评论？', '警告', {
-      confirmButtonText: '确定',
-      cancelButtonText: '取消',
-      type: 'warning'
-    })
-      .then(async () => {
-        const params = {
-          id: row._id
-        };
-        const data = await deleteCommentByAdminAsync(params);
-        if (data.data.status === 200) {
-          ElMessage({
-            type: 'success',
-            message: '删除成功'
-          });
-          initCommentList();
-        } else {
-          ElMessage.error(data.data.message);
-        }
-      })
-      .catch(() => {});
+  // 取消弹窗
+  const cancle = () => {
+    dialogDeleteVisible.value = false;
   };
 
-  // 恢复一条简历
+  // 提交成功
+  const updateSuccess = () => {
+    dialogDeleteVisible.value = false;
+    initCommentList();
+  };
+
+  // 删除评论
+  const dialogDeleteVisible = ref<boolean>(false);
+  const row = ref<any>(null);
+  const deleteComment = (rowItem: any) => {
+    dialogDeleteVisible.value = true;
+    row.value = rowItem;
+  };
+
+  // 恢复一条评论
   const recoverComment = async (row: any) => {
     const params = {
       id: row._id
