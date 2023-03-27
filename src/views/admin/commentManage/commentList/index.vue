@@ -36,6 +36,7 @@
       size="default"
       border
     >
+      <el-table-column prop="email" label="用户邮箱" />
       <el-table-column prop="username" label="用户昵称" />
       <el-table-column prop="avatar" label="头像">
         <template #default="scope">

@@ -105,7 +105,8 @@
         sureLoading.value = true;
         const params = {
           id: ruleForm.id,
-          integralPayDesc: ruleForm.integralPayDesc
+          integralPayDesc: ruleForm.integralPayDesc,
+          email: props.row.email
         };
         const data = await deleteCommentByAdminAsync(params);
         if (data.data.status === 200) {
