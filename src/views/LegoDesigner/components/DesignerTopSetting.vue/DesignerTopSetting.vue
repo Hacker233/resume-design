@@ -18,6 +18,13 @@
       </div>
     </div>
 
+    <div class="center">
+      <!-- 草稿保存 -->
+      <div class="draft-tips-box">
+        <span class="draft-tips">{{ draftTips }}</span>
+      </div>
+    </div>
+
     <!-- 缩放画布 -->
     <div class="right">
       <!-- 全局主题设置 -->
@@ -57,7 +64,7 @@
 
   const number = ref<number>(100);
   const emit = defineEmits(['addSize', 'reduceSize']);
-  const { HJSchemaJsonStore } = storeToRefs(appStore.useLegoJsonStore);
+  const { HJSchemaJsonStore, draftTips } = storeToRefs(appStore.useLegoJsonStore);
 
   onMounted(() => {
     // 鼠标事件
@@ -205,6 +212,22 @@
         cursor: not-allowed;
       }
     }
+    .center {
+      flex: 1;
+      justify-content: flex-start;
+      padding: 0 20px;
+      .draft-tips-box {
+        height: 100%;
+        display: flex;
+        align-items: center;
+        margin-left: 10px;
+        .draft-tips {
+          font-size: 10px;
+          color: #999999;
+        }
+      }
+    }
+
     .right {
       width: 230px;
       justify-content: space-between;

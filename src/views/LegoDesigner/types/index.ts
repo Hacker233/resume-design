@@ -1,5 +1,6 @@
 // 页面JSON格式
 interface IHJSchema {
+  id: string;
   version: string; // 当前JSON版本号
   componentsTree: Array<any>; // 描述组件/区块/模板的组件树
   i18n: any; // 国际化语料库

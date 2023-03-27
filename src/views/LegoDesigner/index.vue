@@ -116,6 +116,7 @@
 
   // 初始页面JSON
   const { HJSchemaJsonStore } = storeToRefs(appStore.useLegoJsonStore);
+  HJSchemaJsonStore.value.id = getUuid();
   const { pushComponent } = appStore.useLegoJsonStore;
   console.log('页面初始化JSON', HJSchemaJsonStore);
 

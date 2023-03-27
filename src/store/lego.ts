@@ -9,6 +9,7 @@ export const useLegoJsonStore = defineStore('legoJsonStore', () => {
   const HJ_JSON = cloneDeep(HJSchema); // 页面数据数据
   const importJson = ref<IHJSchema>(HJ_JSON); // 导入的JSON数据
   const HJSchemaJsonStore = ref<IHJSchema>(HJ_JSON);
+  const draftTips = ref<string>(''); // 保存草稿话术
   function changeHJSchemaJsonData(obj: IHJSchema) {
     HJSchemaJsonStore.value = cloneDeep(obj);
   }
@@ -19,7 +20,7 @@ export const useLegoJsonStore = defineStore('legoJsonStore', () => {
     return HJSchemaJsonStore.value.componentsTree[pageIndex].children.push(data) - 1; // 返回插入后的索引
   }
   function resetHJSchemaJsonData() {
-    HJSchemaJsonStore.value = cloneDeep(HJ_JSON);
+    HJSchemaJsonStore.value = cloneDeep(HJSchema);
   }
 
   return {
@@ -28,7 +29,8 @@ export const useLegoJsonStore = defineStore('legoJsonStore', () => {
     changeHJSchemaJsonData,
     changeImportJsonData,
     pushComponent,
-    resetHJSchemaJsonData
+    resetHJSchemaJsonData,
+    draftTips
   };
 });
 
