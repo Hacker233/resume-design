@@ -125,7 +125,7 @@
 
   // 加
   const add = () => {
-    if (number.value >= 150) {
+    if (number.value >= 250) {
       return;
     } else {
       number.value += 5;
@@ -135,7 +135,7 @@
 
   // 减
   const reduce = () => {
-    if (number.value <= 50) {
+    if (number.value <= 10) {
       return;
     } else {
       number.value -= 5;
@@ -181,7 +181,7 @@
     top: 0;
     left: 0;
     z-index: 9;
-    margin-bottom: 30px;
+    // margin-bottom: 30px;
     z-index: 1001;
     display: flex;
     justify-content: space-between;

@@ -19,7 +19,7 @@
       <el-tooltip effect="dark" content="保存为草稿" placement="bottom">
         <div class="icon-box" @click="saveDraft">
           <svg-icon icon-name="icon-caogaoxiang1" color="#555" size="17px"></svg-icon>
-          <span class="icon-tips">暂存</span>
+          <span class="icon-tips">保存</span>
         </div>
       </el-tooltip>
       <el-tooltip effect="dark" content="重置所有设置" placement="bottom">
@@ -114,6 +114,9 @@
       }
       const time = moment(new Date()).format('YYYY.MM.DD HH:mm:ss');
       draftTips.value = `已自动保存草稿  ${time}`;
+      ElMessage.success('保存成功');
+    } else {
+      // 保存到服务器
     }
   };
 
