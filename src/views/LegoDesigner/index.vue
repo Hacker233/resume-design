@@ -13,12 +13,12 @@
         ></left-com-list>
         <!-- 设计面板容器区域 -->
         <div class="designer-box">
-          <c-scrollbar trigger="hover">
-            <!-- 画布相关设置 -->
-            <designer-top-setting
-              @add-size="addSize"
-              @reduce-size="reduceSize"
-            ></designer-top-setting>
+          <!-- 画布相关设置 -->
+          <designer-top-setting
+            @add-size="addSize"
+            @reduce-size="reduceSize"
+          ></designer-top-setting>
+          <div class="design-bottom-box">
             <!-- 画布区域 -->
             <div :key="refreshUuid" ref="designerRef" class="designer">
               <DraggableContainer>
@@ -66,7 +66,7 @@
             <div class="add-page-box">
               <div class="add-page-btn" @click="addOnePage">添加一页</div>
             </div>
-          </c-scrollbar>
+          </div>
         </div>
         <!-- 设置器面板区域 -->
         <right-setter :key="refreshUuid"></right-setter>
@@ -460,6 +460,11 @@
   };
 </script>
 <style lang="scss" scoped>
+  ::-webkit-scrollbar {
+    display: block;
+    width: 6px;
+    height: 6px;
+  }
   .lego-designer-box {
     height: 100vh;
     min-width: 1200px;
@@ -472,62 +477,69 @@
         box-sizing: border-box;
         height: calc(100vh - 60px);
         min-width: 850px;
+        display: flex;
+        flex-direction: column;
+        .design-bottom-box {
+          padding: 15px;
+          overflow: auto;
+          flex: 1;
+          .designer {
+            display: grid;
+            position: relative;
+            margin: 0 auto;
+            overflow: hidden;
+            margin-bottom: 30px;
+            width: v-bind('HJSchemaJsonStore.css.width + "px"');
+            min-height: v-bind('HJSchemaJsonStore.css.height + "px"');
+            background: v-bind('HJSchemaJsonStore.css.background');
+            zoom: v-bind('sizeCenter');
 
-        .designer {
-          display: grid;
-          position: relative;
-          margin: 0 auto;
-          overflow: hidden;
-          margin-bottom: 30px;
-          width: v-bind('HJSchemaJsonStore.css.width + "px"');
-          min-height: v-bind('HJSchemaJsonStore.css.height + "px"');
-          background: v-bind('HJSchemaJsonStore.css.background');
-          zoom: v-bind('sizeCenter');
-
-          .pages {
-            height: v-bind('HJSchemaJsonStore.css.height + "px"');
-            margin-top: 50px;
-            box-shadow: 0 2px 8px rgba(14, 19, 24, 0.07);
-            border-radius: 2px;
-            background-image: v-bind('"url(" + HJSchemaJsonStore.css.backgroundImage + ")"');
-            background-size: 100% 100%;
-            fill-opacity: v-bind('HJSchemaJsonStore.css.opacity');
-            .drag-component {
-              cursor: move;
+            .pages {
+              height: v-bind('HJSchemaJsonStore.css.height + "px"');
+              margin-top: 50px;
+              box-shadow: 0 2px 8px rgba(14, 19, 24, 0.07);
+              border-radius: 2px;
+              background-image: v-bind('"url(" + HJSchemaJsonStore.css.backgroundImage + ")"');
+              background-size: 100% 100%;
+              fill-opacity: v-bind('HJSchemaJsonStore.css.opacity');
+              .drag-component {
+                cursor: move;
+              }
             }
           }
-        }
-        .add-page-box {
-          height: 60px;
-          display: flex;
-          justify-content: center;
-          .add-page-btn {
-            width: 100px;
-            height: 30px;
-            margin-right: 20px;
+          .add-page-box {
+            height: 60px;
             display: flex;
-            align-items: center;
             justify-content: center;
-            letter-spacing: 2px;
-            color: #fff;
-            font-size: 14px;
-            background-image: -webkit-linear-gradient(to right, #2ddd9d, #1cc7cf);
-            background-image: -moz-linear-gradient(to right, #2ddd9d, #1cc7cf);
-            background-image: -ms-linear-gradient(to right, #2ddd9d, #1cc7cf);
-            background-image: linear-gradient(to right, #2ddd9d, #1cc7cf);
-            -webkit-border-radius: 50px;
-            -moz-border-radius: 50px;
-            border-radius: 50px;
-            background-color: #2ddd9d;
-            -webkit-transition: all 0.3s;
-            -moz-transition: all 0.3s;
-            -ms-transition: all 0.3s;
-            -o-transition: all 0.3s;
-            transition: all 0.3s;
-            cursor: pointer;
-            user-select: none;
-            &:hover {
-              opacity: 0.8;
+            zoom: v-bind('sizeCenter');
+            .add-page-btn {
+              width: 100px;
+              height: 30px;
+              margin-right: 20px;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              letter-spacing: 2px;
+              color: #fff;
+              font-size: 14px;
+              background-image: -webkit-linear-gradient(to right, #2ddd9d, #1cc7cf);
+              background-image: -moz-linear-gradient(to right, #2ddd9d, #1cc7cf);
+              background-image: -ms-linear-gradient(to right, #2ddd9d, #1cc7cf);
+              background-image: linear-gradient(to right, #2ddd9d, #1cc7cf);
+              -webkit-border-radius: 50px;
+              -moz-border-radius: 50px;
+              border-radius: 50px;
+              background-color: #2ddd9d;
+              -webkit-transition: all 0.3s;
+              -moz-transition: all 0.3s;
+              -ms-transition: all 0.3s;
+              -o-transition: all 0.3s;
+              transition: all 0.3s;
+              cursor: pointer;
+              user-select: none;
+              &:hover {
+                opacity: 0.8;
+              }
             }
           }
         }
