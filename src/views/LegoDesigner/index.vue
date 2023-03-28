@@ -2,7 +2,7 @@
   <c-scrollbar trigger="hover">
     <div class="lego-designer-box">
       <!-- 导航栏 -->
-      <lego-nav></lego-nav>
+      <lego-nav :pages-refs="pagesRefs"></lego-nav>
 
       <!-- 主设计区 -->
       <div class="main-designer-box">
@@ -18,49 +18,51 @@
             @add-size="addSize"
             @reduce-size="reduceSize"
           ></designer-top-setting>
-
           <div class="design-bottom-box">
             <!-- 画布区域 -->
             <div :key="refreshUuid" ref="designerRef" class="designer">
               <DraggableContainer>
-                <div
+                <template
                   v-for="(pages, pageIndex) in HJSchemaJsonStore.componentsTree"
                   :key="pages.id"
-                  :ref="(el) => setPagesRef(el, pageIndex)"
-                  class="pages"
-                  @drop="drop($event, pageIndex)"
-                  @dragover.prevent
                 >
                   <!-- 分割块 -->
                   <split-block :page-index="pageIndex"></split-block>
                   <div
-                    v-for="(item, index) in pages.children"
-                    :key="item.id"
-                    v-contextmenu:contextmenu
-                    @contextmenu.prevent="handleContextMenu(pageIndex, index)"
+                    :ref="(el) => setPagesRef(el, pageIndex)"
+                    class="pages"
+                    @drop="drop($event, pageIndex)"
+                    @dragover.prevent
                   >
-                    <Vue3DraggableResizable
-                      v-model:x="item.css.left"
-                      v-model:y="item.css.top"
-                      v-model:w="item.css.width"
-                      v-model:h="item.css.height"
-                      v-model:active="widgetActiveObj[item.id]"
-                      :init-w="item.css.width"
-                      :init-h="item.css.height"
-                      :z-index="item.css.zIndex"
-                      :rotate="item.css.rotate"
-                      @deactivated="handleDeactivated(item.id)"
-                      @activated="activatedHandle(item, pageIndex)"
-                      @drag-end="dragEndHandle(item, index, pageIndex)"
+                    <div
+                      v-for="(item, index) in pages.children"
+                      :key="item.id"
+                      v-contextmenu:contextmenu
+                      @contextmenu.prevent="handleContextMenu(pageIndex, index)"
                     >
-                      <component
-                        :is="getWidgetCom(item)"
-                        class="drag-component"
-                        :widget-data="item"
-                      ></component>
-                    </Vue3DraggableResizable>
+                      <Vue3DraggableResizable
+                        v-model:x="item.css.left"
+                        v-model:y="item.css.top"
+                        v-model:w="item.css.width"
+                        v-model:h="item.css.height"
+                        v-model:active="widgetActiveObj[item.id]"
+                        :init-w="item.css.width"
+                        :init-h="item.css.height"
+                        :z-index="item.css.zIndex"
+                        :rotate="item.css.rotate"
+                        @deactivated="handleDeactivated(item.id)"
+                        @activated="activatedHandle(item, pageIndex)"
+                        @drag-end="dragEndHandle(item, index, pageIndex)"
+                      >
+                        <component
+                          :is="getWidgetCom(item)"
+                          class="drag-component"
+                          :widget-data="item"
+                        ></component>
+                      </Vue3DraggableResizable>
+                    </div>
                   </div>
-                </div>
+                </template>
               </DraggableContainer>
             </div>
             <!-- 添加一页 -->
@@ -480,11 +482,10 @@
         min-width: 850px;
         display: flex;
         flex-direction: column;
-        overflow: hidden;
         .design-bottom-box {
-          padding: 0 30px;
+          padding: 15px;
           overflow: auto;
-          height: 100%;
+          flex: 1;
           .designer {
             display: grid;
             position: relative;
@@ -493,14 +494,13 @@
             margin-bottom: 30px;
             width: v-bind('HJSchemaJsonStore.css.width + "px"');
             min-height: v-bind('HJSchemaJsonStore.css.height + "px"');
-            background: v-bind('HJSchemaJsonStore.css.background');
             zoom: v-bind('sizeCenter');
 
             .pages {
               height: v-bind('HJSchemaJsonStore.css.height + "px"');
-              margin-top: 50px;
               box-shadow: 0 2px 8px rgba(14, 19, 24, 0.07);
               border-radius: 2px;
+              background: v-bind('HJSchemaJsonStore.css.background');
               background-image: v-bind('"url(" + HJSchemaJsonStore.css.backgroundImage + ")"');
               background-size: 100% 100%;
               fill-opacity: v-bind('HJSchemaJsonStore.css.opacity');

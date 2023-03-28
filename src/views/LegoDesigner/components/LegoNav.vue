@@ -55,6 +55,11 @@
     @close-download-dialog="closeDownloadDialog"
     @download-file="downloadResumeFile"
   ></download-dialog>
+
+  <!-- 预览 -->
+  <preview-image v-show="dialogPreviewVisible" @close="closePreview">
+    <render-page></render-page>
+  </preview-image>
 </template>
 <script lang="ts" setup>
   import appStore from '@/store';
@@ -63,13 +68,21 @@
   import { cloneDeep } from 'lodash';
   import { storeToRefs } from 'pinia';
   import DownloadDialog from './DownloadDialog/DownloadDialog.vue';
+  import PreviewImage from '../render/PreviewImage/PreviewImage.vue';
+  import RenderPage from '../render/index.vue';
   import { CONFIG } from '../config/lego';
   import moment from 'moment';
+  import { getImgBase64URL } from '../utils/html2img';
+  import { legoUserResumeAsync } from '@/http/api/lego';
 
   const { HJSchemaJsonStore, draftTips } = storeToRefs(appStore.useLegoJsonStore);
   const { resetHJSchemaJsonData } = appStore.useLegoJsonStore;
   const { setUuid } = appStore.useRefreshStore;
   const { resetSelectWidget } = appStore.useLegoSelectWidgetStore;
+
+  const props = defineProps<{
+    pagesRefs: any;
+  }>();
 
   // 导出JSON
   const exportJSON = () => {
@@ -96,10 +109,20 @@
   };
 
   // 预览
-  const previewResume = () => {};
+  const dialogPreviewVisible = ref<boolean>(false);
+  const previewResume = () => {
+    dialogPreviewVisible.value = true;
+  };
+
+  // 关闭预览弹窗
+  const closePreview = () => {
+    dialogPreviewVisible.value = false;
+  };
 
   // 保存草稿
-  const saveDraft = () => {
+  const imgUrl = ref<string>('');
+  const isCanSave = ref<boolean>(true);
+  const saveDraft = async () => {
     if (CONFIG.SAVE_LOCAL) {
       // 保存本地
       let LeogLocal = localStorage.getItem('LegoLogo');
@@ -113,10 +136,29 @@
         localStorage.setItem('LegoLogo', JSON.stringify(temp));
       }
       const time = moment(new Date()).format('YYYY.MM.DD HH:mm:ss');
-      draftTips.value = `已自动保存草稿  ${time}`;
+      draftTips.value = `已保存草稿  ${time}`;
       ElMessage.success('保存成功');
     } else {
-      // 保存到服务器
+      if (isCanSave.value) {
+        isCanSave.value = false;
+        draftTips.value = '保存中......';
+        imgUrl.value = await getImgBase64URL(props.pagesRefs[0]);
+        const params = {
+          previewUrl: '',
+          lego_json: HJSchemaJsonStore.value
+        };
+        const data = await legoUserResumeAsync(params);
+        if (data.data.status === 200) {
+          const time = moment(new Date()).format('YYYY.MM.DD HH:mm:ss');
+          draftTips.value = `已自动保存草稿  ${time}`;
+          ElMessage.success('保存成功');
+        } else {
+          ElMessage.error(data.data.message);
+        }
+        isCanSave.value = true;
+      } else {
+        return;
+      }
     }
   };
 
@@ -143,6 +185,20 @@
 
   // 参与评论
   const publishComment = () => {};
+
+  // 离开页面之前
+  onBeforeUnmount(async () => {
+    const params = {
+      previewUrl: '',
+      lego_json: HJSchemaJsonStore.value
+    };
+    await legoUserResumeAsync(params);
+    // 重置JSON
+    resetHJSchemaJsonData();
+    // 重置选中状态
+    resetSelectWidget();
+    setUuid();
+  });
 </script>
 <style lang="scss" scoped>
   .lego-nav-box {

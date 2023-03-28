@@ -1,8 +1,5 @@
 <template>
-  <div
-    class="split-block-box"
-    :style="{ top: pageIndex * (50 + HJSchemaJsonStore.css.height) + 'px' }"
-  >
+  <div class="split-block-box">
     <!-- 左侧 -->
     <div class="split-left">
       <h3>第{{ pageIndex + 1 }}页</h3>
@@ -61,11 +58,6 @@
   .split-block-box {
     width: 100%;
     height: 50px;
-    position: absolute;
-    top: -50px;
-    left: 0;
-    background-color: #f3f3f3;
-    z-index: 1000;
     display: flex;
     justify-content: space-between;
     align-items: center;

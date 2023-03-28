@@ -1,5 +1,5 @@
 <template>
-  <div class="no-data-box">
+  <div class="lego-no-data-box">
     <img src="../../assets/images/no-data.png" alt="" />
   </div>
 </template>
@@ -14,7 +14,7 @@
   });
 </script>
 <style lang="scss">
-  .no-data-box {
+  .lego-no-data-box {
     width: 100%;
     min-height: 300px;
     display: flex;

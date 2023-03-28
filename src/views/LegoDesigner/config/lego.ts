@@ -1,3 +1,3 @@
 export const CONFIG = {
-  SAVE_LOCAL: true
+  SAVE_LOCAL: false
 };

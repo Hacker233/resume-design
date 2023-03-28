@@ -180,8 +180,6 @@
     position: sticky;
     top: 0;
     left: 0;
-    z-index: 9;
-    // margin-bottom: 30px;
     z-index: 1001;
     display: flex;
     justify-content: space-between;
