@@ -22,6 +22,7 @@ declare module '@vue/runtime-core' {
     DateFormItem: typeof import('./components/DateFormItem/DateFormItem.vue')['default'];
     Editor: typeof import('./components/packages/components/editor/editor.vue')['default'];
     EduBackgroundCom: typeof import('./components/ModelComs/EduBackgroundCom.vue')['default'];
+    ElAlert: typeof import('element-plus/es')['ElAlert'];
     ElAvatar: typeof import('element-plus/es')['ElAvatar'];
     ElBacktop: typeof import('element-plus/es')['ElBacktop'];
     ElButton: typeof import('element-plus/es')['ElButton'];
@@ -51,8 +52,10 @@ declare module '@vue/runtime-core' {
     ElPopover: typeof import('element-plus/es')['ElPopover'];
     ElProgress: typeof import('element-plus/es')['ElProgress'];
     ElRadio: typeof import('element-plus/es')['ElRadio'];
+    ElRadioGroup: typeof import('element-plus/es')['ElRadioGroup'];
     ElScrollbar: typeof import('element-plus/es')['ElScrollbar'];
     ElSelect: typeof import('element-plus/es')['ElSelect'];
+    ElSelectV2: typeof import('element-plus/es')['ElSelectV2'];
     ElSkeleton: typeof import('element-plus/es')['ElSkeleton'];
     ElSkeletonItem: typeof import('element-plus/es')['ElSkeletonItem'];
     ElSlider: typeof import('element-plus/es')['ElSlider'];
