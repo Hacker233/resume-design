@@ -19,7 +19,7 @@
       <el-tooltip effect="dark" content="保存为草稿" placement="bottom">
         <div class="icon-box" @click="saveDraft">
           <svg-icon icon-name="icon-caogaoxiang1" color="#555" size="17px"></svg-icon>
-          <span class="icon-tips">暂存</span>
+          <span class="icon-tips">保存</span>
         </div>
       </el-tooltip>
       <el-tooltip effect="dark" content="重置所有设置" placement="bottom">
@@ -65,11 +65,17 @@
   import DownloadDialog from './DownloadDialog/DownloadDialog.vue';
   import { CONFIG } from '../config/lego';
   import moment from 'moment';
+  import { getImgBase64URL } from '../utils/html2img';
+  import { legoUserResumeAsync } from '@/http/api/lego';
 
   const { HJSchemaJsonStore, draftTips } = storeToRefs(appStore.useLegoJsonStore);
   const { resetHJSchemaJsonData } = appStore.useLegoJsonStore;
   const { setUuid } = appStore.useRefreshStore;
   const { resetSelectWidget } = appStore.useLegoSelectWidgetStore;
+
+  const props = defineProps<{
+    pagesRefs: any;
+  }>();
 
   // 导出JSON
   const exportJSON = () => {
@@ -99,7 +105,9 @@
   const previewResume = () => {};
 
   // 保存草稿
-  const saveDraft = () => {
+  const imgUrl = ref<string>('');
+  const isCanSave = ref<boolean>(true);
+  const saveDraft = async () => {
     if (CONFIG.SAVE_LOCAL) {
       // 保存本地
       let LeogLocal = localStorage.getItem('LegoLogo');
@@ -113,7 +121,29 @@
         localStorage.setItem('LegoLogo', JSON.stringify(temp));
       }
       const time = moment(new Date()).format('YYYY.MM.DD HH:mm:ss');
-      draftTips.value = `已自动保存草稿  ${time}`;
+      draftTips.value = `已保存草稿  ${time}`;
+      ElMessage.success('保存成功');
+    } else {
+      if (isCanSave.value) {
+        isCanSave.value = false;
+        draftTips.value = '保存中......';
+        imgUrl.value = await getImgBase64URL(props.pagesRefs[0]);
+        const params = {
+          previewUrl: imgUrl.value,
+          lego_json: HJSchemaJsonStore.value
+        };
+        const data = await legoUserResumeAsync(params);
+        if (data.data.status === 200) {
+          const time = moment(new Date()).format('YYYY.MM.DD HH:mm:ss');
+          draftTips.value = `已自动保存草稿  ${time}`;
+          ElMessage.success('保存成功');
+        } else {
+          ElMessage.error(data.data.message);
+        }
+        isCanSave.value = true;
+      } else {
+        return;
+      }
     }
   };
 

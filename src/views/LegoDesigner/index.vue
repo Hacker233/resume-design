@@ -2,7 +2,7 @@
   <c-scrollbar trigger="hover">
     <div class="lego-designer-box">
       <!-- 导航栏 -->
-      <lego-nav></lego-nav>
+      <lego-nav :pages-refs="pagesRefs"></lego-nav>
 
       <!-- 主设计区 -->
       <div class="main-designer-box">

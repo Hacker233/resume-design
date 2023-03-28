@@ -7,16 +7,16 @@ const downloadPDF = (
   preview: boolean,
   callback: Function
 ): void => {
-  let eleW: number = el.offsetWidth; // 获得该容器的宽
-  let eleH: number = el.offsetHeight; // 获得该容器的高
+  const eleW: number = el.offsetWidth; // 获得该容器的宽
+  const eleH: number = el.offsetHeight; // 获得该容器的高
 
-  let eleOffsetTop: number = el.offsetTop; // 获得该容器到文档顶部的距离
-  let eleOffsetLeft: number = el.offsetLeft; // 获得该容器到文档最左的距离
+  const eleOffsetTop: number = el.offsetTop; // 获得该容器到文档顶部的距离
+  const eleOffsetLeft: number = el.offsetLeft; // 获得该容器到文档最左的距离
 
-  let canvas: HTMLCanvasElement = document.createElement('canvas');
-  let abs: number = 0;
-  let win_in: number = document.documentElement.clientWidth || document.body.clientWidth; // 获得当前可视窗口的宽度（不包含滚动条）
-  let win_out: number = window.innerWidth; // 获得当前窗口的宽度（包含滚动条）
+  const canvas: HTMLCanvasElement = document.createElement('canvas');
+  let abs: any = 0;
+  const win_in: number = document.documentElement.clientWidth || document.body.clientWidth; // 获得当前可视窗口的宽度（不包含滚动条）
+  const win_out: number = window.innerWidth; // 获得当前窗口的宽度（包含滚动条）
 
   if (win_out > win_in) {
     abs = (win_out - win_in) / 2; // 获得滚动条宽度的一半
@@ -24,7 +24,7 @@ const downloadPDF = (
   canvas.width = eleW * 2; // 将画布宽&&高放大两倍
   canvas.height = eleH * 2;
 
-  let context: any = canvas.getContext('2d');
+  const context: any = canvas.getContext('2d');
   context.scale(2, 2);
   context.translate(-eleOffsetLeft - abs, -eleOffsetTop);
 
@@ -34,19 +34,19 @@ const downloadPDF = (
     logging: false // 打印日志用的 可以不加默认为false
   }).then((canvas) => {
     // el.setAttribute("crossOrigin",'anonymous');
-    let contentWidth = canvas.width;
-    let contentHeight = canvas.height;
+    const contentWidth = canvas.width;
+    const contentHeight = canvas.height;
     //一页pdf显示html页面生成的canvas高度;
-    let pageHeight = (contentWidth / 592.28) * 841.89;
+    const pageHeight = (contentWidth / 592.28) * 841.89;
     //未生成pdf的html页面高度
     let leftHeight = contentHeight;
     //页面偏移
     let position = 0;
     //a4纸的尺寸[595.28,841.89]，html页面生成的canvas在pdf中图片的宽高
-    let imgWidth = 595.28;
-    let imgHeight = (595.28 / contentWidth) * contentHeight;
-    let pageData = canvas.toDataURL('image/jpeg', 1.0);
-    let pdf = new JsPDF('', 'pt', 'a4');
+    const imgWidth = 595.28;
+    const imgHeight = (595.28 / contentWidth) * contentHeight;
+    const pageData = canvas.toDataURL('image/jpeg', 1.0);
+    const pdf = new JsPDF('', 'pt', 'a4');
 
     if (leftHeight < pageHeight) {
       //在pdf.addImage(pageData, 'JPEG', 左，上，宽度，高度)设置在pdf中显示；
@@ -64,11 +64,11 @@ const downloadPDF = (
       }
     }
     if (preview) {
-      let dataUrl = pdf.output('datauristring');
-      
+      const dataUrl = pdf.output('datauristring');
+
       console.log('pdf', pdf.output('datauristring'));
       callback(dataUrl);
-      return
+      return;
     }
     //可动态生成
     pdf.save(pdfName);
