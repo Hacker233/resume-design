@@ -144,7 +144,7 @@
         draftTips.value = '保存中......';
         imgUrl.value = await getImgBase64URL(props.pagesRefs[0]);
         const params = {
-          previewUrl: '',
+          previewUrl: imgUrl.value,
           lego_json: HJSchemaJsonStore.value
         };
         const data = await legoUserResumeAsync(params);
