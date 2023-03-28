@@ -143,10 +143,10 @@
   };
 
   // 中间区域新增组件
-  const addWidget = (widgetItem: IWidget, pageIndex: number, x = 0, y = 50) => {
+  const addWidget = (widgetItem: IWidget, pageIndex: number, x = 0, y = 0) => {
     // 将拖动元素旋转到目标区域中
     widgetItem.css.left = x;
-    widgetItem.css.top = HJSchemaJsonStore.value.css.height * pageIndex + y;
+    widgetItem.css.top = y;
     widgetItem.id = getUuid();
     selectedWidgetId.value = widgetItem.id;
     // 取消原来选中的组件
@@ -177,55 +177,39 @@
     pageActiveIndex.value = pageIndex; // 当前选中组件所属页面索引
     // 切换选中状态
     widgetActiveObj.value[widgetItem.id] = true;
-
-    // console.log('选中', selectedWidgetId.value, widgetActiveObj.value);
   };
 
   // 组件拖拽结束，处理组件拖入下一页的情况
   const dragEndHandle = (widgetItem: IWidget, index: number, pageIndex: number) => {
-    let maxTop = 0;
-    let minTop = 0;
+    let maxTop = HJSchemaJsonStore.value.css.height;
+    let minTop = -50;
     const pages = HJSchemaJsonStore.value.componentsTree.length;
     // 只有一页，无需处理
     if (pages === 1) {
       return;
     }
-    // 第一页，处理移出下边界
-    if (pageIndex === 0) {
-      maxTop = HJSchemaJsonStore.value.css.height + 50;
-      // 移入下一页
-      if (widgetItem.css.top > maxTop && pages > 1) {
-        HJSchemaJsonStore.value.componentsTree[pageIndex].children.splice(index, 1);
-        HJSchemaJsonStore.value.componentsTree[pageIndex + 1].children.push(widgetItem);
-        pageActiveIndex.value = pageIndex + 1;
-        setUuid();
+    // 移入下一页
+    if (widgetItem.css.top > maxTop) {
+      if (pageIndex === pages - 1) {
+        return; // 最后一页不处理
       }
-    } else if (pageIndex === HJSchemaJsonStore.value.componentsTree.length - 1) {
-      // 第二页，处理移出上边界
-      minTop = HJSchemaJsonStore.value.css.height * pageIndex + 50 * pageIndex;
-      if (widgetItem.css.top < minTop) {
-        HJSchemaJsonStore.value.componentsTree[pageIndex].children.splice(index, 1);
-        HJSchemaJsonStore.value.componentsTree[pageIndex - 1].children.push(widgetItem);
-        pageActiveIndex.value = pageIndex - 1;
-        setUuid();
+      HJSchemaJsonStore.value.componentsTree[pageIndex].children.splice(index, 1);
+      widgetItem.css.top = widgetItem.css.top - HJSchemaJsonStore.value.css.height - 50;
+      HJSchemaJsonStore.value.componentsTree[pageIndex + 1].children.push(widgetItem);
+      pageActiveIndex.value = pageIndex + 1;
+      setUuid();
+    } else if (widgetItem.css.top < minTop) {
+      // 移入上一页
+      if (pageIndex === 0) {
+        return; // 第一页不处理
       }
+      HJSchemaJsonStore.value.componentsTree[pageIndex].children.splice(index, 1);
+      widgetItem.css.top = widgetItem.css.top + HJSchemaJsonStore.value.css.height + 50;
+      HJSchemaJsonStore.value.componentsTree[pageIndex - 1].children.push(widgetItem);
+      pageActiveIndex.value = pageIndex - 1;
+      setUuid();
     } else {
-      maxTop = HJSchemaJsonStore.value.css.height * (pageIndex + 1) + 50 * (pageIndex + 1);
-      minTop = HJSchemaJsonStore.value.css.height * pageIndex + 50 * pageIndex;
-      if (widgetItem.css.top > maxTop) {
-        HJSchemaJsonStore.value.componentsTree[pageIndex].children.splice(index, 1);
-        HJSchemaJsonStore.value.componentsTree[pageIndex + 1].children.push(widgetItem);
-        pageActiveIndex.value = pageIndex + 1;
-        setUuid();
-      } else if (widgetItem.css.top < minTop) {
-        HJSchemaJsonStore.value.componentsTree[pageIndex].children.splice(index, 1);
-        HJSchemaJsonStore.value.componentsTree[pageIndex - 1].children.push(widgetItem);
-        pageActiveIndex.value = pageIndex - 1;
-        setUuid();
-      } else {
-        debugger;
-        pageActiveIndex.value = pageIndex;
-      }
+      pageActiveIndex.value = pageIndex;
     }
   };
 
@@ -504,6 +488,7 @@
               background-image: v-bind('"url(" + HJSchemaJsonStore.css.backgroundImage + ")"');
               background-size: 100% 100%;
               fill-opacity: v-bind('HJSchemaJsonStore.css.opacity');
+              position: relative;
               .drag-component {
                 cursor: move;
               }

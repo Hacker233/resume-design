@@ -20,7 +20,6 @@
   import { storeToRefs } from 'pinia';
   import { ElMessageBox } from 'element-plus';
   import 'element-plus/es/components/message-box/style/index';
-  import { computeWidgetTop } from '../../utils/common';
 
   const props = defineProps<{
     pageIndex: number;
@@ -45,12 +44,10 @@
       })
         .then(async () => {
           HJSchemaJsonStore.value.componentsTree.splice(props.pageIndex, 1);
-          computeWidgetTop(HJSchemaJsonStore); // 重新计算所有组件的top
         })
         .catch(() => {});
     } else {
       HJSchemaJsonStore.value.componentsTree.splice(props.pageIndex, 1);
-      computeWidgetTop(HJSchemaJsonStore); // 重新计算所有组件的top
     }
   };
 </script>

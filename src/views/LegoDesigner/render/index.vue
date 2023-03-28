@@ -63,6 +63,7 @@
         background-image: v-bind('"url(" + HJSchemaJsonStore.css.backgroundImage + ")"');
         background-size: 100% 100%;
         fill-opacity: v-bind('HJSchemaJsonStore.css.opacity');
+        position: relative;
         .widget-box {
           position: absolute;
         }
