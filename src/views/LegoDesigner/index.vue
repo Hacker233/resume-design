@@ -103,10 +103,50 @@
   import { getUuid } from '@/utils/common';
   import { cloneDeep } from 'lodash';
   import { HJSchema } from './schema/index';
+  import { getLegoUserResumeByIdAsync } from '@/http/api/lego';
 
   // 设计区刷新id
   const { refreshUuid } = storeToRefs(appStore.useUuidStore);
   const { setUuid } = appStore.useUuidStore;
+
+  // 初始页面JSON
+  const { HJSchemaJsonStore } = storeToRefs(appStore.useLegoJsonStore);
+  const { changeHJSchemaJsonData } = appStore.useLegoJsonStore;
+
+  // url参数
+  const { id, templateId, jsonId } = useRoute().query;
+  console.log('url参数', id);
+
+  // 查询个人制作数据
+  const getPersonLegoJson = async () => {
+    const params = {
+      id: id
+    };
+    const data = await getLegoUserResumeByIdAsync(params);
+    if (data.data.status === 200) {
+      changeHJSchemaJsonData(data.data.data.lego_json);
+    } else {
+      ElMessage.error(data.data.message);
+    }
+  };
+
+  if (templateId) {
+    // 查找模板数据
+  } else if (id && jsonId) {
+    // 编辑模板
+  } else if (id) {
+    // 查询用户个人模板数据
+    getPersonLegoJson();
+  } else {
+    // 新的空白页
+    HJSchemaJsonStore.value.id = getUuid();
+  }
+  if (id) {
+    // 发送请求查找
+  }
+
+  const { pushComponent } = appStore.useLegoJsonStore;
+  console.log('页面初始化JSON', HJSchemaJsonStore);
 
   onMounted(async () => {
     window.addEventListener('mousedown', handleKeepActive); // 监听页面鼠标点击事件
@@ -116,12 +156,6 @@
     window.removeEventListener('mousedown', handleKeepActive);
     document.removeEventListener('keydown', handleKeyDown);
   });
-
-  // 初始页面JSON
-  const { HJSchemaJsonStore } = storeToRefs(appStore.useLegoJsonStore);
-  HJSchemaJsonStore.value.id = getUuid();
-  const { pushComponent } = appStore.useLegoJsonStore;
-  console.log('页面初始化JSON', HJSchemaJsonStore);
 
   // 当前页面每个组件对应的选中关系
   const { selectedWidgetId, widgetActiveObj, pageActiveIndex } = storeToRefs(

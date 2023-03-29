@@ -46,6 +46,12 @@
           <span class="icon-tips">评论</span>
         </div>
       </el-tooltip>
+      <el-tooltip effect="dark" content="发布为模板供他人使用" placement="bottom">
+        <div class="icon-box icon-download" @click="publishTemplate">
+          <svg-icon icon-name="icon-fabu1" color="#fff" size="17px"></svg-icon>
+          <span class="icon-tips">发布作品</span>
+        </div>
+      </el-tooltip>
     </div>
   </div>
 
@@ -119,6 +125,9 @@
     dialogPreviewVisible.value = false;
   };
 
+  // 发布作品
+  const publishTemplate = () => {};
+
   // 保存草稿
   const imgUrl = ref<string>('');
   const isCanSave = ref<boolean>(true);
@@ -150,7 +159,7 @@
         const data = await legoUserResumeAsync(params);
         if (data.data.status === 200) {
           const time = moment(new Date()).format('YYYY.MM.DD HH:mm:ss');
-          draftTips.value = `已自动保存草稿  ${time}`;
+          draftTips.value = `已保存草稿  ${time}`;
           ElMessage.success('保存成功');
         } else {
           ElMessage.error(data.data.message);
@@ -188,11 +197,13 @@
 
   // 离开页面之前
   onBeforeUnmount(async () => {
+    // imgUrl.value = await getImgBase64URL(props.pagesRefs[0]);
     const params = {
       previewUrl: imgUrl.value,
       lego_json: HJSchemaJsonStore.value
     };
     await legoUserResumeAsync(params);
+    draftTips.value = '';
     // 重置JSON
     resetHJSchemaJsonData();
     // 重置选中状态

@@ -17,3 +17,19 @@ export const legoUserResumeListAsync: any = (params: any) => {
     params: params
   });
 };
+
+// 用户查询个人单个积木数据
+export const getLegoUserResumeByIdAsync: any = (params: { id: any }) => {
+  return http.request({
+    url: `/huajian/lego/legoUserResumeById/${params.id}`,
+    method: 'get'
+  });
+};
+
+// 用户删除个人积木作品
+export const deleteLegoUserResumeAsync: any = (params: { id: any }) => {
+  return http.request({
+    url: `/huajian/lego/deleteLegoUserResume/${params.id}`,
+    method: 'delete'
+  });
+};

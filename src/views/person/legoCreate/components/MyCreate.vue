@@ -27,7 +27,7 @@
   </div>
 </template>
 <script lang="ts" setup>
-  import { legoUserResumeListAsync } from '@/http/api/lego';
+  import { deleteLegoUserResumeAsync, legoUserResumeListAsync } from '@/http/api/lego';
   import CreateCard from './CreateCard.vue';
   import NoDataVue from '@/components/NoData/NoData.vue';
 
@@ -64,7 +64,16 @@
 
   // 点击删除创作
   const deleteUserCreate = async (id: string) => {
-    console.log(id);
+    let params = {
+      id: id
+    };
+    const data = await deleteLegoUserResumeAsync(params);
+    if (data.data.status === 200) {
+      ElMessage.success('删除成功');
+      getLegoUserResumeList();
+    } else {
+      ElMessage.error(data.data.message);
+    }
   };
 </script>
 <style lang="scss" scoped>
