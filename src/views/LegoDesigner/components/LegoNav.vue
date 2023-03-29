@@ -189,7 +189,7 @@
   // 离开页面之前
   onBeforeUnmount(async () => {
     const params = {
-      previewUrl: '',
+      previewUrl: imgUrl.value,
       lego_json: HJSchemaJsonStore.value
     };
     await legoUserResumeAsync(params);

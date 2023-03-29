@@ -8,3 +8,12 @@ export const legoUserResumeAsync: any = (data: any) => {
     data: data
   });
 };
+
+// 查询个人积木创作列表
+export const legoUserResumeListAsync: any = (params: any) => {
+  return http.request({
+    url: '/huajian/lego/legoUserResumeList',
+    method: 'get',
+    params: params
+  });
+};

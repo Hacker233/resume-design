@@ -23,6 +23,7 @@ const MyContribute = () => import('@/views/person/myContribute/index.vue');
 const PersonIntegral = () => import('@/views/person/integralDetail/index.vue');
 const OnlinePreview = () => import('@/views/onlinePreview/index.vue');
 const MyOnlineResume = () => import('@/views/person/onlineResume/index.vue');
+const LegoCreate = () => import('@/views/person/legoCreate/index.vue');
 const WebCode = () => import('@/views/webCode/index.vue');
 const LegoDesigner = () => import('@/views/LegoDesigner/index.vue');
 // 软件分享
@@ -314,6 +315,18 @@ const routes: Array<RouteRecordRaw> = [
           showTitle: true
         },
         component: MyComment
+      },
+      {
+        path: 'legoCreate',
+        name: 'LegoCreate',
+        meta: {
+          title: '积木创作',
+          keepAlive: true,
+          isShowComNav: true,
+          requireLogin: true,
+          showTitle: false
+        },
+        component: LegoCreate
       },
       {
         path: 'myResume',

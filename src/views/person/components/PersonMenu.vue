@@ -46,6 +46,12 @@
       path: '/person/myResume'
     },
     {
+      index: 'LegoCreate',
+      iconfont: 'icon-jimu',
+      title: '积木创作',
+      path: '/person/legoCreate'
+    },
+    {
       index: 'MyOnlineResume',
       iconfont: 'icon-zaixianyonghu',
       title: '在线简历',
