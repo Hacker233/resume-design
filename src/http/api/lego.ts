@@ -67,3 +67,29 @@ export const legoCategoryDeleteAsync: any = (id: string) => {
     method: 'delete'
   });
 };
+
+// 新增或者更新积木模板
+export const legoTemplateAddAsync: any = (data: any) => {
+  return http.request({
+    url: '/huajian/legoTemplate/legoTemplateAdd',
+    method: 'post',
+    data: data
+  });
+};
+
+// 用户查询个人创建的作品模板列表
+export const legoUserTemplateListAsync: any = (params: any) => {
+  return http.request({
+    url: '/huajian/legoTemplate/legoUserTemplateList',
+    method: 'get',
+    params: params
+  });
+};
+
+// 删除个人积木创作模板
+export const deleteLegoUserTemplateAsync: any = (params: { id: any }) => {
+  return http.request({
+    url: `/huajian/legoTemplate/deleteLegoUserTemplate/${params.id}`,
+    method: 'delete'
+  });
+};

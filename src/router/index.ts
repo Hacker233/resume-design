@@ -26,6 +26,7 @@ const MyOnlineResume = () => import('@/views/person/onlineResume/index.vue');
 const LegoCreate = () => import('@/views/person/legoCreate/index.vue');
 const WebCode = () => import('@/views/webCode/index.vue');
 const LegoDesigner = () => import('@/views/LegoDesigner/index.vue');
+const PostWorkSuccess = () => import('@/views/LegoDesigner/postWordSuccess/index.vue');
 // 软件分享
 const SoftShare = () => import('@/views/softShare/index.vue');
 const SoftDetail = () => import('@/views/softDetail/index.vue');
@@ -91,6 +92,17 @@ const routes: Array<RouteRecordRaw> = [
       requireLogin: true
     },
     component: LegoDesigner
+  },
+  {
+    path: '/postWorkSuccess',
+    name: 'PostWorkSuccess',
+    meta: {
+      title: '作品发布成功',
+      keepAlive: true,
+      isShowComNav: false,
+      requireLogin: true
+    },
+    component: PostWorkSuccess
   },
   {
     path: '/custom',

@@ -28,6 +28,7 @@ declare module '@vue/runtime-core' {
     ElCollapse: typeof import('element-plus/es')['ElCollapse'];
     ElCollapseItem: typeof import('element-plus/es')['ElCollapseItem'];
     ElConfigProvider: typeof import('element-plus/es')['ElConfigProvider'];
+    ElDatePicker: typeof import('element-plus/es')['ElDatePicker'];
     ElDialog: typeof import('element-plus/es')['ElDialog'];
     ElDrawer: typeof import('element-plus/es')['ElDrawer'];
     ElDropdown: typeof import('element-plus/es')['ElDropdown'];
@@ -50,6 +51,7 @@ declare module '@vue/runtime-core' {
     ElSkeletonItem: typeof import('element-plus/es')['ElSkeletonItem'];
     ElSlider: typeof import('element-plus/es')['ElSlider'];
     ElSubMenu: typeof import('element-plus/es')['ElSubMenu'];
+    ElSwitch: typeof import('element-plus/es')['ElSwitch'];
     ElTable: typeof import('element-plus/es')['ElTable'];
     ElTableColumn: typeof import('element-plus/es')['ElTableColumn'];
     ElTabPane: typeof import('element-plus/es')['ElTabPane'];

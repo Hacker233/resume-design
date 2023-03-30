@@ -46,7 +46,12 @@
           <span class="icon-tips">评论</span>
         </div>
       </el-tooltip>
-      <el-tooltip effect="dark" content="发布为模板供他人使用" placement="bottom">
+      <el-tooltip
+        v-if="!templateId"
+        effect="dark"
+        content="发布为模板供他人使用"
+        placement="bottom"
+      >
         <div class="icon-box icon-download" @click="publishTemplate">
           <svg-icon icon-name="icon-fabu1" color="#fff" size="17px"></svg-icon>
           <span class="icon-tips">发布作品</span>
@@ -66,6 +71,12 @@
   <preview-image v-show="dialogPreviewVisible" @close="closePreview">
     <render-page></render-page>
   </preview-image>
+
+  <!-- 发布作品弹窗 -->
+  <post-work-dialog
+    :dialog-post-work-visible="dialogPostWorkVisible"
+    @cancle="canclePostWork"
+  ></post-work-dialog>
 </template>
 <script lang="ts" setup>
   import appStore from '@/store';
@@ -80,11 +91,13 @@
   import moment from 'moment';
   import { getImgBase64URL } from '../utils/html2img';
   import { legoUserResumeAsync } from '@/http/api/lego';
+  import PostWorkDialog from './PostWorkDialog/PostWorkDialog.vue';
 
   const { HJSchemaJsonStore, draftTips } = storeToRefs(appStore.useLegoJsonStore);
   const { resetHJSchemaJsonData } = appStore.useLegoJsonStore;
   const { setUuid } = appStore.useRefreshStore;
   const { resetSelectWidget } = appStore.useLegoSelectWidgetStore;
+  const { templateId } = useRoute().query;
 
   const props = defineProps<{
     pagesRefs: any;
@@ -126,7 +139,15 @@
   };
 
   // 发布作品
-  const publishTemplate = () => {};
+  const dialogPostWorkVisible = ref<boolean>(false);
+  const publishTemplate = () => {
+    dialogPostWorkVisible.value = true;
+  };
+
+  // 取消发布弹窗
+  const canclePostWork = () => {
+    dialogPostWorkVisible.value = false;
+  };
 
   // 保存草稿
   const imgUrl = ref<string>('');
@@ -198,11 +219,11 @@
   // 离开页面之前
   onBeforeUnmount(async () => {
     // imgUrl.value = await getImgBase64URL(props.pagesRefs[0]);
-    const params = {
-      previewUrl: imgUrl.value,
-      lego_json: HJSchemaJsonStore.value
-    };
-    await legoUserResumeAsync(params);
+    // const params = {
+    //   previewUrl: imgUrl.value,
+    //   lego_json: HJSchemaJsonStore.value
+    // };
+    // await legoUserResumeAsync(params);
     draftTips.value = '';
     // 重置JSON
     resetHJSchemaJsonData();
