@@ -198,6 +198,23 @@
           title: '简币列表'
         }
       ]
+    },
+    {
+      index: '10',
+      iconfont: 'icon-wenzhangliebiaoxiangqing',
+      title: '积木管理',
+      children: [
+        {
+          index: 'LegoTemplateList',
+          iconfont: 'icon-wenzhangliebiao',
+          title: '模板列表'
+        },
+        {
+          index: 'LegoCategory',
+          iconfont: 'icon-ai-module',
+          title: '积木分类'
+        }
+      ]
     }
   ]);
 

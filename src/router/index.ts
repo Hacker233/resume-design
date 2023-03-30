@@ -56,6 +56,7 @@ const PayList = () => import('@/views/admin/payStats/payList/index.vue');
 const DeployDoc = () => import('@/views/deployDoc/index.vue');
 const ArticleDetail = () => import('@/views/deployDoc/pages/articleDetails.vue');
 const IntegralList = () => import('@/views/admin/integralManage/IntegralList/index.vue');
+const LegoCategory = () => import('@/views/admin/legoManage/legoCategory/index.vue');
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -599,6 +600,17 @@ const routes: Array<RouteRecordRaw> = [
           requireLogin: true
         },
         component: IntegralList
+      },
+      {
+        path: 'legoCategory',
+        name: 'LegoCategory',
+        meta: {
+          title: '积木分类',
+          keepAlive: true,
+          isShowComNav: false,
+          requireLogin: true
+        },
+        component: LegoCategory
       }
     ]
   }

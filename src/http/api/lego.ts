@@ -33,3 +33,37 @@ export const deleteLegoUserResumeAsync: any = (params: { id: any }) => {
     method: 'delete'
   });
 };
+
+// 新增积木分类
+export const addLegoCategoryAsync: any = (data: any) => {
+  return http.request({
+    url: '/huajian/legoCategory/legoCategoryAdd',
+    method: 'post',
+    data: data
+  });
+};
+
+// 查询积木分类列表
+export const getLegoCategoryListAsync: any = () => {
+  return http.request({
+    url: '/huajian/legoCategory/getLegoCategoryList',
+    method: 'get'
+  });
+};
+
+// 修改积木分类
+export const legoCategoryUpdateAsync: any = (data: any) => {
+  return http.request({
+    url: '/huajian/legoCategory/legoCategoryUpdate',
+    method: 'put',
+    data: data
+  });
+};
+
+// 删除积木分类
+export const legoCategoryDeleteAsync: any = (id: string) => {
+  return http.request({
+    url: `/huajian/legoCategory/legoCategoryDelete/${id}`,
+    method: 'delete'
+  });
+};
