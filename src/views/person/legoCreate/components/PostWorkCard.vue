@@ -1,6 +1,16 @@
 <template>
   <div class="template-card-box" @mouseover="mouseover" @mouseleave="mouseleave">
     <img :src="cardData.previewUrl" alt="" srcset="" />
+
+    <!-- 审核状态 -->
+    <div class="audit-status-box">
+      <!-- 已通过 -->
+      <div v-if="cardData.audit_status === 1" class="pass">已通过</div>
+      <!-- 审核中 -->
+      <div v-else-if="cardData.audit_status === 0" class="review">审核中</div>
+      <!-- 未通过 -->
+      <div v-else class="refuse">未通过</div>
+    </div>
     <!-- 遮罩层 -->
     <div v-show="isShowLayer" class="mask-layer">
       <div class="delete-box" @click="deleteUserResume">
@@ -20,6 +30,7 @@
       title: string;
       previewUrl: string;
       _id: string;
+      audit_status: number;
     };
   }>();
   const emit = defineEmits(['delete']);
@@ -33,14 +44,15 @@
     isShowLayer.value = false;
   };
 
-  // 点击继续制作
+  // 点击修改作品
   const router = useRouter();
   const toDesign = () => {
     console.log(props.cardData);
     router.push({
       path: '/legoDesigner',
       query: {
-        id: props.cardData._id
+        id: props.cardData._id,
+        jsonId: props.cardData.lego_id
       }
     });
   };
@@ -75,6 +87,38 @@
     &:hover {
       transition: all 0.1s;
       box-shadow: 5px 5px 5px 0px rgba(175, 50, 50, 0.2);
+    }
+    .audit-status-box {
+      position: absolute;
+      right: 0;
+      top: 0;
+      width: 60px;
+      height: 20px;
+      .pass,
+      .review,
+      .refuse {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 12px;
+        color: #fff;
+        border-radius: 0 5px 0 5px;
+        letter-spacing: 1px;
+      }
+      .pass {
+        background-image: linear-gradient(to right, #2ddd9d, #1cc7cf);
+        background-color: #2ddd9d;
+        transition: all 0.3s;
+        user-select: none;
+      }
+      .review {
+        background: green;
+      }
+      .refuse {
+        background: red;
+      }
     }
     img {
       width: 100%;

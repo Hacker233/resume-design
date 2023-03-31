@@ -93,3 +93,12 @@ export const deleteLegoUserTemplateAsync: any = (params: { id: any }) => {
     method: 'delete'
   });
 };
+
+// 用户查询个人创作积木模板详细数据
+export const getLegoUserTemplateByIdAndJsonIdAsync: any = (params: any) => {
+  return http.request({
+    url: '/huajian/legoTemplate/legoUserTemplateByIdAndJsonId',
+    method: 'get',
+    params: params
+  });
+};

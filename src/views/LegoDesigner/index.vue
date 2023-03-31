@@ -103,7 +103,10 @@
   import { getUuid } from '@/utils/common';
   import { cloneDeep } from 'lodash';
   import { HJSchema } from './schema/index';
-  import { getLegoUserResumeByIdAsync } from '@/http/api/lego';
+  import {
+    getLegoUserResumeByIdAsync,
+    getLegoUserTemplateByIdAndJsonIdAsync
+  } from '@/http/api/lego';
 
   // 设计区刷新id
   const { refreshUuid } = storeToRefs(appStore.useUuidStore);
@@ -130,10 +133,25 @@
     }
   };
 
+  // 查询个人创作的模板数据
+  const getLegoUserTemplateByIdAndJsonId = async () => {
+    const params = {
+      id: id,
+      jsonId: jsonId
+    };
+    const data = await getLegoUserTemplateByIdAndJsonIdAsync(params);
+    if (data.data.status === 200) {
+      changeHJSchemaJsonData(data.data.data.lego_json);
+    } else {
+      ElMessage.error(data.data.message);
+    }
+  };
+
   if (templateId) {
     // 查找模板数据
   } else if (id && jsonId) {
     // 编辑模板
+    getLegoUserTemplateByIdAndJsonId();
   } else if (id) {
     // 查询用户个人模板数据
     getPersonLegoJson();

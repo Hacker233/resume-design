@@ -3,7 +3,7 @@
     <div v-if="!isShowSkeleton">
       <div v-if="legoCreateList.length" class="create-list-box">
         <template v-for="(item, index) in legoCreateList" :key="index">
-          <create-card :card-data="item" @delete="deleteUserCreate"> </create-card>
+          <post-card :card-data="item" @delete="deleteUserCreate"> </post-card>
         </template>
       </div>
 
@@ -28,7 +28,7 @@
 </template>
 <script lang="ts" setup>
   import { deleteLegoUserTemplateAsync, legoUserTemplateListAsync } from '@/http/api/lego';
-  import CreateCard from './CreateCard.vue';
+  import PostCard from './PostWorkCard.vue';
   import NoDataVue from '@/components/NoData/NoData.vue';
 
   // 查询积木创作模板列表
