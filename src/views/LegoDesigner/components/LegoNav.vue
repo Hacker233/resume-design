@@ -54,7 +54,7 @@
       >
         <div class="icon-box icon-download" @click="publishTemplate">
           <svg-icon icon-name="icon-fabu1" color="#fff" size="17px"></svg-icon>
-          <span class="icon-tips">发布作品</span>
+          <span class="icon-tips">{{ postWorkInfo ? '更新作品' : '发布作品' }}</span>
         </div>
       </el-tooltip>
     </div>
@@ -75,6 +75,7 @@
   <!-- 发布作品弹窗 -->
   <post-work-dialog
     :dialog-post-work-visible="dialogPostWorkVisible"
+    :post-work-info="postWorkInfo"
     @cancle="canclePostWork"
   ></post-work-dialog>
 </template>
@@ -101,6 +102,7 @@
 
   const props = defineProps<{
     pagesRefs: any;
+    postWorkInfo: any;
   }>();
 
   // 导出JSON

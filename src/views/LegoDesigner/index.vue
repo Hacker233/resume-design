@@ -2,7 +2,7 @@
   <c-scrollbar trigger="hover">
     <div class="lego-designer-box">
       <!-- 导航栏 -->
-      <lego-nav :pages-refs="pagesRefs"></lego-nav>
+      <lego-nav :pages-refs="pagesRefs" :post-work-info="postWorkInfo"></lego-nav>
 
       <!-- 主设计区 -->
       <div class="main-designer-box">
@@ -133,7 +133,8 @@
     }
   };
 
-  // 查询个人创作的模板数据
+  // 查询个人创作的模板数据--编辑模板
+  const postWorkInfo = ref<any>(null);
   const getLegoUserTemplateByIdAndJsonId = async () => {
     const params = {
       id: id,
@@ -141,6 +142,13 @@
     };
     const data = await getLegoUserTemplateByIdAndJsonIdAsync(params);
     if (data.data.status === 200) {
+      postWorkInfo.value = {
+        _id: data.data.data._id,
+        category: data.data.data.category,
+        how_much: data.data.data.how_much,
+        previewUrl: data.data.data.previewUrl,
+        title: data.data.data.title
+      };
       changeHJSchemaJsonData(data.data.data.lego_json);
     } else {
       ElMessage.error(data.data.message);

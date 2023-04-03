@@ -68,10 +68,19 @@ export const legoCategoryDeleteAsync: any = (id: string) => {
   });
 };
 
-// 新增或者更新积木模板
+// 新增积木模板
 export const legoTemplateAddAsync: any = (data: any) => {
   return http.request({
     url: '/huajian/legoTemplate/legoTemplateAdd',
+    method: 'post',
+    data: data
+  });
+};
+
+// 更新积木模板
+export const legoTemplateUpdateAsync: any = (data: any) => {
+  return http.request({
+    url: '/huajian/legoTemplate/legoTemplateUpdate',
     method: 'post',
     data: data
   });

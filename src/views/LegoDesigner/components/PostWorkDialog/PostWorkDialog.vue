@@ -27,6 +27,17 @@
           />
         </el-select>
       </el-form-item>
+      <el-form-item label="是否免费：" prop="is_free">
+        <el-radio-group v-model="howMuchRadio">
+          <el-radio label="free" size="default">免费</el-radio>
+          <el-radio label="pay" size="default">付费</el-radio>
+        </el-radio-group>
+      </el-form-item>
+      <el-form-item v-if="howMuchRadio === 'pay'" label="模板价格：" prop="how_much">
+        <el-input-number v-model="ruleForm.how_much" :min="1" />
+        <span class="how-much">简币</span>
+        <img width="18" src="@/assets/images/jianB.png" alt="简币" />
+      </el-form-item>
       <el-form-item label="模板预览图:">
         <el-upload
           class="avatar-uploader"
@@ -44,16 +55,20 @@
     <template #footer>
       <span class="dialog-footer">
         <el-button @click="cancle">取消</el-button>
-        <el-button type="primary" :loading="sureLoading" @click="submit(ruleFormRef)"
-          >确定</el-button
-        >
+        <el-button type="primary" :loading="sureLoading" @click="submit(ruleFormRef)">{{
+          postWorkInfo ? '确认修改' : '确认发布'
+        }}</el-button>
       </span>
     </template>
   </el-dialog>
 </template>
 
 <script lang="ts" setup>
-  import { getLegoCategoryListAsync, legoTemplateAddAsync } from '@/http/api/lego';
+  import {
+    getLegoCategoryListAsync,
+    legoTemplateAddAsync,
+    legoTemplateUpdateAsync
+  } from '@/http/api/lego';
   import { FormInstance, FormRules, UploadProps } from 'element-plus';
   import appStore from '@/store';
   import CONFIG from '@/config';
@@ -65,9 +80,11 @@
   const emit = defineEmits(['cancle', 'updateSuccess']);
   interface TDialog {
     dialogPostWorkVisible: boolean;
+    postWorkInfo: any;
   }
-  withDefaults(defineProps<TDialog>(), {
-    dialogPostWorkVisible: false
+  const props = withDefaults(defineProps<TDialog>(), {
+    dialogPostWorkVisible: false,
+    postWorkInfo: null
   });
 
   interface ITemplate {
@@ -84,6 +101,21 @@
     how_much: 0
   });
   const rules = reactive<FormRules>({});
+
+  watch(
+    () => props.postWorkInfo,
+    (newVal) => {
+      if (newVal) {
+        ruleForm.title = newVal.title;
+        ruleForm.category = newVal.category;
+        ruleForm.previewUrl = newVal.previewUrl;
+        ruleForm.how_much = newVal.how_much;
+      }
+    }
+  );
+
+  // 付费免费单选按钮
+  const howMuchRadio = ref<string>(props.postWorkInfo?.how_much === 0 ? 'free' : 'pay');
 
   // 取消
   const cancle = () => {
@@ -119,8 +151,8 @@
   };
 
   const beforeAvatarUpload: UploadProps['beforeUpload'] = (rawFile) => {
-    if (rawFile.size / 1024 / 1024 > 10) {
-      ElMessage.error('预览图不能大于10M');
+    if (rawFile.size / 1024 / 1024 > 5) {
+      ElMessage.error('预览图不能大于5M');
       return false;
     }
     return true;
@@ -134,27 +166,54 @@
     if (!formEl) return;
     await formEl.validate(async (valid, fields) => {
       if (valid) {
-        HJSchemaJsonStore.value.id = getUuid(); // 每次发布作品都要生成id
-        let params = {
-          lego_json: HJSchemaJsonStore.value,
-          previewUrl: ruleForm.previewUrl,
-          category: ruleForm.category,
-          how_much: ruleForm.how_much,
-          title: ruleForm.title
-        };
-        sureLoading.value = true;
-        const data = await legoTemplateAddAsync(params);
-        if (data.data.status === 200) {
-          ElMessage.success('发布成功');
-          router.push({
-            path: '/postWorkSuccess'
-          });
-          sureLoading.value = false;
-          emit('updateSuccess');
-          ruleFormRef.value.resetFields();
+        // 新增
+        if (!props.postWorkInfo) {
+          HJSchemaJsonStore.value.id = getUuid(); // 每次发布作品都要生成id
+          let params = {
+            lego_json: HJSchemaJsonStore.value,
+            previewUrl: ruleForm.previewUrl,
+            category: ruleForm.category,
+            how_much: ruleForm.how_much,
+            title: ruleForm.title
+          };
+          sureLoading.value = true;
+          const data = await legoTemplateAddAsync(params);
+          if (data.data.status === 200) {
+            ElMessage.success('发布成功');
+            router.push({
+              path: '/postWorkSuccess'
+            });
+            sureLoading.value = false;
+            emit('updateSuccess');
+            ruleFormRef.value.resetFields();
+          } else {
+            sureLoading.value = false;
+            ElMessage.error(data.data.message);
+          }
         } else {
-          sureLoading.value = false;
-          ElMessage.error(data.data.message);
+          // 更新
+          let params = {
+            _id: props.postWorkInfo._id,
+            lego_json: HJSchemaJsonStore.value,
+            previewUrl: ruleForm.previewUrl,
+            category: ruleForm.category,
+            how_much: ruleForm.how_much,
+            title: ruleForm.title
+          };
+          sureLoading.value = true;
+          const data = await legoTemplateUpdateAsync(params);
+          if (data.data.status === 200) {
+            ElMessage.success('更新成功');
+            router.push({
+              path: '/postWorkSuccess'
+            });
+            sureLoading.value = false;
+            emit('updateSuccess');
+            ruleFormRef.value.resetFields();
+          } else {
+            sureLoading.value = false;
+            ElMessage.error(data.data.message);
+          }
         }
       } else {
         sureLoading.value = false;
@@ -190,5 +249,8 @@
       height: 365px;
       text-align: center;
     }
+  }
+  .how-much {
+    margin: 0 5px 0 10px;
   }
 </style>
