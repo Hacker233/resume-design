@@ -40,7 +40,7 @@
           <span class="icon-tips">分享</span>
         </div>
       </el-tooltip>
-      <el-tooltip effect="dark" content="快来一起参与评论吧！" placement="bottom">
+      <el-tooltip v-if="templateId" effect="dark" content="快来一起参与评论吧！" placement="bottom">
         <div class="icon-box" @click="publishComment">
           <svg-icon icon-name="icon-pinglun" color="#555" size="18px"></svg-icon>
           <span class="icon-tips">评论</span>
