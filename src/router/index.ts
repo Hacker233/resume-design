@@ -27,6 +27,7 @@ const LegoCreate = () => import('@/views/person/legoCreate/index.vue');
 const WebCode = () => import('@/views/webCode/index.vue');
 const LegoDesigner = () => import('@/views/LegoDesigner/index.vue');
 const PostWorkSuccess = () => import('@/views/LegoDesigner/postWordSuccess/index.vue');
+const LegoTemplateList = () => import('@/views/legoTemplateList/index.vue');
 // 软件分享
 const SoftShare = () => import('@/views/softShare/index.vue');
 const SoftDetail = () => import('@/views/softDetail/index.vue');
@@ -58,6 +59,7 @@ const DeployDoc = () => import('@/views/deployDoc/index.vue');
 const ArticleDetail = () => import('@/views/deployDoc/pages/articleDetails.vue');
 const IntegralList = () => import('@/views/admin/integralManage/IntegralList/index.vue');
 const LegoCategory = () => import('@/views/admin/legoManage/legoCategory/index.vue');
+const LegoTemplateListManage = () => import('@/views/admin/legoManage/legoTemplateList/index.vue');
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -92,6 +94,17 @@ const routes: Array<RouteRecordRaw> = [
       requireLogin: true
     },
     component: LegoDesigner
+  },
+  {
+    path: '/legoTemplateList',
+    name: 'LegoTemplateList',
+    meta: {
+      title: '积木模板',
+      keepAlive: true,
+      isShowComNav: true,
+      requireLogin: false
+    },
+    component: LegoTemplateList
   },
   {
     path: '/postWorkSuccess',
@@ -623,6 +636,17 @@ const routes: Array<RouteRecordRaw> = [
           requireLogin: true
         },
         component: LegoCategory
+      },
+      {
+        path: 'legoTemplateListManage',
+        name: 'LegoTemplateListManage',
+        meta: {
+          title: '积木列表',
+          keepAlive: true,
+          isShowComNav: false,
+          requireLogin: true
+        },
+        component: LegoTemplateListManage
       }
     ]
   }

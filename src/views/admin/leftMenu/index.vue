@@ -205,7 +205,7 @@
       title: '积木管理',
       children: [
         {
-          index: 'LegoTemplateList',
+          index: 'LegoTemplateListManage',
           iconfont: 'icon-wenzhangliebiao',
           title: '模板列表'
         },

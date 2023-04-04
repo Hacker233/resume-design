@@ -118,10 +118,10 @@
         },
         {
           iconfont: '',
-          name: 'LegoDesigner',
+          name: 'LegoTemplateList',
           title: '积木创作',
           children: null,
-          path: '/legoDesigner'
+          path: '/legoTemplateList'
         }
       ]
     },

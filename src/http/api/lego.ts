@@ -111,3 +111,46 @@ export const getLegoUserTemplateByIdAndJsonIdAsync: any = (params: any) => {
     params: params
   });
 };
+
+// 无需权限查询积木创作分类列表
+export const getLegoTemplateCategoryListAsync: any = () => {
+  return http.request({
+    url: '/huajian/common/getLegoCategoryList',
+    method: 'get'
+  });
+};
+
+// 无需权限根据分类查询模板列表
+export const getLegoTemplateListByCategoryAsync: any = (params: any) => {
+  return http.request({
+    url: '/huajian/common/getLegoTemplateListByCategory',
+    method: 'get',
+    params: params
+  });
+};
+
+// 管理员查询所有模板列表
+export const getLegoTemplateListAsync: any = (params: any) => {
+  return http.request({
+    url: '/huajian/legoTemplate/getLegoTemplateList',
+    method: 'get',
+    params: params
+  });
+};
+
+// 管理员删除模板
+export const deleteLegoTemplateByAdminAsync: any = (id: string) => {
+  return http.request({
+    url: `/huajian/legoTemplate/deleteLegoTemplateByAdmin/${id}`,
+    method: 'delete'
+  });
+};
+
+// 管理员审核模板
+export const auditTemplateByAdminAsync: any = (data: any) => {
+  return http.request({
+    url: '/huajian/legoTemplate/auditTemplateByAdmin',
+    method: 'post',
+    data: data
+  });
+};

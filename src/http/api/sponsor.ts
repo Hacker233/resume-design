@@ -24,7 +24,7 @@ export const getSponsorListAsync: any = (params: any) => {
 // 管理员删除赞助
 export const deleteSponsorAsync: any = (id: string) => {
   return http.request({
-    url: `/huajian/sponsor/deleteSponsor/${id}`,
+    url: `/huajian/paystats/deleteSponsor/${id}`,
     method: 'delete'
   });
 };

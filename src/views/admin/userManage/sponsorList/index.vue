@@ -39,9 +39,10 @@
         </div>
       </template>
     </el-table-column>
-    <el-table-column label="操作" width="270">
+    <el-table-column label="操作" width="150">
       <template #default="scope">
         <el-button type="primary" size="small" @click="audit(scope.row)">审核</el-button>
+        <el-button type="primary" size="small" @click="deleteSponsor(scope.row)">删除</el-button>
       </template>
     </el-table-column>
   </el-table>
@@ -65,9 +66,12 @@
 <script lang="ts" setup>
   import { formatListDate } from '@/utils/common';
   import Pagination from '@/components/Pagination/pagination.vue';
-  import { getSponsorListAsync } from '@/http/api/sponsor';
+  import { deleteSponsorAsync, getSponsorListAsync } from '@/http/api/sponsor';
   import 'element-plus/es/components/message-box/style/index';
   import AuditDialogVue from './components/AuditDialog.vue';
+  import { ElMessageBox } from 'element-plus';
+  import 'element-plus/es/components/message-box/style/index';
+
   let tableData = ref<any>([]);
 
   // 获取用户列表
@@ -131,6 +135,26 @@
   const updateAuditSuccess = () => {
     getSponsorList();
     dialogAuditVisible.value = false;
+  };
+
+  // 删除赞助
+  const deleteSponsor = (rowItem: any) => {
+    ElMessageBox.confirm('删除该赞助后无法恢复，确定继续？', '警告', {
+      confirmButtonText: '确定',
+      cancelButtonText: '取消',
+      type: 'warning'
+    })
+      .then(async () => {
+        console.log('rowItem', rowItem);
+        const data = await deleteSponsorAsync(rowItem.id);
+        if (data.data.status === 200) {
+          ElMessage.success('删除成功');
+          getSponsorList();
+        } else {
+          ElMessage.error(data.data.message);
+        }
+      })
+      .catch(() => {});
   };
 </script>
 <style lang="scss" scoped>
