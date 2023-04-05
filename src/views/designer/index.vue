@@ -42,7 +42,11 @@
 
         <!-- 评论组件 -->
         <div ref="commentRef">
-          <comment-com :comment-type-id="id" comment-type="resumeOnline"></comment-com>
+          <comment-com
+            :comment-type-id="id"
+            comment-type="resumeOnline"
+            width="820px"
+          ></comment-com>
         </div>
         <!-- 回到顶部 -->
         <el-backtop :right="365" :bottom="50" target="#print">

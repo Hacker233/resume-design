@@ -78,6 +78,13 @@
     :post-work-info="postWorkInfo"
     @cancle="canclePostWork"
   ></post-work-dialog>
+
+  <!-- 导出pdf进度弹窗 -->
+  <process-bar-dialog
+    :dialog-visible="dialogVisible"
+    :percentage-num="percentage"
+    @cancle="cancleProgress"
+  ></process-bar-dialog>
 </template>
 <script lang="ts" setup>
   import appStore from '@/store';
@@ -93,6 +100,8 @@
   import { getImgBase64URL } from '../utils/html2img';
   import { legoUserResumeAsync } from '@/http/api/lego';
   import PostWorkDialog from './PostWorkDialog/PostWorkDialog.vue';
+  import { exportLegoPNG, exportLegoPdf } from '../utils/pdf';
+  import ProcessBarDialog from '@/components/ProcessBarDialog/ProcessBarDialog.vue';
 
   const { HJSchemaJsonStore, draftTips } = storeToRefs(appStore.useLegoJsonStore);
   const { resetHJSchemaJsonData } = appStore.useLegoJsonStore;
@@ -126,7 +135,40 @@
 
   // 点击下载
   const downloadResumeFile = async (type: string) => {
-    console.log('type', type);
+    // 先保存草稿
+    await saveDraft();
+    // const url = getLegoPdfUrl(localStorage.getItem('token') as string, _id.value);
+    generateReport(type); // 导出
+  };
+
+  // 生成pdf方法
+  const dialogVisible = ref<boolean>(false);
+  const percentage = ref<number>(10);
+  let timer: any = null;
+  const generateReport = async (type: string) => {
+    dialogVisible.value = true;
+    timer = setInterval(() => {
+      percentage.value += 5;
+      if (percentage.value > 95) {
+        percentage.value = 98;
+        clearInterval(timer);
+      }
+    }, 500);
+    let token = localStorage.getItem('token') as string;
+    if (type === 'pdf') {
+      await exportLegoPdf(token, _id.value);
+    } else {
+      await exportLegoPNG(token, _id.value);
+    }
+
+    clearInterval(timer);
+    percentage.value = 100;
+  };
+
+  // 关闭进度弹窗
+  const cancleProgress = () => {
+    dialogVisible.value = false;
+    percentage.value = 10;
   };
 
   // 预览
@@ -154,6 +196,7 @@
   // 保存草稿
   const imgUrl = ref<string>('');
   const isCanSave = ref<boolean>(true);
+  const _id = ref<string>('');
   const saveDraft = async () => {
     if (CONFIG.SAVE_LOCAL) {
       // 保存本地
@@ -183,6 +226,7 @@
         if (data.data.status === 200) {
           const time = moment(new Date()).format('YYYY.MM.DD HH:mm:ss');
           draftTips.value = `已保存草稿  ${time}`;
+          _id.value = data.data.data._id;
           ElMessage.success('保存成功');
         } else {
           ElMessage.error(data.data.message);

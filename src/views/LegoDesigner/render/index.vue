@@ -34,6 +34,7 @@
   import { WIDGET_MAP } from '../widgets';
 
   const { HJSchemaJsonStore } = storeToRefs(appStore.useLegoJsonStore);
+  console.log('renderJSON', HJSchemaJsonStore.value);
   // 返回渲染组件
   const getWidgetCom = (item: IWidget) => {
     return WIDGET_MAP[item.componentName];

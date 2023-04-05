@@ -16,6 +16,8 @@
   >
     <el-table-column prop="_id" label="分类id" />
     <el-table-column prop="name" label="分类名称" />
+    <el-table-column prop="width" label="卡片宽度" />
+    <el-table-column prop="height" label="卡片高度" />
     <el-table-column prop="createDate" label="创建日期">
       <template #default="scope">
         <div>

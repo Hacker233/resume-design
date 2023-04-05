@@ -154,3 +154,31 @@ export const auditTemplateByAdminAsync: any = (data: any) => {
     data: data
   });
 };
+
+// 查询单个模板详细数据
+export const getLegoTemplateInfoByIdAsync: any = (params: { id: any }) => {
+  return http.request({
+    url: `/huajian/legoTemplate/legoTemplateInfoById/${params.id}`,
+    method: 'get'
+  });
+};
+
+// 导出为pdf
+export const getLegoResumePdfAsync: any = (params: any) => {
+  return http.request({
+    url: '/huajian/legoPdf/getPdf',
+    method: 'post',
+    responseType: 'blob',
+    data: params
+  });
+};
+
+// 导出为PNG
+export const getLegoPNGAsync: any = (params: any) => {
+  return http.request({
+    url: '/huajian/legoPdf/getPNG',
+    method: 'post',
+    responseType: 'blob',
+    data: params
+  });
+};

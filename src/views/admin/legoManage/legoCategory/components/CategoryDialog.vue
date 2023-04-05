@@ -19,6 +19,12 @@
       <el-form-item label="分类名称:" prop="name">
         <el-input v-model="ruleForm.name" />
       </el-form-item>
+      <el-form-item label="卡片宽度:" prop="width">
+        <el-input-number v-model="ruleForm.width" :min="0" :max="1000000" />
+      </el-form-item>
+      <el-form-item label="卡片高度:" prop="width">
+        <el-input-number v-model="ruleForm.height" :min="0" :max="1000000" />
+      </el-form-item>
     </el-form>
     <template #footer>
       <span class="dialog-footer">
@@ -54,6 +60,8 @@
     (newVal) => {
       if (newVal) {
         ruleForm.name = props.row.name;
+        ruleForm.width = props.row.width;
+        ruleForm.height = props.row.height;
       }
     },
     {
@@ -63,10 +71,14 @@
 
   interface ICategory {
     name: string;
+    width: number;
+    height: number;
   }
   // 表单填写数据
   const ruleForm = reactive<ICategory>({
-    name: ''
+    name: '',
+    width: 0,
+    height: 0
   });
   const rules = reactive<FormRules>({});
 
@@ -85,7 +97,9 @@
         // 添加
         if (props.btnText === '添加') {
           let params = {
-            name: ruleForm.name
+            name: ruleForm.name,
+            width: ruleForm.width,
+            height: ruleForm.height
           };
           sureLoading.value = true;
           const data = await addLegoCategoryAsync(params);
@@ -101,7 +115,9 @@
         } else {
           let params = {
             id: props.row._id,
-            name: ruleForm.name
+            name: ruleForm.name,
+            width: ruleForm.width,
+            height: ruleForm.height
           };
           const data = await legoCategoryUpdateAsync(params);
           if (data.data.status === 200) {

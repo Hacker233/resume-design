@@ -28,6 +28,8 @@ const WebCode = () => import('@/views/webCode/index.vue');
 const LegoDesigner = () => import('@/views/LegoDesigner/index.vue');
 const PostWorkSuccess = () => import('@/views/LegoDesigner/postWordSuccess/index.vue');
 const LegoTemplateList = () => import('@/views/legoTemplateList/index.vue');
+const LegoPrintPdfPreview = () =>
+  import('@/views/LegoDesigner/render/LegoPrintPdfPreview/index.vue');
 // 软件分享
 const SoftShare = () => import('@/views/softShare/index.vue');
 const SoftDetail = () => import('@/views/softDetail/index.vue');
@@ -94,6 +96,17 @@ const routes: Array<RouteRecordRaw> = [
       requireLogin: true
     },
     component: LegoDesigner
+  },
+  {
+    path: '/legoPrintPdfPreview',
+    name: 'LegoPrintPdfPreview',
+    meta: {
+      title: '积木制作打印预览页',
+      keepAlive: false,
+      isShowComNav: false,
+      requireLogin: false
+    },
+    component: LegoPrintPdfPreview
   },
   {
     path: '/legoTemplateList',

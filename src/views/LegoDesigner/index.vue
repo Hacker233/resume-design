@@ -104,6 +104,7 @@
   import { cloneDeep } from 'lodash';
   import { HJSchema } from './schema/index';
   import {
+    getLegoTemplateInfoByIdAsync,
     getLegoUserResumeByIdAsync,
     getLegoUserTemplateByIdAndJsonIdAsync
   } from '@/http/api/lego';
@@ -114,7 +115,7 @@
 
   // 初始页面JSON
   const { HJSchemaJsonStore } = storeToRefs(appStore.useLegoJsonStore);
-  const { changeHJSchemaJsonData } = appStore.useLegoJsonStore;
+  const { changeHJSchemaJsonData, resetHJSchemaJsonData } = appStore.useLegoJsonStore;
 
   // url参数
   const { id, templateId, jsonId } = useRoute().query;
@@ -155,8 +156,24 @@
     }
   };
 
+  // 查询模板数据
+  const templateInfo = ref<any>(null); // 模板的其他相关信息
+  const getTemplate = async () => {
+    const params = {
+      id: templateId
+    };
+    const data = await getLegoTemplateInfoByIdAsync(params);
+    if (data.data.status === 200) {
+      templateInfo.value = data.data.data;
+      changeHJSchemaJsonData(data.data.data.lego_json);
+    } else {
+      ElMessage.error(data.data.message);
+    }
+  };
+
   if (templateId) {
     // 查找模板数据
+    getTemplate();
   } else if (id && jsonId) {
     // 编辑模板
     getLegoUserTemplateByIdAndJsonId();
@@ -165,6 +182,7 @@
     getPersonLegoJson();
   } else {
     // 新的空白页
+    resetHJSchemaJsonData();
     HJSchemaJsonStore.value.id = getUuid();
   }
   if (id) {
