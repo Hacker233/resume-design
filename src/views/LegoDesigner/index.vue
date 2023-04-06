@@ -2,7 +2,11 @@
   <c-scrollbar trigger="hover">
     <div class="lego-designer-box">
       <!-- 导航栏 -->
-      <lego-nav :pages-refs="pagesRefs" :post-work-info="postWorkInfo"></lego-nav>
+      <lego-nav
+        :pages-refs="pagesRefs"
+        :post-work-info="postWorkInfo"
+        :template-info="templateInfo"
+      ></lego-nav>
 
       <!-- 主设计区 -->
       <div class="main-designer-box">

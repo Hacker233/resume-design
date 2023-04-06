@@ -40,10 +40,15 @@
           <span class="icon-tips">分享</span>
         </div>
       </el-tooltip>
-      <el-tooltip v-if="templateId" effect="dark" content="快来一起参与评论吧！" placement="bottom">
+      <el-tooltip
+        v-if="templateId && templateInfo"
+        effect="dark"
+        content="快来一起参与评论吧！"
+        placement="bottom"
+      >
         <div class="icon-box" @click="publishComment">
           <svg-icon icon-name="icon-pinglun" color="#555" size="18px"></svg-icon>
-          <span class="icon-tips">评论</span>
+          <span class="icon-tips">评论({{ templateInfo.commentCount }})</span>
         </div>
       </el-tooltip>
       <el-tooltip
@@ -85,6 +90,22 @@
     :percentage-num="percentage"
     @cancle="cancleProgress"
   ></process-bar-dialog>
+
+  <!-- 评论抽屉 -->
+  <el-drawer
+    v-model="commentDrawer"
+    append-to-body
+    class="lego-comment-box"
+    modal-class="lego-comment-box-modal"
+    :show-close="false"
+    direction="rtl"
+  >
+    <comment-com
+      :comment-type-id="templateId"
+      comment-type="legoTemplate"
+      width="100%"
+    ></comment-com>
+  </el-drawer>
 </template>
 <script lang="ts" setup>
   import appStore from '@/store';
@@ -112,6 +133,7 @@
   const props = defineProps<{
     pagesRefs: any;
     postWorkInfo: any;
+    templateInfo: any;
   }>();
 
   // 导出JSON
@@ -259,9 +281,6 @@
   // 发布公开简历
   const publishOnlineResume = () => {};
 
-  // 参与评论
-  const publishComment = () => {};
-
   // 离开页面之前
   onBeforeUnmount(async () => {
     // imgUrl.value = await getImgBase64URL(props.pagesRefs[0]);
@@ -277,6 +296,12 @@
     resetSelectWidget();
     setUuid();
   });
+
+  // 打开评论弹窗
+  const commentDrawer = ref<boolean>(false);
+  const publishComment = () => {
+    commentDrawer.value = true;
+  };
 </script>
 <style lang="scss" scoped>
   .lego-nav-box {
@@ -326,6 +351,21 @@
           color: #fff;
         }
       }
+    }
+  }
+</style>
+<style lang="scss">
+  .lego-comment-box-modal {
+    :deep(.lego-comment-box) {
+      :deep(.el-drawer__body) {
+        padding: 0;
+      }
+      .comment-view {
+        margin: 0 0 40px 0;
+      }
+    }
+    .el-drawer__header {
+      display: none;
     }
   }
 </style>

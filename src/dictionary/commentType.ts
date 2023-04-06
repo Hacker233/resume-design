@@ -18,5 +18,9 @@ export const commentType: any = {
   article: {
     label: '文章',
     path: '/articleDetail'
+  },
+  legoTemplate: {
+    label: '积木制作',
+    path: '/legoDesigner'
   }
 };
