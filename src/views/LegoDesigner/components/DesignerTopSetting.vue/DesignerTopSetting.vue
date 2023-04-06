@@ -23,6 +23,23 @@
       <div class="draft-tips-box">
         <span class="draft-tips">{{ draftTips }}</span>
       </div>
+
+      <div class="title-box">
+        <p v-show="!isShowIpt">
+          {{ HJSchemaJsonStore.config.title }}
+          <el-icon :size="20" color="#74a274" @click="changeTitle">
+            <Edit />
+          </el-icon>
+        </p>
+        <el-input
+          v-show="isShowIpt"
+          ref="titleIpf"
+          v-model="HJSchemaJsonStore.config.title"
+          autofocus
+          placeholder="请输入标题"
+          @blur="blurTitle"
+        />
+      </div>
     </div>
 
     <!-- 缩放画布 -->
@@ -171,6 +188,17 @@
   const handleCache = (oldHJSchemaJsonStore: IHJSchema) => {
     insertCache(oldHJSchemaJsonStore);
   };
+
+  // 更改标题
+  const titleIpf = ref<any>(null);
+  const isShowIpt = ref<boolean>(false);
+  const changeTitle = () => {
+    isShowIpt.value = true;
+    titleIpf.value.focus();
+  };
+  const blurTitle = () => {
+    isShowIpt.value = false;
+  };
 </script>
 <style lang="scss" scoped>
   .designer-setting-box {
@@ -214,6 +242,7 @@
       flex: 1;
       justify-content: flex-start;
       padding: 0 20px;
+      position: relative;
       .draft-tips-box {
         height: 100%;
         display: flex;
@@ -222,6 +251,24 @@
         .draft-tips {
           font-size: 10px;
           color: #999999;
+        }
+      }
+
+      .title-box {
+        position: absolute;
+        left: 65%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        display: flex;
+        align-items: center;
+        p {
+          display: flex;
+          align-items: center;
+          color: #333;
+          .el-icon {
+            margin-left: 10px;
+            cursor: pointer;
+          }
         }
       }
     }

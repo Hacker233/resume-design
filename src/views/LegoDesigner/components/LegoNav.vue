@@ -356,16 +356,23 @@
 </style>
 <style lang="scss">
   .lego-comment-box-modal {
-    :deep(.lego-comment-box) {
-      :deep(.el-drawer__body) {
+    display: flex;
+    .lego-comment-box {
+      .el-drawer__header {
+        display: none;
+      }
+      .el-drawer__body {
         padding: 0;
+        .comment-view {
+          margin: 0 0 20px 0;
+          .u-comment {
+            padding: 0 20px;
+            .comment-form {
+              padding: 0;
+            }
+          }
+        }
       }
-      .comment-view {
-        margin: 0 0 40px 0;
-      }
-    }
-    .el-drawer__header {
-      display: none;
     }
   }
 </style>

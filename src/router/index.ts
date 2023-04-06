@@ -42,6 +42,7 @@ const AdminIndex = () => import('@/views/admin/index.vue');
 const Panel = () => import('@/views/admin/panel/index.vue');
 const AddTemplate = () => import('@/views/admin/templateManage/addTemplate/index.vue');
 const TemplateList = () => import('@/views/admin/templateManage/templateList/index.vue');
+const TemplateCategory = () => import('@/views/admin/templateManage/templateCategory/index.vue');
 const UserList = () => import('@/views/admin/userManage/uerList/index.vue');
 const SponsorList = () => import('@/views/admin/userManage/sponsorList/index.vue');
 const ResumeList = () => import('@/views/admin/resumeManage/resumeList/index.vue');
@@ -473,6 +474,17 @@ const routes: Array<RouteRecordRaw> = [
           requireLogin: true
         },
         component: TemplateList
+      },
+      {
+        path: 'templateCategory',
+        name: 'TemplateCategory',
+        meta: {
+          title: '模板分类',
+          keepAlive: true,
+          isShowComNav: false,
+          requireLogin: true
+        },
+        component: TemplateCategory
       },
       {
         path: 'TobeAudit',

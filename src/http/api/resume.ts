@@ -131,3 +131,37 @@ export const getMyContributeTemplateListAsync: any = (params: any) => {
     params: params
   });
 };
+
+// 管理员查询模板分类列表
+export const getTemplateCategoryListAsync: any = () => {
+  return http.request({
+    url: '/huajian/resume/getTemplateCategoryList',
+    method: 'get'
+  });
+};
+
+// 新增分类
+export const templateCategoryAddAsync: any = (data: any) => {
+  return http.request({
+    url: '/huajian/resume/templateCategoryAdd',
+    method: 'post',
+    data: data
+  });
+};
+
+// 修改分类
+export const templateCategoryUpdateAsync: any = (data: any) => {
+  return http.request({
+    url: '/huajian/resume/templateCategoryUpdate',
+    method: 'put',
+    data: data
+  });
+};
+
+// 删除分类
+export const templateCategoryDeleteAsync: any = (id: string) => {
+  return http.request({
+    url: `/huajian/resume/templateCategoryDelete/${id}`,
+    method: 'delete'
+  });
+};

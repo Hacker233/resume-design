@@ -5,7 +5,7 @@
     <el-table-column prop="EMAIL" label="创建邮箱" />
     <el-table-column prop="previewUrl" label="封面预览">
       <template #default="scope">
-        <img class="preview-img" :src="scope.row.previewUrl" alt="" srcset="" />
+        <img v-viewer class="preview-img" :src="scope.row.previewUrl" alt="" srcset="" />
       </template>
     </el-table-column>
     <el-table-column prop="TITLE" label="模板标题" />

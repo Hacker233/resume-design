@@ -1,51 +1,53 @@
 <template>
   <div class="left-menu-box">
-    <el-menu
-      :default-active="route.name"
-      class="el-menu-vertical-demo"
-      unique-opened
-      @select="handleSelect"
-    >
-      <template v-for="(item, index) in menuList">
-        <template v-if="!item.children">
-          <el-menu-item :key="index" :index="item.index">
-            <svg-icon
-              :icon-name="item.iconfont"
-              class="iconfont"
-              :color="getIconColor(item.index)"
-              size="18px"
-            ></svg-icon>
-            <span>{{ item.title }}</span>
-          </el-menu-item>
-        </template>
-        <template v-else>
-          <el-sub-menu :key="index" :index="item.index">
-            <template #title>
+    <c-scrollbar trigger="hover" style="height: 100%">
+      <el-menu
+        :default-active="route.name"
+        class="el-menu-vertical-demo"
+        unique-opened
+        @select="handleSelect"
+      >
+        <template v-for="(item, index) in menuList">
+          <template v-if="!item.children">
+            <el-menu-item :key="index" :index="item.index">
               <svg-icon
                 :icon-name="item.iconfont"
                 class="iconfont"
-                color="#303133"
-                size="20px"
-              ></svg-icon>
-              <span>{{ item.title }}</span>
-            </template>
-            <el-menu-item
-              v-for="(childItem, childIndex) in item.children"
-              :key="childIndex"
-              :index="childItem.index"
-            >
-              <svg-icon
-                :icon-name="childItem.iconfont"
-                class="iconfont"
-                :color="getIconColor(childItem.index)"
+                :color="getIconColor(item.index)"
                 size="18px"
               ></svg-icon>
-              <span>{{ childItem.title }}</span>
+              <span>{{ item.title }}</span>
             </el-menu-item>
-          </el-sub-menu>
+          </template>
+          <template v-else>
+            <el-sub-menu :key="index" :index="item.index">
+              <template #title>
+                <svg-icon
+                  :icon-name="item.iconfont"
+                  class="iconfont"
+                  color="#303133"
+                  size="20px"
+                ></svg-icon>
+                <span>{{ item.title }}</span>
+              </template>
+              <el-menu-item
+                v-for="(childItem, childIndex) in item.children"
+                :key="childIndex"
+                :index="childItem.index"
+              >
+                <svg-icon
+                  :icon-name="childItem.iconfont"
+                  class="iconfont"
+                  :color="getIconColor(childItem.index)"
+                  size="18px"
+                ></svg-icon>
+                <span>{{ childItem.title }}</span>
+              </el-menu-item>
+            </el-sub-menu>
+          </template>
         </template>
-      </template>
-    </el-menu>
+      </el-menu>
+    </c-scrollbar>
   </div>
 </template>
 <script lang="ts" setup>
@@ -75,6 +77,11 @@
           index: 'TobeAudit',
           iconfont: 'icon-caogaoxiang1',
           title: '待审核模板'
+        },
+        {
+          index: 'TemplateCategory',
+          iconfont: 'icon-xiangmu1',
+          title: '分类管理'
         }
       ]
     },
@@ -238,7 +245,7 @@
 </script>
 <style lang="scss" scoped>
   .left-menu-box {
-    height: 100%;
+    height: calc(100vh - 50px);
     background-color: #fff;
     width: 210px;
     .iconfont {
