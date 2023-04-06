@@ -128,7 +128,7 @@
   const { resetHJSchemaJsonData } = appStore.useLegoJsonStore;
   const { setUuid } = appStore.useRefreshStore;
   const { resetSelectWidget } = appStore.useLegoSelectWidgetStore;
-  const { templateId } = useRoute().query;
+  const { templateId, category } = useRoute().query;
 
   const props = defineProps<{
     pagesRefs: any;
@@ -242,6 +242,7 @@
         imgUrl.value = await getImgBase64URL(props.pagesRefs[0]);
         const params = {
           previewUrl: imgUrl.value,
+          category: category,
           lego_json: HJSchemaJsonStore.value
         };
         const data = await legoUserResumeAsync(params);

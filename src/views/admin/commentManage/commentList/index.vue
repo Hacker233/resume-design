@@ -139,6 +139,10 @@
     {
       label: '软件分享',
       value: 'soft'
+    },
+    {
+      label: '积木创作',
+      value: 'legoTemplate'
     }
   ]);
 

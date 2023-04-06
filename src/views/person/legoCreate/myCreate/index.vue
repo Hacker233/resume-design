@@ -9,14 +9,15 @@
       ></category-vue>
       <!-- 模板列表 -->
       <template-list-vue
-        v-if="templateList.length && !isShowSkeleton"
-        :template-list="templateList"
+        v-if="legoPersonList.length && !isShowSkeleton"
+        :template-list="legoPersonList"
         :lego-person-list="legoPersonList"
         :category="category"
         :category-list="categoryList"
+        @delete-success="deleteSuccess"
       ></template-list-vue>
       <!-- 暂无数据 -->
-      <div v-if="!templateList.length && !isShowSkeleton" class="no-data-box">
+      <div v-if="!legoPersonList.length && !isShowSkeleton" class="no-data-box">
         <no-data-vue></no-data-vue>
       </div>
       <!-- 等待动画 -->
@@ -25,7 +26,7 @@
       </div>
       <!-- 分页组件 -->
       <Pagination
-        v-if="templateList.length && templateList.length < total"
+        v-if="legoPersonList.length && legoPersonList.length < total"
         :total="total"
         :limit="limit"
         :current-page="currentPage"
@@ -35,11 +36,7 @@
   </div>
 </template>
 <script lang="ts" setup>
-  import {
-    getLegoTemplateCategoryListAsync,
-    getLegoTemplateListByCategoryAsync,
-    legoUserResumeListAsync
-  } from '@/http/api/lego';
+  import { getLegoTemplateCategoryListAsync, legoUserResumeListAsync } from '@/http/api/lego';
   import CategoryVue from './components/Category.vue';
   import NoDataVue from '@/components/NoData/NoData.vue';
   import CommonLoading from '@/components/CommonLoading/CommonLoading.vue';
@@ -54,15 +51,12 @@
     category.value = item.category;
     sort.value = item.sort;
     page.value = 1;
-    limit.value = 12;
-    getTemplateList();
-    // 查询个人创作历史
-    if (localStorage.getItem('token')) {
-      getLegoUserResumeList();
-    }
+    limit.value = 5;
+    getLegoUserResumeList();
   };
 
   // 查询分类列表
+  const category = ref<string>('');
   const categoryList = ref<any>([]);
   const defaultCurrent = ref<string>('');
   const getLegoTemplateCategoryList = async () => {
@@ -80,11 +74,7 @@
       );
       category.value = categoryList.value[0].category_label;
       defaultCurrent.value = categoryList.value[0].category_label;
-      getTemplateList(); // 获取模板列表
-      // 查询个人创作历史
-      if (localStorage.getItem('token')) {
-        getLegoUserResumeList();
-      }
+      getLegoUserResumeList();
     } else {
       ElMessage.error(data.message);
     }
@@ -92,55 +82,26 @@
   getLegoTemplateCategoryList();
 
   // 查询个人积木创作历史列表
+  const page = ref<number>(1);
+  const limit = ref<number>(5);
+  const total = ref<number>(0);
+  const currentPage = ref<number>(1);
   const legoPersonList = ref<Array<any>>([]);
   const getLegoUserResumeList = async () => {
+    isShowSkeleton.value = true;
     let params = {
-      page: 1,
-      limit: 6,
+      page: page.value,
+      limit: limit.value,
       category: category.value
     };
     const data = await legoUserResumeListAsync(params);
     if (data.data.status === 200) {
       legoPersonList.value = data.data.data.list;
-    } else {
-      ElMessage.error(data.data.message);
-    }
-  };
-
-  // 查询模板列表
-  const page = ref<number>(1);
-  const limit = ref<number>(12);
-  const total = ref<number>(0);
-  const currentPage = ref<number>(1);
-  const templateList = ref<any>([]);
-  const category = ref<string>('');
-  const getTemplateList = async () => {
-    isShowSkeleton.value = true;
-    let params = {
-      page: page.value,
-      limit: limit.value,
-      category: category.value,
-      sort: sort.value
-    };
-    const data = await getLegoTemplateListByCategoryAsync(params);
-    if (data.status === 200) {
-      templateList.value = data.data.list.map((item: any) => {
-        categoryList.value.forEach(
-          (categoryItem: { category_label: any; width: string; height: string }) => {
-            if (categoryItem.category_label === item.category) {
-              item.width = categoryItem.width + 'px';
-              item.height = categoryItem.height + 'px';
-            }
-          }
-        );
-        return item;
-      });
-      console.log('templateList', templateList.value);
-      total.value = data.data.page.count;
-      currentPage.value = data.data.page.currentPage;
+      total.value = data.data.data.page.count;
+      currentPage.value = data.data.data.page.currentPage;
       isShowSkeleton.value = false;
     } else {
-      ElMessage.error(data.message);
+      ElMessage.error(data.data.message);
       isShowSkeleton.value = false;
     }
   };
@@ -148,7 +109,12 @@
   // 改变页码时
   const handleCurrentChange = (currentPage: number) => {
     page.value = currentPage;
-    getTemplateList();
+    getLegoUserResumeList();
+  };
+
+  // 删除成功
+  const deleteSuccess = () => {
+    getLegoUserResumeList();
   };
 </script>
 <style lang="scss" scoped>
@@ -158,7 +124,7 @@
       margin: 0 auto;
       min-height: 500px;
       padding: 20px 0;
-      width: 1300px;
+      width: 100%;
       .no-data-box {
         margin-top: 80px;
       }

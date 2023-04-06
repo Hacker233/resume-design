@@ -169,7 +169,9 @@
     const data = await getLegoTemplateInfoByIdAsync(params);
     if (data.data.status === 200) {
       templateInfo.value = data.data.data;
-      changeHJSchemaJsonData(data.data.data.lego_json);
+      const temp = cloneDeep(data.data.data.lego_json);
+      temp.id = getUuid();
+      changeHJSchemaJsonData(temp);
     } else {
       ElMessage.error(data.data.message);
     }

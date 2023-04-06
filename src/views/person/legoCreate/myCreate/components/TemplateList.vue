@@ -7,27 +7,12 @@
         :card-width="cardWidth"
         :card-height="cardHeight"
         :category="category"
+        @delete-success="deleteSuccess"
       ></latest-design>
-    </div>
-
-    <div class="new-design-title">
-      <h1>新的设计</h1>
-    </div>
-    <div class="template-list-box-new">
-      <div v-for="(item, index) in templateList" :key="index" class="card-box-item">
-        <template-card
-          :card-data="item"
-          :width="cardWidth"
-          :height="cardHeight"
-          @to-design="toDesignDetail"
-        >
-        </template-card>
-      </div>
     </div>
   </div>
 </template>
 <script lang="ts" setup>
-  import TemplateCard from './TemplateCard.vue';
   import LatestDesign from './LatestDesign.vue';
 
   const props = defineProps<{
@@ -36,6 +21,7 @@
     legoPersonList: any;
     categoryList: any;
   }>();
+  const emit = defineEmits(['deleteSuccess']);
 
   // 卡片宽度
   const cardWidth = computed(() => {
@@ -61,16 +47,9 @@
     return height;
   });
 
-  // 跳转至详情页
-  const router = useRouter();
-  const toDesignDetail = (cardData: { _id: any; category: any }) => {
-    router.push({
-      path: '/legoDesigner',
-      query: {
-        templateId: cardData._id,
-        category: cardData.category
-      }
-    });
+  // 删除成功
+  const deleteSuccess = () => {
+    emit('deleteSuccess');
   };
 </script>
 <style lang="scss" scoped>
