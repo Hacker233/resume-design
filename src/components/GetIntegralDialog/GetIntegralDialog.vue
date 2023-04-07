@@ -45,7 +45,9 @@
       <div class="way way-2">
         <p class="way-tips"
           >每次评论免费获得+1，<img width="24" src="@/assets/images/jianB.png" alt="简币" />
-          <span class="small-tips">（每日最多+9，评论被删除将扣除已获得简币！）</span>
+          <span class="small-tips"
+            >（每日最多+{{ Most_Integral_Comment }}，评论被删除将扣除已获得简币！）</span
+          >
         </p>
       </div>
     </div>
@@ -54,6 +56,7 @@
 <script lang="ts" setup>
   import { addIntegralLogAsync } from '@/http/api/integral';
   import appStore from '@/store';
+  import { Most_Integral_Comment } from '@/config/integral/index';
 
   const emit = defineEmits(['cancle']);
   interface TDialog {

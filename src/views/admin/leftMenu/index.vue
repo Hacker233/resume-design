@@ -224,6 +224,11 @@
       title: '积木管理',
       children: [
         {
+          index: 'LegoUserTemplateList',
+          iconfont: 'icon-fuwuqi',
+          title: '用户创作列表'
+        },
+        {
           index: 'LegoTemplateListManage',
           iconfont: 'icon-wenzhangliebiao',
           title: '模板列表'

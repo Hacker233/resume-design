@@ -8,7 +8,15 @@
           :card-width="cardWidth"
           :card-height="cardHeight"
           :category="category"
+          @delete-person-template="deletePersonTemplate"
         ></latest-design>
+        <!-- 查看更多 -->
+        <div v-if="personTotal > personLimit" class="see-more-box">
+          <p @click="toPersonLego"
+            >查看全部
+            <svg-icon icon-name="icon-chakangengduo" color="#737373" size="18px"></svg-icon>
+          </p>
+        </div>
       </div>
       <!-- 分类筛选 -->
       <category-vue
@@ -44,6 +52,7 @@
 </template>
 <script lang="ts" setup>
   import {
+    deleteLegoUserResumeAsync,
     getLegoTemplateCategoryListAsync,
     getLegoTemplateListByCategoryAsync,
     legoUserResumeListAsync
@@ -97,14 +106,17 @@
 
   // 查询个人积木创作历史列表
   const legoPersonList = ref<Array<any>>([]);
+  const personTotal = ref<number>(0);
+  const personLimit = ref<number>(3);
   const getLegoUserResumeList = async () => {
     let params = {
       page: 1,
-      limit: 3
+      limit: personLimit.value
     };
     const data = await legoUserResumeListAsync(params);
     if (data.data.status === 200) {
       legoPersonList.value = data.data.data.list;
+      personTotal.value = data.data.data.page.count;
     } else {
       ElMessage.error(data.data.message);
     }
@@ -123,7 +135,7 @@
         return;
       }
     });
-    return width;
+    return width ? width : '300px';
   });
 
   // 卡片高度
@@ -135,7 +147,7 @@
         return;
       }
     });
-    return height;
+    return height ? height : '400px';
   });
 
   // 查询模板列表
@@ -182,6 +194,28 @@
     page.value = currentPage;
     getTemplateList();
   };
+
+  // 跳转至个人中心积木创作菜单
+  const router = useRouter();
+  const toPersonLego = () => {
+    router.push({
+      path: '/person/legoCreate'
+    });
+  };
+
+  // 删除记录
+  const deletePersonTemplate = async (id: string) => {
+    let params = {
+      id: id
+    };
+    const data = await deleteLegoUserResumeAsync(params);
+    if (data.data.status === 200) {
+      ElMessage.success('删除成功');
+      getLegoUserResumeList();
+    } else {
+      ElMessage.error(data.data.message);
+    }
+  };
 </script>
 <style lang="scss" scoped>
   .lego-template-list-box {
@@ -191,6 +225,25 @@
       min-height: 500px;
       padding: 20px 0;
       width: 1300px;
+      .latest-design-box {
+        .see-more-box {
+          display: flex;
+          justify-content: center;
+          margin-bottom: 30px;
+          p {
+            cursor: pointer;
+            letter-spacing: 3px;
+            font-size: 14px;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            color: #737373;
+            &:hover {
+              color: green;
+            }
+          }
+        }
+      }
       .no-data-box {
         margin-top: 80px;
       }

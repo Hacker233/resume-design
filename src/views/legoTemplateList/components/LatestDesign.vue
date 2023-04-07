@@ -22,6 +22,7 @@
         :width="cardWidth"
         :height="cardHeight"
         @to-design="toDesignDetail"
+        @delete-person-template="deletePersonTemplate"
       >
       </person-template-card>
     </div>
@@ -36,6 +37,8 @@
   import LoginDialog from '@/components/LoginDialog/LoginDialog';
   import PersonTemplateCard from './PersonTemplateCard.vue';
   import appStore from '@/store';
+
+  const emit = defineEmits(['deletePersonTemplate']);
 
   const props = defineProps<{
     legoPersonList: any;
@@ -83,6 +86,11 @@
       location.reload();
     });
   };
+
+  // 删除个人制作历史
+  const deletePersonTemplate = (id: string) => {
+    emit('deletePersonTemplate', id);
+  };
 </script>
 <style lang="scss" scoped>
   .latest-title {
@@ -121,7 +129,7 @@
   }
   .latest-card-box {
     display: flex;
-    padding: 30px 0;
+    padding: 30px 0 0 0;
     flex-wrap: wrap;
     .space-design {
       width: v-bind('cardWidth');

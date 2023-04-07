@@ -69,6 +69,7 @@
     display: flex;
     min-height: 42px;
     justify-content: space-between;
+    margin-top: 30px;
     .left {
       ul {
         display: flex;

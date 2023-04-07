@@ -182,3 +182,21 @@ export const getLegoPNGAsync: any = (params: any) => {
     data: params
   });
 };
+
+// 管理员查询用户创作列表
+export const legoUserResumeListByAdminAsync: any = (params: any) => {
+  return http.request({
+    url: '/huajian/lego/legoUserResumeListByAdmin',
+    method: 'get',
+    params: params
+  });
+};
+
+// 删除个人积木创作模板
+export const deleteLegoUserResumeByAdminAsync: any = (params: any) => {
+  return http.request({
+    url: '/huajian/lego/deleteLegoUserResumeByAdmin',
+    method: 'delete',
+    params: params
+  });
+};

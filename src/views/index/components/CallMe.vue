@@ -1,6 +1,6 @@
 <template>
   <div class="call-me-box">
-    <el-popover :width="200" trigger="hover" placement="left" teleported>
+    <el-popover popper-class="vxqun-popover-box" trigger="hover" placement="left" teleported>
       <template #reference>
         <span class="contact-me">
           <svg-icon icon-name="icon-qunzuduoren" color="#fff" size="20px"></svg-icon>
@@ -18,7 +18,7 @@
               v-for="(item, index) in vxQunList"
               :key="index"
               :src="item.qr_code"
-              alt=""
+              :alt="item.name"
               srcset=""
             />
           </div>
@@ -163,13 +163,20 @@
         display: flex;
         justify-content: space-between;
         img {
-          max-width: 200px;
-          height: 300px;
+          width: 150px;
+          height: 200px;
+          margin: 10px;
+          border: 1px solid #eee;
         }
       }
       .bgc-img {
         width: 100%;
       }
     }
+  }
+</style>
+<style lang="scss">
+  .vxqun-popover-box {
+    width: inherit !important;
   }
 </style>

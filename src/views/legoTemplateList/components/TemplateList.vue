@@ -7,6 +7,7 @@
           :width="cardWidth"
           :height="cardHeight"
           @to-design="toDesignDetail"
+          @delete-person-template="deletePersonTemplate"
         >
         </template-card>
       </div>
@@ -15,6 +16,8 @@
 </template>
 <script lang="ts" setup>
   import TemplateCard from './TemplateCard.vue';
+
+  const emit = defineEmits(['deletePersonTemplate']);
 
   const props = defineProps<{
     category: string;
@@ -32,7 +35,7 @@
         return;
       }
     });
-    return width;
+    return width ? width : '300px';
   });
 
   // 卡片高度
@@ -44,7 +47,7 @@
         return;
       }
     });
-    return height;
+    return height ? height : '400px';
   });
 
   // 跳转至详情页
@@ -57,6 +60,11 @@
         category: cardData.category
       }
     });
+  };
+
+  // 删除个人制作历史
+  const deletePersonTemplate = (id: string) => {
+    emit('deletePersonTemplate', id);
   };
 </script>
 <style lang="scss" scoped>

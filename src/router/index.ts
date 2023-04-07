@@ -64,6 +64,8 @@ const ArticleDetail = () => import('@/views/deployDoc/pages/articleDetails.vue')
 const IntegralList = () => import('@/views/admin/integralManage/IntegralList/index.vue');
 const LegoCategory = () => import('@/views/admin/legoManage/legoCategory/index.vue');
 const LegoTemplateListManage = () => import('@/views/admin/legoManage/legoTemplateList/index.vue');
+const LegoUserTemplateList = () =>
+  import('@/views/admin/legoManage/legoUserTemplateList/index.vue');
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -684,6 +686,17 @@ const routes: Array<RouteRecordRaw> = [
           requireLogin: true
         },
         component: LegoTemplateListManage
+      },
+      {
+        path: 'legoUserTemplateList',
+        name: 'LegoUserTemplateList',
+        meta: {
+          title: '用户创作列表',
+          keepAlive: true,
+          isShowComNav: false,
+          requireLogin: true
+        },
+        component: LegoUserTemplateList
       }
     ]
   }

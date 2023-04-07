@@ -4,26 +4,16 @@
       <img :src="cardData.previewUrl" alt="" srcset="" />
       <!-- 遮罩层 -->
       <div ref="maskLayerRef" class="mask-layer">
-        <div
-          v-if="cardData.NAME !== 'custom'"
-          class="preview-icon"
-          title="预览"
-          @click="previreImg"
-        >
-          <svg-icon icon-name="icon-yulan" class-name="yulan" color="#fff"></svg-icon>
+        <div class="delete-box" @click="deleteUserResume">
+          <svg-icon icon-name="icon-shanchu" color="#fff" size="20px"></svg-icon>
         </div>
         <div class="design-button" @click="toDesign">继续制作</div>
       </div>
     </div>
   </div>
-
-  <PreviewImage v-show="dialogVisible" @close="close">
-    <img class="previewImg" :src="cardData.previewUrl" alt="" srcset="" />
-  </PreviewImage>
 </template>
 <script setup lang="ts">
   import { ref } from 'vue';
-  import PreviewImage from '@/components/PreviewImage/PreviewImage.vue';
 
   interface ICard {
     cardData: any;
@@ -36,7 +26,7 @@
     height: '400px'
   });
 
-  const emit = defineEmits(['toDesign']);
+  const emit = defineEmits(['toDesign', 'deletePersonTemplate']);
   const maskLayerRef = ref<any>(null);
   // 鼠标移入显示遮罩层
   const mouseover = () => {
@@ -51,13 +41,17 @@
     emit('toDesign', props.cardData);
   };
 
-  // 图片预览
-  const dialogVisible = ref<boolean>(false);
-  const previreImg = () => {
-    dialogVisible.value = true;
-  };
-  const close = () => {
-    dialogVisible.value = false;
+  // 点击删除简历
+  const deleteUserResume = async () => {
+    ElMessageBox.confirm('删除该创作后无法恢复，确定继续？', '警告', {
+      confirmButtonText: '确定',
+      cancelButtonText: '取消',
+      type: 'warning'
+    })
+      .then(async () => {
+        emit('deletePersonTemplate', props.cardData._id);
+      })
+      .catch(() => {});
   };
 </script>
 <style lang="scss" scoped>
@@ -143,6 +137,23 @@
         z-index: 1;
         transition: all 0.3s;
         opacity: 0;
+        .delete-box {
+          position: absolute;
+          top: 5px;
+          right: 5px;
+          width: 30px;
+          height: 30px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          border-radius: 50%;
+          background-color: #2cbd99;
+          cursor: pointer;
+          transition: all 0.3s;
+          &:hover {
+            background-color: rgba(#42aa90, 0.7);
+          }
+        }
         .design-button {
           width: 100px;
           height: 30px;
@@ -159,28 +170,7 @@
             background-color: rgba(#42aa90, 0.7);
           }
         }
-        .preview-icon {
-          position: absolute;
-          right: 15px;
-          top: 15px;
-          z-index: 12;
-          width: 30px;
-          height: 30px;
-          background-color: rgba(0, 0, 0, 0.7);
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          border-radius: 4px;
-          .yulan {
-            cursor: pointer;
-            font-size: 20px;
-          }
-        }
       }
     }
-  }
-
-  .previewImg {
-    height: 90vh;
   }
 </style>
