@@ -31,7 +31,16 @@
           <p>进入交流群，迅速解答疑问！</p>
         </div>
         <div class="vx-img">
-          <img class="bgc-img" src="@/assets/images/vx.jpg" alt="" />
+          <div v-if="vxQunList.length" class="qun-box-img">
+            <img
+              v-for="(item, index) in vxQunList"
+              :key="index"
+              :src="item.qr_code"
+              alt=""
+              srcset=""
+            />
+          </div>
+          <!-- <img v-else class="bgc-img" src="@/assets/images/vx.jpg" alt="" /> -->
         </div>
       </div>
     </el-popover>
@@ -74,6 +83,7 @@
   </div>
 </template>
 <script setup lang="ts">
+  import { getVXQunListUnauthAsync } from '@/http/api/website';
   import appStore from '@/store';
 
   // 跳转至管理员页面
@@ -81,6 +91,18 @@
   const toAdmin = () => {
     router.push('/admin');
   };
+
+  // 查询微信微信群列表
+  const vxQunList = ref<any>([]);
+  const getVXQunListUnauth = async () => {
+    const data = await getVXQunListUnauthAsync();
+    if (data.status === 200) {
+      vxQunList.value = data.data;
+    } else {
+      ElMessage.error(data.data.message);
+    }
+  };
+  getVXQunListUnauth();
 </script>
 <style lang="scss" scoped>
   .call-me-box {
@@ -137,6 +159,14 @@
     .vx-img {
       width: 100%;
       overflow: hidden;
+      .qun-box-img {
+        display: flex;
+        justify-content: space-between;
+        img {
+          max-width: 200px;
+          height: 300px;
+        }
+      }
       .bgc-img {
         width: 100%;
       }

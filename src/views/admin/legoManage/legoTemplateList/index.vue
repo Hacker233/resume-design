@@ -59,6 +59,7 @@
 
   <!-- 分页组件 -->
   <Pagination
+    v-if="tableData.length > total"
     :total="total"
     :limit="limit"
     :current-page="currentPage"

@@ -59,6 +59,18 @@
       title: '管理面板'
     },
     {
+      index: '0',
+      iconfont: 'icon-wangzhanbeian',
+      title: '网站配置',
+      children: [
+        {
+          index: 'VXQun',
+          iconfont: 'icon-weixin1',
+          title: '微信群管理'
+        }
+      ]
+    },
+    {
       index: '1',
       iconfont: 'icon-gongzuoleixing',
       title: '模板管理',

@@ -40,6 +40,7 @@ const ImgCompress = () => import('@/views/imgCompress/index.vue');
 // 管理员界面
 const AdminIndex = () => import('@/views/admin/index.vue');
 const Panel = () => import('@/views/admin/panel/index.vue');
+const VXQun = () => import('@/views/admin/WebsiteManage/VXQunManage/index.vue');
 const AddTemplate = () => import('@/views/admin/templateManage/addTemplate/index.vue');
 const TemplateList = () => import('@/views/admin/templateManage/templateList/index.vue');
 const TemplateCategory = () => import('@/views/admin/templateManage/templateCategory/index.vue');
@@ -452,6 +453,17 @@ const routes: Array<RouteRecordRaw> = [
           requireLogin: true
         },
         component: Panel
+      },
+      {
+        path: 'VXQun',
+        name: 'VXQun',
+        meta: {
+          title: '微信群管理',
+          keepAlive: true,
+          isShowComNav: false,
+          requireLogin: true
+        },
+        component: VXQun
       },
       {
         path: 'addTemplate',
