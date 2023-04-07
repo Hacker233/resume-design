@@ -13,7 +13,16 @@
           <p>进入交流群，迅速解答疑问！</p>
         </div>
         <div v-viewer class="vx-img">
-          <img class="bgc-img" src="@/assets/images/vx-qun.jpg" alt="" />
+          <div v-if="vxQunList.length" class="qun-box-img">
+            <img
+              v-for="(item, index) in vxQunList"
+              :key="index"
+              :src="item.qr_code"
+              alt=""
+              srcset=""
+            />
+          </div>
+          <img v-else class="bgc-img" src="@/assets/images/vx-qun.jpg" alt="" />
         </div>
       </div>
     </el-popover>
@@ -31,16 +40,7 @@
           <p>进入交流群，迅速解答疑问！</p>
         </div>
         <div class="vx-img">
-          <div v-if="vxQunList.length" class="qun-box-img">
-            <img
-              v-for="(item, index) in vxQunList"
-              :key="index"
-              :src="item.qr_code"
-              alt=""
-              srcset=""
-            />
-          </div>
-          <!-- <img v-else class="bgc-img" src="@/assets/images/vx.jpg" alt="" /> -->
+          <img class="bgc-img" src="@/assets/images/vx.jpg" alt="" />
         </div>
       </div>
     </el-popover>
