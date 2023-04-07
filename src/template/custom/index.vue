@@ -153,15 +153,41 @@
     }
   );
   // 左侧模块删除
-  const leftDelete = (keyId: string) => {
-    let index: number = leftList.value.findIndex((item: IMATERIALITEM) => item.keyId === keyId);
-    leftList.value.splice(index, 1);
+  const leftDelete = (modelItem: IMATERIALITEM) => {
+    let index: number = leftList.value.findIndex(
+      (item: IMATERIALITEM) => item.keyId === modelItem.keyId
+    );
+
+    let sum = 0; // 是否有相同的模块
+    leftList.value.forEach((item: { model: any }) => {
+      if (item.model === modelItem.model) {
+        sum++;
+      }
+    });
+    if (sum > 1) {
+      leftList.value.splice(index, 1);
+    } else {
+      leftList.value[index].show = false;
+    }
+
     resumeJsonNewStore.COMPONENTS = leftList.value.concat(rightList.value);
   };
   // 右侧模块删除
-  const rightDelete = (keyId: string) => {
-    let index: number = rightList.value.findIndex((item: IMATERIALITEM) => item.keyId === keyId);
-    rightList.value.splice(index, 1);
+  const rightDelete = (modelItem: IMATERIALITEM) => {
+    let index: number = rightList.value.findIndex(
+      (item: IMATERIALITEM) => item.keyId === modelItem.keyId
+    );
+    let sum = 0; // 是否有相同的模块
+    rightList.value.forEach((item: { model: any }) => {
+      if (item.model === modelItem.model) {
+        sum++;
+      }
+    });
+    if (sum > 1) {
+      rightList.value.splice(index, 1);
+    } else {
+      rightList.value[index].show = false;
+    }
     resumeJsonNewStore.COMPONENTS = leftList.value.concat(rightList.value);
   };
   // 左侧模块复制

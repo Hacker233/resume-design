@@ -13,6 +13,7 @@
   </div>
 </template>
 <script setup lang="ts">
+  import { ElMessageBox } from 'element-plus';
   import { ref } from 'vue';
 
   interface ICard {

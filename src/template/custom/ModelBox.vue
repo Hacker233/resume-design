@@ -15,7 +15,7 @@
         </div>
       </el-tooltip>
       <el-tooltip class="box-item" effect="dark" content="删除当前模块">
-        <div class="delete" @click.stop="useDeleteModel(item)">
+        <div class="delete" @click.stop="currentDelete">
           <svg-icon
             icon-name="icon-shanchu"
             class-name="icon icon-shanchu"
@@ -124,6 +124,16 @@
     insert.keyId = getUuid();
     console.log('复制当前模块', insert);
     resumeJsonNewStore.value.COMPONENTS.splice(index, 0, insert);
+  };
+
+  // 删除当前模块
+  const currentDelete = () => {
+    if (resumeJsonNewStore.value.LAYOUT === 'leftRight') {
+      emit('leftRightDelete', props.item);
+    } else {
+      // 传统布局删除
+      useDeleteModel(props.item);
+    }
   };
 </script>
 <style lang="scss" scoped>
