@@ -123,7 +123,6 @@
     display: flex;
     padding: 30px 0;
     flex-wrap: wrap;
-    justify-content: space-between;
     .space-design {
       width: v-bind('cardWidth');
       height: calc(v-bind('cardHeight'));
@@ -171,7 +170,9 @@
       }
     }
     .card-box-item {
-      flex-shrink: 0;
+      &:not(:nth-child(4n)) {
+        margin-right: 33px;
+      }
     }
   }
 </style>

@@ -1,14 +1,6 @@
 <template>
   <div class="card-wraper" @mouseover="mouseover" @mouseleave="mouseleave">
     <div class="template-card-box">
-      <!-- 金额显示 -->
-      <!-- <div class="how-much-box">
-        <div v-if="cardData.how_much === 0" class="free">免费</div>
-        <div v-else class="pay"
-          >{{ cardData.how_much }}
-          <img src="@/assets/images/jianB.png" alt="简币" />
-        </div>
-      </div> -->
       <img :src="cardData.previewUrl" alt="" srcset="" />
       <!-- 遮罩层 -->
       <div ref="maskLayerRef" class="mask-layer">

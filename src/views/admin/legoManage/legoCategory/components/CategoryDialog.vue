@@ -77,8 +77,8 @@
   // 表单填写数据
   const ruleForm = reactive<ICategory>({
     name: '',
-    width: 0,
-    height: 0
+    width: 300,
+    height: 400
   });
   const rules = reactive<FormRules>({});
 

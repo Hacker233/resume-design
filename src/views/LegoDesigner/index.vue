@@ -171,6 +171,7 @@
       templateInfo.value = data.data.data;
       const temp = cloneDeep(data.data.data.lego_json);
       temp.id = getUuid();
+      temp.config.title = data.data.data.title;
       changeHJSchemaJsonData(temp);
     } else {
       ElMessage.error(data.data.message);

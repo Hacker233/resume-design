@@ -29,27 +29,17 @@
 <script lang="ts" setup>
   const emit = defineEmits(['getTemplateListByCate']);
 
-  const props = defineProps<{
-    defaultCurrent: string;
+  defineProps<{
     categoryList: Array<{
       category_label: string;
       category_value: string;
     }>;
   }>();
 
-  watch(
-    () => props.defaultCurrent,
-    (newVal) => {
-      if (newVal) {
-        currentValue.value = newVal;
-      }
-    }
-  );
-
   const currentSort = ref<string>('');
 
   // 点击分类
-  const currentValue = ref<string>('');
+  const currentValue = ref<string>('全部');
   const handleSelect = (item: any) => {
     currentValue.value = item.category_label;
     let queryParams = {
@@ -67,7 +57,7 @@
     }
 
     let queryParams = {
-      category: currentValue.value,
+      category: currentValue.value === '全部' ? '' : currentValue.value,
       sort: currentSort.value
     };
     emit('getTemplateListByCate', queryParams);

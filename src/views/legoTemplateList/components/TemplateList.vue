@@ -1,18 +1,5 @@
 <template>
   <div class="lego-template-list-wrap-box">
-    <!-- 最近的设计 -->
-    <div class="latest-design-box">
-      <latest-design
-        :lego-person-list="legoPersonList"
-        :card-width="cardWidth"
-        :card-height="cardHeight"
-        :category="category"
-      ></latest-design>
-    </div>
-
-    <div class="new-design-title">
-      <h1>新的设计</h1>
-    </div>
     <div class="template-list-box-new">
       <div v-for="(item, index) in templateList" :key="index" class="card-box-item">
         <template-card
@@ -28,7 +15,6 @@
 </template>
 <script lang="ts" setup>
   import TemplateCard from './TemplateCard.vue';
-  import LatestDesign from './LatestDesign.vue';
 
   const props = defineProps<{
     category: string;
@@ -77,23 +63,15 @@
   .lego-template-list-wrap-box {
     display: flex;
     flex-direction: column;
-    .new-design-title {
-      height: 45px;
-      display: flex;
-      align-items: flex-start;
-      border-bottom: 1px solid #dfdfdf;
-      h1 {
-        color: #0d1216;
-        font-size: 16px;
-        letter-spacing: 3px;
-        font-weight: 600;
-      }
-    }
     .template-list-box-new {
       display: flex;
       flex-wrap: wrap;
       padding: 30px 0 0 0;
-      justify-content: space-between;
+      .card-box-item {
+        &:not(:nth-child(4n)) {
+          margin-right: 33px;
+        }
+      }
     }
   }
 </style>

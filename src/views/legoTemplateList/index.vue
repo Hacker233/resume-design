@@ -1,10 +1,18 @@
 <template>
   <div class="lego-template-list-box">
     <div class="content-box">
+      <!-- 最近的设计 -->
+      <div class="latest-design-box">
+        <latest-design
+          :lego-person-list="legoPersonList"
+          :card-width="cardWidth"
+          :card-height="cardHeight"
+          :category="category"
+        ></latest-design>
+      </div>
       <!-- 分类筛选 -->
       <category-vue
         :category-list="categoryList"
-        :default-current="defaultCurrent"
         @get-template-list-by-cate="getTemplateListByCategory"
       ></category-vue>
       <!-- 模板列表 -->
@@ -44,6 +52,7 @@
   import NoDataVue from '@/components/NoData/NoData.vue';
   import CommonLoading from '@/components/CommonLoading/CommonLoading.vue';
   import TemplateListVue from './components/TemplateList.vue';
+  import LatestDesign from './components/LatestDesign.vue';
 
   // 是否显示骨架
   const isShowSkeleton = ref<boolean>(true);
@@ -56,15 +65,10 @@
     page.value = 1;
     limit.value = 12;
     getTemplateList();
-    // 查询个人创作历史
-    if (localStorage.getItem('token')) {
-      getLegoUserResumeList();
-    }
   };
 
   // 查询分类列表
   const categoryList = ref<any>([]);
-  const defaultCurrent = ref<string>('');
   const getLegoTemplateCategoryList = async () => {
     const data = await getLegoTemplateCategoryListAsync();
     if (data.status === 200) {
@@ -78,13 +82,13 @@
           };
         }
       );
-      category.value = categoryList.value[0].category_label;
-      defaultCurrent.value = categoryList.value[0].category_label;
-      getTemplateList(); // 获取模板列表
-      // 查询个人创作历史
-      if (localStorage.getItem('token')) {
-        getLegoUserResumeList();
-      }
+      // 添加全部选项
+      categoryList.value.unshift({
+        category_label: '全部',
+        category_value: '',
+        width: 300,
+        height: 400
+      });
     } else {
       ElMessage.error(data.message);
     }
@@ -96,8 +100,7 @@
   const getLegoUserResumeList = async () => {
     let params = {
       page: 1,
-      limit: 6,
-      category: category.value
+      limit: 3
     };
     const data = await legoUserResumeListAsync(params);
     if (data.data.status === 200) {
@@ -106,6 +109,34 @@
       ElMessage.error(data.data.message);
     }
   };
+  // 查询个人创作历史
+  if (localStorage.getItem('token')) {
+    getLegoUserResumeList();
+  }
+
+  // 卡片宽度
+  const cardWidth = computed(() => {
+    let width = '';
+    categoryList.value.forEach((item: { category_label: string; width: string }) => {
+      if (item.category_label === category.value) {
+        width = item.width + 'px';
+        return;
+      }
+    });
+    return width;
+  });
+
+  // 卡片高度
+  const cardHeight = computed(() => {
+    let height = '';
+    categoryList.value.forEach((item: { category_label: string; height: string }) => {
+      if (item.category_label === category.value) {
+        height = item.height + 'px';
+        return;
+      }
+    });
+    return height;
+  });
 
   // 查询模板列表
   const page = ref<number>(1);
@@ -113,13 +144,13 @@
   const total = ref<number>(0);
   const currentPage = ref<number>(1);
   const templateList = ref<any>([]);
-  const category = ref<string>('');
+  const category = ref<string>('全部');
   const getTemplateList = async () => {
     isShowSkeleton.value = true;
     let params = {
       page: page.value,
       limit: limit.value,
-      category: category.value,
+      category: category.value === '全部' ? '' : category.value,
       sort: sort.value
     };
     const data = await getLegoTemplateListByCategoryAsync(params);
@@ -144,6 +175,7 @@
       isShowSkeleton.value = false;
     }
   };
+  getTemplateList(); // 获取模板列表
 
   // 改变页码时
   const handleCurrentChange = (currentPage: number) => {

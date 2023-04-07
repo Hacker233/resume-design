@@ -11,7 +11,7 @@
   </div>
 </template>
 <script lang="ts" setup>
-  import MyCreate from './myCreate/index.vue';
+  import MyCreate from './components/MyCreate.vue';
   import PostWork from './components/PostWork.vue';
   const activeName = ref('myCreate');
 </script>
