@@ -176,7 +176,7 @@
       // 评论得简币
       const integralInfo = appStore.useUserInfoStore.userIntegralInfo.todayGetIntegralTotal;
       if (integralInfo && integralInfo < Most_Integral) {
-        toAttendance();
+        toAttendance(data.data.data._id);
       }
     } else {
       ElMessage.error(data.data.message);
@@ -199,9 +199,10 @@
   };
 
   // 评论添加简币
-  const toAttendance = async () => {
+  const toAttendance = async (id: string) => {
     let params = {
-      integralAddType: '2'
+      integralAddType: '2', // 添加简币类型
+      integralAddGoodsId: id
     };
     const data = await addIntegralLogAsync(params);
     if (data.data.status === 200) {

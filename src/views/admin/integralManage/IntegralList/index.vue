@@ -56,9 +56,15 @@
           </div>
         </template>
       </el-table-column>
-      <el-table-column prop="integral_pay_goods_id" label="资源ID">
+      <el-table-column prop="integral_pay_goods_id" label="消费简币资源id">
         <template #default="scope">
           <span v-if="scope.row.integral_pay_goods_id">{{ scope.row.integral_pay_goods_id }}</span>
+          <span v-else>-</span>
+        </template>
+      </el-table-column>
+      <el-table-column prop="integral_add_goods_id" label="获得简币资源id">
+        <template #default="scope">
+          <span v-if="scope.row.integral_add_goods_id">{{ scope.row.integral_add_goods_id }}</span>
           <span v-else>-</span>
         </template>
       </el-table-column>
