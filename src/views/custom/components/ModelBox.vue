@@ -18,7 +18,7 @@
         </div>
       </el-tooltip>
       <el-tooltip class="box-item" effect="dark" content="删除当前模块">
-        <div class="delete" @click.stop="useDeleteModel(item)">
+        <div class="delete" @click.stop="delModel">
           <svg-icon
             icon-name="icon-shanchu"
             class-name="icon icon-shanchu"
@@ -114,7 +114,7 @@
     }
   };
 
-  // 传统布局删除
+  // 传统布局添加
   const classicalAdd = () => {
     let index: number = resumeJsonNewStore.value.COMPONENTS.findIndex(
       (item) => item.keyId === props.item.keyId
@@ -122,6 +122,19 @@
     let insert = cloneDeep(props.item);
     insert.keyId = getUuid();
     resumeJsonNewStore.value.COMPONENTS.splice(index, 0, insert);
+  };
+
+  // 删除当前模块
+  const delModel = () => {
+    if (resumeJsonNewStore.value.LAYOUT === 'classical') {
+      classicalDelete();
+    } else {
+      emit('leftRightDelete', props.item);
+    }
+  };
+  // 传统布局删除模块
+  const classicalDelete = () => {
+    useDeleteModel(props.item);
   };
 </script>
 <style lang="scss" scoped>
