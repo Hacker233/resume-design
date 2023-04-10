@@ -19,8 +19,10 @@
     <div class="viewer-box">
       <!-- 模板作者 -->
       <div class="create-user">
-        <el-avatar v-if="cardData.userInfo.avatar" :size="30" :src="cardData.userInfo.avatar" />
-        <span class="name">{{ cardData.userInfo.name }}</span>
+        <template v-if="cardData.userInfo">
+          <el-avatar v-if="cardData.userInfo.avatar" :size="30" :src="cardData.userInfo.avatar" />
+          <span class="name">{{ cardData.userInfo.name }}</span>
+        </template>
       </div>
       <div class="icon-box">
         <svg-icon icon-name="icon-pinglun1" color="#a3abb1" size="19px"></svg-icon>

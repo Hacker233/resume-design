@@ -52,13 +52,17 @@ declare module '@vue/runtime-core' {
     ElRadioGroup: typeof import('element-plus/es')['ElRadioGroup'];
     ElScrollbar: typeof import('element-plus/es')['ElScrollbar'];
     ElSelect: typeof import('element-plus/es')['ElSelect'];
+    ElSelectV2: typeof import('element-plus/es')['ElSelectV2'];
     ElSkeleton: typeof import('element-plus/es')['ElSkeleton'];
     ElSkeletonItem: typeof import('element-plus/es')['ElSkeletonItem'];
     ElSlider: typeof import('element-plus/es')['ElSlider'];
     ElSubMenu: typeof import('element-plus/es')['ElSubMenu'];
     ElSwitch: typeof import('element-plus/es')['ElSwitch'];
+    ElTable: typeof import('element-plus/es')['ElTable'];
+    ElTableColumn: typeof import('element-plus/es')['ElTableColumn'];
     ElTabPane: typeof import('element-plus/es')['ElTabPane'];
     ElTabs: typeof import('element-plus/es')['ElTabs'];
+    ElTag: typeof import('element-plus/es')['ElTag'];
     ElTooltip: typeof import('element-plus/es')['ElTooltip'];
     ElUpload: typeof import('element-plus/es')['ElUpload'];
     Emoji: typeof import('./components/packages/components/emoji/emoji.vue')['default'];
