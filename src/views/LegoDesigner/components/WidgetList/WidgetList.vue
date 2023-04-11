@@ -18,7 +18,13 @@
             @dragend="dragEnd($event)"
             @click="addWidgetToCenter(item, itemCom)"
           >
-            <img :src="getAssetsFile(itemCom.screenShot.src)" />
+            <!-- 图标 -->
+            <lego-design-icon
+              v-if="item.category === 'icon'"
+              :widget-data="itemCom"
+            ></lego-design-icon>
+            <!-- 普通组件 -->
+            <img v-else :src="getAssetsFile(itemCom.screenShot.src)" />
           </div>
         </el-collapse-item>
       </el-collapse>
@@ -30,6 +36,9 @@
   import { WIDGET_CONFIG_LIST } from '../../schema/widgetConfig';
   import { IWidget, IWidgetTab } from '../../types';
   import { getAssetsFile } from '../../utils/common';
+  import LegoDesignIcon from '../../widgets/icon/LegoDesignIconList.vue';
+  import { useIconfontItem } from '../../widgets/icon/useIconfontItem';
+  import { iconfontList } from '../../widgets/icon/iconfont';
 
   const emit = defineEmits(['addWidget']);
 
@@ -52,15 +61,27 @@
   const dragEnd = (event: any) => {
     event.dataTransfer.clearData();
   };
+
+  // 初始化图标列表
+  const initIconfontList = () => {
+    WIDGET_CONFIG_LIST.forEach((cptList) => {
+      if (cptList.category === 'icon') {
+        iconfontList['glyphs'].forEach((iconItem) => cptList.list.push(useIconfontItem(iconItem)));
+      }
+    });
+  };
+  initIconfontList();
 </script>
 <style lang="scss" scoped>
   .widget-list-box {
     width: 100%;
+    position: relative;
     .com-list-box {
       :deep(.el-collapse) {
         border-top: none;
         .el-collapse-item__header {
           padding: 0 15px;
+          user-select: none;
         }
         .el-collapse-item__content {
           padding: 10px;
@@ -69,6 +90,7 @@
           justify-content: space-between;
           flex-wrap: wrap;
         }
+
         .widget-item {
           border-radius: 2px;
           // box-shadow: rgba(0, 0, 0, 0.25) 0px 1px 1px;

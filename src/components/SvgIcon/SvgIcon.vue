@@ -42,6 +42,15 @@
     return 'svg-icon';
   });
 
+  watch(
+    () => props.color,
+    (newVal) => {
+      if (newVal) {
+        defaultColor.value = newVal;
+      }
+    }
+  );
+
   const defaultColor = ref<any>(props.color);
   const mouseover = () => {
     if (props.isHover) {

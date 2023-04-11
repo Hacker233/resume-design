@@ -638,5 +638,11 @@ export const WIDGET_CONFIG_LIST: Array<IWidgetTab> = [
         dataSource: {} // 组件单独数据
       }
     ]
+  },
+  {
+    title: '图标',
+    category: 'icon',
+    dataSource: {},
+    list: []
   }
 ];

@@ -15,6 +15,7 @@ import Text_7 from './text/text-7/text-7.vue';
 import Text_8 from './text/text-8/text-8.vue';
 import Text_9 from './text/text-9/text-9.vue';
 import Text_10 from './text/text-10/text-10.vue';
+import Icon from './icon/LegoDesignIconRender.vue';
 
 export const WIDGET_MAP: IWidgetMap = {
   'hj-avatar-1': Avatar_1,
@@ -32,5 +33,6 @@ export const WIDGET_MAP: IWidgetMap = {
   'hj-text-7': Text_7,
   'hj-text-8': Text_8,
   'hj-text-9': Text_9,
-  'hj-text-10': Text_10
+  'hj-text-10': Text_10,
+  'hj-icon': Icon
 };

@@ -10,7 +10,7 @@
         <svg-icon
           :icon-name="item.iconfont"
           class="iconfont"
-          :color="getIconColor()"
+          :color="getIconColor(item.index)"
           size="22px"
         ></svg-icon>
         <span>{{ item.title }}</span>
@@ -29,7 +29,7 @@
     },
     {
       index: 'PersonIntegral',
-      iconfont: 'icon-jibenziliao',
+      iconfont: 'icon-jifen',
       title: '我的资产',
       path: '/person/personIntegral'
     },
@@ -75,9 +75,9 @@
   const router = useRouter();
   // 返回图标颜色
   const currentIndex = ref<any>(route.name); // 选中的菜单index
-  const getIconColor = () => {
+  const getIconColor = (index: number) => {
     // console.log(currentIndex.value === index ? '#2cbd99' : '#303133');
-    return '#303133';
+    return currentIndex.value === index ? '#2cbd99' : '#303133';
   };
 
   // 跳转详情
