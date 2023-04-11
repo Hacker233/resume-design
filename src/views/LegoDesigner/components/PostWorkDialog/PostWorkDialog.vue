@@ -27,17 +27,17 @@
           />
         </el-select>
       </el-form-item>
-      <el-form-item label="是否免费：" prop="is_free">
+      <!-- <el-form-item label="是否免费：" prop="is_free">
         <el-radio-group v-model="howMuchRadio">
           <el-radio label="free" size="default">免费</el-radio>
           <el-radio label="pay" size="default">付费</el-radio>
         </el-radio-group>
       </el-form-item>
       <el-form-item v-if="howMuchRadio === 'pay'" label="模板价格：" prop="how_much">
-        <el-input-number v-model="ruleForm.how_much" :min="1" />
+        <el-input-number v-model="ruleForm.how_much" :min="1" disabled />
         <span class="how-much">简币</span>
         <img width="18" src="@/assets/images/jianB.png" alt="简币" />
-      </el-form-item>
+      </el-form-item> -->
       <el-form-item label="模板预览图:">
         <el-upload
           class="avatar-uploader"
@@ -56,7 +56,7 @@
       <span class="dialog-footer">
         <el-button @click="cancle">取消</el-button>
         <el-button type="primary" :loading="sureLoading" @click="submit(ruleFormRef)">{{
-          postWorkInfo ? '确认修改' : '确认发布'
+          postWorkInfo ? '确认修改' : '提交审核'
         }}</el-button>
       </span>
     </template>
@@ -98,7 +98,7 @@
     title: '',
     category: '',
     previewUrl: '',
-    how_much: 0
+    how_much: 5
   });
   const rules = reactive<FormRules>({});
 
@@ -115,7 +115,7 @@
   );
 
   // 付费免费单选按钮
-  const howMuchRadio = ref<string>(props.postWorkInfo?.how_much === 0 ? 'free' : 'pay');
+  // const howMuchRadio = ref<string>(props.postWorkInfo?.how_much === 0 ? 'free' : 'pay');
 
   // 取消
   const cancle = () => {

@@ -123,6 +123,7 @@
   import PostWorkDialog from './PostWorkDialog/PostWorkDialog.vue';
   import { exportLegoPNG, exportLegoPdf } from '../utils/pdf';
   import ProcessBarDialog from '@/components/ProcessBarDialog/ProcessBarDialog.vue';
+  import { onBeforeRouteLeave } from 'vue-router';
 
   const { HJSchemaJsonStore, draftTips } = storeToRefs(appStore.useLegoJsonStore);
   const { resetHJSchemaJsonData } = appStore.useLegoJsonStore;
@@ -303,6 +304,33 @@
   const publishComment = () => {
     commentDrawer.value = true;
   };
+
+  // 监听路由离开
+  onBeforeRouteLeave((to, from, next) => {
+    // 编辑状态离开时
+    ElMessageBox.confirm('离开前请确保您编辑的内容已保存草稿！', '警告', {
+      confirmButtonText: '保存草稿并离开',
+      cancelButtonText: '直接离开',
+      type: 'warning',
+      beforeClose: async (action, instance, done) => {
+        if (action === 'confirm') {
+          instance.confirmButtonLoading = true;
+          // 保存草稿并离开
+          await saveDraft();
+          instance.confirmButtonLoading = false;
+          done();
+        } else {
+          done();
+        }
+      }
+    })
+      .then(async () => {
+        next();
+      })
+      .catch(() => {
+        next();
+      });
+  });
 </script>
 <style lang="scss" scoped>
   .lego-nav-box {

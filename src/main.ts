@@ -4,6 +4,7 @@ import App from './App.vue';
 import router from './router';
 import '@/style/normalize.css';
 import component from '@/utils/registerCom';
+import 'element-plus/es/components/message-box/style/index';
 // 注册所有图标
 import SvgIcon from '@/components/SvgIcon/SvgIcon.vue';
 import elementIcons from '@/components/SvgIcon/svgicon';
