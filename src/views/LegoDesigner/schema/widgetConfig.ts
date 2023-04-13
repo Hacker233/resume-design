@@ -644,5 +644,11 @@ export const WIDGET_CONFIG_LIST: Array<IWidgetTab> = [
     category: 'icon',
     dataSource: {},
     list: []
+  },
+  {
+    title: '列表',
+    category: 'li',
+    dataSource: {},
+    list: []
   }
 ];

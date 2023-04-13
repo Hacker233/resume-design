@@ -8,6 +8,11 @@ export const getAssetsImagesFile = (url: string) => {
   return new URL(`../assets/images/${url}`, import.meta.url).href;
 };
 
+// 获取列表静态资源
+export const getListStyleImageFile = (url: string) => {
+  return new URL(`../widgets/li/listStyleImg/${url}`, import.meta.url).href;
+};
+
 // 重新计算每个组件的top值
 export const computeWidgetTop = (HJSchemaJsonStore: any) => {
   for (let i = 0; i < HJSchemaJsonStore.value.componentsTree.length; i++) {

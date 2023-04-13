@@ -387,13 +387,13 @@
       setUuid();
     } else if (event.ctrlKey && event.keyCode === 67) {
       // ctrl + c
-      if (selectedWidgetId.value) {
-        contextPageIndex.value = pageActiveIndex.value;
-        contextComIndex.value = HJSchemaJsonStore.value.componentsTree[
-          pageActiveIndex.value
-        ].children.findIndex((item: { id: string }) => item.id === selectedWidgetId.value);
-        copyWidget();
-      }
+      // if (selectedWidgetId.value) {
+      //   contextPageIndex.value = pageActiveIndex.value;
+      //   contextComIndex.value = HJSchemaJsonStore.value.componentsTree[
+      //     pageActiveIndex.value
+      //   ].children.findIndex((item: { id: string }) => item.id === selectedWidgetId.value);
+      //   copyWidget();
+      // }
     }
   };
   // 组件移动

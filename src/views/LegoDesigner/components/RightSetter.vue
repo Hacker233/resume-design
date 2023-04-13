@@ -23,19 +23,30 @@
           </div>
         </el-form>
       </el-tab-pane>
-      <el-tab-pane label="数据" name="second">
+      <el-tab-pane class="data-tab-pane" label="数据" name="second">
         <el-form label-width="80px" label-position="left">
-          <div
-            v-for="(value, key, index) in HJSchemaJsonStore.componentsTree[pageActiveIndex]
-              .children[widgetIndex].dataSource"
-            :key="index"
+          <template
+            v-if="
+              Object.keys(
+                HJSchemaJsonStore.componentsTree[pageActiveIndex].children[widgetIndex].dataSource
+              ).length
+            "
           >
-            <component
-              :is="getDataSetterCom(key)"
-              :id="selectedWidgetId"
-              :page-index="pageActiveIndex"
-              :value="value"
-            ></component>
+            <div
+              v-for="(value, key, index) in HJSchemaJsonStore.componentsTree[pageActiveIndex]
+                .children[widgetIndex].dataSource"
+              :key="index"
+            >
+              <component
+                :is="getDataSetterCom(key)"
+                :id="selectedWidgetId"
+                :page-index="pageActiveIndex"
+                :value="value"
+              ></component>
+            </div>
+          </template>
+          <div v-else class="no-data">
+            <no-data></no-data>
           </div>
         </el-form>
       </el-tab-pane>
@@ -114,7 +125,7 @@
       .el-tabs__content {
         display: flex;
         // justify-content: center;
-        padding: 30px 30px 10px 30px;
+        padding: 30px 20px 10px 20px;
         box-sizing: border-box;
         // height: calc(100vh - 170px);
         overflow: auto;

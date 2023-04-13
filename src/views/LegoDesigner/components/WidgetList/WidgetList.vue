@@ -23,6 +23,8 @@
               v-if="item.category === 'icon'"
               :widget-data="itemCom"
             ></lego-design-icon>
+            <!-- 列表 -->
+            <lego-li-list v-else-if="item.category === 'li'" :widget-data="itemCom"></lego-li-list>
             <!-- 普通组件 -->
             <img v-else :src="getAssetsFile(itemCom.screenShot.src)" />
           </div>
@@ -37,8 +39,11 @@
   import { IWidget, IWidgetTab } from '../../types';
   import { getAssetsFile } from '../../utils/common';
   import LegoDesignIcon from '../../widgets/icon/LegoDesignIconList.vue';
+  import LegoLiList from '../../widgets/li/LegoLiList.vue';
   import { useIconfontItem } from '../../widgets/icon/useIconfontItem';
   import { iconfontList } from '../../widgets/icon/iconfont';
+  import { ListStyleTypeList } from '../../widgets/li/liList';
+  import { useLiListItem } from '../../widgets/li/useLiListItem';
 
   const emit = defineEmits(['addWidget']);
 
@@ -71,6 +76,18 @@
     });
   };
   initIconfontList();
+
+  // 初始化列表组件
+  const initLiList = () => {
+    WIDGET_CONFIG_LIST.forEach((cptList) => {
+      if (cptList.category === 'li') {
+        ListStyleTypeList.forEach((listStyleTypeItem) =>
+          cptList.list.push(useLiListItem(listStyleTypeItem))
+        );
+      }
+    });
+  };
+  initLiList();
 </script>
 <style lang="scss" scoped>
   .widget-list-box {

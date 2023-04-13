@@ -11,16 +11,22 @@ import paddingEditor from './paddingEditor.vue';
 import rotateEditor from './rotateEditor.vue';
 import leftEditorVue from './leftEditor.vue';
 import topEditor from './topEditor.vue';
-import avatarUploadEditor from './dataSetters/avatarUploadEditor.vue';
 import fontColorEditor from './fontColorEditor.vue';
 import fontFamilyEditor from './fontFamilyEditor.vue';
 import fontWeightEditor from './fontWeightEditor.vue';
 import fontSizeEditor from './fontSizeEditor.vue';
 import lineHeightEditor from './lineHeightEditor.vue';
 import textAlignEditor from './textAlignEditor.vue';
-import textEditEditor from './dataSetters/textEditEditor.vue';
 import iconColorEditor from './iconColorEditor.vue';
 import iconSizeEditor from './iconSizeEditor.vue';
+import markerSizeEditor from './markerSizeEditor.vue';
+import markerColorEditor from './markerColorEditor.vue';
+import markerPositionEditor from './markerPositionEditor.vue';
+
+// 数据设置组件
+import textEditEditor from './dataSetters/textEditEditor.vue';
+import avatarUploadEditor from './dataSetters/avatarUploadEditor.vue';
+import liListEditor from './dataSetters/liListEditor.vue';
 
 // 属性设置组件对应关系
 export const SETTERS_MAP: ISetterMap = {
@@ -43,11 +49,15 @@ export const SETTERS_MAP: ISetterMap = {
   lineHeight: lineHeightEditor,
   textAlign: textAlignEditor,
   iconColor: iconColorEditor,
-  iconSize: iconSizeEditor
+  iconSize: iconSizeEditor,
+  markerSize: markerSizeEditor,
+  markerColor: markerColorEditor,
+  markerPosition: markerPositionEditor
 };
 
 // 数据设置组件对应关系
 export const DATA_SETTERS_MAP: ISetterMap = {
   avatarSrc: avatarUploadEditor,
-  text: textEditEditor
+  text: textEditEditor,
+  liList: liListEditor
 };
