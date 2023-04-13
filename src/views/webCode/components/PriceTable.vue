@@ -10,7 +10,7 @@
       border
     >
       <el-table-column prop="rights" label="权益对比" width="300" />
-      <el-table-column prop="free" label="免费" align="right">
+      <el-table-column prop="free" label="免费" align="right" width="100">
         <template #default="props">
           <span v-if="props.row.free !== '0'">{{ props.row.free }}</span>
           <el-button v-else size="default" type="primary" @click="toGithub">立即获取</el-button>
@@ -101,8 +101,8 @@
     {
       rights: '后端最新源码',
       free: 'X',
-      CNY99: '更新至2023年2月',
-      CNY399: '更新至2023年5月',
+      CNY99: '（更新至2023年2月）X',
+      CNY399: '（更新至2023年5月）X',
       CNY699: '✓'
     },
     {
