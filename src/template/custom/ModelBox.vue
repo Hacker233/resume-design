@@ -2,7 +2,10 @@
   <div
     v-if="item.show"
     :ref="(el) => setRefItem(el, item.keyId)"
-    class="material-model-box"
+    :class="[
+      'material-model-box',
+      { 'is-have-border': item.keyId === appStore.useSelectMaterialStore.cptKeyId }
+    ]"
     @click="selectModel"
     @mouseover="handleMouseover"
     @mouseleave="handleMouseleave"
@@ -52,15 +55,10 @@
   const { cptKeyId } = storeToRefs(appStore.useSelectMaterialStore);
   watch(
     () => cptKeyId.value,
-    (newVal, oldVal) => {
-      // 判断是否选中复选框
-      if (oldVal && modelObj[oldVal]) {
-        modelObj[oldVal].el.style.borderColor = 'transparent';
-      }
+    (newVal) => {
       // 如果选中了模块
       if (newVal && modelObj[newVal]) {
         modelObj[newVal].el.scrollIntoView({ behavior: 'smooth', block: 'center' }); // 该模块显示在可视区域内
-        modelObj[newVal].el.style.borderColor = '#7ec97e';
       }
     },
     {
@@ -188,5 +186,8 @@
         margin-left: 6px;
       }
     }
+  }
+  .is-have-border {
+    border-color: #7ec97e;
   }
 </style>
