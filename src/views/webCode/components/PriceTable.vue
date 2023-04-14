@@ -92,6 +92,13 @@
       CNY699: '✓'
     },
     {
+      rights: '赠送上千套简历word模板',
+      free: 'X',
+      CNY99: 'X',
+      CNY399: '✓',
+      CNY699: '✓'
+    },
+    {
       rights: '一对一技术咨询',
       free: 'X',
       CNY99: 'X',
@@ -102,15 +109,15 @@
       rights: '后端最新源码',
       free: 'X',
       CNY99: '（更新至2023年2月）X',
-      CNY399: '（更新至2023年5月）X',
+      CNY399: '（更新至2023年5月）✓',
       CNY699: '✓'
     },
     {
       rights: '功能对比',
       free: 'X',
-      CNY99: '暂无积分管理等功能',
-      CNY399: '具备积分管理等功能，以及完善的管理后台。',
-      CNY699: '功能和化简官网保持一致'
+      CNY99: '（暂无积分管理等功能）X',
+      CNY399: '（具备积分管理等功能，以及完善的管理后台）√',
+      CNY699: '（功能和化简官网保持一致）√'
     },
     {
       rights: '后端代码持续更新',
@@ -132,6 +139,13 @@
       CNY99: 'X',
       CNY399: 'X',
       CNY699: '（存量bug修复）✓'
+    },
+    {
+      rights: '知识星球',
+      free: 'X',
+      CNY99: 'X',
+      CNY399: 'X',
+      CNY699: '（问题解答社区）✓'
     },
     {
       rights: '二次开发咨询服务',
@@ -170,7 +184,7 @@
   };
   // 699元弹窗
   const to699 = () => {
-    imgSrc.value = 'https://smallpig.site:9000/resume/logo/vx-pay699.jpg';
+    imgSrc.value = 'https://smallpig.site:9000/resume/logo/zsxq.jpg';
     dialogVisible.value = true;
   };
 </script>

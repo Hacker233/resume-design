@@ -1,6 +1,19 @@
 <template>
   <ul class="li-1-box">
-    <li v-for="(item, index) in widgetData?.dataSource.liList" :key="index">{{ item }}</li>
+    <li
+      v-for="(item, index) in widgetData?.dataSource.liList"
+      :key="index"
+      :class="[{ isOutside: isOutside }]"
+    >
+      <svg-icon
+        v-if="widgetData?.props.listStyleImage"
+        :icon-name="widgetData?.props.listStyleImage"
+        :color="widgetData?.css.fontColor"
+        :size="widgetData?.css.fontSize + 'px'"
+        class-name="li-list-style-image"
+      ></svg-icon>
+      {{ item }}
+    </li>
   </ul>
 </template>
 <script lang="ts" setup>
@@ -13,8 +26,17 @@
     widgetData: null
   });
 
-  const listStyle = computed(() => {
-    return `${props.widgetData?.props.listStyleType} ${props.widgetData?.css.markerPosition}`;
+  // 标记位置
+  const isOutside = computed(() => {
+    return props.widgetData?.css.markerPosition === 'outside';
+  });
+
+  const listStyleType = computed(() => {
+    if (props.widgetData?.props.listStyleImage) {
+      return 'none';
+    } else {
+      return `${props.widgetData?.props.listStyleType}`;
+    }
   });
 </script>
 <style lang="scss" scoped>
@@ -38,7 +60,16 @@
       line-height: v-bind('props.widgetData?.css.lineHeight');
       text-align: v-bind('props.widgetData?.css.textAlign');
       list-style-position: v-bind('props.widgetData?.css.markerPosition');
-      list-style: v-bind('listStyle');
+      list-style-type: v-bind('listStyleType');
+    }
+    .isOutside {
+      display: flex;
+      .li-list-style-image {
+        flex-grow: 0;
+        flex-shrink: 0;
+        margin-right: 8px;
+        margin-top: 2px;
+      }
     }
   }
 </style>

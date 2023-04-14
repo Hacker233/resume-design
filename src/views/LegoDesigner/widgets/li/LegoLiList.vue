@@ -1,11 +1,19 @@
 <template>
   <ul class="li-list-box">
-    <li ref="liRef">91化简</li>
+    <li :class="[{ 'have-image': widgetData?.props.listStyleImage ? true : false }]">
+      <svg-icon
+        v-if="widgetData?.props.listStyleImage"
+        :icon-name="widgetData?.props.listStyleImage"
+        color="#333"
+        size="18px"
+        class-name="li-list-style-image"
+      ></svg-icon>
+      91化简
+    </li>
   </ul>
 </template>
 <script lang="ts" setup>
   import { IWidget } from '@/views/LegoDesigner/types';
-  import { getListStyleImageFile } from '../../utils/common';
 
   interface IAvatar {
     widgetData: IWidget | null; // 模块数据
@@ -14,16 +22,8 @@
     widgetData: null
   });
 
-  const liRef = ref<any>(null);
   const listStyleType = computed(() => {
     if (props.widgetData?.props.listStyleImage) {
-      liRef.value.style.background = `url(${getListStyleImageFile(
-        props.widgetData?.props.listStyleImage
-      )}) no-repeat`;
-      liRef.value.style.backgroundPosition = 'center left';
-      liRef.value.style.width = '100%';
-      liRef.value.style.paddingLeft = '30px';
-      liRef.value.style.backgroundSize = '28px';
       return 'none';
     } else {
       return `${props.widgetData?.props.listStyleType} outside`;
@@ -45,6 +45,12 @@
       font-size: 18px;
       list-style: v-bind('listStyleType');
       box-sizing: border-box;
+    }
+    .li-list-style-image {
+      margin-right: 3px;
+    }
+    .have-image {
+      width: 100%;
     }
   }
 </style>

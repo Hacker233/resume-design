@@ -70,9 +70,25 @@ export const ListStyleTypeList = [
   {
     listStyleType: 'katakana-iroha',
     description: '日文片假名序号'
+  },
+  {
+    listStyleImage: 'icon-jifen1',
+    description: '积分'
+  },
+  {
+    listStyleImage: 'icon-chakangengduo',
+    description: '箭头'
+  },
+  {
+    listStyleImage: 'icon-jifen',
+    description: '钻石'
+  },
+  {
+    listStyleImage: 'icon-huojian',
+    description: '火箭'
+  },
+  {
+    listStyleImage: 'icon-guanliyuan_jiaoseguanli',
+    description: '人员设置'
   }
-  // {
-  //   listStyleImage: '招聘求职.svg',
-  //   description: '招聘求职'
-  // }
 ];

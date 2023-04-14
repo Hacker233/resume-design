@@ -4,7 +4,7 @@ import { IWidget } from '../../types';
  * @description 返回图标对象
  */
 export const useLiListItem = (iconItem: {
-  listStyleType: any;
+  listStyleType?: any;
   description: any;
   listStyleImage?: any;
 }): IWidget => {

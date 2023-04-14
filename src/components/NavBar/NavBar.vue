@@ -115,14 +115,14 @@
           title: '在线制作',
           children: null,
           path: '/template'
+        },
+        {
+          iconfont: '',
+          name: 'LegoTemplateList',
+          title: '积木创作',
+          children: null,
+          path: '/legoTemplateList'
         }
-        // {
-        //   iconfont: '',
-        //   name: 'LegoTemplateList',
-        //   title: '积木创作',
-        //   children: null,
-        //   path: '/legoTemplateList'
-        // }
       ]
     },
     {
