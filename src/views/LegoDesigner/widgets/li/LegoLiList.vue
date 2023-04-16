@@ -1,9 +1,9 @@
 <template>
   <ul class="li-list-box">
-    <li :class="[{ 'have-image': widgetData?.props.listStyleImage ? true : false }]">
+    <li :class="[{ 'have-image': widgetData?.customProps.listStyleImage ? true : false }]">
       <svg-icon
-        v-if="widgetData?.props.listStyleImage"
-        :icon-name="widgetData?.props.listStyleImage"
+        v-if="widgetData?.customProps.listStyleImage"
+        :icon-name="widgetData?.customProps.listStyleImage"
         color="#333"
         size="18px"
         class-name="li-list-style-image"
@@ -23,10 +23,10 @@
   });
 
   const listStyleType = computed(() => {
-    if (props.widgetData?.props.listStyleImage) {
+    if (props.widgetData?.customProps.listStyleImage) {
       return 'none';
     } else {
-      return `${props.widgetData?.props.listStyleType} outside`;
+      return `${props.widgetData?.customProps.listStyleType} outside`;
     }
   });
 </script>

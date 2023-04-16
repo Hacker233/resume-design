@@ -17,6 +17,34 @@ import Text_9 from './text/text-9/text-9.vue';
 import Text_10 from './text/text-10/text-10.vue';
 import Icon from './icon/LegoDesignIconRender.vue';
 import Li from './li/LegoLiListRender.vue';
+import Square from './shape/square/square.vue';
+import Rectangle from './shape/rectangle/rectangle.vue';
+import Circle from './shape/circle/circle.vue';
+import Oval from './shape/oval/oval.vue';
+import Triangle from './shape/triangle/triangle.vue';
+import Trapezoid from './shape/trapezoid/trapezoid.vue';
+import Parallelogram from './shape/parallelogram/parallelogram.vue';
+import Rhombus from './shape/rhombus/rhombus.vue';
+import Pentagon from './shape/pentagon/pentagon.vue';
+import Hexagon from './shape/hexagon/hexagon.vue';
+import Heptagon from './shape/heptagon/heptagon.vue';
+import Octagon from './shape/octagon/octagon.vue';
+import Nonagon from './shape/nonagon/nonagon.vue';
+import Decagon from './shape/decagon/decagon.vue';
+import Bevel from './shape/bevel/bevel.vue';
+import Rabbet from './shape/rabbet/rabbet.vue';
+import LeftArrow from './shape/leftArrow/leftArrow.vue';
+import RightArrow from './shape/rightArrow/rightArrow.vue';
+import LeftPoint from './shape/leftPoint/leftPoint.vue';
+import RightPoint from './shape/rightPoint/rightPoint.vue';
+import LeftChevron from './shape/leftChevron/leftChevron.vue';
+import RightChevron from './shape/rightChevron/rightChevron.vue';
+import Star from './shape/star/star.vue';
+import Cross from './shape/cross/cross.vue';
+import Message from './shape/message/message.vue';
+import Close from './shape/close/close.vue';
+import Frame from './shape/frame/frame.vue';
+import Rate_1 from './rate/rate-1/rate-1.vue';
 
 export const WIDGET_MAP: IWidgetMap = {
   'hj-avatar-1': Avatar_1,
@@ -36,5 +64,33 @@ export const WIDGET_MAP: IWidgetMap = {
   'hj-text-9': Text_9,
   'hj-text-10': Text_10,
   'hj-icon': Icon,
-  'hj-li': Li
+  'hj-li': Li,
+  'hj-square': Square,
+  'hj-rectangle': Rectangle,
+  'hj-circle': Circle,
+  'hj-oval': Oval,
+  'hj-triangle': Triangle,
+  'hj-trapezoid': Trapezoid,
+  'hj-parallelogram': Parallelogram,
+  'hj-rhombus': Rhombus,
+  'hj-pentagon': Pentagon,
+  'hj-hexagon': Hexagon,
+  'hj-heptagon': Heptagon,
+  'hj-octagon': Octagon,
+  'hj-nonagon': Nonagon,
+  'hj-decagon': Decagon,
+  'hj-bevel': Bevel,
+  'hj-rabbet': Rabbet,
+  'hj-leftArrow': LeftArrow,
+  'hj-rightArrow': RightArrow,
+  'hj-leftPoint': LeftPoint,
+  'hj-rightPoint': RightPoint,
+  'hj-leftChevron': LeftChevron,
+  'hj-rightChevron': RightChevron,
+  'hj-star': Star,
+  'hj-cross': Cross,
+  'hj-message': Message,
+  'hj-close': Close,
+  'hj-frame': Frame,
+  'hj-rate-1': Rate_1
 };

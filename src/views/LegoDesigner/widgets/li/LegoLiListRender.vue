@@ -6,8 +6,8 @@
       :class="[{ isOutside: isOutside }]"
     >
       <svg-icon
-        v-if="widgetData?.props.listStyleImage"
-        :icon-name="widgetData?.props.listStyleImage"
+        v-if="widgetData?.customProps.listStyleImage"
+        :icon-name="widgetData?.customProps.listStyleImage"
         :color="widgetData?.css.fontColor"
         :size="widgetData?.css.fontSize + 'px'"
         class-name="li-list-style-image"
@@ -32,10 +32,10 @@
   });
 
   const listStyleType = computed(() => {
-    if (props.widgetData?.props.listStyleImage) {
+    if (props.widgetData?.customProps.listStyleImage) {
       return 'none';
     } else {
-      return `${props.widgetData?.props.listStyleType}`;
+      return `${props.widgetData?.customProps.listStyleType}`;
     }
   });
 </script>

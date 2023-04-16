@@ -44,7 +44,7 @@
     - [运行项目](#运行项目)
     - [构建项目](#构建项目)
     - [目录说明:](#目录说明)
-  - [交流&贡献](#交流贡献)
+  - [交流\&贡献](#交流贡献)
   - [贡献者](#贡献者)
   - [License](#license)
 
@@ -165,6 +165,7 @@ pnpm build
 添加vx：LHQfighting，进入微信交流群，可方便解决和提出问题。
 <p align="center">
     <img width="300" src="https://gitee.com/sharemore52/resume-design/raw/main/src/assets/images/vx.jpg">
+    <img width="300" src="https://gitee.com/sharemore52/resume-design/raw/main/src/assets/images/xingqiu.jpg">
 </p>
 
 ## 贡献者

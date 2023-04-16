@@ -7,48 +7,80 @@
       type="card"
       class="demo-tabs"
     >
-      <el-tab-pane label="样式" name="style">
-        <el-form label-width="80px" label-position="left">
-          <div
-            v-for="(value, key, index) in HJSchemaJsonStore.componentsTree[pageActiveIndex]
-              .children[widgetIndex].css"
-            :key="index"
-          >
-            <component
-              :is="getSetterCom(key)"
-              :id="selectedWidgetId"
-              :page-index="pageActiveIndex"
-              :value="value"
-            ></component>
-          </div>
-        </el-form>
-      </el-tab-pane>
-      <el-tab-pane class="data-tab-pane" label="数据" name="second">
-        <el-form label-width="80px" label-position="left">
-          <template
+      <el-tab-pane label="基本配置" name="style">
+        <el-collapse v-model="activeNames">
+          <!-- 组件属性 -->
+          <el-collapse-item
             v-if="
               Object.keys(
-                HJSchemaJsonStore.componentsTree[pageActiveIndex].children[widgetIndex].dataSource
+                HJSchemaJsonStore.componentsTree[pageActiveIndex].children[widgetIndex].props
               ).length
             "
+            title="组件属性"
+            name="cptProp"
           >
             <div
               v-for="(value, key, index) in HJSchemaJsonStore.componentsTree[pageActiveIndex]
-                .children[widgetIndex].dataSource"
+                .children[widgetIndex].props"
               :key="index"
             >
               <component
-                :is="getDataSetterCom(key)"
+                :is="getSetterCom(key)"
                 :id="selectedWidgetId"
                 :page-index="pageActiveIndex"
                 :value="value"
               ></component>
             </div>
-          </template>
-          <div v-else class="no-data">
-            <no-data></no-data>
-          </div>
-        </el-form>
+          </el-collapse-item>
+          <el-collapse-item title="样式属性" name="styleProp">
+            <el-form label-width="80px" label-position="left">
+              <div
+                v-for="(value, key, index) in HJSchemaJsonStore.componentsTree[pageActiveIndex]
+                  .children[widgetIndex].css"
+                :key="index"
+              >
+                <component
+                  :is="getSetterCom(key)"
+                  :id="selectedWidgetId"
+                  :page-index="pageActiveIndex"
+                  :value="value"
+                ></component>
+              </div>
+            </el-form>
+          </el-collapse-item>
+        </el-collapse>
+      </el-tab-pane>
+      <el-tab-pane class="data-tab-pane" label="数据" name="second">
+        <el-collapse v-model="activeDataNames">
+          <el-collapse-item title="数据配置" name="dataProp">
+            <el-form label-width="80px" label-position="left">
+              <template
+                v-if="
+                  Object.keys(
+                    HJSchemaJsonStore.componentsTree[pageActiveIndex].children[widgetIndex]
+                      .dataSource
+                  ).length
+                "
+              >
+                <div
+                  v-for="(value, key, index) in HJSchemaJsonStore.componentsTree[pageActiveIndex]
+                    .children[widgetIndex].dataSource"
+                  :key="index"
+                >
+                  <component
+                    :is="getDataSetterCom(key)"
+                    :id="selectedWidgetId"
+                    :page-index="pageActiveIndex"
+                    :value="value"
+                  ></component>
+                </div>
+              </template>
+              <div v-else class="no-data">
+                <no-data></no-data>
+              </div>
+            </el-form>
+          </el-collapse-item>
+        </el-collapse>
       </el-tab-pane>
     </el-tabs>
     <!-- 没有选中组件时展示 -->
@@ -91,6 +123,12 @@
   };
 
   const activeName = ref('style');
+
+  // 折叠面板
+  const activeNames = ref(['cptProp', 'styleProp']);
+
+  // 数据配置折叠面板
+  const activeDataNames = ref<string>('dataProp');
 </script>
 <style lang="scss" scoped>
   .right-setter-box {
@@ -104,6 +142,10 @@
       .el-tabs__header {
         margin-bottom: 0;
         height: 50px;
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        background: #fff;
       }
       .el-tabs__nav {
         width: 100%;
@@ -125,10 +167,25 @@
       .el-tabs__content {
         display: flex;
         // justify-content: center;
-        padding: 30px 20px 10px 20px;
+        // padding: 30px 20px 10px 20px;
         box-sizing: border-box;
         // height: calc(100vh - 170px);
         overflow: auto;
+        .el-tab-pane {
+          width: 100%;
+        }
+        .el-collapse {
+          width: 100%;
+          .el-collapse-item__header {
+            padding: 0 20px;
+            font-size: 15px;
+            font-weight: 600;
+            letter-spacing: 2px;
+          }
+          .el-collapse-item__content {
+            padding: 30px 20px 10px 20px;
+          }
+        }
         .c-scrollbar {
           padding: 30px 20px;
         }

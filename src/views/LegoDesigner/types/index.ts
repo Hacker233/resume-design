@@ -40,6 +40,7 @@ interface IWidget {
   props: any; // 组件属性
   css: any; // 组件样式
   dataSource: any; // 组件单独数据
+  customProps?: any; // 自定义属性字段
 }
 
 // 某一个组件分类格式

@@ -22,6 +22,8 @@ import iconSizeEditor from './iconSizeEditor.vue';
 import markerSizeEditor from './markerSizeEditor.vue';
 import markerColorEditor from './markerColorEditor.vue';
 import markerPositionEditor from './markerPositionEditor.vue';
+import sizeEditor from './sizeEditor.vue';
+import rateSizeEditor from './rateSizeEditor.vue';
 
 // 数据设置组件
 import textEditEditor from './dataSetters/textEditEditor.vue';
@@ -52,7 +54,9 @@ export const SETTERS_MAP: ISetterMap = {
   iconSize: iconSizeEditor,
   markerSize: markerSizeEditor,
   markerColor: markerColorEditor,
-  markerPosition: markerPositionEditor
+  markerPosition: markerPositionEditor,
+  size: sizeEditor,
+  rateSize: rateSizeEditor
 };
 
 // 数据设置组件对应关系

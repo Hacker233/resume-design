@@ -15,3 +15,20 @@ const useSelectWidgetItem = (id: string, pageIndex: number) => {
   };
 };
 export default useSelectWidgetItem;
+
+// 根据组件id查询出组件数据
+export const useGetWidgetItemById = (id: string) => {
+  const { HJSchemaJsonStore } = storeToRefs(appStore.useLegoJsonStore);
+  let widgetItem = reactive<any>({});
+  console.log('id', id, HJSchemaJsonStore.value);
+  HJSchemaJsonStore.value.componentsTree.forEach((page, pageIndex) => {
+    const index = page.children.findIndex((item: { id: string }) => item.id === id);
+    if (index > -1) {
+      widgetItem = HJSchemaJsonStore.value.componentsTree[pageIndex].children[index];
+    }
+  });
+
+  return {
+    widgetItem
+  };
+};

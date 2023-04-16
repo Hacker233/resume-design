@@ -45,8 +45,10 @@ declare module '@vue/runtime-core' {
     ElPagination: typeof import('element-plus/es')['ElPagination'];
     ElPopover: typeof import('element-plus/es')['ElPopover'];
     ElProgress: typeof import('element-plus/es')['ElProgress'];
+    ElRate: typeof import('element-plus/es')['ElRate'];
     ElScrollbar: typeof import('element-plus/es')['ElScrollbar'];
     ElSelect: typeof import('element-plus/es')['ElSelect'];
+    ElSelectV2: typeof import('element-plus/es')['ElSelectV2'];
     ElSkeleton: typeof import('element-plus/es')['ElSkeleton'];
     ElSkeletonItem: typeof import('element-plus/es')['ElSkeletonItem'];
     ElSlider: typeof import('element-plus/es')['ElSlider'];
@@ -55,6 +57,7 @@ declare module '@vue/runtime-core' {
     ElTableColumn: typeof import('element-plus/es')['ElTableColumn'];
     ElTabPane: typeof import('element-plus/es')['ElTabPane'];
     ElTabs: typeof import('element-plus/es')['ElTabs'];
+    ElTag: typeof import('element-plus/es')['ElTag'];
     ElTooltip: typeof import('element-plus/es')['ElTooltip'];
     ElUpload: typeof import('element-plus/es')['ElUpload'];
     Emoji: typeof import('./components/packages/components/emoji/emoji.vue')['default'];
