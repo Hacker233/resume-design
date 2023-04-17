@@ -24,11 +24,16 @@ import markerColorEditor from './markerColorEditor.vue';
 import markerPositionEditor from './markerPositionEditor.vue';
 import sizeEditor from './sizeEditor.vue';
 import rateSizeEditor from './rateSizeEditor.vue';
+import voidColorEditor from './voidColorEditor.vue';
+import activeColorEditor from './activeColorEditor.vue';
+import showTextEditor from './showTextEditor.vue';
+import aidedTextColorEditor from './aidedTextColorEditor.vue';
 
 // 数据设置组件
 import textEditEditor from './dataSetters/textEditEditor.vue';
 import avatarUploadEditor from './dataSetters/avatarUploadEditor.vue';
 import liListEditor from './dataSetters/liListEditor.vue';
+import rateValueEditor from './dataSetters/rateValueEditor.vue';
 
 // 属性设置组件对应关系
 export const SETTERS_MAP: ISetterMap = {
@@ -56,12 +61,17 @@ export const SETTERS_MAP: ISetterMap = {
   markerColor: markerColorEditor,
   markerPosition: markerPositionEditor,
   size: sizeEditor,
-  rateSize: rateSizeEditor
+  rateSize: rateSizeEditor,
+  voidColor: voidColorEditor,
+  activeColor: activeColorEditor,
+  showText: showTextEditor,
+  aidedTextColor: aidedTextColorEditor
 };
 
 // 数据设置组件对应关系
 export const DATA_SETTERS_MAP: ISetterMap = {
   avatarSrc: avatarUploadEditor,
   text: textEditEditor,
-  liList: liListEditor
+  liList: liListEditor,
+  rateValue: rateValueEditor
 };

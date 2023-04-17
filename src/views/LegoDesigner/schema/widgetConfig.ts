@@ -1463,7 +1463,7 @@ export const WIDGET_CONFIG_LIST: Array<IWidgetTab> = [
     title: '评分',
     category: 'rate',
     dataSource: {
-      rateValue: 0 // 评级
+      rateValue: 3 // 评级
     },
     list: [
       {
@@ -1482,18 +1482,18 @@ export const WIDGET_CONFIG_LIST: Array<IWidgetTab> = [
         keywords: '容器', // 组件关键词，用于搜索
         category: 'rate', // 组件分类
         props: {
-          voidColor: '#C6D1DE' // 未选中图标的颜色
-          // showText: false, // 是否显示辅助文字
-          // textColor: '#1F2D3D', // 辅助文字颜色
-          // texts: ['了解', '一般', '熟悉', '掌握', '精通'] // 文字提示数组
+          voidColor: '#C6D1DE', // 未选中图标的颜色
+          activeColor: '#f7ba2a', // 选中时的颜色
+          showText: false, // 是否显示辅助文字
+          aidedTextColor: '#1F2D3D' // 辅助文字颜色
         }, // 组件属性
         css: {
           left: 0,
           top: 0,
           zIndex: 1,
-          width: 150,
+          width: 170,
           height: 26,
-          rateSize: 24,
+          rateSize: 20,
           rotate: 0, // 旋转角度
           backgroundColor: '#fff',
           padding: {
