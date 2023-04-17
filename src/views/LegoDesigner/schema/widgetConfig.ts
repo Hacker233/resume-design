@@ -1472,14 +1472,14 @@ export const WIDGET_CONFIG_LIST: Array<IWidgetTab> = [
         commentType: '', // 组件类型
         icon: '', // 组件icon
         title: '', // 组件中文名称
-        description: '容器', // 组件描述信息
+        description: '五星评级', // 组件描述信息
         screenShot: {
           src: 'hj-rate-1.png',
           width: '120px',
           height: '35px',
           borderRadius: '4px'
         }, // 组件快照
-        keywords: '容器', // 组件关键词，用于搜索
+        keywords: '五星评级', // 组件关键词，用于搜索
         category: 'rate', // 组件分类
         props: {
           voidColor: '#C6D1DE', // 未选中图标的颜色
@@ -1506,8 +1506,137 @@ export const WIDGET_CONFIG_LIST: Array<IWidgetTab> = [
           borderColor: '#eee'
         }, // 组件样式
         dataSource: {} // 组件单独数据
+      },
+      {
+        id: '', // 组件唯一性id
+        componentName: 'hj-rate-2', // 组件名
+        commentType: '', // 组件类型
+        icon: '', // 组件icon
+        title: '', // 组件中文名称
+        description: '进度条', // 组件描述信息
+        screenShot: {
+          src: 'hj-rate-2.png',
+          width: '120px',
+          height: '35px',
+          borderRadius: '4px'
+        }, // 组件快照
+        keywords: '进度条', // 组件关键词，用于搜索
+        category: 'rate', // 组件分类
+        props: {
+          rateHeight: 10, // 进度条高度
+          activeColor: '#f7ba2a', // 选中时的颜色
+          showText: false, // 是否显示辅助文字
+          aidedTextColor: '#1F2D3D' // 辅助文字颜色
+        }, // 组件属性
+        css: {
+          left: 0,
+          top: 0,
+          zIndex: 1,
+          width: 220,
+          height: 15,
+          rotate: 0, // 旋转角度
+          fontSize: 14,
+          backgroundColor: '#fff',
+          padding: {
+            top: 0,
+            right: 0,
+            bottom: 0,
+            left: 0
+          },
+          borderWidth: 0,
+          borderColor: '#eee'
+        }, // 组件样式
+        dataSource: {} // 组件单独数据
+      },
+      {
+        id: '', // 组件唯一性id
+        componentName: 'hj-rate-3', // 组件名
+        commentType: '', // 组件类型
+        icon: '', // 组件icon
+        title: '', // 组件中文名称
+        description: '环形', // 组件描述信息
+        screenShot: {
+          src: 'hj-rate-3.png',
+          width: '110px',
+          height: '100px',
+          borderRadius: '4px'
+        }, // 组件快照
+        keywords: '环形', // 组件关键词，用于搜索
+        category: 'rate', // 组件分类
+        props: {
+          rateHeight: 10, // 进度条高度
+          activeColor: '#f7ba2a', // 选中时的颜色
+          showText: false, // 是否显示辅助文字
+          aidedTextColor: '#1F2D3D' // 辅助文字颜色
+        }, // 组件属性
+        css: {
+          left: 0,
+          top: 0,
+          zIndex: 1,
+          width: 130,
+          height: 130,
+          rotate: 0, // 旋转角度
+          fontSize: 14,
+          backgroundColor: '#fff',
+          padding: {
+            top: 0,
+            right: 0,
+            bottom: 0,
+            left: 0
+          },
+          borderWidth: 0,
+          borderColor: '#eee'
+        }, // 组件样式
+        dataSource: {} // 组件单独数据
+      },
+      {
+        id: '', // 组件唯一性id
+        componentName: 'hj-rate-4', // 组件名
+        commentType: '', // 组件类型
+        icon: '', // 组件icon
+        title: '', // 组件中文名称
+        description: '仪表盘', // 组件描述信息
+        screenShot: {
+          src: 'hj-rate-4.png',
+          width: '115px',
+          height: '100px',
+          borderRadius: '4px'
+        }, // 组件快照
+        keywords: '仪表盘', // 组件关键词，用于搜索
+        category: 'rate', // 组件分类
+        props: {
+          rateHeight: 10, // 进度条高度
+          activeColor: '#f7ba2a', // 选中时的颜色
+          showText: false, // 是否显示辅助文字
+          aidedTextColor: '#1F2D3D' // 辅助文字颜色
+        }, // 组件属性
+        css: {
+          left: 0,
+          top: 0,
+          zIndex: 1,
+          width: 130,
+          height: 130,
+          rotate: 0, // 旋转角度
+          fontSize: 14,
+          backgroundColor: '#fff',
+          padding: {
+            top: 0,
+            right: 0,
+            bottom: 0,
+            left: 0
+          },
+          borderWidth: 0,
+          borderColor: '#eee'
+        }, // 组件样式
+        dataSource: {} // 组件单独数据
       }
     ]
+  },
+  {
+    title: '日期',
+    category: 'date',
+    dataSource: {},
+    list: []
   },
   {
     title: '图标',

@@ -530,6 +530,11 @@
   const reduceSize = (number: number) => {
     sizeCenter.value = number;
   };
+
+  // pages透明度
+  const pagesOpacity = computed(() => {
+    return `opacity(${HJSchemaJsonStore.value.css.opacity})`;
+  });
 </script>
 <style lang="scss" scoped>
   ::-webkit-scrollbar {
@@ -569,11 +574,21 @@
               height: v-bind('HJSchemaJsonStore.css.height + "px"');
               box-shadow: 0 2px 8px rgba(14, 19, 24, 0.07);
               border-radius: 2px;
-              background: v-bind('HJSchemaJsonStore.css.background');
-              background-image: v-bind('"url(" + HJSchemaJsonStore.css.backgroundImage + ")"');
-              background-size: 100% 100%;
-              fill-opacity: v-bind('HJSchemaJsonStore.css.opacity');
               position: relative;
+              &::after {
+                /*使用before 选择器在被选元素的内容前面插入内容。*/
+                width: 100%;
+                height: 100%; /*设置为全屏背景模式*/
+                background: v-bind('HJSchemaJsonStore.css.background');
+                background-image: v-bind('"url(" + HJSchemaJsonStore.css.backgroundImage + ")"');
+                background-size: 100% 100%;
+                position: absolute; /*图片定位*/
+                top: 0;
+                left: 0;
+                content: '';
+                z-index: -1; /*设置该标签等级，让其始终位于最上层*/
+                filter: v-bind('pagesOpacity');
+              }
               .drag-component {
                 cursor: move;
               }

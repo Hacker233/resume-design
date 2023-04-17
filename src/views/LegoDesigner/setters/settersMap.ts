@@ -28,6 +28,7 @@ import voidColorEditor from './voidColorEditor.vue';
 import activeColorEditor from './activeColorEditor.vue';
 import showTextEditor from './showTextEditor.vue';
 import aidedTextColorEditor from './aidedTextColorEditor.vue';
+import rateHeightEditor from './rateHeightEditor.vue';
 
 // 数据设置组件
 import textEditEditor from './dataSetters/textEditEditor.vue';
@@ -65,7 +66,8 @@ export const SETTERS_MAP: ISetterMap = {
   voidColor: voidColorEditor,
   activeColor: activeColorEditor,
   showText: showTextEditor,
-  aidedTextColor: aidedTextColorEditor
+  aidedTextColor: aidedTextColorEditor,
+  rateHeight: rateHeightEditor
 };
 
 // 数据设置组件对应关系

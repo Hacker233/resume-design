@@ -5,7 +5,7 @@
         v-model="HJSchemaJsonStore.css.fontFamily"
         :teleported="false"
         placeholder="请选择字体"
-        @change="secondFontFamilyChange"
+        @change="selectFontFamilyChange"
       >
         <el-option
           v-for="(item, index) in fontFamilyList"
@@ -29,7 +29,13 @@
   const fontFamilyList = useFontFamilyList();
 
   // 字体变化
-  const secondFontFamilyChange = (value: string) => {
-    console.log(value);
+  const selectFontFamilyChange = (val: string) => {
+    HJSchemaJsonStore.value.componentsTree.forEach((pageItem, pageIndex) => {
+      for (let i = 0; i < pageItem.children.length; i++) {
+        if (pageItem.children[i].css['fontFamily']) {
+          HJSchemaJsonStore.value.componentsTree[pageIndex].children[i].css.fontFamily = val;
+        }
+      }
+    });
   };
 </script>
