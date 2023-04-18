@@ -4,6 +4,7 @@ export const WIDGET_CONFIG_LIST: Array<IWidgetTab> = [
   {
     title: '头像',
     category: 'avatar',
+    icon: 'icon-jibenziliao',
     dataSource: {
       avatarSrc: '' // 默认头像地址
     }, // 该分类下公用数据源
@@ -222,6 +223,7 @@ export const WIDGET_CONFIG_LIST: Array<IWidgetTab> = [
   {
     title: '文本',
     category: 'text',
+    icon: 'icon-wenben',
     dataSource: {
       text: '91化简' // 文本内容
     }, // 该分类下公用数据源
@@ -642,6 +644,7 @@ export const WIDGET_CONFIG_LIST: Array<IWidgetTab> = [
   {
     title: '形状',
     category: 'shape',
+    icon: 'icon-xingzhuang-xingxing',
     dataSource: {},
     list: [
       {
@@ -1462,6 +1465,7 @@ export const WIDGET_CONFIG_LIST: Array<IWidgetTab> = [
   {
     title: '评分',
     category: 'rate',
+    icon: 'icon-dengji1',
     dataSource: {
       rateValue: 3 // 评级
     },
@@ -1629,12 +1633,54 @@ export const WIDGET_CONFIG_LIST: Array<IWidgetTab> = [
           borderColor: '#eee'
         }, // 组件样式
         dataSource: {} // 组件单独数据
+      },
+      {
+        id: '', // 组件唯一性id
+        componentName: 'hj-rate-5', // 组件名
+        commentType: '', // 组件类型
+        icon: '', // 组件icon
+        title: '', // 组件中文名称
+        description: '步骤', // 组件描述信息
+        screenShot: {
+          src: 'hj-rate-5.png',
+          width: '140px',
+          height: '30px',
+          borderRadius: '4px'
+        }, // 组件快照
+        keywords: '步骤', // 组件关键词，用于搜索
+        category: 'rate', // 组件分类
+        props: {
+          rateHeight: 7, // 进度条高度
+          activeColor: '#f7ba2a', // 选中时的颜色
+          showText: false // 是否显示辅助文字
+        }, // 组件属性
+        css: {
+          left: 0,
+          top: 0,
+          zIndex: 1,
+          width: 200,
+          height: 30,
+          rotate: 0, // 旋转角度
+          fontSize: 14,
+          backgroundColor: '#fff',
+          padding: {
+            top: 0,
+            right: 0,
+            bottom: 0,
+            left: 0
+          },
+          borderRadius: 2,
+          borderWidth: 0,
+          borderColor: '#eee'
+        }, // 组件样式
+        dataSource: {} // 组件单独数据
       }
     ]
   },
   {
     title: '日期',
     category: 'date',
+    icon: 'icon-riqi',
     dataSource: {},
     list: [
       {
@@ -1643,14 +1689,14 @@ export const WIDGET_CONFIG_LIST: Array<IWidgetTab> = [
         commentType: '', // 组件类型
         icon: '', // 组件icon
         title: '', // 组件中文名称
-        description: '仪表盘', // 组件描述信息
+        description: '年', // 组件描述信息
         screenShot: {
           src: 'hj-date-1.png',
-          width: '90px',
-          height: '40px',
+          width: '60px',
+          height: '30px',
           borderRadius: '4px'
         }, // 组件快照
-        keywords: '仪表盘', // 组件关键词，用于搜索
+        keywords: '年', // 组件关键词，用于搜索
         category: 'rate', // 组件分类
         props: {}, // 组件属性
         css: {
@@ -1681,18 +1727,200 @@ export const WIDGET_CONFIG_LIST: Array<IWidgetTab> = [
         dataSource: {
           year: '2023'
         } // 组件单独数据
+      },
+      {
+        id: '', // 组件唯一性id
+        componentName: 'hj-date-3', // 组件名
+        commentType: '', // 组件类型
+        icon: '', // 组件icon
+        title: '', // 组件中文名称
+        description: '日', // 组件描述信息
+        screenShot: {
+          src: 'hj-date-3.png',
+          width: '115px',
+          height: '28px',
+          borderRadius: '4px'
+        }, // 组件快照
+        keywords: '日', // 组件关键词，用于搜索
+        category: 'rate', // 组件分类
+        props: {}, // 组件属性
+        css: {
+          left: 0,
+          top: 0,
+          zIndex: 1,
+          width: 130,
+          height: 30,
+          rotate: 0, // 旋转角度
+          fontSize: 16,
+          lineHeight: 1.5,
+          fontFamily: '方正黑体简体',
+          fontWeight: 600,
+          textAlign: 'justify',
+          fontColor: '#333333',
+          backgroundColor: '#fff',
+          padding: {
+            top: 0,
+            right: 0,
+            bottom: 0,
+            left: 0
+          },
+          borderWidth: 0,
+          borderRadius: 0,
+          borderColor: '#eee',
+          borderStyle: 'solid'
+        }, // 组件样式
+        dataSource: {
+          day: '2023.05.12'
+        } // 组件单独数据
+      },
+      {
+        id: '', // 组件唯一性id
+        componentName: 'hj-date-2', // 组件名
+        commentType: '', // 组件类型
+        icon: '', // 组件icon
+        title: '', // 组件中文名称
+        description: '月', // 组件描述信息
+        screenShot: {
+          src: 'hj-date-2.png',
+          width: '83px',
+          height: '29px',
+          borderRadius: '4px'
+        }, // 组件快照
+        keywords: '月', // 组件关键词，用于搜索
+        category: 'rate', // 组件分类
+        props: {}, // 组件属性
+        css: {
+          left: 0,
+          top: 0,
+          zIndex: 1,
+          width: 130,
+          height: 30,
+          rotate: 0, // 旋转角度
+          fontSize: 16,
+          lineHeight: 1.5,
+          fontFamily: '方正黑体简体',
+          fontWeight: 600,
+          textAlign: 'justify',
+          fontColor: '#333333',
+          backgroundColor: '#fff',
+          padding: {
+            top: 0,
+            right: 0,
+            bottom: 0,
+            left: 0
+          },
+          borderWidth: 0,
+          borderRadius: 0,
+          borderColor: '#eee',
+          borderStyle: 'solid'
+        }, // 组件样式
+        dataSource: {
+          month: '2023.05'
+        } // 组件单独数据
+      },
+      {
+        id: '', // 组件唯一性id
+        componentName: 'hj-date-4', // 组件名
+        commentType: '', // 组件类型
+        icon: '', // 组件icon
+        title: '', // 组件中文名称
+        description: '月份范围', // 组件描述信息
+        screenShot: {
+          src: 'hj-date-4.png',
+          width: '150px',
+          height: '30px',
+          borderRadius: '4px'
+        }, // 组件快照
+        keywords: '月份范围', // 组件关键词，用于搜索
+        category: 'rate', // 组件分类
+        props: {}, // 组件属性
+        css: {
+          left: 0,
+          top: 0,
+          zIndex: 1,
+          width: 160,
+          height: 30,
+          rotate: 0, // 旋转角度
+          fontSize: 16,
+          lineHeight: 1.5,
+          fontFamily: '方正黑体简体',
+          fontWeight: 600,
+          textAlign: 'justify',
+          fontColor: '#333333',
+          backgroundColor: '#fff',
+          padding: {
+            top: 0,
+            right: 0,
+            bottom: 0,
+            left: 0
+          },
+          borderWidth: 0,
+          borderRadius: 0,
+          borderColor: '#eee',
+          borderStyle: 'solid'
+        }, // 组件样式
+        dataSource: {
+          monthRange: ['2023.05', '2024.05']
+        } // 组件单独数据
+      },
+      {
+        id: '', // 组件唯一性id
+        componentName: 'hj-date-5', // 组件名
+        commentType: '', // 组件类型
+        icon: '', // 组件icon
+        title: '', // 组件中文名称
+        description: '日期范围', // 组件描述信息
+        screenShot: {
+          src: 'hj-date-5.png',
+          width: '200px',
+          height: '30px',
+          borderRadius: '4px'
+        }, // 组件快照
+        keywords: '日期范围', // 组件关键词，用于搜索
+        category: 'rate', // 组件分类
+        props: {}, // 组件属性
+        css: {
+          left: 0,
+          top: 0,
+          zIndex: 1,
+          width: 190,
+          height: 30,
+          rotate: 0, // 旋转角度
+          fontSize: 16,
+          lineHeight: 1.5,
+          fontFamily: '方正黑体简体',
+          fontWeight: 600,
+          textAlign: 'justify',
+          fontColor: '#333333',
+          backgroundColor: '#fff',
+          padding: {
+            top: 0,
+            right: 0,
+            bottom: 0,
+            left: 0
+          },
+          borderWidth: 0,
+          borderRadius: 0,
+          borderColor: '#eee',
+          borderStyle: 'solid'
+        }, // 组件样式
+        dataSource: {
+          dateRange: ['2023.05.12', '2024.05.12']
+        } // 组件单独数据
       }
     ]
   },
   {
     title: '图标',
     category: 'icon',
+    icon: 'icon-xingquaihao',
     dataSource: {},
     list: []
   },
   {
     title: '列表',
     category: 'li',
+    icon: 'icon-danlieliebiao',
     dataSource: {},
     list: []
   }

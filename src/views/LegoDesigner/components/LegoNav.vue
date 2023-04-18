@@ -285,12 +285,6 @@
 
   // 离开页面之前
   onBeforeUnmount(async () => {
-    // imgUrl.value = await getImgBase64URL(props.pagesRefs[0]);
-    // const params = {
-    //   previewUrl: imgUrl.value,
-    //   lego_json: HJSchemaJsonStore.value
-    // };
-    // await legoUserResumeAsync(params);
     draftTips.value = '';
     // 重置JSON
     resetHJSchemaJsonData();
@@ -311,25 +305,32 @@
     ElMessageBox.confirm('离开前请确保您编辑的内容已保存草稿！', '警告', {
       confirmButtonText: '保存草稿并离开',
       cancelButtonText: '直接离开',
+      showCancelButton: true,
+      closeOnClickModal: false,
+      closeOnPressEscape: false,
+      distinguishCancelAndClose: true,
       type: 'warning',
       beforeClose: async (action, instance, done) => {
+        debugger;
         if (action === 'confirm') {
           instance.confirmButtonLoading = true;
           // 保存草稿并离开
           await saveDraft();
           instance.confirmButtonLoading = false;
           done();
+        } else if (action === 'close') {
+          done();
+          return;
         } else {
           done();
+          next();
         }
       }
     })
       .then(async () => {
         next();
       })
-      .catch(() => {
-        next();
-      });
+      .catch(() => {});
   });
 </script>
 <style lang="scss" scoped>

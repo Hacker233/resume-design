@@ -3,7 +3,18 @@
     <!-- 组件列表 -->
     <div v-for="(item, index) in WIDGET_CONFIG_LIST" :key="index" class="com-list-box">
       <el-collapse>
-        <el-collapse-item :title="item.title" :name="item.title">
+        <el-collapse-item :name="item.title">
+          <template #title>
+            <div class="icon-box"
+              ><svg-icon
+                :icon-name="item.icon"
+                color="#4c4948"
+                size="18px"
+                class-name="title-icon"
+              ></svg-icon
+            ></div>
+            {{ item.title }}
+          </template>
           <div
             v-for="(itemCom, itemIndex) in item.list"
             :key="itemIndex"
@@ -93,6 +104,12 @@
   .widget-list-box {
     width: 100%;
     position: relative;
+    .icon-box {
+      margin-right: 10px;
+      height: 100%;
+      display: flex;
+      align-items: center;
+    }
     .com-list-box {
       :deep(.el-collapse) {
         border-top: none;

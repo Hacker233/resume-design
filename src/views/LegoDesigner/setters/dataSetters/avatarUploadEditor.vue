@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="avatar-editor">
     <el-form-item label="头像上传:">
       <el-upload
         class="hj-avatar-uploader"
@@ -8,6 +8,7 @@
         :show-file-list="false"
         :on-success="handleAvatarSuccess"
         :before-upload="beforeAvatarUpload"
+        accept=".jpg,.jpeg,.png,.gif,.JPG,.JPEG,.PNG,.GIF"
       >
         <img
           v-if="widgetItem.dataSource.avatarSrc"
@@ -16,6 +17,7 @@
         />
         <el-icon v-else class="avatar-uploader-icon"><Plus /></el-icon>
       </el-upload>
+      <p class="tips">头像大小不能超过3M，仅支持（jpg、jpeg、png、gif）格式</p>
     </el-form-item>
   </div>
 </template>
@@ -43,8 +45,8 @@
   };
 
   const beforeAvatarUpload: UploadProps['beforeUpload'] = (rawFile) => {
-    if (rawFile.size / 1024 / 1024 > 5) {
-      ElMessage.error('预览图不能大于5M');
+    if (rawFile.size / 1024 / 1024 > 3) {
+      ElMessage.error('头像不能大于3M');
       return false;
     }
     return true;
@@ -76,5 +78,13 @@
     width: 178px;
     height: 178px;
     text-align: center;
+  }
+
+  .avatar-editor {
+    .tips {
+      color: #8c939d;
+      font-size: 12px;
+      margin-top: 5px;
+    }
   }
 </style>

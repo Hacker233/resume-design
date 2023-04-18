@@ -1,11 +1,11 @@
 <template>
-  <div class="year-editor-box">
-    <el-form-item label="年份选择:">
+  <div class="day-editor-box">
+    <el-form-item label="日期选择:">
       <el-date-picker
-        v-model="widgetItem.dataSource.year"
-        type="year"
-        placeholder="请选择年份"
-        value-format="YYYY"
+        v-model="widgetItem.dataSource.day"
+        type="date"
+        placeholder="请选择日期"
+        value-format="YYYY.MM.DD"
       />
     </el-form-item>
   </div>

@@ -47,6 +47,7 @@ interface IWidget {
 interface IWidgetTab {
   title: string;
   category: string;
+  icon: string;
   dataSource: any; // 该分类下公用数据源
   list: Array<IWidget>;
 }

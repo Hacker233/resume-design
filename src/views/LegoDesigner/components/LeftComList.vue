@@ -24,6 +24,8 @@
       <layer-manage v-show="activeTab === 2" @select-widget="selectWidget"></layer-manage>
       <!-- JSON查看 -->
       <json-drawer :drawer="drawer" @close-json-drawer="closeJsonDrawer"></json-drawer>
+      <!-- 背景图 -->
+      <background-img v-show="activeTab === 4"></background-img>
     </div>
   </div>
 </template>
@@ -32,6 +34,7 @@
   import WidgetList from './WidgetList/WidgetList.vue';
   import LayerManage from './LayerManage/LayerManage.vue';
   import JsonDrawer from './JsonDrawer/JsonDrawer.vue';
+  import BackgroundImg from './BackgroundImg/BackgroundImg.vue';
 
   // 默认选中tab
   const activeTab = ref<number>(1);
@@ -50,6 +53,11 @@
       id: 3,
       iconfont: 'icon-json1',
       title: 'JSON'
+    },
+    {
+      id: 4,
+      iconfont: 'icon-background',
+      title: '背景图'
     }
   ]);
   // 点击tab

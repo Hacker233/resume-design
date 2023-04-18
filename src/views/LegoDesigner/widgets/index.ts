@@ -48,7 +48,12 @@ import Rate_1 from './rate/rate-1/rate-1.vue';
 import Rate_2 from './rate/rate-2/rate-2.vue';
 import Rate_3 from './rate/rate-3/rate-3.vue';
 import Rate_4 from './rate/rate-4/rate-4.vue';
+import Rate_5 from './rate/rate-5/rate-5.vue';
 import Date_1 from './date/date-1/date-1.vue';
+import Date_2 from './date/date-2/date-2.vue';
+import Date_3 from './date/date-3/date-3.vue';
+import Date_4 from './date/date-4/date-4.vue';
+import Date_5 from './date/date-5/date-5.vue';
 
 export const WIDGET_MAP: IWidgetMap = {
   'hj-avatar-1': Avatar_1,
@@ -100,5 +105,10 @@ export const WIDGET_MAP: IWidgetMap = {
   'hj-rate-2': Rate_2,
   'hj-rate-3': Rate_3,
   'hj-rate-4': Rate_4,
-  'hj-date-1': Date_1
+  'hj-rate-5': Rate_5,
+  'hj-date-1': Date_1,
+  'hj-date-2': Date_2,
+  'hj-date-3': Date_3,
+  'hj-date-4': Date_4,
+  'hj-date-5': Date_5
 };

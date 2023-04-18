@@ -6,7 +6,6 @@
       <global-font-family-editor></global-font-family-editor>
       <global-background-color-editor></global-background-color-editor>
       <global-opacity-editor></global-opacity-editor>
-      <global-background-img-editor></global-background-img-editor>
     </el-form>
   </div>
 </template>
@@ -16,5 +15,4 @@
   import globalFontFamilyEditor from '../../setters/globalFontFamilyEditor.vue';
   import globalBackgroundColorEditor from '../../setters/globalBackgroundColorEditor.vue';
   import globalOpacityEditor from '../../setters/globalOpacityEditor.vue';
-  import globalBackgroundImgEditor from '../../setters/globalBackgroundImgEditor.vue';
 </script>
