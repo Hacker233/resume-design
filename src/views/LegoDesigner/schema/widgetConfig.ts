@@ -1636,7 +1636,53 @@ export const WIDGET_CONFIG_LIST: Array<IWidgetTab> = [
     title: '日期',
     category: 'date',
     dataSource: {},
-    list: []
+    list: [
+      {
+        id: '', // 组件唯一性id
+        componentName: 'hj-date-1', // 组件名
+        commentType: '', // 组件类型
+        icon: '', // 组件icon
+        title: '', // 组件中文名称
+        description: '仪表盘', // 组件描述信息
+        screenShot: {
+          src: 'hj-date-1.png',
+          width: '90px',
+          height: '40px',
+          borderRadius: '4px'
+        }, // 组件快照
+        keywords: '仪表盘', // 组件关键词，用于搜索
+        category: 'rate', // 组件分类
+        props: {}, // 组件属性
+        css: {
+          left: 0,
+          top: 0,
+          zIndex: 1,
+          width: 130,
+          height: 30,
+          rotate: 0, // 旋转角度
+          fontSize: 16,
+          lineHeight: 1.5,
+          fontFamily: '方正黑体简体',
+          fontWeight: 600,
+          textAlign: 'justify',
+          fontColor: '#333333',
+          backgroundColor: '#fff',
+          padding: {
+            top: 0,
+            right: 0,
+            bottom: 0,
+            left: 0
+          },
+          borderWidth: 0,
+          borderRadius: 0,
+          borderColor: '#eee',
+          borderStyle: 'solid'
+        }, // 组件样式
+        dataSource: {
+          year: '2023'
+        } // 组件单独数据
+      }
+    ]
   },
   {
     title: '图标',

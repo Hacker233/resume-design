@@ -48,6 +48,7 @@ import Rate_1 from './rate/rate-1/rate-1.vue';
 import Rate_2 from './rate/rate-2/rate-2.vue';
 import Rate_3 from './rate/rate-3/rate-3.vue';
 import Rate_4 from './rate/rate-4/rate-4.vue';
+import Date_1 from './date/date-1/date-1.vue';
 
 export const WIDGET_MAP: IWidgetMap = {
   'hj-avatar-1': Avatar_1,
@@ -98,5 +99,6 @@ export const WIDGET_MAP: IWidgetMap = {
   'hj-rate-1': Rate_1,
   'hj-rate-2': Rate_2,
   'hj-rate-3': Rate_3,
-  'hj-rate-4': Rate_4
+  'hj-rate-4': Rate_4,
+  'hj-date-1': Date_1
 };

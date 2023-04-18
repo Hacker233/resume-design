@@ -28,6 +28,7 @@ declare module '@vue/runtime-core' {
     ElCollapse: typeof import('element-plus/es')['ElCollapse'];
     ElCollapseItem: typeof import('element-plus/es')['ElCollapseItem'];
     ElConfigProvider: typeof import('element-plus/es')['ElConfigProvider'];
+    ElDatePicker: typeof import('element-plus/es')['ElDatePicker'];
     ElDialog: typeof import('element-plus/es')['ElDialog'];
     ElDrawer: typeof import('element-plus/es')['ElDrawer'];
     ElDropdown: typeof import('element-plus/es')['ElDropdown'];
