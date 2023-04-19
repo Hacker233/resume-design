@@ -40,6 +40,7 @@ import monthEditor from './dataSetters/monthEditor.vue';
 import dayEditor from './dataSetters/dayEditor.vue';
 import monthRangeEditor from './dataSetters/monthRangeEditor.vue';
 import dateRangeEditor from './dataSetters/dateRangeEditor.vue';
+import imgUrlUploadEditor from './dataSetters/imgUrlUploadEditor.vue';
 
 // 属性设置组件对应关系
 export const SETTERS_MAP: ISetterMap = {
@@ -85,5 +86,6 @@ export const DATA_SETTERS_MAP: ISetterMap = {
   month: monthEditor,
   day: dayEditor,
   monthRange: monthRangeEditor,
-  dateRange: dateRangeEditor
+  dateRange: dateRangeEditor,
+  imgUrl: imgUrlUploadEditor
 };

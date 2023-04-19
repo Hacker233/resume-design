@@ -1827,7 +1827,7 @@ export const WIDGET_CONFIG_LIST: Array<IWidgetTab> = [
         description: '月份范围', // 组件描述信息
         screenShot: {
           src: 'hj-date-4.png',
-          width: '150px',
+          width: '160px',
           height: '30px',
           borderRadius: '4px'
         }, // 组件快照
@@ -1911,6 +1911,15 @@ export const WIDGET_CONFIG_LIST: Array<IWidgetTab> = [
     ]
   },
   {
+    title: '图片',
+    category: 'image',
+    icon: 'icon-beijingshuju',
+    dataSource: {
+      imgUrl: ''
+    },
+    list: []
+  },
+  {
     title: '图标',
     category: 'icon',
     icon: 'icon-xingquaihao',
@@ -1921,6 +1930,13 @@ export const WIDGET_CONFIG_LIST: Array<IWidgetTab> = [
     title: '列表',
     category: 'li',
     icon: 'icon-danlieliebiao',
+    dataSource: {},
+    list: []
+  },
+  {
+    title: '其他',
+    category: 'other',
+    icon: 'icon-zuopin1',
     dataSource: {},
     list: []
   }

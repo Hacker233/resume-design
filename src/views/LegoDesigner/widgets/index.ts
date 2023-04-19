@@ -17,6 +17,7 @@ import Text_9 from './text/text-9/text-9.vue';
 import Text_10 from './text/text-10/text-10.vue';
 import Icon from './icon/LegoDesignIconRender.vue';
 import Li from './li/LegoLiListRender.vue';
+import Image from './image/ImageListRender.vue';
 import Square from './shape/square/square.vue';
 import Rectangle from './shape/rectangle/rectangle.vue';
 import Circle from './shape/circle/circle.vue';
@@ -74,6 +75,7 @@ export const WIDGET_MAP: IWidgetMap = {
   'hj-text-10': Text_10,
   'hj-icon': Icon,
   'hj-li': Li,
+  'hj-image': Image,
   'hj-square': Square,
   'hj-rectangle': Rectangle,
   'hj-circle': Circle,

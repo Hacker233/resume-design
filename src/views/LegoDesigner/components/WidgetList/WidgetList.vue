@@ -36,6 +36,11 @@
             ></lego-design-icon>
             <!-- 列表 -->
             <lego-li-list v-else-if="item.category === 'li'" :widget-data="itemCom"></lego-li-list>
+            <!-- 图片 -->
+            <image-list-vue
+              v-else-if="item.category === 'image'"
+              :widget-data="itemCom"
+            ></image-list-vue>
             <!-- 普通组件 -->
             <img v-else :src="getAssetsFile(itemCom.screenShot.src)" />
           </div>
@@ -51,10 +56,13 @@
   import { getAssetsFile } from '../../utils/common';
   import LegoDesignIcon from '../../widgets/icon/LegoDesignIconList.vue';
   import LegoLiList from '../../widgets/li/LegoLiList.vue';
+  import ImageListVue from '../../widgets/image/ImageList.vue';
   import { useIconfontItem } from '../../widgets/icon/useIconfontItem';
   import { iconfontList } from '../../widgets/icon/iconfont';
   import { ListStyleTypeList } from '../../widgets/li/liList';
   import { useLiListItem } from '../../widgets/li/useLiListItem';
+  import { useImageListItem } from '../../widgets/image/useImageListItem';
+  import { imageList } from '../../widgets/image/imageList';
 
   const emit = defineEmits(['addWidget']);
 
@@ -99,6 +107,16 @@
     });
   };
   initLiList();
+
+  // 初始化图片列表
+  const initImgList = () => {
+    WIDGET_CONFIG_LIST.forEach((cptList) => {
+      if (cptList.category === 'image') {
+        imageList.forEach((imgItem) => cptList.list.push(useImageListItem(imgItem)));
+      }
+    });
+  };
+  initImgList();
 </script>
 <style lang="scss" scoped>
   .widget-list-box {
