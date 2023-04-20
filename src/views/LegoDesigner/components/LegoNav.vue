@@ -271,7 +271,8 @@
     })
       .then(() => {
         // 重置JSON
-        resetHJSchemaJsonData();
+        const id = HJSchemaJsonStore.value.id;
+        resetHJSchemaJsonData(id);
         console.log('HJSchemaJsonStore', HJSchemaJsonStore);
         // 重置选中状态
         resetSelectWidget();
@@ -311,7 +312,6 @@
       distinguishCancelAndClose: true,
       type: 'warning',
       beforeClose: async (action, instance, done) => {
-        debugger;
         if (action === 'confirm') {
           instance.confirmButtonLoading = true;
           // 保存草稿并离开

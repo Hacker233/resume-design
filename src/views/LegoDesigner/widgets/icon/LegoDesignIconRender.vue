@@ -28,6 +28,7 @@
       v-bind('props.widgetData?.css.padding.bottom + "px"')
       v-bind('props.widgetData?.css.padding.left + "px"');
     border-color: v-bind('props.widgetData?.css.borderColor');
+    border-radius: v-bind('props.widgetData?.css.borderRadius+ "px"');
     overflow: hidden;
     background-color: v-bind('props.widgetData?.css.backgroundColor');
     display: flex;

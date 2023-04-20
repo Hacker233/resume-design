@@ -141,7 +141,7 @@
 
   // 上传文件地址
   const uploadAddress = () => {
-    return CONFIG.serverAddress + '/huajian/upload/file/templatePreview';
+    return CONFIG.serverAddress + '/huajian/upload/file/legoTemplatePreview';
   };
 
   const handleAvatarSuccess: UploadProps['onSuccess'] = (response: {

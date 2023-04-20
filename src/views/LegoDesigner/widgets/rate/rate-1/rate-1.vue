@@ -37,6 +37,7 @@
     background: v-bind('props.widgetData?.css.backgroundColor');
     :deep(.el-rate__icon) {
       font-size: v-bind('props.widgetData?.css.rateSize + "px"');
+      letter-spacing: v-bind('props.widgetData?.css.letterSpace + "px"');
     }
     :deep(.is-active) {
       color: v-bind('props.widgetData?.props.activeColor');

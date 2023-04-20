@@ -86,7 +86,8 @@ export default defineComponent({
               top: '0',
               left: item + 'px',
               borderLeft: `1px dashed ${this.referenceLineColor}`,
-              position: 'absolute'
+              position: 'absolute',
+              zIndex: 999999
             }
           });
         }),
@@ -98,7 +99,8 @@ export default defineComponent({
               left: '0',
               top: item + 'px',
               borderTop: `1px dashed ${this.referenceLineColor}`,
-              position: 'absolute'
+              position: 'absolute',
+              zIndex: 999999
             }
           });
         })

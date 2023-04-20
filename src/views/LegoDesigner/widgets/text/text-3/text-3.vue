@@ -28,6 +28,7 @@
     font-family: v-bind('props.widgetData?.css.fontFamily');
     font-weight: v-bind('props.widgetData?.css.fontWeight');
     font-size: v-bind('props.widgetData?.css.fontSize + "px"');
+    letter-spacing: v-bind('props.widgetData?.css.letterSpace + "px"');
     line-height: v-bind('props.widgetData?.css.lineHeight');
     text-align: v-bind('props.widgetData?.css.textAlign');
     background: radial-gradient(circle farthest-corner at center center, #b8e1fc 0%, #231421 100%);

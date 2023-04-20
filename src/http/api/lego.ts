@@ -1,6 +1,6 @@
 import http from '../request';
 
-// 查询用户相关数据
+// 保存用户草稿
 export const legoUserResumeAsync: any = (data: any) => {
   return http.request({
     url: '/huajian/lego/legoUserResume',

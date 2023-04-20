@@ -1,11 +1,17 @@
 <template>
-  <div class="hj-date-1-box">
-    <p>{{ legoFormatDate(widgetData?.dataSource.monthRange) }}</p>
+  <div class="hj-other-1-box">
+    <div class="icon-box">
+      <svg-icon
+        :icon-name="widgetData?.props.icon"
+        :color="widgetData?.css.iconColor"
+        :size="widgetData?.css.iconSize + 'px'"
+      ></svg-icon>
+    </div>
+    <p>{{ widgetData?.dataSource.text }}</p>
   </div>
 </template>
 <script lang="ts" setup>
   import { IWidget } from '@/views/LegoDesigner/types';
-  import { legoFormatDate } from '../../../utils/common';
 
   interface IAvatar {
     widgetData: IWidget | null; // 模块数据
@@ -15,7 +21,10 @@
   });
 </script>
 <style lang="scss" scoped>
-  .hj-date-1-box {
+  .hj-other-1-box {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     width: v-bind('props.widgetData?.css.width + "px"');
     height: v-bind('props.widgetData?.css.height + "px"');
     border-style: v-bind('props.widgetData?.css.borderStyle');
@@ -33,8 +42,7 @@
       font-weight: v-bind('props.widgetData?.css.fontWeight');
       font-size: v-bind('props.widgetData?.css.fontSize + "px"');
       letter-spacing: v-bind('props.widgetData?.css.letterSpace + "px"');
-      line-height: v-bind('props.widgetData?.css.lineHeight');
-      text-align: v-bind('props.widgetData?.css.textAlign');
+      letter-spacing: v-bind('props.widgetData?.css.letterSpace + "px"');
     }
   }
 </style>

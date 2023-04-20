@@ -52,6 +52,7 @@
     :deep(.el-progress__text) {
       span {
         font-size: v-bind('props.widgetData?.css.fontSize + "px"');
+        letter-spacing: v-bind('props.widgetData?.css.letterSpace + "px"');
         color: v-bind('props.widgetData?.props.aidedTextColor');
       }
     }

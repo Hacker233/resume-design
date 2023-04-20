@@ -2,7 +2,7 @@
 <template>
   <div class="color-picker-box">
     <div class="item-box">
-      <el-popover :teleported="false" :width="276" trigger="click">
+      <el-popover :teleported="true" :width="276" trigger="click">
         <template #reference>
           <div class="custom-color-btn" title="自定义颜色"> </div>
         </template>

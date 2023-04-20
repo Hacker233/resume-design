@@ -19,8 +19,13 @@ export const useLegoJsonStore = defineStore('legoJsonStore', () => {
   function pushComponent(data: any, pageIndex: number) {
     return HJSchemaJsonStore.value.componentsTree[pageIndex].children.push(data) - 1; // 返回插入后的索引
   }
-  function resetHJSchemaJsonData() {
-    HJSchemaJsonStore.value = cloneDeep(HJSchema);
+  function resetHJSchemaJsonData(id?: string) {
+    if (id) {
+      HJSchemaJsonStore.value = cloneDeep(HJSchema);
+      HJSchemaJsonStore.value.id = id;
+    } else {
+      HJSchemaJsonStore.value = cloneDeep(HJSchema);
+    }
   }
 
   return {

@@ -4,7 +4,7 @@
   box-sizing: border-box;
 }
 .vdr-container.active {
-  border-color: #000;
+  border-color: #af7d37;
   border-style: dashed;
 }
 .vdr-container.dragging {
@@ -14,10 +14,11 @@
 .vdr-handle {
   box-sizing: border-box;
   position: absolute;
-  width: 7px;
-  height: 7px;
+  width: 9px;
+  height: 9px;
   background: #f0f0f0;
-  border: 1px solid #333;
+  border: 1px solid #af7d37;
+  border-radius: 50%;
 }
 .vdr-handle-tl {
   top: -4px;

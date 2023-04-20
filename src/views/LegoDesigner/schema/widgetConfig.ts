@@ -234,7 +234,7 @@ export const WIDGET_CONFIG_LIST: Array<IWidgetTab> = [
         commentType: '', // 组件类型
         icon: '', // 组件icon
         title: '', // 组件中文名称
-        description: '正方形头像', // 组件描述信息
+        description: '文本', // 组件描述信息
         screenShot: {
           src: 'text-1.png',
           width: '116px',
@@ -252,6 +252,7 @@ export const WIDGET_CONFIG_LIST: Array<IWidgetTab> = [
           height: 20,
           rotate: 0, // 旋转角度
           fontSize: 14,
+          letterSpace: 1,
           lineHeight: 1.5,
           fontFamily: '方正黑体简体',
           fontWeight: 500,
@@ -294,6 +295,7 @@ export const WIDGET_CONFIG_LIST: Array<IWidgetTab> = [
           height: 20,
           rotate: 0, // 旋转角度
           fontSize: 14,
+          letterSpace: 1,
           lineHeight: 1.5,
           fontFamily: '方正黑体简体',
           fontWeight: 500,
@@ -335,6 +337,7 @@ export const WIDGET_CONFIG_LIST: Array<IWidgetTab> = [
           height: 20,
           rotate: 0, // 旋转角度
           fontSize: 14,
+          letterSpace: 1,
           lineHeight: 1.5,
           fontFamily: '方正黑体简体',
           fontWeight: 500,
@@ -376,6 +379,7 @@ export const WIDGET_CONFIG_LIST: Array<IWidgetTab> = [
           height: 20,
           rotate: 0, // 旋转角度
           fontSize: 14,
+          letterSpace: 1,
           lineHeight: 1.5,
           fontFamily: '方正黑体简体',
           fontWeight: 500,
@@ -417,6 +421,7 @@ export const WIDGET_CONFIG_LIST: Array<IWidgetTab> = [
           height: 20,
           rotate: 0, // 旋转角度
           fontSize: 14,
+          letterSpace: 1,
           lineHeight: 1.5,
           fontFamily: '方正黑体简体',
           fontWeight: 500,
@@ -458,6 +463,7 @@ export const WIDGET_CONFIG_LIST: Array<IWidgetTab> = [
           height: 20,
           rotate: 0, // 旋转角度
           fontSize: 14,
+          letterSpace: 1,
           lineHeight: 1.5,
           fontFamily: '方正黑体简体',
           fontWeight: 500,
@@ -499,6 +505,7 @@ export const WIDGET_CONFIG_LIST: Array<IWidgetTab> = [
           height: 20,
           rotate: 0, // 旋转角度
           fontSize: 14,
+          letterSpace: 1,
           lineHeight: 1.5,
           fontFamily: '方正黑体简体',
           fontWeight: 500,
@@ -540,6 +547,7 @@ export const WIDGET_CONFIG_LIST: Array<IWidgetTab> = [
           height: 20,
           rotate: 0, // 旋转角度
           fontSize: 14,
+          letterSpace: 1,
           lineHeight: 1.5,
           fontFamily: '方正黑体简体',
           fontWeight: 500,
@@ -581,6 +589,7 @@ export const WIDGET_CONFIG_LIST: Array<IWidgetTab> = [
           height: 20,
           rotate: 0, // 旋转角度
           fontSize: 14,
+          letterSpace: 1,
           lineHeight: 1.5,
           fontFamily: '方正黑体简体',
           fontWeight: 500,
@@ -622,6 +631,7 @@ export const WIDGET_CONFIG_LIST: Array<IWidgetTab> = [
           height: 20,
           rotate: 0, // 旋转角度
           fontSize: 14,
+          letterSpace: 1,
           lineHeight: 1.5,
           fontFamily: '方正黑体简体',
           fontWeight: 500,
@@ -1540,6 +1550,7 @@ export const WIDGET_CONFIG_LIST: Array<IWidgetTab> = [
           height: 15,
           rotate: 0, // 旋转角度
           fontSize: 14,
+          letterSpace: 1,
           backgroundColor: '#fff',
           padding: {
             top: 0,
@@ -1581,6 +1592,7 @@ export const WIDGET_CONFIG_LIST: Array<IWidgetTab> = [
           height: 130,
           rotate: 0, // 旋转角度
           fontSize: 14,
+          letterSpace: 1,
           backgroundColor: '#fff',
           padding: {
             top: 0,
@@ -1622,6 +1634,7 @@ export const WIDGET_CONFIG_LIST: Array<IWidgetTab> = [
           height: 130,
           rotate: 0, // 旋转角度
           fontSize: 14,
+          letterSpace: 1,
           backgroundColor: '#fff',
           padding: {
             top: 0,
@@ -1662,6 +1675,7 @@ export const WIDGET_CONFIG_LIST: Array<IWidgetTab> = [
           height: 30,
           rotate: 0, // 旋转角度
           fontSize: 14,
+          letterSpace: 1,
           backgroundColor: '#fff',
           padding: {
             top: 0,
@@ -1707,6 +1721,7 @@ export const WIDGET_CONFIG_LIST: Array<IWidgetTab> = [
           height: 30,
           rotate: 0, // 旋转角度
           fontSize: 16,
+          letterSpace: 1,
           lineHeight: 1.5,
           fontFamily: '方正黑体简体',
           fontWeight: 600,
@@ -1752,6 +1767,7 @@ export const WIDGET_CONFIG_LIST: Array<IWidgetTab> = [
           height: 30,
           rotate: 0, // 旋转角度
           fontSize: 16,
+          letterSpace: 1,
           lineHeight: 1.5,
           fontFamily: '方正黑体简体',
           fontWeight: 600,
@@ -1797,6 +1813,7 @@ export const WIDGET_CONFIG_LIST: Array<IWidgetTab> = [
           height: 30,
           rotate: 0, // 旋转角度
           fontSize: 16,
+          letterSpace: 1,
           lineHeight: 1.5,
           fontFamily: '方正黑体简体',
           fontWeight: 600,
@@ -1842,6 +1859,7 @@ export const WIDGET_CONFIG_LIST: Array<IWidgetTab> = [
           height: 30,
           rotate: 0, // 旋转角度
           fontSize: 16,
+          letterSpace: 1,
           lineHeight: 1.5,
           fontFamily: '方正黑体简体',
           fontWeight: 600,
@@ -1887,6 +1905,7 @@ export const WIDGET_CONFIG_LIST: Array<IWidgetTab> = [
           height: 30,
           rotate: 0, // 旋转角度
           fontSize: 16,
+          letterSpace: 1,
           lineHeight: 1.5,
           fontFamily: '方正黑体简体',
           fontWeight: 600,
@@ -1938,6 +1957,55 @@ export const WIDGET_CONFIG_LIST: Array<IWidgetTab> = [
     category: 'other',
     icon: 'icon-zuopin1',
     dataSource: {},
-    list: []
+    list: [
+      {
+        id: '', // 组件唯一性id
+        componentName: 'hj-other-1', // 组件名
+        commentType: '', // 组件类型
+        icon: '', // 组件icon
+        title: '', // 组件中文名称
+        description: '图标文字', // 组件描述信息
+        screenShot: {
+          src: 'hj-other-1.png',
+          width: '114px',
+          height: '40px',
+          borderRadius: '4px'
+        }, // 组件快照
+        keywords: '图标文字', // 组件关键词，用于搜索
+        category: 'other', // 组件分类
+        props: {
+          icon: 'icon-wangzhan'
+        }, // 组件属性
+        css: {
+          left: 0,
+          top: 0,
+          zIndex: 1,
+          width: 95,
+          height: 30,
+          rotate: 0, // 旋转角度
+          fontSize: 16,
+          iconSize: 16,
+          letterSpace: 1,
+          fontFamily: '方正黑体简体',
+          fontWeight: 500,
+          fontColor: '#333333',
+          iconColor: '#74a274',
+          backgroundColor: '#fff',
+          padding: {
+            top: 0,
+            right: 0,
+            bottom: 0,
+            left: 0
+          },
+          borderWidth: 0,
+          borderRadius: 0,
+          borderColor: '#eee',
+          borderStyle: 'solid'
+        }, // 组件样式
+        dataSource: {
+          text: '期望薪酬'
+        } // 组件单独数据
+      }
+    ]
   }
 ];

@@ -29,6 +29,7 @@
     font-family: v-bind('props.widgetData?.css.fontFamily');
     font-weight: v-bind('props.widgetData?.css.fontWeight');
     font-size: v-bind('props.widgetData?.css.fontSize + "px"');
+    letter-spacing: v-bind('props.widgetData?.css.letterSpace + "px"');
     line-height: v-bind('props.widgetData?.css.lineHeight');
     text-align: v-bind('props.widgetData?.css.textAlign');
     background: linear-gradient(to bottom right, #25cc0f 0%, #9e3212 100%);
