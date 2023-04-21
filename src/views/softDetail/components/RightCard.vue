@@ -28,6 +28,14 @@
         </div>
       </div>
     </div>
+    <!-- 添加微信 -->
+    <div class="download-box">
+      <com-title title="微信交流群"></com-title>
+      <div v-viewer class="vx-box">
+        <p>备注【加群】</p>
+        <img src="@/assets/images/vx.jpg" alt="微信" />
+      </div>
+    </div>
 
     <!-- 获取简币弹窗 -->
     <get-integral-dialog
@@ -203,6 +211,24 @@
               margin: 0 5px;
             }
           }
+        }
+      }
+
+      .vx-box {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        p {
+          font-size: 16px;
+          margin: 15px;
+          letter-spacing: 2px;
+          font-weight: 600;
+        }
+        img {
+          max-width: 100%;
+          height: 100%;
+          cursor: pointer;
         }
       }
     }
