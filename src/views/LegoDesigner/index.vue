@@ -50,6 +50,8 @@
                         v-model:w="item.css.width"
                         v-model:h="item.css.height"
                         v-model:active="widgetActiveObj[item.id]"
+                        :min-w="0"
+                        :min-h="0"
                         :init-w="item.css.width"
                         :init-h="item.css.height"
                         :z-index="item.css.zIndex"

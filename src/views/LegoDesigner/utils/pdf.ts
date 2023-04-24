@@ -12,7 +12,8 @@ export const exportLegoPdf = async (token?: string, id?: string) => {
     margin: '',
     filename: '',
     width: HJSchemaJsonStore.css.width + 'px',
-    height: HJSchemaJsonStore.css.height + 'px'
+    height: HJSchemaJsonStore.css.height + 'px',
+    integralPayGoodsId: id
   };
   const pdfData = await getLegoResumePdfAsync(params);
   if (pdfData.status) {
@@ -37,7 +38,8 @@ export const exportLegoPNG = async (token?: string, id?: string) => {
   const fileName = HJSchemaJsonStore.config.title;
   const params = {
     url: `${location.origin}/legoPrintPdfPreview?token=${token}&&id=${id}`,
-    selector: '#lego-preview-designer'
+    selector: '#lego-preview-designer',
+    integralPayGoodsId: id
   };
   const pdfData = await getLegoPNGAsync(params);
   if (pdfData.status) {

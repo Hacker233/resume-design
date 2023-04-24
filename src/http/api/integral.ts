@@ -68,3 +68,12 @@ export const integralDeleteAsync: any = (id: string) => {
     method: 'delete'
   });
 };
+
+// 管理员添加简币记录
+export const addIntegralLogByAdminAsync: any = (data: any) => {
+  return http.request({
+    url: '/huajian/integral/addIntegralLogByAdmin',
+    method: 'post',
+    data: data
+  });
+};

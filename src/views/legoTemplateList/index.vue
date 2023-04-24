@@ -62,7 +62,6 @@
   import CommonLoading from '@/components/CommonLoading/CommonLoading.vue';
   import TemplateListVue from './components/TemplateList.vue';
   import LatestDesign from './components/LatestDesign.vue';
-  import { ElNotification } from 'element-plus';
 
   // 是否显示骨架
   const isShowSkeleton = ref<boolean>(true);
@@ -219,11 +218,11 @@
   };
 
   onMounted(() => {
-    ElNotification({
-      title: '警告',
-      message: '该功能尚在完善中，您的数据有可能将不被保存~',
-      type: 'warning'
-    });
+    // ElNotification({
+    //   title: '警告',
+    //   message: '该功能尚在完善中，您的数据有可能将不被保存~',
+    //   type: 'warning'
+    // });
   });
 </script>
 <style lang="scss" scoped>

@@ -11,8 +11,8 @@
     <!-- 标题 -->
     <template #header>
       <div class="get-integral-header-box">
-        如何获取简币？
-        <img width="24" src="@/assets/images/jianB.png" alt="简币" />
+        确定消费{{ payNumber }}<img width="24" src="@/assets/images/jianB.png" alt="简币" />
+        {{ placeholder }}？
       </div>
     </template>
     <div class="get-integral-content-box">
@@ -51,6 +51,12 @@
         </p>
       </div>
     </div>
+    <template #footer>
+      <span class="dialog-footer">
+        <el-button @click="cancle">取消</el-button>
+        <el-button type="primary" @click="confirmDialog">确定</el-button>
+      </span>
+    </template>
   </el-dialog>
 </template>
 <script lang="ts" setup>
@@ -58,12 +64,16 @@
   import appStore from '@/store';
   import { Most_Integral_Comment } from '@/config/integral/index';
 
-  const emit = defineEmits(['cancle']);
+  const emit = defineEmits(['cancle', 'confirm']);
   interface TDialog {
     dialogGetIntegralVisible: boolean;
+    payNumber: number;
+    placeholder: string;
   }
   withDefaults(defineProps<TDialog>(), {
-    dialogGetIntegralVisible: false
+    dialogGetIntegralVisible: false,
+    payNumber: 0,
+    placeholder: '下载该模板'
   });
 
   // 关闭前回调
@@ -84,6 +94,16 @@
     } else {
       ElMessage.error(data.data.message);
     }
+  };
+
+  // 确定弹窗
+  const confirmDialog = () => {
+    emit('confirm');
+  };
+
+  // 取消弹窗
+  const cancle = () => {
+    emit('cancle');
   };
 </script>
 <style lang="scss">

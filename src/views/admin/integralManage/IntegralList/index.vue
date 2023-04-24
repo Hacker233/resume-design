@@ -26,6 +26,8 @@
       <el-form-item>
         <el-button type="primary" @click="onSubmit">查询</el-button>
         <el-button @click="resetForm">重置</el-button>
+        <!-- 新增简币记录 -->
+        <el-button type="primary" @click="openDialog">增加记录</el-button>
       </el-form-item>
     </el-form>
 
@@ -99,6 +101,13 @@
       :current-page="currentPage"
       @handle-current-change="handleCurrentChange"
     ></Pagination>
+
+    <!-- 新增简币记录弹窗 -->
+    <integral-log-dialog
+      :dialog-intergal-log-visible="dialogIntergalLogVisible"
+      @cancle="cancleDialog"
+      @update-success="successDialog"
+    ></integral-log-dialog>
   </div>
 </template>
 <script lang="ts" setup>
@@ -106,6 +115,7 @@
   import { formatListDate } from '@/utils/common';
   import { ElMessageBox } from 'element-plus';
   import 'element-plus/es/components/message-box/style/index';
+  import IntegralLogDialog from './components/IntegralLogDialog.vue';
 
   // 表单查询
   const formInline = reactive({
@@ -125,7 +135,7 @@
       value: '1'
     }
   ]);
-  // 查询所有文章列表
+  // 查询所有简币列表
   const page = ref<number>(1);
   const limit = ref<number>(10);
   const total = ref<number>(0);
@@ -198,6 +208,23 @@
         }
       })
       .catch(() => {});
+  };
+
+  // 打开记录弹窗
+  const dialogIntergalLogVisible = ref<boolean>(false);
+  const openDialog = () => {
+    dialogIntergalLogVisible.value = true;
+  };
+
+  // 取消弹窗
+  const cancleDialog = () => {
+    dialogIntergalLogVisible.value = false;
+  };
+
+  // 弹窗提交成功
+  const successDialog = () => {
+    dialogIntergalLogVisible.value = false;
+    getAllIntegralList();
   };
 </script>
 <style lang="scss" scoped>

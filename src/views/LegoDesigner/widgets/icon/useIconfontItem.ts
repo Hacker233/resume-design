@@ -25,7 +25,9 @@ export const useIconfontItem = (iconItem: {
     }, // 组件快照
     keywords: iconItem.name, // 组件关键词，用于搜索
     category: 'icon', // 组件分类
-    props: {}, // 组件属性
+    props: {
+      icon: 'icon-' + iconItem.font_class
+    }, // 组件属性
     css: {
       left: 0,
       top: 0,

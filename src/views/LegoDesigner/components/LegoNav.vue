@@ -160,7 +160,6 @@
   const downloadResumeFile = async (type: string) => {
     // 先保存草稿
     await saveDraft();
-    // const url = getLegoPdfUrl(localStorage.getItem('token') as string, _id.value);
     generateReport(type); // 导出
   };
 
@@ -180,8 +179,10 @@
     let token = localStorage.getItem('token') as string;
     if (type === 'pdf') {
       await exportLegoPdf(token, _id.value);
+      ElMessage.success('已扣除-5简币');
     } else {
       await exportLegoPNG(token, _id.value);
+      ElMessage.success('已扣除-5简币');
     }
 
     clearInterval(timer);

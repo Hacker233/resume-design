@@ -1,7 +1,7 @@
 <template>
   <div class="lego-design-icon-box">
     <svg-icon
-      :icon-name="widgetData?.icon"
+      :icon-name="widgetData?.props.icon"
       :color="widgetData?.css.iconColor"
       :size="widgetData?.css.iconSize + 'px'"
     ></svg-icon>

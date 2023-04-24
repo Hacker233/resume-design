@@ -190,6 +190,9 @@
           .add-integral {
             color: green;
             letter-spacing: 2px;
+            width: 110px;
+            display: flex;
+            justify-content: flex-end;
           }
           .sub-integral {
             color: red;

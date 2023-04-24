@@ -14,8 +14,8 @@
 .vdr-handle {
   box-sizing: border-box;
   position: absolute;
-  width: 9px;
-  height: 9px;
+  width: 6px;
+  height: 6px;
   background: #f0f0f0;
   border: 1px solid #af7d37;
   border-radius: 50%;

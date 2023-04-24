@@ -1,6 +1,6 @@
 <template>
   <div class="lego-design-icon-box">
-    <svg-icon :icon-name="widgetData?.icon" color="#74a274" size="25px"></svg-icon>
+    <svg-icon :icon-name="widgetData?.props.icon" color="#74a274" size="25px"></svg-icon>
   </div>
 </template>
 <script lang="ts" setup>
