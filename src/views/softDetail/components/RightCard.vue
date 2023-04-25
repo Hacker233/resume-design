@@ -37,6 +37,15 @@
       </div>
     </div>
 
+    <!-- QQ群 -->
+    <div class="download-box">
+      <com-title title="QQ交流群"></com-title>
+      <div class="qq-box">
+        <p>①群：976432879（已满）</p>
+        <p>②群：947841579</p>
+      </div>
+    </div>
+
     <!-- 获取简币弹窗 -->
     <get-integral-dialog
       :dialog-get-integral-visible="dialogGetIntegralVisible"
@@ -229,6 +238,16 @@
           max-width: 100%;
           height: 100%;
           cursor: pointer;
+        }
+      }
+
+      .qq-box {
+        padding: 10px 0;
+        p {
+          margin: 10px 0;
+          font-size: 14px;
+          color: #333;
+          letter-spacing: 1px;
         }
       }
     }
