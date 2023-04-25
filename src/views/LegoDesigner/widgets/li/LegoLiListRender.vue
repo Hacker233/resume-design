@@ -3,7 +3,7 @@
     <li
       v-for="(item, index) in widgetData?.dataSource.liList"
       :key="index"
-      :class="[{ isOutside: isOutside }]"
+      :class="[{ isOutside: isOutside && widgetData?.customProps.listStyleImage }]"
     >
       <svg-icon
         v-if="widgetData?.customProps.listStyleImage"

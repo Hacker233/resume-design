@@ -32,7 +32,7 @@
 </script>
 <style lang="scss" scoped>
   .li-list-box {
-    width: 140px;
+    width: 133px;
     height: 40px;
     display: flex;
     align-items: center;
