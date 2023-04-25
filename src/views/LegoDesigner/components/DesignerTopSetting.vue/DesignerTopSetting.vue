@@ -27,7 +27,7 @@
     <div class="center">
       <div class="title-box">
         <p v-show="!isShowIpt">
-          <span>{{ HJSchemaJsonStore.config.title }}</span>
+          <span :title="HJSchemaJsonStore.config.title">{{ HJSchemaJsonStore.config.title }}</span>
           <el-icon :size="20" color="#74a274" @click="changeTitle">
             <Edit />
           </el-icon>

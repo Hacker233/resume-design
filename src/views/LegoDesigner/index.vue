@@ -267,7 +267,7 @@
   };
 
   // 组件拖拽结束，处理组件拖入下一页的情况
-  const dragEndHandle = (widgetItem: IWidget, index: number, pageIndex: number) => {
+  const dragEndHandle = async (widgetItem: IWidget, index: number, pageIndex: number) => {
     let maxTop = HJSchemaJsonStore.value.css.height;
     let minTop = -50;
     const pages = HJSchemaJsonStore.value.componentsTree.length;
@@ -284,7 +284,11 @@
       widgetItem.css.top = widgetItem.css.top - HJSchemaJsonStore.value.css.height - 50;
       HJSchemaJsonStore.value.componentsTree[pageIndex + 1].children.push(widgetItem);
       pageActiveIndex.value = pageIndex + 1;
+
+      selectedWidgetId.value = '';
       setUuid();
+      await nextTick();
+      selectedWidgetId.value = widgetItem.id; // 渲染完成后加载右侧属性设置面板
     } else if (widgetItem.css.top < minTop) {
       // 移入上一页
       if (pageIndex === 0) {
@@ -294,7 +298,11 @@
       widgetItem.css.top = widgetItem.css.top + HJSchemaJsonStore.value.css.height + 50;
       HJSchemaJsonStore.value.componentsTree[pageIndex - 1].children.push(widgetItem);
       pageActiveIndex.value = pageIndex - 1;
+
+      selectedWidgetId.value = '';
       setUuid();
+      await nextTick();
+      selectedWidgetId.value = widgetItem.id; // 渲染完成后加载右侧属性设置面板
     } else {
       pageActiveIndex.value = pageIndex;
     }
@@ -521,9 +529,7 @@
         .css.left + 30;
     currentWidget.css.top =
       HJSchemaJsonStore.value.componentsTree[contextPageIndex.value].children[contextComIndex.value]
-        .css.top +
-      30 -
-      HJSchemaJsonStore.value.css.height * contextPageIndex.value;
+        .css.top + 30;
     addWidget(currentWidget, contextPageIndex.value, currentWidget.css.left, currentWidget.css.top);
   };
 
