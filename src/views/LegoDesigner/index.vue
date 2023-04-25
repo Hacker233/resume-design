@@ -336,6 +336,7 @@
 
   // 点击画布外不取消组件选择状态
   const designerRef = ref<any>(null);
+  const isOutDesign = ref<boolean>(true);
   const handleKeepActive = (e: any) => {
     const target = e.target || e.srcElement;
     if (pageActiveIndex.value < 0) {
@@ -343,6 +344,7 @@
     }
     // 点击画布内
     if (designerRef.value.contains(target)) {
+      isOutDesign.value = false;
       // 查询是否选中组件
       let isHaveActive = false;
       for (const key in widgetActiveObj.value) {
@@ -355,6 +357,7 @@
       }
     } else {
       // 点击画布外，如果选中的索引不为空，则持续选中
+      isOutDesign.value = true;
       if (selectedWidgetId.value !== '') {
         widgetActiveObj.value[selectedWidgetId.value] = true;
       }
@@ -389,13 +392,13 @@
       setUuid();
     } else if (event.ctrlKey && event.keyCode === 67) {
       // ctrl + c
-      // if (selectedWidgetId.value) {
-      //   contextPageIndex.value = pageActiveIndex.value;
-      //   contextComIndex.value = HJSchemaJsonStore.value.componentsTree[
-      //     pageActiveIndex.value
-      //   ].children.findIndex((item: { id: string }) => item.id === selectedWidgetId.value);
-      //   copyWidget();
-      // }
+      if (selectedWidgetId.value && !isOutDesign.value) {
+        contextPageIndex.value = pageActiveIndex.value;
+        contextComIndex.value = HJSchemaJsonStore.value.componentsTree[
+          pageActiveIndex.value
+        ].children.findIndex((item: { id: string }) => item.id === selectedWidgetId.value);
+        copyWidget();
+      }
     }
   };
   // 组件移动

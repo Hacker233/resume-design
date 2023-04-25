@@ -5,8 +5,8 @@
 </template>
 <script setup lang="ts">
   interface INoData {
-    width: string;
-    height: string;
+    width?: string;
+    height?: string;
   }
   const props = withDefaults(defineProps<INoData>(), {
     width: '300px',

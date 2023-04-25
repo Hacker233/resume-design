@@ -20,7 +20,6 @@ export default useSelectWidgetItem;
 export const useGetWidgetItemById = (id: string) => {
   const { HJSchemaJsonStore } = storeToRefs(appStore.useLegoJsonStore);
   let widgetItem = reactive<any>({});
-  console.log('id', id, HJSchemaJsonStore.value);
   HJSchemaJsonStore.value.componentsTree.forEach((page, pageIndex) => {
     const index = page.children.findIndex((item: { id: string }) => item.id === id);
     if (index > -1) {

@@ -2,31 +2,32 @@
   <div class="designer-setting-box">
     <!-- 撤销和恢复 -->
     <div class="left">
-      <div
-        :class="['icon-box', { 'is-disabled': undoCommands.length > 0 ? false : true }]"
-        @click="handleUndo"
-      >
-        <el-icon :color="undoColor" size="22px"><RefreshLeft /></el-icon>
-        <span class="undo-span">撤销</span>
+      <div class="icon-reset-box">
+        <div
+          :class="['icon-box', { 'is-disabled': undoCommands.length > 0 ? false : true }]"
+          @click="handleUndo"
+        >
+          <el-icon :color="undoColor" size="22px"><RefreshLeft /></el-icon>
+          <span class="undo-span">撤销</span>
+        </div>
+        <div
+          :class="['icon-box', { 'is-disabled': redoCommands.length > 0 ? false : true }]"
+          @click="handleRedo"
+        >
+          <el-icon :color="redoColor" size="22px"><RefreshRight /></el-icon>
+          <span class="redo-span">还原</span>
+        </div>
       </div>
-      <div
-        :class="['icon-box', { 'is-disabled': redoCommands.length > 0 ? false : true }]"
-        @click="handleRedo"
-      >
-        <el-icon :color="redoColor" size="22px"><RefreshRight /></el-icon>
-        <span class="redo-span">还原</span>
-      </div>
-    </div>
-
-    <div class="center">
       <!-- 草稿保存 -->
       <div class="draft-tips-box">
         <span class="draft-tips">{{ draftTips }}</span>
       </div>
+    </div>
 
+    <div class="center">
       <div class="title-box">
         <p v-show="!isShowIpt">
-          {{ HJSchemaJsonStore.config.title }}
+          <span>{{ HJSchemaJsonStore.config.title }}</span>
           <el-icon :size="20" color="#74a274" @click="changeTitle">
             <Edit />
           </el-icon>
@@ -216,26 +217,42 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      width: 70px;
-
-      .icon-box {
+      width: 260px;
+      .icon-reset-box {
         display: flex;
-        flex-direction: column;
-        height: 100%;
-        justify-content: space-evenly;
-        cursor: pointer;
-        user-select: none;
-        .undo-span {
-          font-size: 12px;
-          color: v-bind('undoColor');
+        justify-content: space-between;
+        width: 70px;
+        .icon-box {
+          display: flex;
+          flex-direction: column;
+          height: 100%;
+          justify-content: space-evenly;
+          cursor: pointer;
+          user-select: none;
+          .undo-span {
+            font-size: 12px;
+            color: v-bind('undoColor');
+          }
+          .redo-span {
+            font-size: 12px;
+            color: v-bind('redoColor');
+          }
         }
-        .redo-span {
-          font-size: 12px;
-          color: v-bind('redoColor');
+        .is-disabled {
+          cursor: not-allowed;
         }
       }
-      .is-disabled {
-        cursor: not-allowed;
+
+      .draft-tips-box {
+        height: 100%;
+        display: flex;
+        align-items: center;
+        margin-left: 10px;
+        flex: 1;
+        .draft-tips {
+          font-size: 10px;
+          color: #999999;
+        }
       }
     }
     .center {
@@ -243,28 +260,27 @@
       justify-content: flex-start;
       padding: 0 20px;
       position: relative;
-      .draft-tips-box {
-        height: 100%;
-        display: flex;
-        align-items: center;
-        margin-left: 10px;
-        .draft-tips {
-          font-size: 10px;
-          color: #999999;
-        }
-      }
+      display: flex;
+      align-items: center;
+      justify-content: center;
 
       .title-box {
         position: absolute;
-        left: 65%;
-        top: 50%;
-        transform: translate(-50%, -50%);
         display: flex;
         align-items: center;
         p {
           display: flex;
           align-items: center;
           color: #333;
+
+          span {
+            display: block;
+            max-width: 160px;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            word-break: break-all;
+            white-space: nowrap;
+          }
           .el-icon {
             margin-left: 10px;
             cursor: pointer;
@@ -274,7 +290,7 @@
     }
 
     .right {
-      width: 230px;
+      width: 260px;
       justify-content: space-between;
       display: flex;
       color: #8a8a8a;

@@ -12,6 +12,7 @@
           <!-- 组件属性 -->
           <el-collapse-item
             v-if="
+              HJSchemaJsonStore.componentsTree[pageActiveIndex].children[widgetIndex].props &&
               Object.keys(
                 HJSchemaJsonStore.componentsTree[pageActiveIndex].children[widgetIndex].props
               ).length
@@ -56,6 +57,8 @@
             <el-form label-width="80px" label-position="left">
               <template
                 v-if="
+                  HJSchemaJsonStore.componentsTree[pageActiveIndex].children[widgetIndex]
+                    .dataSource &&
                   Object.keys(
                     HJSchemaJsonStore.componentsTree[pageActiveIndex].children[widgetIndex]
                       .dataSource

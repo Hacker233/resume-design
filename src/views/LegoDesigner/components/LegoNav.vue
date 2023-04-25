@@ -82,6 +82,7 @@
     :dialog-post-work-visible="dialogPostWorkVisible"
     :post-work-info="postWorkInfo"
     @cancle="canclePostWork"
+    @update-success="handlePostWorkSuccess"
   ></post-work-dialog>
 
   <!-- 导出pdf进度弹窗 -->
@@ -217,6 +218,14 @@
     dialogPostWorkVisible.value = false;
   };
 
+  // 发布或更新作品成功
+  const router = useRouter();
+  const handlePostWorkSuccess = async () => {
+    router.push({
+      path: '/postWorkSuccess'
+    });
+  };
+
   // 保存草稿
   const imgUrl = ref<string>('');
   const isCanSave = ref<boolean>(true);
@@ -303,6 +312,10 @@
 
   // 监听路由离开
   onBeforeRouteLeave((to, from, next) => {
+    if (to.path === '/postWorkSuccess') {
+      next();
+      return true;
+    }
     // 编辑状态离开时
     ElMessageBox.confirm('离开前请确保您编辑的内容已保存草稿！', '警告', {
       confirmButtonText: '保存草稿并离开',

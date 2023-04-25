@@ -161,7 +161,6 @@
   // 提交
   const sureLoading = ref<boolean>(false);
   const ruleFormRef = ref<any>(null);
-  const router = useRouter();
   const submit = async (formEl: FormInstance | undefined) => {
     if (!formEl) return;
     await formEl.validate(async (valid, fields) => {
@@ -180,9 +179,6 @@
           const data = await legoTemplateAddAsync(params);
           if (data.data.status === 200) {
             ElMessage.success('发布成功');
-            router.push({
-              path: '/postWorkSuccess'
-            });
             sureLoading.value = false;
             emit('updateSuccess');
             ruleFormRef.value.resetFields();
@@ -204,9 +200,6 @@
           const data = await legoTemplateUpdateAsync(params);
           if (data.data.status === 200) {
             ElMessage.success('更新成功');
-            router.push({
-              path: '/postWorkSuccess'
-            });
             sureLoading.value = false;
             emit('updateSuccess');
             ruleFormRef.value.resetFields();
@@ -248,6 +241,9 @@
       width: 260px;
       height: 365px;
       text-align: center;
+    }
+    .avatar {
+      max-width: 100%;
     }
   }
   .how-much {
