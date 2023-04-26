@@ -20,35 +20,7 @@
       <div class="current-total">
         （当前简币数量：{{ appStore.useUserInfoStore.userIntegralInfo.integralTotal }}
         <img width="18" src="@/assets/images/jianB.png" alt="简币" />）
-      </div>
-      <!-- 方式一 -->
-      <div class="way way-1">
-        <p class="way-tips"
-          >每日可通过签到免费获得+1<img width="24" src="@/assets/images/jianB.png" alt="简币"
-        /></p>
-        <!-- 签到按钮 -->
-        <div class="attendance-box">
-          <div
-            v-if="!appStore.useUserInfoStore.userIntegralInfo.isattendance"
-            class="button"
-            @click="toAttendance"
-          >
-            签到
-          </div>
-          <el-tooltip v-else content="今天您已经签过到啦~">
-            <div class="have-attend">已签到</div>
-          </el-tooltip>
-        </div>
-      </div>
-
-      <!-- 方式二 -->
-      <div class="way way-2">
-        <p class="way-tips"
-          >每次评论免费获得+1<img width="24" src="@/assets/images/jianB.png" alt="简币" />
-          <span class="small-tips"
-            >（每日最多+{{ Most_Integral_Comment }}，评论被删除将扣除已获得简币！）</span
-          >
-        </p>
+        <div class="get-bi-method" @click="openGetDialog">获取简币</div>
       </div>
     </div>
     <template #footer>
@@ -58,11 +30,15 @@
       </span>
     </template>
   </el-dialog>
+
+  <!-- 如何获取简币弹窗 -->
+  <get-integral-dialog
+    :dialog-get-integral-visible="dialogGetIntegralVisibleMethods"
+    @cancle="cancleDialog"
+  ></get-integral-dialog>
 </template>
 <script lang="ts" setup>
-  import { addIntegralLogAsync } from '@/http/api/integral';
   import appStore from '@/store';
-  import { Most_Integral_Comment } from '@/config/integral/index';
 
   const emit = defineEmits(['cancle', 'confirm']);
   interface TDialog {
@@ -81,21 +57,6 @@
     emit('cancle');
   };
 
-  // 签到
-  const toAttendance = async () => {
-    let params = {
-      integralAddType: '1'
-    };
-    const data = await addIntegralLogAsync(params);
-    if (data.data.status === 200) {
-      ElMessage.success('签到成功！简币+1！');
-      // 更新用户简币信息
-      appStore.useUserInfoStore.getUserIntegralTotal();
-    } else {
-      ElMessage.error(data.data.message);
-    }
-  };
-
   // 确定弹窗
   const confirmDialog = () => {
     emit('confirm');
@@ -104,6 +65,17 @@
   // 取消弹窗
   const cancle = () => {
     emit('cancle');
+  };
+
+  // 打开获取简币弹窗
+  const dialogGetIntegralVisibleMethods = ref<boolean>(false);
+  const openGetDialog = () => {
+    dialogGetIntegralVisibleMethods.value = true;
+  };
+
+  // 关闭弹窗
+  const cancleDialog = () => {
+    dialogGetIntegralVisibleMethods.value = false;
   };
 </script>
 <style lang="scss">
@@ -128,65 +100,20 @@
         color: #777777;
         display: flex;
         align-items: center;
-        border-bottom: 1px solid #eee;
         padding-bottom: 10px;
-      }
-      .way {
-        display: flex;
-        justify-content: space-between;
-        margin-bottom: 20px;
-        .way-tips {
-          display: flex;
-          align-items: center;
-          font-size: 14px;
-          img {
-            margin: 0 5px;
-          }
-          .small-tips {
-            font-size: 12px;
-            display: flex;
-            align-items: center;
-          }
-        }
-        .attendance-box {
-          .button {
-            padding: 5px 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            align-items: center;
-            border: 1px solid green;
-            text-align: center;
-            color: green;
-            letter-spacing: 4px;
-            font-size: 14px;
-            border-radius: 3px;
-            cursor: pointer;
-            -webkit-transition: all 0.2s;
-            -moz-transition: all 0.2s;
-            -ms-transition: all 0.2s;
-            transition: all 0.2s;
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
-            user-select: none;
-            transition: all 0.3s;
-            &:hover {
-              opacity: 0.7;
-            }
-          }
-          .have-attend {
-            border: 1px solid #a0a0a0;
-            color: #a0a0a0;
-            padding: 5px 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            letter-spacing: 4px;
-            font-size: 14px;
-            border-radius: 3px;
+        border-bottom: none;
+        .get-bi-method {
+          font-size: 12px;
+          border: 1px solid burlywood;
+          padding: 2px 5px;
+          border-radius: 10px;
+          cursor: pointer;
+          color: burlywood;
+          margin-left: 5px;
+          margin-top: 2px;
+          transition: all 0.3s;
+          &:hover {
+            opacity: 0.7;
           }
         }
       }

@@ -8,7 +8,7 @@
       <div class="see-more-box">
         <div class="button" @click="freeMakeResume"> 免费制作 </div>
         <div class="button" @click="toCustom"> 贡献模板 </div>
-        <div class="button" @click="toSponsor"> 成为赞助者 </div>
+        <div class="button" @click="toWebCode"> 获取源码 </div>
       </div>
     </div>
     <div class="right">
@@ -19,7 +19,7 @@
 <script lang="ts" setup>
   import { closeGlobalLoading } from '@/utils/common';
 
-  const emit = defineEmits(['freeMake', 'customTemplate', 'sponsor']);
+  const emit = defineEmits(['freeMake', 'customTemplate', 'webcode']);
   const freeMakeResume = () => {
     emit('freeMake');
   };
@@ -27,8 +27,8 @@
     // console.log('鼠标移动');
   };
   // 成为赞助者
-  const toSponsor = () => {
-    emit('sponsor');
+  const toWebCode = () => {
+    emit('webcode');
   };
 
   // 滚动到自定义模板

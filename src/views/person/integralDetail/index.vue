@@ -9,7 +9,7 @@
               >{{ appStore.useUserInfoStore.userIntegralInfo.integralTotal
               }}<img width="24" src="@/assets/images/jianB.png" alt="简币"
             /></p>
-            <div class="get-bi-method" @click="openGetDialog">获取积分</div>
+            <div class="get-bi-method" @click="openGetDialog">获取简币</div>
           </div>
         </div>
       </el-tab-pane>

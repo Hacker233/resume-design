@@ -50,6 +50,29 @@
           >
         </p>
       </div>
+
+      <!-- 方式三 -->
+      <div class="way way-1">
+        <p class="way-tips"
+          >给项目点Star，添加小编微信，凭点赞截图获取+20<img
+            width="24"
+            src="@/assets/images/jianB.png"
+            alt="简币"
+        /></p>
+        <!-- 签到按钮 -->
+        <div class="attendance-box">
+          <div class="button" @click="toGithub"> 点star </div>
+        </div>
+      </div>
+
+      <!-- 方式四 -->
+      <div class="way way-1">
+        <p class="way-tips">可通过购买本网站源代码的方式获得简币，一举多得！</p>
+        <!-- 签到按钮 -->
+        <div class="attendance-box">
+          <div class="button" @click="toPay"> 购买 </div>
+        </div>
+      </div>
     </div>
   </el-dialog>
 </template>
@@ -84,6 +107,17 @@
     } else {
       ElMessage.error(data.data.message);
     }
+  };
+
+  // 去购买
+  const router = useRouter();
+  const toPay = () => {
+    router.push('/webCode');
+  };
+
+  // 去github
+  const toGithub = () => {
+    window.open('https://github.com/Hacker233/resume-design', '_blank');
   };
 </script>
 <style lang="scss">

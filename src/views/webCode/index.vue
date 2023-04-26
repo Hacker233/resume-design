@@ -7,7 +7,11 @@
       <!-- 头部标题位置 -->
       <div class="title-box">
         <h1>将91化简私有化部署为你自己的网站</h1>
-        <div class="button" @click="openDialog"> 立即获得 </div>
+      </div>
+
+      <!-- 定价表title -->
+      <div ref="priceRef" class="product">
+        <product-price></product-price>
       </div>
 
       <!-- 卡片盒子title -->
@@ -24,18 +28,6 @@
           <introduce-card-vue :card-data="item"></introduce-card-vue>
         </div>
       </div>
-
-      <!-- 定价表title -->
-      <div ref="priceRef">
-        <introduce-title-vue
-          title="定价表"
-          subtitle="一次付费，获得源源不断的价值！"
-          title-color="#000"
-          subtitle-color="#7f8b96"
-        ></introduce-title-vue>
-        <!-- 定价表格 -->
-        <price-table></price-table>
-      </div>
     </div>
 
     <el-backtop :right="50" :bottom="80" />
@@ -44,7 +36,7 @@
 <script lang="ts" setup>
   import IntroduceCardVue from './components/IntroduceCard.vue';
   import IntroduceTitleVue from './components/IntroduceTitle.vue';
-  import PriceTable from './components/PriceTable.vue';
+  import ProductPrice from './components/ProductPrice.vue';
 
   // 卡片内容
   const cardList = ref<Array<any>>([
@@ -94,12 +86,6 @@
       introduce: '添加源作者微信，及时解决相关问题，给你贴心的服务。'
     }
   ]);
-
-  // 价目表
-  const priceRef = ref<any>(null);
-  const openDialog = () => {
-    priceRef.value.scrollIntoView({ behavior: 'smooth' });
-  };
 </script>
 <style lang="scss" scoped>
   .web-code-box {
@@ -117,22 +103,23 @@
     .content-bottom-box {
       width: 1250px;
       margin: 0 auto;
+      position: relative;
       .title-box {
         position: relative;
         z-index: 2;
         display: flex;
         flex-direction: column;
         justify-content: center;
-        height: 300px;
+        height: 350px;
         align-items: center;
         color: white;
         h1 {
           color: #fff;
-          font-size: 60px;
-          font-family: '站酷快乐体';
-          letter-spacing: 2px;
+          font-size: 50px;
+          // font-family: '站酷快乐体';
+          letter-spacing: 4px;
           margin-bottom: 40px;
-          margin-top: 50px;
+          margin-top: -30px;
         }
         .button {
           width: 120px;
@@ -177,6 +164,12 @@
           margin-bottom: 40px;
         }
       }
+    }
+
+    .product {
+      width: 100%;
+      margin: 0 auto;
+      margin-top: -150px;
     }
   }
 </style>

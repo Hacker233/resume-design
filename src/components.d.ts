@@ -25,6 +25,8 @@ declare module '@vue/runtime-core' {
     ElAvatar: typeof import('element-plus/es')['ElAvatar'];
     ElBacktop: typeof import('element-plus/es')['ElBacktop'];
     ElButton: typeof import('element-plus/es')['ElButton'];
+    ElCarousel: typeof import('element-plus/es')['ElCarousel'];
+    ElCarouselItem: typeof import('element-plus/es')['ElCarouselItem'];
     ElCollapse: typeof import('element-plus/es')['ElCollapse'];
     ElCollapseItem: typeof import('element-plus/es')['ElCollapseItem'];
     ElConfigProvider: typeof import('element-plus/es')['ElConfigProvider'];
@@ -50,6 +52,7 @@ declare module '@vue/runtime-core' {
     ElRate: typeof import('element-plus/es')['ElRate'];
     ElScrollbar: typeof import('element-plus/es')['ElScrollbar'];
     ElSelect: typeof import('element-plus/es')['ElSelect'];
+    ElSelectV2: typeof import('element-plus/es')['ElSelectV2'];
     ElSkeleton: typeof import('element-plus/es')['ElSkeleton'];
     ElSkeletonItem: typeof import('element-plus/es')['ElSkeletonItem'];
     ElSlider: typeof import('element-plus/es')['ElSlider'];

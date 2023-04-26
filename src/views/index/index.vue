@@ -7,7 +7,7 @@
       <project-introduce
         @free-make="freeMake"
         @custom-template="customTemple"
-        @sponsor="sponsor"
+        @webcode="webcode"
       ></project-introduce>
     </div>
     <!-- 模板选择 -->
@@ -100,9 +100,9 @@
   };
 
   // 点击成为赞助者
-  const sponsorRefs = ref<any>(null);
-  const sponsor = () => {
-    sponsorRefs.value.scrollIntoView();
+  const router = useRouter();
+  const webcode = () => {
+    router.push('/webcode');
   };
 </script>
 <style lang="scss" scoped>
