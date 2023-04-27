@@ -432,6 +432,11 @@ git push
 
 此社区只开放给已获取化简项目后端源代码的伙伴，社区内部会持续推送最新后端源码，后端源码具体获取方式可到化简官网查看：[91化简](https://91huajian.cn)
 
+<p align="center">
+    <img width="200" src="https://gitee.com/sharemore52/resume-design/raw/main/src/assets/images/vx.jpg">
+    <img width="200" src="https://gitee.com/sharemore52/resume-design/raw/main/src/assets/images/xingqiu.jpg">
+</p>
+
 # 🍓 成为贡献者
 
 由于项目目前主要还是小编一个人作为主要代码贡献者，所以工作量很大，分支主要维护在main分支，所以大家提交PR是直接请求合并到main分支即可。
