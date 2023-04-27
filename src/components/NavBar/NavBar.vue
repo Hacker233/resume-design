@@ -39,7 +39,7 @@
     <!-- GitHub -->
     <div class="right">
       <!-- 今日签到总人数 -->
-      <span class="attendance-total">今日已签到{{ attendanceTotal }}人</span>
+      <span class="attendance-total">今日已签到{{ attendanceTotal }}人~</span>
       <!-- 签到按钮 -->
       <div class="attendance-box">
         <div
@@ -53,6 +53,21 @@
           <div class="have-attend">已签到</div>
         </el-tooltip>
       </div>
+
+      <!-- 源码购买 -->
+      <div class="get-source-code" @click="toWebCode">
+        <div class="content-box">
+          <svg-icon icon-name="icon-VIP" size="20px" color="#789e45"></svg-icon>
+          <span>获取源码</span>
+        </div>
+      </div>
+      <!-- 简币 -->
+      <div class="jb-num-box" @click="toMyIntegral">
+        <div class="content">
+          <img width="22" src="@/assets/images/jianB.png" alt="简币" />
+          <span>{{ appStore.useUserInfoStore.userIntegralInfo.integralTotal }}</span>
+        </div>
+      </div>
       <!-- 登录注册以及用户展示区域 -->
       <div class="user-box">
         <div v-if="!appStore.useUserInfoStore.userInfo" class="logon-register-box">
@@ -60,8 +75,8 @@
           <el-button class="login-btn" type="primary" @click="openLoginDialog">登录</el-button>
         </div>
         <div v-else class="user-avatar-box">
-          <el-dropdown>
-            <span class="el-dropdown-link">
+          <el-dropdown :teleported="false">
+            <span class="el-dropdown-link" @click="toPerson">
               <el-avatar
                 v-if="appStore.useUserInfoStore.userInfo.photos.profilePic.url"
                 :size="45"
@@ -74,6 +89,7 @@
             <template #dropdown>
               <el-dropdown-menu>
                 <el-dropdown-item @click="toPerson">个人中心</el-dropdown-item>
+                <el-dropdown-item @click="toMyIntegral"> 我的资产 </el-dropdown-item>
                 <el-dropdown-item @click="loginout">退出登录</el-dropdown-item>
               </el-dropdown-menu>
             </template>
@@ -228,6 +244,16 @@
     router.push('/person');
   };
 
+  // 跳转至源码
+  const toWebCode = () => {
+    router.push('/webcode');
+  };
+
+  // 跳转至我的资产
+  const toMyIntegral = () => {
+    router.push('/person/personIntegral');
+  };
+
   // 退出登录
   const { saveToken } = appStore.useTokenStore;
   const { saveUserInfo } = appStore.useUserInfoStore;
@@ -365,7 +391,7 @@
       .attendance-box {
         margin-right: 10px;
         .button {
-          padding: 6px 9px;
+          padding: 6px 9px 6px 12px;
           display: flex;
           align-items: center;
           justify-content: center;
@@ -375,7 +401,7 @@
           color: green;
           letter-spacing: 4px;
           font-size: 13px;
-          border-radius: 3px;
+          border-radius: 15px;
           cursor: pointer;
           -webkit-transition: all 0.2s;
           -moz-transition: all 0.2s;
@@ -401,7 +427,64 @@
           text-align: center;
           letter-spacing: 4px;
           font-size: 13px;
-          border-radius: 3px;
+          border-radius: 15px;
+        }
+      }
+      .get-source-code {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 10px;
+        cursor: pointer;
+        transition: all 0.3s;
+        &:hover {
+          opacity: 0.9;
+        }
+        .content-box {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          padding: 5px 10px;
+          background-color: #83ffd1;
+          border-radius: 15px;
+          span {
+            font-size: 12px;
+            letter-spacing: 1px;
+            color: #617745;
+            margin: 2px 0 0 4px;
+          }
+          .svg-icon {
+            margin-right: 5px;
+          }
+        }
+      }
+      .jb-num-box {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 10px;
+        cursor: pointer;
+        transition: all 0.3s;
+        &:hover {
+          opacity: 0.9;
+        }
+        .content {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          padding: 5px 10px;
+          background-color: #83ffd1;
+          border-radius: 15px;
+          span {
+            margin-left: 5px;
+            font-size: 12px;
+            letter-spacing: 1px;
+            color: #617745;
+            margin-top: 2px;
+          }
+          img {
+            margin-right: 5px;
+          }
         }
       }
       .user-box {
@@ -418,14 +501,13 @@
           .register-btn {
             margin-left: 15px;
           }
-          .login-btn {
-          }
         }
         .user-avatar-box {
           display: flex;
           align-items: center;
           justify-content: center;
           margin-left: 15px;
+          cursor: pointer;
           .name-content {
             width: 100%;
             height: 100%;
