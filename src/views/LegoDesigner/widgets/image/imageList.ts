@@ -34,6 +34,12 @@ export const imageList = [
     imgUrl: 'index.png',
     width: 450,
     height: 300
+  },
+  {
+    title: '背景图',
+    imgUrl: 'j2_head.png',
+    width: 450,
+    height: 300
   }
 ];
 
