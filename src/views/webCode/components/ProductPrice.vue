@@ -389,13 +389,13 @@
     justify-content: center;
     margin: 60px 0 150px 0;
     .card {
-      width: 340px;
+      width: 330px;
       min-height: 500px;
       background-color: #ffffff;
       box-shadow: 0px 5px 4px 0px rgba(74, 75, 77, 0.08);
       border-radius: 6px;
       flex-shrink: 0;
-      margin: 0 30px;
+      margin: 0 20px;
       overflow: hidden;
       transition: all 0.3s;
       &:hover {
