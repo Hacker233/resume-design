@@ -21,24 +21,7 @@
     <!-- footer -->
     <footer-com></footer-com>
     <!-- 回到顶部 -->
-    <el-backtop :bottom="100">
-      <div
-        style="
-          height: 100%;
-          width: 100%;
-          background-color: var(--el-bg-color-overlay);
-          box-shadow: var(--el-box-shadow-lighter);
-          text-align: center;
-          line-height: 40px;
-          color: #1989fa;
-          user-select: none;
-          border-radius: 50%;
-          font-size: 14px;
-        "
-      >
-        UP
-      </div>
-    </el-backtop>
+    <el-backtop :right="50" :bottom="80" />
 
     <!-- 联系我 -->
     <call-me></call-me>
@@ -49,7 +32,7 @@
 </template>
 <script setup lang="ts">
   import NavBar from '@/components/NavBar/NavBar.vue';
-  import ProjectIntroduce from './components/ProjectIntroduce.vue';
+  import ProjectIntroduce from './components/ProjectIntroduceNew.vue';
   import TemplateSelect from './components/TemplateSelect.vue';
   import CustomTemplateVue from './components/CustomTemplate.vue';
   import SponsorComVue from './components/SponsorCom.vue';
@@ -77,11 +60,11 @@
   const iconColor = ref<string>('#fff');
   const handleScroll = () => {
     if (document.documentElement.scrollTop > 0) {
-      navColor.value = '#fff';
+      navColor.value = 'rgba(255, 255, 255, 0.95)';
       fontColor.value = 'green';
       iconColor.value = 'green';
     } else {
-      navColor.value = '';
+      navColor.value = 'rgba(255, 255, 255, 0)';
       iconColor.value = '#fff';
       fontColor.value = '#fff';
     }

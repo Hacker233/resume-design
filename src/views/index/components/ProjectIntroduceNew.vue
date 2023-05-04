@@ -7,14 +7,28 @@
         <div class="sun"></div>
         <div class="moon"></div>
         <!--左上角文字-->
-        <div class="lefttopText">
-          <div class="blueblock"></div>
-          <h5>A DAY<br />ON THE ISLAND</h5>
-          <h1
-            >Aegean Sea<br /><span class="nightText">Night Sky</span
-            ><span class="dayText">Day Sky</span></h1
+        <div class="left-top-content">
+          <h1>一款开源的、免费的简历设计制作神器</h1>
+          <p
+            >内置两款设计器、快速设计、简历、封面、海报均可免费制作，支持一键导出高清PDF、JSON数据等。</p
           >
-          <p>動態互動<br />網頁特效入門<br /><br />基礎html/css練習</p>
+
+          <!-- 查看更多按钮 -->
+          <div class="see-more-box">
+            <hj-button-1 text="在线制作" @click="freeMakeResume"></hj-button-1>
+            <hj-button-1 text="积木创作" @click="toLego"></hj-button-1>
+            <hj-button-1 text="获取源码" @click="toWebCode"></hj-button-1>
+          </div>
+
+          <!-- 下滑提示按钮 -->
+          <div class="scroll-more-box" @click.prevent="freeMakeResume">
+            <svg-icon
+              icon-name="icon-z044"
+              size="35px"
+              color="rgba(255, 255, 255, 0.5)"
+              class-name="more-icon"
+            ></svg-icon>
+          </div>
         </div>
         <div class="allstars">
           <div class="star1"></div>
@@ -81,6 +95,30 @@
     </label>
   </div>
 </template>
+<script lang="ts" setup>
+  import { closeGlobalLoading } from '@/utils/common';
+  import HjButton1 from '@/components/HjButton/HjButton1/index.vue';
+
+  const emit = defineEmits(['freeMake', 'customTemplate', 'webcode']);
+  const freeMakeResume = () => {
+    emit('freeMake');
+  };
+  // 成为赞助者
+  const toWebCode = () => {
+    emit('webcode');
+  };
+
+  // 跳转到积木创作
+  const router = useRouter();
+  const toLego = () => {
+    router.push('/legoTemplateList');
+  };
+
+  // 页面销毁
+  onUnmounted(() => {
+    closeGlobalLoading(); // 关闭全局等待层
+  });
+</script>
 <style lang="scss" scoped>
   .project-introduce-new-box {
     position: relative;
@@ -97,38 +135,6 @@
     overflow: hidden;
     background: linear-gradient(#1d2b49, #1a45a0, #91cdff, #fff);
     background-size: 100% 300%;
-    box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.3);
-    cursor: pointer;
-  }
-
-  .lefttopText {
-    margin-left: 30px;
-    margin-top: 30px;
-  }
-  .lefttopText h1 {
-    font-size: 36px;
-    letter-spacing: 3px;
-    margin-top: 0;
-    font-weight: 300;
-  }
-  .lefttopText h5 {
-    font-size: 14px;
-    letter-spacing: 1px;
-    opacity: 0.6;
-    margin-bottom: 0;
-    font-weight: 300;
-  }
-  .lefttopText p {
-    font-size: 14px;
-    line-height: 24px;
-    letter-spacing: 2px;
-    opacity: 0.6;
-  }
-  .lefttopText .blueblock {
-    background-color: #7cb1ff;
-    width: 20px;
-    height: 25px;
-    border-radius: 0;
   }
 
   .building {
@@ -576,14 +582,13 @@
     height: 50px;
     border-radius: 50%;
     position: absolute;
-    left: 250px;
-    top: 100px;
+    left: 30%;
+    top: 30%;
   }
 
   .sun {
     background-color: #ffdd38;
     box-shadow: 0px 0px 20px rgba(255, 221, 56, 0.5);
-    top: 400px;
     opacity: 0;
   }
 
@@ -646,7 +651,7 @@
     opacity: 0;
   }
   input:checked + .scene .sun {
-    top: 100px;
+    top: 30%;
     opacity: 1;
   }
   input:checked + .scene .blueblock {
@@ -655,5 +660,58 @@
 
   input {
     display: none;
+  }
+
+  // 左侧内容
+  .left-top-content {
+    width: 100%;
+    height: 100%;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    padding-left: 100px;
+    justify-content: center;
+    h1 {
+      font-size: 2.5vw;
+      margin-bottom: 30px;
+    }
+    p {
+      font-size: 1vw;
+      opacity: 0.8;
+    }
+    .see-more-box {
+      margin-top: 40px;
+      display: flex;
+      z-index: 1;
+      .custom-btn {
+        margin-right: 30px;
+      }
+    }
+
+    .scroll-more-box {
+      position: absolute;
+      left: 50%;
+      bottom: 50px;
+      z-index: 1;
+      transition: all 0.3s;
+      &:hover {
+        opacity: 0.7;
+      }
+      .more-icon {
+        cursor: pointer;
+        animation: myfirst 2s infinite;
+      }
+    }
+    @keyframes myfirst {
+      0% {
+        transform: translate(0px, 0px);
+      }
+      50% {
+        transform: translate(0px, -10px);
+      }
+      100% {
+        transform: translate(0px, 0px);
+      }
+    }
   }
 </style>

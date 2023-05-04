@@ -303,7 +303,8 @@
     box-sizing: border-box;
     align-items: center;
     justify-content: space-between;
-    background-color: rgba($color: #fff, $alpha: 0.95);
+    backdrop-filter: blur(8px);
+    background-color: v-bind('props.bgColor');
     z-index: 10;
     user-select: none;
     padding: 0 60px;
@@ -329,23 +330,20 @@
           justify-content: center;
           align-items: center;
           width: 100%;
-          // color: v-bind('fontColor');
-          color: green;
+          color: v-bind('props.fontColor');
           padding: 0 15px !important;
           letter-spacing: 3px;
           font-size: 16px;
           border-bottom: 4px solid transparent;
           transition: all 0.3s;
           &:hover {
-            // color: #2ddd9d;
             border-color: #2ddd9d;
             background-color: rgba(#ccc, 0.1);
           }
         }
         .el-sub-menu {
           height: 100%;
-          // color: v-bind('fontColor');
-          color: green;
+          color: v-bind('props.fontColor');
           border-bottom: 4px solid transparent;
           &:hover {
             border-bottom: 4px solid #2ddd9d !important;
@@ -354,8 +352,7 @@
           :deep(.el-sub-menu__title) {
             letter-spacing: 3px;
             font-size: 16px;
-            // color: v-bind('fontColor');
-            color: green;
+            color: v-bind('props.fontColor');
             border: none;
             &:hover {
               background-color: rgba(#ccc, 0.1);
@@ -374,7 +371,7 @@
       align-items: center;
       .attendance-total {
         font-size: 12px;
-        color: green;
+        color: v-bind('props.fontColor');
         margin-right: 20px;
         letter-spacing: 2px;
       }
@@ -382,7 +379,7 @@
         cursor: pointer;
         margin-right: 15px;
         font-size: 14px;
-        color: v-bind('iconColor');
+        color: v-bind('props.iconColor');
       }
       .svg-icon {
         cursor: pointer;
@@ -396,12 +393,13 @@
           align-items: center;
           justify-content: center;
           align-items: center;
-          border: 1px solid green;
+          border: 1px solid v-bind('props.fontColor');
           text-align: center;
-          color: green;
+          color: v-bind('props.fontColor');
           letter-spacing: 4px;
           font-size: 13px;
           border-radius: 15px;
+          overflow: visible;
           cursor: pointer;
           -webkit-transition: all 0.2s;
           -moz-transition: all 0.2s;
@@ -417,8 +415,8 @@
           }
         }
         .have-attend {
-          border: 1px solid #a0a0a0;
-          color: #a0a0a0;
+          border: 1px solid v-bind('props.fontColor');
+          color: v-bind('props.fontColor');
           padding: 6px 9px;
           display: flex;
           align-items: center;
@@ -428,6 +426,7 @@
           letter-spacing: 4px;
           font-size: 13px;
           border-radius: 15px;
+          overflow: visible;
         }
       }
       .get-source-code {

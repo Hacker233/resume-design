@@ -12,7 +12,7 @@
     <template #header>
       <div class="header">
         <div class="header-left">
-          <h1 class="title">请在编辑器内修改简历模板数据：</h1>
+          <h1 class="title">修改用户资料</h1>
         </div>
       </div>
     </template>

@@ -37,13 +37,19 @@ declare module '@vue/runtime-core' {
     ElInput: typeof import('element-plus/es')['ElInput'];
     ElMenu: typeof import('element-plus/es')['ElMenu'];
     ElMenuItem: typeof import('element-plus/es')['ElMenuItem'];
+    ElOption: typeof import('element-plus/es')['ElOption'];
     ElPagination: typeof import('element-plus/es')['ElPagination'];
     ElPopover: typeof import('element-plus/es')['ElPopover'];
     ElScrollbar: typeof import('element-plus/es')['ElScrollbar'];
+    ElSelect: typeof import('element-plus/es')['ElSelect'];
+    ElSelectV2: typeof import('element-plus/es')['ElSelectV2'];
     ElSkeleton: typeof import('element-plus/es')['ElSkeleton'];
     ElSkeletonItem: typeof import('element-plus/es')['ElSkeletonItem'];
     ElSlider: typeof import('element-plus/es')['ElSlider'];
     ElSubMenu: typeof import('element-plus/es')['ElSubMenu'];
+    ElTable: typeof import('element-plus/es')['ElTable'];
+    ElTableColumn: typeof import('element-plus/es')['ElTableColumn'];
+    ElTag: typeof import('element-plus/es')['ElTag'];
     ElTooltip: typeof import('element-plus/es')['ElTooltip'];
     ElUpload: typeof import('element-plus/es')['ElUpload'];
     Emoji: typeof import('./components/packages/components/emoji/emoji.vue')['default'];
@@ -51,6 +57,8 @@ declare module '@vue/runtime-core' {
     FooterCom: typeof import('./components/FooterCom/FooterCom.vue')['default'];
     GetIntegralDialog: typeof import('./components/GetIntegralDialog/GetIntegralDialog.vue')['default'];
     GithubCard: typeof import('./components/GihubCard/GithubCard.vue')['default'];
+    HjButton1: typeof import('./components/HjButton/HjButton1/index.vue')['default'];
+    HjButton2: typeof import('./components/HjButton/HjButton2/index.vue')['default'];
     HobbiesCom: typeof import('./components/ModelComs/HobbiesCom.vue')['default'];
     Icon: typeof import('./components/packages/components/icon/icon.vue')['default'];
     ImportJsonDialog: typeof import('./components/ImportJsonDialog/ImportJsonDialog.vue')['default'];
