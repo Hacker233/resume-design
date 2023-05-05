@@ -99,7 +99,7 @@
   import { closeGlobalLoading } from '@/utils/common';
   import HjButton1 from '@/components/HjButton/HjButton1/index.vue';
 
-  const emit = defineEmits(['freeMake', 'customTemplate', 'webcode']);
+  const emit = defineEmits(['freeMake', 'legoDesign', 'webcode']);
   const freeMakeResume = () => {
     emit('freeMake');
   };
@@ -109,9 +109,8 @@
   };
 
   // 跳转到积木创作
-  const router = useRouter();
   const toLego = () => {
-    router.push('/legoTemplateList');
+    emit('legoDesign');
   };
 
   // 页面销毁

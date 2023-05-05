@@ -1,6 +1,6 @@
 <!-- 积木创作介绍 -->
 <template>
-  <div class="lego-design-introduce-box">
+  <div ref="legoDesignRef" class="lego-design-introduce-box">
     <introduce-title-vue
       title="自由的积木创作"
       subtitle="自由设计、自由创作、使用场景更加丰富！"
@@ -27,6 +27,15 @@
   const toLegoDesign = () => {
     router.push('/legoTemplateList');
   };
+
+  // 出现在可视区
+  const legoDesignRef = ref<any>(null);
+  const scrollIntoView = () => {
+    legoDesignRef.value.scrollIntoView({ behavior: 'smooth' });
+  };
+  defineExpose({
+    scrollIntoView
+  });
 </script>
 <style lang="scss" scoped>
   .lego-design-introduce-box {

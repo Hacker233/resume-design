@@ -6,14 +6,14 @@
     <div ref="introduceRef">
       <project-introduce
         @free-make="freeMake"
-        @custom-template="customTemple"
+        @lego-design="legoDesign"
         @webcode="webcode"
       ></project-introduce>
     </div>
     <!-- 模板选择 -->
     <template-select ref="templeTef"></template-select>
     <!-- 积木创作 -->
-    <lego-design-introduce-vue></lego-design-introduce-vue>
+    <lego-design-introduce-vue ref="legoDesignRef"></lego-design-introduce-vue>
     <!-- 自定义模板 -->
     <custom-template-vue ref="customTempleRef"></custom-template-vue>
     <!-- 成为赞助者 -->
@@ -79,10 +79,10 @@
     templeTef.value.scrollIntoView();
   };
 
-  // 点击自定义模板
-  const customTempleRef = ref<any>(null);
-  const customTemple = () => {
-    customTempleRef.value.scrollIntoView();
+  // 点击积木创作
+  const legoDesignRef = ref<any>(null);
+  const legoDesign = () => {
+    legoDesignRef.value.scrollIntoView();
   };
 
   // 点击成为赞助者
