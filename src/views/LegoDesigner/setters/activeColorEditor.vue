@@ -1,7 +1,10 @@
 <template>
   <div class="icon-color-editor-box">
     <el-form-item label="选中时颜色:">
-      <color-picker-custom-vue v-model="widgetItem.props.activeColor"></color-picker-custom-vue>
+      <color-picker-custom-vue
+        v-model="widgetItem.props.activeColor"
+        teleported
+      ></color-picker-custom-vue>
     </el-form-item>
   </div>
 </template>

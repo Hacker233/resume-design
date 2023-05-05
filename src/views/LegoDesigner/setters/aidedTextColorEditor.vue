@@ -1,7 +1,10 @@
 <template>
   <div class="aided-text-color-editor-box">
     <el-form-item label="辅助文字颜色:">
-      <color-picker-custom-vue v-model="widgetItem.props.aidedTextColor"></color-picker-custom-vue>
+      <color-picker-custom-vue
+        v-model="widgetItem.props.aidedTextColor"
+        teleported
+      ></color-picker-custom-vue>
     </el-form-item>
   </div>
 </template>

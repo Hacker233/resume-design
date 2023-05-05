@@ -48,6 +48,22 @@
     {
       id: '7',
       src: 'page-bg-7.jpg'
+    },
+    {
+      id: '8',
+      src: 'page-bg-8.jpg'
+    },
+    {
+      id: '9',
+      src: 'page-bg-9.jpg'
+    },
+    {
+      id: '10',
+      src: 'page-bg-10.jpg'
+    },
+    {
+      id: '11',
+      src: 'page-bg-11.jpg'
     }
   ];
 

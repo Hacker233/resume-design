@@ -2,7 +2,7 @@
 <template>
   <div class="color-picker-box">
     <div class="item-box">
-      <el-popover :teleported="true" :width="276" trigger="click">
+      <el-popover :teleported="teleported" :width="276" trigger="click">
         <template #reference>
           <div class="custom-color-btn" title="自定义颜色"> </div>
         </template>
@@ -35,9 +35,14 @@
   import { ColorPicker } from 'vue3-colorpicker';
   import 'vue3-colorpicker/style.css';
 
-  const props = defineProps<{
-    modelValue: any;
-  }>();
+  interface IColor {
+    modelValue?: any;
+    teleported?: boolean;
+  }
+  const props = withDefaults(defineProps<IColor>(), {
+    modelValue: '',
+    teleported: false
+  });
 
   const emit = defineEmits(['update:modelValue', 'change']);
 
@@ -87,9 +92,10 @@
   // 更改主题色
   const curentIndex = ref<number>(-1);
   const changTheme = (index: number, item: { rgb: string; hex: string }) => {
+    console.log('主题色改变', item);
     curentIndex.value = index;
     emit('update:modelValue', item.rgb);
-    emit('change', item);
+    emit('change', item.rgb);
   };
 
   // 纯色改变

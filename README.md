@@ -86,6 +86,7 @@
 - [x] 支持简历主题任意更改（字体、颜色、背景、间距等）
 - [x] 完整的后台管理系统，各种数据均可后台配置
 - [x] 网站数据统计（访问量、注册人数、简历制作数等）
+- [x] 完善的管理端系统，让网站变得可配置化
 
 
 ......更多功能请到官网体验：[91化简](https://91huajian.cn/)
@@ -94,6 +95,10 @@
 
 **网站首页：**
 <p align=center><img src="https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/c63689c37d7842fb8c2194765ea63dbe~tplv-k3u1fbpfcp-watermark.image?" alt="网页捕获_26-4-2023_17656_91huajian.cn.jpeg"  /></p>
+
+**管理端：**
+
+<p align=center><img src="https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/2f4565ce066d4d9491eb9280b9a5b6a8~tplv-k3u1fbpfcp-watermark.image?" alt="image.png"  /></p>
 
 **设计器一：**
 

@@ -1509,7 +1509,7 @@ export const WIDGET_CONFIG_LIST: Array<IWidgetTab> = [
           height: 26,
           rateSize: 20,
           rotate: 0, // 旋转角度
-          backgroundColor: '#fff',
+          backgroundColor: '',
           padding: {
             top: 0,
             right: 0,
@@ -1551,7 +1551,7 @@ export const WIDGET_CONFIG_LIST: Array<IWidgetTab> = [
           rotate: 0, // 旋转角度
           fontSize: 14,
           letterSpace: 1,
-          backgroundColor: '#fff',
+          backgroundColor: '',
           padding: {
             top: 0,
             right: 0,
@@ -1593,7 +1593,7 @@ export const WIDGET_CONFIG_LIST: Array<IWidgetTab> = [
           rotate: 0, // 旋转角度
           fontSize: 14,
           letterSpace: 1,
-          backgroundColor: '#fff',
+          backgroundColor: '',
           padding: {
             top: 0,
             right: 0,
@@ -1635,7 +1635,7 @@ export const WIDGET_CONFIG_LIST: Array<IWidgetTab> = [
           rotate: 0, // 旋转角度
           fontSize: 14,
           letterSpace: 1,
-          backgroundColor: '#fff',
+          backgroundColor: '',
           padding: {
             top: 0,
             right: 0,
@@ -1676,7 +1676,7 @@ export const WIDGET_CONFIG_LIST: Array<IWidgetTab> = [
           rotate: 0, // 旋转角度
           fontSize: 14,
           letterSpace: 1,
-          backgroundColor: '#fff',
+          backgroundColor: '',
           padding: {
             top: 0,
             right: 0,
@@ -1727,7 +1727,7 @@ export const WIDGET_CONFIG_LIST: Array<IWidgetTab> = [
           fontWeight: 600,
           textAlign: 'justify',
           fontColor: '#333333',
-          backgroundColor: '#fff',
+          backgroundColor: '',
           padding: {
             top: 0,
             right: 0,
@@ -1773,7 +1773,7 @@ export const WIDGET_CONFIG_LIST: Array<IWidgetTab> = [
           fontWeight: 600,
           textAlign: 'justify',
           fontColor: '#333333',
-          backgroundColor: '#fff',
+          backgroundColor: '',
           padding: {
             top: 0,
             right: 0,
@@ -1819,7 +1819,7 @@ export const WIDGET_CONFIG_LIST: Array<IWidgetTab> = [
           fontWeight: 600,
           textAlign: 'justify',
           fontColor: '#333333',
-          backgroundColor: '#fff',
+          backgroundColor: '',
           padding: {
             top: 0,
             right: 0,
@@ -1865,7 +1865,7 @@ export const WIDGET_CONFIG_LIST: Array<IWidgetTab> = [
           fontWeight: 600,
           textAlign: 'justify',
           fontColor: '#333333',
-          backgroundColor: '#fff',
+          backgroundColor: '',
           padding: {
             top: 0,
             right: 0,
@@ -1911,7 +1911,7 @@ export const WIDGET_CONFIG_LIST: Array<IWidgetTab> = [
           fontWeight: 600,
           textAlign: 'justify',
           fontColor: '#333333',
-          backgroundColor: '#fff',
+          backgroundColor: '',
           padding: {
             top: 0,
             right: 0,
@@ -1990,7 +1990,7 @@ export const WIDGET_CONFIG_LIST: Array<IWidgetTab> = [
           fontWeight: 500,
           fontColor: '#333333',
           iconColor: '#74a274',
-          backgroundColor: '#fff',
+          backgroundColor: '',
           padding: {
             top: 0,
             right: 0,
