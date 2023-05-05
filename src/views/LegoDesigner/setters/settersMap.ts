@@ -31,6 +31,7 @@ import aidedTextColorEditor from './aidedTextColorEditor.vue';
 import rateHeightEditor from './rateHeightEditor.vue';
 import iconEditror from './iconEditor.vue';
 import letterSpaceEditor from './letterSpaceEditor.vue';
+import borderWidthPropsEditor from './borderWidthPropsEditor.vue';
 
 // 数据设置组件
 import textEditEditor from './dataSetters/textEditEditor.vue';
@@ -77,7 +78,8 @@ export const SETTERS_MAP: ISetterMap = {
   aidedTextColor: aidedTextColorEditor,
   rateHeight: rateHeightEditor,
   icon: iconEditror,
-  letterSpace: letterSpaceEditor
+  letterSpace: letterSpaceEditor,
+  borderWidthProps: borderWidthPropsEditor
 };
 
 // 数据设置组件对应关系

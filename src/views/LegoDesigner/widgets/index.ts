@@ -56,6 +56,7 @@ import Date_3 from './date/date-3/date-3.vue';
 import Date_4 from './date/date-4/date-4.vue';
 import Date_5 from './date/date-5/date-5.vue';
 import Other_1 from './other/other-1/other-1.vue';
+import Other_2 from './other/other-2/other-2.vue';
 
 export const WIDGET_MAP: IWidgetMap = {
   'hj-avatar-1': Avatar_1,
@@ -114,5 +115,6 @@ export const WIDGET_MAP: IWidgetMap = {
   'hj-date-3': Date_3,
   'hj-date-4': Date_4,
   'hj-date-5': Date_5,
-  'hj-other-1': Other_1
+  'hj-other-1': Other_1,
+  'hj-other-2': Other_2
 };

@@ -112,6 +112,7 @@
     transform: translate(0, -50%);
     display: flex;
     flex-direction: column;
+    z-index: 1;
     .contact-me {
       width: 40px;
       height: 40px;
