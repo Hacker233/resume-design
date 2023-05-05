@@ -12,6 +12,8 @@
     </div>
     <!-- 模板选择 -->
     <template-select ref="templeTef"></template-select>
+    <!-- 积木创作 -->
+    <lego-design-introduce-vue></lego-design-introduce-vue>
     <!-- 自定义模板 -->
     <custom-template-vue ref="customTempleRef"></custom-template-vue>
     <!-- 成为赞助者 -->
@@ -37,6 +39,7 @@
   import CustomTemplateVue from './components/CustomTemplate.vue';
   import SponsorComVue from './components/SponsorCom.vue';
   import FooterCom from '@/components/FooterCom/FooterCom.vue';
+  import LegoDesignIntroduceVue from './components/LegoDesignIntroduce.vue';
   import CallMe from './components/CallMe.vue';
   import { onBeforeUnmount, onMounted, ref } from 'vue';
   import { throttle } from 'lodash';

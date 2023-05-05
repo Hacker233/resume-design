@@ -232,6 +232,7 @@
 <style lang="scss" scoped>
   .sponsor-box-wraper {
     // min-height: 50vh;
+    background-color: #fff;
     .sponsor-content-box {
       display: flex;
       flex-direction: column;

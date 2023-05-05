@@ -126,7 +126,6 @@
   .data-show-box {
     width: 100%;
     min-height: 600px;
-    background-color: #fff;
     display: flex;
     flex-direction: column;
     .list-box {
@@ -166,7 +165,7 @@
               margin-left: 3px;
             }
             .number {
-              font-size: 52px;
+              font-size: 40px;
             }
           }
         }
