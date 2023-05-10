@@ -15,7 +15,7 @@ jobs:
     - uses: actions/checkout@v3
     - uses: BobAnkh/add-contributors@master
       with:
-        CONTRIBUTOR: '## 贡献者'
+        CONTRIBUTOR: '# 贡献者'
         COLUMN_PER_ROW: '6'
         ACCESS_TOKEN: ${{secrets.CONTRIBUTORS_TOKEN}}
         IMG_WIDTH: '50'
