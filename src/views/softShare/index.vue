@@ -23,9 +23,9 @@
 
       <!-- 分页组件 -->
       <Pagination
-        v-if="sourceList.length && sourceList.length < total"
+        v-if="sourceList.length && sourceList.length < total && !isShowSkeleton"
         :total="total"
-        :limit="pageSize"
+        :limit="limit"
         :current-page="currentPage"
         @handle-current-change="handleCurrentChange"
       ></Pagination>
@@ -33,18 +33,18 @@
   </div>
 </template>
 <script lang="ts" setup>
-  import { getSoftListAsync, querySocategoryAllAsync } from '@/http/api/soft';
   import CategoryVue from './components/Category.vue';
   import SoftCard from './components/SoftCard.vue';
   import NoDataVue from '@/components/NoData/NoData.vue';
+  import { getSoftCategoryListAsync, getSoftShareCardListAsync } from '@/http/api/softShare';
 
   // 是否显示骨架
   const isShowSkeleton = ref<boolean>(true);
 
   // 获取软件列表
   const page = ref<number>(1);
-  const pageSize = ref<number>(12);
-  const sourceCategory = ref<string>('影视');
+  const limit = ref<number>(12);
+  const sourceCategory = ref<string>('');
   const sourceList = ref<any>([]);
   const total = ref<number>(0);
   const currentPage = ref<number>(1);
@@ -52,12 +52,12 @@
     isShowSkeleton.value = true;
     const params = {
       page: page.value,
-      pageSize: pageSize.value,
+      limit: limit.value,
       sourceCategory: sourceCategory.value
     };
-    const data = await getSoftListAsync(params);
-    if (data.code === '00000') {
-      sourceList.value = data.data.data;
+    const data = await getSoftShareCardListAsync(params);
+    if (data.status === 200) {
+      sourceList.value = data.data.list;
       total.value = data.data.page.count;
       currentPage.value = data.data.page.currentPage;
       isShowSkeleton.value = false;
@@ -71,9 +71,15 @@
   // 获取分类列表
   const categoryList = ref<any>([]);
   const querySocategoryAll = async () => {
-    const data = await querySocategoryAllAsync();
-    if (data.code === '00000') {
+    const data = await getSoftCategoryListAsync();
+    if (data.status === 200) {
       categoryList.value = data.data;
+      // 添加全部选项
+      categoryList.value.unshift({
+        socategory_icon: '',
+        socategory_name: '全部',
+        socategory_id: ''
+      });
     } else {
       ElMessage.error(data.message);
     }

@@ -94,7 +94,7 @@
 # 🎇 项目演示截图
 
 **网站首页：**
-<p align=center><img src="https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/c63689c37d7842fb8c2194765ea63dbe~tplv-k3u1fbpfcp-watermark.image?" alt="网页捕获_26-4-2023_17656_91huajian.cn.jpeg"  /></p>
+<p align=center><img src="https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/e6475e91ab344eb28f338ea50716face~tplv-k3u1fbpfcp-zoom-in-crop-mark:1512:0:0:0.awebp?" alt="网页捕获_26-4-2023_17656_91huajian.cn.jpeg"  /></p>
 
 **管理端：**
 

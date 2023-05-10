@@ -26,9 +26,13 @@
   }>();
 
   // 点击分类
-  const currentValue = ref<string>('影视');
+  const currentValue = ref<string>('全部');
   const handleSelect = (item: any) => {
     currentValue.value = item.socategory_name;
+    if (currentValue.value === '全部') {
+      emit('getSoftListByCate', '');
+      return;
+    }
     emit('getSoftListByCate', currentValue.value);
   };
 </script>

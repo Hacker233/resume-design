@@ -15,21 +15,22 @@
       <!-- 浏览量 -->
       <div class="icon-box">
         <svg-icon icon-name="icon-pinglun1" color="#a3abb1" size="19px"></svg-icon>
-        <span class="number">{{ commentCount }}</span>
+        <span class="number">{{ cardData.commentCount }}</span>
         <svg-icon icon-name="icon-jibenziliao" color="#a3abb1" size="19px"></svg-icon>
         <span class="number">{{ cardData.source_views }}</span>
       </div>
       <!-- 日期 -->
       <div class="icon-box">
         <svg-icon icon-name="icon-shijian" color="#a3abb1" size="19px"></svg-icon>
-        <span class="number number-date">{{ showtime(cardData.source_create_date) }}</span>
+        <span class="number number-date">{{
+          showtime(formatListDate(cardData.source_create_date))
+        }}</span>
       </div>
     </div>
   </div>
 </template>
 <script lang="ts" setup>
-  import { showtime } from '@/utils/common';
-  import { getSoftCommentCountAsync } from '@/http/api/comment';
+  import { showtime, formatListDate } from '@/utils/common';
   const props = defineProps<{
     cardData: any;
   }>();
@@ -40,27 +41,11 @@
     const newpage = router.resolve({
       path: '/softDetail',
       query: {
-        sourceId: props.cardData.source_id
+        sourceId: props.cardData._id
       }
     });
     window.open(newpage.href, '_blank');
   };
-
-  // 查询评论数量
-  const commentCount = ref<number>(0);
-  const getCommentCount = async () => {
-    const params = {
-      commentTypeId: props.cardData.source_id,
-      commentType: 'soft'
-    };
-    const data = await getSoftCommentCountAsync(params);
-    if (data.status === 200) {
-      commentCount.value = data.data;
-    } else {
-      ElMessage.error(data.message);
-    }
-  };
-  getCommentCount();
 </script>
 <style lang="scss" scoped>
   .soft-card-box {

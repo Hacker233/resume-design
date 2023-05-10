@@ -72,6 +72,7 @@ declare module '@vue/runtime-core' {
     HjButton2: typeof import('./components/HjButton/HjButton2/index.vue')['default'];
     HobbiesCom: typeof import('./components/ModelComs/HobbiesCom.vue')['default'];
     Icon: typeof import('./components/packages/components/icon/icon.vue')['default'];
+    IconSelectPop: typeof import('./components/IconSelectPop/IconSelectPop.vue')['default'];
     ImportJsonDialog: typeof import('./components/ImportJsonDialog/ImportJsonDialog.vue')['default'];
     InternshipExperienceCom: typeof import('./components/ModelComs/InternshipExperienceCom.vue')['default'];
     JobIntentionCom: typeof import('./components/ModelComs/JobIntentionCom.vue')['default'];

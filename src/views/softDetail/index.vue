@@ -11,48 +11,34 @@
     </div>
     <!-- 底部区域 -->
     <div class="soft-detail-bottom">
-      <content-left-vue :content="softInfo" :comment-count="commentCount"></content-left-vue>
+      <content-left-vue
+        :content="softInfo"
+        :comment-count="softInfo.commentCount"
+      ></content-left-vue>
       <right-card-vue :content="softInfo"></right-card-vue>
     </div>
   </div>
 </template>
 <script lang="ts" setup>
-  import { getSoftCommentCountAsync } from '@/http/api/comment';
-  import { getySoftInfoByIdAsync } from '@/http/api/soft';
   import ContentLeftVue from './components/ContentLeft.vue';
   import RightCardVue from './components/RightCard.vue';
+  import { getSoftDetailByIdAsync } from '@/http/api/softShare';
 
   // 查询软件详细信息
   const { sourceId } = useRoute().query;
   const softInfo = ref<any>('');
   const getySoftInfoById = async () => {
     const params = {
-      sourceId: sourceId
+      id: sourceId
     };
-    const data = await getySoftInfoByIdAsync(params);
-    if (data.code === '00000') {
+    const data = await getSoftDetailByIdAsync(params);
+    if (data.status === 200) {
       softInfo.value = data.data;
     } else {
       ElMessage.error(data.message);
     }
   };
   getySoftInfoById();
-
-  // 查询评论数量
-  const commentCount = ref<number>(0);
-  const getCommentCount = async () => {
-    const params = {
-      commentTypeId: sourceId,
-      commentType: 'soft'
-    };
-    const data = await getSoftCommentCountAsync(params);
-    if (data.status === 200) {
-      commentCount.value = data.data;
-    } else {
-      ElMessage.error(data.message);
-    }
-  };
-  getCommentCount();
 </script>
 <style lang="scss" scoped>
   .soft-detail-box {

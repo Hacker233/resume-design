@@ -66,6 +66,8 @@ const LegoCategory = () => import('@/views/admin/legoManage/legoCategory/index.v
 const LegoTemplateListManage = () => import('@/views/admin/legoManage/legoTemplateList/index.vue');
 const LegoUserTemplateList = () =>
   import('@/views/admin/legoManage/legoUserTemplateList/index.vue');
+const SoftShareManage = () => import('@/views/admin/SourceShare/softShare/index.vue');
+const SoftCategoryManage = () => import('@/views/admin/SourceShare/softCategory/index.vue');
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -697,6 +699,28 @@ const routes: Array<RouteRecordRaw> = [
           requireLogin: true
         },
         component: LegoUserTemplateList
+      },
+      {
+        path: 'softShareManage',
+        name: 'SoftShareManage',
+        meta: {
+          title: '软件分享管理',
+          keepAlive: true,
+          isShowComNav: false,
+          requireLogin: true
+        },
+        component: SoftShareManage
+      },
+      {
+        path: 'softCategoryManage',
+        name: 'SoftCategoryManage',
+        meta: {
+          title: '软件分类管理',
+          keepAlive: true,
+          isShowComNav: false,
+          requireLogin: true
+        },
+        component: SoftCategoryManage
       }
     ]
   }

@@ -6,6 +6,272 @@ export const iconfontList = {
   description: '',
   glyphs: [
     {
+      icon_id: '12437174',
+      name: '影视',
+      font_class: 'yingshi1',
+      unicode: 'e6a7',
+      unicode_decimal: 59047
+    },
+    {
+      icon_id: '18489967',
+      name: '摄影视频',
+      font_class: 'sheyingshipin',
+      unicode: 'e6a8',
+      unicode_decimal: 59048
+    },
+    {
+      icon_id: '20417689',
+      name: '影视',
+      font_class: 'yingshi2',
+      unicode: 'f2e3',
+      unicode_decimal: 62179
+    },
+    {
+      icon_id: '181902',
+      name: '读小说',
+      font_class: 'duxiaoshuo',
+      unicode: 'e69c',
+      unicode_decimal: 59036
+    },
+    {
+      icon_id: '493428',
+      name: '音乐',
+      font_class: 'yinle',
+      unicode: 'e79a',
+      unicode_decimal: 59290
+    },
+    {
+      icon_id: '774372',
+      name: '工具',
+      font_class: 'gongju',
+      unicode: 'e69d',
+      unicode_decimal: 59037
+    },
+    {
+      icon_id: '1119135',
+      name: '图标1_书、小说',
+      font_class: 'tubiao1shuxiaoshuo',
+      unicode: 'e69e',
+      unicode_decimal: 59038
+    },
+    {
+      icon_id: '1754815',
+      name: '列表导航_动漫',
+      font_class: 'liebiaodaohang_dongman',
+      unicode: 'e69f',
+      unicode_decimal: 59039
+    },
+    {
+      icon_id: '2471360',
+      name: '工具',
+      font_class: 'gongju1',
+      unicode: 'e6a0',
+      unicode_decimal: 59040
+    },
+    {
+      icon_id: '2508797',
+      name: '国产动画推荐',
+      font_class: 'guochandonghuatuijian',
+      unicode: 'e6d7',
+      unicode_decimal: 59095
+    },
+    {
+      icon_id: '6528445',
+      name: '电视',
+      font_class: 'dianshi',
+      unicode: 'e6a1',
+      unicode_decimal: 59041
+    },
+    {
+      icon_id: '6582310',
+      name: '电视',
+      font_class: 'dianshi1',
+      unicode: 'e6a2',
+      unicode_decimal: 59042
+    },
+    {
+      icon_id: '11391542',
+      name: '音乐',
+      font_class: 'yinle1',
+      unicode: 'e6a3',
+      unicode_decimal: 59043
+    },
+    {
+      icon_id: '13646805',
+      name: '动画片',
+      font_class: 'donghuapian',
+      unicode: 'e6a4',
+      unicode_decimal: 59044
+    },
+    {
+      icon_id: '15711141',
+      name: '工具',
+      font_class: 'gongju2',
+      unicode: 'e6a5',
+      unicode_decimal: 59045
+    },
+    {
+      icon_id: '23949541',
+      name: '影视',
+      font_class: 'yingshi',
+      unicode: 'ec69',
+      unicode_decimal: 60521
+    },
+    {
+      icon_id: '19250218',
+      name: '软件管理',
+      font_class: 'ruanjianguanli',
+      unicode: 'e699',
+      unicode_decimal: 59033
+    },
+    {
+      icon_id: '21053802',
+      name: '基础软件',
+      font_class: 'jichuruanjian',
+      unicode: 'e69b',
+      unicode_decimal: 59035
+    },
+    {
+      icon_id: '27285400',
+      name: '软件',
+      font_class: 'a-ziyuan599',
+      unicode: 'e791',
+      unicode_decimal: 59281
+    },
+    {
+      icon_id: '448586',
+      name: '择律-公用-更多',
+      font_class: 'z044',
+      unicode: 'e694',
+      unicode_decimal: 59028
+    },
+    {
+      icon_id: '1621514',
+      name: '更多',
+      font_class: 'gengduo1',
+      unicode: 'e695',
+      unicode_decimal: 59029
+    },
+    {
+      icon_id: '12106858',
+      name: '下滑箭头',
+      font_class: 'double_arrow_down',
+      unicode: 'e696',
+      unicode_decimal: 59030
+    },
+    {
+      icon_id: '1473442',
+      name: 'VIP',
+      font_class: 'VIP',
+      unicode: 'e690',
+      unicode_decimal: 59024
+    },
+    {
+      icon_id: '1546566',
+      name: 'VIP',
+      font_class: 'VIP1',
+      unicode: 'e691',
+      unicode_decimal: 59025
+    },
+    {
+      icon_id: '11641879',
+      name: 'VIP',
+      font_class: 'VIP2',
+      unicode: 'e692',
+      unicode_decimal: 59026
+    },
+    {
+      icon_id: '17502379',
+      name: 'vip2',
+      font_class: 'icon2',
+      unicode: 'e693',
+      unicode_decimal: 59027
+    },
+    {
+      icon_id: '508909',
+      name: '等级',
+      font_class: 'dengji',
+      unicode: 'e68f',
+      unicode_decimal: 59023
+    },
+    {
+      icon_id: '10056215',
+      name: '等级',
+      font_class: 'dengji1',
+      unicode: 'e6f7',
+      unicode_decimal: 59127
+    },
+    {
+      icon_id: '1046065',
+      name: '单列列表',
+      font_class: 'danlieliebiao',
+      unicode: 'e6e4',
+      unicode_decimal: 59108
+    },
+    {
+      icon_id: '2404491',
+      name: '文本',
+      font_class: 'wenben',
+      unicode: 'e687',
+      unicode_decimal: 59015
+    },
+    {
+      icon_id: '2569873',
+      name: '日期',
+      font_class: 'riqi',
+      unicode: 'e68a',
+      unicode_decimal: 59018
+    },
+    {
+      icon_id: '4315716',
+      name: '文本',
+      font_class: 'wenben1',
+      unicode: 'e68b',
+      unicode_decimal: 59019
+    },
+    {
+      icon_id: '4354257',
+      name: '形状-星形',
+      font_class: 'xingzhuang-xingxing',
+      unicode: 'eb9a',
+      unicode_decimal: 60314
+    },
+    {
+      icon_id: '7596925',
+      name: '24gl-calendar',
+      font_class: '24gl-calendar',
+      unicode: 'eb3f',
+      unicode_decimal: 60223
+    },
+    {
+      icon_id: '15711150',
+      name: '图标',
+      font_class: 'tubiao',
+      unicode: 'e68d',
+      unicode_decimal: 59021
+    },
+    {
+      icon_id: '6052579',
+      name: '背景',
+      font_class: 'background',
+      unicode: 'e683',
+      unicode_decimal: 59011
+    },
+    {
+      icon_id: '23061047',
+      name: '背景',
+      font_class: 'beijing',
+      unicode: 'e684',
+      unicode_decimal: 59012
+    },
+    {
+      icon_id: '25849916',
+      name: '背景数据',
+      font_class: 'beijingshuju',
+      unicode: 'e685',
+      unicode_decimal: 59013
+    },
+    {
       icon_id: '18211568',
       name: '查看更多',
       font_class: 'chakangengduo',

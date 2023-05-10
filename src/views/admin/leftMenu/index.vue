@@ -239,6 +239,23 @@
           title: '积木分类'
         }
       ]
+    },
+    {
+      index: '11',
+      iconfont: 'icon-a-ziyuan599',
+      title: '资源分享',
+      children: [
+        {
+          index: 'SoftCategoryManage',
+          iconfont: 'icon-023tuceng',
+          title: '软件分类管理'
+        },
+        {
+          index: 'SoftShareManage',
+          iconfont: 'icon-jichuruanjian',
+          title: '软件分享管理'
+        }
+      ]
     }
   ]);
 

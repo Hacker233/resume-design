@@ -39,20 +39,19 @@
   };
 </script>
 <style lang="scss">
-  .icon-editor-box {
-    .icon-box {
-      display: flex;
-      align-items: center;
-      height: 30px;
-      border-radius: 5px;
-      padding: 0 10px;
-      transition: all 0.3s;
-      cursor: pointer;
-      &:hover {
-        background-color: rgba($color: #ccc, $alpha: 0.2);
-      }
+  .icon-box {
+    display: flex;
+    align-items: center;
+    height: 30px;
+    border-radius: 5px;
+    padding: 0 10px;
+    transition: all 0.3s;
+    cursor: pointer;
+    &:hover {
+      background-color: rgba($color: #ccc, $alpha: 0.2);
     }
   }
+
   .icon-editor-pop-box {
     .icon-select-box {
       width: 100%;

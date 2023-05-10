@@ -21,9 +21,14 @@
   import { onBeforeUnmount, ref, shallowRef } from 'vue';
   import { Editor, Toolbar } from '@wangeditor/editor-for-vue';
 
-  const props = defineProps<{
+  interface IEditor {
     modelValue: any;
-  }>();
+    height?: string;
+  }
+  const props = withDefaults(defineProps<IEditor>(), {
+    modelValue: '',
+    height: '150px'
+  });
   const emit = defineEmits(['update:modelValue']);
 
   // 编辑器实例，必须用 shallowRef
@@ -70,7 +75,7 @@
     width: 100%;
     border: 1px solid #eee;
     .editor-content {
-      height: 150px !important;
+      height: v-bind('props.height') !important;
       overflow-y: auto;
     }
   }

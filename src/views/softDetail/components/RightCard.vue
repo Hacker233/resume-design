@@ -18,7 +18,7 @@
           v-for="(item, index) in content.source_download"
           :key="index"
           class="button"
-          @click="toDownload(item.link)"
+          @click="toDownload(item.name)"
         >
           <div v-if="!isPay" class="how-much"
             >1 <img width="20" src="@/assets/images/jianB.png" alt="简币"
@@ -61,6 +61,7 @@
   import ComTitle from './ComTitle.vue';
   import 'element-plus/es/components/message-box/style/index';
   import { useUserIsPayGoods } from '@/hooks/useUsrIsPayGoods';
+  import { softDownloadUrl } from '@/http/api/softShare';
   defineProps<{
     content: any;
   }>();
@@ -86,7 +87,7 @@
 
   // 点击下载
   const router = useRouter();
-  const toDownload = async (link: string) => {
+  const toDownload = async (name: string) => {
     const token = localStorage.getItem('token'); // 判断是否登录
     const userInfo = localStorage.getItem('userInfo');
     if (!token) {
@@ -99,8 +100,7 @@
       if (emailVerify) {
         // 判断用户是否支付过
         if (isPay.value) {
-          window.open(link, '_blank');
-          isPay.value = await useUserIsPayGoods(sourceId);
+          downloadTemplate(name);
         } else {
           // 判断当前用户简币是否充足
           const userIntegralTotal = appStore.useUserInfoStore.userIntegralInfo.integralTotal;
@@ -126,8 +126,7 @@
                 };
                 const payData = await payIntegralLogAsync(params);
                 if (payData.data.status === 200) {
-                  window.open(link, '_blank');
-                  isPay.value = await useUserIsPayGoods(sourceId);
+                  downloadTemplate(name);
                 } else {
                   ElMessage.error('简币扣除错误！');
                 }
@@ -143,6 +142,24 @@
           }
         });
       }
+    }
+  };
+
+  // 下载文件
+  const downloadTemplate = async (name: string) => {
+    const data = await softDownloadUrl(sourceId);
+    if (data.data.status === 200) {
+      ElMessage.success('即将开始下载');
+      data.data.data.source_download.forEach(
+        (item: { name: string; link: string | URL | undefined }) => {
+          if (item.name === name) {
+            window.open(item.link, '_blank');
+          }
+        }
+      );
+      isPay.value = await useUserIsPayGoods(sourceId); // 更新用户是否支付过的状态
+    } else {
+      ElMessage.error(data.data.message);
     }
   };
 </script>
