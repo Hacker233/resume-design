@@ -35,12 +35,9 @@
     <div class="preview-img-box">
       <com-title title="预览图"></com-title>
       <div v-viewer class="img-list">
-        <img
-          v-for="(item, index) in content.source_screen"
-          :key="index"
-          :src="item.response.data.fileUrl"
-          :alt="item.source_title"
-        />
+        <template v-for="(item, index) in content.source_screen" :key="index">
+          <img :src="item.url || item.response.data.fileUrl" :alt="item.source_title" />
+        </template>
       </div>
     </div>
 
