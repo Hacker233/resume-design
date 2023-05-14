@@ -7,3 +7,11 @@ export const getUserPanelAsync: any = () => {
     method: 'get'
   });
 };
+
+// 增加网站访问量
+export const addWebsiteViewsAsync: any = () => {
+  return http.request({
+    url: '/huajian/common/addWebsiteViews',
+    method: 'get'
+  });
+};

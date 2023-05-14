@@ -254,6 +254,21 @@
           index: 'SoftShareManage',
           iconfont: 'icon-jichuruanjian',
           title: '软件分享管理'
+        },
+        {
+          index: 'WebsiteTypeManage',
+          iconfont: 'icon-_houduankaifa',
+          title: '网站类型管理'
+        },
+        {
+          index: 'WebsiteCategoryManage',
+          iconfont: 'icon-jichuruanjian',
+          title: '网站分类管理'
+        },
+        {
+          index: 'WebsiteManage',
+          iconfont: 'icon-jichuruanjian',
+          title: '网站分享管理'
         }
       ]
     }

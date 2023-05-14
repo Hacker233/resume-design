@@ -7,6 +7,7 @@
     :show-close="false"
     :close-on-click-modal="false"
     append-to-body
+    @open="handleOpen"
   >
     <el-form
       ref="ruleFormRef"
@@ -17,11 +18,11 @@
       label-position="left"
       @submit.prevent
     >
-      <el-form-item label="分类名称：" prop="socategoryName">
-        <el-input v-model="ruleForm.socategoryName" />
+      <el-form-item label="类型名称：" prop="websiteTypeName">
+        <el-input v-model="ruleForm.websiteTypeName" />
       </el-form-item>
-      <el-form-item label="分类图标：" prop="socategoryIcon">
-        <icon-select-pop v-model="ruleForm.socategoryIcon"></icon-select-pop>
+      <el-form-item label="类型图标：" prop="websiteTypeIcon">
+        <icon-select-pop v-model="ruleForm.websiteTypeIcon"></icon-select-pop>
       </el-form-item>
     </el-form>
     <template #footer>
@@ -36,7 +37,7 @@
 </template>
 
 <script lang="ts" setup>
-  import { addSoftCategoryAsync, updateSoftCategoryAsync } from '@/http/api/softShare';
+  import { addWebsiteTypeAsync, updateWebsiteTypeAsync } from '@/http/api/websiteShare';
   import { FormInstance, FormRules } from 'element-plus';
 
   const emit = defineEmits(['cancle', 'updateSuccess']);
@@ -50,15 +51,15 @@
     dialogCategoryVisible: false,
     row: null,
     btnText: '新增',
-    title: '新增分类'
+    title: '新增类型'
   });
 
   watch(
     () => props.row,
     (newVal) => {
       if (newVal) {
-        ruleForm.socategoryName = props.row.socategory_name;
-        ruleForm.socategoryIcon = props.row.socategory_icon;
+        ruleForm.websiteTypeName = props.row.website_type_name;
+        ruleForm.websiteTypeIcon = props.row.website_type_icon;
       }
     },
     {
@@ -67,17 +68,17 @@
   );
 
   interface ICategory {
-    socategoryName: string;
-    socategoryIcon: string;
+    websiteTypeName: string;
+    websiteTypeIcon: string;
   }
   // 表单填写数据
   const ruleForm = reactive<ICategory>({
-    socategoryName: '',
-    socategoryIcon: 'icon-hezuo'
+    websiteTypeName: '',
+    websiteTypeIcon: 'icon-biaodanbiaoqian'
   });
   const rules = reactive<FormRules>({
-    socategoryName: [{ required: true, message: '分类名不能为空', trigger: 'change' }],
-    socategoryIcon: [{ required: true, message: '图标不能为空', trigger: 'change' }]
+    websiteTypeName: [{ required: true, message: '类型名不能为空', trigger: 'change' }],
+    websiteTypeIcon: [{ required: true, message: '图标不能为空', trigger: 'change' }]
   });
 
   // 取消
@@ -95,34 +96,34 @@
         // 新增
         if (props.btnText === '新增') {
           let params = {
-            socategoryName: ruleForm.socategoryName,
-            socategoryIcon: ruleForm.socategoryIcon
+            websiteTypeName: ruleForm.websiteTypeName,
+            websiteTypeIcon: ruleForm.websiteTypeIcon
           };
           sureLoading.value = true;
-          const data = await addSoftCategoryAsync(params);
+          const data = await addWebsiteTypeAsync(params);
           if (data.data.status === 200) {
             ElMessage.success('添加成功');
             sureLoading.value = false;
             emit('updateSuccess');
             ruleFormRef.value.resetFields();
-            ruleForm.socategoryIcon = 'icon-hezuo';
+            ruleForm.websiteTypeIcon = 'icon-hezuo';
           } else {
             sureLoading.value = false;
             ElMessage.error(data.data.message);
           }
         } else {
           let params = {
-            socategoryId: props.row._id,
-            socategoryName: ruleForm.socategoryName,
-            socategoryIcon: ruleForm.socategoryIcon
+            websiteTypeId: props.row._id,
+            websiteTypeName: ruleForm.websiteTypeName,
+            websiteTypeIcon: ruleForm.websiteTypeIcon
           };
-          const data = await updateSoftCategoryAsync(params);
+          const data = await updateWebsiteTypeAsync(params);
           if (data.data.status === 200) {
             ElMessage.success('修改成功');
             sureLoading.value = false;
             emit('updateSuccess');
             ruleFormRef.value.resetFields();
-            ruleForm.socategoryIcon = 'icon-hezuo';
+            ruleForm.websiteTypeIcon = 'icon-hezuo';
           } else {
             sureLoading.value = false;
             ElMessage.error(data.data.message);
@@ -133,6 +134,13 @@
         console.log('error submit!', fields);
       }
     });
+  };
+
+  // 弹窗打开回调
+  const handleOpen = () => {
+    if (props.btnText === '新增') {
+      ruleFormRef.value.resetFields();
+    }
   };
 </script>
 <style lang="scss" scoped>

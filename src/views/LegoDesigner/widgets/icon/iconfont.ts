@@ -6,6 +6,167 @@ export const iconfontList = {
   description: '',
   glyphs: [
     {
+      icon_id: '139229',
+      name: '金点子',
+      font_class: 'jindianzi',
+      unicode: 'e6ab',
+      unicode_decimal: 59051
+    },
+    {
+      icon_id: '591722',
+      name: 'wxb工具',
+      font_class: 'wxbgongju',
+      unicode: 'e6ac',
+      unicode_decimal: 59052
+    },
+    {
+      icon_id: '1110982',
+      name: 'Drgs平台软件系统42',
+      font_class: 'drgspingtairuanjianxitong42',
+      unicode: 'e6ae',
+      unicode_decimal: 59054
+    },
+    {
+      icon_id: '1503737',
+      name: '视频',
+      font_class: 'shipin',
+      unicode: 'e6af',
+      unicode_decimal: 59055
+    },
+    {
+      icon_id: '2675116',
+      name: '搜索',
+      font_class: 'sousuo',
+      unicode: 'e6b1',
+      unicode_decimal: 59057
+    },
+    {
+      icon_id: '3169788',
+      name: '金点子',
+      font_class: 'jingji',
+      unicode: 'e79e',
+      unicode_decimal: 59294
+    },
+    {
+      icon_id: '5387553',
+      name: '搜索',
+      font_class: 'sousuo1',
+      unicode: 'eafe',
+      unicode_decimal: 60158
+    },
+    {
+      icon_id: '7017744',
+      name: '模板设计',
+      font_class: 'mobansheji',
+      unicode: 'e6b2',
+      unicode_decimal: 59058
+    },
+    {
+      icon_id: '9617132',
+      name: '2_8计算机软件',
+      font_class: '_jisuanjiruanjian',
+      unicode: 'e6b3',
+      unicode_decimal: 59059
+    },
+    {
+      icon_id: '9748076',
+      name: '教育',
+      font_class: 'jiaoyu1',
+      unicode: 'e6b4',
+      unicode_decimal: 59060
+    },
+    {
+      icon_id: '10164899',
+      name: '教育',
+      font_class: 'jiaoyu2',
+      unicode: 'e6b7',
+      unicode_decimal: 59063
+    },
+    {
+      icon_id: '10496928',
+      name: '搜索',
+      font_class: 'sousuo2',
+      unicode: 'e6b8',
+      unicode_decimal: 59064
+    },
+    {
+      icon_id: '10571108',
+      name: 'sharpicons_palette',
+      font_class: 'sharpicons_palette',
+      unicode: 'e7e5',
+      unicode_decimal: 59365
+    },
+    {
+      icon_id: '11891775',
+      name: 'tool',
+      font_class: 'tool',
+      unicode: 'e6b9',
+      unicode_decimal: 59065
+    },
+    {
+      icon_id: '16328029',
+      name: '画画',
+      font_class: 'huahua',
+      unicode: 'e6ba',
+      unicode_decimal: 59066
+    },
+    {
+      icon_id: '17868597',
+      name: '视频',
+      font_class: 'shipin1',
+      unicode: 'e6bc',
+      unicode_decimal: 59068
+    },
+    {
+      icon_id: '20377629',
+      name: '金点子',
+      font_class: 'tubiaozhuanqu-16',
+      unicode: 'e6bd',
+      unicode_decimal: 59069
+    },
+    {
+      icon_id: '24185837',
+      name: '五角星',
+      font_class: 'icon_697',
+      unicode: 'e6bf',
+      unicode_decimal: 59071
+    },
+    {
+      icon_id: '32228195',
+      name: '收藏',
+      font_class: 'shoucang',
+      unicode: 'e6c0',
+      unicode_decimal: 59072
+    },
+    {
+      icon_id: '4398433',
+      name: '标签',
+      font_class: 'biaoqian',
+      unicode: 'e6a9',
+      unicode_decimal: 59049
+    },
+    {
+      icon_id: '5900259',
+      name: '标签',
+      font_class: 'biaoqian1',
+      unicode: 'e6aa',
+      unicode_decimal: 59050
+    },
+    {
+      icon_id: '7542722',
+      name: '24gl-tags4',
+      font_class: '24gl-tags4',
+      unicode: 'e87d',
+      unicode_decimal: 59517
+    },
+    {
+      icon_id: '8361754',
+      name: '表单标签',
+      font_class: 'biaodanbiaoqian',
+      unicode: 'e6bb',
+      unicode_decimal: 59067
+    },
+    {
       icon_id: '12437174',
       name: '影视',
       font_class: 'yingshi1',

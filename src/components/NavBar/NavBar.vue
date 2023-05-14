@@ -173,6 +173,13 @@
           title: '软件分享',
           children: null,
           path: '/soft'
+        },
+        {
+          iconfont: '',
+          name: 'Website',
+          title: '网站分享',
+          children: null,
+          path: '/website'
         }
       ]
     },

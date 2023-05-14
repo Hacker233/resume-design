@@ -33,6 +33,9 @@ const LegoPrintPdfPreview = () =>
 // 软件分享
 const SoftShare = () => import('@/views/softShare/index.vue');
 const SoftDetail = () => import('@/views/softDetail/index.vue');
+// 网站分享
+const WebsiteShare = () => import('@/views/websiteShare/index.vue');
+const WebsiteDetail = () => import('@/views/websiteDetail/index.vue');
 
 // 图片压缩
 const ImgCompress = () => import('@/views/imgCompress/index.vue');
@@ -68,6 +71,9 @@ const LegoUserTemplateList = () =>
   import('@/views/admin/legoManage/legoUserTemplateList/index.vue');
 const SoftShareManage = () => import('@/views/admin/SourceShare/softShare/index.vue');
 const SoftCategoryManage = () => import('@/views/admin/SourceShare/softCategory/index.vue');
+const WebsiteTypeManage = () => import('@/views/admin/SourceShare/websiteType/index.vue');
+const WebsiteCategoryManage = () => import('@/views/admin/SourceShare/websiteCategory/index.vue');
+const WebsiteManage = () => import('@/views/admin/SourceShare/websiteShare/index.vue');
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -236,6 +242,17 @@ const routes: Array<RouteRecordRaw> = [
     component: SoftShare
   },
   {
+    path: '/website',
+    name: 'Website',
+    meta: {
+      title: '网站分享',
+      keepAlive: true,
+      isShowComNav: true,
+      requireLogin: false
+    },
+    component: WebsiteShare
+  },
+  {
     path: '/softDetail',
     name: 'SoftDetail',
     meta: {
@@ -245,6 +262,17 @@ const routes: Array<RouteRecordRaw> = [
       requireLogin: false
     },
     component: SoftDetail
+  },
+  {
+    path: '/websiteDetail',
+    name: 'WebsiteDetail',
+    meta: {
+      title: '网站详情',
+      keepAlive: true,
+      isShowComNav: true,
+      requireLogin: false
+    },
+    component: WebsiteDetail
   },
   {
     path: '/imgCompress',
@@ -721,6 +749,39 @@ const routes: Array<RouteRecordRaw> = [
           requireLogin: true
         },
         component: SoftCategoryManage
+      },
+      {
+        path: 'websiteTypeManage',
+        name: 'WebsiteTypeManage',
+        meta: {
+          title: '网站大类管理',
+          keepAlive: true,
+          isShowComNav: false,
+          requireLogin: true
+        },
+        component: WebsiteTypeManage
+      },
+      {
+        path: 'websiteCategoryManage',
+        name: 'WebsiteCategoryManage',
+        meta: {
+          title: '网站分类管理',
+          keepAlive: true,
+          isShowComNav: false,
+          requireLogin: true
+        },
+        component: WebsiteCategoryManage
+      },
+      {
+        path: 'websiteManage',
+        name: 'WebsiteManage',
+        meta: {
+          title: '网站分享管理',
+          keepAlive: true,
+          isShowComNav: false,
+          requireLogin: true
+        },
+        component: WebsiteManage
       }
     ]
   }

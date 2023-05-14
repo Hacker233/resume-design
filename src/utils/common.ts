@@ -256,3 +256,12 @@ export const getFileSize = (fileByte: number) => {
   else fileSizeMsg = '文件超过1TB';
   return fileSizeMsg;
 };
+
+// 数字转化为k、w显示
+export const formatNumber = (num: number) => {
+  return num >= 1e3 && num < 1e4
+    ? (num / 1e3).toFixed(1) + 'k'
+    : num >= 1e4
+    ? (num / 1e4).toFixed(1) + 'w'
+    : num;
+};

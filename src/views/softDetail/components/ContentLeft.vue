@@ -5,7 +5,9 @@
       <com-title title="简介"></com-title>
       <div v-dompurify-html="content.source_abstract" class="content"></div>
 
-      <div class="create-time-box">发表于&nbsp;&nbsp;&nbsp;{{ content.source_create_date }}</div>
+      <div class="create-time-box"
+        >发表于&nbsp;&nbsp;&nbsp;{{ formatListDate(content.source_create_date) }}</div
+      >
 
       <!-- 软件相关数据统计 -->
       <div class="article-data-box">
@@ -47,6 +49,7 @@
 </template>
 <script lang="ts" setup>
   import ComTitle from './ComTitle.vue';
+  import { formatListDate } from '@/utils/common';
   defineProps<{
     content: any;
     commentCount: any;

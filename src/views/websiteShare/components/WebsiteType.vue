@@ -1,67 +1,82 @@
 <template>
-  <div class="category-box">
+  <div class="website-type-list-box">
     <div class="left">
       <ul>
         <li
-          v-for="(item, index) in categoryList"
+          v-for="(item, index) in websiteTypeList"
           :key="index"
-          :class="[{ active: currentValue === item.socategory_name }]"
+          :class="[{ active: currentValue === item.website_type_name }]"
           @click="handleSelect(item)"
         >
           <svg-icon
-            v-if="!item.socategory_icon"
+            v-if="!item.website_type_icon"
             icon-name="icon-danlieliebiao"
-            :color="currentValue === item.socategory_name ? '#009a74' : '#000'"
+            :color="currentValue === item.website_type_name ? '#009a74' : '#000'"
             size="18px"
             class-name="catalog-icon"
           ></svg-icon>
           <svg-icon
             v-else
-            :icon-name="item.socategory_icon"
-            :color="currentValue === item.socategory_name ? '#009a74' : '#000'"
+            :icon-name="item.website_type_icon"
+            :color="currentValue === item.website_type_name ? '#009a74' : '#000'"
             size="18px"
             class-name="catalog-icon"
           ></svg-icon>
-          {{ item.socategory_name }}
+          {{ item.website_type_name }}
         </li>
       </ul>
     </div>
   </div>
 </template>
 <script lang="ts" setup>
-  const emit = defineEmits(['getSoftListByCate']);
+  const emit = defineEmits(['getWebsiteCategoryListByType', 'getWebsiteListByType']);
 
   defineProps<{
-    categoryList: Array<{
-      socategory_icon: string;
-      socategory_name: string;
-      socategory_id: string;
+    websiteTypeList: Array<{
+      website_type_icon: string;
+      website_type_name: string;
+      website_type_id: string;
     }>;
   }>();
 
-  // 点击分类
-  const currentValue = ref<string>('全部');
+  // 点击类型
+  const { weisiteTypeName } = useRoute().query;
+  const currentValue = ref<string>(''); // 默认选中类型
+  if (weisiteTypeName) {
+    currentValue.value = weisiteTypeName as string;
+  } else {
+    currentValue.value = '生活娱乐';
+  }
+
   const handleSelect = (item: any) => {
-    currentValue.value = item.socategory_name;
-    if (currentValue.value === '全部') {
-      emit('getSoftListByCate', '');
-      return;
-    }
-    emit('getSoftListByCate', currentValue.value);
+    currentValue.value = item.website_type_name;
+    emit('getWebsiteListByType', currentValue.value);
+    emit('getWebsiteCategoryListByType', currentValue.value);
   };
+
+  // 根据类型查询网站分类
+  emit('getWebsiteCategoryListByType', currentValue.value);
+
+  // 根据网站类型查询网站列表
+  emit('getWebsiteListByType', currentValue.value);
 </script>
 <style lang="scss" scoped>
-  .category-box {
+  .website-type-list-box {
     width: 100%;
     display: flex;
     min-height: 42px;
     justify-content: space-between;
     .left {
+      width: 100%;
       ul {
+        width: 100%;
         display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
         li {
           list-style: none;
-          padding: 0 25px;
+          width: 85%;
           height: 42px;
           border-radius: 20px;
           font-size: 14px;
@@ -70,12 +85,13 @@
           justify-content: center;
           cursor: pointer;
           letter-spacing: 4px;
-          margin-right: 10px;
           transition: all 0.3s;
           border: 1px solid transparent;
           user-select: none;
+          margin-bottom: 10px;
           &:hover {
             color: #009a74;
+            border: 1px solid #03d7a2;
           }
           .catalog-icon {
             margin-right: 10px;

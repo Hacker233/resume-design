@@ -2,6 +2,7 @@ import Request from './index';
 import { AxiosResponse } from 'axios';
 import CONFIG from '@/config/index';
 import appStore from '@/store';
+import LoginDialog from '@/components/LoginDialog/LoginDialog';
 const http = new Request({
   baseURL: CONFIG.serverAddress,
   timeout: 1000 * 60 * 5,
@@ -15,11 +16,10 @@ const http = new Request({
             const { saveToken } = appStore.useTokenStore;
             const { saveUserInfo } = appStore.useUserInfoStore;
             const { setUuid } = appStore.useRefreshStore;
-            const router = useRouter();
             saveToken(''); // 清除token
             saveUserInfo(''); // 清除用户信息
             setUuid(); // 全局刷新
-            router.push('/');
+            LoginDialog(true);
             break;
           default:
             break;

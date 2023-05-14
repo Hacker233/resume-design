@@ -19,6 +19,7 @@
   import { storeToRefs } from 'pinia';
   // import { openAndCloseLoadingByTime } from './utils/common';
   import zhCn from 'element-plus/lib/locale/lang/zh-cn';
+  import { addWebsiteViewsAsync } from './http/api/panel';
   const { isLoading } = storeToRefs(appStore.useLoadingStore);
   // openAndCloseLoadingByTime(1500); // 等待动画层
   const { refreshUuid } = appStore.useRefreshStore;
@@ -36,6 +37,12 @@
   if (token) {
     getUserIntegralTotal();
   }
+
+  // 增加网站访问量
+  const addWebsiteViews = () => {
+    addWebsiteViewsAsync();
+  };
+  addWebsiteViews();
 </script>
 <style>
   /* 设置了打印会出现问题 */
