@@ -38,5 +38,12 @@ export const toCommentDetail = (item: any, router: Router) => {
         articleId: item.comment_type_id
       }
     });
+  } else if (item.comment_type === 'website') {
+    router.push({
+      path: path,
+      query: {
+        websiteId: item.comment_type_id
+      }
+    });
   }
 };

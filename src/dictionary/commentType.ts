@@ -22,5 +22,9 @@ export const commentType: any = {
   legoTemplate: {
     label: '积木制作',
     path: '/legoDesigner'
+  },
+  website: {
+    label: '网站分享',
+    path: '/website'
   }
 };
