@@ -160,8 +160,8 @@
     let params = {
       page: page.value,
       limit: limit.value,
-      websiteTypeName: websiteInfo.website_type_name,
-      websiteCategory: websiteInfo.website_category
+      websiteTypeName: websiteInfo.value.website_type_name,
+      websiteCategory: websiteInfo.value.website_category
     };
     const data = await getWebsiteListByTypeAndCategoryAsync(params);
     if (data.status === 200) {
