@@ -48,10 +48,18 @@
     currentValue.value = '生活娱乐';
   }
 
+  // 点击类型
+  const router = useRouter();
   const handleSelect = (item: any) => {
     currentValue.value = item.website_type_name;
     emit('getWebsiteListByType', currentValue.value);
     emit('getWebsiteCategoryListByType', currentValue.value);
+    router.replace({
+      path: '/website',
+      query: {
+        weisiteTypeName: currentValue.value
+      }
+    });
   };
 
   // 根据类型查询网站分类

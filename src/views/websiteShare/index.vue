@@ -109,9 +109,12 @@
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
+    position: relative;
     .website-type-box {
       width: 150px;
       min-height: 300px;
+      position: sticky;
+      top: 95px;
     }
     .website-content-box {
       width: 1140px;

@@ -25,6 +25,6 @@ export const commentType: any = {
   },
   website: {
     label: '网站分享',
-    path: '/website'
+    path: '/websiteDetail'
   }
 };

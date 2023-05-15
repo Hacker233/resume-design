@@ -43,6 +43,15 @@
           <div class="abstract">
             <p>{{ websiteInfo.website_abstract }}</p>
           </div>
+          <!-- 标签 -->
+          <div class="tags-box">
+            <span>标签：</span>
+            <div class="tags">
+              <el-tag v-for="(item, index) in websiteInfo.website_tags" :key="index">{{
+                item
+              }}</el-tag>
+            </div>
+          </div>
           <div class="button-box">
             <a
               class="button"
@@ -297,6 +306,19 @@
             color: #1d232b;
             font-size: 14px;
             text-align: justify;
+          }
+
+          .tags-box {
+            display: flex;
+            align-items: center;
+            span {
+              font-size: 13px;
+              margin-top: 20px;
+              margin-right: 10px;
+            }
+            .el-tag {
+              margin-right: 10px;
+            }
           }
           .button-box {
             display: flex;
