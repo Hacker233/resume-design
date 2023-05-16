@@ -20,7 +20,12 @@
       <!-- 直达图标 -->
       <div class="direct-icon-box" @click.stop>
         <el-tooltip class="box-item" effect="light" content="直达" placement="right">
-          <a :href="cardData.website_link" target="_blank" rel="external nofollow noopener">
+          <a
+            :href="cardData.website_link"
+            target="_blank"
+            rel="external nofollow noopener"
+            @click="addViews"
+          >
             <svg-icon
               icon-name="icon-chakangengduo-xian"
               class-name="direct-icon"
@@ -34,11 +39,14 @@
     <!-- 评论量和访问量 -->
     <div class="card-bottom">
       <svg-icon icon-name="icon-icon_yulan" color="#a3abb1" size="14px"></svg-icon>
-      <span class="number">{{ cardData.website_views }}</span>
+      <span class="number">{{ formatNumber(cardData.website_views) }}</span>
     </div>
   </div>
 </template>
 <script lang="ts" setup>
+  import { addWebsiteViewByIdAsync } from '@/http/api/websiteShare';
+  import { formatNumber } from '@/utils/common';
+
   const props = defineProps<{
     cardData: any;
   }>();
@@ -64,6 +72,11 @@
       }
     });
     window.open(newpage.href, '_blank');
+  };
+
+  // 网站浏览量+1
+  const addViews = () => {
+    addWebsiteViewByIdAsync({ id: props.cardData._id });
   };
 </script>
 <style lang="scss" scoped>

@@ -138,3 +138,11 @@ export const getWebsiteListByTypeAndCategoryAsync: any = (params: any) => {
     params: params
   });
 };
+
+// 网站浏览量+1
+export const addWebsiteViewByIdAsync: any = (params: any) => {
+  return http.request({
+    url: `/huajian/common/addWebsiteViewById/${params.id}`,
+    method: 'get'
+  });
+};

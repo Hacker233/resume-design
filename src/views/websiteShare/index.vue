@@ -10,7 +10,12 @@
     </div>
     <!-- 网站内容区 -->
     <div class="website-content-box">
-      <div v-for="(item, index) in categoryList" :key="index" class="category-content-box">
+      <div
+        v-for="(item, index) in categoryList"
+        :key="index"
+        :ref="(el) => setCategoryRef(el, item._id)"
+        class="category-content-box"
+      >
         <!-- 分类标题 -->
         <category-title :title="item.website_category"></category-title>
         <template
@@ -35,6 +40,17 @@
         <el-skeleton v-if="showSkeleton" :rows="5" animated />
       </div>
     </div>
+
+    <!-- 网站分类导航 -->
+    <div class="website-category-box">
+      <website-category-list
+        :website-category-list="categoryList"
+        @change-category="handleChangeCategory"
+      ></website-category-list>
+    </div>
+
+    <!-- 回到顶部 -->
+    <el-backtop :right="50" :bottom="80" />
   </div>
 </template>
 <script lang="ts" setup>
@@ -46,6 +62,7 @@
   import WebsiteType from './components/WebsiteType.vue';
   import CategoryTitle from './components/CategoryTitle.vue';
   import WebsiteCard from './components/WebsiteCard.vue';
+  import WebsiteCategoryList from './components/WebsiteCategoryList.vue';
 
   // 获取网站类型列表
   const websiteTypeList = ref<any>([]);
@@ -62,6 +79,7 @@
   // 根据类型查询网站分类
   const categoryList = ref<any>([]);
   const getWebsiteCategoryListByType = async (name: string) => {
+    categoryRefs = [];
     categoryList.value = [];
     const params = {
       websiteTypeName: name
@@ -100,11 +118,32 @@
       ElMessage.error(data.message);
     }
   };
+
+  // 点击分类
+  const handleChangeCategory = (id: string) => {
+    const index = categoryRefs.findIndex((item) => item.id === id);
+    if (index >= 0) {
+      categoryRefs[index].el.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
+  let categoryRefs: Array<any> = []; // 分类列表ref
+  const setCategoryRef = (el: any, id: string) => {
+    if (el) {
+      const index = categoryRefs.findIndex((item) => item.id === id);
+      if (index < 0) {
+        categoryRefs.push({
+          id: id,
+          el: el
+        });
+      }
+    }
+  };
 </script>
 <style lang="scss" scoped>
   .website-share-box {
-    width: 1350px;
-    padding-top: 30px;
+    width: 1370px;
+    padding: 30px 0;
     margin: 0 auto;
     display: flex;
     justify-content: space-between;
@@ -133,6 +172,11 @@
           }
         }
       }
+    }
+    .website-category-box {
+      flex: 1;
+      position: sticky;
+      top: 95px;
     }
   }
 </style>

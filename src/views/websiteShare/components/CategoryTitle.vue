@@ -1,10 +1,10 @@
 <template>
   <div class="category-title-box">
     <svg-icon
-      icon-name="icon-24gl-tags4"
+      icon-name="icon-shixi1"
       class-name="category-title-icon"
       color="#00523d"
-      size="18px"
+      size="23px"
     ></svg-icon>
     <h3>{{ title }}</h3>
   </div>
