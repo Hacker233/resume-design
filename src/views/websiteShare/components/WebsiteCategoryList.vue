@@ -32,7 +32,7 @@
   .category-list-ul {
     display: flex;
     flex-direction: column;
-    width: 100%;
+    width: 80px;
     padding: 0 5px;
     li {
       cursor: pointer;

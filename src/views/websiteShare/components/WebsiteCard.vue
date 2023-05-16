@@ -15,7 +15,7 @@
       <!-- 标题和简介 -->
       <div class="title-abstract-box">
         <span class="title" :title="cardData.website_title">{{ cardData.website_title }}</span>
-        <p>{{ cardData.website_abstract }}</p>
+        <p :title="cardData.website_abstract">{{ cardData.website_abstract }}</p>
       </div>
       <!-- 直达图标 -->
       <div class="direct-icon-box" @click.stop>

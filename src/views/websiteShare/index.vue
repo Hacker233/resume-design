@@ -156,7 +156,7 @@
       top: 95px;
     }
     .website-content-box {
-      width: 1140px;
+      width: 1000px;
       min-height: 300px;
       background-color: rgb(251 251 251 / 80%);
       margin: 0 auto;
@@ -167,14 +167,14 @@
         flex-wrap: wrap;
         padding: 20px 8px;
         .card-item {
-          &:not(:nth-child(5n)) {
-            margin-right: 18px;
+          &:not(:nth-child(4n)) {
+            margin-right: 44px;
           }
         }
       }
     }
     .website-category-box {
-      flex: 1;
+      width: 150px;
       position: sticky;
       top: 95px;
     }
