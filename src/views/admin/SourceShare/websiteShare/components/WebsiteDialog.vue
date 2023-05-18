@@ -51,13 +51,13 @@
         </el-select>
       </el-form-item>
       <el-form-item label="网站标题" prop="websiteTitle">
-        <el-input v-model="ruleForm.websiteTitle" :maxlength="100" show-word-limit />
+        <el-input v-model.trim="ruleForm.websiteTitle" :maxlength="100" show-word-limit />
       </el-form-item>
       <el-form-item label="网站简介" prop="websiteAbstract">
-        <el-input v-model="ruleForm.websiteAbstract" type="textarea" :rows="5" />
+        <el-input v-model.trim="ruleForm.websiteAbstract" type="textarea" :rows="5" />
       </el-form-item>
       <el-form-item label="网站链接" prop="websiteLink">
-        <el-input v-model="ruleForm.websiteLink" />
+        <el-input v-model.trim="ruleForm.websiteLink" />
       </el-form-item>
       <el-form-item label="网站标签" prop="websiteTags">
         <div class="tags-add-box">
