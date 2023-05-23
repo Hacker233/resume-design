@@ -21,6 +21,9 @@
       <el-form-item label="类型名称：" prop="websiteTypeName">
         <el-input v-model="ruleForm.websiteTypeName" />
       </el-form-item>
+      <el-form-item label="类型排序：" prop="websiteTypeSort">
+        <el-input-number v-model="ruleForm.websiteTypeSort" :min="1" :max="100" />
+      </el-form-item>
       <el-form-item label="类型图标：" prop="websiteTypeIcon">
         <icon-select-pop v-model="ruleForm.websiteTypeIcon"></icon-select-pop>
       </el-form-item>
@@ -60,6 +63,7 @@
       if (newVal) {
         ruleForm.websiteTypeName = props.row.website_type_name;
         ruleForm.websiteTypeIcon = props.row.website_type_icon;
+        ruleForm.websiteTypeSort = props.row.website_type_sort;
       }
     },
     {
@@ -70,15 +74,18 @@
   interface ICategory {
     websiteTypeName: string;
     websiteTypeIcon: string;
+    websiteTypeSort: number;
   }
   // 表单填写数据
   const ruleForm = reactive<ICategory>({
     websiteTypeName: '',
-    websiteTypeIcon: 'icon-biaodanbiaoqian'
+    websiteTypeIcon: 'icon-biaodanbiaoqian',
+    websiteTypeSort: 1
   });
   const rules = reactive<FormRules>({
     websiteTypeName: [{ required: true, message: '类型名不能为空', trigger: 'change' }],
-    websiteTypeIcon: [{ required: true, message: '图标不能为空', trigger: 'change' }]
+    websiteTypeIcon: [{ required: true, message: '图标不能为空', trigger: 'change' }],
+    websiteTypeSort: [{ required: true, message: '类型排序不能为空', trigger: 'change' }]
   });
 
   // 取消
@@ -97,7 +104,8 @@
         if (props.btnText === '新增') {
           let params = {
             websiteTypeName: ruleForm.websiteTypeName,
-            websiteTypeIcon: ruleForm.websiteTypeIcon
+            websiteTypeIcon: ruleForm.websiteTypeIcon,
+            websiteTypeSort: ruleForm.websiteTypeSort
           };
           sureLoading.value = true;
           const data = await addWebsiteTypeAsync(params);
@@ -115,7 +123,8 @@
           let params = {
             websiteTypeId: props.row._id,
             websiteTypeName: ruleForm.websiteTypeName,
-            websiteTypeIcon: ruleForm.websiteTypeIcon
+            websiteTypeIcon: ruleForm.websiteTypeIcon,
+            websiteTypeSort: ruleForm.websiteTypeSort
           };
           const data = await updateWebsiteTypeAsync(params);
           if (data.data.status === 200) {

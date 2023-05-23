@@ -137,7 +137,7 @@ const routes: Array<RouteRecordRaw> = [
     meta: {
       title: '作品发布成功',
       keepAlive: true,
-      isShowComNav: false,
+      isShowComNav: true,
       requireLogin: true
     },
     component: PostWorkSuccess

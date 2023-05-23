@@ -28,6 +28,7 @@
     <el-table-column prop="website_type_name" label="所属类型" />
     <el-table-column prop="website_type_id" label="类型id" />
     <el-table-column prop="website_category" label="分类名称" />
+    <el-table-column prop="website_category_sort" label="分类排序" />
     <el-table-column prop="website_category_icon" label="分类图标">
       <template #default="scope">
         <svg-icon

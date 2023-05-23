@@ -12,6 +12,7 @@
     border
   >
     <el-table-column prop="website_type_name" label="类型名称" />
+    <el-table-column prop="website_type_sort" label="类型排序" />
     <el-table-column prop="website_type_icon" label="类型图标">
       <template #default="scope">
         <svg-icon :icon-name="scope.row.website_type_icon" size="30px" color="#00c091"></svg-icon>

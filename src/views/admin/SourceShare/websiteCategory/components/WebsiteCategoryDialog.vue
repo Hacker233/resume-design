@@ -37,6 +37,9 @@
       <el-form-item label="分类名称：" prop="websiteCategory">
         <el-input v-model="ruleForm.websiteCategory" />
       </el-form-item>
+      <el-form-item label="类型排序：" prop="websiteCategorySort">
+        <el-input-number v-model="ruleForm.websiteCategorySort" :min="1" :max="100" />
+      </el-form-item>
       <el-form-item label="分类图标：" prop="websiteCategoryIcon">
         <icon-select-pop v-model="ruleForm.websiteCategoryIcon"></icon-select-pop>
       </el-form-item>
@@ -80,6 +83,7 @@
         ruleForm.websiteTypeId = props.row.website_type_id;
         ruleForm.websiteCategory = props.row.website_category;
         ruleForm.websiteCategoryIcon = props.row.website_category_icon;
+        ruleForm.websiteCategorySort = props.row.website_category_sort;
       }
     },
     {
@@ -92,13 +96,15 @@
     websiteTypeId: string;
     websiteCategory: string;
     websiteCategoryIcon: string;
+    websiteCategorySort: number;
   }
   // 表单填写数据
   const ruleForm = reactive<ICategory>({
     websiteTypeName: '',
     websiteTypeId: '',
     websiteCategory: '',
-    websiteCategoryIcon: 'icon-hezuo'
+    websiteCategoryIcon: 'icon-hezuo',
+    websiteCategorySort: 1
   });
   const rules = reactive<FormRules>({
     websiteCategory: [{ required: true, message: '分类名不能为空', trigger: 'change' }],
@@ -132,7 +138,8 @@
             websiteTypeName: ruleForm.websiteTypeName,
             websiteTypeId: ruleForm.websiteTypeId,
             websiteCategory: ruleForm.websiteCategory,
-            websiteCategoryIcon: ruleForm.websiteCategoryIcon
+            websiteCategoryIcon: ruleForm.websiteCategoryIcon,
+            websiteCategorySott: ruleForm.websiteCategorySort
           };
           sureLoading.value = true;
           const data = await addWebsiteCategoryAsync(params);
@@ -153,7 +160,8 @@
             websiteTypeName: ruleForm.websiteTypeName,
             websiteTypeId: ruleForm.websiteTypeId,
             websiteCategory: ruleForm.websiteCategory,
-            websiteCategoryIcon: ruleForm.websiteCategoryIcon
+            websiteCategoryIcon: ruleForm.websiteCategoryIcon,
+            websiteCategorySott: ruleForm.websiteCategorySort
           };
           const data = await updateWebsiteCategoryAsync(params);
           if (data.data.status === 200) {

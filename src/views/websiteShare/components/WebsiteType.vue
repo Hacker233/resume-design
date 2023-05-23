@@ -5,20 +5,20 @@
         <li
           v-for="(item, index) in websiteTypeList"
           :key="index"
-          :class="[{ active: currentValue === item.website_type_name }]"
-          @click="handleSelect(item)"
+          :class="[{ active: currentIndex === index }]"
+          @click="handleSelect(item, index)"
         >
           <svg-icon
             v-if="!item.website_type_icon"
             icon-name="icon-danlieliebiao"
-            :color="currentValue === item.website_type_name ? '#009a74' : '#000'"
+            :color="currentIndex === index ? '#009a74' : '#000'"
             size="18px"
             class-name="catalog-icon"
           ></svg-icon>
           <svg-icon
             v-else
             :icon-name="item.website_type_icon"
-            :color="currentValue === item.website_type_name ? '#009a74' : '#000'"
+            :color="currentIndex === index ? '#009a74' : '#000'"
             size="18px"
             class-name="catalog-icon"
           ></svg-icon>
@@ -31,7 +31,7 @@
 <script lang="ts" setup>
   const emit = defineEmits(['getWebsiteCategoryListByType', 'getWebsiteListByType']);
 
-  defineProps<{
+  const props = defineProps<{
     websiteTypeList: Array<{
       website_type_icon: string;
       website_type_name: string;
@@ -40,17 +40,33 @@
   }>();
 
   // 点击类型
+  const currentIndex = ref<number>(0);
   const { weisiteTypeName } = useRoute().query;
   const currentValue = ref<string>(''); // 默认选中类型
   if (weisiteTypeName) {
     currentValue.value = weisiteTypeName as string;
   } else {
-    currentValue.value = '生活娱乐';
+    currentValue.value = '影视视频';
   }
+
+  // 选中索引初始化
+  watch(
+    () => props.websiteTypeList,
+    (newVal) => {
+      if (newVal && newVal.length) {
+        if (weisiteTypeName) {
+          currentIndex.value = newVal.findIndex(
+            (item) => item.website_type_name === weisiteTypeName
+          );
+        }
+      }
+    }
+  );
 
   // 点击类型
   const router = useRouter();
-  const handleSelect = (item: any) => {
+  const handleSelect = (item: any, index: number) => {
+    currentIndex.value = index;
     currentValue.value = item.website_type_name;
     emit('getWebsiteListByType', currentValue.value);
     emit('getWebsiteCategoryListByType', currentValue.value);

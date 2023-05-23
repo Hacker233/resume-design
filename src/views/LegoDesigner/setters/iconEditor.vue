@@ -3,7 +3,7 @@
     <el-form-item label="图标选择:">
       <el-popover popper-class="icon-editor-pop-box" :width="400" trigger="click">
         <template #reference>
-          <div class="icon-box">
+          <div class="icon-editor-icon-box">
             <svg-icon :icon-name="widgetItem?.props.icon" color="#74a274" size="22px"></svg-icon>
           </div>
         </template>
@@ -39,7 +39,7 @@
   };
 </script>
 <style lang="scss">
-  .icon-box {
+  .icon-editor-icon-box {
     display: flex;
     align-items: center;
     height: 30px;
