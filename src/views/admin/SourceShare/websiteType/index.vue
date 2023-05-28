@@ -18,6 +18,12 @@
         <svg-icon :icon-name="scope.row.website_type_icon" size="30px" color="#00c091"></svg-icon>
       </template>
     </el-table-column>
+    <el-table-column prop="website_type_show" label="是否可见">
+      <template #default="scope">
+        <el-tag v-if="scope.row.website_type_show === 1" type="success" size="default">可见</el-tag>
+        <el-tag v-else type="info" size="default">不可见</el-tag>
+      </template>
+    </el-table-column>
 
     <el-table-column prop="createDate" label="创建日期">
       <template #default="scope">

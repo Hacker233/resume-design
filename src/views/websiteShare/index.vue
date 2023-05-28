@@ -69,7 +69,11 @@
   const queryWebsiteTypeAll = async () => {
     const data = await getWebsiteTypeListAsync();
     if (data.status === 200) {
-      websiteTypeList.value = data.data;
+      data.data.map((item: { website_type_show: number }) => {
+        if (item.website_type_show === 1) {
+          websiteTypeList.value.push(item);
+        }
+      });
     } else {
       ElMessage.error(data.message);
     }

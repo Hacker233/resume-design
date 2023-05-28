@@ -24,6 +24,21 @@
       <el-form-item label="类型排序：" prop="websiteTypeSort">
         <el-input-number v-model="ruleForm.websiteTypeSort" :min="1" :max="100" />
       </el-form-item>
+      <el-form-item label="是否可见：" prop="websiteTypeShow">
+        <el-select
+          v-model="ruleForm.websiteTypeShow"
+          placeholder="请选择"
+          size="default"
+          style="width: 100%"
+        >
+          <el-option
+            v-for="item in websiteTypeShowList"
+            :key="item.value"
+            :label="item.label"
+            :value="item.value"
+          />
+        </el-select>
+      </el-form-item>
       <el-form-item label="类型图标：" prop="websiteTypeIcon">
         <icon-select-pop v-model="ruleForm.websiteTypeIcon"></icon-select-pop>
       </el-form-item>
@@ -57,6 +72,18 @@
     title: '新增类型'
   });
 
+  // 是否可见列表
+  const websiteTypeShowList = [
+    {
+      label: '可见',
+      value: 1
+    },
+    {
+      label: '不可见',
+      value: 0
+    }
+  ];
+
   watch(
     () => props.row,
     (newVal) => {
@@ -64,6 +91,7 @@
         ruleForm.websiteTypeName = props.row.website_type_name;
         ruleForm.websiteTypeIcon = props.row.website_type_icon;
         ruleForm.websiteTypeSort = props.row.website_type_sort;
+        ruleForm.websiteTypeShow = props.row.website_type_show || 1;
       }
     },
     {
@@ -75,12 +103,14 @@
     websiteTypeName: string;
     websiteTypeIcon: string;
     websiteTypeSort: number;
+    websiteTypeShow: number;
   }
   // 表单填写数据
   const ruleForm = reactive<ICategory>({
     websiteTypeName: '',
     websiteTypeIcon: 'icon-biaodanbiaoqian',
-    websiteTypeSort: 1
+    websiteTypeSort: 1,
+    websiteTypeShow: 1
   });
   const rules = reactive<FormRules>({
     websiteTypeName: [{ required: true, message: '类型名不能为空', trigger: 'change' }],
@@ -105,7 +135,8 @@
           let params = {
             websiteTypeName: ruleForm.websiteTypeName,
             websiteTypeIcon: ruleForm.websiteTypeIcon,
-            websiteTypeSort: ruleForm.websiteTypeSort
+            websiteTypeSort: ruleForm.websiteTypeSort,
+            websiteTypeShow: ruleForm.websiteTypeShow
           };
           sureLoading.value = true;
           const data = await addWebsiteTypeAsync(params);
@@ -124,7 +155,8 @@
             websiteTypeId: props.row._id,
             websiteTypeName: ruleForm.websiteTypeName,
             websiteTypeIcon: ruleForm.websiteTypeIcon,
-            websiteTypeSort: ruleForm.websiteTypeSort
+            websiteTypeSort: ruleForm.websiteTypeSort,
+            websiteTypeShow: ruleForm.websiteTypeShow
           };
           const data = await updateWebsiteTypeAsync(params);
           if (data.data.status === 200) {
