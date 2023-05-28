@@ -139,7 +139,7 @@
             websiteTypeId: ruleForm.websiteTypeId,
             websiteCategory: ruleForm.websiteCategory,
             websiteCategoryIcon: ruleForm.websiteCategoryIcon,
-            websiteCategorySott: ruleForm.websiteCategorySort
+            websiteCategorySort: ruleForm.websiteCategorySort
           };
           sureLoading.value = true;
           const data = await addWebsiteCategoryAsync(params);
@@ -161,7 +161,7 @@
             websiteTypeId: ruleForm.websiteTypeId,
             websiteCategory: ruleForm.websiteCategory,
             websiteCategoryIcon: ruleForm.websiteCategoryIcon,
-            websiteCategorySott: ruleForm.websiteCategorySort
+            websiteCategorySort: ruleForm.websiteCategorySort
           };
           const data = await updateWebsiteCategoryAsync(params);
           if (data.data.status === 200) {
