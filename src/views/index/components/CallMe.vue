@@ -95,9 +95,14 @@
   // 查询微信微信群列表
   const vxQunList = ref<any>([]);
   const getVXQunListUnauth = async () => {
+    vxQunList.value = [];
     const data = await getVXQunListUnauthAsync();
     if (data.status === 200) {
-      vxQunList.value = data.data;
+      data.data.map((item: { name: string }) => {
+        if (item.name === '化简微信交流群') {
+          vxQunList.value.push(item);
+        }
+      });
     } else {
       ElMessage.error(data.data.message);
     }

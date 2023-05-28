@@ -28,9 +28,24 @@
         </div>
       </div>
     </div>
-    <!-- 添加微信 -->
+    <!-- 添加微信群 -->
     <div class="download-box">
       <com-title title="微信交流群"></com-title>
+      <div v-viewer class="vx-box">
+        <template v-if="vxQunList.length">
+          <img
+            v-for="(item, index) in vxQunList"
+            :key="index"
+            :src="item.qr_code"
+            :alt="item.name"
+            srcset=""
+          />
+        </template>
+      </div>
+    </div>
+    <!-- 添加微信 -->
+    <div class="download-box">
+      <com-title title="添加微信入群"></com-title>
       <div v-viewer class="vx-box">
         <p>备注【加群】</p>
         <img src="@/assets/images/vx.jpg" alt="微信" />
@@ -62,6 +77,7 @@
   import 'element-plus/es/components/message-box/style/index';
   import { useUserIsPayGoods } from '@/hooks/useUsrIsPayGoods';
   import { softDownloadUrl } from '@/http/api/softShare';
+  import { getVXQunListUnauthAsync } from '@/http/api/website';
   defineProps<{
     content: any;
   }>();
@@ -78,6 +94,23 @@
   const cancleDialog = () => {
     dialogGetIntegralVisible.value = false;
   };
+
+  // 查询微信微信群列表
+  const vxQunList = ref<any>([]);
+  const getVXQunListUnauth = async () => {
+    vxQunList.value = [];
+    const data = await getVXQunListUnauthAsync();
+    if (data.status === 200) {
+      data.data.map((item: { name: string }) => {
+        if (item.name === '软件分享微信群聊') {
+          vxQunList.value.push(item);
+        }
+      });
+    } else {
+      ElMessage.error(data.data.message);
+    }
+  };
+  getVXQunListUnauth();
 
   // 查询用户是否消费过该资源
   const isPay = ref<any>(false);
@@ -245,6 +278,7 @@
         flex-direction: column;
         align-items: center;
         justify-content: center;
+
         p {
           font-size: 16px;
           margin: 15px;
@@ -252,7 +286,7 @@
           font-weight: 600;
         }
         img {
-          max-width: 100%;
+          max-width: 80%;
           height: 100%;
           cursor: pointer;
         }

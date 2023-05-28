@@ -17,6 +17,9 @@
       ></content-left-vue>
       <right-card-vue :content="softInfo"></right-card-vue>
     </div>
+
+    <!-- 回到顶部 -->
+    <el-backtop :right="50" :bottom="80" />
   </div>
 </template>
 <script lang="ts" setup>

@@ -81,9 +81,9 @@
 </script>
 <style lang="scss" scoped>
   .website-card-box {
-    width: 200px;
+    width: 237px;
     background-color: #fff;
-    margin: 10px 0;
+    margin: 12px 0;
     cursor: pointer;
     box-shadow: 0px 0px 20px -5px rgba(158, 158, 158, 0.4);
     border-radius: 7px;

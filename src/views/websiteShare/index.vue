@@ -142,7 +142,7 @@
 </script>
 <style lang="scss" scoped>
   .website-share-box {
-    width: 1370px;
+    width: 1390px;
     padding: 30px 0;
     margin: 0 auto;
     display: flex;
@@ -156,19 +156,19 @@
       top: 95px;
     }
     .website-content-box {
-      width: 1000px;
+      width: 1050px;
       min-height: 300px;
       background-color: rgb(251 251 251 / 80%);
       margin: 0 auto;
       border-radius: 4px;
-      padding: 5px 25px;
+      padding: 5px 20px;
       .websote-card-wrap {
         display: flex;
         flex-wrap: wrap;
         padding: 20px 8px;
         .card-item {
           &:not(:nth-child(4n)) {
-            margin-right: 44px;
+            margin-right: 15px;
           }
         }
       }

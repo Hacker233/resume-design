@@ -356,5 +356,9 @@
         color: rgb(116, 114, 114);
       }
     }
+
+    :deep(svg) {
+      max-width: 100px;
+    }
   }
 </style>
