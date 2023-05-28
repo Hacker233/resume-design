@@ -150,6 +150,7 @@
             ruleFormRef.value.resetFields();
             ruleForm.websiteCategoryIcon = 'icon-hezuo';
             ruleForm.websiteTypeId = '';
+            ruleForm.websiteCategory = '';
           } else {
             sureLoading.value = false;
             ElMessage.error(data.data.message);
@@ -171,6 +172,7 @@
             ruleFormRef.value.resetFields();
             ruleForm.websiteCategoryIcon = 'icon-hezuo';
             ruleForm.websiteTypeId = '';
+            ruleForm.websiteCategory = '';
           } else {
             sureLoading.value = false;
             ElMessage.error(data.data.message);
