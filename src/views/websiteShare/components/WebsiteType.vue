@@ -5,24 +5,24 @@
         <li
           v-for="(item, index) in websiteTypeList"
           :key="index"
-          :class="[{ active: currentIndex === index }]"
-          @click="handleSelect(item, index)"
+          :class="[{ active: currentValue === item.website_type_name }]"
+          @click="handleSelect(item)"
         >
           <svg-icon
             v-if="!item.website_type_icon"
             icon-name="icon-danlieliebiao"
-            :color="currentIndex === index ? '#009a74' : '#000'"
+            :color="currentValue === item.website_type_name ? '#009a74' : '#000'"
             size="18px"
             class-name="catalog-icon"
           ></svg-icon>
           <svg-icon
             v-else
             :icon-name="item.website_type_icon"
-            :color="currentIndex === index ? '#009a74' : '#000'"
+            :color="currentValue === item.website_type_name ? '#009a74' : '#000'"
             size="18px"
             class-name="catalog-icon"
           ></svg-icon>
-          {{ item.website_type_name }}
+          <span>{{ item.website_type_name }}</span>
         </li>
       </ul>
     </div>
@@ -31,7 +31,7 @@
 <script lang="ts" setup>
   const emit = defineEmits(['getWebsiteCategoryListByType', 'getWebsiteListByType']);
 
-  const props = defineProps<{
+  defineProps<{
     websiteTypeList: Array<{
       website_type_icon: string;
       website_type_name: string;
@@ -40,7 +40,6 @@
   }>();
 
   // 点击类型
-  const currentIndex = ref<number>(0);
   const { weisiteTypeName } = useRoute().query;
   const currentValue = ref<string>(''); // 默认选中类型
   if (weisiteTypeName) {
@@ -49,24 +48,9 @@
     currentValue.value = '影视视频';
   }
 
-  // 选中索引初始化
-  watch(
-    () => props.websiteTypeList,
-    (newVal) => {
-      if (newVal && newVal.length) {
-        if (weisiteTypeName) {
-          currentIndex.value = newVal.findIndex(
-            (item) => item.website_type_name === weisiteTypeName
-          );
-        }
-      }
-    }
-  );
-
   // 点击类型
   const router = useRouter();
-  const handleSelect = (item: any, index: number) => {
-    currentIndex.value = index;
+  const handleSelect = (item: any) => {
     currentValue.value = item.website_type_name;
     emit('getWebsiteListByType', currentValue.value);
     emit('getWebsiteCategoryListByType', currentValue.value);
@@ -119,6 +103,9 @@
           }
           .catalog-icon {
             margin-right: 10px;
+          }
+          span {
+            min-width: 72px;
           }
         }
         .active {
