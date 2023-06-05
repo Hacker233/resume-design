@@ -190,9 +190,6 @@
           .add-integral {
             color: green;
             letter-spacing: 2px;
-            width: 110px;
-            display: flex;
-            justify-content: flex-end;
           }
           .sub-integral {
             color: red;
@@ -201,6 +198,9 @@
           .integral-value {
             display: flex;
             align-items: center;
+            width: 110px;
+            display: flex;
+            justify-content: flex-end;
             img {
               width: 24px;
               margin-left: 5px;
