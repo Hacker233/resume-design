@@ -175,7 +175,7 @@
       ElMessage.success('评论发表成功');
       // 评论得简币
       const integralInfo = appStore.useUserInfoStore.userIntegralInfo.todayGetIntegralTotal;
-      if (integralInfo && integralInfo < Most_Integral) {
+      if (integralInfo >= 0 && integralInfo < Most_Integral) {
         toAttendance(data.data.data._id);
       }
     } else {

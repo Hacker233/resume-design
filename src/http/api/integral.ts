@@ -77,3 +77,37 @@ export const addIntegralLogByAdminAsync: any = (data: any) => {
     data: data
   });
 };
+
+// 管理员查询简币消费配置列表
+export const getIntegralPayConfigAsync: any = () => {
+  return http.request({
+    url: '/huajian/integral/getIntegralPayConfig',
+    method: 'get'
+  });
+};
+
+// 管理员新增简币消费配置
+export const addIntegralPayConfigAsync: any = (data: any) => {
+  return http.request({
+    url: '/huajian/integral/addIntegralPayConfig',
+    method: 'post',
+    data: data
+  });
+};
+
+// 管理员更新简币消费配置
+export const updateIntegralPayConfigAsync: any = (data: any) => {
+  return http.request({
+    url: '/huajian/integral/updateIntegralPayConfig',
+    method: 'post',
+    data: data
+  });
+};
+
+// 管理员删除简币消费配置
+export const deleteIntegralPayConfigAsync: any = (id: string) => {
+  return http.request({
+    url: `/huajian/integral/deleteIntegralPayConfig/${id}`,
+    method: 'delete'
+  });
+};

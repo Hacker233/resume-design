@@ -65,6 +65,7 @@ const PayList = () => import('@/views/admin/payStats/payList/index.vue');
 const DeployDoc = () => import('@/views/deployDoc/index.vue');
 const ArticleDetail = () => import('@/views/deployDoc/pages/articleDetails.vue');
 const IntegralList = () => import('@/views/admin/integralManage/IntegralList/index.vue');
+const IntegralPayConfig = () => import('@/views/admin/integralManage/IntegralPayConfig/index.vue');
 const LegoCategory = () => import('@/views/admin/legoManage/legoCategory/index.vue');
 const LegoTemplateListManage = () => import('@/views/admin/legoManage/legoTemplateList/index.vue');
 const LegoUserTemplateList = () =>
@@ -688,12 +689,23 @@ const routes: Array<RouteRecordRaw> = [
         path: 'integralList',
         name: 'IntegralList',
         meta: {
-          title: '简币列表',
+          title: '日志列表',
           keepAlive: true,
           isShowComNav: false,
           requireLogin: true
         },
         component: IntegralList
+      },
+      {
+        path: 'integralPayConfig',
+        name: 'IntegralPayConfig',
+        meta: {
+          title: '简币消费配置',
+          keepAlive: true,
+          isShowComNav: false,
+          requireLogin: true
+        },
+        component: IntegralPayConfig
       },
       {
         path: 'legoCategory',

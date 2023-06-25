@@ -214,7 +214,12 @@
         {
           index: 'IntegralList',
           iconfont: 'icon-jifen1',
-          title: '简币列表'
+          title: '日志列表'
+        },
+        {
+          index: 'IntegralPayConfig',
+          iconfont: 'icon-shezhi',
+          title: '简币消费配置'
         }
       ]
     },
