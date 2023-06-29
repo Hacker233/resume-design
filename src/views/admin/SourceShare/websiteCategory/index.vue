@@ -90,6 +90,8 @@
     getWebsiteCategoryListPageAsync,
     getWebsiteTypeListAsync
   } from '@/http/api/websiteShare';
+  import { ElMessageBox } from 'element-plus';
+  import 'element-plus/es/components/message-box/style/index';
 
   const title = ref<string>('新增分类');
   const btnText = ref<string>('新增');

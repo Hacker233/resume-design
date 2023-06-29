@@ -17,7 +17,8 @@
         </div>
         <div class="price">
           <div class="how-much"
-            >（价格：5<img width="20" src="@/assets/images/jianB.png" alt="简币" />）</div
+            >（价格：{{ Math.abs(exportImgPayIntegral) || 0
+            }}<img width="20" src="@/assets/images/jianB.png" alt="简币" />）</div
           >
         </div>
         <p>适合微信、QQ发送</p>
@@ -30,7 +31,8 @@
         </div>
         <div class="price">
           <div class="how-much"
-            >（价格：5<img width="20" src="@/assets/images/jianB.png" alt="简币" />）</div
+            >（价格：{{ Math.abs(exportPdfPayIntegral) || 0
+            }}<img width="20" src="@/assets/images/jianB.png" alt="简币" />）</div
           >
         </div>
         <p> 适合打印、在线投递等(<span>推荐</span>)</p>
@@ -52,9 +54,13 @@
   const emit = defineEmits(['closeDownloadDialog', 'downloadFile']);
   interface TDialog {
     dialogDownloadVisible: boolean;
+    exportPdfPayIntegral: number;
+    exportImgPayIntegral: number;
   }
   withDefaults(defineProps<TDialog>(), {
-    dialogDownloadVisible: false
+    dialogDownloadVisible: false,
+    exportPdfPayIntegral: 0,
+    exportImgPayIntegral: 0
   });
 
   // 打开警告弹窗

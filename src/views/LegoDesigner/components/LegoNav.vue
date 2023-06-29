@@ -68,6 +68,8 @@
   <!-- 下载弹窗 -->
   <download-dialog
     :dialog-download-visible="dialogDownloadVisible"
+    :export-pdf-pay-integral="exportPdfPayIntegral"
+    :export-img-pay-integral="exportImgPayIntegral"
     @close-download-dialog="closeDownloadDialog"
     @download-file="downloadResumeFile"
   ></download-dialog>
@@ -120,7 +122,11 @@
   import { CONFIG } from '../config/lego';
   import moment from 'moment';
   import { getImgBase64URL } from '../utils/html2img';
-  import { legoUserResumeAsync } from '@/http/api/lego';
+  import {
+    getPrintLegoImgJBAsync,
+    getPrintLegoPdfJBAsync,
+    legoUserResumeAsync
+  } from '@/http/api/lego';
   import PostWorkDialog from './PostWorkDialog/PostWorkDialog.vue';
   import { exportLegoPNG, exportLegoPdf } from '../utils/pdf';
   import ProcessBarDialog from '@/components/ProcessBarDialog/ProcessBarDialog.vue';
@@ -137,6 +143,30 @@
     postWorkInfo: any;
     templateInfo: any;
   }>();
+
+  // 查询导出为pdf需要的简币数
+  const exportPdfPayIntegral = ref<number>(0);
+  const getPrintLegoPdfJB = async () => {
+    const data = await getPrintLegoPdfJBAsync();
+    if (data.status === 200) {
+      exportPdfPayIntegral.value = data.data;
+    } else {
+      ElMessage.error(data.data.message);
+    }
+  };
+  getPrintLegoPdfJB();
+
+  // 查询导出为图片需要的简币数
+  const exportImgPayIntegral = ref<number>(0);
+  const getPrintLegoImgJB = async () => {
+    const data = await getPrintLegoImgJBAsync();
+    if (data.status === 200) {
+      exportImgPayIntegral.value = data.data;
+    } else {
+      ElMessage.error(data.data.message);
+    }
+  };
+  getPrintLegoImgJB();
 
   // 导出JSON
   const exportJSON = () => {

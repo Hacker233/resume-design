@@ -74,6 +74,10 @@
     {
       value: 3,
       label: '购买699元套餐获得6990简币'
+    },
+    {
+      value: 4,
+      label: '给开源项目GitHub点star获取20简币'
     }
   ]);
 

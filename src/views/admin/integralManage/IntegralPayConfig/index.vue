@@ -50,6 +50,7 @@
 
   // 打开弹窗
   const openAddDialog = () => {
+    row.value = null;
     btnText.value = '添加';
     title.value = '添加配置';
     dialogPayVisible.value = true;

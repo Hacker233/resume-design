@@ -17,7 +17,11 @@
       label-position="left"
     >
       <el-form-item label="消费简币类型:" prop="integralPayType">
-        <el-input v-model="ruleForm.integralPayType" placeholder="消费标识位，如“1”" />
+        <el-input
+          v-model="ruleForm.integralPayType"
+          placeholder="消费标识位，如“1”"
+          :disabled="isPayTypeDisabled"
+        />
       </el-form-item>
       <el-form-item label="消费简币名称:" prop="integralPayName">
         <el-input v-model="ruleForm.integralPayName" placeholder="消费标题，如“评论”" />
@@ -64,7 +68,7 @@
       if (newVal) {
         ruleForm.integralPayType = props.row.integral_pay_type;
         ruleForm.integralPayName = props.row.integral_pay_name;
-        ruleForm.integralPayNum = props.row.integral_pay_num;
+        ruleForm.integralPayNum = Number(props.row.integral_pay_num);
         ruleForm.integralPayDesc = props.row.integral_pay_desc;
       }
     },
@@ -72,6 +76,11 @@
       deep: true
     }
   );
+
+  // 消费配置输入框是否可编辑
+  const isPayTypeDisabled = computed(() => {
+    return props.row ? true : false;
+  });
 
   interface IIntegralPayConfig {
     integralPayType: string;
@@ -90,6 +99,7 @@
 
   // 取消
   const cancle = () => {
+    ruleFormRef.value.resetFields();
     emit('cancle');
   };
 

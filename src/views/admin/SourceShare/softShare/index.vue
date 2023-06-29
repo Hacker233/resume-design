@@ -124,6 +124,8 @@
   } from '@/http/api/softShare';
   import SoftShareDialog from './components/SoftShareDialog.vue';
   import { downloadFileUtil, formatListDate } from '@/utils/common';
+  import { ElMessageBox } from 'element-plus';
+  import 'element-plus/es/components/message-box/style/index';
 
   const title = ref<string>('新增软件');
   const btnText = ref<string>('新增');

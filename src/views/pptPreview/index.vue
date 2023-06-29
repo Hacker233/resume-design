@@ -32,7 +32,8 @@
           <div class="download-btn">
             <div class="button" @click="download">
               <div v-if="!isPay" class="how-much"
-                >3<img width="20" src="@/assets/images/jianB.png" alt="简币"
+                >{{ Math.abs(pptInfo.payValue) || ''
+                }}<img width="20" src="@/assets/images/jianB.png" alt="简币"
               /></div>
               <span>立即下载</span>
             </div>
@@ -113,7 +114,6 @@
     pptDownloadUrl
   } from '@/http/api/pptTemplate';
   import appStore from '@/store';
-  import { payIntegralLogAsync } from '@/http/api/integral';
   import { useUserIsPayGoods } from '@/hooks/useUsrIsPayGoods';
 
   // 获取ppt模板id
@@ -187,28 +187,19 @@
       } else {
         // 判断当前用户简币是否充足
         const userIntegralTotal = appStore.useUserInfoStore.userIntegralInfo.integralTotal;
-        if (userIntegralTotal < 3) {
+        if (userIntegralTotal < Math.abs(pptInfo.value.payValue)) {
           ElMessage.warning('您的简币数量不足！');
           openGetDialog();
           return;
         } else {
-          ElMessageBox.confirm('确定消费-3简币下载模板？只需一次支付，即可多次下载！', '警告', {
+          const desc = `确定消费${pptInfo.value.payValue}简币下载模板？只需一次支付，即可多次下载！`;
+          ElMessageBox.confirm(desc, '警告', {
             confirmButtonText: '确定',
             cancelButtonText: '取消',
             type: 'warning'
           })
             .then(async () => {
-              // 消费金币
-              let params = {
-                integralPayType: '2', // 下载ppt模板
-                integralPayGoodsId: id // 模板id
-              };
-              const payData = await payIntegralLogAsync(params);
-              if (payData.data.status === 200) {
-                downloadTemplate();
-              } else {
-                ElMessage.error('简币扣除错误！');
-              }
+              downloadTemplate();
             })
             .catch(() => {});
         }

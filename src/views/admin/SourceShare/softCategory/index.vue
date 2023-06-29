@@ -56,6 +56,8 @@
   import { deleteSoftCategoryAsync, getSoftCategoryListAsync } from '@/http/api/softShare';
   import SoftCategoryDialog from './components/SoftCategoryDialog.vue';
   import { formatListDate } from '@/utils/common';
+  import { ElMessageBox } from 'element-plus';
+  import 'element-plus/es/components/message-box/style/index';
 
   const title = ref<string>('新增分类');
   const btnText = ref<string>('新增');

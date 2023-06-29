@@ -63,6 +63,8 @@
   import WebsiteTypeDialog from './components/WebsiteTypeDialog.vue';
   import { formatListDate } from '@/utils/common';
   import { deleteWebsiteTypeAsync, getWebsiteTypeListAsync } from '@/http/api/websiteShare';
+  import { ElMessageBox } from 'element-plus';
+  import 'element-plus/es/components/message-box/style/index';
 
   const title = ref<string>('新增类型');
   const btnText = ref<string>('新增');

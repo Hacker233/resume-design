@@ -21,7 +21,8 @@
           @click="toDownload(item.name)"
         >
           <div v-if="!isPay" class="how-much"
-            >1 <img width="20" src="@/assets/images/jianB.png" alt="简币"
+            >{{ Math.abs(content.payValue) || '' }}
+            <img width="20" src="@/assets/images/jianB.png" alt="简币"
           /></div>
           {{ item.name }}
           <span v-if="item.pass">{{ `(提取码:${item.pass})` }}</span>
@@ -70,7 +71,6 @@
 </template>
 <script lang="ts" setup>
   import LoginDialog from '@/components/LoginDialog/LoginDialog';
-  import { payIntegralLogAsync } from '@/http/api/integral';
   import appStore from '@/store';
   import { ElMessageBox } from 'element-plus';
   import ComTitle from './ComTitle.vue';
@@ -78,7 +78,7 @@
   import { useUserIsPayGoods } from '@/hooks/useUsrIsPayGoods';
   import { softDownloadUrl } from '@/http/api/softShare';
   import { getVXQunListUnauthAsync } from '@/http/api/website';
-  defineProps<{
+  const props = defineProps<{
     content: any;
   }>();
 
@@ -137,32 +137,19 @@
         } else {
           // 判断当前用户简币是否充足
           const userIntegralTotal = appStore.useUserInfoStore.userIntegralInfo.integralTotal;
-          if (userIntegralTotal < 1) {
+          if (userIntegralTotal < Math.abs(props.content.payValue)) {
             ElMessage.warning('您的简币数量不足！');
             openGetDialog();
             return;
           } else {
-            ElMessageBox.confirm(
-              '确定消费-1简币下载当前软件？只需一次支付，即可多次下载！',
-              '警告',
-              {
-                confirmButtonText: '确定',
-                cancelButtonText: '取消',
-                type: 'warning'
-              }
-            )
+            const desc = `确定消费${props.content.payValue}简币下载当前软件？只需一次支付，即可多次下载！`;
+            ElMessageBox.confirm(desc, '警告', {
+              confirmButtonText: '确定',
+              cancelButtonText: '取消',
+              type: 'warning'
+            })
               .then(async () => {
-                // 消费金币
-                let params = {
-                  integralPayType: '3', // 下载软件
-                  integralPayGoodsId: sourceId // 软件id
-                };
-                const payData = await payIntegralLogAsync(params);
-                if (payData.data.status === 200) {
-                  downloadTemplate(name);
-                } else {
-                  ElMessage.error('简币扣除错误！');
-                }
+                downloadTemplate(name);
               })
               .catch(() => {});
           }

@@ -200,3 +200,19 @@ export const deleteLegoUserResumeByAdminAsync: any = (params: any) => {
     params: params
   });
 };
+
+// 查询导出积木创作为PDF需要的简币数
+export const getPrintLegoPdfJBAsync: any = () => {
+  return http.request({
+    url: '/huajian/common/getPrintLegoPdfJB',
+    method: 'get'
+  });
+};
+
+// 查询导出积木创作为图片需要的简币数
+export const getPrintLegoImgJBAsync: any = () => {
+  return http.request({
+    url: '/huajian/common/getPrintLegoImgJB',
+    method: 'get'
+  });
+};
