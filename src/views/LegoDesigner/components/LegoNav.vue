@@ -149,7 +149,7 @@
   const getPrintLegoPdfJB = async () => {
     const data = await getPrintLegoPdfJBAsync();
     if (data.status === 200) {
-      exportPdfPayIntegral.value = data.data;
+      exportPdfPayIntegral.value = Number(data.data);
     } else {
       ElMessage.error(data.data.message);
     }
@@ -161,7 +161,7 @@
   const getPrintLegoImgJB = async () => {
     const data = await getPrintLegoImgJBAsync();
     if (data.status === 200) {
-      exportImgPayIntegral.value = data.data;
+      exportImgPayIntegral.value = Number(data.data);
     } else {
       ElMessage.error(data.data.message);
     }
