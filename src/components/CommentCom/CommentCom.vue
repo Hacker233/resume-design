@@ -47,7 +47,7 @@
   import NoDataVue from '../NoData/NoData.vue';
   import { storeToRefs } from 'pinia';
   import { addIntegralLogAsync } from '@/http/api/integral';
-  import { Most_Integral } from '@/config/integral';
+  import { Most_Integral_Comment } from '@/config/integral';
 
   interface IComment {
     commentType: string;
@@ -174,8 +174,9 @@
       getCommentList();
       ElMessage.success('评论发表成功');
       // 评论得简币
-      const integralInfo = appStore.useUserInfoStore.userIntegralInfo.todayGetIntegralTotal;
-      if (integralInfo >= 0 && integralInfo < Most_Integral) {
+      const todayCommentGetIntegralTotal =
+        appStore.useUserInfoStore.userIntegralInfo.todayCommentGetIntegralTotal; // 今日通过评论获取的简币数量
+      if (todayCommentGetIntegralTotal < Most_Integral_Comment) {
         toAttendance(data.data.data._id);
       }
     } else {

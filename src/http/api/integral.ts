@@ -111,3 +111,30 @@ export const deleteIntegralPayConfigAsync: any = (id: string) => {
     method: 'delete'
   });
 };
+
+// 获取支付二维码
+export const aliPayAsync: any = (data: any) => {
+  return http.request({
+    url: '/huajian/aliPay/aliPay',
+    method: 'post',
+    data: data
+  });
+};
+
+// 查询订单状态
+export const tradeQueryAsync: any = (params: any) => {
+  return http.request({
+    url: '/huajian/aliPay/tradeQuery',
+    method: 'get',
+    params: params
+  });
+};
+
+// 关闭交易
+export const tradeCloseAsync: any = (data: any) => {
+  return http.request({
+    url: '/huajian/aliPay/tradeClose',
+    method: 'post',
+    data: data
+  });
+};

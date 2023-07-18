@@ -13,6 +13,9 @@
           </div>
         </div>
       </el-tab-pane>
+      <el-tab-pane label="购买简币" name="buyIntegral">
+        <buy-integral></buy-integral>
+      </el-tab-pane>
       <el-tab-pane label="简币记录" name="integralLog">
         <div v-if="!isShowSkeleton">
           <div v-if="integralList.length" class="integral-log-box">
@@ -65,6 +68,7 @@
   import appStore from '@/store';
   import { formatListDate } from '@/utils/common';
   import NoDataVue from '@/components/NoData/NoData.vue';
+  import BuyIntegral from '@/components/BuyIntegral/BuyIntegral.vue';
 
   const activeName = ref('myIntegral');
   const handleChange = () => {};

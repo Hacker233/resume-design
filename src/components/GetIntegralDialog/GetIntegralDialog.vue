@@ -70,7 +70,7 @@
         <p class="way-tips">可通过购买本网站源代码的方式获得简币，一举多得！</p>
         <!-- 签到按钮 -->
         <div class="attendance-box">
-          <div class="button" @click="toPay"> 购买 </div>
+          <div class="button" @click="toPay"> 购买源码 </div>
         </div>
       </div>
     </div>
@@ -172,7 +172,7 @@
             border: 1px solid green;
             text-align: center;
             color: green;
-            letter-spacing: 4px;
+            letter-spacing: 1px;
             font-size: 14px;
             border-radius: 3px;
             cursor: pointer;

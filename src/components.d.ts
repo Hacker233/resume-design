@@ -9,6 +9,7 @@ declare module '@vue/runtime-core' {
   export interface GlobalComponents {
     AvatarPopoverShape: typeof import('./components/AvatarPopoverShape/AvatarPopoverShape.vue')['default'];
     AwardsCom: typeof import('./components/ModelComs/AwardsCom.vue')['default'];
+    BuyIntegral: typeof import('./components/BuyIntegral/BuyIntegral.vue')['default'];
     CampusExperienceCom: typeof import('./components/ModelComs/CampusExperienceCom.vue')['default'];
     CatalogCard: typeof import('./components/CatalogCard/CatalogCard.vue')['default'];
     ColorPickerCustom: typeof import('./components/ColorPicker/ColorPickerCustom.vue')['default'];
