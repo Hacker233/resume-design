@@ -67,6 +67,17 @@
 
       <!-- 方式四 -->
       <div class="way way-1">
+        <p class="way-tips"
+          >直接购买简币！9.9元得+99个简币<img width="24" src="@/assets/images/jianB.png" alt="简币"
+        /></p>
+        <!-- 签到按钮 -->
+        <div class="attendance-box">
+          <div class="button" @click="toPayIntegral"> 充值 </div>
+        </div>
+      </div>
+
+      <!-- 方式五 -->
+      <div class="way way-1">
         <p class="way-tips">可通过购买本网站源代码的方式获得简币，一举多得！</p>
         <!-- 签到按钮 -->
         <div class="attendance-box">
@@ -75,6 +86,12 @@
       </div>
     </div>
   </el-dialog>
+
+  <!-- 购买简币弹窗 -->
+  <buy-integral-dialog
+    :dialog-buy-integral-visible="dialogBuyIntegralVisible"
+    @cancle="handlePayIntegralCancle"
+  ></buy-integral-dialog>
 </template>
 <script lang="ts" setup>
   import { addIntegralLogAsync } from '@/http/api/integral';
@@ -107,6 +124,16 @@
     } else {
       ElMessage.error(data.data.message);
     }
+  };
+
+  // 充值
+  const dialogBuyIntegralVisible = ref<boolean>(false);
+  const toPayIntegral = () => {
+    dialogBuyIntegralVisible.value = true;
+  };
+  // 关闭充值弹窗
+  const handlePayIntegralCancle = () => {
+    dialogBuyIntegralVisible.value = false;
   };
 
   // 去购买

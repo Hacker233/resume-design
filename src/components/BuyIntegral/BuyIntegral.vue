@@ -89,6 +89,8 @@
   import appStore from '@/store';
   import QrcodeVue from 'qrcode.vue';
 
+  const emit = defineEmits(['paySuccess']);
+
   const packageList = [
     {
       id: '1',
@@ -269,6 +271,7 @@
             clearInterval(orderTime);
           }
           ElMessage.success('支付成功');
+          emit('paySuccess');
           // 查询用简币信息
           getUserIntegralTotal();
         }

@@ -210,10 +210,8 @@
     let token = localStorage.getItem('token') as string;
     if (type === 'pdf') {
       await exportLegoPdf(token, _id.value);
-      ElMessage.success('已扣除-5简币');
     } else {
       await exportLegoPNG(token, _id.value);
-      ElMessage.success('已扣除-5简币');
     }
 
     clearInterval(timer);

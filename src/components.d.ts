@@ -10,6 +10,7 @@ declare module '@vue/runtime-core' {
     AvatarPopoverShape: typeof import('./components/AvatarPopoverShape/AvatarPopoverShape.vue')['default'];
     AwardsCom: typeof import('./components/ModelComs/AwardsCom.vue')['default'];
     BuyIntegral: typeof import('./components/BuyIntegral/BuyIntegral.vue')['default'];
+    BuyIntegralDialog: typeof import('./components/BuyIntegralDialog/BuyIntegralDialog.vue')['default'];
     CampusExperienceCom: typeof import('./components/ModelComs/CampusExperienceCom.vue')['default'];
     CatalogCard: typeof import('./components/CatalogCard/CatalogCard.vue')['default'];
     ColorPickerCustom: typeof import('./components/ColorPicker/ColorPickerCustom.vue')['default'];
@@ -23,6 +24,7 @@ declare module '@vue/runtime-core' {
     DateFormItem: typeof import('./components/DateFormItem/DateFormItem.vue')['default'];
     Editor: typeof import('./components/packages/components/editor/editor.vue')['default'];
     EduBackgroundCom: typeof import('./components/ModelComs/EduBackgroundCom.vue')['default'];
+    ElAlert: typeof import('element-plus/es')['ElAlert'];
     ElAvatar: typeof import('element-plus/es')['ElAvatar'];
     ElBacktop: typeof import('element-plus/es')['ElBacktop'];
     ElButton: typeof import('element-plus/es')['ElButton'];
@@ -33,10 +35,12 @@ declare module '@vue/runtime-core' {
     ElConfigProvider: typeof import('element-plus/es')['ElConfigProvider'];
     ElDatePicker: typeof import('element-plus/es')['ElDatePicker'];
     ElDialog: typeof import('element-plus/es')['ElDialog'];
+    ElDivider: typeof import('element-plus/es')['ElDivider'];
     ElDrawer: typeof import('element-plus/es')['ElDrawer'];
     ElDropdown: typeof import('element-plus/es')['ElDropdown'];
     ElDropdownItem: typeof import('element-plus/es')['ElDropdownItem'];
     ElDropdownMenu: typeof import('element-plus/es')['ElDropdownMenu'];
+    ElEmpty: typeof import('element-plus/es')['ElEmpty'];
     ElForm: typeof import('element-plus/es')['ElForm'];
     ElFormItem: typeof import('element-plus/es')['ElFormItem'];
     ElIcon: typeof import('element-plus/es')['ElIcon'];
@@ -54,6 +58,7 @@ declare module '@vue/runtime-core' {
     ElRate: typeof import('element-plus/es')['ElRate'];
     ElScrollbar: typeof import('element-plus/es')['ElScrollbar'];
     ElSelect: typeof import('element-plus/es')['ElSelect'];
+    ElSelectV2: typeof import('element-plus/es')['ElSelectV2'];
     ElSkeleton: typeof import('element-plus/es')['ElSkeleton'];
     ElSkeletonItem: typeof import('element-plus/es')['ElSkeletonItem'];
     ElSlider: typeof import('element-plus/es')['ElSlider'];

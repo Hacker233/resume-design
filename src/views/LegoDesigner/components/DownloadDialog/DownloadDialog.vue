@@ -43,7 +43,7 @@
   <!-- 警告弹窗 -->
   <pay-integral-dialog
     :dialog-get-integral-visible="dialogGetIntegralVisible"
-    :pay-number="-5"
+    :pay-number="-Math.abs(exportPdfPayIntegral) || 0"
     placeholder="下载该创作"
     @cancle="handleCancleDialog"
     @confirm="handleConfirmDialog"
