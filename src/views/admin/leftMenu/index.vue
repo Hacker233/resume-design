@@ -220,6 +220,11 @@
           index: 'IntegralPayConfig',
           iconfont: 'icon-shezhi',
           title: '简币消费配置'
+        },
+        {
+          index: 'AliPayTradeList',
+          iconfont: 'icon-codepen',
+          title: '当面付订单'
         }
       ]
     },

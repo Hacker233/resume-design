@@ -138,3 +138,12 @@ export const tradeCloseAsync: any = (data: any) => {
     data: data
   });
 };
+
+// 管理员分页查询当面付订单
+export const tradeQueryListAsync: any = (params: any) => {
+  return http.request({
+    url: '/huajian/aliPay/tradeQueryList',
+    method: 'get',
+    params: params
+  });
+};

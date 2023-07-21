@@ -66,6 +66,7 @@ const DeployDoc = () => import('@/views/deployDoc/index.vue');
 const ArticleDetail = () => import('@/views/deployDoc/pages/articleDetails.vue');
 const IntegralList = () => import('@/views/admin/integralManage/IntegralList/index.vue');
 const IntegralPayConfig = () => import('@/views/admin/integralManage/IntegralPayConfig/index.vue');
+const AliPayTradeList = () => import('@/views/admin/integralManage/AliPayTradeList/index.vue');
 const LegoCategory = () => import('@/views/admin/legoManage/legoCategory/index.vue');
 const LegoTemplateListManage = () => import('@/views/admin/legoManage/legoTemplateList/index.vue');
 const LegoUserTemplateList = () =>
@@ -706,6 +707,17 @@ const routes: Array<RouteRecordRaw> = [
           requireLogin: true
         },
         component: IntegralPayConfig
+      },
+      {
+        path: 'aliPayTradeList',
+        name: 'AliPayTradeList',
+        meta: {
+          title: '当面付订单',
+          keepAlive: true,
+          isShowComNav: false,
+          requireLogin: true
+        },
+        component: AliPayTradeList
       },
       {
         path: 'legoCategory',
