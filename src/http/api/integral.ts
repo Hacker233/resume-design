@@ -147,3 +147,12 @@ export const tradeQueryListAsync: any = (params: any) => {
     params: params
   });
 };
+
+// 管理员同步支付宝订单信息
+export const tradeQueryByAdminAsync: any = (params: any) => {
+  return http.request({
+    url: '/huajian/aliPay/tradeQueryByAdmin',
+    method: 'get',
+    params: params
+  });
+};

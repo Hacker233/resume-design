@@ -57,6 +57,15 @@
           </div>
         </template>
       </el-table-column>
+
+      <!-- 操作区域 -->
+      <el-table-column label="操作" width="100">
+        <template #default="scope">
+          <el-button link type="primary" size="small" @click="updateAliPayTrade(scope.row)"
+            >同步订单</el-button
+          >
+        </template>
+      </el-table-column>
     </el-table>
     <!-- 分页组件 -->
     <Pagination
@@ -68,7 +77,7 @@
   </div>
 </template>
 <script lang="ts" setup>
-  import { tradeQueryListAsync } from '@/http/api/integral';
+  import { tradeQueryByAdminAsync, tradeQueryListAsync } from '@/http/api/integral';
   import { formatListDate } from '@/utils/common';
   import 'element-plus/es/components/message-box/style/index';
 
@@ -143,6 +152,21 @@
   const handleCurrentChange = (currentPage: number) => {
     page.value = currentPage;
     tradeQueryList();
+  };
+
+  // 更新支付宝订单，更新订单状态
+  const updateAliPayTrade = async (row: any) => {
+    let params = {
+      email: row.email,
+      outTradeNo: row.outTradeNo
+    };
+    const data = await tradeQueryByAdminAsync(params);
+    if (data.data.status === 200) {
+      ElMessage.success('同步成功');
+      tradeQueryList();
+    } else {
+      ElMessage.error(data.data.message);
+    }
   };
 </script>
 <style lang="scss" scoped></style>
