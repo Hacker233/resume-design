@@ -200,6 +200,10 @@
     if (orderTime) {
       clearInterval(orderTime);
     }
+    // 取消倒计时
+    if (settime) {
+      clearInterval(settime);
+    }
   };
 
   // 弹窗打开回调
@@ -217,6 +221,8 @@
   const s = ref<number>(59); //设置秒
   let settime: any = '';
   const countdown = () => {
+    m.value = 2;
+    s.value = 59;
     settime = setInterval(() => {
       s.value = s.value - 1;
       // 秒为0
