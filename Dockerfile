@@ -7,6 +7,9 @@ WORKDIR /app
 # 复制 package.json 和 package-lock.json文件到容器中
 COPY package*.json ./
 
+# 删除pnpm-lock.yaml
+RUN rm pnpm-lock.yaml
+
 # 安装依赖
 RUN npm install pnpm
 RUN pnpm install
@@ -46,7 +49,7 @@ EXPOSE 80
 CMD ["nginx", "-g", "daemon off;"]
 
 # 构建Dockerfile
-# docker build --build-arg ACCESS_TOKEN=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 -t your_image_name .
+# docker build --build-arg ACCESS_TOKEN=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 -t resume .
 
 # 启动
 # docker run -p 80:80 --name your_container_name your_image_name
