@@ -1,21 +1,34 @@
 # 基本镜像
 FROM node:lts-alpine
 
+# 查看node版本
+RUN node -v
+
+# 查看npm版本
+RUN npm -v
+
 # 设置工作目录
 WORKDIR /app
 
-# 复制 package.json 和 package-lock.json文件到容器中
-COPY package*.json ./
-
-# 删除pnpm-lock.yaml
-RUN rm ./pnpm-lock.yaml
-
-# 安装依赖
-RUN npm install pnpm
-RUN pnpm install
-
 # 复制除了node_modules以外的所有文件到容器中
 COPY . .
+
+# 查看目录
+RUN ls -a
+
+# 删除pnpm-lock.yaml
+RUN rm pnpm-lock.yaml
+
+# 清除npm缓存 
+RUN rm -rf node_modules
+RUN npm cache clear --force
+
+# 安装依赖
+RUN npm install npm -g
+RUN npm install pnpm -g --registry=https://registry.npm.taobao.org
+RUN pnpm install --registry=https://registry.npm.taobao.org
+
+
 
 # 编译应用程序
 RUN pnpm build
