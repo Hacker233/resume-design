@@ -8,7 +8,7 @@ WORKDIR /app
 COPY package*.json ./
 
 # 删除pnpm-lock.yaml
-RUN rm pnpm-lock.yaml
+RUN rm ./pnpm-lock.yaml
 
 # 安装依赖
 RUN npm install pnpm
