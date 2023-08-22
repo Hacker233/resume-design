@@ -16,7 +16,8 @@
     "prettier": "prettier .  --write",
     "commit:comment": "引导设置规范化的提交信息",
     "commit": "git-cz",
-    "postinstall": "husky install"
+    "postinstall": "husky install",
+    "fix-memory-limit": "cross-env LIMIT=4096 increase-memory-limit"
   },
   "config": {
     "commitizen": {
