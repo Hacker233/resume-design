@@ -28,7 +28,8 @@ RUN npm install npm -g
 RUN npm install pnpm -g --registry=https://registry.npm.taobao.org
 RUN pnpm install --registry=https://registry.npm.taobao.org
 
-
+# 设置打包内存限制
+RUN pnpm run fix-memory-limit
 
 # 编译应用程序
 RUN pnpm build
