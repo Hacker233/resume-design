@@ -11,8 +11,8 @@ node_modules
 dist
 dist-ssr
 
-# auto-import.d.ts
-# components.d.ts
+auto-import.d.ts
+components.d.ts
 
 *.local
 

@@ -156,3 +156,12 @@ export const tradeQueryByAdminAsync: any = (params: any) => {
     params: params
   });
 };
+
+// 用户查询个人支付订单
+export const getUserOrderListAsync: any = (params: any) => {
+  return http.request({
+    url: '/huajian/aliPay/getUserOrderList',
+    method: 'get',
+    params: params
+  });
+};

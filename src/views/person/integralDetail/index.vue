@@ -54,6 +54,9 @@
           @handle-current-change="handleCurrentChange"
         ></Pagination>
       </el-tab-pane>
+      <el-tab-pane label="订单信息" name="orderList">
+        <order-list></order-list>
+      </el-tab-pane>
     </el-tabs>
 
     <!-- 如何获取简币弹窗 -->
@@ -69,6 +72,7 @@
   import { formatListDate } from '@/utils/common';
   import NoDataVue from '@/components/NoData/NoData.vue';
   import BuyIntegral from '@/components/BuyIntegral/BuyIntegral.vue';
+  import OrderList from './components/OrderList.vue';
 
   const activeName = ref('myIntegral');
   const handleChange = () => {};
