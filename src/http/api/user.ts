@@ -123,3 +123,12 @@ export const updatePersonInfoAsync: any = (data: any) => {
     data: data
   });
 };
+
+// QQ登录
+export const qqLoginASync: any = (params: any) => {
+  return http.request({
+    url: 'https://graph.qq.com/oauth2.0/authorize',
+    method: 'get',
+    params: params
+  });
+};

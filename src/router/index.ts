@@ -36,6 +36,8 @@ const SoftDetail = () => import('@/views/softDetail/index.vue');
 // 网站分享
 const WebsiteShare = () => import('@/views/websiteShare/index.vue');
 const WebsiteDetail = () => import('@/views/websiteDetail/index.vue');
+// QQ登录临时审核页面
+const QQLogin = () => import('@/views/QQLoginTemp/qqLogin.vue');
 
 // 图片压缩
 const ImgCompress = () => import('@/views/imgCompress/index.vue');
@@ -275,6 +277,17 @@ const routes: Array<RouteRecordRaw> = [
       requireLogin: false
     },
     component: WebsiteDetail
+  },
+  {
+    path: '/QQLogin',
+    name: 'QQLogin',
+    meta: {
+      title: '网站详情',
+      keepAlive: true,
+      isShowComNav: true,
+      requireLogin: false
+    },
+    component: QQLogin
   },
   {
     path: '/imgCompress',

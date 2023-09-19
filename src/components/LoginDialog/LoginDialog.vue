@@ -103,6 +103,11 @@
             @click="login(loginRuleFormRef)"
             >登 录</el-button
           >
+          <!-- 其它登录方式 -->
+          <!-- <div class="other-login-box">
+            <el-divider> 其它方式 </el-divider>
+            <img @click="toQQLogin" src="@/assets/images/qq.png" alt="QQ登录" title="QQ登录" />
+          </div> -->
         </div>
         <!-- 注册登录浮窗切换 -->
         <div class="overlay-container">
@@ -323,6 +328,15 @@
   const signIn = () => {
     isSignUp.value = false;
   };
+
+  // qq登录
+  // const toQQLogin = () => {
+  //   window.open(
+  //     'oauth/index.php',
+  //     'TencentLogin',
+  //     'width=450,height=320,menubar=0,scrollbars=1,resizable=1,status=1,titlebar=0,toolbar=0,location=1'
+  //   );
+  // };
 </script>
 <style lang="scss" scoped>
   .login-dialog-form-box {
@@ -555,6 +569,20 @@
       cursor: pointer;
       &:hover {
         color: #ff4b2b;
+      }
+    }
+
+    .other-login-box {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      img {
+        cursor: pointer;
+        transition: all 0.3s;
+        &:hover {
+          opacity: 0.8;
+        }
       }
     }
   }
