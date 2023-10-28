@@ -279,6 +279,16 @@
           index: 'WebsiteManage',
           iconfont: 'icon-jichuruanjian',
           title: '网站分享管理'
+        },
+        {
+          index: 'PanShareManage',
+          iconfont: 'icon-gongchengwangpan',
+          title: '网盘资源管理'
+        },
+        {
+          index: 'PanShareCategoryManage',
+          iconfont: 'icon-daimashili',
+          title: '网盘资源分类管理'
         }
       ]
     }

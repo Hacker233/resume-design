@@ -45,5 +45,12 @@ export const toCommentDetail = (item: any, router: Router) => {
         websiteId: item.comment_type_id
       }
     });
+  } else if (item.comment_type === 'panShare') {
+    router.push({
+      path: path,
+      query: {
+        id: item.comment_type_id
+      }
+    });
   }
 };

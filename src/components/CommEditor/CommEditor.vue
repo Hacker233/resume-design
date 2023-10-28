@@ -20,6 +20,8 @@
   import { IToolbarConfig } from '@wangeditor/editor';
   import { onBeforeUnmount, ref, shallowRef } from 'vue';
   import { Editor, Toolbar } from '@wangeditor/editor-for-vue';
+  import CONFIG from '@/config';
+  import appStore from '@/store';
 
   interface IEditor {
     modelValue: any;
@@ -56,7 +58,44 @@
     toolbarKeys: ['bold', 'clearStyle', 'bulletedList', 'numberedList', 'lineHeight']
   };
 
-  const editorConfig = { placeholder: '请输入内容...' };
+  const editorConfig = {
+    placeholder: '请输入内容...',
+    MENU_CONF: {
+      // 图片上传配置
+      uploadImage: {
+        server: CONFIG.serverAddress + '/huajian/upload/file/article',
+        fieldName: 'file',
+        // 选择文件时的类型限制，默认为 ['image/*'] 。如不想限制，则设置为 []
+        allowedFileTypes: ['image/*'],
+        // 将 meta 拼接到 url 参数中，默认 false
+        metaWithUrl: false,
+        // 自定义增加 http  header
+        headers: {
+          Authorization: appStore.useTokenStore.token
+        },
+        timeout: 20 * 1000, // 20 秒
+        maxFileSize: 1 * 1024 * 1024,
+        // 自定义插入图片
+        customInsert(res: any, insertFn: any) {
+          console.log('服务端返回结果', res);
+          let url = res.data.data.fileUrl;
+          let alt = res.data.data.fileName;
+          let href = res.data.data.fileUrl;
+          insertFn(url, alt, href);
+        },
+        /*******回调函数********/
+        // 上传之前触发
+        onBeforeUpload(files: any) {
+          console.log('上传之前触发', files);
+          return files;
+        },
+        // 单个文件上传失败
+        onFailed(file: File, res: any) {
+          console.log(`${file.name} 上传失败`, res);
+        }
+      }
+    }
+  };
 
   // 组件销毁时，也及时销毁编辑器
   onBeforeUnmount(() => {

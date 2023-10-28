@@ -36,6 +36,9 @@ const SoftDetail = () => import('@/views/softDetail/index.vue');
 // 网站分享
 const WebsiteShare = () => import('@/views/websiteShare/index.vue');
 const WebsiteDetail = () => import('@/views/websiteDetail/index.vue');
+// 网盘资源分享
+const PanShare = () => import('@/views/panShre/index.vue');
+const PanShareDetail = () => import('@/views/panShreDetail/index.vue');
 // QQ登录临时审核页面
 const QQLogin = () => import('@/views/QQLoginTemp/qqLogin.vue');
 
@@ -78,6 +81,8 @@ const SoftCategoryManage = () => import('@/views/admin/SourceShare/softCategory/
 const WebsiteTypeManage = () => import('@/views/admin/SourceShare/websiteType/index.vue');
 const WebsiteCategoryManage = () => import('@/views/admin/SourceShare/websiteCategory/index.vue');
 const WebsiteManage = () => import('@/views/admin/SourceShare/websiteShare/index.vue');
+const PanShareCategoryManage = () => import('@/views/admin/SourceShare/panCategory/index.vue');
+const PanShareManage = () => import('@/views/admin/SourceShare/panShare/index.vue');
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -255,6 +260,28 @@ const routes: Array<RouteRecordRaw> = [
       requireLogin: false
     },
     component: WebsiteShare
+  },
+  {
+    path: '/panshare',
+    name: 'PanShare',
+    meta: {
+      title: '网盘资源',
+      keepAlive: true,
+      isShowComNav: true,
+      requireLogin: false
+    },
+    component: PanShare
+  },
+  {
+    path: '/panShareDetail',
+    name: 'PanShareDetail',
+    meta: {
+      title: '网盘资源详情',
+      keepAlive: true,
+      isShowComNav: true,
+      requireLogin: false
+    },
+    component: PanShareDetail
   },
   {
     path: '/softDetail',
@@ -819,6 +846,28 @@ const routes: Array<RouteRecordRaw> = [
           requireLogin: true
         },
         component: WebsiteManage
+      },
+      {
+        path: 'panShareCategoryManage',
+        name: 'PanShareCategoryManage',
+        meta: {
+          title: '网盘资源分类管理',
+          keepAlive: true,
+          isShowComNav: false,
+          requireLogin: true
+        },
+        component: PanShareCategoryManage
+      },
+      {
+        path: 'panShareManage',
+        name: 'PanShareManage',
+        meta: {
+          title: '网盘资源管理',
+          keepAlive: true,
+          isShowComNav: false,
+          requireLogin: true
+        },
+        component: PanShareManage
       }
     ]
   }

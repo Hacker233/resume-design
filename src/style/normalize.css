@@ -32,6 +32,9 @@ body {
   box-sizing: border-box;
   background-color: #f3f3f3;
 }
+body::-webkit-scrollbar {
+  display: none;
+}
 
 /**
  * Render the `main` element consistently in IE.
@@ -373,7 +376,7 @@ template {
 }
 
 ::-webkit-scrollbar {
-  display: none;
+  /* display: none; */
   width: 8px;
   height: 8px;
 }
@@ -409,4 +412,8 @@ template {
 
 .el-message {
   z-index: 99999 !important;
+}
+
+.el-popper {
+  max-width: 60vw !important;
 }

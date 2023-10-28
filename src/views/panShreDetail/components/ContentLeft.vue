@@ -3,10 +3,10 @@
     <!-- 简介 -->
     <div class="introduce-box">
       <com-title title="简介"></com-title>
-      <div v-dompurify-html="content.source_abstract" class="content"></div>
+      <div v-dompurify-html="content.pan_source_abstract" class="content"></div>
 
       <div class="create-time-box"
-        >发表于&nbsp;&nbsp;&nbsp;{{ formatListDate(content.source_create_date) }}</div
+        >发表于&nbsp;&nbsp;&nbsp;{{ formatListDate(content.createDate) }}</div
       >
 
       <!-- 软件相关数据统计 -->
@@ -16,7 +16,7 @@
           <div class="icon-box">
             <svg-icon icon-name="icon-liulanliang1" color="#ccc" size="20px"></svg-icon>
           </div>
-          <span>{{ content.source_views }}</span>
+          <span>{{ content.pan_source_views }}</span>
         </div>
         <!-- 评论量 -->
         <div class="view-box">
@@ -34,17 +34,17 @@
       </div>
     </div>
     <!-- 预览图 -->
-    <div class="preview-img-box">
-      <com-title title="预览图"></com-title>
+    <div v-if="content && content.pan_source_screen.length" class="preview-img-box">
+      <com-title title="资源截图"></com-title>
       <div v-viewer class="img-list">
-        <template v-for="(item, index) in content.source_screen" :key="index">
+        <template v-for="(item, index) in content.pan_source_screen" :key="index">
           <img :src="item.url || item.response.data.fileUrl" :alt="item.source_title" />
         </template>
       </div>
     </div>
 
     <!-- 评论组件 -->
-    <comment-com width="100%" :comment-type-id="sourceId" comment-type="soft"></comment-com>
+    <comment-com width="100%" :comment-type-id="id" comment-type="panShare"></comment-com>
   </div>
 </template>
 <script lang="ts" setup>
@@ -55,7 +55,7 @@
     commentCount: any;
   }>();
 
-  const { sourceId } = useRoute().query;
+  const { id } = useRoute().query;
 </script>
 <style lang="scss" scoped>
   .content-left-box {

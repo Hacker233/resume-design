@@ -26,5 +26,9 @@ export const commentType: any = {
   website: {
     label: '网站分享',
     path: '/websiteDetail'
+  },
+  panShare: {
+    label: '网盘分享',
+    path: '/panShareDetail'
   }
 };
