@@ -76,8 +76,8 @@
   import ComTitle from './ComTitle.vue';
   import 'element-plus/es/components/message-box/style/index';
   import { useUserIsPayGoods } from '@/hooks/useUsrIsPayGoods';
-  import { softDownloadUrl } from '@/http/api/softShare';
   import { getVXQunListUnauthAsync } from '@/http/api/website';
+  import { panShareDownloadUrlAsync } from '@/http/api/panShare';
   const props = defineProps<{
     content: any;
   }>();
@@ -142,7 +142,7 @@
             openGetDialog();
             return;
           } else {
-            const desc = `确定消费${props.content.pan_source_price}简币下载当前软件？只需一次支付，即可多次下载！`;
+            const desc = `确定消费-${props.content.pan_source_price}简币下载当前资源？只需一次支付，即可多次下载！`;
             ElMessageBox.confirm(desc, '警告', {
               confirmButtonText: '确定',
               cancelButtonText: '取消',
@@ -167,10 +167,10 @@
 
   // 下载文件
   const downloadTemplate = async (name: string) => {
-    const data = await softDownloadUrl(id);
+    const data = await panShareDownloadUrlAsync(id);
     if (data.data.status === 200) {
       ElMessage.success('即将开始下载');
-      data.data.data.source_download.forEach(
+      data.data.data.pan_source_download.forEach(
         (item: { name: string; link: string | URL | undefined }) => {
           if (item.name === name) {
             window.open(item.link, '_blank');

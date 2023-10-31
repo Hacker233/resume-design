@@ -101,3 +101,11 @@ export const getPanShareDetailByIdAsync: any = (params: any) => {
     method: 'get'
   });
 };
+
+// 获取网盘资源下载链接
+export const panShareDownloadUrlAsync: any = (id: string) => {
+  return http.request({
+    url: `/huajian/panShare/panShareDownloadUrl/${id}`,
+    method: 'get'
+  });
+};

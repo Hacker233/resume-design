@@ -180,14 +180,14 @@
           title: '网站分享',
           children: null,
           path: '/website'
+        },
+        {
+          iconfont: '',
+          name: 'PanShare',
+          title: '网盘资源',
+          children: null,
+          path: '/panshare'
         }
-        // {
-        //   iconfont: '',
-        //   name: 'PanShare',
-        //   title: '网盘资源',
-        //   children: null,
-        //   path: '/panshare'
-        // }
       ]
     },
     {

@@ -64,7 +64,7 @@
       categoryList.value = data.data.map((item: any) => {
         return {
           category_label: item.pan_category_name,
-          category_value: item._id
+          category_value: item.pan_category_name
         };
       });
       // 添加全部选项
