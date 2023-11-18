@@ -77,7 +77,7 @@
             <svg-icon icon-name="icon-shanchu_huaban" color="#333" size="16px"></svg-icon>
           </li>
           <li>
-            知识星球学习社区
+            是否与化简官网一致
             <svg-icon icon-name="icon-shanchu_huaban" color="#333" size="16px"></svg-icon>
           </li>
         </ul>
@@ -163,7 +163,7 @@
             <svg-icon icon-name="icon-shanchu_huaban" color="#333" size="16px"></svg-icon>
           </li>
           <li>
-            知识星球学习社区
+            是否与化简官网一致
             <svg-icon icon-name="icon-shanchu_huaban" color="#333" size="16px"></svg-icon>
           </li>
         </ul>
@@ -250,7 +250,7 @@
             <svg-icon icon-name="icon-shanchu_huaban" color="#333" size="16px"></svg-icon>
           </li>
           <li>
-            知识星球学习社区
+            是否与化简官网一致
             <svg-icon icon-name="icon-shanchu_huaban" color="#333" size="16px"></svg-icon>
           </li>
         </ul>
@@ -337,7 +337,7 @@
             <svg-icon icon-name="icon-duigou_kuai" color="#2ddd9d" size="22px"></svg-icon>
           </li>
           <li>
-            知识星球学习社区
+            是否与化简官网一致
             <svg-icon icon-name="icon-duigou_kuai" color="#2ddd9d" size="22px"></svg-icon>
           </li>
         </ul>
@@ -379,7 +379,7 @@
   };
   // 699元弹窗
   const to699 = () => {
-    imgSrc.value = 'https://smallpig.site:9000/resume/logo/zsxq.jpg';
+    imgSrc.value = 'https://smallpig.site:9000/resume/logo/vx-pay699.jpg';
     dialogVisible.value = true;
   };
 </script>

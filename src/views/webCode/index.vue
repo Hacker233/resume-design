@@ -28,6 +28,20 @@
           <introduce-card-vue :card-data="item"></introduce-card-vue>
         </div>
       </div>
+
+      <!-- 后台管理 -->
+      <introduce-title-vue
+        title="完善的后台管理系统"
+        subtitle="对于模板、评论、文章、简币等一系列管理操作"
+        title-color="#000"
+        subtitle-color="#7f8b96"
+      ></introduce-title-vue>
+
+      <!-- 管理系统介绍展示 -->
+      <div v-viewer class="back-sytstem-box">
+        <img src="@/assets/images/back-system-1.png" alt="后台面板" />
+        <img src="@/assets/images/back-system-2.png" alt="后台菜单" />
+      </div>
     </div>
 
     <el-backtop :right="50" :bottom="80" />
@@ -162,6 +176,18 @@
           align-items: center;
           justify-content: center;
           margin-bottom: 40px;
+        }
+      }
+      .back-sytstem-box {
+        display: flex;
+        flex-direction: column;
+        margin: 80px 0 20px 0;
+        img {
+          max-width: 100%;
+          margin-bottom: 30px;
+          box-shadow: 0px 0px 70px rgba(175, 50, 50, 0.1);
+
+          border-radius: 10px;
         }
       }
     }

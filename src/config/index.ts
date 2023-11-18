@@ -1,5 +1,4 @@
-const serverAddress =
-  import.meta.env.MODE === 'development' ? 'http://localhost:3399' : 'https://91huajian.cn';
+const serverAddress = 'https://91huajian.cn';
 const CONFIG = {
   // serverAddress: 'http://localhost:3399',
   // serverAddress: 'https://91huajian.cn',
