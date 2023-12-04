@@ -28,7 +28,7 @@
         <span class="downloads">{{ cardData.downloads }}</span>
       </div>
       <div class="word-name">
-        <span :title="cardData.name">{{ cardData.pan_source_title }}</span>
+        <span :title="cardData.pan_source_title">{{ cardData.pan_source_title }}</span>
       </div>
       <div class="icon-box">
         <svg-icon icon-name="icon-pinglun1" color="#a3abb1" size="19px"></svg-icon>
@@ -91,7 +91,7 @@
       background-color: #fff;
     }
     .template-card-box {
-      height: 400px;
+      height: 360px;
       background-color: #fff;
       position: relative;
       z-index: 0;

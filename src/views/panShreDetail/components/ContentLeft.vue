@@ -3,7 +3,7 @@
     <!-- 简介 -->
     <div class="introduce-box">
       <com-title title="简介"></com-title>
-      <div v-dompurify-html="content.pan_source_abstract" class="content"></div>
+      <div v-viewer v-dompurify-html="content.pan_source_abstract" class="content"></div>
 
       <div class="create-time-box"
         >发表于&nbsp;&nbsp;&nbsp;{{ formatListDate(content.createDate) }}</div
@@ -79,6 +79,12 @@
           li {
             list-style: inside;
           }
+        }
+        :deep(img) {
+          max-width: 100%;
+          box-shadow: 0px 0px 2px #bbbbbb;
+          border-radius: 6px;
+          margin: 0 auto;
         }
       }
 
