@@ -3,6 +3,7 @@ import RESUME_TITLE_2 from '@/material/ResumeTitle/ResumeTitle2/index.vue';
 
 import CUSTOM_1 from '@/material/Custom/Custom1/NameAbstract.vue';
 import CUSTOM_2 from '@/material/Custom/Custom2/ResumeTitleWord.vue';
+import CUSTOM_3 from '@/material/Custom/Custom3/NameAbstractAvatar.vue';
 
 import EDU_BACKGROUND_1 from '@/material/EduBackground/EduBackground1/index.vue';
 import EDU_BACKGROUND_2 from '@/material/EduBackground/EduBackground2/EduBackground.vue';
@@ -146,6 +147,7 @@ import WORKS_DISPLAY_10 from '@/material/WorksDisplay/WorksDisplay10/WorksDispla
 const MaterialComponents = {
   CUSTOM_1: CUSTOM_1,
   CUSTOM_2: CUSTOM_2,
+  CUSTOM_3: CUSTOM_3,
 
   EDU_BACKGROUND_1: EDU_BACKGROUND_1,
   EDU_BACKGROUND_2: EDU_BACKGROUND_2,

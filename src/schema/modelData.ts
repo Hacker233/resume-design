@@ -285,6 +285,21 @@ const MODEL_DATA_JSON: IMODELDATAJSON = {
       abstract: true,
       name: true
     }
+  },
+  CUSTOM_3: {
+    iconfont: 'icon-jibenziliao',
+    model: 'CUSTOM_3',
+    show: true,
+    title: '姓名简介',
+    name: '化简',
+    abstract: '给我一个机会，我必全力以赴！',
+    avatarShape: 'CIRCLE_AVATAR', // 头像形状
+    avatar: 'https://smallpig.site:9000/resume/avatar/file-1663290281512.jpg', // 头像地址
+    isShow: {
+      abstract: true,
+      name: true,
+      avatar: true
+    }
   }
 };
 export default MODEL_DATA_JSON;
