@@ -17,6 +17,7 @@ import SkillSpecialtiesOptions1Vue from '@/options/SkillSpecialtiesOptions_1.vue
 import EduBackgroundOptions1Vue from '@/options/EduBackgroundOptions_1.vue';
 import CustomOptions_1Vue from '@/options/CustomOptions_1.vue';
 import CustomOptions_2Vue from '@/options/CustomOptions_2.vue';
+import CustomOptions_3Vue from '@/options/CustomOptions_3.vue';
 // 定义属性组件列表
 const optionsComponents: any = {
   BASE_INFO_OPTIONS: BaseInfoOptionsVue,
@@ -36,6 +37,7 @@ const optionsComponents: any = {
   SKILL_SPECIALTIES_OPTIONS_1: SkillSpecialtiesOptions1Vue,
   EDU_BACKGROUND_OPTIONS_1: EduBackgroundOptions1Vue,
   CUSTOM_OPTIONS_1: CustomOptions_1Vue,
-  CUSTOM_OPTIONS_2: CustomOptions_2Vue
+  CUSTOM_OPTIONS_2: CustomOptions_2Vue,
+  CUSTOM_OPTIONS_3: CustomOptions_3Vue
 };
 export default optionsComponents;

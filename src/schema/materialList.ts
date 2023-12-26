@@ -4001,9 +4001,39 @@ export const MATERIAL_JSON: IMSTERIALLISTJSON = {
     },
     {
       keyId: '', // 组件id
+      model: 'CUSTOM_2', // 模块
+      cptName: 'CUSTOM_2', // 组件名
+      cptOptionsName: 'CUSTOM_OPTIONS_2',
+      cptTitle: '简历标题', // 组件名
+      cptX: 0, // 组件x坐标
+      cptY: 0, // 组件y坐标
+      cptZ: 0, // 组件z坐标
+      cptHeight: '50px', // 组件高度
+      cptWidth: '100%', // 组件宽度
+      layout: 'center', // 布局在左侧还是右侧
+      show: true, // 组件是否显示
+      style: {
+        titleColor: '#254665',
+        titleFontSize: '45px',
+        textFontSize: '16px',
+        titleFontWeight: 500,
+        textFontWeight: 500,
+        textColor: '#254665',
+        mBottom: '0px',
+        mTop: '0',
+        themeColor: '#254665',
+        firstTitleFontSize: '45px',
+        pTop: '40px',
+        pBottom: '40px',
+        pLeftRight: '30px'
+      }, // 组件样式
+      data: {} // 组件数据
+    },
+    {
+      keyId: '', // 组件id
       model: 'CUSTOM_3', // 模块
       cptName: 'CUSTOM_3', // 组件名
-      cptOptionsName: 'CUSTOM_OPTIONS_2',
+      cptOptionsName: 'CUSTOM_OPTIONS_3',
       cptTitle: '姓名简介', // 组件名
       cptX: 0, // 组件x坐标
       cptY: 0, // 组件y坐标
