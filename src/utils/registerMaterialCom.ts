@@ -26,6 +26,7 @@ import BASE_INFO_5 from '@/material/BaseInfo/BaseInfo5/BaseInfo.vue';
 import BASE_INFO_6 from '@/material/BaseInfo/BaseInfo6/BaseInfo.vue';
 import BASE_INFO_7 from '@/material/BaseInfo/BaseInfo7/BaseInfo.vue';
 import BASE_INFO_8 from '@/material/BaseInfo/BaseInfo8/BaseInfo.vue';
+import BASE_INFO_9 from '@/material/BaseInfo/BaseInfo9/BaseInfo.vue';
 
 import JOB_INTENTION_1 from '@/material/JobIntention/JobIntention1/index.vue';
 import JOB_INTENTION_2 from '@/material/JobIntention/JobIntention2/JobIntention.vue';
@@ -170,6 +171,7 @@ const MaterialComponents = {
   BASE_INFO_6: BASE_INFO_6,
   BASE_INFO_7: BASE_INFO_7,
   BASE_INFO_8: BASE_INFO_8,
+  BASE_INFO_9: BASE_INFO_9,
 
   RESUME_TITLE_1: RESUME_TITLE_1,
   RESUME_TITLE_2: RESUME_TITLE_2,
