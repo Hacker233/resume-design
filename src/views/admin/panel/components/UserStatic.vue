@@ -67,7 +67,7 @@
         ></svg-icon>
       </div>
       <div class="right">
-        <h1>{{ panelData.income }}元</h1>
+        <h1>{{ panelData.income.toFixed(2) }}元</h1>
         <p>总收入</p>
       </div>
     </div>
