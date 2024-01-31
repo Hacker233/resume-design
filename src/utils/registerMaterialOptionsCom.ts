@@ -1,6 +1,7 @@
 // 注册每一个物料组件的属性面板
 import BaseInfoOptionsVue from '@/options/BaseInfoOptions.vue'; // 基础资料模块属性设置
 import BaseInfoOptions_1 from '@/options/BaseInfoOptions_1.vue';
+import BaseInfoOptions_2 from '@/options/BaseInfoOptions_2.vue';
 import ResumeTitleOptionsVue from '@/options/ResumeTitleOptions.vue';
 import EduBackgroundOptionsVue from '@/options/EduBackgroundOptions.vue';
 import JobIntentionOptionsVue from '@/options/JobIntentionOptions.vue';
@@ -22,6 +23,7 @@ import CustomOptions_3Vue from '@/options/CustomOptions_3.vue';
 const optionsComponents: any = {
   BASE_INFO_OPTIONS: BaseInfoOptionsVue,
   BASE_INFO_OPTIONS_1: BaseInfoOptions_1,
+  BASE_INFO_OPTIONS_2: BaseInfoOptions_2,
   RESUME_TITLE_OPTIONS: ResumeTitleOptionsVue,
   EDU_BACKGROUND_OPTIONS: EduBackgroundOptionsVue,
   JOB_INTENTION_OPTIONS: JobIntentionOptionsVue,

@@ -261,6 +261,11 @@ const ctpOfImg: ICptOfImg = {
       url: 'SKILL_SPECIALTIES_16.png',
       width: '100%',
       height: ''
+    },
+    SKILL_SPECIALTIES_17: {
+      url: 'SKILL_SPECIALTIES_17.png',
+      width: '100%',
+      height: ''
     }
   },
   CAMPUS_EXPERIENCE: {

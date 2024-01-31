@@ -55,6 +55,7 @@ import SKILL_SPECIALTIES_13 from '@/material/SkillSpecialties/SkillSpecialties13
 import SKILL_SPECIALTIES_14 from '@/material/SkillSpecialties/SkillSpecialties14/SkillSpecialties.vue';
 import SKILL_SPECIALTIES_15 from '@/material/SkillSpecialties/SkillSpecialties15/SkillSpecialties.vue';
 import SKILL_SPECIALTIES_16 from '@/material/SkillSpecialties/SkillSpecialties16/SkillSpecialties.vue';
+import SKILL_SPECIALTIES_17 from '@/material/SkillSpecialties/SkillSpecialties17/SkillSpecialties.vue';
 
 import CAMPUS_EXPERIENCE_1 from '@/material/CampusExperience/CampusExperience1/index.vue';
 import CAMPUS_EXPERIENCE_2 from '@/material/CampusExperience/CampusExperience2/CampusExperience.vue';
@@ -203,6 +204,7 @@ const MaterialComponents = {
   SKILL_SPECIALTIES_14: SKILL_SPECIALTIES_14,
   SKILL_SPECIALTIES_15: SKILL_SPECIALTIES_15,
   SKILL_SPECIALTIES_16: SKILL_SPECIALTIES_16,
+  SKILL_SPECIALTIES_17: SKILL_SPECIALTIES_17,
 
   CAMPUS_EXPERIENCE_1: CAMPUS_EXPERIENCE_1,
   CAMPUS_EXPERIENCE_2: CAMPUS_EXPERIENCE_2,
