@@ -7,6 +7,7 @@ import { configSvgIconsPlugin } from './svgIcons';
 import OptimizationPersist from 'vite-plugin-optimize-persist';
 import PkgConfig from 'vite-plugin-package-config';
 import DefineOptions from 'unplugin-vue-define-options/vite';
+import { viteCommonjs } from '@originjs/vite-plugin-commonjs';
 
 export function createVitePlugins(viteEnv: ViteEnv, isBuild: boolean) {
   const { VITE_BUILD_COMPRESS, VITE_BUILD_COMPRESS_DELETE_ORIGIN_FILE } = viteEnv;
@@ -31,6 +32,7 @@ export function createVitePlugins(viteEnv: ViteEnv, isBuild: boolean) {
   vitePlugins.push(PkgConfig());
 
   vitePlugins.push(OptimizationPersist());
+  vitePlugins.push(viteCommonjs());
 
   // The following plugins only work in the production environment
   if (isBuild) {

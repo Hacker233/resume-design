@@ -23,7 +23,7 @@
         <zoom-and-out @add-size="addSize" @reduce-size="reduceSize"></zoom-and-out>
         <component :is="resumeBackgroundName" :key="refreshUuid" ref="html2Pdf">
           <!-- 内容区域 -->
-          <div ref="htmlContentPdf" class="design-content">
+          <div ref="htmlContentPdf" :key="refreshUuid" class="design-content">
             <component :is="custom" ref="customRef" @content-height-change="contentHeightChange" />
           </div>
           <!-- 分页线 -->

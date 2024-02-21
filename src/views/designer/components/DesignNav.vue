@@ -19,6 +19,12 @@
               <span class="icon-tips">切换模板</span>
             </div>
           </el-tooltip>
+          <el-tooltip effect="dark" content="查看JSSON" placement="bottom">
+            <div class="icon-box" @click="viewJSON">
+              <svg-icon icon-name="icon-json1" color="#555" size="17px"></svg-icon>
+              <span class="icon-tips">查看JSON</span>
+            </div>
+          </el-tooltip>
         </div>
         <div class="draft-tips-box">
           <span class="draft-tips">{{ draftTips }}</span>
@@ -123,6 +129,12 @@
     @close-switch-drawer="closeSwitchDrawer"
   ></switch-template-drawer>
 
+  <!-- JSON查看抽屉 -->
+  <view-json-drawer
+    :drawer="drawerViewJsonVisible"
+    @close-json-drawer="closeJsonDrawer"
+  ></view-json-drawer>
+
   <!-- 下载弹窗 -->
   <download-dialog
     :dialog-download-visible="dialogDownloadVisible"
@@ -151,6 +163,7 @@
   import AddCustomModelDrawer from './AddCustomModelDrawer.vue';
   import SwitchTemplateDrawer from './SwitchTemplateDrawer.vue';
   import DownloadDialog from './DownloadDialog.vue';
+  import ViewJsonDrawer from './ViewJsonDrawer.vue';
 
   let { resumeJsonNewStore } = storeToRefs(appStore.useResumeJsonNewStore); // store里的模板数据
   const emit = defineEmits([
@@ -383,6 +396,17 @@
   // 关闭切换模板抽屉
   const closeSwitchDrawer = () => {
     drawerSwitchVisible.value = false;
+  };
+
+  // 打开JSON查看抽屉
+  const drawerViewJsonVisible = ref<boolean>(false);
+  const viewJSON = () => {
+    drawerViewJsonVisible.value = true;
+  };
+
+  // 关闭查看JSON查看抽屉
+  const closeJsonDrawer = () => {
+    drawerViewJsonVisible.value = false;
   };
 
   defineExpose({
