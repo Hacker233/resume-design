@@ -2,7 +2,7 @@
   <div ref="sponsorRef" class="sponsor-box-wraper">
     <introduce-title-vue
       title="成为赞助者"
-      subtitle="由于服务器资源昂贵，网站暂无收费项目，急需大家的支持！"
+      subtitle="一杯奶茶钱，即可将您的Logo展示在下方，给您带来源源不断的流量。"
       title-color="#000"
       subtitle-color="#7f8b96"
     ></introduce-title-vue>

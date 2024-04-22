@@ -42,6 +42,16 @@
         <img src="@/assets/images/back-system-1.png" alt="后台面板" />
         <img src="@/assets/images/back-system-2.png" alt="后台菜单" />
       </div>
+
+      <!-- 产品常见问题介绍 -->
+      <introduce-title-vue
+        title="常见问题"
+        subtitle="对于购买本产品的一些常见问题汇总和解答"
+        title-color="#000"
+        subtitle-color="#7f8b96"
+      ></introduce-title-vue>
+
+      <q-a-list></q-a-list>
     </div>
 
     <el-backtop :right="50" :bottom="80" />
@@ -51,6 +61,7 @@
   import IntroduceCardVue from './components/IntroduceCard.vue';
   import IntroduceTitleVue from './components/IntroduceTitle.vue';
   import ProductPrice from './components/ProductPrice.vue';
+  import QAList from './components/QAList.vue';
 
   // 卡片内容
   const cardList = ref<Array<any>>([
