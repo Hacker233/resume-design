@@ -27,12 +27,12 @@
     <el-form-item>
       <el-button type="primary" @click="onSubmit">查询</el-button>
       <el-button @click="resetForm">重置</el-button>
-      <el-tooltip :disabled="multipleSelection.length > 0" effect="light" content="请先选择用户">
+      <!-- <el-tooltip :disabled="multipleSelection.length > 0" effect="light" content="请先选择用户">
         <el-button :disabled="multipleSelection.length <= 0" @click="sendEmailToSelectedUsers"
           >发送邮件</el-button
         >
       </el-tooltip>
-      <el-button @click="sendEmailToAllUsers">发送全体邮件</el-button>
+      <el-button @click="sendEmailToAllUsers">发送全体邮件</el-button> -->
     </el-form-item>
   </el-form>
 
@@ -169,7 +169,7 @@
   };
 
   // 发送邮件至选中的用户
-  const sendEmailToSelectedUsers = () => {};
+  // const sendEmailToSelectedUsers = () => {};
 
   // 当选择项发生变化时会触发该事件
   const multipleSelection = ref<any>([]);
@@ -179,7 +179,7 @@
   };
 
   // 给所有用户发送邮件
-  const sendEmailToAllUsers = () => {};
+  // const sendEmailToAllUsers = () => {};
 
   // 获取用户列表
   const page = ref<number>(1);
