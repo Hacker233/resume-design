@@ -27,10 +27,26 @@
     <el-form-item>
       <el-button type="primary" @click="onSubmit">查询</el-button>
       <el-button @click="resetForm">重置</el-button>
+      <el-tooltip :disabled="multipleSelection.length > 0" effect="light" content="请先选择用户">
+        <el-button :disabled="multipleSelection.length <= 0" @click="sendEmailToSelectedUsers"
+          >发送邮件</el-button
+        >
+      </el-tooltip>
+      <el-button @click="sendEmailToAllUsers">发送全体邮件</el-button>
     </el-form-item>
   </el-form>
 
-  <el-table class="template-list-table" :data="tableData" style="width: 100%" size="default" border>
+  <el-table
+    class="template-list-table"
+    :data="tableData"
+    style="width: 100%"
+    size="default"
+    row-key="email"
+    border
+    @selection-change="handleSelectionChange"
+  >
+    <el-table-column type="selection" width="50" align="center" :reserve-selection="true" />
+    <el-table-column label="序号" prop="serialNumber" width="60" align="center"></el-table-column>
     <el-table-column prop="name" label="昵称" />
     <el-table-column prop="email" label="邮箱" />
     <el-table-column prop="roles" label="角色" />
@@ -81,8 +97,10 @@
   <Pagination
     :total="total"
     :limit="limit"
+    is-page-sizes
     :current-page="currentPage"
     @handle-current-change="handleCurrentChange"
+    @handle-size-change="handleSizeChange"
   ></Pagination>
 
   <!-- 编辑弹窗 -->
@@ -150,6 +168,19 @@
     getUserList();
   };
 
+  // 发送邮件至选中的用户
+  const sendEmailToSelectedUsers = () => {};
+
+  // 当选择项发生变化时会触发该事件
+  const multipleSelection = ref<any>([]);
+  const handleSelectionChange = (val: any) => {
+    multipleSelection.value = val;
+    console.log('当前选中项', multipleSelection.value, val.updateDate);
+  };
+
+  // 给所有用户发送邮件
+  const sendEmailToAllUsers = () => {};
+
   // 获取用户列表
   const page = ref<number>(1);
   const limit = ref<number>(15);
@@ -169,7 +200,7 @@
       total.value = data.data.data.page.count;
       currentPage.value = data.data.data.page.currentPage;
       // 过滤数据
-      tableData.value = tableData.value.map((item: any) => {
+      tableData.value = tableData.value.map((item: any, index: number) => {
         return {
           valid: item.auth.email.valid ? '已验证' : '未验证',
           createDate: item.createDate,
@@ -178,7 +209,8 @@
           name: item.name,
           profilePic: item.photos.profilePic.url,
           roles: item.roles,
-          integral: item.integral
+          integral: item.integral,
+          serialNumber: limit.value * (page.value - 1) + index + 1 // 序号
         };
       });
       console.log('tableData', tableData);
@@ -212,6 +244,13 @@
   const handleCurrentChange = (currentPage: number) => {
     page.value = currentPage;
     console.log('页码改变', currentPage);
+    getUserList();
+  };
+
+  // 改变每页数量
+  const handleSizeChange = (pageSize: number) => {
+    limit.value = pageSize;
+    console.log('改变每页数量', pageSize);
     getUserList();
   };
 

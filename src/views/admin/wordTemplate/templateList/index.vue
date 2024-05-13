@@ -75,8 +75,10 @@
   <Pagination
     :total="total"
     :limit="limit"
+    is-page-sizes
     :current-page="currentPage"
     @handle-current-change="handleCurrentChange"
+    @handle-size-change="handleSizeChange"
   ></Pagination>
   <!-- 新增和编辑模板弹窗 -->
   <word-dialog
@@ -127,6 +129,13 @@
   // 改变页码时
   const handleCurrentChange = (currentPage: number) => {
     page.value = currentPage;
+    wordList();
+  };
+
+  // 改变每页数量
+  const handleSizeChange = (pageSize: number) => {
+    limit.value = pageSize;
+    console.log('改变每页数量', pageSize);
     wordList();
   };
 

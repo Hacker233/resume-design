@@ -46,8 +46,10 @@
   <Pagination
     :total="total"
     :limit="limit"
+    is-page-sizes
     :current-page="currentPage"
     @handle-current-change="handleCurrentChange"
+    @handle-size-change="handleSizeChange"
   ></Pagination>
 
   <!-- 预览弹窗 -->
@@ -115,6 +117,13 @@
   // 改变页码时
   const handleCurrentChange = (currentPage: number) => {
     page.value = currentPage;
+    getAllUserResumeList();
+  };
+
+  // 改变每页数量
+  const handleSizeChange = (pageSize: number) => {
+    limit.value = pageSize;
+    console.log('改变每页数量', pageSize);
     getAllUserResumeList();
   };
 
