@@ -54,10 +54,7 @@ export default defineConfig(({ command, mode }: ConfigEnv) => {
       port: 8888, //启动端口
       host: '0.0.0.0',
       open: true,
-      hmr: {
-        host: 'localhost',
-        port: 8080
-      },
+      hmr: true,
       // 设置代理
       proxy: createProxy()
     }
