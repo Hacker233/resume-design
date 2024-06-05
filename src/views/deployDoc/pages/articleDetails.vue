@@ -77,7 +77,14 @@
   // 获取文章详情
   const catalogRef = ref<any>(null);
   const route = useRoute();
-  const articleDetail = ref<any>(null);
+  const articleDetail = ref<any>({
+    commentCount: '',
+    article_title: '',
+    userInfo: {
+      avatar: '',
+      name: ''
+    }
+  });
   const { articleId } = route.query;
   const userGetArticleDetail = async () => {
     let params = {

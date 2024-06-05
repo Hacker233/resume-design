@@ -1011,6 +1011,6 @@
   min-width: 100%;
 }
 #markdown-body iframe {
-  max-width: 100%;
+  width: 100%;
   min-height: 420px;
 }
