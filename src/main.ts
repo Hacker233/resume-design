@@ -55,7 +55,11 @@ registerStore();
 app.use(router);
 app.use(component);
 app.use(elementIcons);
-app.use(VueDOMPurifyHTML);
+app.use(VueDOMPurifyHTML, {
+  default: {
+    ADD_TAGS: ['iframe']
+  }
+});
 app.use(ColorPicker);
 app.use(CScrollbar);
 app.use(VueViewer, {

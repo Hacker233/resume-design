@@ -111,6 +111,23 @@
     editorRef.value = editor; // 记录 editor 实例，重要！
   };
 
+  const customCheckVideoFn = (src: string): boolean | string | undefined => {
+    if (!src) {
+      return;
+    }
+    return true;
+
+    // 返回值有三种选择：
+    // 1. 返回 true ，说明检查通过，编辑器将正常插入视频
+    // 2. 返回一个字符串，说明检查未通过，编辑器会阻止插入。会 alert 出错误信息（即返回的字符串）
+    // 3. 返回 undefined（即没有任何返回），说明检查未通过，编辑器会阻止插入。但不会提示任何信息
+  };
+
+  // 自定义转换视频
+  const customParseVideoSrc = (src: string): string => {
+    return src;
+  };
+
   // 编辑器配置
   const editorConfig = {
     placeholder: '请输入内容',
@@ -148,6 +165,17 @@
         onFailed(file: File, res: any) {
           console.log(`${file.name} 上传失败`, res);
         }
+      },
+      // 视频配置
+      insertVideo: {
+        onInsertedVideo(videoNode: HTMLVideoElement | null) {
+          if (videoNode == null) return;
+
+          const { src } = videoNode;
+          console.log('inserted video', src);
+        },
+        checkVideo: customCheckVideoFn, // 也支持 async 函数
+        parseVideoSrc: customParseVideoSrc // 也支持 async 函数
       }
     }
   };
