@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
 import LoginDialog from '@/components/LoginDialog/LoginDialog';
 import { closeGlobalLoading } from '@/utils/common';
+import CONFIG from '@/config';
 
 const Designer = () => import('@/views/designer/index.vue');
 const Index = () => import('@/views/index/index.vue');
@@ -891,7 +892,7 @@ router.beforeEach((to, from, next) => {
     // 需要权限且已经登录
     if (userInfo) {
       const emailVerify = JSON.parse(userInfo as string).auth.email.valid;
-      if (emailVerify) {
+      if (emailVerify || !CONFIG.isEmailVerify) {
         next();
       } else {
         router.push({

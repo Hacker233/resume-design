@@ -11,7 +11,7 @@ export function createBuild(viteEnv): BuildOptions {
     minify: VITE_ENV === 'production' ? 'terser' : 'esbuild', // 混淆器, terser 构建后文件体积更小, esbuild
     //小于此阈值的导入或引用资源将内联为 base64 编码，以避免额外的 http 请求。设置为 0 可以完全禁用此项
     assetsInlineLimit: 4096,
-    chunkSizeWarningLimit: 2000, // chunk 大小警告的限制（以 kbs 为单位）
+    chunkSizeWarningLimit: 5000, // chunk 大小警告的限制（以 kbs 为单位）
     assetsDir: 'static', // 静态资源目录
     // rollup 打包配置
     rollupOptions: {
@@ -45,7 +45,8 @@ export function createBuild(viteEnv): BuildOptions {
     terserOptions: {
       compress: {
         drop_console: true, // 生产环境移除console
-        drop_debugger: true // 生产环境移除debugger
+        drop_debugger: true, // 生产环境移除debugger
+        pure_funcs: ['console.log']
       }
     }
   };
