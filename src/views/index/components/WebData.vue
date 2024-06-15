@@ -106,7 +106,6 @@
   const numberRef3 = ref<any>(null);
   const ulNumberRef = ref<any>(null);
   onMounted(() => {
-    console.log('numberRef1', numberRef1);
     const { stop } = useIntersectionObserver(
       ulNumberRef.value,
       // isIntersecting 是否进入可视区域，true是进入 false是移出

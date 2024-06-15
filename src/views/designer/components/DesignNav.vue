@@ -164,6 +164,7 @@
   import SwitchTemplateDrawer from './SwitchTemplateDrawer.vue';
   import DownloadDialog from './DownloadDialog.vue';
   import ViewJsonDrawer from './ViewJsonDrawer.vue';
+  import CONFIG from '@/config';
 
   let { resumeJsonNewStore } = storeToRefs(appStore.useResumeJsonNewStore); // store里的模板数据
   const emit = defineEmits([
@@ -208,9 +209,9 @@
           }
         });
         // 判断用户简历数量是否超过
-        if (realList.length >= 4) {
+        if (realList.length >= CONFIG.maxUserResume) {
           ElMessageBox.confirm(
-            '每位用户的简历数量最多4份，您已超过4份简历，如要继续使用，请前往个人中心删除部分简历！',
+            `每位用户的简历数量最多${CONFIG.maxUserResume}份，您已超过${CONFIG.maxUserResume}份简历，如要继续使用，请前往个人中心删除部分简历！`,
             '温馨提示',
             {
               confirmButtonText: '前往',

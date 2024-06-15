@@ -84,6 +84,7 @@ const WebsiteCategoryManage = () => import('@/views/admin/SourceShare/websiteCat
 const WebsiteManage = () => import('@/views/admin/SourceShare/websiteShare/index.vue');
 const PanShareCategoryManage = () => import('@/views/admin/SourceShare/panCategory/index.vue');
 const PanShareManage = () => import('@/views/admin/SourceShare/panShare/index.vue');
+const IndexMenuManage = () => import('@/views/admin/MenuManage/IndexMenuManage/index.vue');
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -869,6 +870,17 @@ const routes: Array<RouteRecordRaw> = [
           requireLogin: true
         },
         component: PanShareManage
+      },
+      {
+        path: 'indexMenuManage',
+        name: 'IndexMenuManage',
+        meta: {
+          title: '首页导航菜单管理',
+          keepAlive: true,
+          isShowComNav: false,
+          requireLogin: true
+        },
+        component: IndexMenuManage
       }
     ]
   }
@@ -881,7 +893,6 @@ const router = createRouter({
 
 // 全局守卫：登录拦截 本地没有存token,请重新登录
 router.beforeEach((to, from, next) => {
-  console.log(to, from);
   const token = localStorage.getItem('token');
   const userInfo = localStorage.getItem('userInfo');
   // 需要权限且已经登录

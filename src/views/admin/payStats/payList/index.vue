@@ -1,10 +1,15 @@
 <template>
-  <div class="pay-list-box">
-    <!-- 新增源码购买用户 -->
-    <div class="top-box">
-      <el-button type="primary" size="default" @click="openAddDialog"> 新增用户 </el-button>
-    </div>
-  </div>
+  <!-- 查询表单 -->
+  <el-form :inline="true" :model="formInline" class="demo-form-inline" size="default">
+    <el-form-item label="付费金额大于（元）：">
+      <el-input-number v-model="formInline.money" :min="0" :max="1000000" />
+    </el-form-item>
+    <el-form-item>
+      <el-button type="primary" @click="onSubmit">查询</el-button>
+      <el-button @click="resetForm">重置</el-button>
+      <el-button type="primary" size="default" @click="openAddDialog"> 新增付费用户 </el-button>
+    </el-form-item>
+  </el-form>
 
   <!-- 表格列表 -->
   <el-table class="template-list-table" :data="payList" style="width: 100%" size="default" border>
@@ -75,6 +80,11 @@
   const title = ref<string>('title');
   const btnText = ref<string>('添加');
 
+  // 表单查询
+  const formInline = reactive({
+    money: 0
+  });
+
   // 付费类型映射
   const payTypeList = usePayTypeList();
   const payType = (val: string) => {
@@ -125,7 +135,8 @@
   const getPaystatsList = async () => {
     let params = {
       page: page.value,
-      limit: limit.value
+      limit: limit.value,
+      money: formInline.money
     };
     const data = await getPaystatsListAsync(params);
     if (data.data.status === 200) {
@@ -138,6 +149,21 @@
     }
   };
   getPaystatsList();
+
+  // 点击查询
+  const onSubmit = () => {
+    page.value = 1;
+    currentPage.value = 1;
+    getPaystatsList();
+  };
+
+  // 重置
+  const resetForm = () => {
+    formInline.money = 0;
+    page.value = 1;
+    currentPage.value = 1;
+    getPaystatsList();
+  };
 
   // 编辑
   const edit = (item: any) => {
@@ -166,10 +192,3 @@
       .catch(() => {});
   };
 </script>
-<style lang="scss" scoped>
-  .pay-list-box {
-    .top-box {
-      margin-bottom: 20px;
-    }
-  }
-</style>

@@ -6,6 +6,7 @@ import { useTokenStore } from './token';
 import { useUserInfoStore } from './user';
 import { useRefreshStore } from './refresh';
 import { useLegoJsonStore, useLegoSelectWidgetStore, useUndoAndRedoStore } from './lego';
+import { useIndexMenuStore } from './menu';
 
 export interface IAppStore {
   useLoadingStore: ReturnType<typeof useLoadingStore>;
@@ -18,6 +19,7 @@ export interface IAppStore {
   useLegoJsonStore: ReturnType<typeof useLegoJsonStore>;
   useLegoSelectWidgetStore: ReturnType<typeof useLegoSelectWidgetStore>;
   useUndoAndRedoStore: ReturnType<typeof useUndoAndRedoStore>;
+  useIndexMenuStore: ReturnType<typeof useIndexMenuStore>;
 }
 
 const appStore: IAppStore = {} as IAppStore;
@@ -36,6 +38,7 @@ export const registerStore = () => {
   appStore.useLegoJsonStore = useLegoJsonStore();
   appStore.useLegoSelectWidgetStore = useLegoSelectWidgetStore();
   appStore.useUndoAndRedoStore = useUndoAndRedoStore();
+  appStore.useIndexMenuStore = useIndexMenuStore();
   // 重写reset方法
   initResetFun(appStore);
 };

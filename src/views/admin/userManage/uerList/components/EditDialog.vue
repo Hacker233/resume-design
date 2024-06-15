@@ -43,6 +43,16 @@
           />
         </el-select>
       </el-form-item>
+      <el-form-item label="用户状态:" prop="valid">
+        <el-select v-model="ruleForm.accountStatus" class="m-2" placeholder="请选择状态">
+          <el-option
+            v-for="item in accountStatusList"
+            :key="item.value"
+            :label="item.label"
+            :value="item.value"
+          />
+        </el-select>
+      </el-form-item>
       <el-form-item label="角色:" prop="roles">
         <el-select-v2
           v-model="ruleForm.roles"
@@ -101,6 +111,7 @@
         ruleForm.valid = newVal.valid === '已验证' ? true : false;
         ruleForm.roles = newVal.roles;
         ruleForm.profilePic = newVal.profilePic;
+        ruleForm.accountStatus = newVal.accountStatus || 1;
       }
     },
     {
@@ -115,6 +126,17 @@
     {
       label: '未验证',
       value: false
+    }
+  ]);
+  // 用户账户状态
+  const accountStatusList = reactive<Array<{ label: string; value: number }>>([
+    {
+      label: '启用',
+      value: 1
+    },
+    {
+      label: '永久封禁',
+      value: 2
     }
   ]);
   const rolesList = reactive<Array<{ label: string; value: string }>>([
@@ -138,7 +160,8 @@
     email: '',
     valid: false,
     profilePic: '',
-    roles: ''
+    roles: '',
+    accountStatus: 1
   });
 
   // 上传文件地址

@@ -265,3 +265,30 @@ export const formatNumber = (num: number) => {
     ? (num / 1e4).toFixed(1) + 'w'
     : num;
 };
+
+// 将扁平数组转化成树形数组
+export const buildTree = (items: any) => {
+  // 创建一个映射，用于快速查找父节点
+  const map: any = {};
+  items.forEach((item: any) => (map[item._id] = { ...item, children: [] }));
+
+  // 创建一个结果数组，存放最终的树形结构
+  const tree: Array<any> = [];
+
+  // 遍历所有项，将它们添加到其父节点的children数组中
+  items.forEach((item: any) => {
+    // 如果parentId为空，说明是根节点
+    if (item.parentId === '') {
+      // 添加到结果数组中
+      tree.push(map[item._id]);
+    } else {
+      // 否则，找到其父节点并添加子节点
+      if (map[item.parentId]) {
+        map[item.parentId].children.push(map[item._id]);
+      }
+    }
+  });
+
+  // 返回最终的树形结构
+  return tree;
+};

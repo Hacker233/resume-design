@@ -17,7 +17,7 @@
       label-position="left"
     >
       <el-form-item label="用户邮箱:" prop="email">
-        <el-input v-model="ruleForm.email" />
+        <el-input v-model="ruleForm.email" placeholder="请输入付费用户邮箱" />
       </el-form-item>
       <el-form-item label="付费类型:" prop="type">
         <el-select v-model="ruleForm.type" placeholder="请选择付费类型">

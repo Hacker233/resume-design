@@ -71,6 +71,18 @@
       ]
     },
     {
+      index: 'menu-list',
+      iconfont: 'icon-hengxiangbuju',
+      title: '菜单管理',
+      children: [
+        {
+          index: 'IndexMenuManage',
+          iconfont: 'icon-ruanjianguanli',
+          title: '首页导航管理'
+        }
+      ]
+    },
+    {
       index: '1',
       iconfont: 'icon-gongzuoleixing',
       title: '模板管理',

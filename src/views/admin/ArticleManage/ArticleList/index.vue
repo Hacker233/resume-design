@@ -1,5 +1,23 @@
 <template>
   <div class="article-list-box">
+    <!-- 查询表单 -->
+    <el-form :inline="true" :model="formInline" class="demo-form-inline" size="default">
+      <el-form-item label="文章分类:" prop="articleCategory">
+        <el-select v-model="formInline.articleCategory" placeholder="请选择文章分类">
+          <el-option
+            v-for="(item, index) in categoryList"
+            :key="index"
+            :label="item.name"
+            :value="item.name"
+          />
+        </el-select>
+      </el-form-item>
+      <el-form-item>
+        <el-button type="primary" @click="onSubmit">查询</el-button>
+        <el-button @click="resetForm">重置</el-button>
+      </el-form-item>
+    </el-form>
+
     <!-- 表格列表 -->
     <el-table
       class="article-list-table"
@@ -36,11 +54,9 @@
       </el-table-column>
       <el-table-column prop="article_html_content" label="文章内容">
         <template #default="scope">
-          <el-tooltip effect="light" :content="scope.row.article_html_content" raw-content>
-            <div class="article-content-box">
-              {{ scope.row.article_text_content }}
-            </div>
-          </el-tooltip>
+          <div class="article-content-box" :title="scope.row.article_text_content">
+            {{ scope.row.article_text_content }}
+          </div>
         </template>
       </el-table-column>
       <el-table-column prop="article_cover" label="封面图">
@@ -88,10 +104,19 @@
   </div>
 </template>
 <script lang="ts" setup>
-  import { articleAllListAsync, articleDeleteAsync } from '@/http/api/article';
+  import {
+    articleAllListAsync,
+    articleDeleteAsync,
+    getArticleCategoryListAsync
+  } from '@/http/api/article';
   import { formatListDate } from '@/utils/common';
   import { ElMessageBox } from 'element-plus';
   import 'element-plus/es/components/message-box/style/index';
+
+  // 表单查询
+  const formInline = reactive({
+    articleCategory: ''
+  });
 
   // 查询所有文章列表
   const page = ref<number>(1);
@@ -102,7 +127,8 @@
   const articleAllList = async () => {
     let params = {
       page: page.value,
-      limit: limit.value
+      limit: limit.value,
+      articleCategory: formInline.articleCategory
     };
     const data = await articleAllListAsync(params);
     if (data.data.status === 200) {
@@ -115,6 +141,33 @@
     }
   };
   articleAllList();
+
+  // 查询文章分类列表
+  const categoryList = ref<any>();
+  const getArticleCategoryList = async () => {
+    const data = await getArticleCategoryListAsync();
+    if (data.data.status === 200) {
+      categoryList.value = data.data.data;
+    } else {
+      ElMessage.error(data.data.message);
+    }
+  };
+  getArticleCategoryList();
+
+  // 点击查询
+  const onSubmit = () => {
+    page.value = 1;
+    currentPage.value = 1;
+    articleAllList();
+  };
+
+  // 重置
+  const resetForm = () => {
+    formInline.articleCategory = '';
+    page.value = 1;
+    currentPage.value = 1;
+    articleAllList();
+  };
 
   // 改变页码时
   const handleCurrentChange = (currentPage: number) => {
@@ -161,6 +214,9 @@
 </script>
 <style lang="scss" scoped>
   .article-list-box {
+    .top-box {
+      margin-bottom: 20px;
+    }
     .article-list-table {
       .preview-box-div {
         display: flex;

@@ -25,6 +25,10 @@
   const { refreshUuid } = appStore.useRefreshStore;
   const route = useRoute();
 
+  // 查询首页导航菜单
+  const { getIndexMenuList } = appStore.useIndexMenuStore;
+  getIndexMenuList();
+
   // 查询和更新用户信息
   const { getAndUpdateUserInfo } = appStore.useUserInfoStore;
   const { token } = appStore.useTokenStore;
