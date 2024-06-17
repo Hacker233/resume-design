@@ -66,6 +66,14 @@
         <el-tag v-else type="danger" size="default">{{ scope.row.valid }}</el-tag>
       </template>
     </el-table-column>
+    <el-table-column prop="accountStatus" label="用户状态">
+      <template #default="scope">
+        <el-tag v-if="scope.row.accountStatus === 1" type="success" size="default">启用中</el-tag>
+        <el-tag v-else-if="scope.row.accountStatus === 2" type="danger" size="default"
+          >永久封禁</el-tag
+        >
+      </template>
+    </el-table-column>
     <el-table-column prop="profilePic" label="头像">
       <template #default="scope">
         <el-avatar :size="50" :src="scope.row.profilePic" />
@@ -210,6 +218,7 @@
           profilePic: item.photos.profilePic.url,
           roles: item.roles,
           integral: item.integral,
+          accountStatus: item.auth.accountStatus,
           serialNumber: limit.value * (page.value - 1) + index + 1 // 序号
         };
       });

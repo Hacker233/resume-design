@@ -84,6 +84,7 @@
   import { deleteIndexMenuAsync, getIndexMenuListAsync } from '@/http/api/menu';
   import { buildTree, formatListDate } from '@/utils/common';
   import IndexMenuDialog from './components/IndexMenuDialog.vue';
+  import { ElMessageBox } from 'element-plus';
 
   // 查询菜单列表
   let tableData = ref<any>([]);
