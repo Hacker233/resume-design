@@ -89,6 +89,7 @@
   import appStore from '@/store';
   import LoginDialog from '@/components/LoginDialog/LoginDialog';
   import { addIntegralLogAsync, getTodayAttendancePersonTotalAsync } from '@/http/api/integral';
+  import { storeToRefs } from 'pinia';
 
   interface IBgcColor {
     bgColor?: string;
@@ -105,7 +106,7 @@
   });
 
   // 菜单列表
-  const { indexMenuList } = appStore.useIndexMenuStore;
+  const { indexMenuList } = storeToRefs(appStore.useIndexMenuStore);
   // const menuList = reactive([
   //   {
   //     iconfont: '',

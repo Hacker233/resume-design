@@ -45,6 +45,11 @@
   import { throttle } from 'lodash';
   import GithubCard from '@/components/GihubCard/GithubCard.vue';
   import WebData from './components/WebData.vue';
+  import appStore from '@/store';
+
+  // 查询首页导航菜单
+  const { getIndexMenuList } = appStore.useIndexMenuStore;
+  getIndexMenuList();
 
   // 监听元素滚动
   onMounted(() => {

@@ -14,6 +14,16 @@
         />
       </el-select>
     </el-form-item>
+    <el-form-item label="账号状态:" prop="acc">
+      <el-select v-model="formInline.accountStatus" placeholder="请选择账号状态">
+        <el-option
+          v-for="(item, index) in accountStatusList"
+          :key="index"
+          :label="item.label"
+          :value="item.value"
+        />
+      </el-select>
+    </el-form-item>
     <el-form-item label="注册时间排序:" prop="register_sort">
       <el-select v-model="formInline.register_sort" placeholder="请选择注册时间顺序">
         <el-option
@@ -152,11 +162,24 @@
     }
   ]);
 
+  // 账号状态
+  const accountStatusList = reactive([
+    {
+      label: '启用中',
+      value: 1
+    },
+    {
+      label: '永久封禁',
+      value: 2
+    }
+  ]);
+
   // 表单查询
   const formInline = reactive({
     queryEmail: '',
     integral_sort: '',
-    register_sort: ''
+    register_sort: '',
+    accountStatus: ''
   });
 
   // 查询
@@ -171,6 +194,7 @@
     formInline.queryEmail = '';
     formInline.integral_sort = '';
     formInline.register_sort = '';
+    formInline.accountStatus = '';
     page.value = 1;
     currentPage.value = 1;
     getUserList();
@@ -199,6 +223,7 @@
       email: formInline.queryEmail,
       integral_sort: formInline.integral_sort,
       createDate: formInline.register_sort,
+      accountStatus: formInline.accountStatus,
       page: page.value,
       limit: limit.value
     };
