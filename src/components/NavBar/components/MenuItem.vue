@@ -9,12 +9,9 @@
     <template #title>
       <span>{{ item.title }}</span>
     </template>
-    <menu-item
-      v-for="(child, index) in item.children"
-      :key="index"
-      :item="child"
-      :key-index="item.name + index"
-    />
+    <template v-for="(child, index) in item.children" :key="index">
+      <menu-item v-if="child.status === 1" :item="child" :key-index="item.name + index" />
+    </template>
   </el-sub-menu>
   <el-menu-item v-else :index="item.path">{{ item.title }}</el-menu-item>
 </template>
@@ -24,6 +21,7 @@
     name: string;
     path: string;
     title: string;
+    status: number;
     children?: MenuItem[];
   }
 

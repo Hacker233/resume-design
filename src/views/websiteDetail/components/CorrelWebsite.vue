@@ -44,15 +44,10 @@
       }
     }
     .websote-card-wrap {
-      display: flex;
-      align-items: center;
-      flex-wrap: wrap;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr); /* 定义三列，每列宽度为100px */
+      grid-column-gap: 55px;
       padding: 10px 0;
-      .card-item {
-        &:not(:nth-child(4n)) {
-          margin-right: 10px;
-        }
-      }
     }
   }
 </style>

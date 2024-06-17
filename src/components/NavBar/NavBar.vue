@@ -14,12 +14,10 @@
         router
         :popper-offset="10"
       >
-        <menu-item
-          v-for="(item, index) in indexMenuList"
-          :key="index"
-          :item="item"
-          :key-index="item.name + index"
-        />
+        <template v-for="(item, index) in indexMenuList" :key="index">
+          <!-- 只显示启用中的 -->
+          <menu-item v-if="item.status === 1" :item="item" :key-index="item.name + index" />
+        </template>
       </el-menu>
     </div>
     <!-- GitHub -->
@@ -104,6 +102,10 @@
     iconColor: '#fff',
     position: 'fixed'
   });
+
+  // 查询首页导航菜单
+  const { getIndexMenuList } = appStore.useIndexMenuStore;
+  getIndexMenuList();
 
   // 菜单列表
   const { indexMenuList } = storeToRefs(appStore.useIndexMenuStore);

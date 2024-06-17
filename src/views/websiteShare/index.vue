@@ -167,14 +167,10 @@
       border-radius: 4px;
       padding: 5px 20px;
       .websote-card-wrap {
-        display: flex;
-        flex-wrap: wrap;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr); /* 定义三列，每列宽度为100px */
+        grid-column-gap: 10px;
         padding: 20px 8px;
-        .card-item {
-          &:not(:nth-child(4n)) {
-            margin-right: 15px;
-          }
-        }
       }
     }
     .website-category-box {
