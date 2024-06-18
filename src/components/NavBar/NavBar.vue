@@ -16,7 +16,7 @@
       >
         <template v-for="(item, index) in indexMenuList" :key="index">
           <!-- 只显示启用中的 -->
-          <menu-item v-if="item.status === 1" :item="item" :key-index="item.name + index" />
+          <index-menu-item v-if="item.status === 1" :item="item" :key-index="item.name + index" />
         </template>
       </el-menu>
     </div>
@@ -88,6 +88,7 @@
   import LoginDialog from '@/components/LoginDialog/LoginDialog';
   import { addIntegralLogAsync, getTodayAttendancePersonTotalAsync } from '@/http/api/integral';
   import { storeToRefs } from 'pinia';
+  import IndexMenuItem from './components/IndexMenuItem.vue';
 
   interface IBgcColor {
     bgColor?: string;

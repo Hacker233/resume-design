@@ -1,6 +1,6 @@
 <!-- 首页导航菜单管理 -->
 <template>
-  <div class="index-menu-manage-box">
+  <div class="admin-menu-manage-box">
     <!-- 新增 -->
     <div class="top-box">
       <el-button type="primary" size="default" @click="openAddDialog"> 新增菜单 </el-button>
@@ -74,7 +74,7 @@
   </div>
 
   <!-- 新增或者编辑弹窗 -->
-  <index-menu-dialog
+  <admin-menu-dialog
     :dialog-add-menu-visible="dialogAddMenuVisible"
     :title="title"
     :row="row"
@@ -82,26 +82,26 @@
     :parent-id="parentId"
     @cancle="handleCancle"
     @update-success="handleSuccess"
-  ></index-menu-dialog>
+  ></admin-menu-dialog>
 </template>
 <script lang="ts" setup>
-  import { deleteIndexMenuAsync, getIndexMenuListAsync } from '@/http/api/menu';
+  import { deleteAdminMenuAsync, getAdminMenuListAsync } from '@/http/api/menu';
   import { buildTree, formatListDate } from '@/utils/common';
-  import IndexMenuDialog from './components/IndexMenuDialog.vue';
+  import AdminMenuDialog from './components/AdminMenuDialog.vue';
   import { ElMessageBox } from 'element-plus';
 
   // 查询菜单列表
   let tableData = ref<any>([]);
-  const getIndexMenuList = async () => {
-    const data = await getIndexMenuListAsync();
-    if (data.status === 200) {
-      tableData.value = buildTree(data.data);
+  const getAdminMenuList = async () => {
+    const data = await getAdminMenuListAsync();
+    if (data.data.status === 200) {
+      tableData.value = buildTree(data.data.data);
       console.log('tableData', tableData);
     } else {
-      ElMessage.error(data.message);
+      ElMessage.error(data.data.message);
     }
   };
-  getIndexMenuList();
+  getAdminMenuList();
 
   const title = ref<string>('新增分类');
   const btnText = ref<string>('新增');
@@ -124,7 +124,7 @@
   // 弹窗成功
   const handleSuccess = () => {
     dialogAddMenuVisible.value = false;
-    getIndexMenuList();
+    getAdminMenuList();
   };
 
   // 编辑菜单
@@ -153,10 +153,10 @@
       type: 'warning'
     })
       .then(async () => {
-        const data = await deleteIndexMenuAsync(row._id);
+        const data = await deleteAdminMenuAsync(row._id);
         if (data.data.status === 200) {
           ElMessage.success('删除成功');
-          getIndexMenuList();
+          getAdminMenuList();
         } else {
           ElMessage.error(data.data.message);
         }
@@ -165,7 +165,7 @@
   };
 </script>
 <style lang="scss" scoped>
-  .index-menu-manage-box {
+  .admin-menu-manage-box {
     .top-box {
       margin-bottom: 20px;
     }

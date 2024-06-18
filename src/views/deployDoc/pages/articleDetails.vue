@@ -16,6 +16,20 @@
       </div>
 
       <div class="article-left">
+        <!-- 更多 -->
+        <div class="more-menu-box">
+          <el-dropdown trigger="click" @command="handleCommand">
+            <span class="el-dropdown-link">
+              <el-icon color="#008000"><MoreFilled /></el-icon>
+            </span>
+            <template #dropdown>
+              <el-dropdown-menu>
+                <el-dropdown-item command="edit">编辑文章</el-dropdown-item>
+              </el-dropdown-menu>
+            </template>
+          </el-dropdown>
+        </div>
+
         <div class="top">
           <!-- 标题 -->
           <h1 class="article-title">{{ articleDetail.article_title }}</h1>
@@ -101,6 +115,21 @@
   };
   userGetArticleDetail();
 
+  // 点击更多
+  const router = useRouter();
+  const handleCommand = (command: string | number | object) => {
+    if (command === 'edit') {
+      // 跳转至文章编辑页面
+      const newpage = router.resolve({
+        path: '/admin/addArticle',
+        query: {
+          articleId: articleId
+        }
+      });
+      window.open(newpage.href, '_blank');
+    }
+  };
+
   // 滚动至评论区
   const commentRef = ref<any>(null);
   const toComment = () => {
@@ -129,8 +158,14 @@
       position: relative;
       .article-left {
         width: 820px;
-
+        position: relative;
         margin-right: 10px;
+        .more-menu-box {
+          position: absolute;
+          right: 20px;
+          top: 20px;
+          cursor: pointer;
+        }
         .top {
           background-color: #fff;
           padding: 45px 40px;

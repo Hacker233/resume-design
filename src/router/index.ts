@@ -85,6 +85,7 @@ const WebsiteManage = () => import('@/views/admin/SourceShare/websiteShare/index
 const PanShareCategoryManage = () => import('@/views/admin/SourceShare/panCategory/index.vue');
 const PanShareManage = () => import('@/views/admin/SourceShare/panShare/index.vue');
 const IndexMenuManage = () => import('@/views/admin/MenuManage/IndexMenuManage/index.vue');
+const AdminMenuManage = () => import('@/views/admin/MenuManage/AdminMenuManage/index.vue');
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -881,6 +882,17 @@ const routes: Array<RouteRecordRaw> = [
           requireLogin: true
         },
         component: IndexMenuManage
+      },
+      {
+        path: 'adminMenuManage',
+        name: 'AdminMenuManage',
+        meta: {
+          title: '首页导航菜单管理',
+          keepAlive: true,
+          isShowComNav: false,
+          requireLogin: true
+        },
+        component: AdminMenuManage
       }
     ]
   }

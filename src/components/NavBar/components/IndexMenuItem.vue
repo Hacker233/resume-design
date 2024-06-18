@@ -10,7 +10,7 @@
       <span>{{ item.title }}</span>
     </template>
     <template v-for="(child, index) in item.children" :key="index">
-      <menu-item v-if="child.status === 1" :item="child" :key-index="item.name + index" />
+      <index-menu-item v-if="child.status === 1" :item="child" :key-index="item.name + index" />
     </template>
   </el-sub-menu>
   <el-menu-item v-else :index="item.path">{{ item.title }}</el-menu-item>
