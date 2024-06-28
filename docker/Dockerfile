@@ -39,3 +39,9 @@ EXPOSE 443
 
 # 启动 entrypoint 脚本
 ENTRYPOINT ["/entrypoint.sh"]
+
+# 构建 Docker 镜像
+# docker build -t 91huajian-web -f docker/Dockerfile .
+
+# 运行 Docker 容器
+# docker run -d -p 80:80 -p 443:443 --name 91huajian-web-container 91huajian-web
