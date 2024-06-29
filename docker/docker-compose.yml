@@ -1,0 +1,45 @@
+version: '3'  
+services:  
+  nginx-proxy:  
+    image: jwilder/nginx-proxy  
+    container_name: nginx-proxy  
+    ports:  
+      - "80:80"  
+      - "443:443"  
+    volumes:  
+      - /var/run/docker.sock:/tmp/docker.sock:ro  
+      - ./docker/certs:/etc/nginx/certs:ro
+    networks:  
+      - default  
+  
+  letsencrypt:  
+    image: jrcs/letsencrypt-nginx-proxy-companion  
+    container_name: letsencrypt-nginx-proxy-companion  
+    volumes:  
+      - /var/run/docker.sock:/var/run/docker.sock:ro  
+      - ./docker/certs:/etc/nginx/certs:rw
+    volumes_from:  
+      - nginx-proxy  
+    environment:  
+      - NGINX_PROXY_CONTAINER=nginx-proxy  
+      - DEFAULT_EMAIL=1584775297@qq.com  
+  
+  91huajian-web:  
+    build:  
+      context: .. # 你的Vue项目目录  
+      dockerfile: docker/Dockerfile # 你的Vue项目的Dockerfile  
+    container_name: 91huajian-web-container  
+    environment:  
+      - VIRTUAL_HOST=91huajian.cn  
+      - LETSENCRYPT_HOST=91huajian.cn  
+      - LETSENCRYPT_EMAIL=1584775297@qq.com  
+    networks:  
+      - default  
+  
+volumes:  
+  certs:  
+  
+networks:  
+  default:  
+    external:  
+      name: nginx-proxy

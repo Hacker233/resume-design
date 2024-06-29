@@ -21,7 +21,7 @@ RUN pnpm build
 FROM nginx:stable-alpine as production-stage
 
 # 安装 Certbot
-RUN apk add --no-cache certbot certbot-nginx
+# RUN apk add --no-cache certbot certbot-nginx
 
 # 复制生成的静态文件到 nginx 容器中
 COPY --from=build-stage /app/dist /usr/share/nginx/html
@@ -30,15 +30,15 @@ COPY --from=build-stage /app/dist /usr/share/nginx/html
 COPY docker/nginx.conf /etc/nginx/nginx.conf
 
 # 复制 entrypoint 脚本文件
-COPY docker/entrypoint.sh /entrypoint.sh
-RUN chmod +x /entrypoint.sh
+# COPY docker/entrypoint.sh /entrypoint.sh
+# RUN chmod +x /entrypoint.sh
 
 # 暴露端口
 EXPOSE 80
 EXPOSE 443
 
 # 启动 entrypoint 脚本
-ENTRYPOINT ["/entrypoint.sh"]
+# ENTRYPOINT ["/entrypoint.sh"]
 
 # 构建 Docker 镜像
 # docker build -t 91huajian-web -f docker/Dockerfile .
