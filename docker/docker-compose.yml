@@ -44,7 +44,7 @@ services:
     environment:
       - VIRTUAL_HOST=91huajian.cn,www.91huajian.cn
       - LETSENCRYPT_HOST=91huajian.cn,www.91huajian.cn
-      - LETSENCRYPT_EMAIL=your-email@example.com
+      - LETSENCRYPT_EMAIL=1584775297@qq.com
     networks:
       - webnet
 
