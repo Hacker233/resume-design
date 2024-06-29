@@ -4,7 +4,7 @@ services:
     image: 91huajian-web
     container_name: 91huajian-web-container
     build:
-      context: .
+      context: ..
       dockerfile: docker/Dockerfile
     volumes:
       - /etc/letsencrypt:/etc/letsencrypt
