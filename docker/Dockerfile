@@ -17,25 +17,24 @@ COPY . .
 # 构建项目
 RUN pnpm build
 
-# 使用官方 nginx 镜像作为基础镜像
-FROM nginx:stable-alpine as production-stage
+# 使用nginx作为生产环境
+FROM nginx:alpine as production-stage
 
-# 安装 Certbot
-# RUN apk add --no-cache certbot certbot-nginx
-
-# 复制生成的静态文件到 nginx 容器中
-COPY --from=build-stage /app/dist /usr/share/nginx/html
-
-# 复制自定义的 nginx 配置文件
+# 复制nginx配置文件
 COPY docker/nginx.conf /etc/nginx/nginx.conf
 
-# 复制 entrypoint 脚本文件
-# COPY docker/entrypoint.sh /entrypoint.sh
-# RUN chmod +x /entrypoint.sh
+# 删除默认的Nginx网站配置
+RUN rm -rf /usr/share/nginx/html/*
+
+# 复制构建结果到Nginx网站目录
+COPY --from=build-stage /app/dist /usr/share/nginx/html
 
 # 暴露端口
 EXPOSE 80
 EXPOSE 443
+
+# 启动Nginx
+CMD ["nginx", "-g", "daemon off;"]
 
 # 启动 entrypoint 脚本
 # ENTRYPOINT ["/entrypoint.sh"]
