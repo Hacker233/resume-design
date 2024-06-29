@@ -50,3 +50,19 @@ services:
 
 networks:
   webnet:
+
+# 项目根目录执行
+# docker-compose -f docker/docker-compose.yml up -d --build
+
+# 重新启动服务
+# docker-compose down
+# docker-compose up -d --build
+
+
+# 检查证书
+# docker exec -it nginx-proxy bash
+# ls /etc/nginx/certs/yourdomain.com
+
+# 检查日志
+# docker logs nginx-proxy
+# docker logs letsencrypt-nginx-proxy-companion
