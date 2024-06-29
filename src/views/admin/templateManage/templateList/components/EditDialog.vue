@@ -296,9 +296,9 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    .el-dialog {
-      padding: 0;
-      margin: 0;
-    }
+    // .el-dialog {
+    //   padding: 0;
+    //   margin: 0;
+    // }
   }
 </style>
