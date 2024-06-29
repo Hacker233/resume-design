@@ -1,5 +1,5 @@
 # 使用官方 Node.js 镜像作为基础镜像
-FROM node:18 as build-stage
+FROM node:latest
 
 # 设置工作目录
 WORKDIR /app
