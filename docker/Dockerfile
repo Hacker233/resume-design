@@ -1,5 +1,5 @@
 # 使用官方 Node.js 镜像作为基础镜像
-FROM node:18 as build-stage
+FROM node:lts-alpine as build-stage  
 
 # 设置工作目录
 WORKDIR /app
@@ -18,7 +18,7 @@ COPY . .
 RUN pnpm build
 
 # 使用nginx作为生产环境
-FROM nginx:alpine as production-stage
+FROM nginx:stable-alpine as production-stage  
 
 # 复制nginx配置文件
 COPY docker/nginx.conf /etc/nginx/nginx.conf
