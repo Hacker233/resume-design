@@ -1,21 +1,50 @@
 version: '3'
 services:
+  nginx-proxy:
+    image: jwilder/nginx-proxy
+    container_name: nginx-proxy
+    restart: always
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - /var/run/docker.sock:/tmp/docker.sock:ro
+      - ./certs:/etc/nginx/certs
+      - ./vhost.d:/etc/nginx/vhost.d
+      - ./html:/usr/share/nginx/html
+      - /etc/nginx/conf.d
+    environment:
+      - DEFAULT_HOST=91huajian.cn
+    networks:
+      - webnet
+
+  letsencrypt-nginx-proxy-companion:
+    image: jrcs/letsencrypt-nginx-proxy-companion
+    container_name: letsencrypt-nginx-proxy-companion
+    restart: always
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - ./certs:/etc/nginx/certs
+      - ./vhost.d:/etc/nginx/vhost.d
+      - ./html:/usr/share/nginx/html
+      - /etc/nginx/conf.d
+    environment:
+      - NGINX_PROXY_CONTAINER=nginx-proxy
+    depends_on:
+      - nginx-proxy
+    networks:
+      - webnet
+
   web:
     image: 91huajian-web
     container_name: 91huajian-web-container
     build:
       context: ..
       dockerfile: docker/Dockerfile
-    volumes:
-      - /etc/letsencrypt:/etc/letsencrypt
-      - /var/lib/letsencrypt:/var/lib/letsencrypt
-    ports:
-      - "80:80"
-      - "443:443"
     environment:
       - VIRTUAL_HOST=91huajian.cn,www.91huajian.cn
       - LETSENCRYPT_HOST=91huajian.cn,www.91huajian.cn
-      - LETSENCRYPT_EMAIL=1584775297@qq.com
+      - LETSENCRYPT_EMAIL=your-email@example.com
     networks:
       - webnet
 
