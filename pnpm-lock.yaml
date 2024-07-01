@@ -48,7 +48,7 @@ importers:
         specifier: ^2.0.0
         version: 2.0.0
       element-plus:
-        specifier: ^2.4.4
+        specifier: ^2.7.6
         version: 2.7.6(vue@3.2.33)
       fast-glob:
         specifier: ^3.2.12
