@@ -546,6 +546,11 @@
   const pagesOpacity = computed(() => {
     return `opacity(${HJSchemaJsonStore.value.css.opacity})`;
   });
+
+  // 背景图
+  const backgroundImage = computed(() => {
+    return `url("${HJSchemaJsonStore.value.css.backgroundImage}")`;
+  });
 </script>
 <style lang="scss" scoped>
   ::-webkit-scrollbar {
@@ -591,7 +596,7 @@
                 width: 100%;
                 height: 100%; /*设置为全屏背景模式*/
                 background: v-bind('HJSchemaJsonStore.css.background');
-                background-image: v-bind('"url(" + HJSchemaJsonStore.css.backgroundImage + ")"');
+                background-image: v-bind('backgroundImage');
                 background-size: 100% 100%;
                 position: absolute; /*图片定位*/
                 top: 0;

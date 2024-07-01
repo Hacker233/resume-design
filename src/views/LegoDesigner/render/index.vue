@@ -39,6 +39,10 @@
   const getWidgetCom = (item: IWidget) => {
     return WIDGET_MAP[item.componentName];
   };
+
+  const backgroundImage = computed(() => {
+    return `url("${HJSchemaJsonStore.value.css.backgroundImage}")`;
+  });
 </script>
 <style lang="scss" scoped>
   .lego-render-box {
@@ -61,7 +65,7 @@
         box-shadow: 0 2px 8px rgba(14, 19, 24, 0.07);
         border-radius: 2px;
         background: v-bind('HJSchemaJsonStore.css.background');
-        background-image: v-bind('"url(" + HJSchemaJsonStore.css.backgroundImage + ")"');
+        background-image: v-bind('backgroundImage');
         background-size: 100% 100%;
         fill-opacity: v-bind('HJSchemaJsonStore.css.opacity');
         position: relative;
