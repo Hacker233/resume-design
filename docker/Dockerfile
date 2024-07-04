@@ -14,8 +14,10 @@ RUN pnpm install
 # 复制所有文件到容器中
 COPY . .
 
-# 构建项目
-RUN pnpm build
+# 构建项目：如果服务器资源够，可以在这上面打包
+# RUN pnpm build 
+
+COPY dist /app
 
 # 使用nginx作为生产环境
 FROM nginx:alpine as production-stage

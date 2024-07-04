@@ -5,7 +5,7 @@ on:
   push:
     branches:
       # main分支，你也可以改成其他分支
-      - main
+      - dev
 jobs:
   build:
     runs-on: ubuntu-latest
