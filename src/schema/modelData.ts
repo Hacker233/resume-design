@@ -16,7 +16,7 @@ const MODEL_DATA_JSON: IMODELDATAJSON = {
     age: 25,
     avatarShape: '', // 头像形状
     address: '所在地区', // 所在地址
-    avatar: 'https://smallpig.site:9000/resume/avatar/file-1663290281512.jpg', // 头像地址
+    avatar: 'https://91huajian.cn:9000/resume/avatar/file-1663290281512.jpg', // 头像地址
     workService: 3, // 工作年限
     phoneNumber: '028-1234321', // 联系电话
     email: '12322233@qq.com', // 邮箱
@@ -294,7 +294,7 @@ const MODEL_DATA_JSON: IMODELDATAJSON = {
     name: '化简',
     abstract: '给我一个机会，我必全力以赴！',
     avatarShape: 'CIRCLE_AVATAR', // 头像形状
-    avatar: 'https://smallpig.site:9000/resume/avatar/file-1663290281512.jpg', // 头像地址
+    avatar: 'https://91huajian.cn:9000/resume/avatar/file-1663290281512.jpg', // 头像地址
     isShow: {
       abstract: true,
       name: true,

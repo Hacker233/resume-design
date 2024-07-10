@@ -61,7 +61,7 @@
         display: flex;
         li {
           list-style: none;
-          padding: 0 25px;
+          padding: 0 18px;
           height: 42px;
           border-radius: 20px;
           font-size: 14px;

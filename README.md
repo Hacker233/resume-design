@@ -170,7 +170,7 @@ const CONFIG = {
   // serverAddress: 'http://localhost:3399',
   // serverAddress: 'https://91huajian.cn',
   serverAddress: serverAddress,
-  smallpigAddress: 'https://smallpig.site' // 此地址为资源分享菜单的后台地址，可不管
+  smallpigAddress: 'https://91huajian.cn' // 此地址为资源分享菜单的后台地址，可不管
 };
 export default CONFIG;
 ```
@@ -183,7 +183,7 @@ const CONFIG = {
   // serverAddress: 'http://localhost:3399',
   // serverAddress: 'https://91huajian.cn',
   serverAddress: serverAddress,
-  smallpigAddress: 'https://smallpig.site' // 此地址为资源分享菜单的后台地址，可不管
+  smallpigAddress: 'https://91huajian.cn' // 此地址为资源分享菜单的后台地址，可不管
 };
 export default CONFIG;
 ```

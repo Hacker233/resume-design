@@ -170,21 +170,21 @@
     window.open('https://github.com/Hacker233/resume-design', '_blank');
   };
 
-  const imgSrc = ref<string>('https://smallpig.site:9000/resume/logo/vx-pay1.jpg');
+  const imgSrc = ref<string>('https://91huajian.cn:9000/resume/logo/vx-pay1.jpg');
 
   // 99元弹窗
   const to99 = () => {
-    imgSrc.value = 'https://smallpig.site:9000/resume/logo/vx-pay1.jpg';
+    imgSrc.value = 'https://91huajian.cn:9000/resume/logo/vx-pay1.jpg';
     dialogVisible.value = true;
   };
   // 399元弹窗
   const to399 = () => {
-    imgSrc.value = 'https://smallpig.site:9000/resume/logo/vx-pay399.jpg';
+    imgSrc.value = 'https://91huajian.cn:9000/resume/logo/vx-pay399.jpg';
     dialogVisible.value = true;
   };
   // 699元弹窗
   const to699 = () => {
-    imgSrc.value = 'https://smallpig.site:9000/resume/logo/zsxq.jpg';
+    imgSrc.value = 'https://91huajian.cn:9000/resume/logo/zsxq.jpg';
     dialogVisible.value = true;
   };
 </script>

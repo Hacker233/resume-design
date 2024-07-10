@@ -81,7 +81,7 @@
         display: flex;
         li {
           list-style: none;
-          padding: 0 25px;
+          padding: 0 18px;
           height: 42px;
           border-radius: 20px;
           font-size: 14px;
@@ -94,6 +94,7 @@
           transition: all 0.3s;
           border: 1px solid transparent;
           user-select: none;
+          flex-shrink: 0;
           &:hover {
             color: #009a74;
           }
@@ -108,6 +109,7 @@
       display: flex;
       align-items: center;
       padding: 0 5px 0 0;
+      flex-shrink: 0;
       .sort-box {
         margin-left: 10px;
         display: flex;
