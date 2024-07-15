@@ -22,7 +22,7 @@
         <img width="18" src="@/assets/images/jianB.png" alt="简币" />）
       </div>
       <!-- 方式一 -->
-      <div class="way way-1">
+      <div v-config:open_sign_in class="way way-1">
         <p class="way-tips"
           >每日可通过签到免费获得+1<img width="24" src="@/assets/images/jianB.png" alt="简币"
         /></p>

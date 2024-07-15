@@ -1,7 +1,7 @@
 <template>
   <div class="footer-box">
     <ul>
-      <li>
+      <li v-config:open_business>
         <svg-icon icon-name="icon-hezuo" class-name="bilibili"></svg-icon>
         <el-popover trigger="hover" :width="200" placement="top" teleported>
           <template #reference>
@@ -19,7 +19,7 @@
           </div>
         </el-popover>
       </li>
-      <div class="lines"></div>
+      <div v-config:open_business class="lines"></div>
       <li>
         <svg-icon icon-name="icon-bilibili-copy" class-name="bilibili"></svg-icon>
         <a

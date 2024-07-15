@@ -47,7 +47,7 @@
               <svg-icon icon-name="icon-liulanliang1" color="#a3abb1" size="22px"></svg-icon>
               <span class="number">{{ wordInfo.views }}</span>
             </div>
-            <div class="icon-box">
+            <div v-config:open_comment class="icon-box">
               <svg-icon icon-name="icon-pinglun1" color="#a3abb1" size="22px"></svg-icon>
               <span class="number">{{ wordInfo.commentCount }}</span>
             </div>
@@ -82,7 +82,12 @@
     </div>
 
     <!-- 评论组件 -->
-    <comment-com width="1200px" :comment-type-id="id" comment-type="resumeTemplate"></comment-com>
+    <comment-com
+      v-config:open_comment
+      width="1200px"
+      :comment-type-id="id"
+      comment-type="resumeTemplate"
+    ></comment-com>
 
     <!-- 获取简币弹窗 -->
     <get-integral-dialog

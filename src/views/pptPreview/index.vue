@@ -47,7 +47,7 @@
               <svg-icon icon-name="icon-liulanliang1" color="#a3abb1" size="22px"></svg-icon>
               <span class="number">{{ pptInfo.views }}</span>
             </div>
-            <div class="icon-box">
+            <div v-config:open_comment class="icon-box">
               <svg-icon icon-name="icon-pinglun1" color="#a3abb1" size="22px"></svg-icon>
               <span class="number">{{ pptInfo.commentCount }}</span>
             </div>
@@ -93,7 +93,12 @@
     </div>
 
     <!-- 评论组件 -->
-    <comment-com width="1200px" :comment-type-id="id" comment-type="pptTemplate"></comment-com>
+    <comment-com
+      v-config:open_comment
+      width="1200px"
+      :comment-type-id="id"
+      comment-type="pptTemplate"
+    ></comment-com>
 
     <!-- 获取简币弹窗 -->
     <get-integral-dialog

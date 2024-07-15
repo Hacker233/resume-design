@@ -43,6 +43,8 @@ import '@/style/article/github-markdown-light.css'; // 文章样式
 import contextmenu from 'v-contextmenu';
 import 'v-contextmenu/dist/themes/default.css';
 
+import configDirectives from '@/directives/config';
+
 userAgent();
 
 // 创建vue实例
@@ -62,6 +64,9 @@ app.use(VueDOMPurifyHTML, {
 });
 app.use(ColorPicker);
 app.use(CScrollbar);
+
+app.use(configDirectives); // 全局指令注册
+
 app.use(VueViewer, {
   defaultOptions: {
     // 自定义默认配置

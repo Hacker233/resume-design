@@ -70,6 +70,7 @@
 
         <div ref="commentRef">
           <comment-com
+            v-config:open_comment
             width="820px"
             :comment-type-id="articleId"
             comment-type="article"

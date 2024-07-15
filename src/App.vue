@@ -43,6 +43,10 @@
     addWebsiteViewsAsync();
   };
   addWebsiteViews();
+
+  // 查询网站配置
+  const { getWebsiteConfig } = appStore.useWebsiteConfigStore;
+  getWebsiteConfig();
 </script>
 <style>
   /* 设置了打印会出现问题 */

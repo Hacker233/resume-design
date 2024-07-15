@@ -8,7 +8,7 @@
       <div class="see-more-box">
         <div class="button" @click="freeMakeResume"> 免费制作 </div>
         <div class="button" @click="toCustom"> 贡献模板 </div>
-        <div class="button" @click="toWebCode"> 获取源码 </div>
+        <div v-config:open_get_source_code class="button" @click="toWebCode"> 获取源码 </div>
       </div>
     </div>
     <div class="right">

@@ -28,8 +28,13 @@
         </div>
         <!-- 评论、点赞、浏览量 -->
         <div class="views-comments-box">
-          <svg-icon icon-name="icon-pinglun1" color="#a3abb1" size="19px"></svg-icon>
-          <span class="number">{{ articleInfo.commentCount }}</span>
+          <svg-icon
+            v-config:open_comment
+            icon-name="icon-pinglun1"
+            color="#a3abb1"
+            size="19px"
+          ></svg-icon>
+          <span v-config:open_comment class="number">{{ articleInfo.commentCount }}</span>
           <svg-icon icon-name="icon-icon_yulan" color="#a3abb1" size="19px"></svg-icon>
           <span class="number">{{ articleInfo.article_views }}</span>
         </div>

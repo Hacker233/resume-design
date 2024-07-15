@@ -43,6 +43,7 @@
         <!-- 评论组件 -->
         <div ref="commentRef">
           <comment-com
+            v-config:open_comment
             :comment-type-id="id"
             comment-type="resumeOnline"
             width="820px"

@@ -119,8 +119,8 @@
             </div>
             <div class="overlay-panel overlay-right">
               <h1>你好, 简友！</h1>
-              <p>还没有账号？快来注册吧！</p>
-              <button class="ghost" @click="signUp">立即注册</button>
+              <p v-if="websiteConfig.open_sign">还没有账号？快来注册吧！</p>
+              <button v-if="websiteConfig.open_sign" class="ghost" @click="signUp">立即注册</button>
             </div>
           </div>
         </div>
@@ -146,6 +146,8 @@
       default: (fun: any) => fun()
     }
   });
+
+  const { websiteConfig } = appStore.useWebsiteConfigStore;
 
   // 登录数据
   interface IForm {

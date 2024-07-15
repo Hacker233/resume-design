@@ -108,6 +108,7 @@
           <correl-website :website-list="websiteList"></correl-website>
           <!-- 评论组件 -->
           <comment-com
+            v-config:open_comment
             width="100%"
             :comment-type-id="websiteId"
             comment-type="website"

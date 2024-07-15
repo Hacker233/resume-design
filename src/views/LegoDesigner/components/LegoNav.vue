@@ -104,6 +104,7 @@
     direction="rtl"
   >
     <comment-com
+      v-config:open_comment
       :comment-type-id="templateId"
       comment-type="legoTemplate"
       width="100%"

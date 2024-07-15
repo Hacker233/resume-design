@@ -17,7 +17,11 @@
           <div class="see-more-box">
             <hj-button-1 text="在线制作" @click="freeMakeResume"></hj-button-1>
             <hj-button-1 text="积木创作" @click="toLego"></hj-button-1>
-            <hj-button-1 text="获取源码" @click="toWebCode"></hj-button-1>
+            <hj-button-1
+              v-config:open_get_source_code
+              text="获取源码"
+              @click="toWebCode"
+            ></hj-button-1>
           </div>
 
           <!-- 下滑提示按钮 -->

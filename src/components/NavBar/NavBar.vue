@@ -23,9 +23,9 @@
     <!-- GitHub -->
     <div class="right">
       <!-- 今日签到总人数 -->
-      <span class="attendance-total">今日已签到{{ attendanceTotal }}人~</span>
+      <span v-config:open_sign_in class="attendance-total">今日已签到{{ attendanceTotal }}人~</span>
       <!-- 签到按钮 -->
-      <div class="attendance-box">
+      <div v-config:open_sign_in class="attendance-box">
         <div
           v-if="!appStore.useUserInfoStore.userIntegralInfo.isattendance"
           class="button"
@@ -39,27 +39,29 @@
       </div>
 
       <!-- 源码购买 -->
-      <div class="get-source-code" @click="toWebCode">
+      <div v-config:open_get_source_code class="get-source-code" @click="toWebCode">
         <div class="content-box">
           <svg-icon icon-name="icon-VIP" size="20px" color="#789e45"></svg-icon>
           <span>获取源码</span>
         </div>
       </div>
       <!-- 简币 -->
-      <div class="jb-num-box" @click="toMyIntegral">
+      <div v-config:open_get_source_code class="jb-num-box" @click="toMyIntegral">
         <div class="content">
           <img width="22" src="@/assets/images/jianB.png" alt="简币" />
-          <span>{{ appStore.useUserInfoStore.userIntegralInfo.integralTotal }}</span>
+          <span>{{ appStore.useUserInfoStore.userIntegralInfo.integralTotal || 0 }}</span>
         </div>
       </div>
       <!-- 登录注册以及用户展示区域 -->
       <div class="user-box">
         <div v-if="!appStore.useUserInfoStore.userInfo" class="logon-register-box">
-          <el-button class="register-btn" @click="openRegisterDialog">注册</el-button>
+          <el-button v-config:open_sign class="register-btn" @click="openRegisterDialog"
+            >注册</el-button
+          >
           <el-button class="login-btn" type="primary" @click="openLoginDialog">登录</el-button>
         </div>
         <div v-else class="user-avatar-box">
-          <el-dropdown :teleported="false">
+          <el-dropdown v-config:open_person_in :teleported="false">
             <span class="el-dropdown-link" @click="toPerson">
               <el-avatar
                 v-if="appStore.useUserInfoStore.userInfo.photos.profilePic.url"
@@ -340,6 +342,7 @@
           height: 100%;
           color: v-bind('props.fontColor');
           border-bottom: 4px solid transparent;
+          width: 136px;
           &:hover {
             border-bottom: 4px solid #2ddd9d !important;
             background-color: rgba(#ccc, 0.1);

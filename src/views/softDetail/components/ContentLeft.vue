@@ -19,7 +19,7 @@
           <span>{{ content.source_views }}</span>
         </div>
         <!-- 评论量 -->
-        <div class="view-box">
+        <div v-config:open_comment class="view-box">
           <div class="icon-box">
             <svg-icon icon-name="icon-pinglun1" color="#ccc" size="22px"></svg-icon>
           </div>
@@ -44,7 +44,12 @@
     </div>
 
     <!-- 评论组件 -->
-    <comment-com width="100%" :comment-type-id="sourceId" comment-type="soft"></comment-com>
+    <comment-com
+      v-config:open_comment
+      width="100%"
+      :comment-type-id="sourceId"
+      comment-type="soft"
+    ></comment-com>
   </div>
 </template>
 <script lang="ts" setup>

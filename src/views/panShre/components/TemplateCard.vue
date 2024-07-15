@@ -31,8 +31,13 @@
         <span :title="cardData.pan_source_title">{{ cardData.pan_source_title }}</span>
       </div>
       <div class="icon-box">
-        <svg-icon icon-name="icon-pinglun1" color="#a3abb1" size="19px"></svg-icon>
-        <span class="number">{{ cardData.commentCount }}</span>
+        <svg-icon
+          v-config:open_comment
+          icon-name="icon-pinglun1"
+          color="#a3abb1"
+          size="19px"
+        ></svg-icon>
+        <span v-config:open_comment class="number">{{ cardData.commentCount }}</span>
         <svg-icon icon-name="icon-liulanliang1" color="#a3abb1" size="19px"></svg-icon>
         <span class="number">{{ cardData.pan_source_views }}</span>
       </div>
