@@ -1,6 +1,20 @@
 'use strict';
 
 module.exports = {
+  messages: {
+    type: '选择你要提交的类型 :',
+    scope: '选择一个提交范围（可选）:',
+    customScope: '请输入自定义的提交范围 :',
+    subject: '填写简短精炼的变更描述 :\n',
+    body: '填写更加详细的变更描述（可选）。使用 "|" 换行 :\n',
+    breaking: '列举非兼容性重大的变更（可选）。使用 "|" 换行 :\n',
+    footerPrefixesSelect: '选择关联issue前缀（可选）:',
+    customFooterPrefix: '输入自定义issue前缀 :',
+    footer: '列举关联issue (可选) 例如: #31, #I3244 :\n',
+    generatingByAI: '正在通过 AI 生成你的提交简短描述...',
+    generatedSelectByAI: '选择一个 AI 生成的简短描述:',
+    confirmCommit: '是否提交或修改commit ?'
+  },
   types: [
     { value: 'feature', name: 'feature:  增加新功能' },
     { value: 'bug', name: 'bug:      测试反馈bug列表中的bug号' },
@@ -17,16 +31,37 @@ module.exports = {
     { value: 'revert', name: 'revert:   回退' },
     { value: 'build', name: 'build:    打包' }
   ],
-  // override the messages, defaults are as follows
-  messages: {
-    type: '请选择提交类型:',
-    customScope: '请输入您修改的范围:',
-    subject: '请简要描述提交 message (必填):',
-    body: '请输入详细描述(可选，待优化去除，跳过即可):',
-    footer: '请输入要关闭的issue(待优化去除，跳过即可):',
-    confirmCommit: '确认使用以上信息提交？(y/n/e/h)'
-  },
+  useEmoji: false,
+  emojiAlign: 'center',
+  useAI: false,
+  aiNumber: 1,
+  themeColorCode: '',
+  scopes: [],
   allowCustomScopes: true,
-  skipQuestions: ['body', 'footer'],
-  subjectLimit: 72
+  allowEmptyScopes: true,
+  customScopesAlign: 'bottom',
+  customScopesAlias: '以上都不是？我要自定义',
+  emptyScopesAlias: '跳过',
+  upperCaseSubject: false,
+  markBreakingChangeMode: false,
+  allowBreakingChanges: ['feat', 'fix'],
+  breaklineNumber: 100,
+  breaklineChar: '|',
+  skipQuestions: [],
+  issuePrefixes: [
+    // 如果使用 gitee 作为开发管理
+    { value: 'link', name: 'link:     链接 ISSUES 进行中' },
+    { value: 'closed', name: 'closed:   标记 ISSUES 已完成' }
+  ],
+  customIssuePrefixAlign: 'top',
+  emptyIssuePrefixAlias: '跳过',
+  customIssuePrefixAlias: '自定义前缀',
+  allowCustomIssuePrefix: true,
+  allowEmptyIssuePrefix: true,
+  confirmColorize: true,
+  scopeOverrides: undefined,
+  defaultBody: '',
+  defaultIssues: '',
+  defaultScope: '',
+  defaultSubject: ''
 };
