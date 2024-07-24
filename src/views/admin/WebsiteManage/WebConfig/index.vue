@@ -31,6 +31,9 @@
       <el-form-item label="是否开启签到:" prop="open_sign_in">
         <el-switch v-model="ruleForm.open_sign_in" />
       </el-form-item>
+      <el-form-item label="是否开启赞助模块:" prop="open_sponsor">
+        <el-switch v-model="ruleForm.open_sponsor" />
+      </el-form-item>
       <el-form-item label="是否开启商务合作推广:" prop="open_business">
         <el-switch v-model="ruleForm.open_business" />
       </el-form-item>
@@ -60,6 +63,7 @@
     open_get_source_code: boolean;
     open_sign_in: boolean;
     open_business: boolean;
+    open_sponsor: boolean;
     website_title: string;
   }
   const ruleForm = reactive<IWebConfig>({
@@ -69,6 +73,7 @@
     open_get_source_code: true,
     open_sign_in: true,
     open_business: true,
+    open_sponsor: true,
     website_title: '91化简-一款免费开源的简历制作神器'
   });
   const rules = reactive<FormRules>({
@@ -121,6 +126,7 @@
     ruleForm.open_get_source_code = data.open_get_source_code;
     ruleForm.open_sign_in = data.open_sign_in;
     ruleForm.open_business = data.open_business;
+    ruleForm.open_sponsor = data.open_sponsor;
     ruleForm.website_title = data.website_title;
   };
 </script>

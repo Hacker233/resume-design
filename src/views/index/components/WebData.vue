@@ -30,7 +30,7 @@
           </p>
           <h1>累计访问量</h1>
         </li>
-        <li>
+        <li v-config:open_sign>
           <svg-icon
             icon-name="icon-renwu-ren"
             class-name="juejin"

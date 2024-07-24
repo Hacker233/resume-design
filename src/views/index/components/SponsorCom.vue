@@ -1,5 +1,5 @@
 <template>
-  <div ref="sponsorRef" class="sponsor-box-wraper">
+  <div ref="sponsorRef" v-config:open_sponsor class="sponsor-box-wraper">
     <introduce-title-vue
       title="成为赞助者"
       subtitle="一杯奶茶钱，即可将您的Logo展示在下方，给您带来源源不断的流量。"

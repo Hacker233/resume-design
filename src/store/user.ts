@@ -1,6 +1,7 @@
 import { getUserIntegralTotalAsync } from '@/http/api/integral';
 import { getUserInfoAsync } from '@/http/api/user';
 import { defineStore } from 'pinia';
+import appStore from './index';
 
 // 用户信息
 export const useUserInfoStore = defineStore('userInfoStore', () => {
@@ -25,6 +26,9 @@ export const useUserInfoStore = defineStore('userInfoStore', () => {
     const data = await getUserInfoAsync(email);
     if (data.data.status === 200) {
       saveUserInfo(data.data.data);
+      // 查询用户会员信息
+      const { getUserMembershipInfo } = appStore.useMembershipStore;
+      getUserMembershipInfo();
     } else {
       ElMessage({
         message: data.message,

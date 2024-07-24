@@ -87,6 +87,7 @@ const PanShareManage = () => import('@/views/admin/SourceShare/panShare/index.vu
 const IndexMenuManage = () => import('@/views/admin/MenuManage/IndexMenuManage/index.vue');
 const AdminMenuManage = () => import('@/views/admin/MenuManage/AdminMenuManage/index.vue');
 const WebConfig = () => import('@/views/admin/WebsiteManage/WebConfig/index.vue');
+const MembershipList = () => import('@/views/admin/userManage/membershipList/index.vue');
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -608,6 +609,17 @@ const routes: Array<RouteRecordRaw> = [
           requireLogin: true
         },
         component: UserList
+      },
+      {
+        path: 'membershipList',
+        name: 'MembershipList',
+        meta: {
+          title: '会员列表',
+          keepAlive: true,
+          isShowComNav: false,
+          requireLogin: true
+        },
+        component: MembershipList
       },
       {
         path: 'sponsorList',
