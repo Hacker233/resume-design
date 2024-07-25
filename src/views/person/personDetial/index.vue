@@ -6,8 +6,21 @@
       :rules="rules"
       label-width="100px"
       size="default"
-      label-position="left"
+      label-position="right"
     >
+      <el-form-item label="会员:">
+        <div v-if="!membershipInfo.hasMembership" class="not-membership-img"></div>
+        <div
+          v-else-if="membershipInfo.hasMembership && membershipInfo.daysRemaining > 0"
+          class="content-box"
+        >
+          <span>剩余{{ membershipInfo.daysRemaining }}天</span>
+        </div>
+        <!-- 已过期 -->
+        <div v-else class="content-box expiredDays">
+          <span>已过期{{ membershipInfo.expiredDays }}天</span>
+        </div>
+      </el-form-item>
       <el-form-item label="昵称:" prop="name">
         <el-input v-if="isEdit" v-model="ruleForm.name" />
         <p v-else>{{ appStore.useUserInfoStore.userInfo.name }}</p>
@@ -22,10 +35,14 @@
           v-model="ruleForm.birthdaydate"
           type="date"
           placeholder="请选择你的生日"
+          style="width: 100%"
         />
         <p v-else>{{ formatDateToYMD(appStore.useUserInfoStore.userInfo.birthdaydate) }}</p>
       </el-form-item>
     </el-form>
+    <el-divider>
+      <el-icon><star-filled /></el-icon>
+    </el-divider>
     <div class="button-box">
       <el-button v-if="!isEdit" type="primary" @click="edit">编辑</el-button>
       <div v-else>
@@ -42,6 +59,7 @@
   import appStore from '@/store';
   import { formatDateToYMD } from '@/utils/common';
   import { FormInstance, FormRules } from 'element-plus';
+  import { storeToRefs } from 'pinia';
 
   interface IPerson {
     name: string;
@@ -63,6 +81,10 @@
   // 查询用户信息
   const { getAndUpdateUserInfo } = appStore.useUserInfoStore;
   getAndUpdateUserInfo();
+
+  // 获取用户会员信息
+  const { membershipInfo } = storeToRefs(appStore.useMembershipStore);
+  console.log('用户会员信息', membershipInfo.value);
 
   // 点击编辑
   const isEdit = ref<boolean>(false);
@@ -105,6 +127,75 @@
 </script>
 <style lang="scss" scoped>
   .person-detail-box {
-    width: 60%;
+    width: 100%;
+    :deep(.el-form-item__label) {
+      margin-right: 20px;
+      font-weight: 600;
+    }
+    .content-box {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 5px 10px;
+      padding: 2px 9px;
+      background-color: #83ffd1;
+      border-radius: 30px;
+      height: 30px;
+      span {
+        font-size: 12px;
+        letter-spacing: 1px;
+        color: #617745;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+    }
+    .expiredDays {
+      background-color: #3b7962;
+      span {
+        color: rgb(237, 218, 218);
+      }
+    }
+    .not-membership-img {
+      width: 65px;
+      height: 20px;
+      position: relative;
+      background-size: contain !important;
+      cursor: pointer;
+      background: url(@/assets/images/membership/not-membership.png) 100% / cover no-repeat;
+      &::before {
+        content: '';
+        position: absolute;
+        left: 6px;
+        top: 1px;
+        width: 59px;
+        height: 16px;
+        border-radius: 17px;
+        background: linear-gradient(
+          135deg,
+          hsla(0, 0%, 100%, 0) 30%,
+          hsla(0, 0%, 100%, 0.8) 50%,
+          hsla(0, 0%, 100%, 0) 70%
+        );
+        background-size: 100px 100%;
+        background-repeat: no-repeat;
+        background-position: -100px top;
+        animation: titleAnim 6.5s ease-in-out infinite;
+      }
+    }
+    @keyframes titleAnim {
+      0% {
+        background-position: -100px top;
+      }
+
+      30%,
+      100% {
+        background-position: 240px top;
+      }
+    }
+    .button-box {
+      display: flex;
+      justify-content: flex-end;
+    }
   }
 </style>

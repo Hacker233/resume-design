@@ -67,11 +67,6 @@
         <span>{{ scope.row.daysRemaining }}天</span>
       </template>
     </el-table-column>
-    <el-table-column prop="totalDays" label="累计剩余天数">
-      <template #default="scope">
-        <span>{{ scope.row.totalDays }}天</span>
-      </template>
-    </el-table-column>
     <el-table-column label="操作" width="140">
       <template #default="scope">
         <el-button link size="small" @click="edit(scope.row)">编辑</el-button>
@@ -168,7 +163,6 @@
           endDate: item.endDate,
           isExpired: item.isExpired,
           daysRemaining: item.daysRemaining, // 剩余天数
-          totalDays: item.totalDays, // 累计剩余天数
           serialNumber: limit.value * (page.value - 1) + index + 1 // 序号
         };
       });

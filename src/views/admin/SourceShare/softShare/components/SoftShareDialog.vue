@@ -377,6 +377,7 @@
     if (!formEl) return;
     await formEl.validate(async (valid, fields) => {
       if (valid) {
+        sureLoading.value = true;
         // 上传预览图文件
         await submitUpload();
         // 新增
@@ -390,7 +391,6 @@
             sourceDownload: ruleForm.sourceDownload,
             sourceScreen: previewFileList.value
           };
-          sureLoading.value = true;
           const data = await addSoftAsync(params);
           if (data.data.status === 200) {
             ElMessage.success('添加成功');
