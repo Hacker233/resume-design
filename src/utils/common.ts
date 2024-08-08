@@ -292,3 +292,8 @@ export const buildTree = (items: any) => {
   // 返回最终的树形结构
   return tree;
 };
+
+// 获取assets目录下的images目录下的静态资源
+export const getAssetsImagesFile = (url: string) => {
+  return new URL(`../assets/images/${url}`, import.meta.url).href;
+};

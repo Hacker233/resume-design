@@ -138,6 +138,8 @@
   <!-- 下载弹窗 -->
   <download-dialog
     :dialog-download-visible="dialogDownloadVisible"
+    :export-pdf-pay-integral="exportPdfPayIntegral"
+    :export-img-pay-integral="exportImgPayIntegral"
     @close-download-dialog="closeDownloadDialog"
     @download-file="downloadResumeFile"
   ></download-dialog>
@@ -165,6 +167,7 @@
   import DownloadDialog from './DownloadDialog.vue';
   import ViewJsonDrawer from './ViewJsonDrawer.vue';
   import CONFIG from '@/config';
+  import { getIntegralPayNumber } from '@/views/LegoDesigner/utils/common';
 
   let { resumeJsonNewStore } = storeToRefs(appStore.useResumeJsonNewStore); // store里的模板数据
   const emit = defineEmits([
@@ -189,6 +192,15 @@
   const blurTitle = () => {
     isShowIpt.value = false;
   };
+
+  // 查询导出为pdf需要的简币数
+  const exportPdfPayIntegral = ref<number>(0);
+  // 查询导出为图片需要的简币数
+  const exportImgPayIntegral = ref<number>(0);
+  onMounted(async () => {
+    exportImgPayIntegral.value = Number(await getIntegralPayNumber('9'));
+    exportPdfPayIntegral.value = Number(await getIntegralPayNumber('8'));
+  });
 
   // 保存草稿
   let draftTips = ref<string>('');

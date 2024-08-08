@@ -11,7 +11,8 @@ export const exportPdf = async (token?: string, id?: string, height?: string) =>
     timezone: '',
     margin: '',
     filename: '',
-    format: 'A4'
+    format: 'A4',
+    integralPayGoodsId: id
   };
   const pdfData = await getResumePdfAsync(params);
   if (pdfData.status) {
@@ -36,7 +37,8 @@ export const exportPNG = async (token?: string, id?: string, height?: string) =>
   const fileName = resumeJsonNewStore.TITLE;
   const params = {
     url: `${location.origin}/pdfPreview?token=${token}&&id=${id}&&height=${height}`,
-    format: 'A4'
+    format: 'A4',
+    integralPayGoodsId: id
   };
   const pdfData = await getPNGAsync(params);
   if (pdfData.status) {

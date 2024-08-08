@@ -90,9 +90,9 @@ export const deleteUserResumeAsync: any = (id: string) => {
 export const getResumePdfAsync: any = (params: any) => {
   return http.request({
     url: '/huajian/pdf/getPdf',
-    method: 'get',
+    method: 'post',
     responseType: 'blob',
-    params: params
+    data: params
   });
 };
 

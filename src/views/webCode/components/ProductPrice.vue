@@ -127,6 +127,10 @@
             <svg-icon icon-name="icon-duigou_kuai" color="#2ddd9d" size="22px"></svg-icon>
           </li>
           <li>
+            赠送网站月度会员（价值9.9￥）
+            <svg-icon icon-name="icon-duigou_kuai" color="#2ddd9d" size="22px"></svg-icon>
+          </li>
+          <li>
             赠送上千套word简历模板
             <svg-icon icon-name="icon-shanchu_huaban" color="#333" size="16px"></svg-icon>
           </li>
@@ -214,6 +218,10 @@
             <svg-icon icon-name="icon-duigou_kuai" color="#2ddd9d" size="22px"></svg-icon>
           </li>
           <li>
+            赠送网站年度会员（价值29.9￥）
+            <svg-icon icon-name="icon-duigou_kuai" color="#2ddd9d" size="22px"></svg-icon>
+          </li>
+          <li>
             赠送上千套word简历模板
             <svg-icon icon-name="icon-duigou_kuai" color="#2ddd9d" size="22px"></svg-icon>
           </li>
@@ -298,6 +306,10 @@
           </li>
           <li>
             是否具备后台管理系统
+            <svg-icon icon-name="icon-duigou_kuai" color="#2ddd9d" size="22px"></svg-icon>
+          </li>
+          <li>
+            赠送网站永久会员（价值59.9￥）
             <svg-icon icon-name="icon-duigou_kuai" color="#2ddd9d" size="22px"></svg-icon>
           </li>
           <li>

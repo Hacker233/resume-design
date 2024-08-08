@@ -84,6 +84,15 @@
           <div class="button" @click="toPay"> 购买源码 </div>
         </div>
       </div>
+
+      <!-- 方式六 -->
+      <div class="way way-1">
+        <p class="way-tips">开通网站会员，无限制下载网站所有资源！</p>
+        <!-- 签到按钮 -->
+        <div class="attendance-box">
+          <div class="button" @click="toMembership"> 去开通 </div>
+        </div>
+      </div>
     </div>
   </el-dialog>
 
@@ -145,6 +154,11 @@
   // 去github
   const toGithub = () => {
     window.open('https://github.com/Hacker233/resume-design', '_blank');
+  };
+
+  // 开通会员
+  const toMembership = () => {
+    router.push('/membership');
   };
 </script>
 <style lang="scss">

@@ -45,6 +45,8 @@ const QQLogin = () => import('@/views/QQLoginTemp/qqLogin.vue');
 
 // 图片压缩
 const ImgCompress = () => import('@/views/imgCompress/index.vue');
+// 会员充值界面
+const Membership = () => import('@/views/membership/index.vue');
 
 // 管理员界面
 const AdminIndex = () => import('@/views/admin/index.vue');
@@ -88,6 +90,8 @@ const IndexMenuManage = () => import('@/views/admin/MenuManage/IndexMenuManage/i
 const AdminMenuManage = () => import('@/views/admin/MenuManage/AdminMenuManage/index.vue');
 const WebConfig = () => import('@/views/admin/WebsiteManage/WebConfig/index.vue');
 const MembershipList = () => import('@/views/admin/userManage/membershipList/index.vue');
+const MembershipConfigManage = () =>
+  import('@/views/admin/MembershipManage/MembershipConfigManage/index.vue');
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -331,6 +335,17 @@ const routes: Array<RouteRecordRaw> = [
       requireLogin: false
     },
     component: ImgCompress
+  },
+  {
+    path: '/membership',
+    name: 'Membership',
+    meta: {
+      title: '会员充值',
+      keepAlive: true,
+      isShowComNav: true,
+      requireLogin: false
+    },
+    component: Membership
   },
   {
     path: '/webCode',
@@ -620,6 +635,17 @@ const routes: Array<RouteRecordRaw> = [
           requireLogin: true
         },
         component: MembershipList
+      },
+      {
+        path: 'membershipConfigManage',
+        name: 'MembershipConfigManage',
+        meta: {
+          title: '会员配置管理',
+          keepAlive: true,
+          isShowComNav: false,
+          requireLogin: true
+        },
+        component: MembershipConfigManage
       },
       {
         path: 'sponsorList',

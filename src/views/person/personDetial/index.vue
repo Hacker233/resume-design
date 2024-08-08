@@ -9,16 +9,19 @@
       label-position="right"
     >
       <el-form-item label="会员:">
-        <div v-if="!membershipInfo.hasMembership" class="not-membership-img"></div>
-        <div
-          v-else-if="membershipInfo.hasMembership && membershipInfo.daysRemaining > 0"
-          class="content-box"
-        >
-          <span>剩余{{ membershipInfo.daysRemaining }}天</span>
-        </div>
-        <!-- 已过期 -->
-        <div v-else class="content-box expiredDays">
-          <span>已过期{{ membershipInfo.expiredDays }}天</span>
+        <div @click="toMembershipReach">
+          <div v-if="!membershipInfo.hasMembership" class="not-membership-img"></div>
+          <div
+            v-else-if="membershipInfo.hasMembership && membershipInfo.daysRemaining > 0"
+            class="content-box"
+          >
+            <span v-if="membershipInfo.type === 'lifetime'">永久会员</span>
+            <span v-else>还剩{{ membershipInfo.daysRemaining }}天到期</span>
+          </div>
+          <!-- 已过期 -->
+          <div v-else class="content-box expiredDays">
+            <span>已过期{{ membershipInfo.expiredDays }}天</span>
+          </div>
         </div>
       </el-form-item>
       <el-form-item label="昵称:" prop="name">
@@ -93,6 +96,12 @@
     ruleForm.surname = appStore.useUserInfoStore.userInfo.surname;
     ruleForm.birthdaydate = appStore.useUserInfoStore.userInfo.birthdaydate;
     isEdit.value = true;
+  };
+
+  // 跳转会员充值
+  const router = useRouter();
+  const toMembershipReach = () => {
+    router.push('/membership');
   };
 
   // 取消更改

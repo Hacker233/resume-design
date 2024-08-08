@@ -28,9 +28,9 @@
         >
           <el-option
             v-for="item in typeList"
-            :key="item.value"
-            :label="item.label"
-            :value="item.value"
+            :key="item.type"
+            :label="item.membershipName"
+            :value="item.type"
           />
         </el-select>
       </el-form-item>
@@ -55,28 +55,14 @@
     dialogMembershipVisible: boolean;
     row: any;
     title: string;
+    typeList: any;
   }
   const props = withDefaults(defineProps<TDialog>(), {
     dialogMembershipVisible: false,
     row: null,
-    title: '新增会员记录'
+    title: '新增会员记录',
+    typeList: []
   });
-
-  // 会员类型列表
-  const typeList = [
-    {
-      value: 'monthly',
-      label: '月度会员'
-    },
-    {
-      value: 'yearly',
-      label: '年度会员'
-    },
-    {
-      value: 'lifetime',
-      label: '终生会员'
-    }
-  ];
 
   watch(
     () => props.row,

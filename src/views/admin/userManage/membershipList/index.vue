@@ -32,13 +32,7 @@
     <el-table-column prop="type" label="会员类型">
       <template #default="scope">
         <div class="membership-type-box">
-          <el-tag v-if="scope.row.type === 'monthly'" type="info" size="default">月度会员</el-tag>
-          <el-tag v-else-if="scope.row.type === 'yearly'" type="success" size="default"
-            >年度会员</el-tag
-          >
-          <el-tag v-else-if="scope.row.type === 'lifetime'" type="primary" size="default"
-            >终生会员</el-tag
-          >
+          <el-tag type="success" size="default">{{ typeListDic[scope.row.type] }}</el-tag>
         </div>
       </template>
     </el-table-column>
@@ -92,6 +86,7 @@
     :dialog-membership-visible="dialogMembershipVisible"
     :row="row"
     :title="title"
+    :type-list="typeList"
     @cancle="cancle"
     @update-success="updateSuccess"
   ></add-and-edit-dialog>
@@ -102,7 +97,11 @@
   import { ElMessageBox } from 'element-plus';
   import 'element-plus/es/components/message-box/style/index';
   import AddAndEditDialog from './components/AddAndEditDialog.vue';
-  import { deleteMembershipAsync, getMembershipListAsync } from '@/http/api/membership';
+  import {
+    deleteMembershipAsync,
+    getMembershipConfigsAsync,
+    getMembershipListAsync
+  } from '@/http/api/membership';
   let tableData = ref<any>([]);
 
   // 表单查询
@@ -131,9 +130,6 @@
     multipleSelection.value = val;
     console.log('当前选中项', multipleSelection.value, val.updateDate);
   };
-
-  // 给所有用户发送邮件
-  // const sendEmailToAllUsers = () => {};
 
   // 获取会员用户列表
   const page = ref<number>(1);
@@ -237,6 +233,24 @@
       })
       .catch(() => {});
   };
+
+  // 获取会员类型列表
+  const typeList = ref<any>([]);
+  const typeListDic = reactive<any>({});
+  const getMembershipConfigs = async () => {
+    const data = await getMembershipConfigsAsync();
+    if (data.data.status === 200) {
+      typeList.value = data.data.data;
+      data.data.data.forEach((item: any) => {
+        typeListDic[item.type] = item.membershipName;
+      });
+
+      console.log('tableData', tableData);
+    } else {
+      ElMessage.error(data.data.message);
+    }
+  };
+  getMembershipConfigs();
 </script>
 <style lang="scss" scoped>
   :deep(.membership-type-box) {

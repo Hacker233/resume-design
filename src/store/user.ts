@@ -26,9 +26,9 @@ export const useUserInfoStore = defineStore('userInfoStore', () => {
     const data = await getUserInfoAsync(email);
     if (data.data.status === 200) {
       saveUserInfo(data.data.data);
-      // 查询用户会员信息
-      const { getUserMembershipInfo } = appStore.useMembershipStore;
-      getUserMembershipInfo();
+      // 查保存用户会员信息
+      const { saveMembershipInfo } = appStore.useMembershipStore;
+      saveMembershipInfo(data.data.data.membershipInfo);
     } else {
       ElMessage({
         message: data.message,

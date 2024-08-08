@@ -31,10 +31,13 @@
           <h1>{{ pptInfo.name }}</h1>
           <div class="download-btn">
             <div class="button" @click="download">
-              <div v-if="!isPay" class="how-much"
-                >{{ Math.abs(pptInfo.payValue) || ''
-                }}<img width="20" src="@/assets/images/jianB.png" alt="简币"
-              /></div>
+              <!-- 先判断是否是会员 -->
+              <template v-if="!membershipInfo.hasMembership">
+                <div v-if="!isPay" class="how-much"
+                  >{{ Math.abs(pptInfo.payValue) || ''
+                  }}<img width="20" src="@/assets/images/jianB.png" alt="简币"
+                /></div>
+              </template>
               <span>立即下载</span>
             </div>
           </div>
@@ -120,6 +123,10 @@
   } from '@/http/api/pptTemplate';
   import appStore from '@/store';
   import { useUserIsPayGoods } from '@/hooks/useUsrIsPayGoods';
+  import { storeToRefs } from 'pinia';
+
+  // 获取用户会员信息
+  const { membershipInfo } = storeToRefs(appStore.useMembershipStore);
 
   // 获取ppt模板id
   const route = useRoute();
@@ -186,6 +193,11 @@
         isPay.value = await useUserIsPayGoods(id);
       });
     } else {
+      // 会员直接下载
+      if (membershipInfo.value.hasMembership) {
+        downloadTemplate();
+        return;
+      }
       // 判断用户是否支付过
       if (isPay.value) {
         downloadTemplate();

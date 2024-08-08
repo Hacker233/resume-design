@@ -50,46 +50,21 @@
         >立即充值</el-button
       >
     </div>
-
-    <!-- 二维码付费弹窗 -->
-    <el-dialog
-      class="pay-qrcode-dialog"
-      :model-value="dialogQrcodeVisible"
-      width="400px"
-      :show-close="false"
-      :close-on-click-modal="false"
-      :append-to-body="false"
-      @open="handleOpen"
-      @close="handleClose"
-    >
-      <div class="qrcode-box">
-        <h3>{{ subject }}</h3>
-        <div class="qrcode-wrapper">
-          <qrcode-vue :value="qrCodeLink" :size="220" level="H" foreground="#00c091" />
-          <!-- 二维码失效遮罩层 -->
-          <div v-if="orderIsFail" class="qrcode-fail"> 订单已失效 </div>
-        </div>
-        <p>订单金额：{{ totalAmount.toFixed(2) }} ￥</p>
-        <div class="countdown-box">
-          <span v-if="!orderIsFail">
-            （请在3分钟内完成支付：<span v-if="m < 10">0</span>{{ m }}:<span v-if="s < 10">0</span
-            >{{ s }}）
-          </span>
-          <span v-else> （订单已失效） </span>
-        </div>
-      </div>
-      <template #footer>
-        <el-button class="cancle-order" @click="cancleOrder">取消订单</el-button>
-      </template>
-    </el-dialog>
   </div>
+  <!-- 充值弹窗 -->
+  <buy-qr-code-dialog
+    :model-value="dialogQrcodeVisible"
+    :total-amount="totalAmount"
+    :order-type="1"
+    subject="购买简币"
+    @pay-success="handlePaySuccess"
+    @cancel="handleCancel"
+  ></buy-qr-code-dialog>
 </template>
 <script lang="ts" setup>
-  import { aliPayAsync, tradeCloseAsync, tradeQueryAsync } from '@/http/api/integral';
-  import appStore from '@/store';
-  import QrcodeVue from 'qrcode.vue';
+  import BuyQrCodeDialog from '@/components/BuyQrcodeDialog/index.vue';
 
-  const emit = defineEmits(['paySuccess']);
+  const emit = defineEmits(['paySuccess', 'cancel']);
 
   const packageList = [
     {
@@ -145,158 +120,22 @@
   };
 
   // 点击充值按钮
-  const orderIsFail = ref<boolean>(false);
-  const outTradeNo = ref<string>(''); // 商户订单号
+  const dialogQrcodeVisible = ref<boolean>(false);
   const getOrderQrcode = async () => {
-    const params = {
-      totalAmount: totalAmount.value
-    };
-    const data = await aliPayAsync(params);
-    if (data.data.status === 200) {
-      qrCodeLink.value = data.data.data.qrCode;
-      subject.value = data.data.data.subject;
-      outTradeNo.value = data.data.data.outTradeNo;
-      dialogQrcodeVisible.value = true;
-    } else {
-      ElMessage.error(data.data.message);
-    }
+    dialogQrcodeVisible.value = true;
   };
 
-  // 二维码弹窗
-  const dialogQrcodeVisible = ref<boolean>(false);
-
-  // 二维码链接
-  const qrCodeLink = ref<string>('');
-
-  // 订单名称
-  const subject = ref<string>('');
+  // 支付成功
+  const handlePaySuccess = () => {
+    dialogQrcodeVisible.value = false;
+    emit('paySuccess');
+  };
 
   // 取消订单
-  const cancleOrder = () => {
-    tradeClose(); // 关闭交易
+  const handleCancel = () => {
     dialogQrcodeVisible.value = false;
-    // 取消轮训
-    if (orderTime) {
-      clearInterval(orderTime);
-    }
+    emit('cancel');
   };
-
-  // 关闭交易
-  const tradeClose = async () => {
-    let params = {
-      outTradeNo: outTradeNo.value
-    };
-    const data = await tradeCloseAsync(params);
-    if (data.data.status === 200) {
-      outTradeNo.value = '';
-    } else {
-      ElMessage.error(data.data.message);
-    }
-  };
-
-  // 弹窗关闭回调
-  const handleClose = () => {
-    // 取消轮训
-    if (orderTime) {
-      clearInterval(orderTime);
-    }
-    // 取消倒计时
-    if (settime) {
-      clearInterval(settime);
-    }
-  };
-
-  // 弹窗打开回调
-  let orderTime: any = '';
-  const handleOpen = () => {
-    orderIsFail.value = false;
-    countdown(); // 倒计时
-    orderTime = setInterval(() => {
-      getOrderInfo();
-    }, 3000);
-  };
-
-  // 倒计时
-  const m = ref<number>(2); //设置分
-  const s = ref<number>(59); //设置秒
-  let settime: any = '';
-  const countdown = () => {
-    m.value = 2;
-    s.value = 59;
-    settime = setInterval(() => {
-      s.value = s.value - 1;
-      // 秒为0
-      if (s.value == 0) {
-        if (m.value > 0) {
-          m.value = m.value - 1;
-          s.value = 60;
-        } else {
-          // 倒计时结束
-          orderIsFail.value = true;
-          clearInterval(settime);
-          if (orderTime) {
-            clearInterval(orderTime);
-          }
-        }
-      }
-    }, 1000);
-  };
-
-  // 轮训查询订单信息
-  const { getUserIntegralTotal } = appStore.useUserInfoStore;
-  const getOrderInfo = async () => {
-    let params = {
-      outTradeNo: outTradeNo.value
-    };
-    const data = await tradeQueryAsync(params);
-    if (data.data.status === 200) {
-      const orderInfo = data.data.data;
-      if (orderInfo.code == 40004) {
-        return;
-      } else if (orderInfo.code == 10000) {
-        if (orderInfo.tradeStatus === 'WAIT_BUYER_PAY') {
-          // 交易创建，等待买家付款
-          return;
-        } else if (orderInfo.tradeStatus === 'TRADE_CLOSED') {
-          // 未付款交易超时关闭，或支付完成后全额退款
-          if (orderTime) {
-            clearInterval(orderTime);
-            orderIsFail.value = true;
-          }
-        } else if (orderInfo.tradeStatus === 'TRADE_FINISHED') {
-          // 交易结束，不可退款
-          if (orderTime) {
-            clearInterval(orderTime);
-            orderIsFail.value = true;
-          }
-        } else if (orderInfo.tradeStatus === 'TRADE_SUCCESS') {
-          // 支付成功
-          dialogQrcodeVisible.value = false;
-          outTradeNo.value = '';
-          if (orderTime) {
-            clearInterval(orderTime);
-          }
-          ElMessage.success('支付成功');
-          emit('paySuccess');
-          // 查询用简币信息
-          getUserIntegralTotal();
-        }
-      }
-    } else {
-      return;
-    }
-  };
-
-  // 销毁
-  onBeforeMount(() => {
-    if (settime) {
-      clearInterval(settime);
-    }
-    // 关闭交易
-    if (outTradeNo.value) {
-      tradeClose();
-    }
-  });
 </script>
 <style lang="scss" scoped>
   .buy-integral-box {
@@ -343,62 +182,5 @@
     .pay-button {
       margin-top: 20px;
     }
-  }
-
-  // 弹窗样式
-  :deep(.pay-qrcode-dialog) {
-    .el-dialog__header {
-      display: none;
-    }
-  }
-  .qrcode-box {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    .qrcode-wrapper {
-      position: relative;
-      width: 220px;
-      height: 220px;
-      border-radius: 3px;
-      overflow: hidden;
-      .qrcode-fail {
-        width: 100%;
-        height: 100%;
-        font-size: 16px;
-        letter-spacing: 2px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        position: absolute;
-        top: 0;
-        left: 0;
-        background: rgba(255, 255, 255, 0.2);
-        -webkit-backdrop-filter: blur(8px);
-        backdrop-filter: blur(8px);
-        box-shadow: inset 0 0 6px rgba(255, 255, 255, 0.2);
-      }
-    }
-    h3 {
-      font-size: 16px;
-      margin: 20px;
-    }
-    p {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-top: 20px;
-      font-size: 16px;
-    }
-    .countdown-box {
-      margin-top: 15px;
-      color: red;
-      letter-spacing: 1px;
-    }
-  }
-  .cancle-order {
-    width: 100%;
-    height: 40px;
-    font-size: 16px;
-    letter-spacing: 2px;
   }
 </style>

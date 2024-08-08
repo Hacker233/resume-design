@@ -1,3 +1,4 @@
+import { getIntegralPayNumberAsync } from '@/http/api/common';
 import moment from 'moment';
 
 // 获取assets静态资源
@@ -74,4 +75,15 @@ export const legoFormatDateRange = (dataArray: Array<string> | string): string =
   } else {
     return moment(new Date(dataArray)).format('YYYY.MM.DD').split('-').join('.');
   }
+};
+
+// 根据类型查询所需要的简币数
+export const getIntegralPayNumber = (integralPayType: string) => {
+  return new Promise(async (resolve) => {
+    const params = {
+      integralPayType: integralPayType
+    };
+    const data = await getIntegralPayNumberAsync(params);
+    resolve(data.data.integral_pay_num);
+  });
 };

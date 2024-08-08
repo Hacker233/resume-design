@@ -11,6 +11,7 @@ declare module '@vue/runtime-core' {
     AwardsCom: typeof import('./components/ModelComs/AwardsCom.vue')['default']
     BuyIntegral: typeof import('./components/BuyIntegral/BuyIntegral.vue')['default']
     BuyIntegralDialog: typeof import('./components/BuyIntegralDialog/BuyIntegralDialog.vue')['default']
+    BuyQrcodeDialog: typeof import('./components/BuyQrcodeDialog/index.vue')['default']
     CampusExperienceCom: typeof import('./components/ModelComs/CampusExperienceCom.vue')['default']
     CatalogCard: typeof import('./components/CatalogCard/CatalogCard.vue')['default']
     ColorPickerCustom: typeof import('./components/ColorPicker/ColorPickerCustom.vue')['default']
@@ -24,13 +25,11 @@ declare module '@vue/runtime-core' {
     DateFormItem: typeof import('./components/DateFormItem/DateFormItem.vue')['default']
     Editor: typeof import('./components/packages/components/editor/editor.vue')['default']
     EduBackgroundCom: typeof import('./components/ModelComs/EduBackgroundCom.vue')['default']
-    ElAlert: typeof import('element-plus/es')['ElAlert']
     ElAvatar: typeof import('element-plus/es')['ElAvatar']
     ElBacktop: typeof import('element-plus/es')['ElBacktop']
     ElButton: typeof import('element-plus/es')['ElButton']
     ElCarousel: typeof import('element-plus/es')['ElCarousel']
     ElCarouselItem: typeof import('element-plus/es')['ElCarouselItem']
-    ElCheckbox: typeof import('element-plus/es')['ElCheckbox']
     ElCollapse: typeof import('element-plus/es')['ElCollapse']
     ElCollapseItem: typeof import('element-plus/es')['ElCollapseItem']
     ElConfigProvider: typeof import('element-plus/es')['ElConfigProvider']
@@ -117,5 +116,8 @@ declare module '@vue/runtime-core' {
     WorkExperienceCom: typeof import('./components/ModelComs/WorkExperienceCom.vue')['default']
     WorksDisplayCom: typeof import('./components/ModelComs/WorksDisplayCom.vue')['default']
     ZoomAndOut: typeof import('./components/ZoomAndOut/ZoomAndOut.vue')['default']
+  }
+  export interface ComponentCustomProperties {
+    vLoading: typeof import('element-plus/es')['ElLoadingDirective']
   }
 }

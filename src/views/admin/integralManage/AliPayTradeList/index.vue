@@ -42,7 +42,7 @@
       <el-table-column prop="totalAmount" label="订单金额" />
       <el-table-column prop="buyerPayAmount" label="实付金额" />
       <el-table-column prop="receiptAmount" label="实收金额" />
-
+      <el-table-column prop="subject" label="订单描述"></el-table-column>
       <el-table-column prop="createDate" label="创建日期">
         <template #default="scope">
           <div>
@@ -167,7 +167,8 @@
   const updateAliPayTrade = async (row: any) => {
     let params = {
       email: row.email,
-      outTradeNo: row.outTradeNo
+      outTradeNo: row.outTradeNo,
+      orderType: row.orderType
     };
     const data = await tradeQueryByAdminAsync(params);
     if (data.data.status === 200) {

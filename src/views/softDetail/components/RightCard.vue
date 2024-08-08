@@ -20,10 +20,13 @@
           class="button"
           @click="toDownload(item.name)"
         >
-          <div v-if="!isPay" class="how-much"
-            >{{ Math.abs(content.payValue) || '' }}
-            <img width="20" src="@/assets/images/jianB.png" alt="简币"
-          /></div>
+          <!-- 先判断是否是会员 -->
+          <template v-if="!membershipInfo.hasMembership">
+            <div v-if="!isPay" class="how-much"
+              >{{ Math.abs(content.payValue) || '' }}
+              <img width="20" src="@/assets/images/jianB.png" alt="简币"
+            /></div>
+          </template>
           {{ item.name }}
           <span v-if="item.pass">{{ `(提取码:${item.pass})` }}</span>
         </div>
@@ -79,11 +82,15 @@
   import { useUserIsPayGoods } from '@/hooks/useUsrIsPayGoods';
   import { softDownloadUrl } from '@/http/api/softShare';
   import { getVXQunListUnauthAsync } from '@/http/api/website';
+  import { storeToRefs } from 'pinia';
   const props = defineProps<{
     content: any;
   }>();
 
   const { sourceId } = useRoute().query;
+
+  // 获取用户会员信息
+  const { membershipInfo } = storeToRefs(appStore.useMembershipStore);
 
   // 打开获取简币弹窗
   const dialogGetIntegralVisible = ref<boolean>(false);
@@ -129,6 +136,11 @@
         isPay.value = await useUserIsPayGoods(sourceId);
       });
     } else {
+      // 会员直接下载
+      if (membershipInfo.value.hasMembership) {
+        downloadTemplate(name);
+        return;
+      }
       // 判断邮箱是否验证
       const emailVerify = JSON.parse(userInfo as string).auth.email.valid;
       if (emailVerify) {

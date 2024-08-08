@@ -1,0 +1,763 @@
+<template>
+  <div class="membership-box">
+    <!-- 背景图 -->
+    <div class="bg-box">
+      <img src="@/assets/images/membership/member-bgc.png" />
+    </div>
+    <!-- 内容区 -->
+    <div class="membership-content-box">
+      <!-- 头部区域 -->
+      <div class="head">
+        <div class="left">
+          <el-avatar
+            v-if="appStore.useUserInfoStore.userInfo.photos.profilePic.url"
+            :size="43"
+            :src="appStore.useUserInfoStore.userInfo.photos.profilePic.url"
+          />
+          <div class="membership-time">
+            <div class="user-info-box">
+              <h1>{{ appStore.useUserInfoStore.userInfo.name }}</h1>
+              <div v-if="!membershipInfo.hasMembership" class="not-membership-img"></div>
+              <div
+                v-else-if="membershipInfo.hasMembership && membershipInfo.daysRemaining > 0"
+                class="content-box"
+              >
+                <span v-if="membershipInfo.type === 'lifetime'">永久会员</span>
+                <span v-else>还剩{{ membershipInfo.daysRemaining }}天到期</span>
+              </div>
+              <!-- 已过期 -->
+              <div v-else class="content-box expiredDays">
+                <span>已过期{{ membershipInfo.expiredDays }}天</span>
+              </div>
+            </div>
+            <!-- 提示 -->
+            <p>开通会员立享站内无限制下载，快来吧！</p>
+          </div>
+        </div>
+        <div class="right"></div>
+      </div>
+      <!-- 会员充值区域 -->
+      <div class="pay-content-box">
+        <div class="member-goods-container">
+          <div
+            v-for="(item, index) in membershipCardList"
+            :key="index"
+            :class="[
+              'member-goods-item',
+              ['monthly', 'yearly', 'lifetime'].indexOf(item.value) > -1 ? item.value : 'monthly',
+              { active: selectedMembership === item.value }
+            ]"
+            @click="handleMembership(item)"
+          >
+            <template v-if="['monthly', 'yearly', 'lifetime'].indexOf(item.value) > -1">
+              <img
+                v-show="selectedMembership === item.value"
+                :src="getAssetsImagesFile(`membership/${item.value}.gif`)"
+              />
+            </template>
+            <template v-else>
+              <div>
+                <img
+                  v-show="selectedMembership === item.value"
+                  :src="getAssetsImagesFile(`membership/monthly.gif`)"
+                />
+              </div>
+            </template>
+            <div class="info-container">
+              <div :class="['goods-name', `name-${item.value}`]">{{ item.label }}</div>
+              <div :class="['goods-price', `name-${item.value}`]">
+                <span class="rmb-icon"> ¥ </span>
+                <span class="price-num">{{ item.price }}</span>
+              </div>
+              <div :class="['price-desc', `desc-${item.value}`]">
+                原价<span class="price-line">{{ item.orgPrice }}￥</span>
+              </div></div
+            >
+          </div>
+        </div>
+        <div class="join-membership-info-desc">立即生效</div>
+        <div class="buy-know"
+          ><div class="buy-know-title"> 购买须知： </div
+          ><div class="buy-know-item">
+            1.会员有效期：月度会员有效期31天，年度会员有效期为365天，在会员期内续费会员时，会员有效期天数累加，月度会员与年度会员购买不冲突，会员天数将累计。 </div
+          ><div class="buy-know-item">
+            2.会员权益说明：购买的会员将按照购买时间顺延生效，会员权益请查看具体权益对照表。
+          </div>
+        </div>
+        <div class="bottom-pay-wrapper">
+          <div class="pay-info">
+            支付金额
+            <span data-v-0be21c4c="" class="rmb-icon">¥ </span>
+            <span data-v-0be21c4c="" class="pay-info-num">{{ selectedPrice }}</span>
+          </div>
+          <div class="pay-btn" @click="getOrderQrcode">
+            <div class="pay-btn-text">立即购买</div>
+            <div class="pay-btn-light">
+              <img src="@/assets/images/membership/line.png" />
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- 权益对比 -->
+      <div class="member-benefit">
+        <div class="title"> 权益对比 </div>
+        <div class="vip-yige">
+          <div class="welfareBg">
+            <div class="lineBg color0"></div>
+            <div class="lineBg color1"></div>
+            <div class="lineBg color0"></div>
+            <div class="lineBg color1"></div>
+            <div class="lineBg color0"></div>
+            <div class="lineBg color1"></div>
+          </div>
+          <div class="cotent-item-wrapper first">
+            <div class="cotent-item cotent-item-type">
+              <div class="item-card first-item-card">
+                <div class="handsel"></div>
+                <div class="price">
+                  <div class="free"></div>
+                </div>
+              </div>
+              <div class="welfare first-column">
+                <div class="line firstLine"> 积木创作 </div>
+                <div class="line">在线制作</div>
+                <div class="line">PPT模板</div>
+                <div class="line">简历模版</div>
+                <div class="line">软件资源</div>
+                <div class="line">网盘资源</div>
+              </div>
+            </div>
+          </div>
+          <div class="cotent-item-wrapper firstContent">
+            <div class="cotent-item">
+              <div class="item-card non-vip">
+                <h1>免费版</h1>
+                <p>（欢迎白嫖）</p>
+              </div>
+              <div class="welfare">
+                <div class="line firstLine"
+                  >消耗简币导出<img width="22" src="@/assets/images/jianB.png" alt="简币"
+                /></div>
+                <div class="line"
+                  >消耗简币导出<img width="22" src="@/assets/images/jianB.png" alt="简币"
+                /></div>
+                <div class="line"
+                  >消耗简币下载 <img width="22" src="@/assets/images/jianB.png" alt="简币"
+                /></div>
+                <div class="line specialLine"
+                  >消耗简币下载<img width="22" src="@/assets/images/jianB.png" alt="简币"
+                /></div>
+                <div class="line specialLine"
+                  >消耗简币下载<img width="22" src="@/assets/images/jianB.png" alt="简币"
+                /></div>
+                <div class="line"
+                  >消耗简币下载<img width="22" src="@/assets/images/jianB.png" alt="简币"
+                /></div>
+              </div>
+            </div>
+          </div>
+          <div class="cotent-item-wrapper">
+            <div class="cotent-item">
+              <div class="item-card vip">
+                <h1>月度会员版</h1>
+                <p>（一瓶饮料钱）</p>
+              </div>
+              <div class="welfare">
+                <div class="line">无限制</div>
+                <div class="line">无限制</div>
+                <div class="line">无限制</div>
+                <div class="line">无限制</div>
+                <div class="line">无限制</div>
+                <div class="line">无限制</div>
+              </div>
+            </div>
+          </div>
+          <div class="cotent-item-wrapper">
+            <div class="cotent-item">
+              <div class="item-card svip">
+                <h1>年度会员版</h1>
+                <p>（一杯奶茶钱）</p>
+              </div>
+              <div class="welfare">
+                <div class="line">无限制</div>
+                <div class="line">无限制</div>
+                <div class="line">无限制</div>
+                <div class="line">无限制</div>
+                <div class="line">无限制</div>
+                <div class="line">无限制</div>
+              </div>
+            </div>
+          </div>
+          <div class="cotent-item-wrapper last">
+            <div class="cotent-item active">
+              <div class="item-card ssvip">
+                <h1>永久会员版</h1>
+                <p>（一顿饭钱）</p>
+              </div>
+              <div class="welfare">
+                <div class="line">无限制</div>
+                <div class="line">无限制</div>
+                <div class="line">无限制</div>
+                <div class="line">无限制</div>
+                <div class="line">无限制</div>
+                <div class="line">无限制</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 充值弹窗 -->
+    <buy-qr-code-dialog
+      :model-value="dialogQrcodeVisible"
+      :total-amount="selectedPrice"
+      :order-type="2"
+      :options="membershipOptions"
+      subject="购买化简会员"
+      @pay-success="handlePaySuccess"
+      @cancel="handleCancel"
+    ></buy-qr-code-dialog>
+  </div>
+</template>
+<script setup lang="ts">
+  import appStore from '@/store';
+  import { storeToRefs } from 'pinia';
+  import { getAssetsImagesFile } from '@/utils/common';
+  import { getMembershipConfigsByUserAsync } from '@/http/api/membership';
+  import BuyQrCodeDialog from '@/components/BuyQrcodeDialog/index.vue';
+
+  const emit = defineEmits(['paySuccess', 'cancel']);
+
+  // 查询和更新用户信息
+  const { getAndUpdateUserInfo } = appStore.useUserInfoStore;
+  const { token } = appStore.useTokenStore;
+  if (token) {
+    getAndUpdateUserInfo();
+  }
+
+  // 获取用户会员信息
+  const membershipCardList = ref<any>([]);
+  const { membershipInfo } = storeToRefs(appStore.useMembershipStore);
+  console.log('用户会员信息', membershipInfo.value);
+
+  // 获取会员配置列表
+  const getMembershipConfigsByUser = async () => {
+    const data = await getMembershipConfigsByUserAsync();
+    if (data.status === 200) {
+      membershipCardList.value = data.data.map((item: any) => {
+        return {
+          label: item.membershipName,
+          value: item.type,
+          price: item.price,
+          orgPrice: item.originalPrice
+        };
+      });
+    } else {
+      ElMessage.error(data.data.message);
+    }
+  };
+  getMembershipConfigsByUser();
+
+  // 选择会员卡片
+  const selectedMembership = ref<string>('monthly');
+  const selectedPrice = ref<number>(9.9);
+  // 充值会员配置
+  const membershipOptions = reactive<any>({
+    type: selectedMembership.value
+  });
+  const handleMembership = (item: any) => {
+    selectedMembership.value = item.value;
+    selectedPrice.value = item.price;
+    membershipOptions.type = selectedMembership.value;
+  };
+
+  // 点击充值按钮
+  const dialogQrcodeVisible = ref<boolean>(false);
+  const getOrderQrcode = async () => {
+    dialogQrcodeVisible.value = true;
+  };
+
+  // 支付成功
+  const handlePaySuccess = () => {
+    dialogQrcodeVisible.value = false;
+    getAndUpdateUserInfo();
+    emit('paySuccess');
+  };
+
+  // 取消订单
+  const handleCancel = () => {
+    dialogQrcodeVisible.value = false;
+    emit('cancel');
+  };
+</script>
+<style lang="scss" scoped>
+  .membership-box {
+    width: 100%;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    .bg-box {
+      width: 100%;
+      height: 403px;
+      position: absolute;
+      top: 0;
+      z-index: 0;
+      img {
+        width: 100%;
+        height: 100%;
+        display: block;
+      }
+    }
+    .membership-content-box {
+      width: 1024px;
+      position: relative;
+      z-index: 1;
+      .head {
+        width: 1010px;
+        height: 50px;
+        font-family: PingFang SC;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin: 30px 0px 18px;
+        .left {
+          display: flex;
+          align-items: center;
+          .membership-time {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            margin-left: 8px;
+            .user-info-box {
+              display: flex;
+              align-items: center;
+              margin-bottom: 2px;
+              h1 {
+                display: flex;
+                align-items: center;
+                font-size: 18px;
+                font-weight: 500;
+                color: #fff;
+                margin-right: 8px;
+              }
+              .content-box {
+                padding: 2px 10px;
+                background-color: #83ffd1;
+                border-radius: 15px;
+                font-size: 13px;
+              }
+              .not-membership-img {
+                width: 65px;
+                height: 20px;
+                position: relative;
+                background-size: contain !important;
+                cursor: pointer;
+                background: url(@/assets/images/membership/not-membership.png) 100% / cover
+                  no-repeat;
+                &::before {
+                  content: '';
+                  position: absolute;
+                  left: 6px;
+                  top: 1px;
+                  width: 59px;
+                  height: 16px;
+                  border-radius: 17px;
+                  background: linear-gradient(
+                    135deg,
+                    hsla(0, 0%, 100%, 0) 30%,
+                    hsla(0, 0%, 100%, 0.8) 50%,
+                    hsla(0, 0%, 100%, 0) 70%
+                  );
+                  background-size: 100px 100%;
+                  background-repeat: no-repeat;
+                  background-position: -100px top;
+                  animation: titleAnim 6.5s ease-in-out infinite;
+                }
+              }
+              @keyframes titleAnim {
+                0% {
+                  background-position: -100px top;
+                }
+
+                30%,
+                100% {
+                  background-position: 240px top;
+                }
+              }
+            }
+            p {
+              font-size: 13px;
+              margin-top: 2px;
+              font-weight: 400;
+              color: hsla(0, 0%, 100%, 0.4);
+            }
+          }
+        }
+      }
+      .pay-content-box {
+        width: 100%;
+        height: 500px;
+        background-color: #fffaf0;
+        border-radius: 20px;
+        padding: 30px 20px;
+        .member-goods-container {
+          display: grid;
+          grid-template-columns: repeat(4, 235px); /* 每行4列，每列235px */
+          grid-column-gap: 15px; /* 行间距和列间距均为20px */
+          box-sizing: border-box;
+          .member-goods-item {
+            border: 1.5px solid transparent;
+            width: 235px;
+            height: 150px;
+            padding: 26px 0 0 25px;
+            border-radius: 12px;
+            background-repeat: no-repeat;
+            background-size: cover;
+            position: relative;
+            cursor: pointer;
+            transition: all 0.3s;
+            flex-shrink: 0;
+            img {
+              width: 94px;
+              height: 94px;
+              position: absolute;
+              right: 16px;
+              top: 14px;
+              z-index: 1;
+            }
+            .info-container {
+              box-sizing: border-box;
+              .goods-name {
+                font-size: 20px;
+                font-weight: 600;
+                line-height: 28px;
+              }
+              .goods-price {
+                margin: 0;
+                padding: 0;
+                border: 0;
+                font-size: 100%;
+                font-weight: 400;
+                vertical-align: baseline;
+                .rmb-icon {
+                  font-size: 20px;
+                  font-weight: 600;
+                  line-height: 28px;
+                }
+                .price-num {
+                  font-size: 40px;
+                  font-weight: 600;
+                  line-height: 56px;
+                }
+              }
+              .price-desc {
+                font-size: 14px;
+                letter-spacing: 1px;
+                font-weight: 400;
+                .price-line {
+                  text-decoration: line-through;
+                }
+              }
+              .name-monthly {
+                background: linear-gradient(70.95deg, #3974af 29.76%, #2d537a 71.28%);
+                background-clip: text;
+                -webkit-text-fill-color: transparent;
+              }
+              .name-yearly {
+                background: linear-gradient(83.16deg, #af764c 19.01%, #774d26 88.14%);
+                background-clip: text;
+                -webkit-text-fill-color: transparent;
+              }
+              .name-lifetime {
+                background: linear-gradient(83.16deg, #4c50af 19.01%, #3b2677 88.14%);
+                background-clip: text;
+                -webkit-text-fill-color: transparent;
+              }
+              .desc-monthly {
+                color: #6face1;
+              }
+              .desc-yearly {
+                color: #c99b68;
+              }
+              .desc-lifetime {
+                color: #746dbb;
+              }
+            }
+          }
+          .active {
+            border: 1.5px solid #2d537a;
+          }
+          .monthly {
+            background-image: url(@/assets/images/membership/membership-monthly.png);
+          }
+          .yearly {
+            background-image: url(@/assets/images/membership/membership-yearly.png);
+          }
+          .lifetime {
+            background-image: url(@/assets/images/membership/membership-lifetime.png);
+          }
+        }
+        .join-membership-info-desc {
+          font-size: 13px;
+          font-weight: 400;
+          color: #5286bc;
+          padding: 15px 0;
+          height: 44px;
+          color: #5856c4;
+        }
+        .buy-know {
+          font-size: 13px;
+          margin-top: 15px;
+          line-height: 23px;
+          .buy-know-title {
+            font-weight: 500;
+          }
+          .buy-know-item {
+            color: #666;
+            font-weight: 400;
+          }
+        }
+        .bottom-pay-wrapper {
+          height: 173px;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          .pay-info {
+            font-size: 15px;
+            font-weight: 500;
+            color: #333;
+            text-align: center;
+            height: 70px;
+            .rmb-icon {
+              font-size: 25px;
+              font-weight: 600;
+              color: #fa5c2d;
+            }
+            .pay-info-num {
+              font-size: 50px;
+              font-weight: 600;
+              color: #fa5c2d;
+            }
+          }
+          .pay-btn {
+            position: relative;
+            width: 220px;
+            line-height: 40px;
+            text-align: center;
+            background: linear-gradient(90.64deg, #f5e4cb 1.32%, #e7b77a 108.92%);
+            font-weight: 500;
+            font-size: 17px;
+            border-radius: 34px;
+            margin: 0 auto;
+            cursor: pointer;
+            .pay-btn-text {
+              background: linear-gradient(218.83deg, #622900 22.3%, #9e6237 84.49%);
+              background-clip: text;
+              -webkit-background-clip: text;
+              -webkit-text-fill-color: transparent;
+            }
+            .pay-btn-light {
+              position: absolute;
+              top: 0;
+              animation: lightMove 4s linear infinite;
+              img {
+                width: 63px;
+                height: 40px;
+                display: block;
+              }
+            }
+            @keyframes lightMove {
+              0% {
+                visibility: visible;
+                left: -4px;
+              }
+
+              20% {
+                left: 78%;
+              }
+              21% {
+                left: 78%;
+                visibility: hidden;
+              }
+              100% {
+                left: 100%;
+                visibility: hidden;
+              }
+            }
+          }
+        }
+      }
+      .member-benefit {
+        min-height: 500px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 60px;
+        margin-top: 50px;
+        .title {
+          font-size: 30px;
+          font-weight: 500;
+          line-height: 30px;
+          letter-spacing: 0;
+          color: #000;
+          margin-bottom: 40px;
+        }
+        .vip-yige {
+          position: relative;
+          display: flex;
+          background-size: contain;
+          background-repeat: no-repeat;
+          width: 100%;
+          border-radius: 15px;
+          overflow: hidden;
+          border: 1px solid #dae4f2;
+          .welfareBg {
+            position: absolute;
+            top: 83px;
+            left: 0;
+            right: 0;
+            box-shadow: 0 0 30px rgba(198, 207, 234, 0.44);
+            .lineBg {
+              height: 80px;
+              width: 100%;
+              background: #fff;
+            }
+            .color1 {
+              background: #f6f8fc;
+            }
+          }
+          .cotent-item-wrapper {
+            .cotent-item {
+              background: transparent;
+              cursor: pointer;
+              position: relative;
+              width: 208.5px;
+              border-left: 1px solid #dae4f2;
+              .item-card {
+                margin: 0 auto;
+                width: 190px;
+                height: 83px;
+                background-size: cover;
+                background-color: #fff;
+                position: relative;
+                border-bottom: 1px solid #dae4f2;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                flex-direction: column;
+                h1 {
+                  font-size: 18px;
+                  font-weight: 600;
+                  margin-bottom: 2px;
+                }
+                p {
+                  font-size: 14px;
+                  opacity: 0.9;
+                  margin-top: 2px;
+                  letter-spacing: 1px;
+                  color: #475b79;
+                }
+                .price {
+                  padding: 0 0 0 12px;
+                  position: absolute;
+                  left: 0;
+                  bottom: 4px;
+                  .free {
+                    line-height: 42px;
+                    color: #475b79;
+                  }
+                }
+              }
+              .first-item-card {
+                background-color: #f5f8ff;
+              }
+              .non-vip {
+                width: 208.5px;
+                color: #475b79;
+                background: linear-gradient(
+                  45deg,
+                  #e0f3fa 0%,
+                  #d8f0fc 50%,
+                  #b8e2f6 51%,
+                  #b6dffd 100%
+                ); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+              }
+              .vip {
+                width: 208.5px;
+                color: #44516a;
+                background: linear-gradient(
+                  45deg,
+                  #fcfff4 0%,
+                  #e9e9ce 100%
+                ); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+              }
+              .svip {
+                width: 208.5px;
+                color: #475b79;
+                background: linear-gradient(
+                  45deg,
+                  #b4e391 0%,
+                  #61c419 50%,
+                  #b4e391 100%
+                ); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+              }
+              .ssvip {
+                width: 208.5px;
+                color: #475b79;
+                background: linear-gradient(
+                  45deg,
+                  #63b6db 0%,
+                  #309dcf 100%
+                ); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+              }
+              .welfare {
+                .line {
+                  color: #494949;
+                  font-size: 14px;
+                  text-align: center;
+                  height: 80px;
+                  line-height: 80px;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  &:nth-child(2n-1) {
+                    background-color: #f5f8ff;
+                  }
+                  &:nth-child(2n) {
+                    background-color: #edf2fb;
+                  }
+                  &:last-child {
+                    box-sizing: border-box;
+                    position: relative;
+                  }
+                }
+                .firstLine {
+                  display: flex;
+                  align-items: center;
+                  min-height: 70px;
+                  line-height: unset;
+                  justify-content: center;
+                }
+              }
+            }
+            .first-column {
+              .line {
+                font-weight: 600;
+              }
+            }
+            .cotent-item-type {
+              width: 188px;
+              pointer-events: none;
+              border: none;
+            }
+            p {
+              font-weight: 500 !important;
+            }
+          }
+        }
+      }
+    }
+  }
+</style>

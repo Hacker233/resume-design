@@ -39,10 +39,26 @@
       </div>
 
       <!-- 源码购买 -->
-      <div v-config:open_get_source_code class="get-source-code" @click="toWebCode">
+      <!-- <div v-config:open_get_source_code class="get-source-code" @click="toWebCode">
         <div class="content-box">
           <svg-icon icon-name="icon-VIP" size="20px" color="#789e45"></svg-icon>
           <span>获取源码</span>
+        </div>
+      </div> -->
+      <!-- 开通会员 -->
+      <div class="membership-box" @click="toMembership">
+        <div v-if="!membershipInfo.hasMembership" class="content-box">开通会员 </div>
+        <div
+          v-else-if="membershipInfo.hasMembership && membershipInfo.daysRemaining > 0"
+          class="content-box"
+        >
+          <svg-icon icon-name="icon-VIP" size="20px" color="#789e45"></svg-icon>
+          <span v-if="membershipInfo.type === 'lifetime'">永久会员</span>
+          <span v-else>还剩{{ membershipInfo.daysRemaining }}天到期</span>
+        </div>
+        <!-- 已过期 -->
+        <div v-else class="content-box expiredDays">
+          <span>已过期{{ membershipInfo.expiredDays }}天</span>
         </div>
       </div>
       <!-- 简币 -->
@@ -62,7 +78,7 @@
         </div>
         <div v-else class="user-avatar-box">
           <el-dropdown v-config:open_person_in :teleported="false">
-            <span class="el-dropdown-link" @click="toPerson">
+            <span class="el-dropdown-link">
               <el-avatar
                 v-if="appStore.useUserInfoStore.userInfo.photos.profilePic.url"
                 :size="45"
@@ -112,113 +128,10 @@
 
   // 菜单列表
   const { indexMenuList } = storeToRefs(appStore.useIndexMenuStore);
-  // const menuList = reactive([
-  //   {
-  //     iconfont: '',
-  //     name: 'Template',
-  //     title: '简历制作',
-  //     children: [
-  //       {
-  //         iconfont: '',
-  //         name: 'Template',
-  //         title: '在线制作',
-  //         children: null,
-  //         path: '/template'
-  //       },
-  //       {
-  //         iconfont: '',
-  //         name: 'LegoTemplateList',
-  //         title: '积木创作',
-  //         children: null,
-  //         path: '/legoTemplateList'
-  //       }
-  //     ]
-  //   },
-  //   {
-  //     iconfont: '',
-  //     name: 'TemplateDownload',
-  //     title: '模板下载',
-  //     children: [
-  //       {
-  //         iconfont: '',
-  //         name: 'Word',
-  //         title: '简历模板',
-  //         children: null,
-  //         path: '/word'
-  //       },
-  //       {
-  //         iconfont: '',
-  //         name: 'PPT',
-  //         title: 'PPT模板',
-  //         children: null,
-  //         path: '/ppt'
-  //       }
-  //     ]
-  //   },
-  //   {
-  //     iconfont: '',
-  //     name: 'Resourceshare',
-  //     title: '资源分享',
-  //     children: [
-  //       {
-  //         iconfont: '',
-  //         name: 'Soft',
-  //         title: '软件分享',
-  //         children: null,
-  //         path: '/soft'
-  //       },
-  //       {
-  //         iconfont: '',
-  //         name: 'Website',
-  //         title: '网站分享',
-  //         children: null,
-  //         path: '/website'
-  //       },
-  //       {
-  //         iconfont: '',
-  //         name: 'PanShare',
-  //         title: '网盘资源',
-  //         children: null,
-  //         path: '/panshare'
-  //       }
-  //     ]
-  //   },
-  //   {
-  //     iconfont: '',
-  //     name: 'OnlineTool',
-  //     title: '在线工具',
-  //     children: [
-  //       {
-  //         iconfont: '',
-  //         name: 'ImgCompress',
-  //         title: '图片压缩',
-  //         children: null,
-  //         path: '/imgCompress'
-  //       }
-  //     ]
-  //   },
-  //   {
-  //     iconfont: '',
-  //     name: 'WebCode',
-  //     title: '私有部署',
-  //     children: [
-  //       {
-  //         iconfont: '',
-  //         name: 'WebCode',
-  //         title: '源码获取',
-  //         children: null,
-  //         path: '/webcode'
-  //       },
-  //       {
-  //         iconfont: '',
-  //         name: 'DeployDoc',
-  //         title: '知识库',
-  //         children: null,
-  //         path: '/deployDoc'
-  //       }
-  //     ]
-  //   }
-  // ]);
+
+  // 获取用户会员信息
+  const { membershipInfo } = storeToRefs(appStore.useMembershipStore);
+  console.log('用户会员信息', membershipInfo.value);
 
   const nameColor = computed(() => {
     return props.fontColor ? '#2ddd9d' : 'green';
@@ -242,8 +155,13 @@
   };
 
   // 跳转至源码
-  const toWebCode = () => {
-    router.push('/webcode');
+  // const toWebCode = () => {
+  //   router.push('/webcode');
+  // };
+
+  // 跳转至开通会员
+  const toMembership = () => {
+    router.push('/membership');
   };
 
   // 跳转至我的资产
@@ -385,7 +303,9 @@
 
       .attendance-box {
         margin-right: 10px;
+        height: 28px;
         .button {
+          height: 100%;
           padding: 6px 9px 6px 12px;
           display: flex;
           align-items: center;
@@ -444,6 +364,7 @@
           padding: 5px 10px;
           background-color: #83ffd1;
           border-radius: 15px;
+          font-size: 13px;
           span {
             font-size: 12px;
             letter-spacing: 1px;
@@ -454,12 +375,56 @@
             margin-right: 5px;
           }
         }
+        .expiredDays {
+          background-color: #3b7962;
+          span {
+            color: rgb(237, 218, 218);
+          }
+        }
+      }
+      .membership-box {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 10px;
+        height: 28px;
+        cursor: pointer;
+        transition: all 0.3s;
+        &:hover {
+          opacity: 0.9;
+        }
+        .content-box {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          padding: 0 10px;
+          height: 100%;
+          background-color: #83ffd1;
+          border-radius: 15px;
+          font-size: 13px;
+          span {
+            font-size: 12px;
+            letter-spacing: 1px;
+            color: #617745;
+            margin: 2px 0 0 4px;
+          }
+          .svg-icon {
+            margin-right: 5px;
+          }
+        }
+        .expiredDays {
+          background-color: #3b7962;
+          span {
+            color: rgb(237, 218, 218);
+          }
+        }
       }
       .jb-num-box {
         display: flex;
         align-items: center;
         justify-content: center;
         margin: 0 10px;
+        height: 28px;
         cursor: pointer;
         transition: all 0.3s;
         &:hover {
@@ -469,7 +434,8 @@
           display: flex;
           align-items: center;
           justify-content: space-between;
-          padding: 5px 10px;
+          padding: 0 10px;
+          height: 100%;
           background-color: #83ffd1;
           border-radius: 15px;
           span {

@@ -29,6 +29,7 @@ export const useMembershipStore = defineStore('membershipStore', () => {
 
   return {
     membershipInfo,
-    getUserMembershipInfo
+    getUserMembershipInfo,
+    saveMembershipInfo
   };
 });
