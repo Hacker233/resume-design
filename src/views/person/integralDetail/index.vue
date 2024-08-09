@@ -60,10 +60,18 @@
     </el-tabs>
 
     <!-- 如何获取简币弹窗 -->
-    <get-integral-dialog
+    <!-- <get-integral-dialog
       :dialog-get-integral-visible="dialogGetIntegralVisible"
       @cancle="cancleDialog"
-    ></get-integral-dialog>
+    ></get-integral-dialog> -->
+
+    <!-- 警告弹窗 -->
+    <pay-integral-dialog
+      :dialog-get-integral-visible="dialogGetIntegralVisible"
+      title="如何获取简币"
+      @cancle="cancleDialog"
+      @confirm="cancleDialog"
+    ></pay-integral-dialog>
   </div>
 </template>
 <script lang="ts" setup>

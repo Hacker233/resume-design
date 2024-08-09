@@ -52,9 +52,6 @@
         margin: 0 5px;
       }
     }
-    .el-dialog__body {
-      padding: 0 20px;
-    }
     .get-integral-content-box {
       margin-bottom: 20px;
       .current-total {

@@ -417,3 +417,12 @@ template {
 .el-popper {
   max-width: 60vw !important;
 }
+
+.el-dialog__header {
+  height: 60px;
+  margin: 0;
+  border-bottom: 1px solid #eee;
+}
+.el-dialog {
+  margin: 0;
+}

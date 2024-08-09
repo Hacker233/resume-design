@@ -56,6 +56,7 @@
     :model-value="dialogQrcodeVisible"
     :total-amount="totalAmount"
     :order-type="1"
+    :options="{}"
     subject="购买简币"
     @pay-success="handlePaySuccess"
     @cancel="handleCancel"

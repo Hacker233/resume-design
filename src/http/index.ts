@@ -94,6 +94,7 @@ class Request {
         } else {
           error.message = '连接服务器失败!';
         }
+        console.log('error', error.response);
         ElMessage.error(error.response.data.message || error.message);
         return Promise.reject(error);
       }

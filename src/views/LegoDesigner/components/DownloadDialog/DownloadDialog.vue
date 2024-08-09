@@ -66,6 +66,7 @@
   <pay-integral-dialog
     :dialog-get-integral-visible="dialogGetIntegralVisible"
     :pay-number="-Math.abs(exportPdfPayIntegral) || 0"
+    :confirm-disabled="downloadType === 'img' ? !isCanDownloadImg : !isCanDownloadPDF"
     placeholder="下载该创作"
     @cancle="handleCancleDialog"
     @confirm="handleConfirmDialog"

@@ -297,3 +297,8 @@ export const buildTree = (items: any) => {
 export const getAssetsImagesFile = (url: string) => {
   return new URL(`../assets/images/${url}`, import.meta.url).href;
 };
+
+// 将数字转换为带有千分位逗号的字符串
+export const formatNumberWithCommas = (number: any) => {
+  return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+};
