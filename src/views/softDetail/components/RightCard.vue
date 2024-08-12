@@ -66,17 +66,21 @@
       </div>
     </div>
 
-    <!-- 获取简币弹窗 -->
-    <get-integral-dialog
+    <!-- 下载警告弹窗 -->
+    <pay-integral-dialog
       :dialog-get-integral-visible="dialogGetIntegralVisible"
+      :title="`确定消费${content.payValue}简币下载当前软件？只需一次支付，即可多次下载！`"
+      btn-text="确认下载"
+      :confirm-disabled="confirmDisabled"
+      :confirm-tip="confirmTip"
       @cancle="cancleDialog"
-    ></get-integral-dialog>
+      @confirm="confirmDialog"
+    ></pay-integral-dialog>
   </div>
 </template>
 <script lang="ts" setup>
   import LoginDialog from '@/components/LoginDialog/LoginDialog';
   import appStore from '@/store';
-  import { ElMessageBox } from 'element-plus';
   import ComTitle from './ComTitle.vue';
   import 'element-plus/es/components/message-box/style/index';
   import { useUserIsPayGoods } from '@/hooks/useUsrIsPayGoods';
@@ -91,12 +95,6 @@
 
   // 获取用户会员信息
   const { membershipInfo } = storeToRefs(appStore.useMembershipStore);
-
-  // 打开获取简币弹窗
-  const dialogGetIntegralVisible = ref<boolean>(false);
-  const openGetDialog = () => {
-    dialogGetIntegralVisible.value = true;
-  };
 
   // 关闭弹窗
   const cancleDialog = () => {
@@ -124,9 +122,14 @@
   const isPay = ref<any>(false);
   onMounted(async () => {
     isPay.value = await useUserIsPayGoods(sourceId);
+    console.log('isPay', isPay.value);
   });
 
   // 点击下载
+  const dialogGetIntegralVisible = ref<boolean>(false);
+  const confirmDisabled = ref<boolean>(false);
+  const sourceName = ref<string>('');
+  const confirmTip = ref<string>('');
   const router = useRouter();
   const toDownload = async (name: string) => {
     const token = localStorage.getItem('token'); // 判断是否登录
@@ -151,20 +154,14 @@
           // 判断当前用户简币是否充足
           const userIntegralTotal = appStore.useUserInfoStore.userIntegralInfo.integralTotal;
           if (userIntegralTotal < Math.abs(props.content.payValue)) {
-            ElMessage.warning('您的简币数量不足！');
-            openGetDialog();
+            confirmDisabled.value = true;
+            dialogGetIntegralVisible.value = true;
+            confirmTip.value = '您的简币数量不足！';
             return;
           } else {
-            const desc = `确定消费${props.content.payValue}简币下载当前软件？只需一次支付，即可多次下载！`;
-            ElMessageBox.confirm(desc, '警告', {
-              confirmButtonText: '确定',
-              cancelButtonText: '取消',
-              type: 'warning'
-            })
-              .then(async () => {
-                downloadTemplate(name);
-              })
-              .catch(() => {});
+            confirmTip.value = '';
+            dialogGetIntegralVisible.value = true;
+            sourceName.value = name;
           }
         }
       } else {
@@ -176,6 +173,12 @@
         });
       }
     }
+  };
+
+  // 下载弹窗确认
+  const confirmDialog = () => {
+    dialogGetIntegralVisible.value = false;
+    downloadTemplate(sourceName.value);
   };
 
   // 下载文件

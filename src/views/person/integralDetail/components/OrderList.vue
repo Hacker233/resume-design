@@ -11,6 +11,7 @@
       </el-table-column>
       <el-table-column prop="totalAmount" label="订单金额" />
       <el-table-column prop="buyerPayAmount" label="实付金额" />
+      <el-table-column prop="subject" label="交易描述" />
       <el-table-column prop="createDate" label="创建日期" :width="180">
         <template #default="scope">
           <div>

@@ -308,6 +308,7 @@
   // 取消
   const cancle = () => {
     emit('cancle');
+    resetForm();
   };
 
   // 提交
@@ -360,10 +361,7 @@
             sureLoading.value = false;
             emit('updateSuccess');
             // 重置表单
-            ruleFormRef.value.resetFields();
-            fileList.value = [];
-            previewFileList.value = [];
-            ruleForm.tagsValue = [];
+            resetForm();
           } else {
             sureLoading.value = false;
             ElMessage.error(data.data.message);
@@ -374,6 +372,21 @@
         console.log('error submit!', fields);
       }
     });
+  };
+
+  // 重置表单数据
+  const resetForm = () => {
+    // 重置表单
+    ruleFormRef.value.resetFields();
+    fileList.value = [];
+    previewFileList.value = [];
+    ruleForm.tagsValue = [];
+    ruleForm.name = '';
+    ruleForm.profile = ''; // 模板简介
+    ruleForm.category = [];
+    ruleForm.tagsValue = [];
+    ruleForm.fileUrl = [];
+    ruleForm.uploadPreviewList = [];
   };
 </script>
 <style lang="scss" scoped>

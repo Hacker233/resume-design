@@ -103,18 +103,22 @@
       comment-type="pptTemplate"
     ></comment-com>
 
-    <!-- 获取简币弹窗 -->
-    <get-integral-dialog
+    <!-- 下载警告弹窗 -->
+    <pay-integral-dialog
       :dialog-get-integral-visible="dialogGetIntegralVisible"
+      :title="`确定消费简币下载模板？只需一次支付，即可多次下载！`"
+      btn-text="确认下载"
+      :confirm-disabled="confirmDisabled"
+      :confirm-tip="confirmTip"
       @cancle="cancleDialog"
-    ></get-integral-dialog>
+      @confirm="confirmDialog"
+    ></pay-integral-dialog>
   </div>
 </template>
 <script lang="ts" setup>
   import LoginDialog from '@/components/LoginDialog/LoginDialog';
   import PptCarousel from './components/PptCarousel.vue';
   import { downloadFileUtil } from '@/utils/common';
-  import { ElMessageBox } from 'element-plus';
   import 'element-plus/es/components/message-box/style/index';
   import {
     getPPTCategoryListAsync,
@@ -134,7 +138,7 @@
   const currentIndex = ref<number>(-1); // 选中哪一张预览图
 
   // 查询模板详细信息
-  const pptInfo = ref<any>([]);
+  const pptInfo = ref<any>({});
   const getPPTTemplateInfo = async () => {
     const data = await getPPTTemplateInfoAsync(id);
     if (data.status === 200) {
@@ -186,6 +190,9 @@
   });
 
   // 点击立即下载
+  const dialogGetIntegralVisible = ref<boolean>(false);
+  const confirmDisabled = ref<boolean>(false);
+  const confirmTip = ref<string>('');
   const download = async () => {
     let token = localStorage.getItem('token');
     if (!token) {
@@ -205,34 +212,27 @@
         // 判断当前用户简币是否充足
         const userIntegralTotal = appStore.useUserInfoStore.userIntegralInfo.integralTotal;
         if (userIntegralTotal < Math.abs(pptInfo.value.payValue)) {
-          ElMessage.warning('您的简币数量不足！');
-          openGetDialog();
+          confirmDisabled.value = true;
+          dialogGetIntegralVisible.value = true;
+          confirmTip.value = '您的简币数量不足！';
           return;
         } else {
-          const desc = `确定消费${pptInfo.value.payValue}简币下载模板？只需一次支付，即可多次下载！`;
-          ElMessageBox.confirm(desc, '警告', {
-            confirmButtonText: '确定',
-            cancelButtonText: '取消',
-            type: 'warning'
-          })
-            .then(async () => {
-              downloadTemplate();
-            })
-            .catch(() => {});
+          confirmTip.value = '';
+          dialogGetIntegralVisible.value = true;
         }
       }
     }
   };
 
-  // 打开获取简币弹窗
-  const dialogGetIntegralVisible = ref<boolean>(false);
-  const openGetDialog = () => {
-    dialogGetIntegralVisible.value = true;
-  };
-
   // 关闭弹窗
   const cancleDialog = () => {
     dialogGetIntegralVisible.value = false;
+  };
+
+  // 下载弹窗确认
+  const confirmDialog = () => {
+    dialogGetIntegralVisible.value = false;
+    downloadTemplate();
   };
 
   // 下载文件

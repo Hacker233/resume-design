@@ -252,6 +252,9 @@
               type: 'success'
             });
             show.value = false;
+            // 查询和更新用户信息
+            const { getAndUpdateUserInfo } = appStore.useUserInfoStore;
+            getAndUpdateUserInfo();
             props.confirm();
           } else {
             ElMessage({

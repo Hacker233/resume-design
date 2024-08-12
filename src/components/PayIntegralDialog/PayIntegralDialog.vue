@@ -2,7 +2,7 @@
   <el-dialog
     :model-value="dialogGetIntegralVisible"
     class="get-integral-dialog-box"
-    width="800px"
+    width="850px"
     :show-close="true"
     :close-on-click-modal="true"
     :before-close="handleBeforeClose"
@@ -156,9 +156,11 @@
     <template #footer>
       <span class="dialog-footer">
         <el-button @click="cancle">取消</el-button>
-        <el-button type="primary" :disabled="confirmDisabled" @click="confirmDialog"
-          >确定</el-button
-        >
+        <el-tooltip :content="confirmTip" :disabled="!confirmTip" placement="top">
+          <el-button type="primary" :disabled="confirmDisabled" @click="confirmDialog">{{
+            btnText
+          }}</el-button>
+        </el-tooltip>
       </span>
     </template>
   </el-dialog>
@@ -181,13 +183,17 @@
     placeholder?: string;
     title?: string;
     confirmDisabled?: boolean;
+    btnText?: string;
+    confirmTip?: string;
   }
   withDefaults(defineProps<TDialog>(), {
     dialogGetIntegralVisible: false,
     payNumber: 0,
     placeholder: '下载该模板',
     title: '',
-    confirmDisabled: false
+    confirmDisabled: false,
+    btnText: '确认',
+    confirmTip: ''
   });
 
   const router = useRouter();
@@ -309,7 +315,7 @@
           background-color: #ffffff;
           display: flex;
           width: 100%;
-          height: 300px;
+          height: 280px;
           width: 100%;
           margin: 10px 0 15px 0;
           ul {
@@ -361,10 +367,10 @@
         }
 
         .bottom {
-          margin-top: 60px;
+          margin-top: 50px;
           padding: 0 15px;
           display: flex;
-          height: 160px;
+          height: 150px;
           flex-direction: column;
           justify-content: space-between;
           .content-desc {

@@ -77,6 +77,10 @@
           <el-button class="login-btn" type="primary" @click="openLoginDialog">登录</el-button>
         </div>
         <div v-else class="user-avatar-box">
+          <!-- vip图标 -->
+          <div v-if="membershipInfo.hasMembership" class="user-vip-icon">
+            <svg-icon icon-name="icon-VIP" size="20px" color="yellow"></svg-icon>
+          </div>
           <el-dropdown v-config:open_person_in :teleported="false">
             <span class="el-dropdown-link">
               <el-avatar
@@ -471,6 +475,16 @@
           justify-content: center;
           margin-left: 15px;
           cursor: pointer;
+          position: relative;
+          right: -7px;
+          bottom: -5px;
+          z-index: 1;
+          .user-vip-icon {
+            position: absolute;
+            right: -5px;
+            bottom: -8px;
+            z-index: 1;
+          }
           .name-content {
             width: 100%;
             height: 100%;

@@ -180,6 +180,7 @@
   const openAddDialog = () => {
     console.log('打开弹窗');
     title.value = '新增模板';
+    row.value = null;
     dialogWordVisible.value = true;
   };
 
