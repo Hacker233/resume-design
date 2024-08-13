@@ -343,7 +343,7 @@ const routes: Array<RouteRecordRaw> = [
       title: '会员充值',
       keepAlive: true,
       isShowComNav: true,
-      requireLogin: false
+      requireLogin: true
     },
     component: Membership
   },

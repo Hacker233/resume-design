@@ -178,10 +178,12 @@
   const { saveUserInfo } = appStore.useUserInfoStore;
   const { setUuid } = appStore.useRefreshStore;
   const { saveIntegralInfo } = appStore.useUserInfoStore;
+  const { saveMembershipInfo } = appStore.useMembershipStore;
   const loginout = () => {
     saveToken(''); // 清除token
     saveUserInfo(''); // 清除用户信息
     saveIntegralInfo(''); // 清除用户简币信息
+    saveMembershipInfo(''); // 清除会员信息
     setUuid(); // 全局刷新
     router.push('/');
   };
