@@ -172,6 +172,7 @@
 
   // 重置
   const resetForm = () => {
+    formInline.integralType = '';
     formInline.queryEmail = '';
     page.value = 1;
     currentPage.value = 1;

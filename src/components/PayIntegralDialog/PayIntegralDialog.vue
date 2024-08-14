@@ -28,9 +28,9 @@
       <div class="content-box">
         <h1 class="title">您当前简币数量</h1>
         <div class="content">
-          <p
+          <p class="jb-num"
             >{{ formatNumberWithCommas(appStore.useUserInfoStore.userIntegralInfo.integralTotal) }}
-            <img width="18" src="@/assets/images/jianB.png" alt="简币"
+            <img width="22" src="@/assets/images/jianB.png" alt="简币"
           /></p>
         </div>
         <!-- <div class="get-bi-method" @click="openGetDialog">获取简币</div> -->
@@ -125,7 +125,9 @@
         <div class="content-member-box">
           <div class="card" @click="toMembership">
             <div class="card-text">
-              <div class="portada"> 无限制下载 </div>
+              <div class="portada">
+                <p>无限制下载</p>
+              </div>
               <div class="title-total">
                 <h2>开通会员</h2>
 
@@ -138,12 +140,14 @@
           </div>
           <div class="card" @click="toWebCode">
             <div class="card-text">
-              <div class="portada"> 私有化部署 </div>
+              <div class="portada">
+                <p>私有化部署</p>
+              </div>
               <div class="title-total">
                 <h2>购买源码</h2>
 
                 <div class="desc"
-                  >购买源码后，你可以将化简官网部署为个人网站，同时你将拥有化简网站内的所有资源，以及化简官网开源作者的贴心指导！</div
+                  >购买源码后，你可以将化简官网部署为个人网站，同时你将拥有化简网站内的所有资源，以及开源作者的贴心指导！</div
                 >
                 <div class="actions"> 立即前往>> </div></div
               >
@@ -288,6 +292,15 @@
             margin-left: 5px;
           }
         }
+        .jb-num {
+          font-size: 20px;
+          font-weight: 600;
+          background: -webkit-linear-gradient(top, #ff0000, #00ff00); /*设置线性渐变*/
+          /*为了支持更多的浏览器*/
+          background-clip: text; /*背景被裁剪到文字*/
+          -webkit-text-fill-color: transparent; /*设置文字的填充颜色*/
+          letter-spacing: 1px;
+        }
       }
       .title {
         font-size: 16px;
@@ -334,6 +347,30 @@
           flex: 1;
           &:last-child {
             border-right: 1px solid #dddcd8;
+            .top {
+              background: linear-gradient(45deg, #ededee 0%, #58b5e1 70%);
+            }
+          }
+          &:first-child {
+            .top {
+              background: linear-gradient(
+                45deg,
+                #e0f3fa 0%,
+                #d8f0fc 50%,
+                #b8e2f6 51%,
+                #b6dffd 100%
+              );
+            }
+          }
+          &:nth-child(2) {
+            .top {
+              background: linear-gradient(45deg, #fcfff4 0%, #e9e9ce 100%);
+            }
+          }
+          &:nth-child(3) {
+            .top {
+              background: linear-gradient(45deg, #b4e391 0%, #61c419 50%, #b4e391 100%);
+            }
           }
         }
 
@@ -443,6 +480,7 @@
         justify-content: center;
         margin-top: 15px;
         .card {
+          height: 135px;
           background: #fff;
           border-radius: 4px;
           box-shadow: 0px 2px 8px rgba(34, 35, 58, 0.3);
@@ -461,11 +499,11 @@
         }
         .card h2 {
           margin: 0;
-          margin-bottom: 10px;
+          margin-bottom: 5px;
         }
         .card .desc {
           font-size: 12px;
-          line-height: 20px;
+          line-height: 18px;
           text-align: justify;
         }
         .card .actions {
@@ -486,7 +524,11 @@
         }
 
         .title-total {
-          padding: 15px 20px;
+          padding: 15px 20px 10px 20px;
+          box-sizing: border-box;
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
         }
 
         path {
@@ -499,19 +541,27 @@
 
         .portada {
           width: 100%;
-          height: 100%;
+          height: 135px;
           border-top-left-radius: 20px;
           border-bottom-left-radius: 20px;
-          writing-mode: vertical-rl;
-          text-orientation: upright;
           display: flex;
           justify-content: center;
           align-items: center;
-          font-size: 20px;
-          font-weight: bold;
-          background: #989a8f;
-          color: #fff;
-          letter-spacing: 3px;
+          background-image: url(../../assets//images/private_bgc.jpg);
+          p {
+            font-size: 20px;
+            font-weight: bold;
+            color: #fff;
+            letter-spacing: 3px;
+            writing-mode: vertical-rl;
+            text-orientation: upright;
+            width: 100%;
+            height: 100%;
+            backdrop-filter: blur(1px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+          }
         }
 
         button {
