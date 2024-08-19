@@ -222,12 +222,11 @@
         clearInterval(timer);
       }
     }, 500);
-    let token = localStorage.getItem('token') as string;
     let height = htmlContentPdf.value.style.height;
     if (type === 'pdf') {
-      await exportPdf(token, id as string, height);
+      await exportPdf(id as string, height);
     } else {
-      await exportPNG(token, id as string, height);
+      await exportPNG(id as string, height);
     }
 
     clearInterval(timer);

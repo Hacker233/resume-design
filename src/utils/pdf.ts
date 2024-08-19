@@ -2,11 +2,11 @@ import { getPNGAsync, getResumePdfAsync } from '@/http/api/resume';
 import appStore from '@/store';
 
 // 生成pdf方法
-export const exportPdf = async (token?: string, id?: string, height?: string) => {
+export const exportPdf = async (id?: string, height?: string) => {
   const { resumeJsonNewStore } = appStore.useResumeJsonNewStore;
   const fileName = resumeJsonNewStore.TITLE;
   const params = {
-    url: `${location.origin}/pdfPreview?token=${token}&&id=${id}&&height=${height}`,
+    url: `${location.origin}/pdfPreview?id=${id}&&height=${height}`,
     printBackground: true,
     timezone: '',
     margin: '',
@@ -32,11 +32,11 @@ export const exportPdf = async (token?: string, id?: string, height?: string) =>
 };
 
 // 生成PNG方法
-export const exportPNG = async (token?: string, id?: string, height?: string) => {
+export const exportPNG = async (id?: string, height?: string) => {
   const { resumeJsonNewStore } = appStore.useResumeJsonNewStore;
   const fileName = resumeJsonNewStore.TITLE;
   const params = {
-    url: `${location.origin}/pdfPreview?token=${token}&&id=${id}&&height=${height}`,
+    url: `${location.origin}/pdfPreview?id=${id}&&height=${height}`,
     format: 'A4',
     integralPayGoodsId: id
   };
@@ -57,6 +57,6 @@ export const exportPNG = async (token?: string, id?: string, height?: string) =>
   }
 };
 
-export const getPdfUrl = (token?: string, id?: string, height?: string) => {
-  return `${location.origin}/pdfPreview?token=${token}&&id=${id}&&height=${height}`;
+export const getPdfUrl = (id?: string, height?: string) => {
+  return `${location.origin}/pdfPreview?id=${id}&&height=${height}`;
 };
