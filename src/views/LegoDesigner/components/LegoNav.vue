@@ -172,6 +172,7 @@
 
   // 点击下载
   const downloadResumeFile = async (type: string) => {
+    closeDownloadDialog();
     // 先保存草稿
     await saveDraft();
     generateReport(type); // 导出
@@ -190,11 +191,10 @@
         clearInterval(timer);
       }
     }, 500);
-    let token = localStorage.getItem('token') as string;
     if (type === 'pdf') {
-      await exportLegoPdf(token, _id.value);
+      await exportLegoPdf(_id.value);
     } else {
-      await exportLegoPNG(token, _id.value);
+      await exportLegoPNG(_id.value);
     }
 
     clearInterval(timer);
