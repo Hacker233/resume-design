@@ -2,11 +2,11 @@ import { getLegoPNGAsync, getLegoResumePdfAsync } from '@/http/api/lego';
 import appStore from '@/store';
 
 // 生成pdf方法
-export const exportLegoPdf = async (token?: string, id?: string) => {
+export const exportLegoPdf = async (id?: string) => {
   const { HJSchemaJsonStore } = appStore.useLegoJsonStore;
   const fileName = HJSchemaJsonStore.config.title;
   const params = {
-    url: `${location.origin}/legoPrintPdfPreview?token=${token}&&id=${id}`,
+    url: `${location.origin}/legoPrintPdfPreview?id=${id}`,
     printBackground: true,
     timezone: '',
     margin: '',
@@ -33,11 +33,11 @@ export const exportLegoPdf = async (token?: string, id?: string) => {
 };
 
 // 生成PNG方法
-export const exportLegoPNG = async (token?: string, id?: string) => {
+export const exportLegoPNG = async (id?: string) => {
   const { HJSchemaJsonStore } = appStore.useLegoJsonStore;
   const fileName = HJSchemaJsonStore.config.title;
   const params = {
-    url: `${location.origin}/legoPrintPdfPreview?token=${token}&&id=${id}`,
+    url: `${location.origin}/legoPrintPdfPreview?id=${id}`,
     selector: '#lego-preview-designer',
     integralPayGoodsId: id
   };
@@ -58,6 +58,6 @@ export const exportLegoPNG = async (token?: string, id?: string) => {
   }
 };
 
-export const getLegoPdfUrl = (token?: string, id?: string) => {
-  return `${location.origin}/legoPrintPdfPreview?token=${token}&&id=${id}`;
+export const getLegoPdfUrl = (id?: string) => {
+  return `${location.origin}/legoPrintPdfPreview?id=${id}`;
 };

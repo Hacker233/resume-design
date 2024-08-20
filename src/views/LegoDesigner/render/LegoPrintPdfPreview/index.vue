@@ -15,12 +15,11 @@
 
   // 获取url参数
   const route = useRoute();
-  const { token, id } = route.query; // 模板id和模板名称
+  const { id } = route.query; // 模板id和模板名称
 
   // 初始化模板数据
   const getLegoTemplateData = async () => {
-    if (token && id) {
-      localStorage.setItem('token', token as string);
+    if (id) {
       const params = {
         id: id
       };

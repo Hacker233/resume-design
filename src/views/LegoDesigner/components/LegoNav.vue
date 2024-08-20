@@ -190,11 +190,10 @@
         clearInterval(timer);
       }
     }, 500);
-    let token = localStorage.getItem('token') as string;
     if (type === 'pdf') {
-      await exportLegoPdf(token, _id.value);
+      await exportLegoPdf(_id.value);
     } else {
-      await exportLegoPNG(token, _id.value);
+      await exportLegoPNG(_id.value);
     }
 
     clearInterval(timer);
