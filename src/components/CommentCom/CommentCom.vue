@@ -180,6 +180,7 @@
         toAttendance(data.data.data._id);
       }
     } else {
+      closeLoading();
       ElMessage.error(data.data.message);
     }
   };
