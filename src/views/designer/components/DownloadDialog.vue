@@ -104,7 +104,7 @@
   const isCanDownloadPDF = computed(() => {
     return (
       Number(userIntegralTotal.userIntegralInfo.value.integralTotal) >=
-      Math.abs(props.exportPdfPayIntegral)
+        Math.abs(props.exportPdfPayIntegral) || membershipInfo.value.hasMembership
     );
   });
 
