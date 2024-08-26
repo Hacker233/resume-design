@@ -121,7 +121,7 @@
       </div>
       <!-- 无限制下载方式 -->
       <div class="content-box">
-        <h1 class="title">网站所有内容无限制下载方式</h1>
+        <h1 class="title">网站所有内容无限制下载方式（强烈推荐！）</h1>
         <div class="content-member-box">
           <div class="card" @click="toMembership">
             <div class="card-text">
@@ -129,7 +129,7 @@
                 <p>无限制下载</p>
               </div>
               <div class="title-total">
-                <h2>开通会员</h2>
+                <h2>开通会员（9.9￥）</h2>
 
                 <div class="desc"
                   >无论开通哪一种会员，你都将无限制的下载网站内的任意内容，包括软件、简历、模板、导出PDF等所有资源！</div
