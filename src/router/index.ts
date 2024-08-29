@@ -47,6 +47,8 @@ const QQLogin = () => import('@/views/QQLoginTemp/qqLogin.vue');
 const ImgCompress = () => import('@/views/imgCompress/index.vue');
 // 会员充值界面
 const Membership = () => import('@/views/membership/index.vue');
+// 新版在线制作页面
+const OnlineDesignNew = () => import('@/views/OnlineDesignNew/index.vue');
 
 // 管理员界面
 const AdminIndex = () => import('@/views/admin/index.vue');
@@ -126,6 +128,17 @@ const routes: Array<RouteRecordRaw> = [
       requireLogin: true
     },
     component: LegoDesigner
+  },
+  {
+    path: '/onlineDesign',
+    name: 'OnlineDesign',
+    meta: {
+      title: '新版在线制作设计页',
+      keepAlive: true,
+      isShowComNav: false,
+      requireLogin: true
+    },
+    component: OnlineDesignNew
   },
   {
     path: '/legoPrintPdfPreview',

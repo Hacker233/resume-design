@@ -6,6 +6,11 @@ import { useTokenStore } from './token';
 import { useUserInfoStore } from './user';
 import { useRefreshStore } from './refresh';
 import { useLegoJsonStore, useLegoSelectWidgetStore, useUndoAndRedoStore } from './lego';
+import {
+  useOnlineDesignNewJsonStore,
+  useOnlineDesignNewSelectWidgetStore,
+  useOnlineDesignNewUndoAndRedoStore
+} from './onlineDesign';
 import { useIndexMenuStore } from './menu';
 import { useWebsiteConfigStore } from './websiteConfig';
 import { useMembershipStore } from './membership';
@@ -24,6 +29,10 @@ export interface IAppStore {
   useIndexMenuStore: ReturnType<typeof useIndexMenuStore>;
   useWebsiteConfigStore: ReturnType<typeof useWebsiteConfigStore>;
   useMembershipStore: ReturnType<typeof useMembershipStore>;
+  // 新版在线制作设计页面
+  useOnlineDesignNewJsonStore: ReturnType<typeof useOnlineDesignNewJsonStore>;
+  useOnlineDesignNewSelectWidgetStore: ReturnType<typeof useOnlineDesignNewSelectWidgetStore>;
+  useOnlineDesignNewUndoAndRedoStore: ReturnType<typeof useOnlineDesignNewUndoAndRedoStore>;
 }
 
 const appStore: IAppStore = {} as IAppStore;
@@ -45,6 +54,10 @@ export const registerStore = () => {
   appStore.useIndexMenuStore = useIndexMenuStore();
   appStore.useWebsiteConfigStore = useWebsiteConfigStore();
   appStore.useMembershipStore = useMembershipStore();
+  // 新版在线制作设计页面
+  appStore.useOnlineDesignNewJsonStore = useOnlineDesignNewJsonStore();
+  appStore.useOnlineDesignNewSelectWidgetStore = useOnlineDesignNewSelectWidgetStore();
+  appStore.useOnlineDesignNewUndoAndRedoStore = useOnlineDesignNewUndoAndRedoStore();
   // 重写reset方法
   initResetFun(appStore);
 };
