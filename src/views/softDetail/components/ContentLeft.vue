@@ -3,7 +3,7 @@
     <!-- 简介 -->
     <div class="introduce-box">
       <com-title title="简介"></com-title>
-      <div v-dompurify-html="content.source_abstract" class="content"></div>
+      <div v-dompurify-html="content.source_abstract" v-viewer class="content"></div>
 
       <div class="create-time-box"
         >发表于&nbsp;&nbsp;&nbsp;{{ formatListDate(content.source_create_date) }}</div
@@ -34,7 +34,7 @@
       </div>
     </div>
     <!-- 预览图 -->
-    <div class="preview-img-box">
+    <div v-if="content.source_screen && content.source_screen.length" class="preview-img-box">
       <com-title title="预览图"></com-title>
       <div v-viewer class="img-list">
         <template v-for="(item, index) in content.source_screen" :key="index">
@@ -84,6 +84,13 @@
           li {
             list-style: inside;
           }
+        }
+        :deep(img) {
+          max-width: 100%;
+          box-shadow: 0px 16px 22px 2px rgb(0 37 58 / 6%);
+          margin: 0 auto;
+          border-radius: 10px;
+          cursor: pointer;
         }
       }
 
