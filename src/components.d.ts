@@ -50,6 +50,7 @@ declare module '@vue/runtime-core' {
     ElPopover: typeof import('element-plus/es')['ElPopover']
     ElProgress: typeof import('element-plus/es')['ElProgress']
     ElRadio: typeof import('element-plus/es')['ElRadio']
+    ElRadioGroup: typeof import('element-plus/es')['ElRadioGroup']
     ElRate: typeof import('element-plus/es')['ElRate']
     ElScrollbar: typeof import('element-plus/es')['ElScrollbar']
     ElSelect: typeof import('element-plus/es')['ElSelect']
@@ -107,5 +108,8 @@ declare module '@vue/runtime-core' {
     WorkExperienceCom: typeof import('./components/ModelComs/WorkExperienceCom.vue')['default']
     WorksDisplayCom: typeof import('./components/ModelComs/WorksDisplayCom.vue')['default']
     ZoomAndOut: typeof import('./components/ZoomAndOut/ZoomAndOut.vue')['default']
+  }
+  export interface ComponentCustomProperties {
+    vLoading: typeof import('element-plus/es')['ElLoadingDirective']
   }
 }
