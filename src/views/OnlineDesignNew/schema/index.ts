@@ -10,11 +10,23 @@ export const HJSchema: IHJSchema = {
       componentName: 'page', // 组件名
       commentType: 'page', // 组件类型
       oldPageIndex: '', // 旧的索引
+      css: {
+        width: 820,
+        height: 1160,
+        background: '#ffffff',
+        opacity: 1,
+        backgroundImage: '',
+        fontFamily: '',
+        themeColor: ''
+      }, // 全局范围的css样式
       children: [
         {
           id: getUuid(),
           componentName: 'container', // 容器组件
           commentType: 'container', // 组件类型
+          props: {
+            addDefault: false // 是否在在新增一页的时候默认添加此组件
+          },
           css: {
             width: 100,
             height: 300,

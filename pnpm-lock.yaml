@@ -4227,28 +4227,6 @@ packages:
       '@vue/composition-api':
         optional: true
 
-  vue-demi@0.14.7:
-    resolution: {integrity: sha512-EOG8KXDQNwkJILkx/gPcoL/7vH+hORoBaKgGe+6W7VFMvCYJfmF2dGbvgDroVnI8LU7/kTu8mbjRZGBU1z9NTA==}
-    engines: {node: '>=12'}
-    hasBin: true
-    peerDependencies:
-      '@vue/composition-api': ^1.0.0-rc.1
-      vue: ^3.0.0-0 || ^2.6.0
-    peerDependenciesMeta:
-      '@vue/composition-api':
-        optional: true
-
-  vue-demi@0.14.8:
-    resolution: {integrity: sha512-Uuqnk9YE9SsWeReYqK2alDI5YzciATE0r2SkA6iMAtuXvNTMNACJLJEXNXaEy94ECuBe4Sk6RzRU80kjdbIo1Q==}
-    engines: {node: '>=12'}
-    hasBin: true
-    peerDependencies:
-      '@vue/composition-api': ^1.0.0-rc.1
-      vue: ^3.0.0-0 || ^2.6.0
-    peerDependenciesMeta:
-      '@vue/composition-api':
-        optional: true
-
   vue-dompurify-html@3.1.1:
     resolution: {integrity: sha512-6ozMTqVlLdfVKh/FIdKT6e7yrwo4NlOKNr/7rTrNsLbjzhNjY3YvRKn2o65LpnghcdUbIETWlkMlvzJbwP+SQw==}
     peerDependencies:
@@ -5242,7 +5220,7 @@ snapshots:
   '@vueuse/core@7.7.1(vue@3.2.33)':
     dependencies:
       '@vueuse/shared': 7.7.1(vue@3.2.33)
-      vue-demi: 0.14.8(vue@3.2.33)
+      vue-demi: 0.14.10(vue@3.2.33)
     optionalDependencies:
       vue: 3.2.33
 
@@ -5270,13 +5248,13 @@ snapshots:
 
   '@vueuse/shared@7.7.1(vue@3.2.33)':
     dependencies:
-      vue-demi: 0.14.8(vue@3.2.33)
+      vue-demi: 0.14.10(vue@3.2.33)
     optionalDependencies:
       vue: 3.2.33
 
   '@vueuse/shared@8.4.2(vue@3.2.33)':
     dependencies:
-      vue-demi: 0.14.7(vue@3.2.33)
+      vue-demi: 0.14.10(vue@3.2.33)
     optionalDependencies:
       vue: 3.2.33
 
@@ -8650,14 +8628,6 @@ snapshots:
       vue: 3.2.33
 
   vue-demi@0.14.10(vue@3.2.33):
-    dependencies:
-      vue: 3.2.33
-
-  vue-demi@0.14.7(vue@3.2.33):
-    dependencies:
-      vue: 3.2.33
-
-  vue-demi@0.14.8(vue@3.2.33):
     dependencies:
       vue: 3.2.33
 

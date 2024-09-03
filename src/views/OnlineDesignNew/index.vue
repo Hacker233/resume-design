@@ -1,6 +1,13 @@
 <template>
   <c-scrollbar trigger="hover">
     <div class="lego-designer-box">
+      <!-- 导航栏 -->
+      <lego-nav
+        :pages-refs="pagesRefs"
+        :post-work-info="postWorkInfo"
+        :template-info="templateInfo"
+      ></lego-nav>
+
       <!-- 主设计区 -->
       <div class="main-designer-box">
         <!-- 物料列表区域 -->
@@ -18,51 +25,9 @@
           <div class="design-bottom-box">
             <!-- 画布区域 -->
             <div :key="refreshUuid" ref="designerRef" class="designer">
-              <DraggableContainer>
-                <template
-                  v-for="(pages, pageIndex) in HJSchemaJsonStore.componentsTree"
-                  :key="pages.id"
-                >
-                  <!-- 分割块 -->
-                  <split-block :page-index="pageIndex"></split-block>
-                  <div
-                    :ref="(el) => setPagesRef(el, pageIndex)"
-                    class="pages"
-                    @drop="drop($event, pageIndex)"
-                    @dragover.prevent
-                  >
-                    <div
-                      v-for="(item, index) in pages.children"
-                      :key="item.id"
-                      v-contextmenu:contextmenu
-                      @contextmenu.prevent="handleContextMenu(pageIndex, index)"
-                    >
-                      <Vue3DraggableResizable
-                        v-model:x="item.css.left"
-                        v-model:y="item.css.top"
-                        v-model:w="item.css.width"
-                        v-model:h="item.css.height"
-                        v-model:active="widgetActiveObj[item.id]"
-                        :min-w="0"
-                        :min-h="0"
-                        :init-w="item.css.width"
-                        :init-h="item.css.height"
-                        :z-index="item.css.zIndex"
-                        :rotate="item.css.rotate"
-                        @deactivated="handleDeactivated(item.id)"
-                        @activated="activatedHandle(item, pageIndex)"
-                        @drag-end="dragEndHandle(item, index, pageIndex)"
-                      >
-                        <component
-                          :is="getWidgetCom(item)"
-                          class="drag-component"
-                          :widget-data="item"
-                        ></component>
-                      </Vue3DraggableResizable>
-                    </div>
-                  </div>
-                </template>
-              </DraggableContainer>
+              <template v-for="page in HJSchemaJsonStore.componentsTree" :key="page.id">
+                <PageComponent :component="page" />
+              </template>
             </div>
             <!-- 添加一页 -->
             <div class="add-page-box">
@@ -87,11 +52,10 @@
   </c-scrollbar>
 </template>
 <script lang="ts" setup>
+  import LegoNav from './components/LegoNav.vue';
   import LeftComList from './components/LeftComList.vue';
   import RightSetter from './components/RightSetter.vue';
-  import SplitBlock from './components/SplitBlock/SplitBlock.vue';
-  import Vue3DraggableResizable from './components/draggableResizable/Vue3DraggableResizable';
-  import DraggableContainer from './components/draggableResizable/DraggableContainer';
+  import PageComponent from './components/designComponent/ContainerComponent.vue';
   import DesignerTopSetting from './components/DesignerTopSetting.vue/DesignerTopSetting.vue';
 
   import appStore from '@/store';
@@ -101,20 +65,96 @@
   import { getUuid } from '@/utils/common';
   import { cloneDeep } from 'lodash';
   import { HJSchema } from './schema/index';
+  import {
+    getLegoTemplateInfoByIdAsync,
+    getLegoUserResumeByIdAsync,
+    getLegoUserTemplateByIdAndJsonIdAsync
+  } from '@/http/api/lego';
 
   // 设计区刷新id
   const { refreshUuid } = storeToRefs(appStore.useUuidStore);
   const { setUuid } = appStore.useUuidStore;
 
   // 初始页面JSON
-  const { HJSchemaJsonStore } = storeToRefs(appStore.useOnlineDesignNewJsonStore);
-  const { resetHJSchemaJsonData } = appStore.useOnlineDesignNewJsonStore;
+  const { HJSchemaJsonStore } = storeToRefs(appStore.useLegoJsonStore);
+  const { changeHJSchemaJsonData, resetHJSchemaJsonData } = appStore.useLegoJsonStore;
 
-  // 新的空白页
-  resetHJSchemaJsonData();
-  HJSchemaJsonStore.value.id = getUuid();
+  // url参数
+  const { id, templateId, jsonId } = useRoute().query;
+  console.log('url参数', id);
 
-  const { pushComponent } = appStore.useOnlineDesignNewJsonStore;
+  // 查询个人制作数据
+  const getPersonLegoJson = async () => {
+    const params = {
+      id: id
+    };
+    const data = await getLegoUserResumeByIdAsync(params);
+    if (data.data.status === 200) {
+      changeHJSchemaJsonData(data.data.data.lego_json);
+    } else {
+      ElMessage.error(data.data.message);
+    }
+  };
+
+  // 查询个人创作的模板数据--编辑模板
+  const postWorkInfo = ref<any>(null);
+  const getLegoUserTemplateByIdAndJsonId = async () => {
+    const params = {
+      id: id,
+      jsonId: jsonId
+    };
+    const data = await getLegoUserTemplateByIdAndJsonIdAsync(params);
+    if (data.data.status === 200) {
+      postWorkInfo.value = {
+        _id: data.data.data._id,
+        category: data.data.data.category,
+        how_much: data.data.data.how_much,
+        previewUrl: data.data.data.previewUrl,
+        title: data.data.data.title
+      };
+      changeHJSchemaJsonData(data.data.data.lego_json);
+    } else {
+      ElMessage.error(data.data.message);
+    }
+  };
+
+  // 查询模板数据
+  const templateInfo = ref<any>(null); // 模板的其他相关信息
+  const getTemplate = async () => {
+    const params = {
+      id: templateId
+    };
+    const data = await getLegoTemplateInfoByIdAsync(params);
+    if (data.data.status === 200) {
+      templateInfo.value = data.data.data;
+      const temp = cloneDeep(data.data.data.lego_json);
+      temp.id = getUuid();
+      temp.config.title = data.data.data.title;
+      changeHJSchemaJsonData(temp);
+    } else {
+      ElMessage.error(data.data.message);
+    }
+  };
+
+  if (templateId) {
+    // 查找模板数据
+    getTemplate();
+  } else if (id && jsonId) {
+    // 编辑模板
+    getLegoUserTemplateByIdAndJsonId();
+  } else if (id) {
+    // 查询用户个人模板数据
+    getPersonLegoJson();
+  } else {
+    // 新的空白页
+    resetHJSchemaJsonData();
+    HJSchemaJsonStore.value.id = getUuid();
+  }
+  if (id) {
+    // 发送请求查找
+  }
+
+  const { pushComponent } = appStore.useLegoJsonStore;
   console.log('页面初始化JSON', HJSchemaJsonStore);
 
   onMounted(async () => {
@@ -128,7 +168,7 @@
 
   // 当前页面每个组件对应的选中关系
   const { selectedWidgetId, widgetActiveObj, pageActiveIndex } = storeToRefs(
-    appStore.useOnlineDesignNewSelectWidgetStore
+    appStore.useLegoSelectWidgetStore
   ); // 选中的组件id
 
   // 组件放下
@@ -289,7 +329,7 @@
   };
 
   // 处理页面的上下左右按键事件
-  const { undo, redo } = appStore.useOnlineDesignNewUndoAndRedoStore;
+  const { undo, redo } = appStore.useUndoAndRedoStore;
   const handleKeyDown = (event: any) => {
     //键盘按键判断:左箭头-37;上箭头-38；右箭头-39;下箭头-40
     if (event && event.keyCode === 37) {
@@ -501,30 +541,6 @@
             width: v-bind('HJSchemaJsonStore.css.width + "px"');
             min-height: v-bind('HJSchemaJsonStore.css.height + "px"');
             zoom: v-bind('sizeCenter');
-
-            .pages {
-              height: v-bind('HJSchemaJsonStore.css.height + "px"');
-              box-shadow: 0 2px 8px rgba(14, 19, 24, 0.07);
-              border-radius: 2px;
-              position: relative;
-              &::after {
-                /*使用before 选择器在被选元素的内容前面插入内容。*/
-                width: 100%;
-                height: 100%; /*设置为全屏背景模式*/
-                background: v-bind('HJSchemaJsonStore.css.background');
-                background-image: v-bind('backgroundImage');
-                background-size: 100% 100%;
-                position: absolute; /*图片定位*/
-                top: 0;
-                left: 0;
-                content: '';
-                z-index: -1; /*设置该标签等级，让其始终位于最上层*/
-                filter: v-bind('pagesOpacity');
-              }
-              .drag-component {
-                cursor: move;
-              }
-            }
           }
           .add-page-box {
             height: 60px;
