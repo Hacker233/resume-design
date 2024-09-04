@@ -334,7 +334,7 @@
   const submitUpload = async () => {
     //判断是否有文件再上传
     if (previewFileList.value.length === 0) {
-      ElMessage.warning('请选取文件后再上传');
+      // ElMessage.warning('请选取文件后再上传');
     }
     // 下面的代码将创建一个空的FormData对象:
     const formData = new FormData();

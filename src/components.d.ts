@@ -22,6 +22,7 @@ declare module '@vue/runtime-core' {
     CommentList: typeof import('./components/packages/components/comment/src/comment-list.vue')['default']
     CommonLoading: typeof import('./components/CommonLoading/CommonLoading.vue')['default']
     ContentBox: typeof import('./components/packages/components/comment/src/content-box.vue')['default']
+    copy: typeof import('./components/FooterCom/FooterCom copy.vue')['default']
     DateFormItem: typeof import('./components/DateFormItem/DateFormItem.vue')['default']
     Editor: typeof import('./components/packages/components/editor/editor.vue')['default']
     EduBackgroundCom: typeof import('./components/ModelComs/EduBackgroundCom.vue')['default']
@@ -38,13 +39,10 @@ declare module '@vue/runtime-core' {
     ElIcon: typeof import('element-plus/es')['ElIcon']
     ElImage: typeof import('element-plus/es')['ElImage']
     ElInput: typeof import('element-plus/es')['ElInput']
-    ElInputNumber: typeof import('element-plus/es')['ElInputNumber']
     ElMenu: typeof import('element-plus/es')['ElMenu']
     ElMenuItem: typeof import('element-plus/es')['ElMenuItem']
     ElPagination: typeof import('element-plus/es')['ElPagination']
     ElPopover: typeof import('element-plus/es')['ElPopover']
-    ElRadio: typeof import('element-plus/es')['ElRadio']
-    ElRadioGroup: typeof import('element-plus/es')['ElRadioGroup']
     ElScrollbar: typeof import('element-plus/es')['ElScrollbar']
     ElSkeleton: typeof import('element-plus/es')['ElSkeleton']
     ElSkeletonItem: typeof import('element-plus/es')['ElSkeletonItem']
@@ -97,8 +95,5 @@ declare module '@vue/runtime-core' {
     WorkExperienceCom: typeof import('./components/ModelComs/WorkExperienceCom.vue')['default']
     WorksDisplayCom: typeof import('./components/ModelComs/WorksDisplayCom.vue')['default']
     ZoomAndOut: typeof import('./components/ZoomAndOut/ZoomAndOut.vue')['default']
-  }
-  export interface ComponentCustomProperties {
-    vLoading: typeof import('element-plus/es')['ElLoadingDirective']
   }
 }
