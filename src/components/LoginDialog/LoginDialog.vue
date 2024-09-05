@@ -63,6 +63,18 @@
                 @keyup.enter="register(registerRuleFormRef)"
               />
             </el-form-item>
+            <!-- 邮箱验证码 -->
+            <el-form-item prop="surePassword">
+              <div class="email-code-box">
+                <el-input
+                  v-model="registerForm.code"
+                  class="forms_field-input"
+                  placeholder="请输入验证码"
+                  @keyup.enter="register(registerRuleFormRef)"
+                />
+                <button class="get-email-code" @click="signIn">获取验证码</button>
+              </div>
+            </el-form-item>
           </el-form>
           <el-button
             class="forms_buttons-action"
@@ -197,12 +209,14 @@
     email: string;
     password: string;
     surePassword: string;
+    code: string;
   }
   const registerForm = reactive<IRegisterForm>({
     name: '',
     email: '',
     password: '',
-    surePassword: ''
+    surePassword: '',
+    code: ''
   });
   const registerRules = reactive<FormRules>({
     name: [{ required: true, message: '请输入用户名', trigger: 'change' }],
@@ -409,6 +423,22 @@
       cursor: pointer;
       padding: 12px 45px;
     }
+    .email-code-box {
+      display: flex;
+      height: 48px;
+      align-items: center;
+      .get-email-code {
+        height: 40px;
+        display: flex;
+        padding: 0;
+        width: 150px;
+        margin-left: 10px;
+        align-items: center;
+        justify-content: center;
+        font-size: 14px;
+        letter-spacing: 1px;
+      }
+    }
 
     .container {
       background-color: #fff;
@@ -418,7 +448,7 @@
       overflow: hidden;
       width: 768px;
       max-width: 100%;
-      min-height: 480px;
+      min-height: 500px;
     }
 
     .form-container {
@@ -445,7 +475,7 @@
           -webkit-box-shadow: 0 0 0px 1000px #ffffff inset !important;
         }
         .el-form-item {
-          margin-bottom: 30px;
+          margin-bottom: 20px;
         }
         .el-input__inner {
           background-color: none !important;
@@ -600,7 +630,7 @@
     }
     .el-dialog__body {
       padding: 0;
-      min-height: 480px;
+      min-height: 500px;
     }
   }
 </style>
