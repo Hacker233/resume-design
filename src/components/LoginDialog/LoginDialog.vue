@@ -67,17 +67,24 @@
             <el-form-item prop="surePassword">
               <div class="email-code-box">
                 <el-input
-                  v-model="registerForm.code"
+                  v-model="registerForm.verificationCode"
                   class="forms_field-input"
                   placeholder="请输入验证码"
                   @keyup.enter="register(registerRuleFormRef)"
                 />
-                <button class="get-email-code" @click="signIn">获取验证码</button>
+                <el-button
+                  :disabled="!isEmail || isDisabled"
+                  class="get-email-code"
+                  type="primary"
+                  @click.stop="getEmailCode"
+                >
+                  {{ isDisabled ? `${countdown}s 后重试` : '获取验证码' }}</el-button
+                >
               </div>
             </el-form-item>
           </el-form>
           <el-button
-            class="forms_buttons-action"
+            class="ghost-button forms_buttons-action"
             :loading="isRegisterLoading"
             @click="register(registerRuleFormRef)"
             >注 册</el-button
@@ -110,7 +117,7 @@
           </el-form>
           <a href="#" @click.prevent="forgetPassword">忘记密码？</a>
           <el-button
-            class="forms_buttons-action"
+            class="ghost-button forms_buttons-action"
             :loading="isLoginLoading"
             @click="login(loginRuleFormRef)"
             >登 录</el-button
@@ -127,12 +134,14 @@
             <div class="overlay-panel overlay-left">
               <h1>欢迎回来！</h1>
               <p>已有帐号，立即登录！</p>
-              <button class="ghost" @click="signIn">立即登录</button>
+              <button class="ghost-button ghost" @click="signIn">立即登录</button>
             </div>
             <div class="overlay-panel overlay-right">
               <h1>你好, 简友！</h1>
               <p v-if="websiteConfig.open_sign">还没有账号？快来注册吧！</p>
-              <button v-if="websiteConfig.open_sign" class="ghost" @click="signUp">立即注册</button>
+              <button v-if="websiteConfig.open_sign" class="ghost-button ghost" @click="signUp"
+                >立即注册</button
+              >
             </div>
           </div>
         </div>
@@ -142,7 +151,7 @@
 </template>
 <script lang="ts" setup>
   import { ElMessage, FormInstance, FormRules } from 'element-plus';
-  import { loginAsync, registerAsync } from '@/http/api/user';
+  import { loginAsync, registerAsync, sendCodeAsync } from '@/http/api/user';
   import appStore from '@/store';
   const props = defineProps({
     isLogin: {
@@ -166,20 +175,20 @@
     email: string;
     password: string;
   }
-  const loginForm = reactive<IForm>({
-    email: '',
-    password: ''
-  });
-  const loginRules = reactive<FormRules>({
-    email: [{ required: true, message: '请输入邮箱!', trigger: 'change' }],
-    password: [
-      {
-        required: true,
-        message: '请输入密码',
-        trigger: 'change'
+
+  // 邮箱自定义校验规则
+  const emailValidator = (rule: any, value: string, callback: Function) => {
+    if (!value) {
+      callback(new Error('邮箱不能为空'));
+    } else {
+      const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+      if (emailRegex.test(value)) {
+        callback();
+      } else {
+        callback(new Error('邮件格式错误'));
       }
-    ]
-  });
+    }
+  };
 
   // 确认密码的自定义规则
   const surePassValidator = (rule: any, value: string, callback: Function) => {
@@ -203,24 +212,39 @@
     }
   };
 
+  const loginForm = reactive<IForm>({
+    email: '',
+    password: ''
+  });
+  const loginRules = reactive<FormRules>({
+    email: [{ required: true, validator: emailValidator, trigger: 'change' }],
+    password: [
+      {
+        required: true,
+        message: '请输入密码',
+        trigger: 'change'
+      }
+    ]
+  });
+
   // 注册表单数据
   interface IRegisterForm {
     name: string;
     email: string;
     password: string;
     surePassword: string;
-    code: string;
+    verificationCode: string;
   }
   const registerForm = reactive<IRegisterForm>({
     name: '',
     email: '',
     password: '',
     surePassword: '',
-    code: ''
+    verificationCode: ''
   });
   const registerRules = reactive<FormRules>({
     name: [{ required: true, message: '请输入用户名', trigger: 'change' }],
-    email: [{ required: true, message: '请输入可接收验证消息的邮箱！', trigger: 'change' }],
+    email: [{ required: true, validator: emailValidator, trigger: 'change' }],
     password: [
       {
         required: true,
@@ -232,6 +256,41 @@
   });
 
   const show = ref<boolean>(true);
+
+  const isEmail = computed(() => {
+    return registerForm.email ? true : false;
+  });
+
+  // 是否已经点过获取验证码了
+  const isDisabled = ref<boolean>(false);
+  const countdown = ref<number>(0); // 倒计时时间
+  let timer: number | null = null; // 定时器
+  // 获取验证码
+  const getEmailCode = async () => {
+    if (isDisabled.value) return; // 如果按钮已经禁用，直接返回
+    let params = {
+      email: registerForm.email
+    };
+    const data = await sendCodeAsync(params);
+    // 点击后禁用按钮并开始倒计时
+    isDisabled.value = true;
+    countdown.value = 60;
+
+    timer = setInterval(() => {
+      if (countdown.value > 0) {
+        countdown.value--;
+      } else {
+        // 倒计时结束，重置按钮
+        isDisabled.value = false;
+        if (timer) clearInterval(timer);
+      }
+    }, 1000);
+    if (data.status === 200) {
+      ElMessage.success('验证码发送成功，请前往邮箱查看！');
+    } else {
+      ElMessage.error(data.message);
+    }
+  };
 
   // 取消登录
   const handleClose = () => {
@@ -308,7 +367,8 @@
         let params = {
           name: registerForm.name,
           email: registerForm.email,
-          password: registerForm.password
+          password: registerForm.password,
+          verificationCode: registerForm.verificationCode
         };
         const data = await registerAsync(params);
         if (data.status === 200) {
@@ -356,6 +416,11 @@
   //     'width=450,height=320,menubar=0,scrollbars=1,resizable=1,status=1,titlebar=0,toolbar=0,location=1'
   //   );
   // };
+
+  // 清除定时器以避免内存泄漏
+  onUnmounted(() => {
+    if (timer) clearInterval(timer);
+  });
 </script>
 <style lang="scss" scoped>
   .login-dialog-form-box {
@@ -395,7 +460,7 @@
       margin: 0 0 15px 0;
     }
 
-    button {
+    .ghost-button {
       border-radius: 20px;
       border: 1px solid #00c091;
       background-color: #00c091;
@@ -409,15 +474,15 @@
       cursor: pointer;
     }
 
-    button:active {
+    .ghost-button:active {
       transform: scale(0.95);
     }
 
-    button:focus {
+    .ghost-button:focus {
       outline: none;
     }
 
-    button.ghost {
+    .ghost-button.ghost {
       background-color: transparent;
       border-color: #ffffff;
       cursor: pointer;
@@ -428,7 +493,7 @@
       height: 48px;
       align-items: center;
       .get-email-code {
-        height: 40px;
+        height: 47px;
         display: flex;
         padding: 0;
         width: 150px;

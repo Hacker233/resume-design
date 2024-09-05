@@ -507,6 +507,7 @@
     // overflow: hidden;
     border: none;
     border-radius: 0;
+
     .el-menu {
       padding: 0;
       min-width: 134px;

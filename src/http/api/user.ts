@@ -33,6 +33,15 @@ export const registerAsync: any = (data: IRegister) => {
   });
 };
 
+// 发送邮箱验证码
+export const sendCodeAsync: any = (data: any) => {
+  return http.request({
+    url: '/huajian/auth/email/sendCode',
+    method: 'post',
+    data: data
+  });
+};
+
 // 查询用户信息
 export const getUserInfoAsync: any = (email: string) => {
   return http.request({
