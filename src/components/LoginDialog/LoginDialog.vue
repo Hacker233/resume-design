@@ -272,21 +272,21 @@
       email: registerForm.email
     };
     const data = await sendCodeAsync(params);
-    // 点击后禁用按钮并开始倒计时
-    isDisabled.value = true;
-    countdown.value = 60;
-
-    timer = setInterval(() => {
-      if (countdown.value > 0) {
-        countdown.value--;
-      } else {
-        // 倒计时结束，重置按钮
-        isDisabled.value = false;
-        if (timer) clearInterval(timer);
-      }
-    }, 1000);
     if (data.status === 200) {
       ElMessage.success('验证码发送成功，请前往邮箱查看！');
+      // 点击后禁用按钮并开始倒计时
+      isDisabled.value = true;
+      countdown.value = 60;
+
+      timer = setInterval(() => {
+        if (countdown.value > 0) {
+          countdown.value--;
+        } else {
+          // 倒计时结束，重置按钮
+          isDisabled.value = false;
+          if (timer) clearInterval(timer);
+        }
+      }, 1000);
     } else {
       ElMessage.error(data.message);
     }
@@ -314,35 +314,19 @@
         const data = await loginAsync(loginForm);
         if (data.status === 200) {
           isLoginLoading.value = false;
-          let emailVerify = data.data.user.auth.email.valid;
           setUuid(); // 无感刷新页面
           saveToken('Bearer ' + data.data.token.access_token); // 存储token到本地
           saveUserInfo(data.data.user); // 存储用户信息
           getUserIntegralTotal(); // 查询简币信息
-          if (emailVerify) {
-            ElMessage({
-              message: '登录成功',
-              type: 'success'
-            });
-            show.value = false;
-            // 查询和更新用户信息
-            const { getAndUpdateUserInfo } = appStore.useUserInfoStore;
-            getAndUpdateUserInfo();
-            props.confirm();
-          } else {
-            ElMessage({
-              message: '请验证您的电子邮箱',
-              type: 'error'
-            });
-            // 跳转到邮箱验证页
-            router.push({
-              path: '/emailVerify',
-              query: {
-                email: loginForm.email
-              }
-            });
-            show.value = false;
-          }
+          ElMessage({
+            message: '登录成功',
+            type: 'success'
+          });
+          show.value = false;
+          // 查询和更新用户信息
+          const { getAndUpdateUserInfo } = appStore.useUserInfoStore;
+          getAndUpdateUserInfo();
+          props.confirm();
         } else {
           isLoginLoading.value = false;
           ElMessage({
