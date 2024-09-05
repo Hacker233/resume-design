@@ -9,37 +9,25 @@ import PkgConfig from 'vite-plugin-package-config';
 import DefineOptions from 'unplugin-vue-define-options/vite';
 import { viteCommonjs } from '@originjs/vite-plugin-commonjs';
 
-export function createVitePlugins(viteEnv: ViteEnv, isBuild: boolean) {
+export const createVitePlugins = async (viteEnv: ViteEnv, isBuild: boolean) => {
   const { VITE_BUILD_COMPRESS, VITE_BUILD_COMPRESS_DELETE_ORIGIN_FILE } = viteEnv;
 
   const vitePlugins: (Plugin | Plugin[])[] = [
-    // have to
-    vue()
+    vue(), // have to
+    configAutoComponentsPlugin(),
+    configAutoImportPlugin(),
+    configSvgIconsPlugin(),
+    DefineOptions(),
+    PkgConfig(),
+    OptimizationPersist(),
+    viteCommonjs()
   ];
 
-  // unplugin-vue-components
-  vitePlugins.push(configAutoComponentsPlugin());
-
-  // unplugin-auto-import
-  vitePlugins.push(configAutoImportPlugin());
-
-  // vite-plugin-svg-icons
-  vitePlugins.push(configSvgIconsPlugin());
-
-  // unplugin-vue-define-options
-  vitePlugins.push(DefineOptions());
-
-  vitePlugins.push(PkgConfig());
-
-  vitePlugins.push(OptimizationPersist());
-  vitePlugins.push(viteCommonjs());
-
-  // The following plugins only work in the production environment
+  // 仅在生产环境使用的插件
   if (isBuild) {
-    // rollup-plugin-gzip
     vitePlugins.push(
       configCompressPlugin(VITE_BUILD_COMPRESS, VITE_BUILD_COMPRESS_DELETE_ORIGIN_FILE)
     );
   }
   return vitePlugins;
-}
+};

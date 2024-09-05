@@ -20,6 +20,22 @@
   // import { openAndCloseLoadingByTime } from './utils/common';
   import zhCn from 'element-plus/es/locale/lang/zh-cn';
   import { addWebsiteViewsAsync } from './http/api/panel';
+  import { useHead } from '@vueuse/head';
+  useHead({
+    title: '91化简-一款免费开源的简历制作神器',
+    meta: [
+      {
+        name: 'description',
+        content:
+          '91化简-开源简历制作神器！免费制作一份精美的简历！内置两款设计器、快速设计、简历、封面、海报均可免费制作，支持一键导出高清PDF、JSON数据等。'
+      },
+      {
+        name: 'keywords',
+        content: '简历 开源 设计器 制作 PDF 高清简历 免费开源'
+      }
+    ]
+  });
+
   const { isLoading } = storeToRefs(appStore.useLoadingStore);
   // openAndCloseLoadingByTime(1500); // 等待动画层
   const { refreshUuid } = appStore.useRefreshStore;

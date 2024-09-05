@@ -1,22 +1,27 @@
 import { fileURLToPath } from 'url';
 import { ConfigEnv, defineConfig, loadEnv } from 'vite';
+import path from 'path'; // 导入 path 模块
 
 import { createBuild } from './build/vite/build';
 import { wrapperEnv } from './build/utils';
 import { createProxy } from './build/vite/proxy';
 import { createVitePlugins } from './build/vite/plugin';
 import autoprefixer from 'autoprefixer';
+import prerender from 'vite-plugin-prerender';
 
-// https://vitejs.dev/config/
-export default defineConfig(({ command, mode }: ConfigEnv) => {
+export default defineConfig(async ({ command, mode }: ConfigEnv) => {
   const root = process.cwd(); // 当前工作目录
   const isBuild = command === 'build'; // 是否是构建 serve
-  const env = loadEnv(mode, root); // 加载env环境
+  const env = loadEnv(mode, root); // 加载 env 环境
   const viteEnv = wrapperEnv(env);
+
+  // 动态导入 vite-plugin-sitemap
+  const { default: sitemap } = await import('vite-plugin-sitemap');
+
   return {
     // base: './',
     resolve: {
-      //设置别名
+      // 设置别名
       alias: {
         '@': fileURLToPath(new URL('./src', import.meta.url))
       }
@@ -25,11 +30,11 @@ export default defineConfig(({ command, mode }: ConfigEnv) => {
     css: {
       preprocessorOptions: {
         scss: {
-          additionalData: '@use "@/style/global.scss" as *;' //关键
+          additionalData: '@use "@/style/global.scss" as *;' // 关键
         }
       },
       postcss: {
-        // ⚠️关键代码
+        // ⚠️ 关键代码
         plugins: [
           autoprefixer({
             // 自动添加前缀
@@ -39,19 +44,28 @@ export default defineConfig(({ command, mode }: ConfigEnv) => {
               'Chrome > 31',
               'ff > 31',
               'ie >= 8'
-              //'last 2 versions', // 所有主流浏览器最近2个版本
+              //'last 2 versions', // 所有主流浏览器最近 2 个版本
             ],
             grid: true
           })
         ]
       }
     },
-    plugins: createVitePlugins(viteEnv, isBuild),
+    plugins: [
+      ...(await createVitePlugins(viteEnv, isBuild)),
+      prerender({
+        staticDir: path.resolve(__dirname, 'dist'), // 指定预渲染的静态文件目录
+        routes: ['/'] // 预渲染的路径列表
+      }),
+      sitemap({
+        hostname: 'https://91huajian.cn' // 修正 URL
+      })
+    ],
     esbuild: {
       logOverride: { 'this-is-undefined-in-esm': 'silent' }
     },
     server: {
-      port: 8888, //启动端口
+      port: 8888, // 启动端口
       host: '0.0.0.0',
       open: true,
       hmr: true,

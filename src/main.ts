@@ -45,6 +45,9 @@ import 'v-contextmenu/dist/themes/default.css';
 
 import configDirectives from '@/directives/config';
 
+// SEO
+import { createHead } from '@vueuse/head';
+
 userAgent();
 
 // 创建vue实例
@@ -75,5 +78,7 @@ app.use(VueViewer, {
 app.use(contextmenu);
 app.component('SvgIcon', SvgIcon);
 app.use(UndrawUi);
+const head = createHead();
+app.use(head);
 // 挂载实例
 app.mount('#app');
