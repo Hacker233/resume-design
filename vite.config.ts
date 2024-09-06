@@ -55,7 +55,7 @@ export default defineConfig(async ({ command, mode }: ConfigEnv) => {
       ...(await createVitePlugins(viteEnv, isBuild)),
       prerender({
         staticDir: path.resolve(__dirname, 'dist'), // 指定预渲染的静态文件目录
-        routes: ['/'] // 预渲染的路径列表
+        routes: ['/', '/template'] // 预渲染的路径列表
       }),
       sitemap({
         hostname: 'https://91huajian.cn' // 修正 URL

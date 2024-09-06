@@ -39,7 +39,7 @@
         ></svg-icon>
       </div>
       <div class="right">
-        <h1>{{ panelData.unVaildEamil }}</h1>
+        <h1>{{ panelData.unValidEmail }}</h1>
         <p>未验证邮箱总数</p>
       </div>
     </div>
@@ -79,14 +79,14 @@
   interface IUserPanel {
     income: number;
     todayUsers: number;
-    unVaildEamil: number;
+    unValidEmail: number;
     usersTotal: number;
     validEmail: number;
   }
   const panelData = reactive<IUserPanel>({
     income: 0,
     todayUsers: 0,
-    unVaildEamil: 0,
+    unValidEmail: 0,
     usersTotal: 0,
     validEmail: 0
   });
@@ -95,7 +95,7 @@
     if (data.data.status === 200) {
       panelData.income = data.data.data.income;
       panelData.todayUsers = data.data.data.todayUsers;
-      panelData.unVaildEamil = data.data.data.unVaildEamil;
+      panelData.unValidEmail = data.data.data.unValidEmail;
       panelData.usersTotal = data.data.data.usersTotal;
       panelData.validEmail = data.data.data.validEmail;
     } else {

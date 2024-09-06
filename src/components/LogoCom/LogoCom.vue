@@ -7,7 +7,7 @@
       size="25px"
     ></svg-icon>
     <span>91化简</span> -->
-    <img src="@/assets/images/91huajian-caise.svg" />
+    <img src="@/assets/images/logo-banner.png" />
   </div>
 </template>
 <script lang="ts" setup>
@@ -33,7 +33,7 @@
     cursor: pointer;
     user-select: none;
     img {
-      width: 120px;
+      height: 100%;
     }
     span {
       letter-spacing: 2px;

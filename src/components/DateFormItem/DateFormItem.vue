@@ -5,6 +5,7 @@
       type="month"
       placeholder="开始月份"
       :clearable="false"
+      format="YYYY-MM"
       @change="handleStartDateChange"
     />
     -
@@ -13,6 +14,7 @@
       type="month"
       placeholder="结束月份"
       :clearable="false"
+      format="YYYY-MM"
       @change="handleEndDateChange"
     />
     <el-switch v-model="modelItem.data.isShow.date" @change="handlSwitch" />
