@@ -15,10 +15,7 @@
   const router = useRouter();
   const toPreview = (item: any) => {
     const newpage = router.resolve({
-      path: '/pptPreview',
-      query: {
-        id: item._id
-      }
+      path: `/pptPreview/${item._id}`
     });
     window.open(newpage.href, '_blank');
   };

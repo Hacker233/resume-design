@@ -66,10 +66,7 @@
   const router = useRouter();
   const toDetail = () => {
     const newpage = router.resolve({
-      path: '/websiteDetail',
-      query: {
-        websiteId: props.cardData._id
-      }
+      path: `/websiteDetail/${props.cardData._id}`
     });
     window.open(newpage.href, '_blank');
   };

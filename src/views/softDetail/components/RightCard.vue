@@ -91,7 +91,8 @@
     content: any;
   }>();
 
-  const { sourceId } = useRoute().query;
+  const route = useRoute();
+  const sourceId = route.params.sourceId;
 
   // 获取用户会员信息
   const { membershipInfo } = storeToRefs(appStore.useMembershipStore);

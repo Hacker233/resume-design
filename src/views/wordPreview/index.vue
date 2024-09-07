@@ -125,7 +125,7 @@
 
   // 获取word模板id
   const route = useRoute();
-  const { id } = route.query;
+  const id = route.params.id;
   const currentIndex = ref<number>(-1); // 选中哪一张预览图
 
   // 查询模板详细信息

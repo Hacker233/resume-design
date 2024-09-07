@@ -28,7 +28,9 @@
   import { getSoftDetailByIdAsync } from '@/http/api/softShare';
 
   // 查询软件详细信息
-  const { sourceId } = useRoute().query;
+  const route = useRoute();
+  console.log('查询软件信息', route);
+  const sourceId = route.params.sourceId;
   const softInfo = ref<any>('');
   const getySoftInfoById = async () => {
     const params = {

@@ -134,7 +134,8 @@
   import CorrelWebsite from './components/CorrelWebsite.vue';
   import WebsiteScreen from './components/WebsiteScreen.vue';
   // 查询网站详细信息
-  const { websiteId } = useRoute().query;
+  const route = useRoute();
+  const websiteId = route.params.websiteId;
   const websiteInfo = ref<any>('');
   const getWebsiteInfo = async () => {
     const params = {

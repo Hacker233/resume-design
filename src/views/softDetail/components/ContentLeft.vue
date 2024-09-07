@@ -60,7 +60,8 @@
     commentCount: any;
   }>();
 
-  const { sourceId } = useRoute().query;
+  const route = useRoute();
+  const sourceId = route.params.sourceId;
 </script>
 <style lang="scss" scoped>
   .content-left-box {

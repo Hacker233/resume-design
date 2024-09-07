@@ -44,10 +44,7 @@
   const router = useRouter();
   const toSourceDetial = () => {
     const newpage = router.resolve({
-      path: '/softDetail',
-      query: {
-        sourceId: props.cardData._id
-      }
+      path: `/softDetail/${props.cardData._id}`
     });
     window.open(newpage.href, '_blank');
   };

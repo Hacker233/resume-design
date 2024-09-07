@@ -293,7 +293,7 @@ const routes: Array<RouteRecordRaw> = [
     component: PanShareDetail
   },
   {
-    path: '/softDetail',
+    path: '/softDetail/:sourceId',
     name: 'SoftDetail',
     meta: {
       title: '软件详情',
@@ -304,7 +304,7 @@ const routes: Array<RouteRecordRaw> = [
     component: SoftDetail
   },
   {
-    path: '/websiteDetail',
+    path: '/websiteDetail/:websiteId',
     name: 'WebsiteDetail',
     meta: {
       title: '网站详情',
@@ -370,7 +370,7 @@ const routes: Array<RouteRecordRaw> = [
     component: DeployDoc
   },
   {
-    path: '/wordPreview',
+    path: '/wordPreview/:id',
     name: 'WordPreview',
     meta: {
       title: 'word模板详情',
@@ -381,7 +381,7 @@ const routes: Array<RouteRecordRaw> = [
     component: WordPreview
   },
   {
-    path: '/pptPreview',
+    path: '/pptPreview/:id',
     name: 'PPTPreview',
     meta: {
       title: 'ppt模板详情',

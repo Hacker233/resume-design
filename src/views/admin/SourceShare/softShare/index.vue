@@ -230,10 +230,7 @@
   const router = useRouter();
   const toDetail = (row: any) => {
     const newpage = router.resolve({
-      path: '/softDetail',
-      query: {
-        sourceId: row._id
-      }
+      path: `/softDetail/${row._id}`
     });
     window.open(newpage.href, '_blank');
   };
