@@ -1,28 +1,32 @@
 <template>
-  <div class="page-box" :style="containerStyles">
+  <div class="container-box" :style="containerStyles">
     <!-- Draggable 容器 -->
     <Draggable
-      v-model="localComponent.children"
+      :list="component.children"
       :group="{ name: 'components' }"
-      animation="200"
+      animation="500"
       :item-key="getItemKey"
     >
       <template #item="{ element }">
         <ContainerComponent v-if="element.commentType === 'container'" :component="element" />
-        <div v-else>
-          <!-- 其他组件渲染 -->
-        </div>
+        <component
+          :is="getWidgetCom(element)"
+          v-else
+          class="drag-component"
+          :widget-data="element"
+        ></component>
       </template>
     </Draggable>
   </div>
 </template>
 
 <script lang="ts" setup>
-  import { reactive, computed, watch } from 'vue';
   import Draggable from 'vuedraggable';
   import ContainerComponent from './ContainerComponent.vue';
 
-  // 定义 Props 的类型
+  import { WIDGET_MAP } from '../../widgets';
+  import { IWidget } from '../../types';
+
   interface ComponentProps {
     id: string;
     componentName: string;
@@ -35,29 +39,23 @@
     component: ComponentProps;
   }>();
 
-  // 创建一个本地的 reactive 对象来存储 component 数据
-  const localComponent = reactive({ ...props.component });
-  console.log('pages-localComponent', localComponent);
-  // 抽取组件的 CSS 样式
   const containerStyles = computed(() => ({
-    // width: `${localComponent.css.width || 0}px`,
-    // height: `${localComponent.css.height || 0}px`,
-    // backgroundColor: localComponent.css.backgroundColor || 'transparent',
-    // borderWidth: `${localComponent.css.borderWidth || 0}px`,
-    // borderRadius: `${localComponent.css.borderRadius || 0}px`,
-    // borderColor: localComponent.css.borderColor || 'transparent',
-    // borderStyle: localComponent.css.borderStyle || 'solid'
+    width: `${props.component.css.width || 0}px`,
+    height: `${props.component.css.height || 0}px`,
+    backgroundColor: props.component.css.backgroundColor || '#ffffff',
+    borderWidth: `${props.component.css.borderWidth || 0}px`,
+    borderRadius: `${props.component.css.borderRadius || 0}px`,
+    borderStyle: props.component.css.borderStyle || 'solid',
+    marginTop: props.component.css.top || 'solid',
+    marginBottom: props.component.css.bottom || 'solid',
+    marginLeft: props.component.css.left || 'solid',
+    marginRight: props.component.css.right || 'solid'
   }));
 
-  // 监听 props.component 的变化，并同步更新 localComponent
-  watch(
-    () => props.component,
-    (newVal) => {
-      Object.assign(localComponent, newVal);
-    }
-  );
+  const getWidgetCom = (item: IWidget) => {
+    return WIDGET_MAP[item.componentName];
+  };
 
-  // 返回每个项的唯一标识符
   const getItemKey = (item: ComponentProps) => item.id;
 </script>
 

@@ -25,8 +25,12 @@
           <div class="design-bottom-box">
             <!-- 画布区域 -->
             <div :key="refreshUuid" ref="designerRef" class="designer">
-              <template v-for="page in HJSchemaJsonStore.componentsTree" :key="page.id">
+              <template v-for="(page, index) in HJSchemaJsonStore.componentsTree" :key="page.id">
                 <PageComponent :component="page" />
+                <div
+                  v-if="index < HJSchemaJsonStore.componentsTree.length - 1"
+                  class="page-divider"
+                ></div>
               </template>
             </div>
             <!-- 添加一页 -->
@@ -55,7 +59,7 @@
   import LegoNav from './components/LegoNav.vue';
   import LeftComList from './components/LeftComList.vue';
   import RightSetter from './components/RightSetter.vue';
-  import PageComponent from './components/designComponent/ContainerComponent.vue';
+  import PageComponent from './components/designComponent/PageComponent.vue';
   import DesignerTopSetting from './components/DesignerTopSetting.vue/DesignerTopSetting.vue';
 
   import appStore from '@/store';
@@ -76,7 +80,7 @@
   const { setUuid } = appStore.useUuidStore;
 
   // 初始页面JSON
-  const { HJSchemaJsonStore } = storeToRefs(appStore.useLegoJsonStore);
+  const { HJSchemaJsonStore } = storeToRefs(appStore.useOnlineDesignNewJsonStore);
   const { changeHJSchemaJsonData, resetHJSchemaJsonData } = appStore.useLegoJsonStore;
 
   // url参数
@@ -541,6 +545,10 @@
             width: v-bind('HJSchemaJsonStore.css.width + "px"');
             min-height: v-bind('HJSchemaJsonStore.css.height + "px"');
             zoom: v-bind('sizeCenter');
+            .page-divider {
+              height: 20px; /* 可根据需要调整间距 */
+              background-color: #f0f0f0; /* 可自定义间隔样式 */
+            }
           }
           .add-page-box {
             height: 60px;

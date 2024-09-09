@@ -110,6 +110,9 @@ importers:
       vue-dompurify-html:
         specifier: ^3.1.1
         version: 3.1.1(vue@3.2.33)
+      vue-draggable-plus:
+        specifier: ^0.5.3
+        version: 0.5.3(@types/sortablejs@1.15.8)
       vue-json-viewer:
         specifier: ^3.0.4
         version: 3.0.4(vue@3.2.33)
@@ -750,6 +753,9 @@ packages:
 
   '@types/qs@6.9.7':
     resolution: {integrity: sha512-FGa1F62FT09qcrueBA6qYTrJPVDzah9a+493+o2PCXsesWHIn27G98TsSMs3WPNbZIEj4+VJf6saSFpvD+3Zsw==}
+
+  '@types/sortablejs@1.15.8':
+    resolution: {integrity: sha512-b79830lW+RZfwaztgs1aVPgbasJ8e7AXtZYHTELNXZPsERt4ymJdjV4OccDbHQAvHrCcFpbF78jkm0R6h/pZVg==}
 
   '@types/svgo@2.6.3':
     resolution: {integrity: sha512-5sP0Xgo0dXppY0tbYF6TevB/1+tzFLuu71XXxC/zGvQAn9PW7y+DwtDO81g0ZUPye00K6tPwtsLDOpARa0mFcA==}
@@ -4232,6 +4238,15 @@ packages:
     peerDependencies:
       vue: ^2.7.0 || ^3.0.0
 
+  vue-draggable-plus@0.5.3:
+    resolution: {integrity: sha512-dwKDzZ8io3y7k2iuIwVwiGrdiq5C0S7Et7nt5Gz5KjpBS9MtZGFP+L4FJPWGSLYleOT8HmVuCXTZYjGet7wC0g==}
+    peerDependencies:
+      '@types/sortablejs': ^1.15.0
+      '@vue/composition-api': '*'
+    peerDependenciesMeta:
+      '@vue/composition-api':
+        optional: true
+
   vue-eslint-parser@8.3.0:
     resolution: {integrity: sha512-dzHGG3+sYwSf6zFBa0Gi9ZDshD7+ad14DGOdTLjruRVgZXe2J+DcZ9iUhyR48z5g1PqRa20yt3Njna/veLJL/g==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
@@ -4906,6 +4921,8 @@ snapshots:
   '@types/parse-json@4.0.0': {}
 
   '@types/qs@6.9.7': {}
+
+  '@types/sortablejs@1.15.8': {}
 
   '@types/svgo@2.6.3':
     dependencies:
@@ -8638,6 +8655,10 @@ snapshots:
       vue-demi: 0.13.11(vue@3.2.33)
     transitivePeerDependencies:
       - '@vue/composition-api'
+
+  vue-draggable-plus@0.5.3(@types/sortablejs@1.15.8):
+    dependencies:
+      '@types/sortablejs': 1.15.8
 
   vue-eslint-parser@8.3.0(eslint@8.15.0):
     dependencies:

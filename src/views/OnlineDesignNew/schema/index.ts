@@ -28,7 +28,38 @@ export const HJSchema: IHJSchema = {
             addDefault: false // 是否在在新增一页的时候默认添加此组件
           },
           css: {
-            width: 100,
+            width: 200,
+            height: 200,
+            rotate: 0, // 旋转角度
+            backgroundColor: 'blue',
+            padding: {
+              top: 0,
+              right: 0,
+              bottom: 0,
+              left: 0
+            },
+            margin: {
+              top: 0,
+              right: 0,
+              bottom: 10,
+              left: 0
+            },
+            borderWidth: 3,
+            borderRadius: 10,
+            borderColor: '#eee',
+            borderStyle: 'solid'
+          },
+          children: []
+        },
+        {
+          id: getUuid(),
+          componentName: 'container', // 容器组件
+          commentType: 'container', // 组件类型
+          props: {
+            addDefault: false // 是否在在新增一页的时候默认添加此组件
+          },
+          css: {
+            width: 400,
             height: 300,
             rotate: 0, // 旋转角度
             backgroundColor: '#eee',
@@ -41,7 +72,86 @@ export const HJSchema: IHJSchema = {
             margin: {
               top: 0,
               right: 0,
+              bottom: 10,
+              left: 0
+            },
+            borderWidth: 3,
+            borderRadius: 10,
+            borderColor: '#eee',
+            borderStyle: 'solid'
+          },
+          children: []
+        }
+      ]
+    },
+    {
+      id: getUuid(), // 组件唯一性id
+      componentName: 'page', // 组件名
+      commentType: 'page', // 组件类型
+      oldPageIndex: '', // 旧的索引
+      css: {
+        width: 820,
+        height: 1160,
+        background: '#ffffff',
+        opacity: 1,
+        backgroundImage: '',
+        fontFamily: '',
+        themeColor: ''
+      }, // 全局范围的css样式
+      children: [
+        {
+          id: getUuid(),
+          componentName: 'container', // 容器组件
+          commentType: 'container', // 组件类型
+          props: {
+            addDefault: false // 是否在在新增一页的时候默认添加此组件
+          },
+          css: {
+            width: 200,
+            height: 200,
+            rotate: 0, // 旋转角度
+            backgroundColor: 'blue',
+            padding: {
+              top: 0,
+              right: 0,
               bottom: 0,
+              left: 0
+            },
+            margin: {
+              top: 0,
+              right: 0,
+              bottom: 10,
+              left: 0
+            },
+            borderWidth: 3,
+            borderRadius: 10,
+            borderColor: '#eee',
+            borderStyle: 'solid'
+          },
+          children: []
+        },
+        {
+          id: getUuid(),
+          componentName: 'container', // 容器组件
+          commentType: 'container', // 组件类型
+          props: {
+            addDefault: false // 是否在在新增一页的时候默认添加此组件
+          },
+          css: {
+            width: 400,
+            height: 300,
+            rotate: 0, // 旋转角度
+            backgroundColor: '#eee',
+            padding: {
+              top: 0,
+              right: 0,
+              bottom: 0,
+              left: 0
+            },
+            margin: {
+              top: 0,
+              right: 0,
+              bottom: 10,
               left: 0
             },
             borderWidth: 3,
