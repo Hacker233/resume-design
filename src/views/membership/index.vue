@@ -233,7 +233,7 @@
       :total-amount="selectedPrice"
       :order-type="2"
       pay-type="wxpay"
-      :options="{}"
+      :options="membershipOptions"
       subject="购买化简会员"
       @pay-success="handleWXPaySuccess"
       @cancel="handleWXCancel"

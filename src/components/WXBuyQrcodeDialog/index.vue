@@ -167,7 +167,8 @@
     const params = {
       outTradeNo: outTradeNo.value,
       orderType: props.orderType,
-      subject: props.subject
+      subject: props.subject,
+      ...props.options
     };
     const data = await wxtradeQueryAsync(params);
     if (data.data.status === 200) {
