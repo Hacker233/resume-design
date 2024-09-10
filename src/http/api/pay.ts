@@ -42,3 +42,21 @@ export const userIsPayCodeAsync: any = () => {
     method: 'get'
   });
 };
+
+// 获取微信支付页面地址
+export const getPayURLAsync: any = (data: any) => {
+  return http.request({
+    url: '/huajian/yiPay/getPayURL',
+    method: 'post',
+    data: data
+  });
+};
+
+// 微信支付查询订单信息
+export const wxtradeQueryAsync: any = (params: any) => {
+  return http.request({
+    url: '/huajian/yiPay/tradeQuery',
+    method: 'get',
+    params: params
+  });
+};

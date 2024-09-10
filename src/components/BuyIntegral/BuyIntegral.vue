@@ -32,8 +32,9 @@
     <!-- 充值方式 -->
     <div class="pay-way">
       <h3>充值方式</h3>
-      <el-radio-group v-model="payzfb" class="ml-4">
+      <el-radio-group v-model="payType" class="ml-4">
         <el-radio label="zfb" size="default">支付宝</el-radio>
+        <el-radio label="wxpay" size="default">微信支付</el-radio>
       </el-radio-group>
     </div>
     <!-- 将获得简币 -->
@@ -61,9 +62,22 @@
     @pay-success="handlePaySuccess"
     @cancel="handleCancel"
   ></buy-qr-code-dialog>
+
+  <!-- 微信充值二维码弹窗 -->
+  <w-x-buy-qr-code-dialog
+    :model-value="dialogWXQrcodeVisible"
+    :total-amount="totalAmount"
+    :order-type="1"
+    pay-type="wxpay"
+    :options="{}"
+    subject="购买简币"
+    @pay-success="handleWXPaySuccess"
+    @cancel="handleWXCancel"
+  ></w-x-buy-qr-code-dialog>
 </template>
 <script lang="ts" setup>
   import BuyQrCodeDialog from '@/components/BuyQrcodeDialog/index.vue';
+  import WXBuyQrCodeDialog from '@/components/WXBuyQrcodeDialog/index.vue';
 
   const emit = defineEmits(['paySuccess', 'cancel']);
 
@@ -93,7 +107,7 @@
   const radio = ref<string>('');
 
   // 支付方式
-  const payzfb = ref<string>('zfb');
+  const payType = ref<string>('zfb');
 
   // 单选改变
   const handleRadioChange = (value: string) => {
@@ -121,15 +135,33 @@
   };
 
   // 点击充值按钮
-  const dialogQrcodeVisible = ref<boolean>(false);
+  const dialogQrcodeVisible = ref<boolean>(false); // 支付宝
+  const dialogWXQrcodeVisible = ref<boolean>(false); // 微信
   const getOrderQrcode = async () => {
-    dialogQrcodeVisible.value = true;
+    if (payType.value === 'zfb') {
+      dialogQrcodeVisible.value = true;
+    } else if (payType.value === 'wxpay') {
+      console.log('微信支付');
+      dialogWXQrcodeVisible.value = true;
+    }
   };
 
   // 支付成功
   const handlePaySuccess = () => {
     dialogQrcodeVisible.value = false;
     emit('paySuccess');
+  };
+
+  // 微信支付成功
+  const handleWXPaySuccess = () => {
+    dialogWXQrcodeVisible.value = false;
+    emit('paySuccess');
+  };
+
+  // 微信取消订单
+  const handleWXCancel = () => {
+    dialogWXQrcodeVisible.value = false;
+    emit('cancel');
   };
 
   // 取消订单

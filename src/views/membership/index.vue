@@ -90,6 +90,14 @@
             <span data-v-0be21c4c="" class="rmb-icon">¥ </span>
             <span data-v-0be21c4c="" class="pay-info-num">{{ selectedPrice }}</span>
           </div>
+          <!-- 充值方式 -->
+          <div class="pay-way">
+            <h3>支付方式</h3>
+            <el-radio-group v-model="payType" class="ml-4">
+              <el-radio label="zfb" size="default">支付宝</el-radio>
+              <el-radio label="wxpay" size="default">微信支付</el-radio>
+            </el-radio-group>
+          </div>
           <div class="pay-btn" @click="getOrderQrcode">
             <div class="pay-btn-text">立即购买</div>
             <div class="pay-btn-light">
@@ -218,6 +226,18 @@
       @pay-success="handlePaySuccess"
       @cancel="handleCancel"
     ></buy-qr-code-dialog>
+
+    <!-- 微信充值二维码弹窗 -->
+    <w-x-buy-qr-code-dialog
+      :model-value="dialogWXQrcodeVisible"
+      :total-amount="selectedPrice"
+      :order-type="2"
+      pay-type="wxpay"
+      :options="{}"
+      subject="购买化简会员"
+      @pay-success="handleWXPaySuccess"
+      @cancel="handleWXCancel"
+    ></w-x-buy-qr-code-dialog>
   </div>
 </template>
 <script setup lang="ts">
@@ -226,8 +246,12 @@
   import { getAssetsImagesFile } from '@/utils/common';
   import { getMembershipConfigsByUserAsync } from '@/http/api/membership';
   import BuyQrCodeDialog from '@/components/BuyQrcodeDialog/index.vue';
+  import WXBuyQrCodeDialog from '@/components/WXBuyQrcodeDialog/index.vue';
 
   const emit = defineEmits(['paySuccess', 'cancel']);
+
+  // 支付方式
+  const payType = ref<string>('zfb');
 
   // 查询和更新用户信息
   const { getAndUpdateUserInfo } = appStore.useUserInfoStore;
@@ -274,8 +298,14 @@
 
   // 点击充值按钮
   const dialogQrcodeVisible = ref<boolean>(false);
+  const dialogWXQrcodeVisible = ref<boolean>(false); // 微信
   const getOrderQrcode = async () => {
-    dialogQrcodeVisible.value = true;
+    if (payType.value === 'zfb') {
+      dialogQrcodeVisible.value = true;
+    } else if (payType.value === 'wxpay') {
+      console.log('微信支付');
+      dialogWXQrcodeVisible.value = true;
+    }
   };
 
   // 支付成功
@@ -288,6 +318,18 @@
   // 取消订单
   const handleCancel = () => {
     dialogQrcodeVisible.value = false;
+    emit('cancel');
+  };
+
+  // 微信支付成功
+  const handleWXPaySuccess = () => {
+    dialogWXQrcodeVisible.value = false;
+    emit('paySuccess');
+  };
+
+  // 微信取消订单
+  const handleWXCancel = () => {
+    dialogWXQrcodeVisible.value = false;
     emit('cancel');
   };
 </script>
@@ -397,7 +439,7 @@
       }
       .pay-content-box {
         width: 100%;
-        height: 500px;
+        height: 600px;
         background-color: #fffaf0;
         border-radius: 20px;
         padding: 30px 20px;
@@ -519,7 +561,7 @@
           }
         }
         .bottom-pay-wrapper {
-          height: 173px;
+          height: 230px;
           display: flex;
           flex-direction: column;
           align-items: center;
@@ -539,6 +581,14 @@
               font-size: 50px;
               font-weight: 600;
               color: #fa5c2d;
+            }
+          }
+          .pay-way {
+            width: 100%;
+            display: flex;
+            h3 {
+              font-size: 18px;
+              margin-right: 30px;
             }
           }
           .pay-btn {
