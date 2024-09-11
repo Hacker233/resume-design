@@ -60,3 +60,21 @@ export const wxtradeQueryAsync: any = (params: any) => {
     params: params
   });
 };
+
+// 管理员分页查询当面付订单
+export const yipayTradeQueryListAsync: any = (params: any) => {
+  return http.request({
+    url: '/huajian/yiPay/yipayTradeQueryList',
+    method: 'get',
+    params: params
+  });
+};
+
+// 管理员同步易支付订单
+export const yipayTradeQueryByAdminAsync: any = (params: any) => {
+  return http.request({
+    url: '/huajian/yiPay/yipayTradeQueryByAdmin',
+    method: 'get',
+    params: params
+  });
+};

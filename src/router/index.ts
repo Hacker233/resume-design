@@ -70,6 +70,7 @@ const ArticleCategory = () => import('@/views/admin/ArticleManage/ArticleCategor
 const PublishSuccess = () =>
   import('@/views/admin/ArticleManage/AddArticle/pages/publishSuccess.vue');
 const PayList = () => import('@/views/admin/payStats/payList/index.vue');
+const YipayList = () => import('@/views/admin/payStats/yipayList/index.vue');
 const DeployDoc = () => import('@/views/deployDoc/index.vue');
 const ArticleDetail = () => import('@/views/deployDoc/pages/articleDetails.vue');
 const IntegralList = () => import('@/views/admin/integralManage/IntegralList/index.vue');
@@ -778,6 +779,17 @@ const routes: Array<RouteRecordRaw> = [
           requireLogin: true
         },
         component: PayList
+      },
+      {
+        path: 'yipayList',
+        name: 'YipayList',
+        meta: {
+          title: '易支付订单',
+          keepAlive: true,
+          isShowComNav: false,
+          requireLogin: true
+        },
+        component: YipayList
       },
       {
         path: 'integralList',

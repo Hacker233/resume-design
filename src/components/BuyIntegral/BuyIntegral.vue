@@ -32,10 +32,20 @@
     <!-- 充值方式 -->
     <div class="pay-way">
       <h3>充值方式</h3>
-      <el-radio-group v-model="payType" class="ml-4">
-        <el-radio label="zfb" size="default">支付宝</el-radio>
-        <el-radio label="wxpay" size="default">微信支付</el-radio>
-      </el-radio-group>
+      <div class="pay-way-box">
+        <div
+          :class="['pay-way-zfb', { 'pay-active': payType === 'zfb' }]"
+          @click="selectPayWay('zfb')"
+        >
+          <img src="@/assets/images/pay/zfb.png" alt="支付宝" />
+        </div>
+        <div
+          :class="['pay-way-wx', { 'pay-active': payType === 'wxpay' }]"
+          @click="selectPayWay('wxpay')"
+        >
+          <img src="@/assets/images/pay/wxpay.png" alt="微信支付" />
+        </div>
+      </div>
     </div>
     <!-- 将获得简币 -->
     <div class="integral-total-box">
@@ -47,7 +57,7 @@
     </div>
     <!-- 充值按钮 -->
     <div class="pay-button">
-      <el-button size="default" type="primary" :disabled="payDisabled" @click="getOrderQrcode"
+      <el-button size="large" type="primary" :disabled="payDisabled" @click="getOrderQrcode"
         >立即充值</el-button
       >
     </div>
@@ -108,6 +118,11 @@
 
   // 支付方式
   const payType = ref<string>('zfb');
+
+  // 选择支付方式
+  const selectPayWay = (type: string) => {
+    payType.value = type;
+  };
 
   // 单选改变
   const handleRadioChange = (value: string) => {
@@ -178,6 +193,7 @@
     .package-box {
       display: flex;
       flex-direction: column;
+      margin-bottom: 20px;
       h3 {
         font-size: 16px;
         letter-spacing: 1px;
@@ -197,9 +213,47 @@
         font-size: 16px;
         letter-spacing: 1px;
       }
+      .pay-way-box {
+        display: flex;
+        align-items: center;
+        .pay-way-zfb {
+          width: 116px;
+          height: 40px;
+          margin-right: 20px;
+          border: 2px solid transparent;
+          border-radius: 5px;
+          padding: 3px;
+          cursor: pointer;
+          user-select: none;
+          transition: all 0.3s;
+          img {
+            width: 100%;
+            height: 100%;
+          }
+        }
+        .pay-way-wx {
+          width: 116px;
+          height: 40px;
+          border: 2px solid transparent;
+          border-radius: 5px;
+          padding: 1px;
+          cursor: pointer;
+          user-select: none;
+          transition: all 0.3s;
+          img {
+            width: 100%;
+            height: 100%;
+          }
+        }
+        .pay-active {
+          border-color: #00c091;
+        }
+      }
     }
     .integral-total-box {
-      margin-top: 10px;
+      margin-top: 20px;
+      border-bottom: 1px solid #eee;
+      padding-bottom: 20px;
       h3 {
         font-size: 16px;
         letter-spacing: 1px;
@@ -214,6 +268,11 @@
     }
     .pay-button {
       margin-top: 20px;
+      display: flex;
+      justify-content: center;
+      .el-button {
+        width: 150px;
+      }
     }
   }
 </style>

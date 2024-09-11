@@ -52,8 +52,8 @@
     </el-table-column>
     <el-table-column prop="isExpired" label="是否到期">
       <template #default="scope">
-        <el-tag v-if="scope.row.isExpired" type="success" size="default">已到期</el-tag>
-        <el-tag v-else type="danger" size="default">正常</el-tag>
+        <el-tag v-if="scope.row.isExpired" type="danger" size="default">已到期</el-tag>
+        <el-tag v-else type="success" size="default">正常</el-tag>
       </template>
     </el-table-column>
     <el-table-column prop="daysRemaining" label="剩余天数">

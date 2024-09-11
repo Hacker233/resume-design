@@ -93,10 +93,20 @@
           <!-- 充值方式 -->
           <div class="pay-way">
             <h3>支付方式</h3>
-            <el-radio-group v-model="payType" class="ml-4">
-              <el-radio label="zfb" size="default">支付宝</el-radio>
-              <el-radio label="wxpay" size="default">微信支付</el-radio>
-            </el-radio-group>
+            <div class="pay-way-box">
+              <div
+                :class="['pay-way-zfb', { 'pay-active': payType === 'zfb' }]"
+                @click="selectPayWay('zfb')"
+              >
+                <img src="@/assets/images/pay/zfb.png" alt="支付宝" />
+              </div>
+              <div
+                :class="['pay-way-wx', { 'pay-active': payType === 'wxpay' }]"
+                @click="selectPayWay('wxpay')"
+              >
+                <img src="@/assets/images/pay/wxpay.png" alt="微信支付" />
+              </div>
+            </div>
           </div>
           <div class="pay-btn" @click="getOrderQrcode">
             <div class="pay-btn-text">立即购买</div>
@@ -252,6 +262,11 @@
 
   // 支付方式
   const payType = ref<string>('zfb');
+
+  // 选择支付方式
+  const selectPayWay = (type: string) => {
+    payType.value = type;
+  };
 
   // 查询和更新用户信息
   const { getAndUpdateUserInfo } = appStore.useUserInfoStore;
@@ -443,6 +458,8 @@
         background-color: #fffaf0;
         border-radius: 20px;
         padding: 30px 20px;
+        display: flex;
+        flex-direction: column;
         .member-goods-container {
           display: grid;
           grid-template-columns: repeat(4, 235px); /* 每行4列，每列235px */
@@ -561,7 +578,6 @@
           }
         }
         .bottom-pay-wrapper {
-          height: 230px;
           display: flex;
           flex-direction: column;
           align-items: center;
@@ -572,6 +588,7 @@
             color: #333;
             text-align: center;
             height: 70px;
+            margin-top: 20px;
             .rmb-icon {
               font-size: 25px;
               font-weight: 600;
@@ -584,11 +601,50 @@
             }
           }
           .pay-way {
+            height: 100px;
             width: 100%;
             display: flex;
+            align-items: center;
+            border-bottom: 1px solid #eee;
             h3 {
               font-size: 18px;
               margin-right: 30px;
+            }
+            .pay-way-box {
+              display: flex;
+              align-items: center;
+              .pay-way-zfb {
+                width: 116px;
+                height: 40px;
+                margin-right: 20px;
+                border: 2px solid transparent;
+                border-radius: 5px;
+                padding: 3px;
+                cursor: pointer;
+                user-select: none;
+                transition: all 0.3s;
+                img {
+                  width: 100%;
+                  height: 100%;
+                }
+              }
+              .pay-way-wx {
+                width: 116px;
+                height: 40px;
+                border: 2px solid transparent;
+                border-radius: 5px;
+                padding: 1px;
+                cursor: pointer;
+                user-select: none;
+                transition: all 0.3s;
+                img {
+                  width: 100%;
+                  height: 100%;
+                }
+              }
+              .pay-active {
+                border-color: #00c091;
+              }
             }
           }
           .pay-btn {
@@ -601,6 +657,7 @@
             font-size: 17px;
             border-radius: 34px;
             margin: 0 auto;
+            margin-top: 30px;
             cursor: pointer;
             .pay-btn-text {
               background: linear-gradient(218.83deg, #622900 22.3%, #9e6237 84.49%);
