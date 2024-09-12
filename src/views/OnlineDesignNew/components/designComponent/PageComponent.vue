@@ -1,12 +1,17 @@
 <template>
   <div class="page-box" :style="containerStyles">
-    <!-- Draggable 容器 -->
     <Draggable
+      style="width: 100%; height: 100%"
       :list="component.children"
       :group="{ name: 'components' }"
       :item-key="getItemKey"
       animation="500"
       ghost-class="dragging-ghost"
+      :class="{ 'drop-target': isDropTarget }"
+      @move="handleMove"
+      @change="handleChange"
+      @add="handleAdd"
+      @update="handleUpdate"
     >
       <template #item="{ element }">
         <ContainerComponent v-if="element.commentType === 'container'" :component="element" />
@@ -22,6 +27,7 @@
 </template>
 
 <script lang="ts" setup>
+  import { ref, computed } from 'vue';
   import Draggable from 'vuedraggable';
   import ContainerComponent from './ContainerComponent.vue';
   import { IWidget } from '../../types';
@@ -54,31 +60,54 @@
   };
 
   const getItemKey = (item: ComponentProps) => item.id;
+
+  const isDropTarget = ref(false); // 标记目标
+
+  const handleMove = (event: any) => {
+    const { relatedContext } = event;
+
+    // 检查 relatedContext 是否有效，并防止容器移动
+    if (
+      relatedContext &&
+      relatedContext.element &&
+      relatedContext.element.commentType === 'container'
+    ) {
+      isDropTarget.value = true;
+    } else {
+      isDropTarget.value = false;
+    }
+  };
+
+  const handleChange = () => {
+    isDropTarget.value = false;
+  };
+
+  // @add 和 @update 控制放置行为
+  const handleAdd = (evt: any) => {
+    // 检查插入的位置是否正确
+    if (evt.newIndex !== undefined) {
+      // 这里可以执行特定的逻辑来确保拖放正确
+    }
+  };
+
+  const handleUpdate = (evt: any) => {
+    console.log(evt);
+
+    // 在更新位置时进行检查，确保容器没有移动
+  };
 </script>
 
 <style scoped lang="scss">
   .page-box {
-    position: relative; /* Ensure positioning for nested containers */
-    overflow: hidden; /* Prevent overflow of content */
+    position: relative;
+    overflow: hidden;
   }
 
   .dragging-ghost {
     opacity: 0.5;
   }
 
-  .draggable-item {
-    display: flex;
-    align-items: center;
-  }
-
-  .drag-handle {
-    width: 10px;
-    height: 100%;
-    background-color: #ccc;
-    cursor: grab;
-    position: absolute; /* Ensure the handle does not affect the layout */
-    left: 0;
-    top: 0;
-    z-index: 1; /* Make sure the handle is on top */
+  .drop-target {
+    border: 2px dashed #00aaff; /* 蓝色虚线边框作为提示 */
   }
 </style>
