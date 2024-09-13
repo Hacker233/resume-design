@@ -15,41 +15,46 @@
             ></div>
             {{ item.title }}
           </template>
-          <div
-            v-for="(itemCom, itemIndex) in item.list"
-            :key="itemIndex"
-            draggable="true"
-            class="widget-item"
-            :style="{
-              width: itemCom.screenShot.width,
-              height: itemCom.screenShot.height,
-              borderRadius: itemCom.screenShot.borderRadius
-            }"
-            @dragstart="dragStart($event, item, itemCom)"
-            @dragend="dragEnd($event)"
-            @click="addWidgetToCenter(item, itemCom)"
+          <draggable
+            class="dragArea"
+            :sort="false"
+            :list="item.list"
+            :clone="cloneData"
+            :group="{ name: 'components', pull: 'clone', put: false }"
+            item-key="id"
           >
-            <!-- 图标 -->
-            <lego-design-icon
-              v-if="item.category === 'icon'"
-              :widget-data="itemCom"
-            ></lego-design-icon>
-            <!-- 列表 -->
-            <lego-li-list v-else-if="item.category === 'li'" :widget-data="itemCom"></lego-li-list>
-            <!-- 图片 -->
-            <image-list-vue
-              v-else-if="item.category === 'image'"
-              :widget-data="itemCom"
-            ></image-list-vue>
-            <!-- 普通组件 -->
-            <img v-else :src="getAssetsFile(itemCom.screenShot.src)" />
-          </div>
+            <template #item="{ element }">
+              <div
+                class="dragable-component widget-item"
+                :style="{
+                  width: element.screenShot.width,
+                  height: element.screenShot.height,
+                  borderRadius: element.screenShot.borderRadius
+                }"
+              >
+                <lego-design-icon
+                  v-if="element.category === 'icon'"
+                  :widget-data="element"
+                ></lego-design-icon>
+                <lego-li-list
+                  v-else-if="item.category === 'li'"
+                  :widget-data="element"
+                ></lego-li-list>
+                <image-list-vue
+                  v-else-if="item.category === 'image'"
+                  :widget-data="element"
+                ></image-list-vue>
+                <img v-else :src="getAssetsFile(element.screenShot.src)" />
+              </div>
+            </template>
+          </draggable>
         </el-collapse-item>
       </el-collapse>
     </div>
   </div>
 </template>
 <script lang="ts" setup>
+  import Draggable from 'vuedraggable';
   import { cloneDeep } from 'lodash';
   import { WIDGET_CONFIG_LIST } from '../../schema/widgetConfig';
   import { IWidget, IWidgetTab } from '../../types';
@@ -63,8 +68,16 @@
   import { useLiListItem } from '../../widgets/li/useLiListItem';
   import { useImageListItem } from '../../widgets/image/useImageListItem';
   import { imageList } from '../../widgets/image/imageList';
+  import { getUuid } from '@/utils/common';
 
   const emit = defineEmits(['addWidget']);
+
+  const cloneData = (data: IWidget) => {
+    const cptData = cloneDeep(data);
+    cptData.id = getUuid();
+    console.log('cloneData', cptData);
+    return cptData;
+  };
 
   //拖拽开始的事件
   const dragStart = (event: any, item: IWidgetTab, itemCom: IWidget) => {
@@ -136,6 +149,9 @@
           user-select: none;
         }
         .el-collapse-item__content {
+          padding: 0;
+        }
+        .dragArea {
           padding: 10px;
           display: flex;
           align-items: center;
@@ -157,6 +173,14 @@
             width: 100%;
             height: 100%;
           }
+        }
+      }
+      :deep(.dragable-component) {
+        cursor: move;
+        transition: all 0.3s;
+        border: 1px dashed transparent;
+        &:hover {
+          border-color: #4dd3b2;
         }
       }
     }
