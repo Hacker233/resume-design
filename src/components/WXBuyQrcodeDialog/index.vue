@@ -195,11 +195,12 @@
           getUserIntegralTotal();
         }
       }
-    } else {
-      ElMessage.error(data.data.message);
-      closeDialog();
-      return;
     }
+    //  else {
+    //   ElMessage.error(data.data.message);
+    //   closeDialog();
+    //   return;
+    // }
   };
 
   // 销毁
