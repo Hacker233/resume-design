@@ -229,7 +229,7 @@
         width: 100%;
         height: 100%;
         font-size: 16px;
-        background-color: rgba(0, 0, 0, 0.5);
+        background-color: rgba(0, 0, 0, 0.9);
         display: flex;
         align-items: center;
         justify-content: center;
@@ -238,7 +238,7 @@
         left: 0;
         backdrop-filter: blur(1px);
         border-radius: 3px;
-        color: red;
+        color: rgb(255, 255, 255);
       }
     }
   }
