@@ -77,7 +77,6 @@
     cursor: move;
     border: 2px dashed transparent;
     transition: all 0.3s;
-    display: inline-block;
     position: relative;
     &:hover {
       border-color: #80e0c8;
