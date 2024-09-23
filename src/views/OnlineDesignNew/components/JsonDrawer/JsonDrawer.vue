@@ -24,7 +24,7 @@
   import { storeToRefs } from 'pinia';
   import JsonViewer from 'vue-json-viewer';
 
-  const { HJSchemaJsonStore } = storeToRefs(appStore.useLegoJsonStore);
+  const { HJSchemaJsonStore } = storeToRefs(appStore.useOnlineDesignNewJsonStore);
 
   const emit = defineEmits(['closeJsonDrawer']);
   interface IJsonDrawer {

@@ -25,7 +25,7 @@ interface IHJSchema {
 interface IWidget {
   id: string; // 组件唯一性id
   componentName: string; // 组件名
-  commentType: ''; // 组件类型
+  commentType: string; // 组件类型
   icon: string; // 组件icon
   title: string; // 组件中文名称
   description: string; // 组件描述信息
@@ -41,6 +41,7 @@ interface IWidget {
   css: any; // 组件样式
   dataSource: any; // 组件单独数据
   customProps?: any; // 自定义属性字段
+  children?: [];
 }
 
 // 某一个组件分类格式

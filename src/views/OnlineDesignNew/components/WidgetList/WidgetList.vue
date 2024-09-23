@@ -22,6 +22,7 @@
             :clone="cloneData"
             :group="{ name: 'components', pull: 'clone', put: false }"
             item-key="id"
+            @end="dragEnd(item)"
           >
             <template #item="{ element }">
               <div
@@ -57,7 +58,7 @@
   import Draggable from 'vuedraggable';
   import { cloneDeep } from 'lodash';
   import { WIDGET_CONFIG_LIST } from '../../schema/widgetConfig';
-  import { IWidget, IWidgetTab } from '../../types';
+  import { IWidget } from '../../types';
   import { getAssetsFile } from '../../utils/common';
   import LegoDesignIcon from '../../widgets/icon/LegoDesignIconList.vue';
   import LegoLiList from '../../widgets/li/LegoLiList.vue';
@@ -69,34 +70,20 @@
   import { useImageListItem } from '../../widgets/image/useImageListItem';
   import { imageList } from '../../widgets/image/imageList';
   import { getUuid } from '@/utils/common';
+  import useSelectWidgetItem from '../../hooks/useSelectWidgetItem';
 
-  const emit = defineEmits(['addWidget']);
-
+  const cptData = ref<any>('');
   const cloneData = (data: IWidget) => {
-    const cptData = cloneDeep(data);
-    cptData.id = getUuid();
+    cptData.value = cloneDeep(data);
+    cptData.value.id = getUuid();
     console.log('cloneData', cptData);
-    return cptData;
-  };
-
-  //拖拽开始的事件
-  const dragStart = (event: any, item: IWidgetTab, itemCom: IWidget) => {
-    console.log('拖拽开始', itemCom);
-    const widgetItem = cloneDeep(itemCom);
-    widgetItem.dataSource = Object.assign(item.dataSource, itemCom.dataSource);
-    event.dataTransfer.setData('widgetItem', JSON.stringify(widgetItem));
-  };
-
-  // 点击组件
-  const addWidgetToCenter = (item: IWidgetTab, itemCom: IWidget) => {
-    const widgetItem = cloneDeep(itemCom);
-    widgetItem.dataSource = Object.assign(item.dataSource, itemCom.dataSource);
-    emit('addWidget', widgetItem);
+    return cptData.value;
   };
 
   // 拖拽结束事件
-  const dragEnd = (event: any) => {
-    event.dataTransfer.clearData();
+  const dragEnd = (item: any) => {
+    const { widgetItem } = useSelectWidgetItem(cptData.value.id);
+    widgetItem.dataSource = Object.assign(item.dataSource, widgetItem.dataSource);
   };
 
   // 初始化图标列表

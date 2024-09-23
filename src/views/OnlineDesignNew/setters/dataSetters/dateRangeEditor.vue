@@ -30,11 +30,10 @@
 
   const props = defineProps<{
     id: string;
-    pageIndex: number;
   }>();
 
   // 选中的widgetItem
-  const { widgetItem } = useSelectWidgetItem(props.id, props.pageIndex);
+  const { widgetItem } = useSelectWidgetItem(props.id);
 
   const radioValue = ref<string>(widgetItem.dataSource.dateRange[1]);
   const handleRadioChange = (value: string) => {

@@ -29,11 +29,10 @@
 
   const props = defineProps<{
     id: string;
-    pageIndex: number;
   }>();
 
   // 选中的widgetItem
-  const { widgetItem } = useSelectWidgetItem(props.id, props.pageIndex);
+  const { widgetItem } = useSelectWidgetItem(props.id);
 
   // 上传文件地址
   const uploadAddress = () => {

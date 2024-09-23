@@ -44,11 +44,11 @@
       iconfont: 'icon-zujian1',
       title: '组件'
     },
-    {
-      id: 2,
-      iconfont: 'icon-023tuceng',
-      title: '图层'
-    },
+    // {
+    //   id: 2,
+    //   iconfont: 'icon-023tuceng',
+    //   title: '图层'
+    // },
     {
       id: 3,
       iconfont: 'icon-json1',
@@ -89,7 +89,7 @@
 <style lang="scss" scoped>
   .left-com-list-box {
     background-color: #fff;
-    height: calc(100vh - 60px);
+    height: calc(100vh);
     width: 350px;
     display: flex;
     .left-tab-box {

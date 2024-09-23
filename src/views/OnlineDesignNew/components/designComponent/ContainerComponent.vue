@@ -1,7 +1,7 @@
 <template>
   <Draggable
     :style="containerStyles"
-    class="container-drag-area"
+    :class="['container-drag-area', { selected: selectedWidgetId === component.id }]"
     :list="component.children"
     :group="{ name: 'components' }"
     item-key="id"
@@ -12,8 +12,9 @@
       <component
         :is="getWidgetCom(element)"
         v-else
-        class="drag-component"
+        :class="['drag-component', { selected: selectedWidgetId === element.id }]"
         :widget-data="element"
+        @click.stop="seleteComponent(element)"
       ></component>
     </template>
   </Draggable>
@@ -23,6 +24,8 @@
   import Draggable from 'vuedraggable';
   import { IWidget } from '../../types';
   import { WIDGET_MAP } from '../../widgets';
+  import { storeToRefs } from 'pinia';
+  import appStore from '@/store';
 
   interface ComponentProps {
     id: string;
@@ -49,16 +52,38 @@
   const getWidgetCom = (item: IWidget) => {
     return WIDGET_MAP[item.componentName];
   };
+
+  // 选择组件
+  const { selectedWidgetId } = storeToRefs(appStore.useOnlineDesignNewSelectWidgetStore); // 选中的组件id
+  const seleteComponent = (element: any) => {
+    selectedWidgetId.value = element.id;
+    console.log('点击组件', element);
+  };
 </script>
 
 <style scoped lang="scss">
+  .container-drag-area {
+    cursor: move;
+    border: 2px dashed transparent;
+    transition: all 0.3s;
+    display: inline-block;
+    position: relative;
+    transition: transform 0.3s ease, box-shadow 0.3s ease; // 添加过渡效果
+    &:hover {
+      border-color: #80e0c8;
+    }
+  }
   .drag-component {
     cursor: move;
     border: 2px dashed transparent;
     transition: all 0.3s;
     display: inline-block;
+    position: relative;
     &:hover {
       border-color: #80e0c8;
     }
+  }
+  .selected {
+    border: 2px dashed green !important;
   }
 </style>

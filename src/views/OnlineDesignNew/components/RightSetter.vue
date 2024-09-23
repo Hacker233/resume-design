@@ -11,39 +11,20 @@
         <el-collapse v-model="activeNames">
           <!-- 组件属性 -->
           <el-collapse-item
-            v-if="
-              HJSchemaJsonStore.componentsTree[pageActiveIndex].children[widgetIndex].props &&
-              Object.keys(
-                HJSchemaJsonStore.componentsTree[pageActiveIndex].children[widgetIndex].props
-              ).length
-            "
+            v-if="selectWidgetItem && Object.keys(selectWidgetItem.props).length"
             title="组件属性"
             name="cptProp"
           >
-            <div
-              v-for="(value, key, index) in HJSchemaJsonStore.componentsTree[pageActiveIndex]
-                .children[widgetIndex].props"
-              :key="index"
-            >
-              <component
-                :is="getSetterCom(key)"
-                :id="selectedWidgetId"
-                :page-index="pageActiveIndex"
-                :value="value"
-              ></component>
+            <div v-for="(value, key, index) in selectWidgetItem.props" :key="index">
+              <component :is="getSetterCom(key)" :id="selectedWidgetId" :value="value"></component>
             </div>
           </el-collapse-item>
           <el-collapse-item title="样式属性" name="styleProp">
             <el-form label-width="80px" label-position="left">
-              <div
-                v-for="(value, key, index) in HJSchemaJsonStore.componentsTree[pageActiveIndex]
-                  .children[widgetIndex].css"
-                :key="index"
-              >
+              <div v-for="(value, key, index) in selectWidgetItem.css" :key="index">
                 <component
                   :is="getSetterCom(key)"
                   :id="selectedWidgetId"
-                  :page-index="pageActiveIndex"
                   :value="value"
                 ></component>
               </div>
@@ -55,25 +36,11 @@
         <el-collapse v-model="activeDataNames">
           <el-collapse-item title="数据配置" name="dataProp">
             <el-form label-width="80px" label-position="left">
-              <template
-                v-if="
-                  HJSchemaJsonStore.componentsTree[pageActiveIndex].children[widgetIndex]
-                    .dataSource &&
-                  Object.keys(
-                    HJSchemaJsonStore.componentsTree[pageActiveIndex].children[widgetIndex]
-                      .dataSource
-                  ).length
-                "
-              >
-                <div
-                  v-for="(value, key, index) in HJSchemaJsonStore.componentsTree[pageActiveIndex]
-                    .children[widgetIndex].dataSource"
-                  :key="index"
-                >
+              <template v-if="selectWidgetItem && Object.keys(selectWidgetItem.dataSource).length">
+                <div v-for="(value, key, index) in selectWidgetItem.dataSource" :key="index">
                   <component
                     :is="getDataSetterCom(key)"
                     :id="selectedWidgetId"
-                    :page-index="pageActiveIndex"
                     :value="value"
                   ></component>
                 </div>
@@ -97,20 +64,21 @@
   import appStore from '@/store';
   import { storeToRefs } from 'pinia';
   import { DATA_SETTERS_MAP, SETTERS_MAP } from '../setters/settersMap';
+  import useSelectWidgetItem from '../hooks/useSelectWidgetItem';
 
   // HJSchemaJSON数据
-  const { HJSchemaJsonStore } = storeToRefs(appStore.useLegoJsonStore);
-  const { selectedWidgetId, pageActiveIndex } = storeToRefs(appStore.useLegoSelectWidgetStore);
+  const { selectedWidgetId } = storeToRefs(appStore.useOnlineDesignNewSelectWidgetStore);
 
-  // 返回选中组件的索引
-  const widgetIndex = ref(0);
+  // 返回选中组件
+  const selectWidgetItem = ref<any>(null);
   watch(
     () => selectedWidgetId.value,
     (newVal) => {
       if (newVal) {
-        widgetIndex.value = HJSchemaJsonStore.value.componentsTree[
-          pageActiveIndex.value
-        ].children.findIndex((item: { id: string }) => selectedWidgetId.value === item.id);
+        const { widgetItem } = useSelectWidgetItem(newVal);
+        selectWidgetItem.value = widgetItem;
+        console.log('selectedWidgetId发生变化', newVal);
+        console.log('选中的组件', selectWidgetItem);
       }
     }
   );
@@ -136,7 +104,7 @@
 <style lang="scss" scoped>
   .right-setter-box {
     background-color: #fff;
-    height: calc(100vh - 60px);
+    height: calc(100vh);
     width: 350px;
     min-width: 350px;
     :deep(.el-tabs) {

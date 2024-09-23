@@ -87,3 +87,21 @@ export const getIntegralPayNumber = (integralPayType: string) => {
     resolve(data.data.integral_pay_num);
   });
 };
+
+// 根据ID查找出对应的数据
+export const findComponentById = (id: string, componentTree: any) => {
+  for (const component of componentTree) {
+    if (component.id === id) {
+      return component; // 找到匹配的组件，返回它
+    }
+
+    // 如果有子组件，递归查找
+    if (component.children && component.children.length > 0) {
+      const found: any = findComponentById(id, component.children);
+      if (found) {
+        return found; // 在子组件中找到，返回它
+      }
+    }
+  }
+  return null; // 没有找到
+};

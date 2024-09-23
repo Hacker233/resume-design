@@ -2,22 +2,6 @@
   <div class="designer-setting-box">
     <!-- 撤销和恢复 -->
     <div class="left">
-      <div class="icon-reset-box">
-        <div
-          :class="['icon-box', { 'is-disabled': undoCommands.length > 0 ? false : true }]"
-          @click="handleUndo"
-        >
-          <el-icon :color="undoColor" size="22px"><RefreshLeft /></el-icon>
-          <span class="undo-span">撤销</span>
-        </div>
-        <div
-          :class="['icon-box', { 'is-disabled': redoCommands.length > 0 ? false : true }]"
-          @click="handleRedo"
-        >
-          <el-icon :color="redoColor" size="22px"><RefreshRight /></el-icon>
-          <span class="redo-span">还原</span>
-        </div>
-      </div>
       <!-- 草稿保存 -->
       <div class="draft-tips-box">
         <span class="draft-tips">{{ draftTips }}</span>
@@ -162,9 +146,8 @@
   };
 
   // 返回撤销恢复按钮颜色
-  const { undo, redo, insertCache } = appStore.useUndoAndRedoStore;
+  const { insertCache } = appStore.useUndoAndRedoStore;
   const { undoCommands, redoCommands } = storeToRefs(appStore.useUndoAndRedoStore);
-  const { setUuid } = appStore.useRefreshStore;
   const undoColor = computed(() => {
     return undoCommands.value.length > 0 ? 'green' : '#aeaeae';
   });
@@ -172,18 +155,6 @@
   const redoColor = computed(() => {
     return redoCommands.value.length > 0 ? 'green' : '#aeaeae';
   });
-
-  // 撤销
-  const handleUndo = () => {
-    undo();
-    setUuid();
-  };
-
-  // 恢复
-  const handleRedo = () => {
-    redo();
-    setUuid();
-  };
 
   // 缓存步骤
   const handleCache = (oldHJSchemaJsonStore: IHJSchema) => {

@@ -28,11 +28,10 @@
 
   const props = defineProps<{
     id: string;
-    pageIndex: number;
   }>();
 
   // 选中的widgetItem
-  const { widgetItem } = useSelectWidgetItem(props.id, props.pageIndex);
+  const { widgetItem } = useSelectWidgetItem(props.id);
 
   // 输入框中的值发生改变
   const handleInput = (value: string, index: number) => {

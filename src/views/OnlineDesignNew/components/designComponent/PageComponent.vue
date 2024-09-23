@@ -8,12 +8,17 @@
     animation="500"
   >
     <template #item="{ element }">
-      <ContainerComponent v-if="element.commentType === 'container'" :component="element" />
+      <ContainerComponent
+        v-if="element.commentType === 'container'"
+        :component="element"
+        @click="seleteComponent(element)"
+      />
       <component
         :is="getWidgetCom(element)"
         v-else
-        class="drag-component"
+        :class="['drag-component', { selected: selectedWidgetId === element.id }]"
         :widget-data="element"
+        @click="seleteComponent(element)"
       ></component>
     </template>
   </Draggable>
@@ -24,6 +29,8 @@
   import ContainerComponent from './ContainerComponent.vue';
   import { IWidget } from '../../types';
   import { WIDGET_MAP } from '../../widgets';
+  import appStore from '@/store';
+  import { storeToRefs } from 'pinia';
 
   interface ComponentProps {
     id: string;
@@ -50,6 +57,13 @@
   const getWidgetCom = (item: IWidget) => {
     return WIDGET_MAP[item.componentName];
   };
+
+  // 选择组件
+  const { selectedWidgetId } = storeToRefs(appStore.useOnlineDesignNewSelectWidgetStore); // 选中的组件id
+  const seleteComponent = (element: any) => {
+    selectedWidgetId.value = element.id;
+    console.log('点击组件', element);
+  };
 </script>
 
 <style scoped lang="scss">
@@ -58,8 +72,12 @@
     border: 2px dashed transparent;
     transition: all 0.3s;
     display: inline-block;
+    position: relative;
     &:hover {
       border-color: #80e0c8;
     }
+  }
+  .selected {
+    border: 2px dashed green !important;
   }
 </style>

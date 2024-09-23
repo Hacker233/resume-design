@@ -12,6 +12,7 @@
   const props = withDefaults(defineProps<IAvatar>(), {
     widgetData: null
   });
+  console.log('text-1', props.widgetData);
 </script>
 <style lang="scss" scoped>
   .text-1-box {

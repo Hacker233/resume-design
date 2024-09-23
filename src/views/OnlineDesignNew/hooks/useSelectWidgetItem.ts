@@ -1,31 +1,37 @@
 import appStore from '@/store';
 import { storeToRefs } from 'pinia';
 
+const findComponentById = (id: string, componentTree: any) => {
+  for (const component of componentTree) {
+    if (component.id === id) {
+      return component; // 找到匹配的组件，返回它
+    }
+    if (component.children && component.children.length > 0) {
+      const found: any = findComponentById(id, component.children);
+      if (found) {
+        return found; // 在子组件中找到，返回它
+      }
+    }
+  }
+  return null; // 没有找到
+};
+
 // 获取选中的组件数据
-const useSelectWidgetItem = (id: string, pageIndex: number) => {
-  const { HJSchemaJsonStore } = storeToRefs(appStore.useLegoJsonStore);
-  const widgetItem = reactive(
-    HJSchemaJsonStore.value.componentsTree[pageIndex].children.find(
-      (item: { id: string }) => item.id === id
-    )
-  ); // 通过id获取选中的模块
+const useSelectWidgetItem = (id: string) => {
+  const { HJSchemaJsonStore } = storeToRefs(appStore.useOnlineDesignNewJsonStore);
+  const widgetItem = findComponentById(id, HJSchemaJsonStore.value.componentsTree);
 
   return {
     widgetItem
   };
 };
+
 export default useSelectWidgetItem;
 
 // 根据组件id查询出组件数据
 export const useGetWidgetItemById = (id: string) => {
-  const { HJSchemaJsonStore } = storeToRefs(appStore.useLegoJsonStore);
-  let widgetItem = reactive<any>({});
-  HJSchemaJsonStore.value.componentsTree.forEach((page, pageIndex) => {
-    const index = page.children.findIndex((item: { id: string }) => item.id === id);
-    if (index > -1) {
-      widgetItem = HJSchemaJsonStore.value.componentsTree[pageIndex].children[index];
-    }
-  });
+  const { HJSchemaJsonStore } = storeToRefs(appStore.useOnlineDesignNewJsonStore);
+  const widgetItem = reactive(findComponentById(id, HJSchemaJsonStore.value.componentsTree));
 
   return {
     widgetItem
