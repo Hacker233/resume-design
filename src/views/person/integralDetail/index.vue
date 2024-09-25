@@ -11,6 +11,11 @@
             /></p>
             <div class="get-bi-method" @click="openGetDialog">获取简币</div>
           </div>
+          <!-- 邀请注册 -->
+          <div class="integral-line invitation-people">
+            <span>邀请注册：</span>
+            <div class="get-bi-method" @click="openInvitationDialog">立即邀请</div>
+          </div>
         </div>
       </el-tab-pane>
       <el-tab-pane label="购买简币" name="buyIntegral">
@@ -72,6 +77,12 @@
       @cancle="cancleDialog"
       @confirm="cancleDialog"
     ></pay-integral-dialog>
+
+    <!-- 邀请用户弹窗 -->
+    <invitation-dialog
+      :dialog-invitation-visible="dialogInvitationVisible"
+      @cancle="cancleInvitationDialog"
+    ></invitation-dialog>
   </div>
 </template>
 <script lang="ts" setup>
@@ -142,6 +153,17 @@
   const cancleDialog = () => {
     dialogGetIntegralVisible.value = false;
   };
+
+  // 打开邀请注册弹窗
+  const dialogInvitationVisible = ref<boolean>(false);
+  const openInvitationDialog = () => {
+    dialogInvitationVisible.value = true;
+  };
+
+  // 关闭邀请注册弹窗
+  const cancleInvitationDialog = () => {
+    dialogInvitationVisible.value = false;
+  };
 </script>
 <style lang="scss" scoped>
   .my-integral-box {
@@ -153,6 +175,7 @@
       .integral-line {
         display: flex;
         align-items: center;
+        margin-bottom: 15px;
         span {
           margin-right: 10px;
         }
@@ -172,6 +195,12 @@
           -moz-user-select: none;
           -ms-user-select: none;
           user-select: none;
+          font-weight: 600;
+          background: -webkit-linear-gradient(top, #ff0000, #00ff00); /*设置线性渐变*/
+          /*为了支持更多的浏览器*/
+          background-clip: text; /*背景被裁剪到文字*/
+          -webkit-text-fill-color: transparent; /*设置文字的填充颜色*/
+          letter-spacing: 1px;
           img {
             margin-left: 10px;
           }
