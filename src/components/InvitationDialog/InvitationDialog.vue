@@ -31,19 +31,32 @@
 </template>
 
 <script lang="ts" setup>
+  import { getInviteCodeAsync } from '@/http/api/invitations';
   import useClipboard from 'vue-clipboard3';
   const emit = defineEmits(['cancle']);
   interface TDialog {
     dialogInvitationVisible: boolean;
   }
-  withDefaults(defineProps<TDialog>(), {
+  const props = withDefaults(defineProps<TDialog>(), {
     dialogInvitationVisible: false
   });
+
+  watch(
+    () => props.dialogInvitationVisible,
+    (newVal) => {
+      if (newVal) {
+        getInviteCode();
+      }
+    },
+    {
+      deep: true
+    }
+  );
 
   // 邀请人数
   const invitationNum = ref<number>(0);
   // 邀请码
-  const invitationCode = ref<string>('ASD6HD');
+  const invitationCode = ref<string>('');
 
   // 取消
   const cancle = () => {
@@ -64,6 +77,17 @@
   // 弹窗打开回调
   const handleOpen = () => {
     console.log('弹窗打开回调');
+  };
+
+  // 获取专属邀请码
+  const getInviteCode = async () => {
+    const data = await getInviteCodeAsync();
+    if (data.data.status === 200) {
+      invitationCode.value = data.data.data.inviteCode;
+      invitationNum.value = data.data.data.totalInvited;
+    } else {
+      ElMessage.error(data.data.message);
+    }
   };
 </script>
 <style lang="scss" scoped>

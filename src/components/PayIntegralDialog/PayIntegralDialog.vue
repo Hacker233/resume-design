@@ -67,19 +67,17 @@
 
               <li>
                 <div class="top">
-                  <h1>评论</h1>
+                  <h1>邀请注册</h1>
                   <div class="circle"
-                    >5 <img width="16" src="@/assets/images/jianB.png" alt="简币"
+                    >20 <img width="16" src="@/assets/images/jianB.png" alt="简币"
                   /></div>
                 </div>
                 <div class="bottom">
                   <p class="content-desc"
-                    >每次评论免费获得+1简币（每日最多+5个，评论违规被删除将扣除简币！）</p
+                    >每邀请一位新用户注册化简，您将获得+20个简币（新用户注册时填写您的专属邀请码）</p
                   >
                   <div class="attendance-box">
-                    <el-tooltip content="前往任意评论区评论即可~">
-                      <div class="have-attend">去评论</div>
-                    </el-tooltip>
+                    <div class="button" @click="getInviteCode">获取专属邀请码</div>
                   </div>
                 </div>
               </li>
@@ -174,6 +172,12 @@
     :dialog-buy-integral-visible="dialogBuyIntegralVisible"
     @cancle="handlePayIntegralCancle"
   ></buy-integral-dialog>
+
+  <!-- 邀请用户弹窗 -->
+  <invitation-dialog
+    :dialog-invitation-visible="dialogInvitationVisible"
+    @cancle="cancleInvitationDialog"
+  ></invitation-dialog>
 </template>
 <script lang="ts" setup>
   import { addIntegralLogAsync } from '@/http/api/integral';
@@ -256,6 +260,17 @@
   // 跳转至源码
   const toWebCode = () => {
     router.push('/webcode');
+  };
+
+  // 获取专属邀请码
+  const dialogInvitationVisible = ref<boolean>(false);
+  const getInviteCode = async () => {
+    dialogInvitationVisible.value = true;
+  };
+
+  // 关闭邀请弹窗
+  const cancleInvitationDialog = () => {
+    dialogInvitationVisible.value = false;
   };
 </script>
 <style lang="scss">
@@ -469,7 +484,7 @@
             letter-spacing: 4px;
             font-size: 14px;
             border-radius: 3px;
-            cursor: not-allowed;
+            cursor: pointer;
           }
         }
       }

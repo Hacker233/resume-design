@@ -19,6 +19,7 @@
             ref="registerRuleFormRef"
             class="forms_form"
             :model="registerForm"
+            size="small"
             :rules="registerRules"
           >
             <!-- 昵称 -->
@@ -64,7 +65,7 @@
               />
             </el-form-item>
             <!-- 邮箱验证码 -->
-            <el-form-item prop="surePassword">
+            <el-form-item prop="verificationCode">
               <div class="email-code-box">
                 <el-input
                   v-model="registerForm.verificationCode"
@@ -75,12 +76,22 @@
                 <el-button
                   :disabled="!isEmail || isDisabled"
                   class="get-email-code"
+                  size="small"
                   type="primary"
                   @click.stop="getEmailCode"
                 >
                   {{ isDisabled ? `${countdown}s 后重试` : '获取验证码' }}</el-button
                 >
               </div>
+            </el-form-item>
+            <!-- 注册邀请码 -->
+            <el-form-item>
+              <el-input
+                v-model.trim="registerForm.inviteCode"
+                class="forms_field-input"
+                placeholder="邀请码（非必填）"
+                @keyup.enter="register(registerRuleFormRef)"
+              />
             </el-form-item>
           </el-form>
           <el-button
@@ -94,7 +105,13 @@
         <div class="form-container sign-in-container">
           <h1>登录</h1>
           <div class="social-container"> </div>
-          <el-form ref="loginRuleFormRef" class="forms_form" :model="loginForm" :rules="loginRules">
+          <el-form
+            ref="loginRuleFormRef"
+            class="forms_form"
+            size="small"
+            :model="loginForm"
+            :rules="loginRules"
+          >
             <el-form-item prop="email">
               <el-input
                 v-model="loginForm.email"
@@ -234,13 +251,15 @@
     password: string;
     surePassword: string;
     verificationCode: string;
+    inviteCode: string;
   }
   const registerForm = reactive<IRegisterForm>({
-    name: '',
-    email: '',
-    password: '',
-    surePassword: '',
-    verificationCode: ''
+    name: '', // 昵称
+    email: '', // 注册邮箱
+    password: '', // 密码
+    surePassword: '', // 确认密码
+    verificationCode: '', // 邮箱验证码
+    inviteCode: '' // 邀请码
   });
   const registerRules = reactive<FormRules>({
     name: [{ required: true, message: '请输入用户名', trigger: 'change' }],
@@ -252,7 +271,8 @@
         trigger: 'change'
       }
     ],
-    surePassword: [{ required: true, validator: surePassValidator, trigger: 'change' }]
+    surePassword: [{ required: true, validator: surePassValidator, trigger: 'change' }],
+    verificationCode: [{ required: true, message: '邮箱验证码不能为空', trigger: 'change' }]
   });
 
   const show = ref<boolean>(true);
@@ -352,7 +372,8 @@
           name: registerForm.name,
           email: registerForm.email,
           password: registerForm.password,
-          verificationCode: registerForm.verificationCode
+          verificationCode: registerForm.verificationCode,
+          inviteCode: registerForm.inviteCode
         };
         const data = await registerAsync(params);
         if (data.status === 200) {
@@ -477,7 +498,7 @@
       height: 48px;
       align-items: center;
       .get-email-code {
-        height: 47px;
+        height: 40px;
         display: flex;
         padding: 0;
         width: 150px;
@@ -497,7 +518,7 @@
       overflow: hidden;
       width: 768px;
       max-width: 100%;
-      min-height: 500px;
+      min-height: 550px;
     }
 
     .form-container {
