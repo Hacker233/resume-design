@@ -6,6 +6,9 @@ export const HJNewSchema: IHJNewSchema = {
   componentsTree: [], // 描述组件/区块/模板的组件树
   i18n: {}, // 国际化语料库
   constants: {}, // 全局常量
+  props: {
+    pageName: ''
+  },
   css: {
     width: 820,
     height: 1160,
