@@ -5,7 +5,8 @@ import CONFIG from '@/config';
 
 const Designer = () => import('@/views/designer/index.vue');
 const Index = () => import('@/views/index/index.vue');
-const Custom = () => import('@/views/custom/index.vue');
+// const Custom = () => import('@/views/custom/index.vue');
+const Custom = () => import('@/views/createTemplate/designer/index.vue');
 const EmailVerify = () => import('@/views/emailVerify/index.vue');
 const ForgetPassword = () => import('@/views/forgetPassword/index.vue');
 const ResetPassword = () => import('@/views/resetPassword/index.vue');

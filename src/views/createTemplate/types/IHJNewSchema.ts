@@ -42,4 +42,23 @@ interface IModule {
   dataSource: any; // 组件单独数据
   customProps?: any; // 自定义属性字段
 }
-export { IHJNewSchema, IModule };
+
+// 模块列表类型
+interface IModulesList {
+  [key: string]: {
+    id: string;
+    moduleChName: string;
+    category: string;
+    icon: string;
+    props: Record<string, any>;
+    dataSource: Record<string, any>;
+    css: Record<string, any>;
+    list: Array<any>;
+  };
+}
+
+interface ISetterMap {
+  [propName: string]: any;
+}
+
+export { IHJNewSchema, IModule, IModulesList, ISetterMap };

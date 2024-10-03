@@ -5,6 +5,7 @@ import { IHJNewSchema, IModule } from '@/views/createTemplate/types/IHJNewSchema
 
 // 创建在线制作模版store
 export const useCreateTemplateStore = defineStore('createTemplate', () => {
+  const selectedModuleId = ref<string>(''); // 选中的模块的id
   const resume_json = cloneDeep(HJNewSchema); // 简历数据
   const HJNewJsonStore = ref<IHJNewSchema>(resume_json);
   function changeResumeJsonData(obj: IHJNewSchema) {
@@ -18,6 +19,7 @@ export const useCreateTemplateStore = defineStore('createTemplate', () => {
   }
 
   return {
+    selectedModuleId,
     HJNewJsonStore,
     changeResumeJsonData,
     pushComponent,

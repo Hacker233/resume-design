@@ -2,7 +2,7 @@
 
 import CommonPage from '../pages/CommonPage.vue';
 
-// 定义属性组件列表
+// 定义页面组件列表
 const pageComponents: any = {
   CommonPage
 };
