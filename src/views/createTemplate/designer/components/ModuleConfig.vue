@@ -28,7 +28,7 @@
           </el-collapse-item>
           <el-collapse-item
             v-if="module && Object.keys(module.css).length"
-            title="样式属性"
+            title="组件整体样式"
             name="styleProp"
           >
             <el-form label-width="90px" label-position="left">
@@ -36,6 +36,24 @@
                 <component
                   :is="getStyleSetterCom(key)"
                   :id="selectedModuleId"
+                  :value="value"
+                ></component>
+              </div>
+            </el-form>
+          </el-collapse-item>
+          <!-- 自定义的样式属性 -->
+          <el-collapse-item
+            v-for="(customItem, customIndex) in module.customCss"
+            :key="customIndex"
+            :title="customItem.title"
+            :name="customItem.prop"
+          >
+            <el-form label-width="90px" label-position="left">
+              <div v-for="(value, key, index) in customItem.css" :key="index">
+                <component
+                  :is="getStyleSetterCom(key)"
+                  :id="selectedModuleId"
+                  :custom-css-prop="customItem.prop"
                   :value="value"
                 ></component>
               </div>
@@ -73,18 +91,19 @@
   import settersStyleCptMap from '../setters/style/settersStyleCptMap';
   import settersPropsCptMap from '../setters/props/settersPropsCptMap';
   import settersDataCptMap from '../setters/data/settersDataCptMap';
+  import { IModule } from '../../types/IHJNewSchema';
 
   const { selectedModuleId } = storeToRefs(appStore.useCreateTemplateStore);
 
   const activeName = ref('style');
 
   // 折叠面板
-  const activeNames = ref(['cptProp', 'styleProp']);
+  const activeNames = ref([]);
 
   // 数据配置折叠面板
   const activeDataNames = ref<string>('dataProp');
 
-  const module = ref<any>(null);
+  const module = ref<IModule | any>({});
   watch(
     () => selectedModuleId.value,
     (newVal) => {

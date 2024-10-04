@@ -20,16 +20,15 @@
 </template>
 <script lang="ts" setup>
   import { useFontFamilyList } from '../../hooks/useFontFamlyList';
-  import { useGetSelectedModule } from '../../hooks/useGetSelectedModule';
+  import { useModuleWithStyle } from './useModuleWithStyle';
 
   const props = defineProps<{
     id: string;
-    pageIndex: number;
+    customCssProp?: string;
   }>();
 
   // 选中的module
-  const module = useGetSelectedModule(props.id);
-
+  const { module } = useModuleWithStyle(props.id, props.customCssProp);
   // 字体列表
   const fontFamilyList = useFontFamilyList();
 

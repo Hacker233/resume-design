@@ -6,11 +6,15 @@
     group="custom"
     :sort="true"
     item-key="id"
-    :style="style"
+    :style="pageStyle"
   >
     <template #item="{ element }">
-      <div v-contextmenu:contextmenu class="create-template-elemet">
-        <module-box :module="getMergeElement(element)"></module-box>
+      <div
+        v-contextmenu:contextmenu
+        class="create-template-elemet"
+        @contextmenu.prevent="handleContextMenu(element)"
+      >
+        <module-box :module="element"></module-box>
       </div>
     </template>
   </draggable>
@@ -26,43 +30,29 @@
   import { storeToRefs } from 'pinia';
   import draggable from 'vuedraggable';
   import ModuleBox from '../components/ModuleBox.vue';
-  import modulesList from '../schema/module';
   import { IModule } from '../../types/IHJNewSchema';
+  import { useDeleteModule } from '../hooks/useDeleteModule';
+  import { useCopyModule } from '../hooks/useCopyModule';
+  import { useGetPageStyle } from '../hooks/useGetPageStyle';
 
-  const { HJNewJsonStore } = storeToRefs(appStore.useCreateTemplateStore);
+  const { HJNewJsonStore, selectedModuleId } = storeToRefs(appStore.useCreateTemplateStore);
 
   // 返回页面样式
-  const style = computed(() => {
-    return {
-      width: `${HJNewJsonStore.value.css.width}px`,
-      minHeight: `${HJNewJsonStore.value.css.height}px`,
-      background: HJNewJsonStore.value.css.background || '#ffffff',
-      opacity: HJNewJsonStore.value.css.opacity,
-      backgroundImage: HJNewJsonStore.value.css.backgroundImage || '',
-      fontFamily: HJNewJsonStore.value.css.fontFamily || ''
-    };
-  });
+  const pageStyle = useGetPageStyle();
 
-  // 合并数据
-  const getMergeElement = (element: IModule) => {
-    element.dataSource = {
-      ...modulesList[element.category].dataSource,
-      ...element.dataSource
-    };
-    element.css = {
-      ...modulesList[element.category].css,
-      ...element.css
-    };
-    element.props = {
-      ...modulesList[element.category].props,
-      ...element.props
-    };
-    return element;
+  // 点击右键菜单
+  const handleContextMenuItem = (type: string) => {
+    if (type === 'copy') {
+      useCopyModule();
+    } else if (type === 'delete') {
+      useDeleteModule();
+    }
   };
 
   // 右键
-  const handleContextMenuItem = (type: string) => {
-    console.log('右键菜单类型', type);
+  const handleContextMenu = (element: IModule) => {
+    console.log('右键', element);
+    selectedModuleId.value = element.id;
   };
 </script>
 <style lang="scss" scoped>

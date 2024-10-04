@@ -20,14 +20,15 @@
 </template>
 <script lang="ts" setup>
   import { useFontSizeList } from '../../hooks/useFontSizeList';
-  import { useGetSelectedModule } from '../../hooks/useGetSelectedModule';
+  import { useModuleWithStyle } from './useModuleWithStyle';
 
   const props = defineProps<{
     id: string;
+    customCssProp?: string;
   }>();
 
   // 选中的module
-  const module = useGetSelectedModule(props.id);
+  const { module } = useModuleWithStyle(props.id, props.customCssProp);
 
   // 字号列表
   const fontSizeList = useFontSizeList();

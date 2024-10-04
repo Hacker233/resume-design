@@ -38,7 +38,8 @@ interface IModule {
   keywords: string; // 组件关键词，用于搜索
   category: string; // 组件分类
   props: any; // 组件属性
-  css: any; // 组件样式
+  css: any; // 组件整体样式
+  customCss: any; // 组件内部自定义的一些样式
   dataSource: any; // 组件单独数据
   customProps?: any; // 自定义属性字段
 }

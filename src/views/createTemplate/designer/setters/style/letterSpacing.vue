@@ -6,14 +6,15 @@
   </div>
 </template>
 <script lang="ts" setup>
-  import { useGetSelectedModule } from '../../hooks/useGetSelectedModule';
+  import { useModuleWithStyle } from './useModuleWithStyle';
 
   const props = defineProps<{
     id: string;
+    customCssProp?: string;
   }>();
 
   // 选中的module
-  const module = useGetSelectedModule(props.id);
+  const { module } = useModuleWithStyle(props.id, props.customCssProp);
 </script>
 <style lang="scss" scoped>
   .el-form-item {

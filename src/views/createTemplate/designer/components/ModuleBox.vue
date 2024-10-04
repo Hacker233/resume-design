@@ -22,7 +22,6 @@
     return selectedModuleId.value && selectedModuleId.value === props.module.id;
   });
 
-  console.log('module', props.module);
   const { selectedModuleId } = storeToRefs(appStore.useCreateTemplateStore);
   // 点击模块
   const selectModule = () => {
@@ -34,14 +33,14 @@
   .module-box {
     transition: all 0.3s;
     &:hover {
-      border: 2px dashed green;
+      box-shadow: 0 10px 22px 2px #00253a3d;
     }
     .module-component {
       cursor: move !important;
     }
   }
   .module-active {
-    border: 2px dashed green;
+    box-shadow: 0 10px 22px 2px #00253a3d;
   }
 </style>
 <style lang="scss">
