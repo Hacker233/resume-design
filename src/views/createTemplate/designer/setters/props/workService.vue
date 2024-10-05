@@ -1,7 +1,7 @@
-tem<template>
+<template>
   <div class="height-editor-box">
-    <el-form-item size="default" :label="module.props.title.chName">
-      <el-switch v-model="module.props.title.show" />
+    <el-form-item size="default" :label="module.props.workService.chName">
+      <el-switch v-model="module.props.workService.show" />
     </el-form-item>
   </div>
 </template>

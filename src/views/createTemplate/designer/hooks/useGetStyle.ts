@@ -4,8 +4,16 @@ import { IModule } from '../../types/IHJNewSchema';
 export const useGetBoxStyle = (props: { module: IModule }) => {
   const boxStyle = computed(() => {
     return {
-      width: `${props.module.css.width}px`,
-      height: `${props.module.css.height}px`,
+      width: props.module.css?.width
+        ? typeof props.module.css.width === 'string'
+          ? props.module.css.width
+          : `${props.module.css.width}px`
+        : '',
+      height: props.module.css?.height
+        ? typeof props.module.css.height === 'string'
+          ? props.module.css.height
+          : `${props.module.css.height}px`
+        : '',
       background: props.module.css.background || '#ffffff',
       opacity: props.module.css.opacity || 1,
       backgroundImage: props.module.css.backgroundImage || '',
@@ -17,14 +25,14 @@ export const useGetBoxStyle = (props: { module: IModule }) => {
       flexDirection: props.module.css.flexDirection || 'row',
       justifyContent: props.module.css.justifyContent || 'flex-start',
       alignItems: props.module.css.alignItems || 'center',
-      paddingTop: `${props.module.css.padding.top}px` || '0px',
-      paddingBottom: `${props.module.css.padding.bottom}px` || '0px',
-      paddingLeft: `${props.module.css.padding.left}px` || '0px',
-      paddingRight: `${props.module.css.padding.right}px` || '0px',
-      marginTop: `${props.module.css.margin.top}px` || '0px',
-      marginBottom: `${props.module.css.margin.bottom}px` || '0px',
-      marginLeft: `${props.module.css.margin.left}px` || '0px',
-      marginRight: `${props.module.css.margin.right}px` || '0px',
+      paddingTop: `${props.module?.css?.padding?.top}px` || '0px',
+      paddingBottom: `${props.module?.css?.padding?.bottom}px` || '0px',
+      paddingLeft: `${props.module?.css?.padding?.left}px` || '0px',
+      paddingRight: `${props.module?.css?.padding?.right}px` || '0px',
+      marginTop: `${props.module?.css?.margin?.top}px` || '0px',
+      marginBottom: `${props.module?.css?.margin?.bottom}px` || '0px',
+      marginLeft: `${props.module?.css?.margin?.left}px` || '0px',
+      marginRight: `${props.module?.css?.margin?.right}px` || '0px',
       borderWidth: `${props.module.css.borderWidth}px` || '0px',
       borderColor: props.module.css.borderColor || '#eee',
       borderRadius: `${props.module.css.borderRadius}px` || '0px',

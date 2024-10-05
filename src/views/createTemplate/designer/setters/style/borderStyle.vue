@@ -35,8 +35,7 @@
 
   // 切换borderStyle
   const changeBorderStyle = (item: string) => {
-    module.css.borderStyle = item;
-    console.log('widgetItem', module);
+    module.value.css.borderStyle = item;
   };
 </script>
 <style lang="scss" scoped>

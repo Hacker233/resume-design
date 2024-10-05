@@ -54,13 +54,13 @@
         </div>
         <!-- 没有选中组件时展示 -->
         <div v-else class="no-data">
-          <no-data></no-data>
+          <no-data width="150px" height="150px"></no-data>
         </div>
       </template>
 
       <!-- 没有选中组件时展示 -->
       <div v-else class="no-data">
-        <no-data></no-data>
+        <no-data width="150px" height="150px"></no-data>
       </div>
     </div>
   </div>
@@ -125,11 +125,12 @@
 </script>
 <style lang="scss" scoped>
   .module-select-list {
-    width: 400px;
     display: flex;
+    width: 100%;
     .module-select {
-      width: 80px;
+      width: 65px;
       border-right: 1px solid #eee;
+      flex-shrink: 0;
       .left-title {
         width: 100%;
         height: 60px;
@@ -180,6 +181,7 @@
     }
     .module-list-box {
       flex: 1;
+      overflow: hidden;
       .list-title {
         height: 60px;
         display: flex;

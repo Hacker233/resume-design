@@ -7,15 +7,23 @@ export const useGetCustomStyle = (module: IModule, prop: string) => {
       const element: any = module.customCss[i];
       if (prop === element.prop) {
         return {
-          width: element.css?.width ? `${element.css.width}px` : '',
-          height: element.css?.height ? `${element.css.height}px` : '100%',
+          width: element.css?.width
+            ? typeof element.css.width === 'string'
+              ? element.css.width
+              : `${element.css.width}px`
+            : '',
+          height: element.css?.height
+            ? typeof element.css.height === 'string'
+              ? element.css.height
+              : `${element.css.height}px`
+            : '',
           background: element.css?.background || '',
           opacity: element.css?.opacity ?? '',
           backgroundImage: element.css?.backgroundImage || '',
           fontSize: element.css?.fontSize ? `${element.css.fontSize}px` : '',
           fontFamily: element.css?.fontFamily || '',
           fontWeight: element.css?.fontWeight || '',
-          color: element.css?.color || '',
+          color: element.css?.color || '#121c26',
           display: element.css?.display || '',
           flexDirection: element.css?.flexDirection || '',
           justifyContent: element.css?.justifyContent || '',

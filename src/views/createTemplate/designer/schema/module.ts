@@ -1,4 +1,8 @@
 import { IModulesList } from '../../types/IHJNewSchema';
+import commonCss from './commonCss';
+import commonDataSource from './commonDataSource';
+import commonProps from './commonProps';
+import customCss from './customCss';
 
 const modulesList: IModulesList = {
   resume_title: {
@@ -6,43 +10,9 @@ const modulesList: IModulesList = {
     moduleChName: '简历标题', // 模块中文名
     category: 'resumeTitle', // 模块分了
     icon: 'icon-title', // 模块图标
-    props: {
-      title: true
-    }, // 公共的props
-    dataSource: {
-      title: '我的简历'
-    }, // 该分类下公用数据源
-    css: {
-      width: 820,
-      height: 300,
-      display: 'flex',
-      flexDirection: 'row',
-      justifyContent: 'flex-start',
-      alignItems: 'center',
-      background: '#fff',
-      fontSize: '16px',
-      fontWeight: 400,
-      fontFamily: '微软雅黑',
-      color: '#fff',
-      letterSpacing: 0,
-      opacity: 1,
-      padding: {
-        top: 0,
-        right: 0,
-        bottom: 0,
-        left: 0
-      },
-      margin: {
-        top: 0,
-        right: 0,
-        bottom: 0,
-        left: 0
-      },
-      borderWidth: 0,
-      borderRadius: 0,
-      borderColor: '#eee',
-      borderStyle: 'solid'
-    }, // 公共css属性
+    props: commonProps['resumeTitle'], // 公共的props
+    dataSource: commonDataSource['resumeTitle'], // 该分类下公用数据源
+    css: commonCss['resumeTitle'], // 公共css属性
     list: [
       {
         id: 'ResumeTitle_1', // 组件唯一性id
@@ -70,22 +40,7 @@ const modulesList: IModulesList = {
             top: 10
           }
         }, // 组件样式
-        customCss: [
-          {
-            title: '内置方块样式',
-            prop: 'custom_css_1',
-            css: {
-              width: 36,
-              background: '#258bb1',
-              margin: {
-                bottom: 0,
-                left: 0,
-                right: 18,
-                top: 0
-              }
-            }
-          }
-        ],
+        customCss: customCss['ResumeTitle_1'],
         dataSource: {}, // 组件单独数据
         customProps: {} // 自定义属性字段
       },
@@ -122,25 +77,7 @@ const modulesList: IModulesList = {
           },
           justifyContent: 'flex-end'
         }, // 组件样式
-        customCss: [
-          {
-            title: '内置方块样式',
-            prop: 'custom_css_1',
-            css: {
-              display: 'flex',
-              flexDirection: 'row',
-              justifyContent: 'flex-start',
-              alignItems: 'center',
-              background: '#ff9916',
-              padding: {
-                bottom: 0,
-                left: 15,
-                right: 15,
-                top: 0
-              }
-            }
-          }
-        ],
+        customCss: customCss['ResumeTitle_2'],
         dataSource: {}, // 组件单独数据
         customProps: {} // 自定义属性字段
       }
@@ -151,10 +88,39 @@ const modulesList: IModulesList = {
     moduleChName: '基本资料', // 模块中文名
     category: 'baseInfo', // 模块分了
     icon: 'icon-jichuxinxi', // 模块图标
-    props: {}, // 公共的props
-    dataSource: {}, // 该分类下公用数据源
-    css: {},
-    list: []
+    props: commonProps['baseInfo'], // 公共的props
+    dataSource: commonDataSource['baseInfo'], // 该分类下公用数据源
+    css: commonCss['baseInfo'],
+    list: [
+      {
+        id: 'BaseInfo_1', // 组件唯一性id
+        componentName: 'BaseInfo_1', // 组件名
+        commentType: '', // 组件类型
+        icon: '', // 组件icon
+        title: '基本信息_1', // 组件中文名称
+        description: '基本信息模块', // 组件描述信息
+        screenShot: {
+          width: '',
+          url: '',
+          name: 'BaseInfo_1.png'
+        }, // 组件快照
+        keywords: '简历标题', // 组件关键词，用于搜索
+        category: 'base_info', // 组件分类
+        props: {}, // 组件属性
+        css: {
+          alignItems: 'flex-end',
+          padding: {
+            top: 0,
+            right: 5,
+            bottom: 15,
+            left: 40
+          }
+        }, // 组件样式
+        customCss: customCss['BaseInfo_1'],
+        dataSource: {}, // 组件单独数据
+        customProps: {} // 自定义属性字段
+      }
+    ]
   }
 };
 

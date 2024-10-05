@@ -10,6 +10,9 @@
     >
       <el-tab-pane label="基本配置" name="style">
         <el-collapse v-model="activeNames">
+          <div class="collapse-line-bolck">
+            <h1>组件相关属性设置</h1>
+          </div>
           <!-- 组件属性 -->
           <el-collapse-item
             v-if="module && Object.keys(module.props).length"
@@ -26,6 +29,9 @@
               </div>
             </el-form>
           </el-collapse-item>
+          <div class="collapse-line-bolck">
+            <h1>组件整体样式属性设置</h1>
+          </div>
           <el-collapse-item
             v-if="module && Object.keys(module.css).length"
             title="组件整体样式"
@@ -42,6 +48,9 @@
             </el-form>
           </el-collapse-item>
           <!-- 自定义的样式属性 -->
+          <div class="collapse-line-bolck">
+            <h1>内部子组件样式属性设置</h1>
+          </div>
           <el-collapse-item
             v-for="(customItem, customIndex) in module.customCss"
             :key="customIndex"
@@ -61,10 +70,10 @@
           </el-collapse-item>
         </el-collapse>
       </el-tab-pane>
-      <el-tab-pane class="data-tab-pane" label="数据" name="second">
+      <el-tab-pane class="data-tab-pane" label="数据配置" name="second">
         <el-collapse v-model="activeDataNames">
           <el-collapse-item title="数据配置" name="dataProp">
-            <el-form label-width="90px" label-position="left">
+            <el-form label-width="100px" label-position="left">
               <div v-for="(value, key, index) in module.dataSource" :key="index">
                 <component
                   :is="getDataSetterCom(key)"
@@ -202,6 +211,22 @@
       display: flex;
       align-items: center;
       justify-content: center;
+    }
+    .collapse-line-bolck {
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 5px 21px 0 rgba(78, 78, 78, 0.05);
+      background: linear-gradient(0deg, #f3e7e9 0%, #e3eeff 100%);
+      user-select: none;
+      h1 {
+        font-size: 16px;
+        margin: 0;
+        letter-spacing: 1px;
+        font-weight: bold;
+        font-family: '微软雅黑';
+      }
     }
   }
 </style>

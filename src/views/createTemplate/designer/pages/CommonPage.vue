@@ -59,5 +59,6 @@
   .page-box {
     width: 820px;
     min-height: 1160px;
+    flex-shrink: 0;
   }
 </style>

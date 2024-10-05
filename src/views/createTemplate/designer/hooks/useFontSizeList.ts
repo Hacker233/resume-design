@@ -3,7 +3,7 @@
  */
 export const useFontSizeList = () => {
   const list = reactive<Array<any>>([]);
-  for (let index = 8; index < 200; index += 2) {
+  for (let index = 8; index < 200; index += 1) {
     list.push({
       label: index,
       value: index

@@ -93,11 +93,13 @@
       .module-left {
         height: 100%;
         background-color: #fff;
+        flex: 1;
+        max-width: 500px;
       }
       .design-center {
         height: calc(100vh - 50px);
         flex: 1;
-        min-width: 1000px;
+        min-width: 970px;
         position: relative;
         .center-wrapper {
           width: 100%;
@@ -118,8 +120,9 @@
       }
       .prop-right {
         height: 100%;
-        width: 400px;
+        max-width: 500px;
         background-color: #fff;
+        flex: 1;
       }
     }
   }

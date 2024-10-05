@@ -9,8 +9,8 @@
     height?: string;
   }
   const props = withDefaults(defineProps<INoData>(), {
-    width: '300px',
-    height: '300px'
+    width: '200px',
+    height: '200px'
   });
 </script>
 <style lang="scss">
