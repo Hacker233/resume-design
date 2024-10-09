@@ -17,7 +17,7 @@ export const useGetCustomStyle = (module: IModule, prop: string) => {
               ? element.css.height
               : `${element.css.height}px`
             : '',
-          background: element.css?.background || '',
+          background: element.css?.background || 'none',
           opacity: element.css?.opacity ?? '',
           backgroundImage: element.css?.backgroundImage || '',
           fontSize: element.css?.fontSize ? `${element.css.fontSize}px` : '',
@@ -25,6 +25,7 @@ export const useGetCustomStyle = (module: IModule, prop: string) => {
           fontWeight: element.css?.fontWeight || '',
           color: element.css?.color || '#121c26',
           display: element.css?.display || '',
+          flex: element.css?.flex || '',
           flexDirection: element.css?.flexDirection || '',
           justifyContent: element.css?.justifyContent || '',
           alignItems: element.css?.alignItems || '',
@@ -54,7 +55,11 @@ export const useGetCustomStyle = (module: IModule, prop: string) => {
           left: element.css?.left ? `${element.css.left}px` : '',
           cursor: element.css?.cursor || '',
           transition: element.css?.transition || '',
-          transform: element.css?.transform || '',
+
+          // 处理旋转
+          transform: element.css?.rotate
+            ? `rotate(${element.css.rotate}deg)`
+            : element.css?.transform || '',
 
           // 一级标题样式
           heading1FontSize: element.css?.heading1FontSize || '',

@@ -1,7 +1,45 @@
 import { IModule } from '../../types/IHJNewSchema';
 
+// 使用 import.meta.glob 来加载资产目录下的所有图片
+const images = import.meta.glob('/src/assets/createTemplateImages/*', { eager: true });
+console.log('images', images);
+
 // 返回最外层样式
 export const useGetBoxStyle = (props: { module: IModule }) => {
+  const background = ref('');
+
+  const loadBackgroundImage = async (backgroundPath: string) => {
+    if (backgroundPath) {
+      const isOnlineUrl = backgroundPath.includes('https://');
+      if (isOnlineUrl) {
+        background.value = backgroundPath;
+      } else {
+        const imageKey = `/src/assets/createTemplateImages/${backgroundPath}`;
+        const image = images[imageKey] as { default: string }; // 类型断言
+        if (image) {
+          // 这里确保你取到了正确的图像 URL
+          background.value = `url(${image.default}) no-repeat`;
+        } else {
+          console.error(`Image not found for path: ${imageKey}`);
+        }
+      }
+    } else {
+      background.value = props.module.css.background || 'none';
+    }
+  };
+
+  // 在这里加载背景图像
+  loadBackgroundImage(props.module.css.backgroundPath);
+
+  watch(
+    () => props.module.css.backgroundPath,
+    (newPath) => {
+      console.log('backgroundPath变化', newPath);
+      loadBackgroundImage(newPath);
+    },
+    { immediate: true }
+  );
+
   const boxStyle = computed(() => {
     return {
       width: props.module.css?.width
@@ -14,14 +52,14 @@ export const useGetBoxStyle = (props: { module: IModule }) => {
           ? props.module.css.height
           : `${props.module.css.height}px`
         : '',
-      background: props.module.css.background || '#ffffff',
+      background: background.value,
       opacity: props.module.css.opacity || 1,
-      backgroundImage: props.module.css.backgroundImage || '',
       fontSize: `${props.module.css.fontSize}px` || '',
       fontFamily: props.module.css.fontFamily || '微软雅黑',
       fontWeight: props.module.css.fontWeight || 400,
       color: props.module.css.color || '#000',
       display: props.module.css.display || 'flex',
+      flex: props.module.css.flex || '',
       flexDirection: props.module.css.flexDirection || 'row',
       justifyContent: props.module.css.justifyContent || 'flex-start',
       alignItems: props.module.css.alignItems || 'center',
@@ -51,7 +89,11 @@ export const useGetBoxStyle = (props: { module: IModule }) => {
       left: props.module.css.left ? `${props.module.css.left}px` : 'auto',
       cursor: props.module.css.cursor || 'auto',
       transition: props.module.css.transition || 'none',
-      transform: props.module.css.transform || 'none',
+
+      // 处理旋转
+      transform: props.module.css?.rotate
+        ? `rotate(${props.module.css.rotate}deg)`
+        : props.module.css?.transform || '',
 
       // 一级标题样式
       heading1FontSize: props.module.css.heading1FontSize || '32px',
@@ -82,6 +124,6 @@ export const useGetBoxStyle = (props: { module: IModule }) => {
       bodyLetterSpacing: props.module.css.bodyLetterSpacing || 'normal'
     };
   });
-
+  console.log('计算boxStyle', boxStyle);
   return boxStyle;
 };

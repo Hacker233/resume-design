@@ -38,6 +38,7 @@ const commonCss: any = {
     justifyContent: 'flex-start',
     alignItems: 'center',
     background: '#fff',
+    backgroundPath: '', // 背景图片
     fontSize: '16px',
     fontWeight: 400,
     fontFamily: '微软雅黑',

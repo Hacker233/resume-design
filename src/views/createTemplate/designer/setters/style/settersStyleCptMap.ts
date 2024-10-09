@@ -18,6 +18,9 @@ import borderColor from './borderColor.vue';
 import borderStyle from './borderStyle.vue';
 import padding from './padding.vue';
 import margin from './margin.vue';
+import rotate from './rotate.vue';
+import flex from './flex.vue';
+// import backgroundPath from './backgroundPath.vue';
 
 const settersStyleCptMap: ISetterMap = {
   width,
@@ -37,6 +40,9 @@ const settersStyleCptMap: ISetterMap = {
   borderColor,
   borderStyle,
   padding,
-  margin
+  margin,
+  rotate,
+  flex
+  // backgroundPath
 };
 export default settersStyleCptMap;
