@@ -1,8 +1,34 @@
 <template>
-  <div class="height-editor-box">
-    <el-form-item size="default" label="边框宽度:">
-      <el-input-number v-model="module.css.borderWidth" size="default" :min="0" />
-      <span class="unit">像素</span>
+  <div class="padding-editor-box">
+    <el-form-item label="边框宽度:">
+      <div class="padding-setting-box">
+        <div class="left">
+          <el-input-number
+            v-model="module.css.borderWidth.left"
+            :min="0"
+            controls-position="right"
+          />
+        </div>
+        <div class="center">
+          <el-input-number
+            v-model="module.css.borderWidth.top"
+            :min="0"
+            controls-position="right"
+          />
+          <el-input-number
+            v-model="module.css.borderWidth.bottom"
+            :min="0"
+            controls-position="right"
+          />
+        </div>
+        <div class="right">
+          <el-input-number
+            v-model="module.css.borderWidth.right"
+            :min="0"
+            controls-position="right"
+          />
+        </div>
+      </div>
     </el-form-item>
   </div>
 </template>
@@ -11,28 +37,40 @@
 
   const props = defineProps<{
     id: string;
-    customCssProp?: string;
+    customCssProp?: string; // 有值，则代表是自定义样式属性设置
   }>();
 
-  // 选中的module
   const { module } = useModuleWithStyle(props.id, props.customCssProp);
 </script>
 <style lang="scss" scoped>
-  .height-editor-box {
+  .padding-editor-box {
     .el-form-item {
       display: flex;
-      .el-form-item__content {
-        flex: 1;
+      justify-content: space-between;
+      align-items: center;
+      .padding-setting-box {
         display: flex;
-        .el-input-number {
-          flex: 1;
+        justify-content: space-between;
+        width: 70%;
+        align-items: center;
+        :deep(.el-input__wrapper) {
+          padding-left: 0;
+          padding-right: 25px;
+        }
+        .left,
+        .right,
+        .center {
+          width: 30px;
+          .el-input-number {
+            width: 65px;
+          }
+        }
+        .center {
+          .el-input-number {
+            margin: 12px 0;
+          }
         }
       }
-    }
-    .unit {
-      margin-left: 10px;
-      color: #929292;
-      letter-spacing: 2px;
     }
   }
 </style>

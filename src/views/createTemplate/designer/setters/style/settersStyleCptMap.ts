@@ -20,6 +20,7 @@ import padding from './padding.vue';
 import margin from './margin.vue';
 import rotate from './rotate.vue';
 import flex from './flex.vue';
+import themeColor from './themeColor.vue';
 // import backgroundPath from './backgroundPath.vue';
 
 const settersStyleCptMap: ISetterMap = {
@@ -42,7 +43,8 @@ const settersStyleCptMap: ISetterMap = {
   padding,
   margin,
   rotate,
-  flex
+  flex,
+  themeColor
   // backgroundPath
 };
 export default settersStyleCptMap;

@@ -71,7 +71,12 @@ export const useGetBoxStyle = (props: { module: IModule }) => {
       marginBottom: `${props.module?.css?.margin?.bottom}px` || '0px',
       marginLeft: `${props.module?.css?.margin?.left}px` || '0px',
       marginRight: `${props.module?.css?.margin?.right}px` || '0px',
-      borderWidth: `${props.module.css.borderWidth}px` || '0px',
+      // 边框宽度
+      borderTopWidth: `${props.module.css.borderWidth.top}px` || '0px',
+      borderRightWidth: `${props.module.css.borderWidth.right}px` || '0px',
+      borderBottomWidth: `${props.module.css.borderWidth.bottom}px` || '0px',
+      borderLeftWidth: `${props.module.css.borderWidth.left}px` || '0px',
+
       borderColor: props.module.css.borderColor || '#eee',
       borderRadius: `${props.module.css.borderRadius}px` || '0px',
       borderStyle: props.module.css.borderStyle || 'solid',
@@ -121,7 +126,10 @@ export const useGetBoxStyle = (props: { module: IModule }) => {
       bodyFontWeight: props.module.css.bodyFontWeight || 'normal',
       bodyColor: props.module.css.bodyColor || '#000',
       bodyLineHeight: props.module.css.bodyLineHeight || '1.6',
-      bodyLetterSpacing: props.module.css.bodyLetterSpacing || 'normal'
+      bodyLetterSpacing: props.module.css.bodyLetterSpacing || 'normal',
+
+      // 主题颜色
+      themeColor: props.module.css?.themeColor || ''
     };
   });
   console.log('计算boxStyle', boxStyle);

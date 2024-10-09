@@ -25,7 +25,12 @@ const commonCss: any = {
       bottom: 0,
       left: 0
     },
-    borderWidth: 0,
+    borderWidth: {
+      top: 0,
+      right: 0,
+      bottom: 0,
+      left: 0
+    },
     borderRadius: 0,
     borderColor: '#eee',
     borderStyle: 'solid'
@@ -57,7 +62,12 @@ const commonCss: any = {
       bottom: 0,
       left: 0
     },
-    borderWidth: 0,
+    borderWidth: {
+      top: 0,
+      right: 0,
+      bottom: 0,
+      left: 0
+    },
     borderRadius: 0,
     borderColor: '#eee',
     borderStyle: 'solid'

@@ -37,7 +37,14 @@ export const useGetCustomStyle = (module: IModule, prop: string) => {
           marginBottom: element.css?.margin?.bottom ? `${element.css.margin.bottom}px` : '',
           marginLeft: element.css?.margin?.left ? `${element.css.margin.left}px` : '',
           marginRight: element.css?.margin?.right ? `${element.css.margin.right}px` : '',
-          borderWidth: element.css?.borderWidth ? `${element.css.borderWidth}px` : '',
+          // 边框宽度
+          borderTopWidth: element.css?.borderWidth ? `${element.css.borderWidth.top}px` : '0px',
+          borderRightWidth: element.css?.borderWidth ? `${element.css.borderWidth.right}px` : '0px',
+          borderBottomWidth: element.css?.borderWidth
+            ? `${element.css.borderWidth.bottom}px`
+            : '0px',
+          borderLeftWidth: element.css?.borderWidth ? `${element.css.borderWidth.left}px` : '0px',
+
           borderColor: element.css?.borderColor || '',
           borderRadius: element.css?.borderRadius ? `${element.css.borderRadius}px` : '',
           borderStyle: element.css?.borderStyle || '',
@@ -87,7 +94,10 @@ export const useGetCustomStyle = (module: IModule, prop: string) => {
           bodyFontWeight: element.css?.bodyFontWeight || '',
           bodyColor: element.css?.bodyColor || '',
           bodyLineHeight: element.css?.bodyLineHeight || '',
-          bodyLetterSpacing: element.css?.bodyLetterSpacing || ''
+          bodyLetterSpacing: element.css?.bodyLetterSpacing || '',
+
+          // 主题颜色
+          themeColor: element.css?.themeColor || ''
         };
       }
     }
