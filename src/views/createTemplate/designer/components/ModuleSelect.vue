@@ -34,6 +34,7 @@
             :sort="false"
             :list="currentModuleListObj.list"
             :clone="cloneData"
+            chosen-class="chosen"
             :group="{ name: 'custom', pull: 'clone', put: false }"
             item-key="id"
           >
@@ -222,6 +223,9 @@
         align-items: center;
         justify-content: center;
       }
+    }
+    .chosen {
+      transform: rotate(5deg);
     }
   }
 </style>
