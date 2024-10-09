@@ -58,6 +58,9 @@
             :name="customItem.prop"
           >
             <el-form label-width="90px" label-position="left">
+              <el-form-item label="自定义Prop:">
+                <el-input v-model="customItem.prop" disabled />
+              </el-form-item>
               <div v-for="(value, key, index) in customItem.css" :key="index">
                 <component
                   :is="getStyleSetterCom(key)"

@@ -1,5 +1,5 @@
 <template>
-  <div class="avatar-1-box" :style="customCss">
+  <div class="avatar-1-box" :style="avatar">
     <el-image
       v-if="module?.dataSource.avatar"
       :style="elImageStyle"
@@ -11,20 +11,23 @@
 <script lang="ts" setup>
   import defaultAvatar from '@/assets/images/people.jpg';
   import { IModule } from '@/views/createTemplate/types/IHJNewSchema';
+  import { useGetCustomStyle } from '../../hooks/useGetCustomStyle';
 
   const props = defineProps<{
     module: IModule;
-    customCss: any;
   }>();
 
   const defaultImg = defaultAvatar;
+
+  // 头像
+  const avatar = useGetCustomStyle(props.module, 'avatar');
 
   // 返回el-img样式
   const elImageStyle = computed(() => {
     return {
       width: '115px',
       height: '115px',
-      borderRadius: `${props.customCss?.value?.borderRadius}px` || '0px'
+      borderRadius: `${avatar?.value?.borderRadius}px` || '0px'
     };
   });
 </script>

@@ -3,14 +3,14 @@
     <el-form-item label="内边距:">
       <div class="padding-setting-box">
         <div class="left">
-          <el-input-number v-model="module.css.padding.left" :min="0" controls-position="right" />
+          <el-input-number v-model="module.css.padding.left" controls-position="right" />
         </div>
         <div class="center">
-          <el-input-number v-model="module.css.padding.top" :min="0" controls-position="right" />
-          <el-input-number v-model="module.css.padding.bottom" :min="0" controls-position="right" />
+          <el-input-number v-model="module.css.padding.top" controls-position="right" />
+          <el-input-number v-model="module.css.padding.bottom" controls-position="right" />
         </div>
         <div class="right">
-          <el-input-number v-model="module.css.padding.right" :min="0" controls-position="right" />
+          <el-input-number v-model="module.css.padding.right" controls-position="right" />
         </div>
       </div>
     </el-form-item>

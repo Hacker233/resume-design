@@ -6,26 +6,14 @@
       <!-- 个人信息 -->
       <div :style="userInfoBlock">
         <!-- 姓名 -->
-        <hj-name-1
-          v-show="module.props.name.show"
-          :name="module.dataSource.name"
-          :style="name"
-        ></hj-name-1>
+        <hj-name-1 v-show="module.props.name.show" :module="module"></hj-name-1>
         <!-- 一句话简介 -->
-        <hj-abstract-1
-          v-show="module.props.abstract.show"
-          :abstract="module.dataSource.abstract"
-          :style="abstract"
-        ></hj-abstract-1>
+        <hj-abstract-1 v-show="module.props.abstract.show" :module="module"></hj-abstract-1>
         <!-- 基本资料 -->
-        <hj-user-base-info-1 :module="module" :style="userBaseInfo"></hj-user-base-info-1>
+        <hj-user-base-info-1 :module="module"></hj-user-base-info-1>
       </div>
       <!-- 头像 -->
-      <hj-avatar-1
-        v-show="module.props.avatar.show"
-        :module="module"
-        :custom-css="avatar"
-      ></hj-avatar-1>
+      <hj-avatar-1 v-show="module.props.avatar.show" :module="module"></hj-avatar-1>
     </div>
   </div>
 </template>
@@ -50,18 +38,6 @@
   // 信息和头像整体样式
   const userInfoAvatar = useGetCustomStyle(props.module, 'userInfoAvatar');
 
-  // 头像
-  const avatar = useGetCustomStyle(props.module, 'avatar');
-
-  // 姓名样式
-  const name = useGetCustomStyle(props.module, 'name');
-
   // 信息模块样式
   const userInfoBlock = useGetCustomStyle(props.module, 'userInfoBlock');
-
-  // 简介样式
-  const abstract = useGetCustomStyle(props.module, 'abstract');
-
-  // 基础资料样式
-  const userBaseInfo = useGetCustomStyle(props.module, 'userBaseInfo');
 </script>

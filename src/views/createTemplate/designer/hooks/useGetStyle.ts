@@ -60,6 +60,7 @@ export const useGetBoxStyle = (props: { module: IModule }) => {
       color: props.module.css.color || '#000',
       display: props.module.css.display || 'flex',
       flex: props.module.css.flex || '',
+      flexWrap: props.module.css.flexWrap || '',
       flexDirection: props.module.css.flexDirection || 'row',
       justifyContent: props.module.css.justifyContent || 'flex-start',
       alignItems: props.module.css.alignItems || 'center',

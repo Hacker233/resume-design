@@ -6,6 +6,7 @@ import ResumeTitle_2 from '../modules/ResumeTitle/ResumeTitle_2.vue';
 import BaseInfo_1 from '../modules/BaseInfo/BaseInfo_1.vue';
 import BaseInfo_2 from '../modules/BaseInfo/BaseInfo_2.vue';
 import BaseInfo_3 from '../modules/BaseInfo/BaseInfo_3.vue';
+import BaseInfo_4 from '../modules/BaseInfo/BaseInfo_4.vue';
 
 // 定义页面组件列表
 const moduleComponents: any = {
@@ -13,6 +14,7 @@ const moduleComponents: any = {
   ResumeTitle_2,
   BaseInfo_1,
   BaseInfo_2,
-  BaseInfo_3
+  BaseInfo_3,
+  BaseInfo_4
 };
 export default moduleComponents;

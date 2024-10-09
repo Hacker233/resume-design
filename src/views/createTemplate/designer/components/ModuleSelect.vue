@@ -207,6 +207,7 @@
           transition: all 0.3s;
           padding: 2px;
           margin-bottom: 15px;
+          border-radius: 6px;
           &:hover {
             border: 1px dashed green;
           }

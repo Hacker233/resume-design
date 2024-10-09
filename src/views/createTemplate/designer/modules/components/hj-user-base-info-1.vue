@@ -1,5 +1,5 @@
 <template>
-  <ul :style="style">
+  <ul :style="userBaseInfo">
     <li v-show="module.props.age.show" class="li-border">{{ module.dataSource.age }}岁</li>
     <li v-show="module.props.address.show" class="li-border">{{ module.dataSource.address }}</li>
     <li v-show="module.props.degree.show" class="li-border">{{ module.dataSource.degree }}</li>
@@ -14,14 +14,17 @@
 </template>
 <script lang="ts" setup>
   import { IModule } from '@/views/createTemplate/types/IHJNewSchema';
+  import { useGetCustomStyle } from '../../hooks/useGetCustomStyle';
 
   const props = defineProps<{
     module: IModule;
-    style: any;
   }>();
 
+  // 基础资料样式
+  const userBaseInfo: any = useGetCustomStyle(props.module, 'userBaseInfo');
+
   const borderColor = computed(() => {
-    return props.style?.color || '#b4b4b4';
+    return userBaseInfo?.color || '#b4b4b4';
   });
 </script>
 <style lang="scss" scoped>

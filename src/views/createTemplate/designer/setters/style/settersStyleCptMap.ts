@@ -21,6 +21,8 @@ import margin from './margin.vue';
 import rotate from './rotate.vue';
 import flex from './flex.vue';
 import themeColor from './themeColor.vue';
+import position from './position.vue';
+import flexWrap from './flexWrap.vue';
 // import backgroundPath from './backgroundPath.vue';
 
 const settersStyleCptMap: ISetterMap = {
@@ -44,7 +46,9 @@ const settersStyleCptMap: ISetterMap = {
   margin,
   rotate,
   flex,
-  themeColor
+  themeColor,
+  position,
+  flexWrap
   // backgroundPath
 };
 export default settersStyleCptMap;

@@ -1,27 +1,45 @@
 <template>
   <div class="model-title-box" :style="moduleTitleStyle">
     <div class="title-box">
-      <h1 :style="moduleTitleFontStyle">{{ module.title }}</h1>
+      <hj-h1-1 :title="module.title" :style="moduleTitleFontStyle"></hj-h1-1>
     </div>
     <!-- 两个平行四边形 -->
     <div class="lozenge-1"></div>
     <div class="lozenge-2"></div>
+
+    <!-- 左侧竖线 -->
+    <div :style="lineStyle"></div>
   </div>
 </template>
 <script lang="ts" setup>
   import { IModule } from '@/views/createTemplate/types/IHJNewSchema';
   import { useGetCustomStyle } from '../../hooks/useGetCustomStyle';
+  import HjH11 from '../components/hj-h1-1.vue';
 
   const props = defineProps<{
     module: IModule;
   }>();
 
   // 返回模块整体样式
-  const moduleTitleStyle = useGetCustomStyle(props.module, 'moduleTitle');
-  console.log('模块整体样式', moduleTitleStyle);
+  const moduleTitleStyle: any = useGetCustomStyle(props.module, 'moduleTitle');
 
   // 返回标题样式
   const moduleTitleFontStyle = useGetCustomStyle(props.module, 'moduleTitleFont');
+
+  // 返回线的样式
+  const lineStyle: any = computed(() => {
+    const paddingTop = props.module.css.padding.top || 0;
+    const paddingBottom = props.module.css.padding.bottom || 0;
+    const height = paddingTop + paddingBottom + 'px';
+    return {
+      position: 'absolute',
+      height: `calc(100% - ${height})`,
+      width: '1px',
+      backgroundColor: moduleTitleStyle.themeColor || '#254665',
+      left: '49px',
+      top: height
+    };
+  });
 </script>
 <style lang="scss" scoped>
   .model-title-box {

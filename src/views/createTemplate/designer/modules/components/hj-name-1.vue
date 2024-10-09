@@ -1,14 +1,14 @@
 <template>
-  <h1 :style="style">{{ name }}</h1>
+  <h1 :style="name">{{ module.dataSource.name }}</h1>
 </template>
 <script lang="ts" setup>
-  interface TH {
-    name?: string;
-    style?: any;
-  }
+  import { IModule } from '@/views/createTemplate/types/IHJNewSchema';
+  import { useGetCustomStyle } from '../../hooks/useGetCustomStyle';
 
-  withDefaults(defineProps<TH>(), {
-    name: '化简',
-    style: {}
-  });
+  const props = defineProps<{
+    module: IModule;
+  }>();
+
+  // 姓名样式
+  const name = useGetCustomStyle(props.module, 'name');
 </script>

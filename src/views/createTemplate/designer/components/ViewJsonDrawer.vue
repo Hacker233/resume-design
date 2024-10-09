@@ -1,7 +1,8 @@
 <template>
   <el-drawer
     :model-value="drawer"
-    :size="600"
+    :close-on-click-modal="false"
+    :size="720"
     class="json-drawer"
     direction="ltr"
     title="页面JSON数据"
@@ -9,18 +10,14 @@
     @close="handleClose"
     @open="handleOpen"
   >
-    <json-viewer
-      :value="code"
-      copyable
-      sort
-      show-double-quotes
-      :expand-depth="3"
-      theme="my-awesome-json-theme"
-    ></json-viewer>
+    <json-editor v-model="code" class="json-editor"></json-editor>
+    <div class="footer-box">
+      <el-button @click="handleClose">取消</el-button>
+    </div>
   </el-drawer>
 </template>
 <script lang="ts" setup>
-  import JsonViewer from 'vue-json-viewer';
+  import JsonEditor from 'json-editor-vue3';
 
   const emit = defineEmits(['closeJsonDrawer']);
   interface IJsonDrawer {
@@ -37,7 +34,7 @@
     emit('closeJsonDrawer');
   };
 
-  const code = ref(props.json);
+  const code = ref('');
 
   // 打开弹窗
   const handleOpen = () => {
@@ -46,8 +43,31 @@
 </script>
 <style lang="scss">
   .json-drawer {
+    .json-editor {
+      flex: 1;
+      .jsoneditor-repair,
+      .jsoneditor-poweredBy,
+      .jsoneditor-transform {
+        display: none;
+      }
+      .full-screen {
+        right: 10px;
+      }
+      .jsoneditor {
+        border: none;
+      }
+    }
+    .footer-box {
+      height: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      padding: 0 20px;
+    }
     .el-drawer__body {
       padding: 0;
+      display: flex;
+      flex-direction: column;
     }
     .cm-editor {
       height: 100%;

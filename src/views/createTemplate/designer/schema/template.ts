@@ -11,7 +11,7 @@ export const HJNewSchema: IHJNewSchema = {
   },
   css: {
     width: 820,
-    height: 1160,
+    height: '100%',
     background: '#ffffff',
     opacity: 1,
     backgroundImage: '',

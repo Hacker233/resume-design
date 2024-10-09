@@ -27,10 +27,5 @@
         display: flex;
       }
     }
-    .unit {
-      margin-left: 10px;
-      color: #929292;
-      letter-spacing: 2px;
-    }
   }
 </style>

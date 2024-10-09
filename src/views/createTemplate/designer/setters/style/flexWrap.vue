@@ -1,11 +1,9 @@
 <template>
   <div class="height-editor-box">
-    <el-form-item size="default" label="水平对齐:">
-      <el-radio-group v-model="module.css.justifyContent">
-        <el-radio label="flex-start">左对齐</el-radio>
-        <el-radio label="center">居中 </el-radio>
-        <el-radio label="flex-end">右对齐 </el-radio>
-        <el-radio label="space-between">两端对齐 </el-radio>
+    <el-form-item size="default" label="自动换行:">
+      <el-radio-group v-model="module.css.flex">
+        <el-radio label="wrap">是</el-radio>
+        <el-radio label="no-wrap">否</el-radio>
       </el-radio-group>
     </el-form-item>
   </div>
@@ -28,11 +26,6 @@
         flex: 1;
         display: flex;
       }
-    }
-    .unit {
-      margin-left: 10px;
-      color: #929292;
-      letter-spacing: 2px;
     }
   }
 </style>

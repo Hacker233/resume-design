@@ -8,7 +8,7 @@ interface IHJNewSchema {
   props: any; // 自定义的属性
   css: {
     width: number;
-    height: number;
+    height: number | string;
     background: string;
     opacity: number;
     backgroundImage: string;

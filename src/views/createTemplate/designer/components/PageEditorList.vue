@@ -19,24 +19,24 @@
     </ul>
 
     <!-- 模块JSON -->
-    <json-drawer
+    <view-json-drawer
       :drawer="moduleDrawer"
       :json="moduleJson"
       @close-json-drawer="closeModuleJsonDrawer"
-    ></json-drawer>
+    ></view-json-drawer>
 
     <!-- 页面JSON -->
-    <json-drawer
+    <view-json-drawer
       :drawer="pageDrawer"
       :json="pageJson"
       @close-json-drawer="closePageJsonDrawer"
-    ></json-drawer>
+    ></view-json-drawer>
   </div>
 </template>
 <script lang="ts" setup>
   import FileSaver from 'file-saver';
   import appStore from '@/store';
-  import JsonDrawer from './JsonDrawer.vue';
+  import ViewJsonDrawer from './ViewJsonDrawer.vue';
   import { useGetSelectedModule } from '../hooks/useGetSelectedModule';
   import { storeToRefs } from 'pinia';
 

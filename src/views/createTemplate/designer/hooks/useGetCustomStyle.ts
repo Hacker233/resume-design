@@ -26,6 +26,7 @@ export const useGetCustomStyle = (module: IModule, prop: string) => {
           color: element.css?.color || '#121c26',
           display: element.css?.display || '',
           flex: element.css?.flex || '',
+          flexWrap: element.css.flexWrap || '',
           flexDirection: element.css?.flexDirection || '',
           justifyContent: element.css?.justifyContent || '',
           alignItems: element.css?.alignItems || '',

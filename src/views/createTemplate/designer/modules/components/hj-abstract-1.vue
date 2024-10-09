@@ -1,14 +1,14 @@
 <template>
-  <p :style="style">{{ abstract }}</p>
+  <p :style="abstract">{{ module.dataSource.abstract }}</p>
 </template>
 <script lang="ts" setup>
-  interface TP {
-    abstract?: string;
-    style?: any;
-  }
+  import { IModule } from '@/views/createTemplate/types/IHJNewSchema';
+  import { useGetCustomStyle } from '../../hooks/useGetCustomStyle';
 
-  withDefaults(defineProps<TP>(), {
-    abstract: '我是一段文字一句话简介，尽量不要太长',
-    style: {}
-  });
+  const props = defineProps<{
+    module: IModule;
+  }>();
+
+  // 简介样式
+  const abstract = useGetCustomStyle(props.module, 'abstract');
 </script>

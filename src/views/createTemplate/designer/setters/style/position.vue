@@ -1,11 +1,10 @@
 <template>
   <div class="height-editor-box">
-    <el-form-item size="default" label="水平对齐:">
-      <el-radio-group v-model="module.css.justifyContent">
-        <el-radio label="flex-start">左对齐</el-radio>
-        <el-radio label="center">居中 </el-radio>
-        <el-radio label="flex-end">右对齐 </el-radio>
-        <el-radio label="space-between">两端对齐 </el-radio>
+    <el-form-item size="default" label="定位模式:">
+      <el-radio-group v-model="module.css.position">
+        <el-radio label="static">默认</el-radio>
+        <el-radio label="relative">相对定位</el-radio>
+        <el-radio label="absolute">绝对定位</el-radio>
       </el-radio-group>
     </el-form-item>
   </div>
@@ -28,11 +27,6 @@
         flex: 1;
         display: flex;
       }
-    }
-    .unit {
-      margin-left: 10px;
-      color: #929292;
-      letter-spacing: 2px;
     }
   }
 </style>

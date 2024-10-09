@@ -44,7 +44,7 @@ const commonProps = {
     }, // 简介
     degree: {
       chName: '学历',
-      show: true
+      show: false
     }
   }
 };
