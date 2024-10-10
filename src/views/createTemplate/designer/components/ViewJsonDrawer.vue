@@ -1,8 +1,7 @@
 <template>
   <el-drawer
     :model-value="drawer"
-    :close-on-click-modal="false"
-    :size="720"
+    :size="820"
     class="json-drawer"
     direction="ltr"
     title="页面JSON数据"

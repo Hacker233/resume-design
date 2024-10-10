@@ -3,7 +3,7 @@
     <el-form-item label="字体选择:" size="default">
       <el-select
         v-model="module.css.fontFamily"
-        :teleported="false"
+        :teleported="true"
         placeholder="请选择字体"
         @change="secondFontFamilyChange"
       >
@@ -23,7 +23,7 @@
   import { useModuleWithStyle } from './useModuleWithStyle';
 
   const props = defineProps<{
-    id: string;
+    id?: string;
     customCssProp?: string;
   }>();
 

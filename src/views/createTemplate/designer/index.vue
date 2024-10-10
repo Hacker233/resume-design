@@ -13,7 +13,10 @@
         <div class="center-wrapper">
           <div ref="pageWrapperRef" class="page-wrapper">
             <!-- 动态渲染的组件，添加ref -->
-            <component :is="pageComponents[pageComponent]" ref="dynamicComponentRef"></component>
+            <component
+              :is="pageComponents[HJNewJsonStore.props.pageName]"
+              ref="dynamicComponentRef"
+            ></component>
             <!-- 分页线 -->
             <template v-if="lineNumber > 0">
               <div
@@ -41,7 +44,6 @@
 </template>
 
 <script lang="ts" setup>
-  import { ref, onMounted, onBeforeUnmount, computed } from 'vue';
   import NavBar from './components/NavBar.vue';
   import ModuleSelect from './components/ModuleSelect.vue';
   import ModuleConfig from './components/ModuleConfig.vue';
@@ -50,15 +52,12 @@
   import pageComponents from './utils/registerPages';
   import PageEditorList from './components/PageEditorList.vue';
   import { getUuid } from '@/utils/common';
+  import pageSchemas from './schema/pageSchema';
 
   // 初始化JSON数据
   const { HJNewJsonStore, selectedModuleId } = storeToRefs(appStore.useCreateTemplateStore);
+  HJNewJsonStore.value = pageSchemas[HJNewJsonStore.value.props.pageName];
   HJNewJsonStore.value.id = getUuid();
-
-  // 返回page组件
-  const pageComponent = computed(() => {
-    return HJNewJsonStore.value.props.page || 'CommonPage';
-  });
 
   // 动态组件的 ref
   const dynamicComponentRef = ref<any>(null);

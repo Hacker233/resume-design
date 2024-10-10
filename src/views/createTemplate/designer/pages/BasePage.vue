@@ -55,8 +55,3 @@
     selectedModuleId.value = element.id;
   };
 </script>
-<style lang="scss" scoped>
-  .page-box {
-    flex-shrink: 0;
-  }
-</style>

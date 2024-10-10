@@ -17,7 +17,7 @@
   import { useModuleWithStyle } from './useModuleWithStyle';
 
   const props = defineProps<{
-    id: string;
+    id?: string;
     customCssProp?: string;
   }>();
 

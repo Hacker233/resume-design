@@ -89,14 +89,50 @@
         </el-collapse>
       </el-tab-pane>
     </el-tabs>
-    <!-- 没有选中组件时展示 -->
-    <div v-else class="no-data">
-      <no-data></no-data>
-    </div>
+
+    <!-- 全局样式配置 -->
+    <el-collapse v-else v-model="pageActiveNames">
+      <div class="collapse-line-bolck">
+        <h1>全局主要配置</h1>
+      </div>
+      <el-collapse-item
+        v-if="HJNewJsonStore && Object.keys(HJNewJsonStore.css).length"
+        title="主题配置"
+        name="styleProp"
+      >
+        <el-form label-width="90px" label-position="left">
+          <div v-for="(value, key, index) in HJNewJsonStore.css" :key="index">
+            <component :is="getStyleSetterCom(key)" :value="value"></component>
+          </div>
+        </el-form>
+      </el-collapse-item>
+      <!-- 自定义的样式属性 -->
+      <div class="collapse-line-bolck">
+        <h1>内部子组件样式属性设置</h1>
+      </div>
+      <el-collapse-item
+        v-for="(customItem, customIndex) in HJNewJsonStore.customCss"
+        :key="customIndex"
+        :title="customItem.title"
+        :name="customItem.prop"
+      >
+        <el-form label-width="90px" label-position="left">
+          <el-form-item label="自定义Prop:">
+            <el-input v-model="customItem.prop" disabled />
+          </el-form-item>
+          <div v-for="(value, key, index) in customItem.css" :key="index">
+            <component
+              :is="getStyleSetterCom(key)"
+              :custom-css-prop="customItem.prop"
+              :value="value"
+            ></component>
+          </div>
+        </el-form>
+      </el-collapse-item>
+    </el-collapse>
   </div>
 </template>
 <script lang="ts" setup>
-  import NoData from './NoData.vue';
   import appStore from '@/store';
   import { storeToRefs } from 'pinia';
   import { useGetSelectedModule } from '../hooks/useGetSelectedModule';
@@ -105,12 +141,15 @@
   import settersDataCptMap from '../setters/data/settersDataCptMap';
   import { IModule } from '../../types/IHJNewSchema';
 
-  const { selectedModuleId } = storeToRefs(appStore.useCreateTemplateStore);
+  const { selectedModuleId, HJNewJsonStore } = storeToRefs(appStore.useCreateTemplateStore);
 
   const activeName = ref('style');
 
   // 折叠面板
   const activeNames = ref([]);
+
+  // 页面配置折叠面吧
+  const pageActiveNames = ref([]);
 
   // 数据配置折叠面板
   const activeDataNames = ref<string>('dataProp');
@@ -187,27 +226,27 @@
         .el-tab-pane {
           width: 100%;
         }
-        .el-collapse {
-          width: 100%;
-          height: 100%;
-          .el-collapse-item__header {
-            padding: 0 20px;
-            font-size: 15px;
-            font-weight: 600;
-            letter-spacing: 2px;
-            border-bottom: 1px solid #ebeef5;
-          }
-          .el-collapse-item__content {
-            padding: 30px 20px 10px 20px;
-          }
-          .el-collapse-item__wrap {
-            border-bottom: none;
-          }
-        }
-        .c-scrollbar {
-          padding: 30px 20px;
-        }
       }
+    }
+    :deep(.el-collapse) {
+      width: 100%;
+      height: 100%;
+      .el-collapse-item__header {
+        padding: 0 20px;
+        font-size: 15px;
+        font-weight: 600;
+        letter-spacing: 2px;
+        border-bottom: 1px solid #ebeef5;
+      }
+      .el-collapse-item__content {
+        padding: 30px 20px 10px 20px;
+      }
+      .el-collapse-item__wrap {
+        border-bottom: none;
+      }
+    }
+    .c-scrollbar {
+      padding: 30px 20px;
     }
     .no-data {
       height: 100%;

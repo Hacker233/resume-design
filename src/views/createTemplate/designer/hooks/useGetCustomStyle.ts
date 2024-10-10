@@ -1,11 +1,11 @@
-import { IModule } from '../../types/IHJNewSchema';
+import { IHJNewSchema, IModule } from '../../types/IHJNewSchema';
 
 // 使用 import.meta.glob 来加载资产目录下的所有图片
 const images = import.meta.glob('/src/assets/createTemplateImages/*', { eager: true });
 console.log('images', images);
 
 // 根据prop返回自定义样式
-export const useGetCustomStyle = (module: IModule, prop: string) => {
+export const useGetCustomStyle = (module: IModule | IHJNewSchema, prop: string) => {
   const loadBackgroundImage = (backgroundPath: string, element: any) => {
     if (backgroundPath) {
       const isOnlineUrl = backgroundPath.includes('https://');

@@ -13,7 +13,7 @@
   import { useModuleWithStyle } from './useModuleWithStyle';
 
   const props = defineProps<{
-    id: string;
+    id?: string;
     customCssProp?: string; // 有值，则代表是自定义样式属性设置
   }>();
 

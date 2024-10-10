@@ -20,8 +20,8 @@
   import { useModuleWithStyle } from './useModuleWithStyle';
 
   const props = defineProps<{
-    id: string;
-    customCssProp?: string; // 有值，则代表是自定义样式属性设置
+    id?: string;
+    customCssProp?: string;
   }>();
 
   const { module } = useModuleWithStyle(props.id, props.customCssProp);

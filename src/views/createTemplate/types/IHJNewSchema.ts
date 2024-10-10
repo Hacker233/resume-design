@@ -6,17 +6,11 @@ interface IHJNewSchema {
   i18n: any; // 国际化语料库
   constants: any; // 全局常量
   props: any; // 自定义的属性
-  css: {
-    width: number;
-    height: number | string;
-    background: string;
-    opacity: number;
-    backgroundImage: string;
-    fontFamily: string;
-    themeColor: string;
-  }; // 全局范围的css样式
+  css: any; // 全局范围的css样式
+  customCss: any; // 组件内部自定义的一些样式
   config: {
     title: string; // 页面标题
+    layout: any; // 布局
   }; // 当前的页面的配置信息
   meta: any; // 全局范围的元数据
   dataSource: any; // 全局范围的公共数据源

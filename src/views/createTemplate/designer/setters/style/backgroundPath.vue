@@ -28,7 +28,7 @@
   import { useGetSelectedModule } from '../../hooks/useGetSelectedModule';
 
   const props = defineProps<{
-    id: string;
+    id?: string;
   }>();
 
   // 选中的module
