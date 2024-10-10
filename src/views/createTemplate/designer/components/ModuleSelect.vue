@@ -27,32 +27,38 @@
       </div>
       <template v-if="selectedModuleListId">
         <!-- 模块列表图 -->
-        <div v-if="currentModuleListObj.list.length" v-viewer class="list-box">
-          <!-- 拖拽组件 -->
-          <draggable
-            class="dragArea list-group"
-            :sort="false"
-            :list="currentModuleListObj.list"
-            :clone="cloneData"
-            chosen-class="chosen"
-            :group="{ name: 'custom', pull: 'clone', put: false }"
-            item-key="id"
-          >
-            <template #item="{ element }">
-              <div class="img-box" :style="getImgBoxStyle(element?.screenShot)">
-                <img
-                  :src="
-                    getImgListStyleImageFile(
-                      element?.screenShot.url ? element?.screenShot.url : element?.screenShot.name
-                    )
-                  "
-                  alt="图片"
-                  lazy
-                />
-              </div>
-            </template>
-          </draggable>
-        </div>
+        <c-scrollbar
+          v-if="currentModuleListObj.list.length"
+          trigger="hover"
+          style="height: calc(100vh - 110px)"
+        >
+          <div v-viewer class="list-box">
+            <!-- 拖拽组件 -->
+            <draggable
+              class="dragArea list-group"
+              :sort="false"
+              :list="currentModuleListObj.list"
+              :clone="cloneData"
+              chosen-class="chosen"
+              :group="{ name: 'custom', pull: 'clone', put: false }"
+              item-key="id"
+            >
+              <template #item="{ element }">
+                <div class="img-box" :style="getImgBoxStyle(element?.screenShot)">
+                  <img
+                    :src="
+                      getImgListStyleImageFile(
+                        element?.screenShot.url ? element?.screenShot.url : element?.screenShot.name
+                      )
+                    "
+                    alt="图片"
+                    lazy
+                  />
+                </div>
+              </template>
+            </draggable>
+          </div>
+        </c-scrollbar>
         <!-- 没有选中组件时展示 -->
         <div v-else class="no-data">
           <no-data width="150px" height="150px"></no-data>

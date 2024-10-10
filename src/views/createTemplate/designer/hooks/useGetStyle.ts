@@ -79,7 +79,11 @@ export const useGetBoxStyle = (props: { module: IModule }) => {
       borderLeftWidth: `${props.module.css.borderWidth.left}px` || '0px',
 
       borderColor: props.module.css.borderColor || '#eee',
-      borderRadius: `${props.module.css.borderRadius}px` || '0px',
+      borderRadius: props.module.css?.borderRadius
+        ? typeof props.module.css.borderRadius === 'string'
+          ? props.module.css.borderRadius
+          : `${props.module.css.borderRadius}px`
+        : '',
       borderStyle: props.module.css.borderStyle || 'solid',
       boxShadow: props.module.css.boxShadow || 'none',
       zIndex: props.module.css.zIndex || 'auto',

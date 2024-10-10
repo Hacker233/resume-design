@@ -1,11 +1,37 @@
 import { IModule } from '../../types/IHJNewSchema';
 
+// 使用 import.meta.glob 来加载资产目录下的所有图片
+const images = import.meta.glob('/src/assets/createTemplateImages/*', { eager: true });
+console.log('images', images);
+
 // 根据prop返回自定义样式
 export const useGetCustomStyle = (module: IModule, prop: string) => {
+  const loadBackgroundImage = (backgroundPath: string, element: any) => {
+    if (backgroundPath) {
+      const isOnlineUrl = backgroundPath.includes('https://');
+      if (isOnlineUrl) {
+        return backgroundPath;
+      } else {
+        const imageKey = `/src/assets/createTemplateImages/${backgroundPath}`;
+        const image = images[imageKey] as { default: string }; // 类型断言
+        if (image) {
+          // 这里确保你取到了正确的图像 URL
+          return `url(${image.default}) no-repeat`;
+        } else {
+          console.error(`Image not found for path: ${imageKey}`);
+        }
+      }
+    } else {
+      return element.css.background || 'none';
+    }
+  };
+
   const customStyle = computed(() => {
     for (let i = 0; i < module.customCss.length; i++) {
       const element: any = module.customCss[i];
       if (prop === element.prop) {
+        // 在这里加载背景图像
+        const background: string = loadBackgroundImage(element.css.backgroundPath, element);
         return {
           width: element.css?.width
             ? typeof element.css.width === 'string'
@@ -17,9 +43,8 @@ export const useGetCustomStyle = (module: IModule, prop: string) => {
               ? element.css.height
               : `${element.css.height}px`
             : '',
-          background: element.css?.background || 'none',
+          background: background,
           opacity: element.css?.opacity ?? '',
-          backgroundImage: element.css?.backgroundImage || '',
           fontSize: element.css?.fontSize ? `${element.css.fontSize}px` : '',
           fontFamily: element.css?.fontFamily || '',
           fontWeight: element.css?.fontWeight || '',
@@ -47,7 +72,11 @@ export const useGetCustomStyle = (module: IModule, prop: string) => {
           borderLeftWidth: element.css?.borderWidth ? `${element.css.borderWidth.left}px` : '0px',
 
           borderColor: element.css?.borderColor || '',
-          borderRadius: element.css?.borderRadius ? `${element.css.borderRadius}px` : '',
+          borderRadius: element.css?.borderRadius
+            ? typeof element.css.borderRadius === 'string'
+              ? element.css.borderRadius
+              : `${element.css.borderRadius}px`
+            : '',
           borderStyle: element.css?.borderStyle || '',
           boxShadow: element.css?.boxShadow || '',
           zIndex: element.css?.zIndex ?? '',

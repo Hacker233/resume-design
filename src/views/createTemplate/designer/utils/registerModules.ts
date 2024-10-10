@@ -7,6 +7,8 @@ import BaseInfo_1 from '../modules/BaseInfo/BaseInfo_1.vue';
 import BaseInfo_2 from '../modules/BaseInfo/BaseInfo_2.vue';
 import BaseInfo_3 from '../modules/BaseInfo/BaseInfo_3.vue';
 import BaseInfo_4 from '../modules/BaseInfo/BaseInfo_4.vue';
+import BaseInfo_5 from '../modules/BaseInfo/BaseInfo_5.vue';
+import BaseInfo_6 from '../modules/BaseInfo/BaseInfo_6.vue';
 
 // 定义页面组件列表
 const moduleComponents: any = {
@@ -15,6 +17,8 @@ const moduleComponents: any = {
   BaseInfo_1,
   BaseInfo_2,
   BaseInfo_3,
-  BaseInfo_4
+  BaseInfo_4,
+  BaseInfo_5,
+  BaseInfo_6
 };
 export default moduleComponents;

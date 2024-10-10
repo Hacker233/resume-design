@@ -11,9 +11,6 @@
     @open="handleOpen"
   >
     <json-editor v-model="code" class="json-editor"></json-editor>
-    <div class="footer-box">
-      <el-button @click="handleClose">取消</el-button>
-    </div>
   </el-drawer>
 </template>
 <script lang="ts" setup>

@@ -32,7 +32,7 @@
     list-style: none;
     margin-right: 20px;
     padding-right: 12px;
-    height: 100%;
+    height: 20px;
     display: flex;
     align-items: center;
   }
