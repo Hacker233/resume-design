@@ -76,6 +76,7 @@
       useDeleteModule();
     }
     initList();
+    selectedModuleId.value = '';
   };
 
   // 右键

@@ -23,7 +23,9 @@ import flex from './flex.vue';
 import themeColor from './themeColor.vue';
 import position from './position.vue';
 import flexWrap from './flexWrap.vue';
-// import backgroundPath from './backgroundPath.vue';
+import lineHeight from './lineHeight.vue';
+import backgroundPath from './backgroundPath.vue';
+import backgroundRepeat from './backgroundRepeat.vue';
 
 const settersStyleCptMap: ISetterMap = {
   width,
@@ -48,7 +50,9 @@ const settersStyleCptMap: ISetterMap = {
   flex,
   themeColor,
   position,
-  flexWrap
-  // backgroundPath
+  flexWrap,
+  lineHeight,
+  backgroundPath,
+  backgroundRepeat
 };
 export default settersStyleCptMap;

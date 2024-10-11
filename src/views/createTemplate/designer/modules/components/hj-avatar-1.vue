@@ -27,7 +27,10 @@
     return {
       width: '115px',
       height: '115px',
-      borderRadius: `${avatar?.value?.borderRadius}px` || '0px'
+      borderTopLeftRadius: avatar?.value.borderTopLeftRadius,
+      borderTopRightRadius: avatar?.value.borderTopRightRadius,
+      borderBottomLeftRadius: avatar?.value.borderBottomLeftRadius,
+      borderBottomRightRadius: avatar?.value.borderBottomRightRadius
     };
   });
 </script>

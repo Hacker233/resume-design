@@ -21,7 +21,7 @@ const pageCustomCss = {
       prop: 'right',
       css: {
         width: 550,
-        background: '#fff',
+        background: '',
         height: '100%',
         margin: {
           bottom: 0,

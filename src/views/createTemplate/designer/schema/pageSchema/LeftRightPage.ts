@@ -15,7 +15,8 @@ const LeftRightPage = {
     background: '#ffffff',
     opacity: 1,
     fontFamily: '',
-    themeColor: ''
+    themeColor: '',
+    backgroundPath: ''
   }, // 全局范围的css样式
   customCss: pageCustomCss['left_right_page'],
   config: {

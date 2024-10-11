@@ -25,14 +25,15 @@
   import CONFIG from '@/config';
   import appStore from '@/store';
   import { UploadProps } from 'element-plus';
-  import { useGetSelectedModule } from '../../hooks/useGetSelectedModule';
+  import { useModuleWithStyle } from './useModuleWithStyle';
 
   const props = defineProps<{
     id?: string;
+    customCssProp?: string;
   }>();
 
   // 选中的module
-  const module = useGetSelectedModule(props.id);
+  const { module } = useModuleWithStyle(props.id, props.customCssProp);
 
   // 上传文件地址
   const uploadAddress = () => {
@@ -40,7 +41,7 @@
   };
 
   const handleAvatarSuccess: UploadProps['onSuccess'] = (response) => {
-    module.css.backgroundPath = response.data.data.fileUrl;
+    module.value.css.backgroundPath = response.data.data.fileUrl;
   };
 
   const beforeAvatarUpload: UploadProps['beforeUpload'] = (rawFile) => {

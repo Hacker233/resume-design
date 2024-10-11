@@ -10,7 +10,7 @@ export const useGetCustomStyle = (module: IModule | IHJNewSchema, prop: string) 
     if (backgroundPath) {
       const isOnlineUrl = backgroundPath.includes('https://');
       if (isOnlineUrl) {
-        return backgroundPath;
+        return `url(${backgroundPath})`;
       } else {
         const imageKey = `/src/assets/createTemplateImages/${backgroundPath}`;
         const image = images[imageKey] as { default: string }; // 类型断言
@@ -32,6 +32,7 @@ export const useGetCustomStyle = (module: IModule | IHJNewSchema, prop: string) 
       if (prop === element.prop) {
         // 在这里加载背景图像
         const background: string = loadBackgroundImage(element.css.backgroundPath, element);
+        element.css.background = background;
         return {
           width: element.css?.width
             ? typeof element.css.width === 'string'
@@ -44,6 +45,7 @@ export const useGetCustomStyle = (module: IModule | IHJNewSchema, prop: string) 
               : `${element.css.height}px`
             : '',
           background: background,
+          backgroundRepeat: element.css?.backgroundRepeat || '',
           opacity: element.css?.opacity ?? '',
           fontSize: element.css?.fontSize ? `${element.css.fontSize}px` : '',
           fontFamily: element.css?.fontFamily || '',
@@ -72,10 +74,26 @@ export const useGetCustomStyle = (module: IModule | IHJNewSchema, prop: string) 
           borderLeftWidth: element.css?.borderWidth ? `${element.css.borderWidth.left}px` : '0px',
 
           borderColor: element.css?.borderColor || '',
-          borderRadius: element.css?.borderRadius
-            ? typeof element.css.borderRadius === 'string'
-              ? element.css.borderRadius
-              : `${element.css.borderRadius}px`
+          // 圆角
+          borderTopLeftRadius: element.css?.borderRadius?.topLeft
+            ? typeof element.css?.borderRadius?.topLeft === 'string'
+              ? element.css?.borderRadius?.topLeft
+              : `${element.css?.borderRadius?.topLeft}px`
+            : '',
+          borderTopRightRadius: element.css?.borderRadius?.topRight
+            ? typeof element.css?.borderRadius?.topRight === 'string'
+              ? element.css?.borderRadius?.topRight
+              : `${element.css?.borderRadius?.topRight}px`
+            : '',
+          borderBottomLeftRadius: element.css?.borderRadius?.bottomLeft
+            ? typeof element.css?.borderRadius?.bottomLeft === 'string'
+              ? element.css?.borderRadius?.bottomLeft
+              : `${element.css?.borderRadius?.bottomLeft}px`
+            : '',
+          borderBottomRightRadius: element.css?.borderRadius?.bottomRight
+            ? typeof element.css?.borderRadius?.bottomRight === 'string'
+              ? element.css?.borderRadius?.bottomRight
+              : `${element.css?.borderRadius?.bottomRight}px`
             : '',
           borderStyle: element.css?.borderStyle || '',
           boxShadow: element.css?.boxShadow || '',

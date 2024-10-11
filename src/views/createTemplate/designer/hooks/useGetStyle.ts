@@ -1,46 +1,34 @@
 import { IModule } from '../../types/IHJNewSchema';
 
-// 使用 import.meta.glob 来加载资产目录下的所有图片
-const images = import.meta.glob('/src/assets/createTemplateImages/*', { eager: true });
-console.log('images', images);
-
 // 返回最外层样式
 export const useGetBoxStyle = (props: { module: IModule }) => {
-  const background = ref('');
+  const images = import.meta.glob('/src/assets/createTemplateImages/*', { eager: true });
 
-  const loadBackgroundImage = async (backgroundPath: string) => {
+  const loadBackgroundImage = (backgroundPath: string, element: any) => {
     if (backgroundPath) {
       const isOnlineUrl = backgroundPath.includes('https://');
       if (isOnlineUrl) {
-        background.value = backgroundPath;
+        return `url(${backgroundPath})`;
       } else {
         const imageKey = `/src/assets/createTemplateImages/${backgroundPath}`;
         const image = images[imageKey] as { default: string }; // 类型断言
         if (image) {
           // 这里确保你取到了正确的图像 URL
-          background.value = `url(${image.default}) no-repeat`;
+          return `url(${image.default}) no-repeat`;
         } else {
           console.error(`Image not found for path: ${imageKey}`);
         }
       }
     } else {
-      background.value = props.module.css.background || 'none';
+      return element.css.background || 'none';
     }
   };
 
-  // 在这里加载背景图像
-  loadBackgroundImage(props.module.css.backgroundPath);
-
-  watch(
-    () => props.module.css.backgroundPath,
-    (newPath) => {
-      console.log('backgroundPath变化', newPath);
-      loadBackgroundImage(newPath);
-    },
-    { immediate: true }
-  );
-
+  // 返回样式
   const boxStyle = computed(() => {
+    // 在这里加载背景图像
+    const background: string = loadBackgroundImage(props.module.css.backgroundPath, props.module);
+    props.module.css.background = background;
     return {
       width: props.module.css?.width
         ? typeof props.module.css.width === 'string'
@@ -52,7 +40,8 @@ export const useGetBoxStyle = (props: { module: IModule }) => {
           ? props.module.css.height
           : `${props.module.css.height}px`
         : '',
-      background: background.value,
+      background: background,
+      backgroundRepeat: props.module.css?.backgroundRepeat || '',
       opacity: props.module.css.opacity || 1,
       fontSize: `${props.module.css.fontSize}px` || '',
       fontFamily: props.module.css.fontFamily || '微软雅黑',
@@ -79,11 +68,28 @@ export const useGetBoxStyle = (props: { module: IModule }) => {
       borderLeftWidth: `${props.module.css.borderWidth.left}px` || '0px',
 
       borderColor: props.module.css.borderColor || '#eee',
-      borderRadius: props.module.css?.borderRadius
-        ? typeof props.module.css.borderRadius === 'string'
-          ? props.module.css.borderRadius
-          : `${props.module.css.borderRadius}px`
+      // 圆角
+      borderTopLeftRadius: props.module.css?.borderRadius?.topLeft
+        ? typeof props.module.css?.borderRadius?.topLeft === 'string'
+          ? props.module.css?.borderRadius?.topLeft
+          : `${props.module.css?.borderRadius?.topLeft}px`
         : '',
+      borderTopRightRadius: props.module.css?.borderRadius?.topRight
+        ? typeof props.module.css?.borderRadius?.topRight === 'string'
+          ? props.module.css?.borderRadius?.topRight
+          : `${props.module.css?.borderRadius?.topRight}px`
+        : '',
+      borderBottomLeftRadius: props.module.css?.borderRadius?.bottomLeft
+        ? typeof props.module.css?.borderRadius?.bottomLeft === 'string'
+          ? props.module.css?.borderRadius?.bottomLeft
+          : `${props.module.css?.borderRadius?.bottomLeft}px`
+        : '',
+      borderBottomRightRadius: props.module.css?.borderRadius?.bottomRight
+        ? typeof props.module.css?.borderRadius?.bottomRight === 'string'
+          ? props.module.css?.borderRadius?.bottomRight
+          : `${props.module.css?.borderRadius?.bottomRight}px`
+        : '',
+
       borderStyle: props.module.css.borderStyle || 'solid',
       boxShadow: props.module.css.boxShadow || 'none',
       zIndex: props.module.css.zIndex || 'auto',

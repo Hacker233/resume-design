@@ -1,14 +1,32 @@
 <template>
-  <div class="width-editor-box">
-    <el-form-item size="default" label="圆角:">
-      <el-input-number
-        v-model="numericWidth"
-        size="default"
-        :min="0"
-        :max="unit === '%' ? 100 : Infinity"
-        :step="unit === '%' ? 1 : 1"
-      />
-      <span class="unit">{{ unit }}</span>
+  <div class="padding-editor-box">
+    <el-form-item label="圆角:">
+      <div class="padding-setting-box">
+        <div class="left">
+          <el-input-number
+            controls-position="right"
+            :model-value="parsedBorderRadius.topLeft"
+            @update:model-value="onInputChange('topLeft', $event)"
+          />
+          <el-input-number
+            controls-position="right"
+            :model-value="parsedBorderRadius.bottomLeft"
+            @update:model-value="onInputChange('bottomLeft', $event)"
+          />
+        </div>
+        <div class="right">
+          <el-input-number
+            controls-position="right"
+            :model-value="parsedBorderRadius.topRight"
+            @update:model-value="onInputChange('topRight', $event)"
+          />
+          <el-input-number
+            controls-position="right"
+            :model-value="parsedBorderRadius.bottomRight"
+            @update:model-value="onInputChange('bottomRight', $event)"
+          />
+        </div>
+      </div>
     </el-form-item>
   </div>
 </template>
@@ -21,53 +39,55 @@
     customCssProp?: string;
   }>();
 
-  // 获取选中的模块
   const { module } = useModuleWithStyle(props.id, props.customCssProp);
 
-  // 提取并处理高度
-  const numericWidth = ref<number | null>(null); // 记录数值类型的高度
-  const unit = ref('px'); // 单位 (px 或 %)
-
-  // 监控并处理初始的高度值
-  watch(
-    () => module.value.css.width,
-    (newVal) => {
-      if (typeof newVal === 'string' && newVal.includes('%')) {
-        numericWidth.value = parseFloat(newVal); // 提取百分比的数值
-        unit.value = '%';
-      } else if (typeof newVal === 'number' || typeof newVal === 'string') {
-        numericWidth.value = parseFloat(newVal as string); // 处理数值类型
-        unit.value = 'px';
-      }
-    },
-    { immediate: true }
-  );
-
-  // 当数值或单位发生变化时，更新 module 的高度值
-  watch([numericWidth, unit], () => {
-    if (numericWidth.value !== null) {
-      module.value.css.borderRadius =
-        unit.value === '%' ? `${numericWidth.value}%` : `${numericWidth.value}px`;
-    }
+  // 创建一个计算属性来处理百分比或数字的边框半径，默认值为 0
+  const parsedBorderRadius = computed(() => {
+    return {
+      topLeft: parseBorderRadius(module.value?.css?.borderRadius?.topLeft ?? 0),
+      bottomLeft: parseBorderRadius(module.value?.css?.borderRadius?.bottomLeft ?? 0),
+      topRight: parseBorderRadius(module.value?.css?.borderRadius?.topRight ?? 0),
+      bottomRight: parseBorderRadius(module.value?.css?.borderRadius?.bottomRight ?? 0)
+    };
   });
+
+  // 边框半径解析函数
+  function parseBorderRadius(value: string | number) {
+    if (typeof value === 'string' && value.includes('%')) {
+      return parseFloat(value); // 返回百分比的数值部分
+    } else {
+      return Number(value); // 返回数字
+    }
+  }
+
+  // 输入更新处理函数
+  function onInputChange(corner: string, value: number) {
+    const borderRadiusValue = module.value.css.borderRadius[corner];
+    if (typeof borderRadiusValue === 'string' && borderRadiusValue.includes('%')) {
+      module.value.css.borderRadius[corner] = `${value}%`; // 百分比更新
+    } else {
+      module.value.css.borderRadius[corner] = value; // 数字更新
+    }
+    console.log('修改圆角', module.value.css);
+  }
 </script>
 
 <style lang="scss" scoped>
-  .width-editor-box {
+  .padding-editor-box {
     .el-form-item {
       display: flex;
-      .el-form-item__content {
-        flex: 1;
+      justify-content: space-between;
+      align-items: center;
+      .padding-setting-box {
         display: flex;
-        .el-input-number {
-          flex: 1;
+        justify-content: space-between;
+        width: 70%;
+        align-items: center;
+        :deep(.el-input__wrapper) {
+          padding-left: 0;
+          padding-right: 25px;
         }
       }
-    }
-    .unit {
-      margin-left: 10px;
-      color: #929292;
-      letter-spacing: 2px;
     }
   }
 </style>

@@ -78,11 +78,22 @@
           <el-collapse-item title="数据配置" name="dataProp">
             <el-form label-width="100px" label-position="left">
               <div v-for="(value, key, index) in module.dataSource" :key="index">
-                <component
-                  :is="getDataSetterCom(key)"
-                  :id="selectedModuleId"
-                  :value="value"
-                ></component>
+                <!-- 不在不显示对象里面，才渲染 -->
+                <template v-if="module.customProps.hasOwnProperty('dataSourceNotShow')">
+                  <component
+                    :is="getDataSetterCom(key)"
+                    v-if="!module.customProps.dataSourceNotShow[key]"
+                    :id="selectedModuleId"
+                    :value="value"
+                  ></component>
+                </template>
+                <template v-else>
+                  <component
+                    :is="getDataSetterCom(key)"
+                    :id="selectedModuleId"
+                    :value="value"
+                  ></component>
+                </template>
               </div>
             </el-form>
           </el-collapse-item>

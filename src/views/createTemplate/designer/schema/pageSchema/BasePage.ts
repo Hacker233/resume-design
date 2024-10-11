@@ -15,7 +15,8 @@ const BasePage = {
     background: '#ffffff',
     opacity: 1,
     fontFamily: '',
-    themeColor: ''
+    themeColor: '',
+    backgroundPath: ''
   }, // 全局范围的css样式
   customCss: pageCustomCss['base_page'],
   config: {

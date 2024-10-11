@@ -1,17 +1,17 @@
 import { storeToRefs } from 'pinia';
 import appStore from '@/store';
-// 使用 import.meta.glob 来加载资产目录下的所有图片
-const images = import.meta.glob('/src/assets/createTemplateImages/*', { eager: true });
-console.log('images', images);
+
 // 返回最外层样式
 export const useGetPageStyle = () => {
   const { HJNewJsonStore } = storeToRefs(appStore.useCreateTemplateStore);
+
+  const images = import.meta.glob('/src/assets/createTemplateImages/*', { eager: true });
 
   const loadBackgroundImage = (backgroundPath: string, element: any) => {
     if (backgroundPath) {
       const isOnlineUrl = backgroundPath.includes('https://');
       if (isOnlineUrl) {
-        return backgroundPath;
+        return `url(${backgroundPath})`;
       } else {
         const imageKey = `/src/assets/createTemplateImages/${backgroundPath}`;
         const image = images[imageKey] as { default: string }; // 类型断言
@@ -33,6 +33,7 @@ export const useGetPageStyle = () => {
       HJNewJsonStore.value.css.backgroundPath,
       HJNewJsonStore.value
     );
+    HJNewJsonStore.value.css.background = background;
     return {
       width: HJNewJsonStore.value.css?.width
         ? typeof HJNewJsonStore.value.css.width === 'string'
@@ -45,6 +46,7 @@ export const useGetPageStyle = () => {
           : `${HJNewJsonStore.value.css.height}px`
         : '',
       background: background,
+      backgroundRepeat: HJNewJsonStore.value.css?.backgroundRepeat || '',
       opacity: HJNewJsonStore.value.css.opacity || 1,
       fontSize: `${HJNewJsonStore.value.css.fontSize}px` || '',
       fontFamily: HJNewJsonStore.value.css.fontFamily || '微软雅黑',
@@ -95,10 +97,26 @@ export const useGetPageStyle = () => {
         : '0px',
 
       borderColor: HJNewJsonStore.value.css.borderColor || '#eee',
-      borderRadius: HJNewJsonStore.value.css?.borderRadius
-        ? typeof HJNewJsonStore.value.css.borderRadius === 'string'
-          ? HJNewJsonStore.value.css.borderRadius
-          : `${HJNewJsonStore.value.css.borderRadius}px`
+      // 圆角
+      borderTopLeftRadius: HJNewJsonStore.value.css?.borderRadius?.topLeft
+        ? typeof HJNewJsonStore.value.css?.borderRadius?.topLeft === 'string'
+          ? HJNewJsonStore.value.css?.borderRadius?.topLeft
+          : `${HJNewJsonStore.value.css?.borderRadius?.topLeft}px`
+        : '',
+      borderTopRightRadius: HJNewJsonStore.value.css?.borderRadius?.topRight
+        ? typeof HJNewJsonStore.value.css?.borderRadius?.topRight === 'string'
+          ? HJNewJsonStore.value.css?.borderRadius?.topRight
+          : `${HJNewJsonStore.value.css?.borderRadius?.topRight}px`
+        : '',
+      borderBottomLeftRadius: HJNewJsonStore.value.css?.borderRadius?.bottomLeft
+        ? typeof HJNewJsonStore.value.css?.borderRadius?.bottomLeft === 'string'
+          ? HJNewJsonStore.value.css?.borderRadius?.bottomLeft
+          : `${HJNewJsonStore.value.css?.borderRadius?.bottomLeft}px`
+        : '',
+      borderBottomRightRadius: HJNewJsonStore.value.css?.borderRadius?.bottomRight
+        ? typeof HJNewJsonStore.value.css?.borderRadius?.bottomRight === 'string'
+          ? HJNewJsonStore.value.css?.borderRadius?.bottomRight
+          : `${HJNewJsonStore.value.css?.borderRadius?.bottomRight}px`
         : '',
       borderStyle: HJNewJsonStore.value.css.borderStyle || 'solid',
       boxShadow: HJNewJsonStore.value.css.boxShadow || 'none',

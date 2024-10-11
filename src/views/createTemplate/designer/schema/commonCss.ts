@@ -31,7 +31,12 @@ const commonCss: any = {
       bottom: 0,
       left: 0
     },
-    borderRadius: 0,
+    borderRadius: {
+      topLeft: 0,
+      topRight: 0,
+      bottomLeft: 0,
+      bottomRight: 0
+    },
     borderColor: '#eee',
     borderStyle: 'solid'
   },
@@ -68,7 +73,12 @@ const commonCss: any = {
       bottom: 0,
       left: 0
     },
-    borderRadius: 0,
+    borderRadius: {
+      topLeft: 0,
+      topRight: 0,
+      bottomLeft: 0,
+      bottomRight: 0
+    },
     borderColor: '#eee',
     borderStyle: 'solid'
   }
