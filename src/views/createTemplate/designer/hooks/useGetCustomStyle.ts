@@ -55,6 +55,7 @@ export const useGetCustomStyle = (module: IModule | IHJNewSchema, prop: string) 
           flex: element.css?.flex || '',
           flexWrap: element.css.flexWrap || '',
           flexDirection: element.css?.flexDirection || '',
+          flexShrink: element.css?.flexShrink ?? 1,
           justifyContent: element.css?.justifyContent || '',
           alignItems: element.css?.alignItems || '',
           paddingTop: element.css?.padding?.top ? `${element.css.padding.top}px` : '',

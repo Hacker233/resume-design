@@ -1,7 +1,7 @@
 <template>
   <div :style="boxStyle">
-    <!-- 头像 -->
-    <hj-avatar-1 v-if="module.props.avatar.show" :module="module"></hj-avatar-1>
+    <!-- 模块标题 -->
+    <module-title_2 :module="module"></module-title_2>
     <div :style="userInfoBlock">
       <!-- 基本资料 -->
       <hj-user-base-info-2 :module="module"></hj-user-base-info-2>
@@ -12,9 +12,8 @@
   import { IModule } from '@/views/createTemplate/types/IHJNewSchema';
   import { useGetBoxStyle } from '../../hooks/useGetStyle';
   import { useGetCustomStyle } from '../../hooks/useGetCustomStyle';
-  // 子组件
-  import hjAvatar1 from '../components/hj-avatar-1.vue';
   import hjUserBaseInfo2 from '../components/hj-user-base-info-2.vue';
+  import ModuleTitle_2 from '../ModuleTitle/ModuleTitle_2.vue';
   const props = defineProps<{
     module: IModule;
   }>();

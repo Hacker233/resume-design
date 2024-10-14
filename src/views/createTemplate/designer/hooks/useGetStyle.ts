@@ -52,6 +52,7 @@ export const useGetBoxStyle = (props: { module: IModule }) => {
       flexWrap: props.module.css.flexWrap || '',
       flexDirection: props.module.css.flexDirection || 'row',
       justifyContent: props.module.css.justifyContent || 'flex-start',
+      flexShrink: props.module.css?.flexShrink ?? 1,
       alignItems: props.module.css.alignItems || 'center',
       paddingTop: `${props.module?.css?.padding?.top}px` || '0px',
       paddingBottom: `${props.module?.css?.padding?.bottom}px` || '0px',

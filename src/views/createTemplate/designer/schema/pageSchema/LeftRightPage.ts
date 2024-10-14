@@ -1,5 +1,4 @@
-import pageCustomCss from '../customCss/page';
-
+import customCss from '../customCss';
 const LeftRightPage = {
   id: '',
   version: '1.0.0', // 当前JSON版本号
@@ -18,7 +17,7 @@ const LeftRightPage = {
     themeColor: '',
     backgroundPath: ''
   }, // 全局范围的css样式
-  customCss: pageCustomCss['left_right_page'],
+  customCss: customCss['left_right_page'],
   config: {
     title: '91化简', // 页面标题
     layout: {

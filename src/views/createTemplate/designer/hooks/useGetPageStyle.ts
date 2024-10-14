@@ -47,7 +47,7 @@ export const useGetPageStyle = () => {
         : '',
       background: background,
       backgroundRepeat: HJNewJsonStore.value.css?.backgroundRepeat || '',
-      opacity: HJNewJsonStore.value.css.opacity || 1,
+      opacity: HJNewJsonStore.value.css.opacity ?? 1,
       fontSize: `${HJNewJsonStore.value.css.fontSize}px` || '',
       fontFamily: HJNewJsonStore.value.css.fontFamily || '微软雅黑',
       fontWeight: HJNewJsonStore.value.css.fontWeight || 400,
@@ -56,6 +56,7 @@ export const useGetPageStyle = () => {
       flex: HJNewJsonStore.value.css.flex || '',
       flexWrap: HJNewJsonStore.value.css.flexWrap || '',
       flexDirection: HJNewJsonStore.value.css.flexDirection || 'row',
+      flexShrink: HJNewJsonStore.value.css?.flexShrink || 1,
       justifyContent: HJNewJsonStore.value.css.justifyContent || 'flex-start',
       alignItems: HJNewJsonStore.value.css.alignItems || 'center',
       paddingTop: HJNewJsonStore.value.css?.padding?.top

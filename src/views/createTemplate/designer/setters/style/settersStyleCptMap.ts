@@ -26,6 +26,7 @@ import flexWrap from './flexWrap.vue';
 import lineHeight from './lineHeight.vue';
 import backgroundPath from './backgroundPath.vue';
 import backgroundRepeat from './backgroundRepeat.vue';
+import flexShrink from './flexShrink.vue';
 
 const settersStyleCptMap: ISetterMap = {
   width,
@@ -53,6 +54,7 @@ const settersStyleCptMap: ISetterMap = {
   flexWrap,
   lineHeight,
   backgroundPath,
-  backgroundRepeat
+  backgroundRepeat,
+  flexShrink
 };
 export default settersStyleCptMap;

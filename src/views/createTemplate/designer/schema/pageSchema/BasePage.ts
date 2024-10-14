@@ -1,4 +1,4 @@
-import pageCustomCss from '../customCss/page';
+import customCss from '../customCss';
 
 const BasePage = {
   id: '',
@@ -18,7 +18,7 @@ const BasePage = {
     themeColor: '',
     backgroundPath: ''
   }, // 全局范围的css样式
-  customCss: pageCustomCss['base_page'],
+  customCss: customCss['base_page'],
   config: {
     title: '91化简', // 页面标题
     layout: {}

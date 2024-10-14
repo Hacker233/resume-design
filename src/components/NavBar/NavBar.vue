@@ -78,7 +78,10 @@
         </div>
         <div v-else class="user-avatar-box">
           <!-- vip图标 -->
-          <div v-if="membershipInfo.hasMembership" class="user-vip-icon">
+          <div
+            v-if="membershipInfo.hasMembership && !membershipInfo.isExpired"
+            class="user-vip-icon"
+          >
             <svg-icon icon-name="icon-VIP" size="20px" color="yellow"></svg-icon>
           </div>
           <el-dropdown v-config:open_person_in :teleported="false">

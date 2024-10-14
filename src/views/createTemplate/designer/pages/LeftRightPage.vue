@@ -7,6 +7,7 @@
       group="custom"
       :sort="true"
       :style="leftStyle"
+      placeholder-class="drop-placeholder"
       item-key="id"
     >
       <template #item="{ element }">

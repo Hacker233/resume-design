@@ -127,7 +127,8 @@
       ...modulesList[element.category].props,
       ...element.props
     };
-    return element;
+    console.log('组件数据', element);
+    return cloneDeep(element);
   };
 </script>
 <style lang="scss" scoped>
@@ -206,7 +207,12 @@
       }
       .list-box {
         width: 100%;
-        padding: 20px 10px;
+        padding: 20px;
+        .dragArea {
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: space-between;
+        }
         .img-box {
           box-shadow: 0 10px 22px 2px #00253a3d;
           cursor: move;

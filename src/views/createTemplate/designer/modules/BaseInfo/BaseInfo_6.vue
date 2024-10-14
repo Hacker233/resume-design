@@ -1,12 +1,12 @@
 <template>
   <div :style="boxStyle">
     <!-- 头像 -->
-    <hj-avatar-1 v-show="module.props.avatar.show" :module="module"></hj-avatar-1>
+    <hj-avatar-1 v-if="module.props.avatar.show" :module="module"></hj-avatar-1>
     <div :style="userInfoBlock">
       <!-- 姓名 -->
-      <hj-name-1 v-show="module.props.name.show" :module="module"></hj-name-1>
+      <hj-name-1 v-if="module.props.name.show" :module="module"></hj-name-1>
       <!-- 一句话简介 -->
-      <hj-abstract-1 v-show="module.props.abstract.show" :module="module"></hj-abstract-1>
+      <hj-abstract-1 v-if="module.props.abstract.show" :module="module"></hj-abstract-1>
       <!-- 基本资料 -->
       <hj-user-base-info-1 :module="module"></hj-user-base-info-1>
     </div>

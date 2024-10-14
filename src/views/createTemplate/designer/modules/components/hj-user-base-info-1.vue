@@ -35,6 +35,7 @@
     height: 20px;
     display: flex;
     align-items: center;
+    flex-shrink: 0;
   }
   .li-border {
     border-right: 2px solid v-bind('borderColor');

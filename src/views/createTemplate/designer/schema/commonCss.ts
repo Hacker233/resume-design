@@ -1,6 +1,6 @@
 const commonCss: any = {
   resumeTitle: {
-    width: 820,
+    width: '100%',
     height: 300,
     display: 'flex',
     flexDirection: 'row',
@@ -41,7 +41,7 @@ const commonCss: any = {
     borderStyle: 'solid'
   },
   baseInfo: {
-    width: 820,
+    width: '100%',
     height: 182,
     display: 'flex',
     flexDirection: 'row',
