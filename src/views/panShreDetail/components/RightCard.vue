@@ -21,7 +21,7 @@
           @click="toDownload(item.name)"
         >
           <!-- 先判断是否是会员 -->
-          <template v-if="!membershipInfo.hasMembership">
+          <template v-if="!membershipInfo.hasMembership || membershipInfo.isExpired">
             <div v-if="!isPay" class="how-much"
               >{{ Math.abs(content.pan_source_price) || '' }}
               <img width="20" src="@/assets/images/jianB.png" alt="简币"
@@ -137,7 +137,7 @@
       });
     } else {
       // 会员直接下载
-      if (membershipInfo.value.hasMembership) {
+      if (membershipInfo.value.hasMembership && !membershipInfo.value.isExpired) {
         downloadTemplate(name);
         return;
       }

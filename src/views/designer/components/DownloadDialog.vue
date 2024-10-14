@@ -23,7 +23,7 @@
           </el-tooltip>
           <div class="price">
             <!-- 先判断是否是会员 -->
-            <template v-if="!membershipInfo.hasMembership">
+            <template v-if="!membershipInfo.hasMembership || membershipInfo.isExpired">
               <div class="how-much">
                 （价格：{{ Math.abs(exportImgPayIntegral) || 0 }}
                 <img width="20" src="@/assets/images/jianB.png" alt="简币" />）</div
@@ -48,7 +48,7 @@
           </el-tooltip>
           <div class="price">
             <!-- 先判断是否是会员 -->
-            <template v-if="!membershipInfo.hasMembership">
+            <template v-if="!membershipInfo.hasMembership || membershipInfo.isExpired">
               <div class="how-much"
                 >（价格：{{ Math.abs(exportPdfPayIntegral) || 0
                 }}<img width="20" src="@/assets/images/jianB.png" alt="简币" />）</div
@@ -117,8 +117,8 @@
   const dialogGetIntegralVisible = ref<boolean>(false);
   const downloadDialog = async (type: string) => {
     downloadType.value = type;
-    // 会员直接下载
-    if (membershipInfo.value.hasMembership) {
+    // 会员且未过期直接下载
+    if (membershipInfo.value.hasMembership && !membershipInfo.value.isExpired) {
       emit('downloadFile', downloadType.value);
       return;
     }
