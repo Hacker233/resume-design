@@ -13,6 +13,7 @@ const commonDataSource = {
     email: '1584775297@qq.com', // 邮箱
     abstract: '一句话简介，尽量不要太长', // 简介
     degree: '学历'
-  }
+  },
+  jobIntention: {}
 };
 export default commonDataSource;

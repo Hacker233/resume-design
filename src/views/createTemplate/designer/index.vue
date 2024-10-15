@@ -55,8 +55,10 @@
   import pageSchemas from './schema/pageSchema';
 
   // 初始化JSON数据
-  const { HJNewJsonStore, selectedModuleId } = storeToRefs(appStore.useCreateTemplateStore);
-  HJNewJsonStore.value = pageSchemas[HJNewJsonStore.value.props.pageName];
+  const { HJNewJsonStore, selectedModuleId, selectedPageName } = storeToRefs(
+    appStore.useCreateTemplateStore
+  );
+  HJNewJsonStore.value = pageSchemas[selectedPageName.value];
   HJNewJsonStore.value.id = getUuid();
 
   // 动态组件的 ref

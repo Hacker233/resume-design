@@ -101,6 +101,7 @@
     );
   };
   initList();
+  console.log('初始化左右布局列表', leftStyle, rightStyle);
 
   watch(
     () => leftList.value,

@@ -55,3 +55,8 @@
     selectedModuleId.value = element.id;
   };
 </script>
+<style lang="scss" scoped>
+  .create-template-elemet {
+    width: 100%;
+  }
+</style>

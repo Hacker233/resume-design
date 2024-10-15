@@ -46,6 +46,7 @@ const commonProps = {
       chName: '学历',
       show: false
     }
-  }
+  },
+  jobIntention: {}
 };
 export default commonProps;

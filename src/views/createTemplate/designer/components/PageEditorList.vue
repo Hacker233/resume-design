@@ -1,6 +1,11 @@
 <template>
   <div class="page-editor-icon-list">
     <ul>
+      <el-tooltip effect="light" content="页面选择" placement="right">
+        <li @click="selectPage">
+          <svg-icon icon-name="icon-background" color="#2cbd99" size="20px"></svg-icon>
+        </li>
+      </el-tooltip>
       <el-tooltip effect="light" content="查看页面JSON" placement="right">
         <li @click="openPageJSON">
           <svg-icon icon-name="icon-json-full" color="#2cbd99" size="20px"></svg-icon>
@@ -31,6 +36,12 @@
       :json="pageJson"
       @close-json-drawer="closePageJsonDrawer"
     ></view-json-drawer>
+
+    <!-- 选择背景页面弹窗 -->
+    <select-page-dialog
+      :dialog-page-visible="dialogPageVisible"
+      @cancle="handleCanclePage"
+    ></select-page-dialog>
   </div>
 </template>
 <script lang="ts" setup>
@@ -39,6 +50,7 @@
   import ViewJsonDrawer from './ViewJsonDrawer.vue';
   import { useGetSelectedModule } from '../hooks/useGetSelectedModule';
   import { storeToRefs } from 'pinia';
+  import SelectPageDialog from './SelectPageDialog.vue';
 
   const { HJNewJsonStore, selectedModuleId } = storeToRefs(appStore.useCreateTemplateStore);
 
@@ -69,6 +81,17 @@
     const data = JSON.stringify(HJNewJsonStore.value, null, 4);
     const blob = new Blob([data], { type: '' });
     FileSaver.saveAs(blob, HJNewJsonStore.value.config.title + '.json');
+  };
+
+  // 打开切换页面弹窗
+  const dialogPageVisible = ref<boolean>(false);
+  const selectPage = () => {
+    dialogPageVisible.value = true;
+  };
+
+  // 关闭切换页面弹窗
+  const handleCanclePage = () => {
+    dialogPageVisible.value = false;
   };
 </script>
 <style lang="scss" scoped>

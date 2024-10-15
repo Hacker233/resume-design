@@ -7,7 +7,7 @@ export const HJNewSchema: IHJNewSchema = {
   i18n: {}, // 国际化语料库
   constants: {}, // 全局常量
   props: {
-    pageName: 'LeftRightPage'
+    pageName: 'BasePage'
   },
   css: {
     width: 820,

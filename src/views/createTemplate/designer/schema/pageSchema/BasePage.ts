@@ -7,11 +7,15 @@ const BasePage = {
   i18n: {}, // 国际化语料库
   constants: {}, // 全局常量
   props: {
-    pageName: 'BasePage'
+    pageName: 'BasePage',
+    screenShot: 'page_1.png'
   },
   css: {
     width: 820,
     height: '100%',
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'flex-start',
     background: '#ffffff',
     opacity: 1,
     fontFamily: '',

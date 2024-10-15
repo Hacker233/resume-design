@@ -7,6 +7,7 @@ import { IHJNewSchema, IModule } from '@/views/createTemplate/types/IHJNewSchema
 export const useCreateTemplateStore = defineStore('createTemplate', () => {
   const selectedModuleListId = ref<string>(''); // 选中的模块列表的id
   const selectedModuleId = ref<string>(''); // 选中的模块的id
+  const selectedPageName = ref<string>('BasePage'); // 选中的页面背景的名称
   const resume_json = cloneDeep(HJNewSchema); // 简历数据
   const HJNewJsonStore = ref<IHJNewSchema>(resume_json);
   function changeResumeJsonData(obj: IHJNewSchema) {
@@ -22,6 +23,7 @@ export const useCreateTemplateStore = defineStore('createTemplate', () => {
   return {
     selectedModuleId,
     selectedModuleListId,
+    selectedPageName,
     HJNewJsonStore,
     changeResumeJsonData,
     pushComponent,

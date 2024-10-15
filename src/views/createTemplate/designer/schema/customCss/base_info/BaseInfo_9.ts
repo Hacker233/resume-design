@@ -6,14 +6,14 @@ export default [
       width: '100%',
       display: 'flex',
       flexDirection: 'column',
-      alignItems: 'flex-start',
+      alignItems: 'center',
       justifyContent: 'flex-start',
       flex: 1,
       padding: {
         top: 0,
         right: 0,
         bottom: 0,
-        left: 45
+        left: 0
       },
       margin: {
         top: 0,
@@ -41,7 +41,7 @@ export default [
       margin: {
         top: 0,
         right: 0,
-        bottom: 40,
+        bottom: 20,
         left: 0
       },
       borderColor: '#254665',
@@ -55,7 +55,7 @@ export default [
     prop: 'moduleTitleFont',
     css: {
       fontSize: 18,
-      color: 'rgb(255, 255, 255)',
+      color: 'rgb(41, 41, 41)',
       fontWeight: 600,
       letterSpacing: 2,
       background: 'none'
@@ -67,10 +67,10 @@ export default [
     css: {
       height: '100%',
       fontSize: 14,
-      color: '#fff',
+      color: 'rgb(41, 41, 41)',
       display: 'flex',
       flexDirection: 'column',
-      alignItems: 'flex-start',
+      alignItems: 'center',
       justifyContent: 'flex-start',
       fontWeight: 500,
       letterSpacing: 2,

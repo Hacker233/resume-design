@@ -6,7 +6,8 @@ const LeftRightPage = {
   i18n: {}, // 国际化语料库
   constants: {}, // 全局常量
   props: {
-    pageName: 'LeftRightPage'
+    pageName: 'LeftRightPage',
+    screenShot: 'page_2.png'
   },
   css: {
     width: 820,
