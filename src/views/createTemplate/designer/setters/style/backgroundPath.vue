@@ -86,5 +86,10 @@
       font-size: 12px;
       margin-top: 5px;
     }
+    .el-form-item__content {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
   }
 </style>

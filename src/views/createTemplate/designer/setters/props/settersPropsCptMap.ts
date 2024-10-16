@@ -10,7 +10,6 @@ import phoneNumber from './phoneNumber.vue';
 import email from './email.vue';
 import abstract from './abstract.vue';
 import degree from './degree.vue';
-import moduleTitleIcon from './moduleTitleIcon.vue';
 
 const settersPropsCptMap: ISetterMap = {
   title,
@@ -22,7 +21,6 @@ const settersPropsCptMap: ISetterMap = {
   phoneNumber,
   email,
   abstract,
-  degree,
-  moduleTitleIcon
+  degree
 };
 export default settersPropsCptMap;

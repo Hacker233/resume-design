@@ -1,7 +1,7 @@
 <template>
   <div :style="boxStyle">
     <!-- 模块标题 -->
-    <module-title_2 :module="module"></module-title_2>
+    <module-title_2 v-if="module.props.title.show" :module="module"></module-title_2>
     <div :style="userInfoBlock">
       <!-- 基本资料 -->
       <hj-user-base-info-2 :module="module"></hj-user-base-info-2>

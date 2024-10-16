@@ -14,6 +14,13 @@ const commonDataSource = {
     abstract: '一句话简介，尽量不要太长', // 简介
     degree: '学历'
   },
-  jobIntention: {}
+  jobIntention: {
+    title: '求职意向',
+    intendedPositions: '意向岗位', // 意向岗位
+    intendedCity: '城市', // 意向城市
+    expectSalary: '8000-10000', // 期望薪资
+    jobStatus: '随时入职', // 求职状态
+    jobSearchType: '求职类型'
+  }
 };
 export default commonDataSource;

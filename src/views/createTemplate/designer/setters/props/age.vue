@@ -2,11 +2,16 @@
   <div class="height-editor-box">
     <el-form-item size="default" :label="module.props.age.chName">
       <el-switch v-model="module.props.age.show" />
+      <icon-select-pop
+        v-if="module.props.age.iconfont"
+        v-model="module.props.age.iconfont"
+      ></icon-select-pop>
     </el-form-item>
   </div>
 </template>
 <script lang="ts" setup>
   import { useGetSelectedModule } from '../../hooks/useGetSelectedModule';
+  import IconSelectPop from '@/components/IconSelectPop/IconSelectPop.vue';
 
   const props = defineProps<{
     id: string;

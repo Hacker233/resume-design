@@ -3,7 +3,7 @@
     <!-- 图标 -->
     <div class="title-icon-box">
       <svg-icon
-        :icon-name="module.props.moduleTitleIcon"
+        :icon-name="module.props.title.iconfont"
         :color="moduleTitleFontStyle.color"
         size="30px"
       ></svg-icon>

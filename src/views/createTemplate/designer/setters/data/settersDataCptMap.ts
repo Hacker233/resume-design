@@ -10,6 +10,7 @@ import phoneNumber from './phoneNumber.vue';
 import email from './email.vue';
 import abstract from './abstract.vue';
 import degree from './degree.vue';
+import jobSearchType from './jobSearchType.vue';
 
 const settersDataCptMap: ISetterMap = {
   title,
@@ -21,6 +22,7 @@ const settersDataCptMap: ISetterMap = {
   phoneNumber,
   email,
   abstract,
-  degree
+  degree,
+  jobSearchType
 };
 export default settersDataCptMap;

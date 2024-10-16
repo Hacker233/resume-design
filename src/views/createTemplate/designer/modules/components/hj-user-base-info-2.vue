@@ -2,7 +2,7 @@
   <ul :style="userBaseInfo">
     <li v-show="module.props.age.show">
       <svg-icon
-        icon-name="icon-renwu-ren"
+        :icon-name="module.props.age.iconfont"
         :color="userBaseInfo.color"
         :size="userBaseInfo.fontSize"
       ></svg-icon>
@@ -10,7 +10,7 @@
     </li>
     <li v-show="module.props.address.show">
       <svg-icon
-        icon-name="icon-zhiyuandidian3"
+        :icon-name="module.props.address.iconfont"
         :color="userBaseInfo.color"
         :size="userBaseInfo.fontSize"
       ></svg-icon>
@@ -18,7 +18,7 @@
     </li>
     <li v-show="module.props.degree.show">
       <svg-icon
-        icon-name="icon-jiaoyu"
+        :icon-name="module.props.degree.iconfont"
         :color="userBaseInfo.color"
         :size="userBaseInfo.fontSize"
       ></svg-icon>
@@ -26,7 +26,7 @@
     </li>
     <li v-show="module.props.workService.show" class="li-border">
       <svg-icon
-        icon-name="icon-gongzuojingyan"
+        :icon-name="module.props.workService.iconfont"
         :color="userBaseInfo.color"
         :size="userBaseInfo.fontSize"
       ></svg-icon>
@@ -34,7 +34,7 @@
     </li>
     <li v-show="module.props.phoneNumber.show">
       <svg-icon
-        icon-name="icon-dianhua1"
+        :icon-name="module.props.phoneNumber.iconfont"
         :color="userBaseInfo.color"
         :size="userBaseInfo.fontSize"
       ></svg-icon>
@@ -42,7 +42,7 @@
     </li>
     <li v-show="module.props.email.show">
       <svg-icon
-        icon-name="icon-youxiang"
+        :icon-name="module.props.email.iconfont"
         :color="userBaseInfo.color"
         :size="userBaseInfo.fontSize"
       ></svg-icon>

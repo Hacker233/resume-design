@@ -74,7 +74,7 @@
 </template>
 <script setup lang="ts">
   import { storeToRefs } from 'pinia';
-  import modulesList from '../schema/module';
+  import modulesList from '../schema/index';
   import appStore from '@/store';
   import { getImgListStyleImageFile } from '../utils/getImgListStyleImageFile';
   import draggable from 'vuedraggable';

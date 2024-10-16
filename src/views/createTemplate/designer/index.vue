@@ -203,7 +203,6 @@
       }
       .prop-right {
         height: 100%;
-        max-width: 500px;
         background-color: #fff;
         flex: 1;
       }

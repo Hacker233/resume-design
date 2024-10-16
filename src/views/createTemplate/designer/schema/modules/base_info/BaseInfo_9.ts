@@ -15,7 +15,12 @@ export default {
   keywords: '基础信息', // 组件关键词，用于搜索
   category: 'base_info', // 组件分类
   props: {
-    moduleTitleIcon: 'icon-jibenziliao' // 模块标题图标
+    title: {
+      chName: '模块标题',
+      show: true,
+      iconfont: 'icon-jibenziliao',
+      config: true
+    }
   }, // 组件属性
   css: {
     width: '100%',
