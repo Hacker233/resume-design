@@ -75,30 +75,7 @@
         </el-collapse>
       </el-tab-pane>
       <el-tab-pane class="data-tab-pane" label="数据配置" name="second">
-        <el-collapse v-model="activeDataNames">
-          <el-collapse-item title="数据配置" name="dataProp">
-            <el-form label-width="100px" label-position="left">
-              <div v-for="(value, key, index) in module.dataSource" :key="index">
-                <!-- 不在不显示对象里面，才渲染 -->
-                <template v-if="module.customProps.hasOwnProperty('dataSourceNotShow')">
-                  <component
-                    :is="getDataSetterCom(key)"
-                    v-if="!module.customProps.dataSourceNotShow[key]"
-                    :id="selectedModuleId"
-                    :value="value"
-                  ></component>
-                </template>
-                <template v-else>
-                  <component
-                    :is="getDataSetterCom(key)"
-                    :id="selectedModuleId"
-                    :value="value"
-                  ></component>
-                </template>
-              </div>
-            </el-form>
-          </el-collapse-item>
-        </el-collapse>
+        <data-config></data-config>
       </el-tab-pane>
     </el-tabs>
 
@@ -145,7 +122,9 @@
           </el-collapse-item>
         </el-collapse>
       </el-tab-pane>
-      <el-tab-pane class="data-tab-pane" label="数据配置" name="second"></el-tab-pane>
+      <el-tab-pane class="data-tab-pane" label="数据配置" name="second">
+        <data-config></data-config>
+      </el-tab-pane>
     </el-tabs>
   </div>
 </template>
@@ -155,8 +134,8 @@
   import { useGetSelectedModule } from '../hooks/useGetSelectedModule';
   import settersStyleCptMap from '../setters/style/settersStyleCptMap';
   import settersPropsCptMap from '../setters/props/settersPropsCptMap';
-  import settersDataCptMap from '../setters/data/settersDataCptMap';
   import { IModule } from '../../types/IHJNewSchema';
+  import DataConfig from './DataConfig.vue';
 
   const { selectedModuleId, HJNewJsonStore } = storeToRefs(appStore.useCreateTemplateStore);
 
@@ -167,9 +146,6 @@
 
   // 页面配置折叠面吧
   const pageActiveNames = ref([]);
-
-  // 数据配置折叠面板
-  const activeDataNames = ref<string>('dataProp');
 
   // 全局设置选中的tab
   const activeGlobalName = ref('style');
@@ -193,11 +169,6 @@
   // 返回属性设置组件
   const getPropsSetterCom = (key: string | number) => {
     return settersPropsCptMap[key];
-  };
-
-  // 返回数据设置组件
-  const getDataSetterCom = (key: string | number) => {
-    return settersDataCptMap[key];
   };
 </script>
 <style lang="scss" scoped>

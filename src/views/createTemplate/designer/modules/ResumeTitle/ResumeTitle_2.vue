@@ -1,7 +1,7 @@
 <template>
   <div class="resume-title-box" :style="boxStyle">
     <div v-show="module.props.title" :style="inlineBlock">
-      <hj-p-1 :p="module.dataSource.title"></hj-p-1>
+      <hj-p-1 :p="module.dataSource.title.value"></hj-p-1>
     </div>
   </div>
 </template>

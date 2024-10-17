@@ -5,7 +5,7 @@ export default {
   componentName: 'ResumeTitle_1', // 组件名
   commentType: '', // 组件类型
   icon: '', // 组件icon
-  title: '简历标题_1', // 组件中文名称
+  title: '简历标题', // 组件中文名称
   description: '简历标题模块', // 组件描述信息
   screenShot: {
     width: '100%',

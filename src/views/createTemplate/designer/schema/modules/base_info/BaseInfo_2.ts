@@ -5,7 +5,7 @@ export default {
   componentName: 'BaseInfo_2', // 组件名
   commentType: '', // 组件类型
   icon: '', // 组件icon
-  title: '基本信息_2', // 组件中文名称
+  title: '基本资料', // 组件中文名称
   description: '基本信息模块', // 组件描述信息
   screenShot: {
     width: '100%',

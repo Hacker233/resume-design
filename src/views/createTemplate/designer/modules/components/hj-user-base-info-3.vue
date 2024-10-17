@@ -1,22 +1,22 @@
 <template>
   <ul :style="userBaseInfo">
     <li v-show="module.props.age.show">
-      <span>{{ module.dataSource.age }}岁</span>
+      <span>{{ module.dataSource.age.value }}岁</span>
     </li>
     <li v-show="module.props.address.show">
-      <span>{{ module.dataSource.address }}</span>
+      <span>{{ module.dataSource.address.value }}</span>
     </li>
     <li v-show="module.props.degree.show">
-      <span>{{ module.dataSource.degree }}</span>
+      <span>{{ module.dataSource.degree.value }}</span>
     </li>
     <li v-show="module.props.workService.show" class="li-border">
-      <span>{{ module.dataSource.workService }}年经验</span>
+      <span>{{ module.dataSource.workService.value }}年经验</span>
     </li>
     <li v-show="module.props.phoneNumber.show">
-      <span>{{ module.dataSource.phoneNumber }}</span>
+      <span>{{ module.dataSource.phoneNumber.value }}</span>
     </li>
     <li v-show="module.props.email.show">
-      <span>{{ module.dataSource.email }}</span>
+      <span>{{ module.dataSource.email.value }}</span>
     </li>
   </ul>
 </template>

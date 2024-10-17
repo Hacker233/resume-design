@@ -1,15 +1,19 @@
 <template>
   <ul :style="userBaseInfo">
-    <li v-show="module.props.age.show" class="li-border">{{ module.dataSource.age }}岁</li>
-    <li v-show="module.props.address.show" class="li-border">{{ module.dataSource.address }}</li>
-    <li v-show="module.props.degree.show" class="li-border">{{ module.dataSource.degree }}</li>
+    <li v-show="module.props.age.show" class="li-border">{{ module.dataSource.age.value }}岁</li>
+    <li v-show="module.props.address.show" class="li-border">{{
+      module.dataSource.address.value
+    }}</li>
+    <li v-show="module.props.degree.show" class="li-border">{{
+      module.dataSource.degree.value
+    }}</li>
     <li v-show="module.props.workService.show" class="li-border"
-      >{{ module.dataSource.workService }}年经验</li
+      >{{ module.dataSource.workService.value }}年经验</li
     >
     <li v-show="module.props.phoneNumber.show" class="li-border">{{
-      module.dataSource.phoneNumber
+      module.dataSource.phoneNumber.value
     }}</li>
-    <li v-show="module.props.email.show">{{ module.dataSource.email }}</li>
+    <li v-show="module.props.email.show">{{ module.dataSource.email.value }}</li>
   </ul>
 </template>
 <script lang="ts" setup>

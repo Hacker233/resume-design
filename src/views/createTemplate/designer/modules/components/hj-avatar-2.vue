@@ -1,9 +1,9 @@
 <template>
   <div class="avatar-1-box" :style="avatar">
     <el-image
-      v-if="module?.dataSource.avatar"
+      v-if="module?.dataSource.avatar.value"
       :style="elImageStyle"
-      :src="module.dataSource.avatar"
+      :src="module.dataSource.avatar.value"
     />
     <img
       v-else

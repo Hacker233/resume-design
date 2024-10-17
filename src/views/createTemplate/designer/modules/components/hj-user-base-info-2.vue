@@ -6,7 +6,7 @@
         :color="userBaseInfo.color"
         :size="userBaseInfo.fontSize"
       ></svg-icon>
-      <span>{{ module.dataSource.age }}岁</span>
+      <span>{{ module.dataSource.age.value }}岁</span>
     </li>
     <li v-show="module.props.address.show">
       <svg-icon
@@ -14,7 +14,7 @@
         :color="userBaseInfo.color"
         :size="userBaseInfo.fontSize"
       ></svg-icon>
-      <span>{{ module.dataSource.address }}</span>
+      <span>{{ module.dataSource.address.value }}</span>
     </li>
     <li v-show="module.props.degree.show">
       <svg-icon
@@ -22,7 +22,7 @@
         :color="userBaseInfo.color"
         :size="userBaseInfo.fontSize"
       ></svg-icon>
-      <span>{{ module.dataSource.degree }}</span>
+      <span>{{ module.dataSource.degree.value }}</span>
     </li>
     <li v-show="module.props.workService.show" class="li-border">
       <svg-icon
@@ -30,7 +30,7 @@
         :color="userBaseInfo.color"
         :size="userBaseInfo.fontSize"
       ></svg-icon>
-      <span>{{ module.dataSource.workService }}年经验</span>
+      <span>{{ module.dataSource.workService.value }}年经验</span>
     </li>
     <li v-show="module.props.phoneNumber.show">
       <svg-icon
@@ -38,7 +38,7 @@
         :color="userBaseInfo.color"
         :size="userBaseInfo.fontSize"
       ></svg-icon>
-      <span>{{ module.dataSource.phoneNumber }}</span>
+      <span>{{ module.dataSource.phoneNumber.value }}</span>
     </li>
     <li v-show="module.props.email.show">
       <svg-icon
@@ -46,7 +46,7 @@
         :color="userBaseInfo.color"
         :size="userBaseInfo.fontSize"
       ></svg-icon>
-      <span>{{ module.dataSource.email }}</span>
+      <span>{{ module.dataSource.email.value }}</span>
     </li>
   </ul>
 </template>

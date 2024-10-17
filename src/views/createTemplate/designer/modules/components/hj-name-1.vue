@@ -1,5 +1,5 @@
 <template>
-  <h1 :style="name">{{ module.dataSource.name }}</h1>
+  <h1 :style="name">{{ module.dataSource.name.value }}</h1>
 </template>
 <script lang="ts" setup>
   import { IModule } from '@/views/createTemplate/types/IHJNewSchema';

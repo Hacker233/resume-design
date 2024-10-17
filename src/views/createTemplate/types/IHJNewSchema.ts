@@ -56,4 +56,11 @@ interface ISetterMap {
   [propName: string]: any;
 }
 
-export { IHJNewSchema, IModule, IModulesList, ISetterMap };
+interface IDataDource {
+  type: string;
+  label: string;
+  value: any;
+  [propName: string]: any;
+}
+
+export { IHJNewSchema, IModule, IModulesList, ISetterMap, IDataDource };

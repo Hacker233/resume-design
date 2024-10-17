@@ -7,7 +7,7 @@
         :color="jobIntentionList.color"
         :size="jobIntentionList.fontSize"
       ></svg-icon>
-      <span>{{ module.dataSource.jobSearchType }}</span>
+      <span>{{ module.dataSource.jobSearchType.value }}</span>
     </li>
     <!-- 意向岗位 -->
     <li v-show="module.props.intendedPositions.show">
@@ -16,7 +16,7 @@
         :color="jobIntentionList.color"
         :size="jobIntentionList.fontSize"
       ></svg-icon>
-      <span>{{ module.dataSource.intendedPositions }}</span>
+      <span>{{ module.dataSource.intendedPositions.value }}</span>
     </li>
     <!-- 意向城市 -->
     <li v-show="module.props.intendedCity.show">
@@ -25,7 +25,7 @@
         :color="jobIntentionList.color"
         :size="jobIntentionList.fontSize"
       ></svg-icon>
-      <span>{{ module.dataSource.intendedCity }}</span>
+      <span>{{ module.dataSource.intendedCity.value }}</span>
     </li>
     <!-- 期望薪资 -->
     <li v-show="module.props.expectSalary.show">
@@ -34,7 +34,7 @@
         :color="jobIntentionList.color"
         :size="jobIntentionList.fontSize"
       ></svg-icon>
-      <span>{{ module.dataSource.expectSalary }}</span>
+      <span>{{ module.dataSource.expectSalary.value }}</span>
     </li>
     <!-- 求职状态 -->
     <li v-show="module.props.jobStatus.show">
@@ -43,7 +43,7 @@
         :color="jobIntentionList.color"
         :size="jobIntentionList.fontSize"
       ></svg-icon>
-      <span>{{ module.dataSource.jobStatus }}</span>
+      <span>{{ module.dataSource.jobStatus.value }}</span>
     </li>
   </ul>
 </template>
