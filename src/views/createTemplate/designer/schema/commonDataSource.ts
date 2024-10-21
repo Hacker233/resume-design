@@ -23,7 +23,7 @@ const commonDataSource = {
       value: '成都'
     }, // 所在地址
     avatar: {
-      type: 'upload',
+      type: 'avatar',
       label: '证件照',
       value: ''
     }, // 头像地址

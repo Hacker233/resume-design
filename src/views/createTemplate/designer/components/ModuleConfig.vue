@@ -1,131 +1,48 @@
 <!-- 模块属性配置面板 -->
 <template>
   <div class="right-setter-box">
-    <el-tabs
-      v-if="selectedModuleId"
-      :key="selectedModuleId"
-      v-model="activeName"
-      type="card"
-      class="demo-tabs"
-    >
-      <el-tab-pane label="基本配置" name="style">
-        <el-collapse v-model="activeNames">
-          <div class="collapse-line-bolck">
-            <h1>组件相关属性设置</h1>
-          </div>
-          <!-- 组件属性 -->
-          <el-collapse-item
-            v-if="module && Object.keys(module.props).length"
-            title="组件属性"
-            name="cptProp"
-          >
-            <el-form label-width="90px" label-position="left">
-              <div v-for="(value, key, index) in module.props" :key="index">
-                <component
-                  :is="getPropsSetterCom(key)"
-                  v-if="value.config"
-                  :id="selectedModuleId"
-                  :value="value"
-                ></component>
-              </div>
-            </el-form>
-          </el-collapse-item>
-          <div class="collapse-line-bolck">
-            <h1>组件整体样式属性设置</h1>
-          </div>
-          <el-collapse-item
-            v-if="module && Object.keys(module.css).length"
-            title="组件整体样式"
-            name="styleProp"
-          >
-            <el-form label-width="90px" label-position="left">
-              <div v-for="(value, key, index) in module.css" :key="index">
-                <component
-                  :is="getStyleSetterCom(key)"
-                  :id="selectedModuleId"
-                  :value="value"
-                ></component>
-              </div>
-            </el-form>
-          </el-collapse-item>
-          <!-- 自定义的样式属性 -->
-          <div class="collapse-line-bolck">
-            <h1>内部子组件样式属性设置</h1>
-          </div>
-          <el-collapse-item
-            v-for="(customItem, customIndex) in module.customCss"
-            :key="customIndex"
-            :title="customItem.title"
-            :name="customItem.prop"
-          >
-            <el-form label-width="90px" label-position="left">
-              <el-form-item label="自定义Prop:">
-                <el-input v-model="customItem.prop" disabled />
-              </el-form-item>
-              <div v-for="(value, key, index) in customItem.css" :key="index">
-                <component
-                  :is="getStyleSetterCom(key)"
-                  :id="selectedModuleId"
-                  :custom-css-prop="customItem.prop"
-                  :value="value"
-                ></component>
-              </div>
-            </el-form>
-          </el-collapse-item>
-        </el-collapse>
-      </el-tab-pane>
-      <el-tab-pane class="data-tab-pane" label="数据配置" name="second">
-        <data-config></data-config>
-      </el-tab-pane>
-    </el-tabs>
+    <data-config v-if="selectedModuleId"></data-config>
 
     <!-- 全局样式配置 -->
-    <el-tabs v-else v-model="activeGlobalName" type="card" class="demo-tabs">
-      <el-tab-pane label="样式配置" name="style">
-        <el-collapse v-model="pageActiveNames">
-          <div class="collapse-line-bolck">
-            <h1>全局样式配置</h1>
+    <el-collapse v-else v-model="pageActiveNames">
+      <div class="collapse-line-bolck">
+        <h1>全局样式配置</h1>
+      </div>
+      <el-collapse-item
+        v-if="HJNewJsonStore && Object.keys(HJNewJsonStore.css).length"
+        title="主题配置"
+        name="styleProp"
+      >
+        <el-form label-width="90px" label-position="left">
+          <div v-for="(value, key, index) in HJNewJsonStore.css" :key="index">
+            <component :is="getStyleSetterCom(key)" :value="value"></component>
           </div>
-          <el-collapse-item
-            v-if="HJNewJsonStore && Object.keys(HJNewJsonStore.css).length"
-            title="主题配置"
-            name="styleProp"
-          >
-            <el-form label-width="90px" label-position="left">
-              <div v-for="(value, key, index) in HJNewJsonStore.css" :key="index">
-                <component :is="getStyleSetterCom(key)" :value="value"></component>
-              </div>
-            </el-form>
-          </el-collapse-item>
-          <!-- 自定义的样式属性 -->
-          <div v-if="HJNewJsonStore.customCss.length" class="collapse-line-bolck">
-            <h1>内部子组件样式属性设置</h1>
+        </el-form>
+      </el-collapse-item>
+      <!-- 自定义的样式属性 -->
+      <div v-if="HJNewJsonStore.customCss.length" class="collapse-line-bolck">
+        <h1>内部子组件样式属性设置</h1>
+      </div>
+      <el-collapse-item
+        v-for="(customItem, customIndex) in HJNewJsonStore.customCss"
+        :key="customIndex"
+        :title="customItem.title"
+        :name="customItem.prop"
+      >
+        <el-form label-width="90px" label-position="left">
+          <el-form-item label="自定义Prop:">
+            <el-input v-model="customItem.prop" disabled />
+          </el-form-item>
+          <div v-for="(value, key, index) in customItem.css" :key="index">
+            <component
+              :is="getStyleSetterCom(key)"
+              :custom-css-prop="customItem.prop"
+              :value="value"
+            ></component>
           </div>
-          <el-collapse-item
-            v-for="(customItem, customIndex) in HJNewJsonStore.customCss"
-            :key="customIndex"
-            :title="customItem.title"
-            :name="customItem.prop"
-          >
-            <el-form label-width="90px" label-position="left">
-              <el-form-item label="自定义Prop:">
-                <el-input v-model="customItem.prop" disabled />
-              </el-form-item>
-              <div v-for="(value, key, index) in customItem.css" :key="index">
-                <component
-                  :is="getStyleSetterCom(key)"
-                  :custom-css-prop="customItem.prop"
-                  :value="value"
-                ></component>
-              </div>
-            </el-form>
-          </el-collapse-item>
-        </el-collapse>
-      </el-tab-pane>
-      <el-tab-pane class="data-tab-pane" label="数据配置" name="second">
-        <data-config></data-config>
-      </el-tab-pane>
-    </el-tabs>
+        </el-form>
+      </el-collapse-item>
+    </el-collapse>
   </div>
 </template>
 <script lang="ts" setup>
@@ -133,22 +50,13 @@
   import { storeToRefs } from 'pinia';
   import { useGetSelectedModule } from '../hooks/useGetSelectedModule';
   import settersStyleCptMap from '../setters/style/settersStyleCptMap';
-  import settersPropsCptMap from '../setters/props/settersPropsCptMap';
   import { IModule } from '../../types/IHJNewSchema';
   import DataConfig from './DataConfig.vue';
 
   const { selectedModuleId, HJNewJsonStore } = storeToRefs(appStore.useCreateTemplateStore);
 
-  const activeName = ref('style');
-
-  // 折叠面板
-  const activeNames = ref([]);
-
   // 页面配置折叠面吧
   const pageActiveNames = ref([]);
-
-  // 全局设置选中的tab
-  const activeGlobalName = ref('style');
 
   const module = ref<IModule | any>({});
   watch(
@@ -164,11 +72,6 @@
   // 返回样式属性设置组件
   const getStyleSetterCom = (key: string | number) => {
     return settersStyleCptMap[key];
-  };
-
-  // 返回属性设置组件
-  const getPropsSetterCom = (key: string | number) => {
-    return settersPropsCptMap[key];
   };
 </script>
 <style lang="scss" scoped>
