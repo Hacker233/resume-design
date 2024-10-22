@@ -2,10 +2,13 @@ import { IHJNewSchema, IModule } from '../../types/IHJNewSchema';
 
 // 使用 import.meta.glob 来加载资产目录下的所有图片
 const images = import.meta.glob('/src/assets/createTemplateImages/*', { eager: true });
-console.log('images', images);
 
 // 根据prop返回自定义样式
-export const useGetCustomStyle = (module: IModule | IHJNewSchema, prop: string) => {
+export const useGetCustomStyle = (
+  module: IModule | IHJNewSchema,
+  prop: string,
+  themeSetter?: any
+) => {
   const loadBackgroundImage = (backgroundPath: string, element: any) => {
     if (backgroundPath) {
       const isOnlineUrl = backgroundPath.includes('https://');
@@ -22,7 +25,7 @@ export const useGetCustomStyle = (module: IModule | IHJNewSchema, prop: string) 
         }
       }
     } else {
-      return element.css.background || 'none';
+      return element.css.background ?? '';
     }
   };
 
@@ -33,6 +36,13 @@ export const useGetCustomStyle = (module: IModule | IHJNewSchema, prop: string) 
         // 在这里加载背景图像
         const background: string = loadBackgroundImage(element.css.backgroundPath, element);
         element.css.background = background;
+        // themeSetter则是需要同步为主题色的属性
+        if (themeSetter) {
+          themeSetter.forEach((cssKey: string) => {
+            element.css[cssKey] = element.css.themeColor;
+            console.log(cssKey + '改为主题色');
+          });
+        }
         return {
           width: element.css?.width
             ? typeof element.css.width === 'string'
@@ -50,7 +60,7 @@ export const useGetCustomStyle = (module: IModule | IHJNewSchema, prop: string) 
           fontSize: element.css?.fontSize ? `${element.css.fontSize}px` : '',
           fontFamily: element.css?.fontFamily || '',
           fontWeight: element.css?.fontWeight || '',
-          color: element.css?.color || '#121c26',
+          color: element.css?.color ?? '',
           display: element.css?.display || '',
           flex: element.css?.flex || '',
           flexWrap: element.css.flexWrap || '',
@@ -74,7 +84,7 @@ export const useGetCustomStyle = (module: IModule | IHJNewSchema, prop: string) 
             : '0px',
           borderLeftWidth: element.css?.borderWidth ? `${element.css.borderWidth.left}px` : '0px',
 
-          borderColor: element.css?.borderColor || '',
+          borderColor: element.css?.borderColor ?? '',
           // 圆角
           borderTopLeftRadius: element.css?.borderRadius?.topLeft
             ? typeof element.css?.borderRadius?.topLeft === 'string'
@@ -152,6 +162,5 @@ export const useGetCustomStyle = (module: IModule | IHJNewSchema, prop: string) 
     }
     return {}; // 如果没有找到匹配的 prop，返回空对象
   });
-
   return customStyle;
 };

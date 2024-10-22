@@ -8,7 +8,7 @@
     <div class="lozenge-2"></div>
 
     <!-- 左侧竖线 -->
-    <div :style="lineStyle"></div>
+    <div class="left-line" :style="lineStyle"></div>
   </div>
 </template>
 <script lang="ts" setup>
@@ -21,7 +21,7 @@
   }>();
 
   // 返回模块整体样式
-  const moduleTitleStyle: any = useGetCustomStyle(props.module, 'moduleTitle');
+  const moduleTitleStyle: any = useGetCustomStyle(props.module, 'moduleTitle', ['borderColor']);
 
   // 返回标题样式
   const moduleTitleFontStyle = useGetCustomStyle(props.module, 'moduleTitleFont');
@@ -35,7 +35,6 @@
       position: 'absolute',
       height: `calc(100% - ${height})`,
       width: '1px',
-      backgroundColor: moduleTitleStyle.themeColor || '#254665',
       left: '49px',
       top: height
     };
@@ -43,6 +42,7 @@
 </script>
 <style lang="scss" scoped>
   .model-title-box {
+    border-color: v-bind('moduleTitleStyle.themeColor');
     .title-box {
       width: 165px;
       height: 100%;
@@ -80,6 +80,9 @@
       background-color: v-bind('moduleTitleStyle.themeColor');
       transform: skewX(45deg);
       margin-left: 5px;
+    }
+    .left-line {
+      background-color: v-bind('moduleTitleStyle.themeColor');
     }
   }
 </style>

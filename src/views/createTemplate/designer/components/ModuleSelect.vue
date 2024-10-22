@@ -42,6 +42,7 @@
               chosen-class="chosen"
               :group="{ name: 'custom', pull: 'clone', put: false }"
               item-key="id"
+              @start="start"
             >
               <template #item="{ element }">
                 <div class="img-box" :style="getImgBoxStyle(element?.screenShot)">
@@ -111,6 +112,11 @@
     return element;
   };
 
+  const start = (data: any) => {
+    const element = handleData(currentModuleListObj.value.list[data.oldDraggableIndex]);
+    data.originalEvent.dataTransfer?.setData('cptData', JSON.stringify(element));
+  };
+
   // 组件数据
   const handleData = (data: IModule) => {
     const element = cloneDeep(data);
@@ -127,7 +133,6 @@
       ...modulesList[element.category].props,
       ...element.props
     };
-    console.log('组件数据', element);
     return cloneDeep(element);
   };
 </script>

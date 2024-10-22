@@ -1,6 +1,11 @@
 <template>
   <div class="page-editor-icon-list">
     <ul>
+      <el-tooltip effect="light" content="主题配置" placement="right">
+        <li @click="openThemeDrawer">
+          <svg-icon icon-name="icon-tesezhuti" color="#2cbd99" size="20px"></svg-icon>
+        </li>
+      </el-tooltip>
       <el-tooltip effect="light" content="页面选择" placement="right">
         <li @click="selectPage">
           <svg-icon icon-name="icon-background" color="#2cbd99" size="20px"></svg-icon>
@@ -42,12 +47,19 @@
       :dialog-page-visible="dialogPageVisible"
       @cancle="handleCanclePage"
     ></select-page-dialog>
+
+    <!-- 主题设置抽屉 -->
+    <theme-style-setting-drawer
+      :drawer="themeSettingDrawer"
+      @close-style-drawer="handleCloseDrawer"
+    ></theme-style-setting-drawer>
   </div>
 </template>
 <script lang="ts" setup>
   import FileSaver from 'file-saver';
   import appStore from '@/store';
   import ViewJsonDrawer from './ViewJsonDrawer.vue';
+  import ThemeStyleSettingDrawer from './ThemeStyleSettingDrawer.vue';
   import { useGetSelectedModule } from '../hooks/useGetSelectedModule';
   import { storeToRefs } from 'pinia';
   import SelectPageDialog from './SelectPageDialog.vue';
@@ -92,6 +104,17 @@
   // 关闭切换页面弹窗
   const handleCanclePage = () => {
     dialogPageVisible.value = false;
+  };
+
+  // 主题设置抽屉
+  const themeSettingDrawer = ref<boolean>(false);
+  const openThemeDrawer = () => {
+    themeSettingDrawer.value = true;
+  };
+
+  // 关闭主题设置抽屉
+  const handleCloseDrawer = () => {
+    themeSettingDrawer.value = false;
   };
 </script>
 <style lang="scss" scoped>

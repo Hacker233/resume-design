@@ -1,42 +1,44 @@
 <template>
-  <div class="data-config-box">
-    <div
-      v-for="moduleItem in HJNewJsonStore.componentsTree"
-      :key="moduleItem.id"
-      class="module-box"
-    >
-      <!-- 模块标题 -->
-      <div class="module-title-box">
-        <data-title-left :id="moduleItem.id"></data-title-left>
-        <data-title-right
-          :id="moduleItem.id"
-          @open-style-drawer="handleOpenStyleDrawer"
-        ></data-title-right>
-      </div>
-
-      <!-- 模块数据填写区域 -->
-      <div class="module-content-box">
-        <!-- 组件 -->
-        <div
-          v-for="(value, key, dataIndex) in moduleItem.dataSource"
-          :key="dataIndex"
-          class="module-filed-box"
-        >
-          <component
-            :is="dataSourceCptMap[value.type]"
+  <c-scrollbar trigger="hover" style="height: calc(100vh - 50px)">
+    <div class="data-config-box">
+      <div
+        v-for="moduleItem in HJNewJsonStore.componentsTree"
+        :key="moduleItem.id"
+        class="module-box"
+      >
+        <!-- 模块标题 -->
+        <div class="module-title-box">
+          <data-title-left :id="moduleItem.id"></data-title-left>
+          <data-title-right
             :id="moduleItem.id"
-            :key-value="key"
-          ></component>
+            @open-style-drawer="handleOpenStyleDrawer"
+          ></data-title-right>
+        </div>
+
+        <!-- 模块数据填写区域 -->
+        <div class="module-content-box">
+          <!-- 组件 -->
+          <div
+            v-for="(value, key, dataIndex) in moduleItem.dataSource"
+            :key="dataIndex"
+            class="module-filed-box"
+          >
+            <component
+              :is="dataSourceCptMap[value.type]"
+              :id="moduleItem.id"
+              :key-value="key"
+            ></component>
+          </div>
         </div>
       </div>
-    </div>
 
-    <!-- 模块样式设置弹窗 -->
-    <module-style-setting-drawer
-      :drawer="styleDrawer"
-      @close-style-drawer="handleCloseDrawer"
-    ></module-style-setting-drawer>
-  </div>
+      <!-- 模块样式设置弹窗 -->
+      <module-style-setting-drawer
+        :drawer="styleDrawer"
+        @close-style-drawer="handleCloseDrawer"
+      ></module-style-setting-drawer>
+    </div>
+  </c-scrollbar>
 </template>
 
 <script lang="ts" setup>

@@ -18,9 +18,9 @@ export default {
   css: {
     alignItems: 'flex-end',
     padding: {
-      top: 0,
+      top: 25,
       right: 5,
-      bottom: 15,
+      bottom: 25,
       left: 40
     }
   }, // 组件样式

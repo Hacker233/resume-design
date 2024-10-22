@@ -1,5 +1,12 @@
 <template>
   <div class="module-title-3" :style="moduleTitleStyle">
+    <div class="icon-box" :style="moduleTitleIconStyle">
+      <svg-icon
+        :icon-name="module.props.title.iconfont"
+        :color="moduleTitleIconStyle.color"
+        :size="moduleTitleIconStyle.fontSize"
+      ></svg-icon>
+    </div>
     <hj-h1-1 :title="module.title" :style="moduleTitleFontStyle"></hj-h1-1>
   </div>
 </template>
@@ -23,4 +30,12 @@
     'color',
     'borderColor'
   ]);
+
+  // 返回图标样式
+  const moduleTitleIconStyle = useGetCustomStyle(props.module, 'moduleTitleIcon');
 </script>
+<style lang="scss" scoped>
+  .icon-box {
+    background-color: v-bind('moduleTitleStyle.themeColor');
+  }
+</style>

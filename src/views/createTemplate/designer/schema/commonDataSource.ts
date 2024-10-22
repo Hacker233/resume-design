@@ -68,7 +68,7 @@ const commonDataSource = {
     expectSalary: {
       type: 'select',
       label: '期望薪资',
-      value: '8000-10000',
+      value: '8K ~ 10K',
       options: []
     }, // 期望薪资
     jobStatus: {

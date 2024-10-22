@@ -30,14 +30,4 @@
 
   // 信息模块样式
   const userInfoBlock = useGetCustomStyle(props.module, 'userInfoBlock');
-
-  watch(
-    props.module,
-    () => {
-      console.log('props.module', props.module);
-    },
-    {
-      deep: true
-    }
-  );
 </script>

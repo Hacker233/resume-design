@@ -42,7 +42,6 @@ const commonCss: any = {
   },
   baseInfo: {
     width: '100%',
-    height: 182,
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'flex-start',

@@ -25,11 +25,10 @@ export default {
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'flex-start',
-    height: 250,
     padding: {
       top: 10,
       right: 25,
-      bottom: 0,
+      bottom: 20,
       left: 25
     }
   }, // 组件样式

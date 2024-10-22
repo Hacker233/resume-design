@@ -10,6 +10,7 @@ import BaseInfo_9 from './base_info/BaseInfo_9';
 
 // 求职意向
 import JobIntention_1 from './job_intention/JobIntention_1';
+import JobIntention_2 from './job_intention/JobIntention_2';
 
 // 页面
 import base_page from './pages/base_page';
@@ -30,6 +31,7 @@ export default {
   BaseInfo_9,
 
   JobIntention_1,
+  JobIntention_2,
 
   ResumeTitle_1,
   ResumeTitle_2,

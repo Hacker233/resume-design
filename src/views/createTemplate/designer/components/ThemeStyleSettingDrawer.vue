@@ -9,29 +9,29 @@
     title="模块样式设置"
     destroy-on-close
     @close="handleClose"
-    @open="handleOpen"
   >
-    <el-collapse v-model="activeNames">
+    <!-- 全局样式配置 -->
+    <el-collapse v-model="pageActiveNames">
       <div class="collapse-line-bolck">
-        <h1>组件整体样式属性设置</h1>
+        <h1>全局样式配置</h1>
       </div>
-      <el-collapse-item title="组件整体样式" name="styleProp">
+      <el-collapse-item
+        v-if="HJNewJsonStore && Object.keys(HJNewJsonStore.css).length"
+        title="主题配置"
+        name="styleProp"
+      >
         <el-form label-width="90px" label-position="left">
-          <div v-for="(value, key, index) in module.css" :key="index">
-            <component
-              :is="getStyleSetterCom(key)"
-              :id="selectedModuleId"
-              :value="value"
-            ></component>
+          <div v-for="(value, key, index) in HJNewJsonStore.css" :key="index">
+            <component :is="getStyleSetterCom(key)" :value="value"></component>
           </div>
         </el-form>
       </el-collapse-item>
       <!-- 自定义的样式属性 -->
-      <div class="collapse-line-bolck">
+      <div v-if="HJNewJsonStore.customCss.length" class="collapse-line-bolck">
         <h1>内部子组件样式属性设置</h1>
       </div>
       <el-collapse-item
-        v-for="(customItem, customIndex) in module.customCss"
+        v-for="(customItem, customIndex) in HJNewJsonStore.customCss"
         :key="customIndex"
         :title="customItem.title"
         :name="customItem.prop"
@@ -43,7 +43,6 @@
           <div v-for="(value, key, index) in customItem.css" :key="index">
             <component
               :is="getStyleSetterCom(key)"
-              :id="selectedModuleId"
               :custom-css-prop="customItem.prop"
               :value="value"
             ></component>
@@ -55,10 +54,8 @@
 </template>
 <script lang="ts" setup>
   import { storeToRefs } from 'pinia';
-  import { useGetSelectedModule } from '../hooks/useGetSelectedModule';
   import settersStyleCptMap from '../setters/style/settersStyleCptMap';
   import appStore from '@/store';
-  import { IModule } from '../../types/IHJNewSchema';
 
   const emit = defineEmits(['closeStyleDrawer']);
 
@@ -66,23 +63,16 @@
     drawer: boolean;
   }>();
 
-  const { selectedModuleId } = storeToRefs(appStore.useCreateTemplateStore);
+  const { HJNewJsonStore } = storeToRefs(appStore.useCreateTemplateStore);
 
   // 关闭弹窗
   const handleClose = () => {
-    module.value = [];
-    activeNames.value = [];
+    pageActiveNames.value = [];
     emit('closeStyleDrawer');
   };
 
-  // 打开弹窗
-  const module = ref<IModule | any>({});
-  const handleOpen = () => {
-    module.value = useGetSelectedModule(selectedModuleId.value);
-  };
-
-  // 折叠面板
-  const activeNames = ref([]);
+  // 页面配置折叠面吧
+  const pageActiveNames = ref([]);
 
   // 返回样式属性设置组件
   const getStyleSetterCom = (key: string | number) => {

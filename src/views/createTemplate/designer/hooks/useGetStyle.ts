@@ -1,7 +1,7 @@
 import { IModule } from '../../types/IHJNewSchema';
 
 // 返回最外层样式
-export const useGetBoxStyle = (props: { module: IModule }) => {
+export const useGetBoxStyle = (props: { module: IModule }, themeSetter?: any) => {
   const images = import.meta.glob('/src/assets/createTemplateImages/*', { eager: true });
 
   const loadBackgroundImage = (backgroundPath: string, element: any) => {
@@ -23,6 +23,25 @@ export const useGetBoxStyle = (props: { module: IModule }) => {
       return element.css.background || 'none';
     }
   };
+
+  watch(
+    () => props.module.css.themeColor,
+    (newVal) => {
+      if (newVal) {
+        // themeSetter则是需要同步为主题色的属性
+        if (themeSetter) {
+          themeSetter.forEach((cssKey: string) => {
+            props.module.css[cssKey] = props.module.css.themeColor;
+            console.log(cssKey + '改为主题色' + props.module.css.themeColor);
+          });
+        }
+      }
+    },
+    {
+      deep: true,
+      immediate: true
+    }
+  );
 
   // 返回样式
   const boxStyle = computed(() => {

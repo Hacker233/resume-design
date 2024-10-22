@@ -18,6 +18,7 @@ export default {
   css: {
     height: 32,
     background: '#000',
+    themeColor: '#000',
     color: '#fff',
     margin: {
       bottom: 10,
