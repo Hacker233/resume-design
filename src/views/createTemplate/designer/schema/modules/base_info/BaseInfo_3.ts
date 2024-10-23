@@ -21,6 +21,7 @@ export default {
     }
   }, // 组件属性
   css: {
+    themeColor: '#254665',
     position: 'relative',
     display: 'flex',
     flexDirection: 'column',

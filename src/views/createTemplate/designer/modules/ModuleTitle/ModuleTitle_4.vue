@@ -20,22 +20,16 @@
   }>();
 
   // 返回模块整体样式
-  const moduleTitleStyle: any = useGetCustomStyle(props.module, 'moduleTitle', [
-    'color',
-    'borderColor'
-  ]);
+  const moduleTitleStyle: any = useGetCustomStyle(props.module, 'moduleTitle');
 
   // 返回标题字体样式
-  const moduleTitleFontStyle = useGetCustomStyle(props.module, 'moduleTitleFont', [
-    'color',
-    'borderColor'
-  ]);
+  const moduleTitleFontStyle = useGetCustomStyle(props.module, 'moduleTitleFont');
 
   // 返回图标样式
   const moduleTitleIconStyle = useGetCustomStyle(props.module, 'moduleTitleIcon');
 </script>
 <style lang="scss" scoped>
   .icon-box {
-    background-color: v-bind('moduleTitleStyle.themeColor');
+    background-color: v-bind('moduleTitleStyle.borderColor');
   }
 </style>

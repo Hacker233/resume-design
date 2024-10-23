@@ -23,6 +23,7 @@ export default {
     }
   }, // 组件属性
   css: {
+    themeColor: '#254665',
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'flex-start',

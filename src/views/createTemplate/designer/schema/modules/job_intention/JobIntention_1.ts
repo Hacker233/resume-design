@@ -16,6 +16,7 @@ export default {
   category: 'job_intention', // 组件分类
   props: {}, // 组件属性
   css: {
+    themeColor: '#254665',
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'flex-start',

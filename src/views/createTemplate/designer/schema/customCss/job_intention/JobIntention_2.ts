@@ -22,7 +22,6 @@ export default [
       },
       borderColor: 'rgb(37, 70, 101)',
       borderStyle: 'solid',
-      themeColor: 'rgb(37, 70, 101)',
       background: 'none',
       color: 'rgb(37, 70, 101)'
     }

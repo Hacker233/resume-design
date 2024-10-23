@@ -16,7 +16,7 @@
   }>();
 
   // 返回样式
-  const boxStyle = useGetBoxStyle(props, ['background']);
+  const boxStyle = useGetBoxStyle(props);
 
   // 返回自定义样式prop = inlineBlock
   const inlineBlock = useGetCustomStyle(props.module, 'inlineBlock');

@@ -103,7 +103,7 @@
     if (pageWrapperEl) {
       // 获取元素的当前高度
       let newHeight = pageWrapperEl.scrollHeight - 4;
-      console.log('当前 scrollHeight:', newHeight, pageWrapperEl);
+      // console.log('当前 scrollHeight:', newHeight, pageWrapperEl);
 
       // 确保高度为 1160 的倍数
       if (newHeight < minHeight) {
@@ -112,7 +112,7 @@
         newHeight = Math.ceil(newHeight / minHeight) * minHeight;
       }
       lineNumber.value = Math.ceil(newHeight / minHeight);
-      console.log('调整 pageWrapperRef 高度为:', newHeight, lineNumber.value);
+      // console.log('调整 pageWrapperRef 高度为:', newHeight, lineNumber.value);
       // 设置新的高度
       pageWrapperEl.style.height = `${newHeight}px`;
     } else {

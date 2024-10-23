@@ -1,5 +1,6 @@
 import { storeToRefs } from 'pinia';
 import appStore from '@/store';
+import { IModule } from '../../types/IHJNewSchema';
 
 // 返回最外层样式
 export const useGetPageStyle = () => {
@@ -26,6 +27,38 @@ export const useGetPageStyle = () => {
       return element.css.background || 'none';
     }
   };
+
+  // 全局主题色发生变化
+  watch(
+    () => HJNewJsonStore.value.css.themeColor,
+    (newVal) => {
+      if (newVal) {
+        console.log('全局主题色变化', newVal);
+        HJNewJsonStore.value.componentsTree.forEach((module: IModule) => {
+          module.css.themeColor = newVal;
+        });
+      }
+    },
+    {
+      deep: true
+    }
+  );
+
+  // 全局字体发生变化
+  watch(
+    () => HJNewJsonStore.value.css.fontFamily,
+    (newVal) => {
+      if (newVal) {
+        console.log('全局主题色变化', newVal);
+        HJNewJsonStore.value.componentsTree.forEach((module: IModule) => {
+          module.css['fontFamily'] = newVal;
+        });
+      }
+    },
+    {
+      deep: true
+    }
+  );
 
   const boxStyle = computed(() => {
     // 在这里加载背景图像

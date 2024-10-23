@@ -1,7 +1,8 @@
 import { IModule } from '../../types/IHJNewSchema';
+import themeColorProps from '../dicts/themeColorProps';
 
 // 返回最外层样式
-export const useGetBoxStyle = (props: { module: IModule }, themeSetter?: any) => {
+export const useGetBoxStyle = (props: { module: IModule }) => {
   const images = import.meta.glob('/src/assets/createTemplateImages/*', { eager: true });
 
   const loadBackgroundImage = (backgroundPath: string, element: any) => {
@@ -28,18 +29,23 @@ export const useGetBoxStyle = (props: { module: IModule }, themeSetter?: any) =>
     () => props.module.css.themeColor,
     (newVal) => {
       if (newVal) {
-        // themeSetter则是需要同步为主题色的属性
-        if (themeSetter) {
-          themeSetter.forEach((cssKey: string) => {
-            props.module.css[cssKey] = props.module.css.themeColor;
-            console.log(cssKey + '改为主题色' + props.module.css.themeColor);
-          });
-        }
+        const setCssObject = themeColorProps[props.module.componentName];
+        // 设置主题样式跟随主题色
+        setCssObject['css'].forEach((cssProp: string) => {
+          props.module.css[cssProp] = newVal;
+        });
+        // 设置自定义样式跟随主题色
+        props.module.customCss.forEach((customCssItem: any) => {
+          if (setCssObject['customCss'].hasOwnProperty(customCssItem.prop)) {
+            setCssObject['customCss'][customCssItem.prop].forEach((cssProp: string) => {
+              customCssItem.css[cssProp] = newVal;
+            });
+          }
+        });
       }
     },
     {
-      deep: true,
-      immediate: true
+      deep: true
     }
   );
 

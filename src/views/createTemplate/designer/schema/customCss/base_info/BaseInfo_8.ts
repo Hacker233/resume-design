@@ -46,7 +46,6 @@ export default [
       },
       borderColor: '#254665',
       borderStyle: 'solid',
-      themeColor: '#254665',
       background: 'none'
     }
   },

@@ -21,7 +21,7 @@
   }>();
 
   // 返回模块整体样式
-  const moduleTitleStyle: any = useGetCustomStyle(props.module, 'moduleTitle', ['borderColor']);
+  const moduleTitleStyle: any = useGetCustomStyle(props.module, 'moduleTitle');
 
   // 返回标题样式
   const moduleTitleFontStyle = useGetCustomStyle(props.module, 'moduleTitleFont');
@@ -42,16 +42,19 @@
 </script>
 <style lang="scss" scoped>
   .model-title-box {
-    border-color: v-bind('moduleTitleStyle.themeColor');
     .title-box {
       width: 165px;
       height: 100%;
       position: relative;
-      background-color: v-bind('moduleTitleStyle.themeColor');
+      background-color: v-bind('moduleTitleStyle.borderColor');
       display: flex;
       align-items: center;
       justify-content: center;
-      background: linear-gradient(225deg, transparent 22px, v-bind('moduleTitleStyle.themeColor') 0)
+      background: linear-gradient(
+          225deg,
+          transparent 22px,
+          v-bind('moduleTitleStyle.borderColor') 0
+        )
         top right;
       &::after {
         content: '';
@@ -62,7 +65,7 @@
         height: 0;
         border-style: solid;
         border-width: 0 0 25px 10px;
-        border-color: transparent transparent v-bind('moduleTitleStyle.themeColor');
+        border-color: transparent transparent v-bind('moduleTitleStyle.borderColor');
         transform: rotate(-90deg);
       }
     }
@@ -70,19 +73,19 @@
     .lozenge-1 {
       width: 5px;
       height: 100%;
-      background-color: v-bind('moduleTitleStyle.themeColor');
+      background-color: v-bind('moduleTitleStyle.borderColor');
       transform: skewX(45deg);
       margin-left: -10px;
     }
     .lozenge-2 {
       width: 10px;
       height: 100%;
-      background-color: v-bind('moduleTitleStyle.themeColor');
+      background-color: v-bind('moduleTitleStyle.borderColor');
       transform: skewX(45deg);
       margin-left: 5px;
     }
     .left-line {
-      background-color: v-bind('moduleTitleStyle.themeColor');
+      background-color: v-bind('moduleTitleStyle.borderColor');
     }
   }
 </style>

@@ -16,9 +16,9 @@ export default {
   category: 'resume_title', // 组件分类
   props: {}, // 组件属性
   css: {
+    themeColor: '#000',
     height: 32,
     background: '#000',
-    themeColor: '#000',
     color: '#fff',
     margin: {
       bottom: 10,

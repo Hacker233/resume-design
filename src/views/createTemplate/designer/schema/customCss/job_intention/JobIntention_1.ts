@@ -21,8 +21,9 @@ export default [
         left: 0
       },
       borderStyle: 'solid',
-      themeColor: '#254665',
-      background: 'none'
+      background: 'none',
+      borderColor: '#254665',
+      color: '#254665'
     }
   },
   {

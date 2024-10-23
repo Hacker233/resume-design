@@ -97,7 +97,6 @@
   // 更改主题色
   const curentIndex = ref<number>(-1);
   const changTheme = (index: number, item: { rgb: string; hex: string }) => {
-    console.log('主题色改变', item);
     curentIndex.value = index;
     emit('update:modelValue', item.rgb);
     emit('change', item.rgb);

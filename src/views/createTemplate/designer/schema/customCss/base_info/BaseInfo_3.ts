@@ -168,7 +168,7 @@ export default [
         left: 0
       },
       borderStyle: 'solid',
-      themeColor: '#254665'
+      borderColor: '#254665'
     }
   },
   {

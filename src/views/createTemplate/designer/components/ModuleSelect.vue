@@ -55,6 +55,8 @@
                     alt="图片"
                     lazy
                   />
+                  <!-- 组件的name -->
+                  <span class="component-name">{{ element.componentName }}</span>
                 </div>
               </template>
             </draggable>
@@ -112,9 +114,9 @@
     return element;
   };
 
-  const start = (data: any) => {
-    const element = handleData(currentModuleListObj.value.list[data.oldDraggableIndex]);
-    data.originalEvent.dataTransfer?.setData('cptData', JSON.stringify(element));
+  const start = (event: any) => {
+    const element: any = handleData(currentModuleListObj.value.list[event.oldDraggableIndex]);
+    event.originalEvent.dataTransfer?.setData('cptData', JSON.stringify(element));
   };
 
   // 组件数据
@@ -226,11 +228,22 @@
           padding: 2px;
           margin-bottom: 15px;
           border-radius: 6px;
+          position: relative;
           &:hover {
             border: 1px dashed green;
           }
           img {
             width: 100%;
+          }
+          .component-name {
+            position: absolute;
+            top: 0;
+            right: 0px;
+            font-size: 10px;
+            background: #ff9971;
+            color: #fff;
+            padding: 2px 6px;
+            border-radius: 0 0 0 8px;
           }
         }
       }

@@ -4,11 +4,7 @@ import { IHJNewSchema, IModule } from '../../types/IHJNewSchema';
 const images = import.meta.glob('/src/assets/createTemplateImages/*', { eager: true });
 
 // 根据prop返回自定义样式
-export const useGetCustomStyle = (
-  module: IModule | IHJNewSchema,
-  prop: string,
-  themeSetter?: any
-) => {
+export const useGetCustomStyle = (module: IModule | IHJNewSchema, prop: string) => {
   const loadBackgroundImage = (backgroundPath: string, element: any) => {
     if (backgroundPath) {
       const isOnlineUrl = backgroundPath.includes('https://');
@@ -36,13 +32,6 @@ export const useGetCustomStyle = (
         // 在这里加载背景图像
         const background: string = loadBackgroundImage(element.css.backgroundPath, element);
         element.css.background = background;
-        // themeSetter则是需要同步为主题色的属性
-        if (themeSetter) {
-          themeSetter.forEach((cssKey: string) => {
-            element.css[cssKey] = element.css.themeColor;
-            console.log(cssKey + '改为主题色');
-          });
-        }
         return {
           width: element.css?.width
             ? typeof element.css.width === 'string'
