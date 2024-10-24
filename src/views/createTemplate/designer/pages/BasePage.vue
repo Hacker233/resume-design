@@ -7,6 +7,7 @@
     :sort="true"
     item-key="id"
     :style="pageStyle"
+    ghost-class="page-ghost"
     @drop="handleDrop"
   >
     <template #item="{ element }">
@@ -36,5 +37,15 @@
 <style lang="scss" scoped>
   .create-template-elemet {
     width: 100%;
+  }
+</style>
+<style lang="scss">
+  .page-ghost {
+    img {
+      width: 100% !important;
+    }
+    .module-component-name {
+      display: none !important;
+    }
   }
 </style>

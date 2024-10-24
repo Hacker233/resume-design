@@ -32,6 +32,9 @@
 <style lang="scss" scoped>
   .module-box {
     transition: all 0.3s;
+    display: flex;
+    box-sizing: border-box;
+    overflow: hidden;
     &:hover {
       box-shadow: 0 10px 22px 2px #00253a3d;
     }

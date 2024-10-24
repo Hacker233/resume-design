@@ -56,7 +56,7 @@
                     lazy
                   />
                   <!-- 组件的name -->
-                  <span class="component-name">{{ element.componentName }}</span>
+                  <span class="module-component-name">{{ element.componentName }}</span>
                 </div>
               </template>
             </draggable>
@@ -235,7 +235,7 @@
           img {
             width: 100%;
           }
-          .component-name {
+          .module-component-name {
             position: absolute;
             top: 0;
             right: 0px;

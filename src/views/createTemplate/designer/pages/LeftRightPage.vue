@@ -7,6 +7,7 @@
       group="custom"
       :sort="true"
       :style="leftStyle"
+      ghost-class="page-ghost"
       placeholder-class="drop-placeholder"
       item-key="id"
     >
@@ -23,6 +24,7 @@
       group="custom"
       :sort="true"
       :style="rightStyle"
+      ghost-class="page-ghost"
       item-key="id"
     >
       <template #item="{ element }">
