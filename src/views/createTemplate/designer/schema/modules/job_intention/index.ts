@@ -4,6 +4,7 @@ import commonProps from '../../commonProps';
 import JobIntention_1 from './JobIntention_1';
 import JobIntention_2 from './JobIntention_2';
 import JobIntention_3 from './JobIntention_3';
+import JobIntention_4 from './JobIntention_4';
 
 const job_intention = {
   id: 'jobIntention', // 模块id
@@ -13,7 +14,7 @@ const job_intention = {
   props: commonProps['jobIntention'], // 公共的props
   dataSource: commonDataSource['jobIntention'], // 该分类下公用数据源
   css: commonCss['jobIntention'],
-  list: [JobIntention_1, JobIntention_2, JobIntention_3]
+  list: [JobIntention_1, JobIntention_2, JobIntention_3, JobIntention_4]
 };
 
 export default job_intention;

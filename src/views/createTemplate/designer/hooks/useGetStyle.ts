@@ -30,18 +30,20 @@ export const useGetBoxStyle = (props: { module: IModule }) => {
     (newVal) => {
       if (newVal) {
         const setCssObject = themeColorProps[props.module.componentName];
-        // 设置主题样式跟随主题色
-        setCssObject['css'].forEach((cssProp: string) => {
-          props.module.css[cssProp] = newVal;
-        });
-        // 设置自定义样式跟随主题色
-        props.module.customCss.forEach((customCssItem: any) => {
-          if (setCssObject['customCss'].hasOwnProperty(customCssItem.prop)) {
-            setCssObject['customCss'][customCssItem.prop].forEach((cssProp: string) => {
-              customCssItem.css[cssProp] = newVal;
-            });
-          }
-        });
+        if (setCssObject) {
+          // 设置主题样式跟随主题色
+          setCssObject['css'].forEach((cssProp: string) => {
+            props.module.css[cssProp] = newVal;
+          });
+          // 设置自定义样式跟随主题色
+          props.module.customCss.forEach((customCssItem: any) => {
+            if (setCssObject['customCss'].hasOwnProperty(customCssItem.prop)) {
+              setCssObject['customCss'][customCssItem.prop].forEach((cssProp: string) => {
+                customCssItem.css[cssProp] = newVal;
+              });
+            }
+          });
+        }
       }
     },
     {

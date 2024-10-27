@@ -17,6 +17,7 @@ import BaseInfo_9 from '../modules/BaseInfo/BaseInfo_9.vue';
 import JobIntention_1 from '../modules/JobIntention/JobIntention_1.vue';
 import JobIntention_2 from '../modules/JobIntention/JobIntention_2.vue';
 import JobIntention_3 from '../modules/JobIntention/JobIntention_3.vue';
+import JobIntention_4 from '../modules/JobIntention/JobIntention_4.vue';
 
 // 定义页面组件列表
 const moduleComponents: any = {
@@ -34,6 +35,7 @@ const moduleComponents: any = {
   // 求职意向
   JobIntention_1,
   JobIntention_2,
-  JobIntention_3
+  JobIntention_3,
+  JobIntention_4
 };
 export default moduleComponents;
