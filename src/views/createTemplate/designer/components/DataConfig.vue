@@ -5,6 +5,7 @@
         <div
           :ref="(el) => getDataModuleRef(el, moduleItem)"
           :class="['module-box', { 'module-select': selectedModuleId === moduleItem.id }]"
+          @click="handleSelectDataModule(moduleItem)"
         >
           <!-- 模块标题 -->
           <div class="module-title-box">
@@ -91,6 +92,11 @@
       };
     }
   };
+
+  // 选中模块
+  const handleSelectDataModule = (moduleItem: IModule) => {
+    selectedModuleId.value = moduleItem.id;
+  };
 </script>
 
 <style lang="scss" scoped>
@@ -102,6 +108,11 @@
     .module-box {
       padding: 10px 20px;
       transition: all 0.3s;
+      border-radius: 10px;
+      cursor: pointer;
+      &:hover {
+        box-shadow: 0 1px 9px 10px rgba(0, 0, 0, 0.02);
+      }
       .module-title-box {
         margin-bottom: 20px;
         height: 50px;

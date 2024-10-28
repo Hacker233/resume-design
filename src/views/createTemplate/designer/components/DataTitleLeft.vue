@@ -2,6 +2,9 @@
   <div class="title-left">
     <h1 v-show="!showInput" class="title">
       {{ module.title }}
+      <div v-if="module.props.title.iconfont" class="icon-box">
+        <icon-select-pop v-model="module.props.title.iconfont"></icon-select-pop>
+      </div>
     </h1>
     <el-input
       v-show="showInput"
@@ -24,6 +27,7 @@
 </template>
 <script setup lang="ts">
   import { useGetSelectedModule } from '../hooks/useGetSelectedModule';
+  import IconSelectPop from '@/components/IconSelectPop/IconSelectPop.vue';
 
   const props = defineProps<{
     id: string;
@@ -58,6 +62,10 @@
       font-size: 20px;
       color: '#1e2532';
       margin-right: 10px;
+      .icon-box {
+        margin-left: 5px;
+        margin-top: 2px;
+      }
     }
     .svg-icon {
       cursor: pointer;

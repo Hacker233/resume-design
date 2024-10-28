@@ -8,6 +8,7 @@ import JobIntention_4 from './JobIntention_4';
 import JobIntention_5 from './JobIntention_5';
 import JobIntention_6 from './JobIntention_6';
 import JobIntention_7 from './JobIntention_7';
+import JobIntention_8 from './JobIntention_8';
 
 const job_intention = {
   id: 'jobIntention', // 模块id
@@ -24,7 +25,8 @@ const job_intention = {
     JobIntention_4,
     JobIntention_5,
     JobIntention_6,
-    JobIntention_7
+    JobIntention_7,
+    JobIntention_8
   ]
 };
 

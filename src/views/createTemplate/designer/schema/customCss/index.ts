@@ -16,6 +16,7 @@ import JobIntention_4 from './job_intention/JobIntention_4';
 import JobIntention_5 from './job_intention/JobIntention_5';
 import JobIntention_6 from './job_intention/JobIntention_6';
 import JobIntention_7 from './job_intention/JobIntention_7';
+import JobIntention_8 from './job_intention/JobIntention_8';
 
 // 页面
 import base_page from './pages/base_page';
@@ -42,6 +43,7 @@ export default {
   JobIntention_5,
   JobIntention_6,
   JobIntention_7,
+  JobIntention_8,
 
   ResumeTitle_1,
   ResumeTitle_2,

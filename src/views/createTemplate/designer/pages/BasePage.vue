@@ -11,7 +11,7 @@
     @drop="handleDrop"
   >
     <template #item="{ element }">
-      <div class="create-template-elemet">
+      <div :ref="(el) => getDataModuleRef(el, element)" class="create-template-elemet">
         <module-box :module="element"></module-box>
       </div>
     </template>
@@ -23,8 +23,10 @@
   import draggable from 'vuedraggable';
   import ModuleBox from '../components/ModuleBox.vue';
   import { useGetPageStyle } from '../hooks/useGetPageStyle';
+  import { ComponentPublicInstance } from 'vue';
+  import { IModule } from '../../types/IHJNewSchema';
 
-  const { HJNewJsonStore } = storeToRefs(appStore.useCreateTemplateStore);
+  const { HJNewJsonStore, selectedModuleId } = storeToRefs(appStore.useCreateTemplateStore);
 
   // 返回页面样式
   const pageStyle = useGetPageStyle();
@@ -32,6 +34,33 @@
   const handleDrop = (event: any) => {
     event.dataTransfer?.getData('cptData');
     console.log('drop', event.dataTransfer?.getData('cptData'));
+  };
+
+  // 监听selectedModuleId变化
+  watch(
+    () => selectedModuleId.value,
+    (newVal) => {
+      // 如果选中了模块
+      if (newVal && moduleRefList[newVal]) {
+        setTimeout(() => {
+          moduleRefList[newVal].el.scrollIntoView({ behavior: 'smooth', block: 'center' }); // 该模块显示在可视区域内
+        }, 0);
+      }
+    },
+    {
+      deep: true
+    }
+  );
+
+  // 通过ref获取元素
+  const moduleRefList = reactive<any>({});
+  const getDataModuleRef = (el: ComponentPublicInstance | null | Element, moduleItem: IModule) => {
+    if (el) {
+      moduleRefList[moduleItem.id] = {
+        id: moduleItem.id,
+        el: el
+      };
+    }
   };
 </script>
 <style lang="scss" scoped>

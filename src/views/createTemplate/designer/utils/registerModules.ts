@@ -21,6 +21,7 @@ import JobIntention_4 from '../modules/JobIntention/JobIntention_4.vue';
 import JobIntention_5 from '../modules/JobIntention/JobIntention_5.vue';
 import JobIntention_6 from '../modules/JobIntention/JobIntention_6.vue';
 import JobIntention_7 from '../modules/JobIntention/JobIntention_7.vue';
+import JobIntention_8 from '../modules/JobIntention/JobIntention_8.vue';
 
 // 定义页面组件列表
 const moduleComponents: any = {
@@ -42,6 +43,7 @@ const moduleComponents: any = {
   JobIntention_4,
   JobIntention_5,
   JobIntention_6,
-  JobIntention_7
+  JobIntention_7,
+  JobIntention_8
 };
 export default moduleComponents;
