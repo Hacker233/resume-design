@@ -68,6 +68,19 @@ const themeColorProps: any = {
       moduleTitleIcon: ['background'],
       moduleTitleRightBox: ['borderColor']
     }
+  },
+  JobIntention_9: {
+    css: [],
+    customCss: {
+      moduleTitle: ['color', 'borderColor'],
+      moduleTitleFont: ['color', 'borderColor']
+    }
+  },
+  JobIntention_10: {
+    css: [],
+    customCss: {
+      moduleTitle: ['color']
+    }
   }
 };
 export default themeColorProps;
