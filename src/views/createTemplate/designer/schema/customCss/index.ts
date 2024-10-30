@@ -26,6 +26,7 @@ import left_right_page from './pages/left_right_page';
 
 import ResumeTitle_1 from './resume_title/ResumeTitle_1';
 import ResumeTitle_2 from './resume_title/ResumeTitle_2';
+import EduBackground_1 from './edu_background/EduBackground_1';
 
 export default {
   BaseInfo_1,
@@ -51,6 +52,8 @@ export default {
 
   ResumeTitle_1,
   ResumeTitle_2,
+
+  EduBackground_1,
 
   base_page,
   left_right_page

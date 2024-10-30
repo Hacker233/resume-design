@@ -1,3 +1,4 @@
+import { cloneDeep } from 'lodash';
 import commonCss from '../../commonCss';
 import commonDataSource from '../../commonDataSource';
 import commonProps from '../../commonProps';
@@ -10,7 +11,7 @@ const resume_title = {
   category: 'resumeTitle', // 模块分了
   icon: 'icon-title', // 模块图标
   props: commonProps['resumeTitle'], // 公共的props
-  dataSource: commonDataSource['resumeTitle'], // 该分类下公用数据源
+  dataSource: cloneDeep(commonDataSource['resume_title']), // 该分类下公用数据源
   css: commonCss['resumeTitle'], // 公共css属性
   list: [ResumeTitle_1, ResumeTitle_2]
 };

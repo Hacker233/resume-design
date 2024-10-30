@@ -11,6 +11,7 @@ import JobIntention_7 from './JobIntention_7';
 import JobIntention_8 from './JobIntention_8';
 import JobIntention_9 from './JobIntention_9';
 import JobIntention_10 from './JobIntention_10';
+import { cloneDeep } from 'lodash';
 
 const job_intention = {
   id: 'jobIntention', // 模块id
@@ -18,7 +19,7 @@ const job_intention = {
   category: 'jobIntention', // 模块分了
   icon: 'icon-jichuxinxi', // 模块图标
   props: commonProps['jobIntention'], // 公共的props
-  dataSource: commonDataSource['jobIntention'], // 该分类下公用数据源
+  dataSource: cloneDeep(commonDataSource['job_intention']), // 该分类下公用数据源
   css: commonCss['jobIntention'],
   list: [
     JobIntention_1,

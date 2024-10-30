@@ -22,13 +22,36 @@
             <div
               v-for="(value, key, dataIndex) in moduleItem.dataSource"
               :key="dataIndex"
-              class="module-filed-box"
+              :style="getFiledStyle(value)"
             >
+              <!-- 列表组件 -->
+              <template v-if="value.type === 'list'">
+                <hj-list :id="moduleItem.id" :key-value="key"></hj-list>
+              </template>
+              <!-- 非列表组件 -->
               <component
                 :is="dataSourceCptMap[value.type]"
-                :id="moduleItem.id"
+                v-else
+                v-model="moduleItem.dataSource[key].value"
+                :label="moduleItem.dataSource[key].label"
                 :key-value="key"
-              ></component>
+                :module="moduleItem"
+              >
+                <!-- 组件图标 -->
+                <template #label-left>
+                  <icon-select-pop
+                    v-if="moduleItem.props[key].iconfont"
+                    v-model="moduleItem.props[key].iconfont"
+                    size="18px"
+                  ></icon-select-pop>
+                </template>
+                <!-- 组件开关 -->
+                <template #label-right>
+                  <div class="field-label-right-box">
+                    <el-switch v-model="moduleItem.props[key].show" />
+                  </div>
+                </template>
+              </component>
             </div>
           </div>
         </div>
@@ -52,6 +75,8 @@
   import ModuleStyleSettingDrawer from './ModuleStyleSettingDrawer.vue';
   import { IModule } from '../../types/IHJNewSchema';
   import { ComponentPublicInstance } from 'vue';
+  import hjList from '../setters/components/hj-list.vue'; // 数据配置，列表组件
+  import IconSelectPop from '@/components/IconSelectPop/IconSelectPop.vue';
 
   const { HJNewJsonStore, selectedModuleId } = storeToRefs(appStore.useCreateTemplateStore);
 
@@ -97,6 +122,13 @@
   const handleSelectDataModule = (moduleItem: IModule) => {
     selectedModuleId.value = moduleItem.id;
   };
+
+  // 返回数据填写组件样式
+  const getFiledStyle = (value: any) => {
+    return {
+      width: value.props.width
+    };
+  };
 </script>
 
 <style lang="scss" scoped>
@@ -127,6 +159,9 @@
         flex-wrap: wrap;
         .module-filed-box {
           width: 49%;
+        }
+        .module-list-filed-box {
+          width: 100%;
         }
       }
     }

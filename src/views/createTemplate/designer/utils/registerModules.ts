@@ -25,6 +25,9 @@ import JobIntention_8 from '../modules/JobIntention/JobIntention_8.vue';
 import JobIntention_9 from '../modules/JobIntention/JobIntention_9.vue';
 import JobIntention_10 from '../modules/JobIntention/JobIntention_10.vue';
 
+// 教育背景
+import EduBackground_1 from '../modules/EduBackground/EduBackground_1.vue';
+
 // 定义页面组件列表
 const moduleComponents: any = {
   ResumeTitle_1,
@@ -48,6 +51,8 @@ const moduleComponents: any = {
   JobIntention_7,
   JobIntention_8,
   JobIntention_9,
-  JobIntention_10
+  JobIntention_10,
+  // 教育背景
+  EduBackground_1
 };
 export default moduleComponents;

@@ -27,6 +27,7 @@ import lineHeight from './lineHeight.vue';
 import backgroundPath from './backgroundPath.vue';
 import backgroundRepeat from './backgroundRepeat.vue';
 import flexShrink from './flexShrink.vue';
+import textAlign from './textAlign.vue';
 
 const settersStyleCptMap: ISetterMap = {
   width,
@@ -55,6 +56,7 @@ const settersStyleCptMap: ISetterMap = {
   lineHeight,
   backgroundPath,
   backgroundRepeat,
-  flexShrink
+  flexShrink,
+  textAlign
 };
 export default settersStyleCptMap;

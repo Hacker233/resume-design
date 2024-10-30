@@ -106,6 +106,44 @@ const commonProps = {
       iconfont: 'icon-gongzuoleixing',
       config: true // 是否支持配置
     }
+  },
+  eduBackground: {
+    title: {
+      chName: '教育背景',
+      show: true,
+      iconfont: '',
+      config: true // 是否支持配置
+    },
+    date: {
+      chName: '教育日期',
+      show: true,
+      iconfont: '',
+      config: true // 是否支持配置
+    },
+    schoolName: {
+      chName: '学校名称',
+      show: true,
+      iconfont: '',
+      config: true
+    },
+    specialized: {
+      chName: '所学专业',
+      show: true,
+      iconfont: '',
+      config: true
+    },
+    degree: {
+      chName: '学历',
+      show: true,
+      iconfont: '',
+      config: true
+    },
+    majorCourse: {
+      chName: '主修课程',
+      show: true,
+      iconfont: '',
+      config: true
+    }
   }
 };
 export default commonProps;

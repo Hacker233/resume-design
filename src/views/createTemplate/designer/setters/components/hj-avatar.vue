@@ -10,14 +10,15 @@
       accept=".jpg,.jpeg,.png,.gif,.JPG,.JPEG,.PNG,.GIF"
     >
       <img
-        v-if="module.dataSource[keyValue].value"
-        :src="module.dataSource[keyValue].value"
+        v-if="moduleItem.dataSource[keyValue].value"
+        :src="moduleItem.dataSource[keyValue].value"
         class="avatar"
       />
       <el-icon v-else class="avatar-uploader-icon"><Plus /></el-icon>
     </el-upload>
     <div class="tips-box">
-      <span>{{ module.dataSource[keyValue].label || '上传照片' }}</span>
+      <slot name="label-right"></slot>
+      <span>{{ moduleItem.dataSource[keyValue].label || '上传照片' }}</span>
       <p class="tips">头像大小不能超过3M，仅支持（jpg、jpeg、png、gif）格式</p>
     </div>
   </div>
@@ -27,14 +28,17 @@
   import appStore from '@/store';
   import { UploadProps } from 'element-plus';
   import { useGetSelectedModule } from '../../hooks/useGetSelectedModule';
+  import { IModule } from '@/views/createTemplate/types/IHJNewSchema';
 
   const props = defineProps<{
-    id: string;
+    modelValue: string;
+    label: string;
     keyValue: string;
+    module: IModule;
   }>();
 
   // 选中的module
-  const module = useGetSelectedModule(props.id);
+  const moduleItem = useGetSelectedModule(props.module.id);
 
   // 上传文件地址
   const uploadAddress = () => {
@@ -42,7 +46,7 @@
   };
 
   const handleAvatarSuccess: UploadProps['onSuccess'] = (response) => {
-    module.dataSource[props.keyValue].value = response.data.data.fileUrl;
+    moduleItem.dataSource[props.keyValue].value = response.data.data.fileUrl;
   };
 
   const beforeAvatarUpload: UploadProps['beforeUpload'] = (rawFile) => {
@@ -94,6 +98,8 @@
     justify-content: center;
     padding-left: 20px;
     flex: 1;
+    height: 100%;
+    position: relative;
     span {
       font-size: 16px;
       line-height: 20px;
@@ -105,6 +111,11 @@
       color: #8c939d;
       font-size: 12px;
       margin-top: 5px;
+    }
+    :deep(.field-label-right-box) {
+      position: absolute;
+      right: 0;
+      top: 0;
     }
   }
 </style>

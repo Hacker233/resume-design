@@ -7,7 +7,7 @@
   >
     <template #reference>
       <div class="icon-popper-box">
-        <svg-icon :icon-name="iconfont" color="#74a274" size="22px"></svg-icon>
+        <svg-icon :icon-name="iconfont" color="#74a274" :size="size"></svg-icon>
       </div>
     </template>
     <div class="icon-select-box">
@@ -28,10 +28,12 @@
   interface IIcon {
     modelValue?: any;
     teleported?: boolean;
+    size: string;
   }
   const props = withDefaults(defineProps<IIcon>(), {
     modelValue: '',
-    teleported: true
+    teleported: true,
+    size: '22px'
   });
 
   const emit = defineEmits(['update:modelValue', 'change']);
@@ -49,9 +51,9 @@
   .icon-popper-box {
     display: flex;
     align-items: center;
-    height: 30px;
     border-radius: 5px;
-    padding: 0 10px;
+    padding: 2px 6px;
+    margin: 0 3px;
     transition: all 0.3s;
     cursor: pointer;
     &:hover {

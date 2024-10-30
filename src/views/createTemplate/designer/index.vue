@@ -124,7 +124,6 @@
     () => HJNewJsonStore.value.componentsTree,
     async (newVal) => {
       if (newVal) {
-        console.log('组件列表发生变化');
         await nextTick(() => {
           adjustPageWrapperHeight();
         });

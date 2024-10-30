@@ -171,6 +171,5 @@ export const useGetBoxStyle = (props: { module: IModule }) => {
       themeColor: props.module.css?.themeColor || ''
     };
   });
-  console.log('计算boxStyle', boxStyle);
   return boxStyle;
 };

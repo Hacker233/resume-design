@@ -7,7 +7,7 @@
       </div>
       <slot name="label-right"></slot>
     </div>
-    <el-input v-model="inputValue" size="large" @change="handleChange"></el-input>
+    <comm-editor v-model="inputValue"></comm-editor>
   </div>
 </template>
 
@@ -33,10 +33,6 @@
     }
   );
 
-  const handleChange = (value: string) => {
-    emit('update:modelValue', value);
-  };
-
   // 监听 inputValue 变化，触发 update:modelValue
   watch(inputValue, (newValue) => {
     emit('update:modelValue', newValue);
@@ -46,7 +42,6 @@
 <style lang="scss" scoped>
   .field {
     margin-bottom: 24px;
-    height: 80px;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -69,8 +64,20 @@
       }
     }
 
-    .el-input {
-      height: 48px;
+    .editor-box {
+      border: 1px solid #dcdfe6;
+      border-radius: 4px;
+      overflow: hidden;
+      transition: all 0.3s;
+      &:hover {
+        border: 1px solid #d4d5d8;
+      }
+      :deep(.w-e-select-list) {
+        ul {
+          height: 150px;
+          overflow: auto;
+        }
+      }
     }
   }
 </style>

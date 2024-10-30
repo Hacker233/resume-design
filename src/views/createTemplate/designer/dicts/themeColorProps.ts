@@ -81,6 +81,13 @@ const themeColorProps: any = {
     customCss: {
       moduleTitle: ['color']
     }
+  },
+  EduBackground_1: {
+    css: [],
+    customCss: {
+      moduleTitle: ['color', 'borderColor'],
+      moduleTitleFont: ['color', 'borderColor']
+    }
   }
 };
 export default themeColorProps;
