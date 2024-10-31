@@ -79,14 +79,13 @@ export default [
     css: {
       width: '100%',
       lineHeight: 2.5,
-      letterSpace: 1,
+      letterSpacing: 1,
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'space-between',
       fontSize: 14,
       color: '#757575',
       fontWeight: 600,
-      letterSpacing: 0,
       background: 'none',
       borderWidth: {
         top: 0,
@@ -104,15 +103,14 @@ export default [
     css: {
       width: '100%',
       lineHeight: 1.5,
-      letterSpace: 1,
+      letterSpacing: 1,
       display: 'flex',
       flexDirection: 'column',
-      alignItems: 'center',
+      alignItems: 'flex-start',
       justifyContent: 'space-between',
       fontSize: 14,
       color: '#757575',
       fontWeight: 500,
-      letterSpacing: 0,
       background: 'none',
       textAlign: 'justify',
       borderWidth: {

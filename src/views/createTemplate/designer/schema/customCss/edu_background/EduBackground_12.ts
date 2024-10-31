@@ -17,13 +17,15 @@ export default [
       margin: {
         top: 0,
         right: 0,
-        bottom: 20,
+        bottom: 15,
         left: 0
       },
-      borderColor: 'rgb(37, 70, 101)',
       borderStyle: 'solid',
       background: 'none',
-      color: 'rgb(37, 70, 101)'
+      borderColor: '#254665',
+      color: '#fff',
+      backgroundPath: 'title_bg.png', // 背景图片地址
+      backgroundRepeat: 'no-repeat'
     }
   },
   {
@@ -31,55 +33,34 @@ export default [
     prop: 'moduleTitleFont',
     css: {
       height: '100%',
-      width: '100%',
+      width: 150,
       display: 'flex',
-      flex: 1,
       alignItems: 'center',
       justifyContent: 'flex-start',
-      fontSize: 20,
+      fontSize: 18,
       fontWeight: 600,
       letterSpacing: 2,
       background: 'none',
       borderWidth: {
         top: 0,
         right: 0,
-        bottom: 1,
-        left: 0
-      },
-      borderStyle: 'solid'
-    }
-  },
-  {
-    title: '模块标题图标样式',
-    prop: 'moduleTitleIcon',
-    css: {
-      height: 26,
-      width: 26,
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      fontSize: 14,
-      color: '#fff',
-      margin: {
-        top: 4,
-        right: 10,
         bottom: 0,
         left: 0
       },
-      borderWidth: {
+      padding: {
         top: 0,
         right: 0,
         bottom: 0,
         left: 0
       },
-      borderRadius: {
-        topLeft: '50%',
-        topRight: '50%',
-        bottomLeft: '50%',
-        bottomRight: '50%'
+      margin: {
+        top: 0,
+        right: 0,
+        bottom: 10,
+        left: 25
       },
-      borderStyle: 'solid',
-      background: ''
+      borderColor: 'rgb(0, 0, 0)',
+      borderStyle: 'solid'
     }
   },
   {
@@ -100,7 +81,7 @@ export default [
         top: 0,
         right: 0,
         bottom: 0,
-        left: 0
+        left: 70
       },
       borderColor: 'rgb(0, 0, 0)',
       borderStyle: 'solid'
@@ -121,6 +102,12 @@ export default [
       letterSpacing: 1,
       background: 'none',
       borderWidth: {
+        top: 0,
+        right: 0,
+        bottom: 0,
+        left: 0
+      },
+      padding: {
         top: 0,
         right: 0,
         bottom: 0,

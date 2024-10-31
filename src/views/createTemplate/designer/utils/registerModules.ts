@@ -31,6 +31,13 @@ import EduBackground_2 from '../modules/EduBackground/EduBackground_2.vue';
 import EduBackground_3 from '../modules/EduBackground/EduBackground_3.vue';
 import EduBackground_4 from '../modules/EduBackground/EduBackground_4.vue';
 import EduBackground_5 from '../modules/EduBackground/EduBackground_5.vue';
+import EduBackground_6 from '../modules/EduBackground/EduBackground_6.vue';
+import EduBackground_7 from '../modules/EduBackground/EduBackground_7.vue';
+import EduBackground_8 from '../modules/EduBackground/EduBackground_8.vue';
+import EduBackground_9 from '../modules/EduBackground/EduBackground_9.vue';
+import EduBackground_10 from '../modules/EduBackground/EduBackground_10.vue';
+import EduBackground_11 from '../modules/EduBackground/EduBackground_11.vue';
+import EduBackground_12 from '../modules/EduBackground/EduBackground_12.vue';
 
 // 定义页面组件列表
 const moduleComponents: any = {
@@ -61,6 +68,13 @@ const moduleComponents: any = {
   EduBackground_2,
   EduBackground_3,
   EduBackground_4,
-  EduBackground_5
+  EduBackground_5,
+  EduBackground_6,
+  EduBackground_7,
+  EduBackground_8,
+  EduBackground_9,
+  EduBackground_10,
+  EduBackground_11,
+  EduBackground_12
 };
 export default moduleComponents;

@@ -28,6 +28,7 @@ import backgroundPath from './backgroundPath.vue';
 import backgroundRepeat from './backgroundRepeat.vue';
 import flexShrink from './flexShrink.vue';
 import textAlign from './textAlign.vue';
+import display from './display.vue';
 
 const settersStyleCptMap: ISetterMap = {
   width,
@@ -57,6 +58,7 @@ const settersStyleCptMap: ISetterMap = {
   backgroundPath,
   backgroundRepeat,
   flexShrink,
-  textAlign
+  textAlign,
+  display
 };
 export default settersStyleCptMap;

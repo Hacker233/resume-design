@@ -33,6 +33,13 @@ import EduBackground_2 from './edu_background/EduBackground_2';
 import EduBackground_3 from './edu_background/EduBackground_3';
 import EduBackground_4 from './edu_background/EduBackground_4';
 import EduBackground_5 from './edu_background/EduBackground_5';
+import EduBackground_6 from './edu_background/EduBackground_6';
+import EduBackground_7 from './edu_background/EduBackground_7';
+import EduBackground_8 from './edu_background/EduBackground_8';
+import EduBackground_9 from './edu_background/EduBackground_9';
+import EduBackground_10 from './edu_background/EduBackground_10';
+import EduBackground_11 from './edu_background/EduBackground_11';
+import EduBackground_12 from './edu_background/EduBackground_12';
 
 export default {
   BaseInfo_1,
@@ -64,6 +71,13 @@ export default {
   EduBackground_3,
   EduBackground_4,
   EduBackground_5,
+  EduBackground_6,
+  EduBackground_7,
+  EduBackground_8,
+  EduBackground_9,
+  EduBackground_10,
+  EduBackground_11,
+  EduBackground_12,
 
   base_page,
   left_right_page

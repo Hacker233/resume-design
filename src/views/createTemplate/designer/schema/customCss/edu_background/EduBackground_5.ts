@@ -89,14 +89,13 @@ export default [
     css: {
       width: '100%',
       lineHeight: 2.5,
-      letterSpace: 1,
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'space-between',
       fontSize: 14,
       color: '#757575',
       fontWeight: 600,
-      letterSpacing: 0,
+      letterSpacing: 1,
       background: 'none',
       borderWidth: {
         top: 0,
@@ -120,15 +119,14 @@ export default [
     css: {
       width: '100%',
       lineHeight: 1,
-      letterSpace: 1,
       display: 'flex',
       flexDirection: 'row',
       alignItems: 'center',
       justifyContent: 'space-between',
-      fontSize: 15,
+      fontSize: 14,
       color: '#757575',
-      fontWeight: 600,
-      letterSpacing: 0,
+      fontWeight: 500,
+      letterSpacing: 1,
       background: 'none',
       textAlign: 'justify',
       borderWidth: {
@@ -153,7 +151,6 @@ export default [
     css: {
       width: '100%',
       lineHeight: 1.5,
-      letterSpace: 1,
       display: 'flex',
       flexDirection: 'column',
       alignItems: 'flex-start',
@@ -161,7 +158,7 @@ export default [
       fontSize: 14,
       color: '#757575',
       fontWeight: 500,
-      letterSpacing: 0,
+      letterSpacing: 1,
       background: 'none',
       textAlign: 'justify',
       borderWidth: {

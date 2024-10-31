@@ -116,6 +116,53 @@ const themeColorProps: any = {
       moduleTitle: ['borderColor'],
       moduleTitleFontBox: ['background']
     }
+  },
+  EduBackground_6: {
+    css: [],
+    customCss: {
+      moduleTitle: ['color']
+    }
+  },
+  EduBackground_7: {
+    css: [],
+    customCss: {
+      moduleTitle: ['color']
+    }
+  },
+  EduBackground_8: {
+    css: [],
+    customCss: {
+      moduleTitle: ['borderColor', 'color'],
+      moduleTitleIcon: ['background'],
+      moduleTitleRightBox: ['borderColor']
+    }
+  },
+  EduBackground_9: {
+    css: [],
+    customCss: {
+      moduleTitle: ['borderColor', 'color'],
+      moduleTitleIcon: ['background'],
+      moduleTitleRightBox: ['borderColor']
+    }
+  },
+  EduBackground_10: {
+    css: [],
+    customCss: {
+      moduleTitle: ['color', 'borderColor'],
+      moduleTitleFont: ['color', 'borderColor']
+    }
+  },
+  EduBackground_11: {
+    css: [],
+    customCss: {
+      moduleTitle: ['color']
+    }
+  },
+  EduBackground_12: {
+    css: [],
+    customCss: {
+      moduleTitle: ['color']
+    }
   }
 };
 export default themeColorProps;

@@ -17,7 +17,7 @@ export default [
       margin: {
         top: 0,
         right: 0,
-        bottom: 20,
+        bottom: 15,
         left: 0
       },
       padding: {
