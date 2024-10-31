@@ -7,13 +7,17 @@
       <li v-if="module.props.schoolName.show">
         <span>{{ dataSourceItem.schoolName.value }}</span>
       </li>
-      <li v-if="module.props.specialized.show">
-        <span>{{ dataSourceItem.specialized.value }}</span>
-      </li>
       <li v-if="module.props.degree.show">
         <span>{{ dataSourceItem.degree.value }}</span>
       </li>
     </ul>
+    <!-- 所学专业 -->
+    <p
+      v-if="module.props.specialized.show"
+      v-dompurify-html="dataSourceItem.specialized.value"
+      :style="specialized"
+    >
+    </p>
     <!-- 主修课程 -->
     <p
       v-if="module.props.majorCourse.show"
@@ -37,11 +41,14 @@
   // 教育信息整体样式
   const eduBackgroundBox = useGetCustomStyle(props.module, 'eduBackgroundBox');
 
-  // 求职意向列表整体样式
+  // 教育列表整体样式
   const eduBackgroundList = useGetCustomStyle(props.module, 'eduBackgroundList');
 
   // 主修课程整体样式
   const majorCourse = useGetCustomStyle(props.module, 'majorCourse');
+
+  // 所学专业整体样式
+  const specialized = useGetCustomStyle(props.module, 'specialized');
 </script>
 <style lang="scss" scoped>
   li {

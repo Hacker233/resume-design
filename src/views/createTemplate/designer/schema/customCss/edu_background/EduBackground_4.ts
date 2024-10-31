@@ -3,50 +3,65 @@ export default [
     title: '模块标题整体样式',
     prop: 'moduleTitle',
     css: {
-      height: 40,
       width: '100%',
+      height: 30,
       display: 'flex',
       alignItems: 'center',
-      justifyContent: 'flex-start',
       borderWidth: {
         top: 0,
         right: 0,
         bottom: 1,
         left: 0
       },
-      margin: {
-        top: 0,
-        right: 0,
-        bottom: 15,
-        left: 0
-      },
       borderStyle: 'solid',
-      background: 'none',
       borderColor: '#254665',
-      color: '#254665'
+      background: ''
     }
   },
   {
     title: '模块标题字体样式',
     prop: 'moduleTitleFont',
     css: {
-      height: '100%',
-      width: 150,
+      fontSize: 18,
+      color: '#fff',
+      fontWeight: 500,
+      letterSpacing: 2,
+      background: ''
+    }
+  },
+  {
+    title: '模块标题图标样式',
+    prop: 'moduleTitleIcon',
+    css: {
+      height: 26,
+      width: 26,
+      position: 'relative',
+      zIndex: 1,
       display: 'flex',
       alignItems: 'center',
-      justifyContent: 'flex-start',
-      fontSize: 20,
-      fontWeight: 600,
-      letterSpacing: 2,
-      background: 'none',
+      justifyContent: 'center',
+      fontSize: 14,
+      color: '#fff',
+      margin: {
+        top: 4,
+        right: 10,
+        bottom: 0,
+        left: 0
+      },
       borderWidth: {
         top: 0,
         right: 0,
-        bottom: 3,
+        bottom: 0,
         left: 0
       },
-      borderColor: 'rgb(0, 0, 0)',
-      borderStyle: 'solid'
+      borderRadius: {
+        topLeft: '50%',
+        topRight: '50%',
+        bottomLeft: '50%',
+        bottomRight: '50%'
+      },
+      borderStyle: 'solid',
+      background: '#079cfa'
     }
   },
   {
@@ -67,7 +82,7 @@ export default [
         top: 0,
         right: 0,
         bottom: 0,
-        left: 0
+        left: 45
       },
       borderColor: 'rgb(0, 0, 0)',
       borderStyle: 'solid'
@@ -94,6 +109,45 @@ export default [
         bottom: 0,
         left: 0
       },
+      padding: {
+        top: 0,
+        right: 0,
+        bottom: 0,
+        left: 0
+      },
+      borderColor: 'rgb(0, 0, 0)',
+      borderStyle: 'solid'
+    }
+  },
+  {
+    title: '所学专业整体样式',
+    prop: 'specialized',
+    css: {
+      width: '100%',
+      lineHeight: 1,
+      letterSpace: 1,
+      display: 'flex',
+      flexDirection: 'row',
+      alignItems: 'center',
+      justifyContent: 'space-between',
+      fontSize: 15,
+      color: '#757575',
+      fontWeight: 600,
+      letterSpacing: 0,
+      background: 'none',
+      textAlign: 'justify',
+      borderWidth: {
+        top: 0,
+        right: 0,
+        bottom: 0,
+        left: 0
+      },
+      margin: {
+        top: 0,
+        right: 0,
+        bottom: 15,
+        left: 0
+      },
       borderColor: 'rgb(0, 0, 0)',
       borderStyle: 'solid'
     }
@@ -107,7 +161,7 @@ export default [
       letterSpace: 1,
       display: 'flex',
       flexDirection: 'column',
-      alignItems: 'center',
+      alignItems: 'flex-start',
       justifyContent: 'space-between',
       fontSize: 14,
       color: '#757575',

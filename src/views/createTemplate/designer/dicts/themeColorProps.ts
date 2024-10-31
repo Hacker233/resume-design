@@ -88,6 +88,27 @@ const themeColorProps: any = {
       moduleTitle: ['color', 'borderColor'],
       moduleTitleFont: ['color', 'borderColor']
     }
+  },
+  EduBackground_2: {
+    css: [],
+    customCss: {
+      moduleTitle: ['color', 'borderColor'],
+      moduleTitleFont: ['color', 'borderColor']
+    }
+  },
+  EduBackground_3: {
+    css: [],
+    customCss: {
+      moduleTitle: ['color', 'borderColor'],
+      moduleTitleFont: ['color', 'borderColor'],
+      moduleTitleIcon: ['background']
+    }
+  },
+  EduBackground_4: {
+    css: [],
+    customCss: {
+      moduleTitle: ['borderColor']
+    }
   }
 };
 export default themeColorProps;

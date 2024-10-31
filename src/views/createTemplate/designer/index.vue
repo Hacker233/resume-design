@@ -146,11 +146,13 @@
       width: 100%;
       flex: 1;
       display: flex;
+      overflow: auto;
       .module-left {
         height: 100%;
         background-color: #fff;
         flex: 1;
         max-width: 500px;
+        min-width: 300px;
       }
       .design-center {
         height: calc(100vh - 50px);
@@ -202,6 +204,7 @@
       }
       .prop-right {
         height: 100%;
+        min-width: 500px;
         background-color: #fff;
         flex: 1;
       }

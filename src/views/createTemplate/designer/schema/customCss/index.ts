@@ -26,7 +26,12 @@ import left_right_page from './pages/left_right_page';
 
 import ResumeTitle_1 from './resume_title/ResumeTitle_1';
 import ResumeTitle_2 from './resume_title/ResumeTitle_2';
+
+// 教育背景
 import EduBackground_1 from './edu_background/EduBackground_1';
+import EduBackground_2 from './edu_background/EduBackground_2';
+import EduBackground_3 from './edu_background/EduBackground_3';
+import EduBackground_4 from './edu_background/EduBackground_4';
 
 export default {
   BaseInfo_1,
@@ -54,6 +59,9 @@ export default {
   ResumeTitle_2,
 
   EduBackground_1,
+  EduBackground_2,
+  EduBackground_3,
+  EduBackground_4,
 
   base_page,
   left_right_page
