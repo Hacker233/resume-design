@@ -30,6 +30,7 @@ import EduBackground_1 from '../modules/EduBackground/EduBackground_1.vue';
 import EduBackground_2 from '../modules/EduBackground/EduBackground_2.vue';
 import EduBackground_3 from '../modules/EduBackground/EduBackground_3.vue';
 import EduBackground_4 from '../modules/EduBackground/EduBackground_4.vue';
+import EduBackground_5 from '../modules/EduBackground/EduBackground_5.vue';
 
 // 定义页面组件列表
 const moduleComponents: any = {
@@ -59,6 +60,7 @@ const moduleComponents: any = {
   EduBackground_1,
   EduBackground_2,
   EduBackground_3,
-  EduBackground_4
+  EduBackground_4,
+  EduBackground_5
 };
 export default moduleComponents;

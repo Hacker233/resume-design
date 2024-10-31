@@ -32,6 +32,7 @@ import EduBackground_1 from './edu_background/EduBackground_1';
 import EduBackground_2 from './edu_background/EduBackground_2';
 import EduBackground_3 from './edu_background/EduBackground_3';
 import EduBackground_4 from './edu_background/EduBackground_4';
+import EduBackground_5 from './edu_background/EduBackground_5';
 
 export default {
   BaseInfo_1,
@@ -62,6 +63,7 @@ export default {
   EduBackground_2,
   EduBackground_3,
   EduBackground_4,
+  EduBackground_5,
 
   base_page,
   left_right_page

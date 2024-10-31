@@ -109,6 +109,13 @@ const themeColorProps: any = {
     customCss: {
       moduleTitle: ['borderColor']
     }
+  },
+  EduBackground_5: {
+    css: [],
+    customCss: {
+      moduleTitle: ['borderColor'],
+      moduleTitleFontBox: ['background']
+    }
   }
 };
 export default themeColorProps;
