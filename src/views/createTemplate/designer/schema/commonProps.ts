@@ -144,6 +144,14 @@ const commonProps = {
       iconfont: '',
       config: true
     }
+  },
+  skillSpecialties: {
+    title: {
+      chName: '技能特长',
+      show: true,
+      iconfont: '',
+      config: true // 是否支持配置
+    }
   }
 };
 export default commonProps;

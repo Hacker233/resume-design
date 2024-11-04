@@ -225,6 +225,125 @@ const commonDataSource: any = {
         width: '100%'
       }
     }
+  },
+  skill_specialties: {
+    list: {
+      type: 'list',
+      label: '技能特长',
+      value: [
+        {
+          skillName: {
+            type: 'input',
+            label: '技能名称',
+            value: 'photoshop',
+            props: {
+              width: '49%'
+            }
+          },
+          proficiency: {
+            type: 'select',
+            label: '熟练度',
+            value: '熟悉',
+            options: [],
+            props: {
+              width: '49%'
+            }
+          },
+          introduce: {
+            type: 'textarea',
+            label: '技能介绍',
+            value: '简要概述对该项技能的掌握及运用程度等等',
+            props: {
+              width: '100%'
+            }
+          }
+        },
+        {
+          skillName: {
+            type: 'input',
+            label: '技能名称',
+            value: 'photoshop',
+            props: {
+              width: '49%'
+            }
+          },
+          proficiency: {
+            type: 'select',
+            label: '熟练度',
+            value: '熟悉',
+            options: [],
+            props: {
+              width: '49%'
+            }
+          },
+          introduce: {
+            type: 'textarea',
+            label: '技能介绍',
+            value: '简要概述对该项技能的掌握及运用程度等等',
+            props: {
+              width: '100%'
+            }
+          }
+        },
+        {
+          skillName: {
+            type: 'input',
+            label: '技能名称',
+            value: 'photoshop',
+            props: {
+              width: '49%'
+            }
+          },
+          proficiency: {
+            type: 'select',
+            label: '熟练度',
+            value: '熟悉',
+            options: [],
+            props: {
+              width: '49%'
+            }
+          },
+          introduce: {
+            type: 'textarea',
+            label: '技能介绍',
+            value: '简要概述对该项技能的掌握及运用程度等等',
+            props: {
+              width: '100%'
+            }
+          }
+        },
+        {
+          skillName: {
+            type: 'input',
+            label: '技能名称',
+            value: 'photoshop',
+            props: {
+              width: '49%'
+            }
+          },
+          proficiency: {
+            type: 'select',
+            label: '熟练度',
+            value: '熟悉',
+            options: [],
+            props: {
+              width: '49%'
+            }
+          },
+          introduce: {
+            type: 'textarea',
+            label: '技能介绍',
+            value: '简要概述对该项技能的掌握及运用程度等等',
+            props: {
+              width: '100%'
+            }
+          }
+        }
+      ],
+      props: {
+        width: '100%'
+      }
+    }
   }
 };
 export default commonDataSource;
