@@ -150,7 +150,25 @@ const commonProps = {
       chName: '技能特长',
       show: true,
       iconfont: '',
-      config: true // 是否支持配置
+      config: true
+    },
+    skillName: {
+      chName: '技能名称',
+      show: true,
+      iconfont: '',
+      config: true
+    },
+    proficiency: {
+      chName: '熟练度',
+      show: true,
+      iconfont: '',
+      config: true
+    },
+    introduce: {
+      chName: '技能介绍',
+      show: true,
+      iconfont: '',
+      config: true
     }
   }
 };

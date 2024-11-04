@@ -41,6 +41,11 @@ import EduBackground_10 from './edu_background/EduBackground_10';
 import EduBackground_11 from './edu_background/EduBackground_11';
 import EduBackground_12 from './edu_background/EduBackground_12';
 
+// 技能特长
+import SkillSpecialties_1 from './skill_specialties/SkillSpecialties_1';
+import SkillSpecialties_2 from './skill_specialties/SkillSpecialties_2';
+import SkillSpecialties_3 from './skill_specialties/SkillSpecialties_3';
+
 export default {
   BaseInfo_1,
   BaseInfo_2,
@@ -78,6 +83,10 @@ export default {
   EduBackground_10,
   EduBackground_11,
   EduBackground_12,
+
+  SkillSpecialties_1,
+  SkillSpecialties_2,
+  SkillSpecialties_3,
 
   base_page,
   left_right_page

@@ -1,9 +1,9 @@
 <template>
   <div class="height-editor-box">
-    <el-form-item size="default" label="自动换行:">
-      <el-radio-group v-model="module.css.flexWrap">
-        <el-radio label="wrap">是</el-radio>
-        <el-radio label="no-wrap">否</el-radio>
+    <el-form-item size="default" label="列表标记:">
+      <el-radio-group v-model="module.css.listStylePosition">
+        <el-radio label="inside">内部</el-radio>
+        <el-radio label="outside">外部 </el-radio>
       </el-radio-group>
     </el-form-item>
   </div>
@@ -26,6 +26,11 @@
         flex: 1;
         display: flex;
       }
+    }
+    .unit {
+      margin-left: 10px;
+      color: #929292;
+      letter-spacing: 2px;
     }
   }
 </style>

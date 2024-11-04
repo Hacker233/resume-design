@@ -133,6 +133,8 @@ export const useGetBoxStyle = (props: { module: IModule }) => {
       left: props.module.css.left ? `${props.module.css.left}px` : 'auto',
       cursor: props.module.css.cursor || 'auto',
       transition: props.module.css.transition || 'none',
+      listStylePosition: props.module.css.listStylePosition ?? 'outside',
+      listStyle: props.module.css.listStyle ?? 'disc',
 
       // 处理旋转
       transform: props.module.css?.rotate

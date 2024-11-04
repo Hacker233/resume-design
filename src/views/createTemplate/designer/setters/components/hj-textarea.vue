@@ -7,34 +7,26 @@
       </div>
       <slot name="label-right"></slot>
     </div>
-    <el-select
+    <el-input
       v-model="inputValue"
       size="large"
-      style="width: 100%"
-      :placeholder="`请选择${label}`"
-      :disabled="disabled"
-    >
-      <el-option
-        v-for="(item, index) in selectOptions[keyValue]"
-        :key="index"
-        :label="item.value"
-        :value="item.value"
-      />
-    </el-select>
+      :autosize="{ minRows: 2, maxRows: 8 }"
+      type="textarea"
+      @change="handleChange"
+    ></el-input>
   </div>
 </template>
+
 <script lang="ts" setup>
   import { IModule } from '@/views/createTemplate/types/IHJNewSchema';
-  import selectOptions from '../../utils/getSelectOptions';
 
   const emit = defineEmits(['update:modelValue']);
 
   const props = defineProps<{
-    modelValue: string;
+    modelValue: string | number;
     label: string;
     keyValue: string;
     module: IModule;
-    disabled: boolean;
   }>();
 
   // 添加一个可响应的 inputValue，并监听 modelValue 的变化
@@ -47,15 +39,19 @@
     }
   );
 
+  const handleChange = (value: string) => {
+    emit('update:modelValue', value);
+  };
+
   // 监听 inputValue 变化，触发 update:modelValue
   watch(inputValue, (newValue) => {
     emit('update:modelValue', newValue);
   });
 </script>
+
 <style lang="scss" scoped>
   .field {
     margin-bottom: 24px;
-    height: 80px;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -77,11 +73,9 @@
         }
       }
     }
-    :deep(.el-select) {
+
+    .el-input {
       height: 48px;
-      .el-input {
-        height: 48px;
-      }
     }
   }
 </style>

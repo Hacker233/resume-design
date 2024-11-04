@@ -39,6 +39,11 @@ import EduBackground_10 from '../modules/EduBackground/EduBackground_10.vue';
 import EduBackground_11 from '../modules/EduBackground/EduBackground_11.vue';
 import EduBackground_12 from '../modules/EduBackground/EduBackground_12.vue';
 
+// 技能特长
+import SkillSpecialties_1 from '../modules/SkillSpecialties/SkillSpecialties_1.vue';
+import SkillSpecialties_2 from '../modules/SkillSpecialties/SkillSpecialties_2.vue';
+import SkillSpecialties_3 from '../modules/SkillSpecialties/SkillSpecialties_3.vue';
+
 // 定义页面组件列表
 const moduleComponents: any = {
   ResumeTitle_1,
@@ -75,6 +80,10 @@ const moduleComponents: any = {
   EduBackground_9,
   EduBackground_10,
   EduBackground_11,
-  EduBackground_12
+  EduBackground_12,
+  // 技能特长
+  SkillSpecialties_1,
+  SkillSpecialties_2,
+  SkillSpecialties_3
 };
 export default moduleComponents;

@@ -163,6 +163,20 @@ const themeColorProps: any = {
     customCss: {
       moduleTitle: ['color']
     }
+  },
+  SkillSpecialties_1: {
+    css: [],
+    customCss: {
+      moduleTitle: ['color', 'borderColor'],
+      moduleTitleFont: ['color', 'borderColor']
+    }
+  },
+  SkillSpecialties_2: {
+    css: [],
+    customCss: {
+      moduleTitle: ['color', 'borderColor'],
+      moduleTitleFont: ['color', 'borderColor']
+    }
   }
 };
 export default themeColorProps;

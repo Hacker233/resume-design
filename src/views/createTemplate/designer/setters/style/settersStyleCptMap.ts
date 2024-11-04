@@ -29,6 +29,8 @@ import backgroundRepeat from './backgroundRepeat.vue';
 import flexShrink from './flexShrink.vue';
 import textAlign from './textAlign.vue';
 import display from './display.vue';
+import listStylePosition from './listStylePosition.vue';
+import listStyle from './listStyle.vue';
 
 const settersStyleCptMap: ISetterMap = {
   width,
@@ -59,6 +61,8 @@ const settersStyleCptMap: ISetterMap = {
   backgroundRepeat,
   flexShrink,
   textAlign,
-  display
+  display,
+  listStylePosition,
+  listStyle
 };
 export default settersStyleCptMap;

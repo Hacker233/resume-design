@@ -5,6 +5,7 @@ import hjSelect from './hj-select.vue';
 import hjList from './hj-list.vue';
 import hjDatePicker from './hj-datePicker.vue';
 import hjEditor from './hj-editor.vue';
+import hjTextarea from './hj-textarea.vue';
 
 const dataSourceCptMap: ISetterMap = {
   input: hjInput,
@@ -12,6 +13,7 @@ const dataSourceCptMap: ISetterMap = {
   select: hjSelect,
   list: hjList,
   datePicker: hjDatePicker,
-  editor: hjEditor
+  editor: hjEditor,
+  textarea: hjTextarea
 };
 export default dataSourceCptMap;

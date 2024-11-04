@@ -7,7 +7,12 @@
       </div>
       <slot name="label-right"></slot>
     </div>
-    <el-input v-model="inputValue" size="large" @change="handleChange"></el-input>
+    <el-input
+      v-model="inputValue"
+      :disabled="disabled"
+      size="large"
+      @change="handleChange"
+    ></el-input>
   </div>
 </template>
 
@@ -21,6 +26,7 @@
     label: string;
     keyValue: string;
     module: IModule;
+    disabled: boolean;
   }>();
 
   // 添加一个可响应的 inputValue，并监听 modelValue 的变化
