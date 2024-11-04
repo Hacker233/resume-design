@@ -110,8 +110,8 @@ export const useGetCustomStyle = (module: IModule | IHJNewSchema, prop: string) 
           left: element.css?.left ? `${element.css.left}px` : '',
           cursor: element.css?.cursor || '',
           transition: element.css?.transition || '',
-          listStylePosition: element.css?.listStylePosition ?? 'outside',
           listStyle: element.css.listStyle ?? 'disc',
+          listStylePosition: element.css?.listStylePosition ?? 'outside',
 
           // 处理旋转
           transform: element.css?.rotate
