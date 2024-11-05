@@ -262,7 +262,7 @@ const commonDataSource: any = {
           skillName: {
             type: 'input',
             label: '技能名称',
-            value: 'photoshop',
+            value: 'JavaScript',
             props: {
               width: '49%'
             }
@@ -289,7 +289,7 @@ const commonDataSource: any = {
           skillName: {
             type: 'input',
             label: '技能名称',
-            value: 'photoshop',
+            value: 'HTML',
             props: {
               width: '49%'
             }
@@ -316,7 +316,7 @@ const commonDataSource: any = {
           skillName: {
             type: 'input',
             label: '技能名称',
-            value: 'photoshop',
+            value: 'Vue3',
             props: {
               width: '49%'
             }

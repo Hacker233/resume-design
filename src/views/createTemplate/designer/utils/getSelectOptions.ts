@@ -123,6 +123,24 @@ const selectOptions: any = {
       label: '见习',
       value: '见习'
     }
+  ],
+  proficiency: [
+    {
+      label: '了解',
+      value: '了解'
+    },
+    {
+      label: '一般',
+      value: '一般'
+    },
+    {
+      label: '熟悉',
+      value: '熟悉'
+    },
+    {
+      label: '精通',
+      value: '精通'
+    }
   ]
 };
 export default selectOptions;

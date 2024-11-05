@@ -25,39 +25,37 @@
             <!-- 模块数据填写区域 -->
             <div class="module-list-content-box">
               <!-- 数据填写组件 -->
-              <div
-                v-for="(value, key, dataIndex) in element"
-                :key="dataIndex"
-                :style="getFiledStyle(value)"
-              >
-                <component
-                  :is="dataSourceCptMap[value.type]"
-                  v-if="module.props[key].config"
-                  v-model="value.value"
-                  :label="value.label"
-                  :key-value="key"
-                  :module="module"
-                  :disabled="!module.props[key].config"
-                >
-                  <!-- 组件图标 -->
-                  <template #label-left>
-                    <icon-select-pop
-                      v-if="module.props[key].iconfont"
-                      v-model="module.props[key].iconfont"
-                      size="18px"
-                    ></icon-select-pop>
-                  </template>
-                  <!-- 组件开关 -->
-                  <template #label-right>
-                    <div class="field-label-right-box">
-                      <el-switch
-                        v-model="module.props[key].show"
-                        :disabled="!module.props[key].config"
-                      />
-                    </div>
-                  </template>
-                </component>
-              </div>
+              <template v-for="(value, key, dataIndex) in element" :key="dataIndex">
+                <div v-if="module.props[key]?.config" :style="getFiledStyle(value)">
+                  <component
+                    :is="dataSourceCptMap[value.type]"
+                    v-if="module.props[key].config"
+                    v-model="value.value"
+                    :label="value.label"
+                    :key-value="key"
+                    :module="module"
+                    :disabled="!module.props[key].config"
+                  >
+                    <!-- 组件图标 -->
+                    <template #label-left>
+                      <icon-select-pop
+                        v-if="module.props[key].iconfont"
+                        v-model="module.props[key].iconfont"
+                        size="18px"
+                      ></icon-select-pop>
+                    </template>
+                    <!-- 组件开关 -->
+                    <template #label-right>
+                      <div class="field-label-right-box">
+                        <el-switch
+                          v-model="module.props[key].show"
+                          :disabled="!module.props[key].config"
+                        />
+                      </div>
+                    </template>
+                  </component>
+                </div>
+              </template>
             </div>
           </div>
         </div>

@@ -7,6 +7,7 @@ export default [
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'flex-start',
+      flexShrink: 0,
       borderWidth: {
         top: 0,
         right: 0,

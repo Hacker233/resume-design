@@ -177,6 +177,89 @@ const themeColorProps: any = {
       moduleTitle: ['color', 'borderColor'],
       moduleTitleFont: ['color', 'borderColor']
     }
+  },
+  SkillSpecialties_3: {
+    css: [],
+    customCss: {
+      moduleTitle: ['color', 'borderColor'],
+      moduleTitleFont: ['color', 'borderColor'],
+      moduleTitleIcon: ['background']
+    }
+  },
+  SkillSpecialties_4: {
+    css: [],
+    customCss: {
+      moduleTitle: ['borderColor']
+    }
+  },
+  SkillSpecialties_5: {
+    css: [],
+    customCss: {
+      moduleTitle: ['borderColor'],
+      moduleTitleFontBox: ['background']
+    }
+  },
+  SkillSpecialties_6: {
+    css: [],
+    customCss: {
+      moduleTitle: ['color']
+    }
+  },
+  SkillSpecialties_7: {
+    css: [],
+    customCss: {
+      moduleTitle: ['color']
+    }
+  },
+  SkillSpecialties_8: {
+    css: [],
+    customCss: {
+      moduleTitle: ['borderColor', 'color'],
+      moduleTitleIcon: ['background'],
+      moduleTitleRightBox: ['borderColor']
+    }
+  },
+  SkillSpecialties_9: {
+    css: [],
+    customCss: {
+      moduleTitle: ['color', 'borderColor'],
+      moduleTitleFont: ['color', 'borderColor']
+    }
+  },
+  SkillSpecialties_10: {
+    css: [],
+    customCss: {
+      moduleTitle: ['color']
+    }
+  },
+  SkillSpecialties_11: {
+    css: [],
+    customCss: {
+      moduleTitle: ['color'],
+      elSliderBar: ['background']
+    }
+  },
+  SkillSpecialties_12: {
+    css: [],
+    customCss: {
+      moduleTitle: ['color'],
+      elSliderBar: ['background']
+    }
+  },
+  SkillSpecialties_13: {
+    css: [],
+    customCss: {
+      moduleTitle: ['color', 'borderColor'],
+      moduleTitleFont: ['color', 'borderColor'],
+      elSliderBar: ['background']
+    }
+  },
+  SkillSpecialties_14: {
+    css: [],
+    customCss: {
+      moduleTitle: ['color'],
+      elSliderBar: ['background']
+    }
   }
 };
 export default themeColorProps;

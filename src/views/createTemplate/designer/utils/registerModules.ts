@@ -43,6 +43,17 @@ import EduBackground_12 from '../modules/EduBackground/EduBackground_12.vue';
 import SkillSpecialties_1 from '../modules/SkillSpecialties/SkillSpecialties_1.vue';
 import SkillSpecialties_2 from '../modules/SkillSpecialties/SkillSpecialties_2.vue';
 import SkillSpecialties_3 from '../modules/SkillSpecialties/SkillSpecialties_3.vue';
+import SkillSpecialties_4 from '../modules/SkillSpecialties/SkillSpecialties_4.vue';
+import SkillSpecialties_5 from '../modules/SkillSpecialties/SkillSpecialties_5.vue';
+import SkillSpecialties_6 from '../modules/SkillSpecialties/SkillSpecialties_6.vue';
+import SkillSpecialties_7 from '../modules/SkillSpecialties/SkillSpecialties_7.vue';
+import SkillSpecialties_8 from '../modules/SkillSpecialties/SkillSpecialties_8.vue';
+import SkillSpecialties_9 from '../modules/SkillSpecialties/SkillSpecialties_9.vue';
+import SkillSpecialties_10 from '../modules/SkillSpecialties/SkillSpecialties_10.vue';
+import SkillSpecialties_11 from '../modules/SkillSpecialties/SkillSpecialties_11.vue';
+import SkillSpecialties_12 from '../modules/SkillSpecialties/SkillSpecialties_12.vue';
+import SkillSpecialties_13 from '../modules/SkillSpecialties/SkillSpecialties_13.vue';
+import SkillSpecialties_14 from '../modules/SkillSpecialties/SkillSpecialties_14.vue';
 
 // 定义页面组件列表
 const moduleComponents: any = {
@@ -84,6 +95,17 @@ const moduleComponents: any = {
   // 技能特长
   SkillSpecialties_1,
   SkillSpecialties_2,
-  SkillSpecialties_3
+  SkillSpecialties_3,
+  SkillSpecialties_4,
+  SkillSpecialties_5,
+  SkillSpecialties_6,
+  SkillSpecialties_7,
+  SkillSpecialties_8,
+  SkillSpecialties_9,
+  SkillSpecialties_10,
+  SkillSpecialties_11,
+  SkillSpecialties_12,
+  SkillSpecialties_13,
+  SkillSpecialties_14
 };
 export default moduleComponents;

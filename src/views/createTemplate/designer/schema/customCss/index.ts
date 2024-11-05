@@ -45,6 +45,17 @@ import EduBackground_12 from './edu_background/EduBackground_12';
 import SkillSpecialties_1 from './skill_specialties/SkillSpecialties_1';
 import SkillSpecialties_2 from './skill_specialties/SkillSpecialties_2';
 import SkillSpecialties_3 from './skill_specialties/SkillSpecialties_3';
+import SkillSpecialties_4 from './skill_specialties/SkillSpecialties_4';
+import SkillSpecialties_5 from './skill_specialties/SkillSpecialties_5';
+import SkillSpecialties_6 from './skill_specialties/SkillSpecialties_6';
+import SkillSpecialties_7 from './skill_specialties/SkillSpecialties_7';
+import SkillSpecialties_8 from './skill_specialties/SkillSpecialties_8';
+import SkillSpecialties_9 from './skill_specialties/SkillSpecialties_9';
+import SkillSpecialties_10 from './skill_specialties/SkillSpecialties_10';
+import SkillSpecialties_11 from './skill_specialties/SkillSpecialties_11';
+import SkillSpecialties_12 from './skill_specialties/SkillSpecialties_12';
+import SkillSpecialties_13 from './skill_specialties/SkillSpecialties_13';
+import SkillSpecialties_14 from './skill_specialties/SkillSpecialties_14';
 
 export default {
   BaseInfo_1,
@@ -87,6 +98,17 @@ export default {
   SkillSpecialties_1,
   SkillSpecialties_2,
   SkillSpecialties_3,
+  SkillSpecialties_4,
+  SkillSpecialties_5,
+  SkillSpecialties_6,
+  SkillSpecialties_7,
+  SkillSpecialties_8,
+  SkillSpecialties_9,
+  SkillSpecialties_10,
+  SkillSpecialties_11,
+  SkillSpecialties_12,
+  SkillSpecialties_13,
+  SkillSpecialties_14,
 
   base_page,
   left_right_page

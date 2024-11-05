@@ -19,46 +19,44 @@
           <!-- 模块数据填写区域 -->
           <div class="module-content-box">
             <!-- 组件 -->
-            <div
-              v-for="(value, key, dataIndex) in moduleItem.dataSource"
-              :key="dataIndex"
-              :style="getFiledStyle(value)"
-            >
-              <!-- 列表组件 -->
-              <template v-if="value.type === 'list'">
-                <hj-list :id="moduleItem.id" :key-value="key"></hj-list>
-              </template>
-              <!-- 非列表组件 -->
-              <template v-else>
-                <component
-                  :is="dataSourceCptMap[value.type]"
-                  v-if="moduleItem.props[key].config"
-                  v-model="moduleItem.dataSource[key].value"
-                  :label="moduleItem.dataSource[key].label"
-                  :key-value="key"
-                  :module="moduleItem"
-                  :disabled="!moduleItem.props[key].config"
-                >
-                  <!-- 组件图标 -->
-                  <template #label-left>
-                    <icon-select-pop
-                      v-if="moduleItem.props[key].iconfont"
-                      v-model="moduleItem.props[key].iconfont"
-                      size="18px"
-                    ></icon-select-pop>
-                  </template>
-                  <!-- 组件开关 -->
-                  <template #label-right>
-                    <div class="field-label-right-box">
-                      <el-switch
-                        v-model="moduleItem.props[key].show"
-                        :disabled="!moduleItem.props[key].config"
-                      />
-                    </div>
-                  </template>
-                </component>
-              </template>
-            </div>
+            <template v-for="(value, key, dataIndex) in moduleItem.dataSource" :key="dataIndex">
+              <div v-if="moduleItem.props[key].config" :style="getFiledStyle(value)">
+                <!-- 列表组件 -->
+                <template v-if="value.type === 'list'">
+                  <hj-list :id="moduleItem.id" :key-value="key"></hj-list>
+                </template>
+                <!-- 非列表组件 -->
+                <template v-else>
+                  <component
+                    :is="dataSourceCptMap[value.type]"
+                    v-if="moduleItem.props[key].config"
+                    v-model="moduleItem.dataSource[key].value"
+                    :label="moduleItem.dataSource[key].label"
+                    :key-value="key"
+                    :module="moduleItem"
+                    :disabled="!moduleItem.props[key].config"
+                  >
+                    <!-- 组件图标 -->
+                    <template #label-left>
+                      <icon-select-pop
+                        v-if="moduleItem.props[key].iconfont"
+                        v-model="moduleItem.props[key].iconfont"
+                        size="18px"
+                      ></icon-select-pop>
+                    </template>
+                    <!-- 组件开关 -->
+                    <template #label-right>
+                      <div class="field-label-right-box">
+                        <el-switch
+                          v-model="moduleItem.props[key].show"
+                          :disabled="!moduleItem.props[key].config"
+                        />
+                      </div>
+                    </template>
+                  </component>
+                </template>
+              </div>
+            </template>
           </div>
         </div>
       </template>

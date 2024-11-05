@@ -20,6 +20,24 @@ export default {
       show: true,
       iconfont: 'icon-jibenziliao',
       config: true
+    },
+    abstract: {
+      chName: '一句话简介',
+      show: true,
+      iconfont: '',
+      config: false // 是否支持配置
+    }, // 简介
+    avatar: {
+      chName: '证件照',
+      show: true,
+      iconfont: '',
+      config: false // 是否支持配置
+    }, // 头像地址
+    name: {
+      chName: '姓名',
+      show: true,
+      iconfont: '',
+      config: false // 是否支持配置
     }
   }, // 组件属性
   css: {
