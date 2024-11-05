@@ -17,19 +17,20 @@
           </div>
 
           <!-- 模块数据填写区域 -->
-          <div class="module-content-box">
+          <div v-if="moduleItem" class="module-content-box">
             <!-- 组件 -->
             <template v-for="(value, key, dataIndex) in moduleItem.dataSource" :key="dataIndex">
-              <div v-if="moduleItem.props[key].config" :style="getFiledStyle(value)">
-                <!-- 列表组件 -->
-                <template v-if="value.type === 'list'">
+              <!-- 列表组件 -->
+              <template v-if="value.type === 'list'">
+                <div :style="getFiledStyle(value)">
                   <hj-list :id="moduleItem.id" :key-value="key"></hj-list>
-                </template>
-                <!-- 非列表组件 -->
-                <template v-else>
+                </div>
+              </template>
+              <!-- 非列表组件 -->
+              <template v-else>
+                <div v-if="moduleItem.props[key].config" :style="getFiledStyle(value)">
                   <component
                     :is="dataSourceCptMap[value.type]"
-                    v-if="moduleItem.props[key].config"
                     v-model="moduleItem.dataSource[key].value"
                     :label="moduleItem.dataSource[key].label"
                     :key-value="key"
@@ -54,8 +55,8 @@
                       </div>
                     </template>
                   </component>
-                </template>
-              </div>
+                </div>
+              </template>
             </template>
           </div>
         </div>
