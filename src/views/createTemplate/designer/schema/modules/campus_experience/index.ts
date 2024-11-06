@@ -21,7 +21,7 @@ const base_info = {
   icon: 'icon-jichuxinxi', // 模块图标
   props: commonProps['campusExperience'], // 公共的props
   dataSource: cloneDeep(commonDataSource['campus_experience']), // 该分类下公用数据源
-  css: commonCss['baseInfo'],
+  css: commonCss['campus_experience'],
   list: [
     CampusExperience_1,
     CampusExperience_2,
