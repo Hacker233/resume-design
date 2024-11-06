@@ -42,9 +42,9 @@ export default {
     justifyContent: 'flex-start',
     padding: {
       top: 0,
-      right: 40,
+      right: 30,
       bottom: 20,
-      left: 40
+      left: 30
     }
   }, // 组件样式
   customCss: customCss['SkillSpecialties_3'],

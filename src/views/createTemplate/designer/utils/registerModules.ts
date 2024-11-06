@@ -54,6 +54,21 @@ import SkillSpecialties_11 from '../modules/SkillSpecialties/SkillSpecialties_11
 import SkillSpecialties_12 from '../modules/SkillSpecialties/SkillSpecialties_12.vue';
 import SkillSpecialties_13 from '../modules/SkillSpecialties/SkillSpecialties_13.vue';
 import SkillSpecialties_14 from '../modules/SkillSpecialties/SkillSpecialties_14.vue';
+import SkillSpecialties_15 from '../modules/SkillSpecialties/SkillSpecialties_15.vue';
+import SkillSpecialties_16 from '../modules/SkillSpecialties/SkillSpecialties_16.vue';
+
+// 校园经历
+import CampusExperience_1 from '../modules/CampusExperience/CampusExperience_1.vue';
+import CampusExperience_2 from '../modules/CampusExperience/CampusExperience_2.vue';
+import CampusExperience_3 from '../modules/CampusExperience/CampusExperience_3.vue';
+import CampusExperience_4 from '../modules/CampusExperience/CampusExperience_4.vue';
+import CampusExperience_5 from '../modules/CampusExperience/CampusExperience_5.vue';
+import CampusExperience_6 from '../modules/CampusExperience/CampusExperience_6.vue';
+import CampusExperience_7 from '../modules/CampusExperience/CampusExperience_7.vue';
+import CampusExperience_8 from '../modules/CampusExperience/CampusExperience_8.vue';
+import CampusExperience_9 from '../modules/CampusExperience/CampusExperience_9.vue';
+import CampusExperience_10 from '../modules/CampusExperience/CampusExperience_10.vue';
+import CampusExperience_11 from '../modules/CampusExperience/CampusExperience_11.vue';
 
 // 定义页面组件列表
 const moduleComponents: any = {
@@ -106,6 +121,20 @@ const moduleComponents: any = {
   SkillSpecialties_11,
   SkillSpecialties_12,
   SkillSpecialties_13,
-  SkillSpecialties_14
+  SkillSpecialties_14,
+  SkillSpecialties_15,
+  SkillSpecialties_16,
+  // 校园经历
+  CampusExperience_1,
+  CampusExperience_2,
+  CampusExperience_3,
+  CampusExperience_4,
+  CampusExperience_5,
+  CampusExperience_6,
+  CampusExperience_7,
+  CampusExperience_8,
+  CampusExperience_9,
+  CampusExperience_10,
+  CampusExperience_11
 };
 export default moduleComponents;

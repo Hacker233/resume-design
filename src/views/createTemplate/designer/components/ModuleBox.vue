@@ -23,9 +23,10 @@
   });
 
   const { selectedModuleId } = storeToRefs(appStore.useCreateTemplateStore);
-  // 点击模块
+  const { dataConfigScrollToView } = appStore.useCreateTemplateStore;
   const selectModule = () => {
     selectedModuleId.value = props.module.id;
+    dataConfigScrollToView();
     console.log('选中的模块ID', selectedModuleId.value);
   };
 </script>

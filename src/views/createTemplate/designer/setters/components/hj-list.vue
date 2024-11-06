@@ -85,7 +85,6 @@
 
   // 选中的module
   const module = useGetSelectedModule(props.id);
-  console.log('教育背景数据组件', module, props.keyValue);
 
   // 返回数据填写组件样式
   const getFiledStyle = (value: any) => {

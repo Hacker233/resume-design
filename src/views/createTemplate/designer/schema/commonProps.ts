@@ -170,6 +170,38 @@ const commonProps = {
       iconfont: '',
       config: true
     }
+  },
+  campusExperience: {
+    title: {
+      chName: '校园经历',
+      show: true,
+      iconfont: '',
+      config: true
+    },
+    date: {
+      chName: '经历时期',
+      show: true,
+      iconfont: '',
+      config: true
+    },
+    campusBriefly: {
+      chName: '经历简要',
+      show: true,
+      iconfont: '',
+      config: true
+    },
+    campusDuty: {
+      chName: '主要职责',
+      show: true,
+      iconfont: '',
+      config: true
+    },
+    campusContent: {
+      chName: '经历内容',
+      show: true,
+      iconfont: '',
+      config: true
+    }
   }
 };
 export default commonProps;

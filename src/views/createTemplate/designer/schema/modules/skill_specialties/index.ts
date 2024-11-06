@@ -16,6 +16,8 @@ import SkillSpecialties_11 from './SkillSpecialties_11';
 import SkillSpecialties_12 from './SkillSpecialties_12';
 import SkillSpecialties_13 from './SkillSpecialties_13';
 import SkillSpecialties_14 from './SkillSpecialties_14';
+import SkillSpecialties_15 from './SkillSpecialties_15';
+import SkillSpecialties_16 from './SkillSpecialties_16';
 
 const resume_title = {
   id: 'skillSpecialties', // 模块id
@@ -39,7 +41,9 @@ const resume_title = {
     SkillSpecialties_11,
     SkillSpecialties_12,
     SkillSpecialties_13,
-    SkillSpecialties_14
+    SkillSpecialties_14,
+    SkillSpecialties_15,
+    SkillSpecialties_16
   ]
 };
 

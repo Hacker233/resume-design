@@ -55,6 +55,7 @@
     align-items: center;
     justify-content: flex-start;
     flex-shrink: 0;
+    min-width: 133px;
   }
   .right {
     li {

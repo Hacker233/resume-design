@@ -41,9 +41,12 @@
     () => selectedModuleId.value,
     (newVal) => {
       // 如果选中了模块
-      if (newVal && moduleRefList[newVal]) {
+      if (newVal && moduleDataConfigRefList[newVal]) {
         setTimeout(() => {
-          moduleRefList[newVal].el.scrollIntoView({ behavior: 'smooth', block: 'center' }); // 该模块显示在可视区域内
+          moduleDataConfigRefList[newVal].el.scrollIntoView({
+            behavior: 'smooth',
+            block: 'center'
+          }); // 该模块显示在可视区域内
         }, 0);
       }
     },
@@ -53,10 +56,10 @@
   );
 
   // 通过ref获取元素
-  const moduleRefList = reactive<any>({});
+  const moduleDataConfigRefList = reactive<any>({});
   const getDataModuleRef = (el: ComponentPublicInstance | null | Element, moduleItem: IModule) => {
     if (el) {
-      moduleRefList[moduleItem.id] = {
+      moduleDataConfigRefList[moduleItem.id] = {
         id: moduleItem.id,
         el: el
       };

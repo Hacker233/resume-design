@@ -28,7 +28,7 @@
   interface IIcon {
     modelValue?: any;
     teleported?: boolean;
-    size: string;
+    size?: string;
   }
   const props = withDefaults(defineProps<IIcon>(), {
     modelValue: '',

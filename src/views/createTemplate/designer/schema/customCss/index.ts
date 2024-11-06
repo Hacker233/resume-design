@@ -56,6 +56,21 @@ import SkillSpecialties_11 from './skill_specialties/SkillSpecialties_11';
 import SkillSpecialties_12 from './skill_specialties/SkillSpecialties_12';
 import SkillSpecialties_13 from './skill_specialties/SkillSpecialties_13';
 import SkillSpecialties_14 from './skill_specialties/SkillSpecialties_14';
+import SkillSpecialties_15 from './skill_specialties/SkillSpecialties_15';
+import SkillSpecialties_16 from './skill_specialties/SkillSpecialties_16';
+
+// 校园经历
+import CampusExperience_1 from './campus_experience/CampusExperience_1';
+import CampusExperience_2 from './campus_experience/CampusExperience_2';
+import CampusExperience_3 from './campus_experience/CampusExperience_3';
+import CampusExperience_4 from './campus_experience/CampusExperience_4';
+import CampusExperience_5 from './campus_experience/CampusExperience_5';
+import CampusExperience_6 from './campus_experience/CampusExperience_6';
+import CampusExperience_7 from './campus_experience/CampusExperience_7';
+import CampusExperience_8 from './campus_experience/CampusExperience_8';
+import CampusExperience_9 from './campus_experience/CampusExperience_9';
+import CampusExperience_10 from './campus_experience/CampusExperience_10';
+import CampusExperience_11 from './campus_experience/CampusExperience_11';
 
 export default {
   BaseInfo_1,
@@ -109,6 +124,20 @@ export default {
   SkillSpecialties_12,
   SkillSpecialties_13,
   SkillSpecialties_14,
+  SkillSpecialties_15,
+  SkillSpecialties_16,
+
+  CampusExperience_1,
+  CampusExperience_2,
+  CampusExperience_3,
+  CampusExperience_4,
+  CampusExperience_5,
+  CampusExperience_6,
+  CampusExperience_7,
+  CampusExperience_8,
+  CampusExperience_9,
+  CampusExperience_10,
+  CampusExperience_11,
 
   base_page,
   left_right_page

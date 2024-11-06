@@ -14,14 +14,7 @@ export default {
   }, // 组件快照
   keywords: '教育背景', // 组件关键词，用于搜索
   category: 'edu_background', // 组件分类
-  props: {
-    title: {
-      chName: '教育背景',
-      show: true,
-      iconfont: 'icon-education-1-copy',
-      config: true // 是否支持配置
-    }
-  }, // 组件属性
+  props: {}, // 组件属性
   css: {
     position: 'relative',
     themeColor: '#079cfa',

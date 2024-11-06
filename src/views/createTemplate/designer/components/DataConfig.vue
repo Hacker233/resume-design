@@ -83,8 +83,11 @@
   import hjList from '../setters/components/hj-list.vue'; // 数据配置，列表组件
   import IconSelectPop from '@/components/IconSelectPop/IconSelectPop.vue';
 
-  const { HJNewJsonStore, selectedModuleId } = storeToRefs(appStore.useCreateTemplateStore);
+  const { HJNewJsonStore, selectedModuleId, moduleDataConfigRefList } = storeToRefs(
+    appStore.useCreateTemplateStore
+  );
 
+  const { dataConfigScrollToView } = appStore.useCreateTemplateStore;
   // 打开模块样式设置抽屉
   const styleDrawer = ref<boolean>(false);
   const handleOpenStyleDrawer = () => {
@@ -101,10 +104,21 @@
     () => selectedModuleId.value,
     (newVal) => {
       // 如果选中了模块
-      if (newVal && moduleRefList[newVal]) {
-        setTimeout(() => {
-          moduleRefList[newVal].el.scrollIntoView({ behavior: 'smooth', block: 'center' }); // 该模块显示在可视区域内
-        }, 0);
+      if (newVal) {
+        dataConfigScrollToView;
+      }
+    },
+    {
+      deep: true
+    }
+  );
+
+  watch(
+    () => HJNewJsonStore.value.componentsTree,
+    async (newVal) => {
+      if (newVal) {
+        // 如果选中了模块
+        dataConfigScrollToView();
       }
     },
     {
@@ -113,10 +127,9 @@
   );
 
   // 通过ref获取元素
-  const moduleRefList = reactive<any>({});
   const getDataModuleRef = (el: ComponentPublicInstance | null | Element, moduleItem: IModule) => {
     if (el) {
-      moduleRefList[moduleItem.id] = {
+      moduleDataConfigRefList.value[moduleItem.id] = {
         id: moduleItem.id,
         el: el
       };

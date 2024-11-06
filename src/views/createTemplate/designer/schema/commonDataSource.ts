@@ -344,6 +344,85 @@ const commonDataSource: any = {
         width: '100%'
       }
     }
+  },
+  campus_experience: {
+    list: {
+      type: 'list',
+      label: '校园经历',
+      value: [
+        {
+          date: {
+            type: 'datePicker',
+            label: '经历时期',
+            value: ['2015-5', '2019-6'],
+            props: {
+              width: '49%'
+            }
+          },
+          campusBriefly: {
+            type: 'input',
+            label: '经历简要',
+            value: '电子商务大赛',
+            props: {
+              width: '49%'
+            }
+          },
+          campusDuty: {
+            type: 'input',
+            label: '主要职责',
+            value: '大赛队长',
+            props: {
+              width: '49%'
+            }
+          },
+          campusContent: {
+            type: 'textarea',
+            label: '经历内容',
+            value: '如负责大赛PPT的制作、以及赛后沟通等这项工作',
+            props: {
+              width: '100%'
+            }
+          }
+        },
+        {
+          date: {
+            type: 'datePicker',
+            label: '经历时期',
+            value: ['2015-5', '2019-6'],
+            props: {
+              width: '49%'
+            }
+          },
+          campusBriefly: {
+            type: 'input',
+            label: '经历简要',
+            value: '象棋大赛',
+            props: {
+              width: '49%'
+            }
+          },
+          campusDuty: {
+            type: 'input',
+            label: '主要职责',
+            value: '组织人员',
+            props: {
+              width: '49%'
+            }
+          },
+          campusContent: {
+            type: 'textarea',
+            label: '经历内容',
+            value: '全程组织并参与校园象棋大赛，包括相关报道的编写',
+            props: {
+              width: '100%'
+            }
+          }
+        }
+      ],
+      props: {
+        width: '100%'
+      }
+    }
   }
 };
 export default commonDataSource;

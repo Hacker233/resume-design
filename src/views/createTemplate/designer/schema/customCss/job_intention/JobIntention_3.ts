@@ -3,7 +3,7 @@ export default [
     title: '模块标题整体样式',
     prop: 'moduleTitle',
     css: {
-      height: 40,
+      height: 22,
       width: '100%',
       display: 'flex',
       alignItems: 'center',

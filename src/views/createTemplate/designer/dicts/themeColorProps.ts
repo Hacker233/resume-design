@@ -260,6 +260,98 @@ const themeColorProps: any = {
       moduleTitle: ['color'],
       elSliderBar: ['background']
     }
+  },
+  SkillSpecialties_15: {
+    css: [],
+    customCss: {
+      moduleTitleFont: ['color'],
+      moduleTitleIcon: ['color'],
+      elSliderBar: ['background']
+    }
+  },
+  SkillSpecialties_16: {
+    css: [],
+    customCss: {
+      moduleTitleFont: ['color'],
+      moduleTitleIcon: ['color'],
+      elSliderBar: ['background']
+    }
+  },
+  CampusExperience_1: {
+    css: [],
+    customCss: {
+      moduleTitle: ['color', 'borderColor'],
+      moduleTitleFont: ['color', 'borderColor']
+    }
+  },
+  CampusExperience_2: {
+    css: [],
+    customCss: {
+      moduleTitle: ['color', 'borderColor'],
+      moduleTitleFont: ['color', 'borderColor']
+    }
+  },
+  CampusExperience_3: {
+    css: [],
+    customCss: {
+      moduleTitle: ['color', 'borderColor'],
+      moduleTitleFont: ['color', 'borderColor'],
+      moduleTitleIcon: ['background']
+    }
+  },
+  CampusExperience_4: {
+    css: [],
+    customCss: {
+      moduleTitle: ['borderColor']
+    }
+  },
+  CampusExperience_5: {
+    css: [],
+    customCss: {
+      moduleTitle: ['borderColor'],
+      moduleTitleFontBox: ['background']
+    }
+  },
+  CampusExperience_6: {
+    css: [],
+    customCss: {
+      moduleTitle: ['color']
+    }
+  },
+  CampusExperience_7: {
+    css: [],
+    customCss: {
+      moduleTitle: ['color']
+    }
+  },
+  CampusExperience_8: {
+    css: [],
+    customCss: {
+      moduleTitle: ['borderColor', 'color'],
+      moduleTitleIcon: ['background'],
+      moduleTitleRightBox: ['borderColor']
+    }
+  },
+  CampusExperience_9: {
+    css: [],
+    customCss: {
+      moduleTitle: ['borderColor', 'color'],
+      moduleTitleIcon: ['background'],
+      moduleTitleRightBox: ['borderColor']
+    }
+  },
+  CampusExperience_10: {
+    css: [],
+    customCss: {
+      moduleTitle: ['color', 'borderColor'],
+      moduleTitleFont: ['color', 'borderColor']
+    }
+  },
+  CampusExperience_11: {
+    css: [],
+    customCss: {
+      moduleTitle: ['color']
+    }
   }
 };
 export default themeColorProps;
