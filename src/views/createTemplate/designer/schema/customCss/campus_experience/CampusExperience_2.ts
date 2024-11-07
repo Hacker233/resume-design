@@ -17,7 +17,7 @@ export default [
       margin: {
         top: 0,
         right: 0,
-        bottom: 20,
+        bottom: 10,
         left: 0
       },
       borderColor: 'rgb(37, 70, 101)',

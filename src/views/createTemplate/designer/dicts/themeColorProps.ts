@@ -359,6 +359,13 @@ const themeColorProps: any = {
       moduleTitle: ['color', 'borderColor'],
       moduleTitleFont: ['color', 'borderColor']
     }
+  },
+  InternshipExperience_2: {
+    css: [],
+    customCss: {
+      moduleTitle: ['color', 'borderColor'],
+      moduleTitleFont: ['color', 'borderColor']
+    }
   }
 };
 export default themeColorProps;

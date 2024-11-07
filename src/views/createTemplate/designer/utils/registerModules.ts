@@ -72,6 +72,7 @@ import CampusExperience_11 from '../modules/CampusExperience/CampusExperience_11
 
 // 实习经验
 import InternshipExperience_1 from '../modules/InternshipExperience/InternshipExperience_1.vue';
+import InternshipExperience_2 from '../modules/InternshipExperience/InternshipExperience_2.vue';
 
 // 定义页面组件列表
 const moduleComponents: any = {
@@ -141,6 +142,7 @@ const moduleComponents: any = {
   CampusExperience_11,
 
   // 实习经验
-  InternshipExperience_1
+  InternshipExperience_1,
+  InternshipExperience_2
 };
 export default moduleComponents;

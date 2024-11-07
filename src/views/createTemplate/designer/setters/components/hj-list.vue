@@ -29,7 +29,25 @@
                 <!-- 列表组件 -->
                 <template v-if="value.type === 'listLi'">
                   <div :style="getFiledStyle(value)">
-                    <hj-list-li :id="module.id" :key-value="key"></hj-list-li>
+                    <hj-list-li v-model="element[key]" :key-value="key">
+                      <!-- 组件图标 -->
+                      <template #label-left>
+                        <icon-select-pop
+                          v-if="module.props[key].iconfont"
+                          v-model="module.props[key].iconfont"
+                          size="18px"
+                        ></icon-select-pop>
+                      </template>
+                      <!-- 组件开关 -->
+                      <template #label-right>
+                        <div class="field-label-right-box">
+                          <el-switch
+                            v-model="module.props[key].show"
+                            :disabled="!module.props[key].config"
+                          />
+                        </div>
+                      </template>
+                    </hj-list-li>
                   </div>
                 </template>
                 <!-- 非列表组件 -->

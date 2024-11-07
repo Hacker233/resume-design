@@ -1,6 +1,6 @@
 <template>
   <div class="field">
-    <div class="field-top">
+    <div v-if="showTop" class="field-top">
       <div class="label-left">
         <span class="label">{{ label }}</span>
         <slot name="label-left"></slot>
@@ -12,22 +12,30 @@
       size="large"
       :autosize="{ minRows: 2, maxRows: 8 }"
       type="textarea"
+      :disabled="disabled"
       @change="handleChange"
     ></el-input>
   </div>
 </template>
 
 <script lang="ts" setup>
-  import { IModule } from '@/views/createTemplate/types/IHJNewSchema';
-
   const emit = defineEmits(['update:modelValue']);
 
-  const props = defineProps<{
+  interface TP {
     modelValue: string | number;
     label: string;
     keyValue: string;
-    module: IModule;
-  }>();
+    disabled?: boolean;
+    showTop?: boolean;
+  }
+
+  const props = withDefaults(defineProps<TP>(), {
+    modelValue: '',
+    label: '',
+    keyValue: '',
+    disabled: false,
+    showTop: true
+  });
 
   // 添加一个可响应的 inputValue，并监听 modelValue 的变化
   const inputValue = ref(props.modelValue);

@@ -209,6 +209,36 @@ const commonProps = {
       show: true,
       iconfont: '',
       config: true // 是否支持配置
+    },
+    date: {
+      chName: '实习日期',
+      show: true,
+      iconfont: '',
+      config: true
+    },
+    contentTtile: {
+      chName: '内容标题',
+      show: true,
+      iconfont: '',
+      config: true
+    },
+    companyName: {
+      chName: '公司名称',
+      show: true,
+      iconfont: '',
+      config: true
+    },
+    posts: {
+      chName: '担任职位',
+      show: true,
+      iconfont: '',
+      config: true
+    },
+    jobContent: {
+      chName: '实习内容',
+      show: true,
+      iconfont: '',
+      config: true
     }
   }
 };

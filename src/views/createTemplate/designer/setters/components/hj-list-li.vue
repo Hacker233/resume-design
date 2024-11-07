@@ -1,89 +1,101 @@
 <template>
-  <div>
-    <draggable
-      class="hj-list-data-box"
-      :list="module.dataSource[keyValue].value"
-      animation="500"
-      :sort="true"
-      item-key="id"
-    >
-      <template #item="{ element, index }">
-        <div>
-          <div class="list-item-box">
-            <div class="list-title">
-              <el-divider content-position="right">{{ module.title }}-{{ index + 1 }}</el-divider>
-              <el-tooltip effect="light" content="删除该项" placement="bottom">
-                <el-button
-                  :disabled="module.dataSource[keyValue].value.length === 1"
-                  type="danger"
-                  :icon="Delete"
-                  circle
-                  @click="deleteItem(index)"
-                />
-              </el-tooltip>
-            </div>
-            <!-- 模块数据填写区域 -->
-            <div class="module-list-content-box">
-              <!-- 数据填写组件 -->
-              <template v-for="(value, key, dataIndex) in element" :key="dataIndex">
-                <div v-if="module.props[key]?.config" :style="getFiledStyle(value)">
-                  <component
-                    :is="dataSourceCptMap[value.type]"
-                    v-if="module.props[key].config"
-                    v-model="value.value"
-                    :label="value.label"
-                    :key-value="key"
-                    :module="module"
-                    :disabled="!module.props[key].config"
-                  >
-                    <!-- 组件图标 -->
-                    <template #label-left>
-                      <icon-select-pop
-                        v-if="module.props[key].iconfont"
-                        v-model="module.props[key].iconfont"
-                        size="18px"
-                      ></icon-select-pop>
-                    </template>
-                    <!-- 组件开关 -->
-                    <template #label-right>
-                      <div class="field-label-right-box">
-                        <el-switch
-                          v-model="module.props[key].show"
-                          :disabled="!module.props[key].config"
-                        />
-                      </div>
-                    </template>
-                  </component>
-                </div>
-              </template>
+  <div class="hj-list-li-box">
+    <div class="field-top">
+      <div class="label-left">
+        <span class="label">{{ dataObj.label }}</span>
+        <slot name="label-left"></slot>
+      </div>
+      <slot name="label-right"></slot>
+    </div>
+    <div class="field-bottom">
+      <draggable
+        class="hj-list-data-box"
+        :list="dataObj.value"
+        animation="500"
+        :sort="true"
+        item-key="id"
+      >
+        <template #item="{ element, index }">
+          <div>
+            <div class="list-item-box">
+              <!-- 模块数据填写区域 -->
+              <div class="module-list-content-box">
+                <!-- 数据填写组件 -->
+                <template v-for="(value, key, dataIndex) in element" :key="dataIndex">
+                  <div :style="getFiledStyle(value)">
+                    <component
+                      :is="dataSourceCptMap[value.type]"
+                      v-model="value.value"
+                      :show-top="false"
+                      :label="value.label"
+                      :key-value="key"
+                    >
+                    </component>
+                  </div>
+                </template>
+                <!-- 删除图标 -->
+                <el-tooltip effect="light" content="删除该项" placement="bottom">
+                  <el-button
+                    :disabled="dataObj.value.length === 1"
+                    type="danger"
+                    :icon="Delete"
+                    circle
+                    @click="deleteItem(index)"
+                  />
+                </el-tooltip>
+              </div>
             </div>
           </div>
-        </div>
-      </template>
-    </draggable>
+        </template>
+      </draggable>
 
-    <div class="add-list" @click="addItem">
-      <svg-icon icon-name="icon-zengjiatianjiajiahao" color="#059e05" size="16px"></svg-icon>
-      <span>新增一项</span>
+      <div class="add-bottom">
+        <div class="add-list" @click="addItem">
+          <svg-icon icon-name="icon-zengjiatianjiajiahao" color="#059e05" size="16px"></svg-icon>
+          <span>新增一项</span>
+        </div>
+      </div>
     </div>
   </div>
 </template>
 <script lang="ts" setup>
-  import { useGetSelectedModule } from '../../hooks/useGetSelectedModule';
   import dataSourceCptMap from './index';
-  import IconSelectPop from '@/components/IconSelectPop/IconSelectPop.vue';
-  import commonDataSource from '../../schema/commonDataSource';
   import { cloneDeep } from 'lodash';
   import draggable from 'vuedraggable';
   import { Delete } from '@element-plus/icons-vue';
 
+  const emit = defineEmits(['update:modelValue']);
+
   const props = defineProps<{
-    id: string;
+    modelValue: {};
     keyValue: string | number;
   }>();
 
-  // 选中的module
-  const module = useGetSelectedModule(props.id);
+  console.log('嵌套列表', props.modelValue, props.keyValue);
+
+  // 添加一个可响应的 dataObj，并监听 modelValue 的变化
+  const dataObj = ref<any>(props.modelValue);
+
+  watch(
+    () => props.modelValue,
+    (newVal) => {
+      dataObj.value = newVal;
+    },
+    {
+      deep: true
+    }
+  );
+
+  // 监听 inputValue 变化，触发 update:modelValue
+  watch(
+    dataObj.value,
+    (newValue) => {
+      emit('update:modelValue', newValue);
+    },
+    {
+      deep: true
+    }
+  );
 
   // 返回数据填写组件样式
   const getFiledStyle = (value: any) => {
@@ -94,66 +106,99 @@
 
   // 新增一项
   const addItem = () => {
-    const data = commonDataSource[module.category][props.keyValue];
-    if (Array.isArray(data.value) && data.value.length) {
-      const addData = cloneDeep(data.value[0]);
-      module.dataSource[props.keyValue].value.push(addData);
-    }
+    const data = cloneDeep(dataObj.value.value[0]);
+    data.content.value = '实习内容';
+    dataObj.value.value.push(data);
   };
 
   // 删除一项
   const deleteItem = (index: number) => {
-    module.dataSource[props.keyValue].value.splice(index, 1);
+    dataObj.value.value.splice(index, 1);
   };
 </script>
 <style lang="scss" scoped>
-  .hj-list-data-box {
-    width: 100%;
-    .list-item-box {
+  .hj-list-li-box {
+    .field-top {
       width: 100%;
-      cursor: move;
-      transition: all 0.3s;
-      border-radius: 10px;
-      padding: 0 10px;
-      margin: 0 -10px;
-      &:hover {
-        box-shadow: 0 1px 9px 10px rgba(0, 0, 0, 0.05);
-      }
-      .list-title {
-        width: 100%;
-      }
-      .module-list-content-box {
-        display: flex;
-        justify-content: space-between;
-        flex-wrap: wrap;
-      }
-      .list-title {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+      .label-left {
         display: flex;
         align-items: center;
-        :deep(.el-divider__text) {
-          font-weight: 600;
-        }
-        .el-button {
-          margin-left: 15px;
+        .label {
+          display: flex;
+          font-size: 16px;
+          line-height: 20px;
+          color: rgb(130, 139, 162);
+          margin-left: 1px;
         }
       }
     }
-  }
-  .add-list {
-    display: inline-block;
-    cursor: pointer;
-    padding: 10px 10px;
-    border-radius: 5px;
-    transition: all 0.3s;
-    margin-bottom: 5px;
-    &:hover {
-      background: rgba($color: #000000, $alpha: 0.04);
-      opacity: 0.9;
-    }
-    span {
-      margin-left: 10px;
-      font-size: 14px;
-      color: #059e05;
+    .field-bottom {
+      border: 1px solid #eee;
+      border-radius: 8px;
+      padding: 10px;
+      margin-bottom: 10px;
+      .hj-list-data-box {
+        width: 100%;
+        .list-item-box {
+          width: 100%;
+          cursor: move;
+          transition: all 0.3s;
+          border-radius: 6px;
+          &:hover {
+            box-shadow: 0 1px 9px 10px rgba(0, 0, 0, 0.05);
+          }
+          .list-title {
+            width: 100%;
+          }
+          .module-list-content-box {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            margin: 5px 0;
+            padding: 2px 10px 2px 2px;
+            .field {
+              margin-bottom: 0;
+            }
+          }
+          .list-title {
+            display: flex;
+            align-items: center;
+            :deep(.el-divider__text) {
+              font-weight: 600;
+            }
+            .el-button {
+              margin-left: 15px;
+            }
+          }
+        }
+      }
+      .add-bottom {
+        display: flex;
+        justify-content: flex-end;
+        margin-top: 10px;
+        .add-list {
+          display: inline-block;
+          cursor: pointer;
+          padding: 10px 10px;
+          border-radius: 5px;
+          transition: all 0.3s;
+          margin-bottom: 5px;
+          &:hover {
+            background: rgba($color: #000000, $alpha: 0.04);
+            opacity: 0.9;
+          }
+          span {
+            margin-left: 10px;
+            font-size: 14px;
+            color: #059e05;
+          }
+        }
+      }
     }
   }
 </style>

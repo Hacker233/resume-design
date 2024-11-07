@@ -438,6 +438,14 @@ const commonDataSource: any = {
               width: '49%'
             }
           },
+          contentTtile: {
+            type: 'input',
+            label: '内容标题',
+            value: '实习内容',
+            props: {
+              width: '49%'
+            }
+          },
           companyName: {
             type: 'input',
             label: '公司名称',
@@ -459,7 +467,44 @@ const commonDataSource: any = {
             label: '实习内容',
             value: [
               {
-                content: '主要负责相关功能模块的前端开发、部署运维等工作'
+                content: {
+                  type: 'textarea',
+                  label: '内容',
+                  value: '主要负责相关功能模块的前端开发、部署运维等工作',
+                  props: {
+                    width: '95%'
+                  }
+                }
+              },
+              {
+                content: {
+                  type: 'textarea',
+                  label: '内容',
+                  value: '主要负责相关功能模块的前端开发、部署运维等工作',
+                  props: {
+                    width: '95%'
+                  }
+                }
+              },
+              {
+                content: {
+                  type: 'textarea',
+                  label: '内容',
+                  value: '主要负责相关功能模块的前端开发、部署运维等工作',
+                  props: {
+                    width: '95%'
+                  }
+                }
+              },
+              {
+                content: {
+                  type: 'textarea',
+                  label: '内容',
+                  value: '主要负责相关功能模块的前端开发、部署运维等工作',
+                  props: {
+                    width: '95%'
+                  }
+                }
               }
             ],
             props: {

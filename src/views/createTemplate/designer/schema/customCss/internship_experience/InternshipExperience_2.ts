@@ -83,14 +83,100 @@ export default [
     }
   },
   {
-    title: '技能特长整体样式',
-    prop: 'skillSpecialtiesBox',
+    title: '实习经验信息整体样式',
+    prop: 'internshipExperienceBox',
+    css: {
+      width: '100%',
+      background: 'none',
+      display: 'flex',
+      flexDirection: 'column',
+      borderWidth: {
+        top: 0,
+        right: 0,
+        bottom: 0,
+        left: 0
+      },
+      padding: {
+        top: 0,
+        right: 0,
+        bottom: 0,
+        left: 0
+      },
+      borderColor: 'rgb(0, 0, 0)',
+      borderStyle: 'solid'
+    }
+  },
+  {
+    title: '实习经验标题列表整体样式',
+    prop: 'internshipExperienceList',
+    css: {
+      width: '100%',
+      lineHeight: 2.5,
+      letterSpacing: 1,
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'space-between',
+      fontSize: 14,
+      color: '#757575',
+      fontWeight: 600,
+      background: 'none',
+      borderWidth: {
+        top: 0,
+        right: 0,
+        bottom: 0,
+        left: 0
+      },
+      margin: {
+        top: 0,
+        right: 0,
+        bottom: 5,
+        left: 0
+      },
+      borderColor: 'rgb(0, 0, 0)',
+      borderStyle: 'solid'
+    }
+  },
+  {
+    title: '实习岗位样式',
+    prop: 'internshipPosts',
+    css: {
+      width: '100%',
+      lineHeight: 1,
+      display: 'flex',
+      flexDirection: 'row',
+      alignItems: 'center',
+      justifyContent: 'space-between',
+      fontSize: 14,
+      color: '#757575',
+      fontWeight: 500,
+      letterSpacing: 1,
+      background: 'none',
+      textAlign: 'justify',
+      borderWidth: {
+        top: 0,
+        right: 0,
+        bottom: 0,
+        left: 0
+      },
+      margin: {
+        top: 0,
+        right: 0,
+        bottom: 15,
+        left: 0
+      },
+      borderColor: 'rgb(0, 0, 0)',
+      borderStyle: 'solid'
+    }
+  },
+  {
+    title: '实习经验内容列表整体样式',
+    prop: 'internshipExperienceUl',
     css: {
       width: '100%',
       color: '#757575',
       display: 'flex',
-      flexDirection: 'row',
       flexWrap: 'wrap',
+      flex: 1,
       margin: {
         bottom: 0,
         left: 0,
@@ -102,19 +188,21 @@ export default [
         left: 15,
         right: 0,
         top: 0
-      }
+      },
+      background: ''
     }
   },
   {
-    title: '单个列表样式',
-    prop: 'skillSpecialtiesLi',
+    title: '实习经验内容单个列表样式',
+    prop: 'internshipExperienceLi',
     css: {
-      width: '50%',
-      listStylePosition: 'outside',
+      width: '100%',
       listStyle: 'disc',
+      listStylePosition: 'outside',
       letterSpacing: 1,
       lineHeight: 2,
       fontSize: 14,
+      textAlign: 'justify',
       margin: {
         bottom: 0,
         left: 0,
@@ -126,7 +214,8 @@ export default [
         left: 0,
         right: 0,
         top: 0
-      }
+      },
+      background: ''
     }
   }
 ];
