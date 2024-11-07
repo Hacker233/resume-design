@@ -72,6 +72,9 @@ import CampusExperience_9 from './campus_experience/CampusExperience_9';
 import CampusExperience_10 from './campus_experience/CampusExperience_10';
 import CampusExperience_11 from './campus_experience/CampusExperience_11';
 
+// 实习经验
+import IntershipExperience_1 from './internship_experience/IntershipExperience_1';
+
 export default {
   BaseInfo_1,
   BaseInfo_2,
@@ -138,6 +141,8 @@ export default {
   CampusExperience_9,
   CampusExperience_10,
   CampusExperience_11,
+
+  IntershipExperience_1,
 
   base_page,
   left_right_page

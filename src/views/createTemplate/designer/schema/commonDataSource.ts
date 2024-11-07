@@ -423,6 +423,55 @@ const commonDataSource: any = {
         width: '100%'
       }
     }
+  },
+  internship_experience: {
+    list: {
+      type: 'list',
+      label: '实习经验',
+      value: [
+        {
+          date: {
+            type: 'datePicker',
+            label: '实习日期',
+            value: ['2021-9', '2022-10'],
+            props: {
+              width: '49%'
+            }
+          },
+          companyName: {
+            type: 'input',
+            label: '公司名称',
+            value: '化简科技股份有限公司',
+            props: {
+              width: '49%'
+            }
+          },
+          posts: {
+            type: 'input',
+            label: '担任职位',
+            value: '前端开发工程师',
+            props: {
+              width: '49%'
+            }
+          },
+          jobContent: {
+            type: 'listLi',
+            label: '实习内容',
+            value: [
+              {
+                content: '主要负责相关功能模块的前端开发、部署运维等工作'
+              }
+            ],
+            props: {
+              width: '100%'
+            }
+          }
+        }
+      ],
+      props: {
+        width: '100%'
+      }
+    }
   }
 };
 export default commonDataSource;

@@ -202,6 +202,14 @@ const commonProps = {
       iconfont: '',
       config: true
     }
+  },
+  internshipExperience: {
+    title: {
+      chName: '简历标题',
+      show: true,
+      iconfont: '',
+      config: true // 是否支持配置
+    }
   }
 };
 export default commonProps;

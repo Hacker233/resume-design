@@ -70,6 +70,9 @@ import CampusExperience_9 from '../modules/CampusExperience/CampusExperience_9.v
 import CampusExperience_10 from '../modules/CampusExperience/CampusExperience_10.vue';
 import CampusExperience_11 from '../modules/CampusExperience/CampusExperience_11.vue';
 
+// 实习经验
+import InternshipExperience_1 from '../modules/InternshipExperience/InternshipExperience_1.vue';
+
 // 定义页面组件列表
 const moduleComponents: any = {
   ResumeTitle_1,
@@ -135,6 +138,9 @@ const moduleComponents: any = {
   CampusExperience_8,
   CampusExperience_9,
   CampusExperience_10,
-  CampusExperience_11
+  CampusExperience_11,
+
+  // 实习经验
+  InternshipExperience_1
 };
 export default moduleComponents;
