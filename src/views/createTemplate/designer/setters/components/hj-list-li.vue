@@ -26,44 +26,35 @@
             <div class="module-list-content-box">
               <!-- 数据填写组件 -->
               <template v-for="(value, key, dataIndex) in element" :key="dataIndex">
-                <!-- 列表组件 -->
-                <template v-if="value.type === 'listLi'">
-                  <div :style="getFiledStyle(value)">
-                    <hj-list-li :id="module.id" :key-value="key"></hj-list-li>
-                  </div>
-                </template>
-                <!-- 非列表组件 -->
-                <template v-else>
-                  <div v-if="module.props[key]?.config" :style="getFiledStyle(value)">
-                    <component
-                      :is="dataSourceCptMap[value.type]"
-                      v-if="module.props[key].config"
-                      v-model="value.value"
-                      :label="value.label"
-                      :key-value="key"
-                      :module="module"
-                      :disabled="!module.props[key].config"
-                    >
-                      <!-- 组件图标 -->
-                      <template #label-left>
-                        <icon-select-pop
-                          v-if="module.props[key].iconfont"
-                          v-model="module.props[key].iconfont"
-                          size="18px"
-                        ></icon-select-pop>
-                      </template>
-                      <!-- 组件开关 -->
-                      <template #label-right>
-                        <div class="field-label-right-box">
-                          <el-switch
-                            v-model="module.props[key].show"
-                            :disabled="!module.props[key].config"
-                          />
-                        </div>
-                      </template>
-                    </component>
-                  </div>
-                </template>
+                <div v-if="module.props[key]?.config" :style="getFiledStyle(value)">
+                  <component
+                    :is="dataSourceCptMap[value.type]"
+                    v-if="module.props[key].config"
+                    v-model="value.value"
+                    :label="value.label"
+                    :key-value="key"
+                    :module="module"
+                    :disabled="!module.props[key].config"
+                  >
+                    <!-- 组件图标 -->
+                    <template #label-left>
+                      <icon-select-pop
+                        v-if="module.props[key].iconfont"
+                        v-model="module.props[key].iconfont"
+                        size="18px"
+                      ></icon-select-pop>
+                    </template>
+                    <!-- 组件开关 -->
+                    <template #label-right>
+                      <div class="field-label-right-box">
+                        <el-switch
+                          v-model="module.props[key].show"
+                          :disabled="!module.props[key].config"
+                        />
+                      </div>
+                    </template>
+                  </component>
+                </div>
               </template>
             </div>
           </div>
@@ -85,7 +76,6 @@
   import { cloneDeep } from 'lodash';
   import draggable from 'vuedraggable';
   import { Delete } from '@element-plus/icons-vue';
-  import hjListLi from './hj-list-li.vue';
 
   const props = defineProps<{
     id: string;
