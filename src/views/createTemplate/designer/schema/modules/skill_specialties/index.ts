@@ -19,11 +19,11 @@ import SkillSpecialties_14 from './SkillSpecialties_14';
 import SkillSpecialties_15 from './SkillSpecialties_15';
 import SkillSpecialties_16 from './SkillSpecialties_16';
 
-const resume_title = {
+const skill_specialties = {
   id: 'skillSpecialties', // 模块id
   moduleChName: '技能特长', // 模块中文名
   category: 'skillSpecialties', // 模块分了
-  icon: 'icon-title', // 模块图标
+  icon: 'icon-yuzhijineng', // 模块图标
   props: commonProps['skillSpecialties'], // 公共的props
   dataSource: cloneDeep(commonDataSource['skill_specialties']), // 该分类下公用数据源
   css: commonCss['skillSpecialties'], // 公共css属性
@@ -47,4 +47,4 @@ const resume_title = {
   ]
 };
 
-export default resume_title;
+export default skill_specialties;

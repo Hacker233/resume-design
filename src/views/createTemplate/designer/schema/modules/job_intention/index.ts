@@ -17,7 +17,7 @@ const job_intention = {
   id: 'jobIntention', // 模块id
   moduleChName: '求职意向', // 模块中文名
   category: 'jobIntention', // 模块分了
-  icon: 'icon-jichuxinxi', // 模块图标
+  icon: 'icon-qiuzhiyixiang1', // 模块图标
   props: commonProps['jobIntention'], // 公共的props
   dataSource: cloneDeep(commonDataSource['job_intention']), // 该分类下公用数据源
   css: commonCss['jobIntention'],

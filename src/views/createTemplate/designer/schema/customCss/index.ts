@@ -75,6 +75,67 @@ import CampusExperience_11 from './campus_experience/CampusExperience_11';
 // 实习经验
 import InternshipExperience_1 from './internship_experience/InternshipExperience_1';
 import InternshipExperience_2 from './internship_experience/InternshipExperience_2';
+import InternshipExperience_3 from './internship_experience/InternshipExperience_3';
+import InternshipExperience_4 from './internship_experience/InternshipExperience_4';
+import InternshipExperience_5 from './internship_experience/InternshipExperience_5';
+import InternshipExperience_6 from './internship_experience/InternshipExperience_6';
+import InternshipExperience_7 from './internship_experience/InternshipExperience_7';
+import InternshipExperience_8 from './internship_experience/InternshipExperience_8';
+import InternshipExperience_9 from './internship_experience/InternshipExperience_9';
+import InternshipExperience_10 from './internship_experience/InternshipExperience_10';
+import InternshipExperience_11 from './internship_experience/InternshipExperience_11';
+
+// 工作经验
+import WorkExperience_1 from './work_experience/WorkExperience_1';
+import WorkExperience_2 from './work_experience/WorkExperience_2';
+import WorkExperience_3 from './work_experience/WorkExperience_3';
+import WorkExperience_4 from './work_experience/WorkExperience_4';
+import WorkExperience_5 from './work_experience/WorkExperience_5';
+import WorkExperience_6 from './work_experience/WorkExperience_6';
+import WorkExperience_7 from './work_experience/WorkExperience_7';
+import WorkExperience_8 from './work_experience/WorkExperience_8';
+import WorkExperience_9 from './work_experience/WorkExperience_9';
+import WorkExperience_10 from './work_experience/WorkExperience_10';
+import WorkExperience_11 from './work_experience/WorkExperience_11';
+
+// 项目经验
+import ProjectExperience_1 from './project_experience/ProjectExperience_1';
+import ProjectExperience_2 from './project_experience/ProjectExperience_2';
+import ProjectExperience_3 from './project_experience/ProjectExperience_3';
+import ProjectExperience_4 from './project_experience/ProjectExperience_4';
+import ProjectExperience_5 from './project_experience/ProjectExperience_5';
+import ProjectExperience_6 from './project_experience/ProjectExperience_6';
+import ProjectExperience_7 from './project_experience/ProjectExperience_7';
+import ProjectExperience_8 from './project_experience/ProjectExperience_8';
+import ProjectExperience_9 from './project_experience/ProjectExperience_9';
+import ProjectExperience_10 from './project_experience/ProjectExperience_10';
+import ProjectExperience_11 from './project_experience/ProjectExperience_11';
+
+// 荣誉奖项
+import Awards_1 from './awards/Awards_1';
+import Awards_2 from './awards/Awards_2';
+import Awards_3 from './awards/Awards_3';
+import Awards_4 from './awards/Awards_4';
+import Awards_5 from './awards/Awards_5';
+import Awards_6 from './awards/Awards_6';
+import Awards_7 from './awards/Awards_7';
+import Awards_8 from './awards/Awards_8';
+import Awards_9 from './awards/Awards_9';
+import Awards_10 from './awards/Awards_10';
+import Awards_11 from './awards/Awards_11';
+import Awards_12 from './awards/Awards_12';
+
+// 兴趣爱好
+import Hobbies_1 from './hobbies/Hobbies_1';
+import Hobbies_2 from './hobbies/Hobbies_2';
+import Hobbies_3 from './hobbies/Hobbies_3';
+import Hobbies_4 from './hobbies/Hobbies_4';
+import Hobbies_5 from './hobbies/Hobbies_5';
+import Hobbies_6 from './hobbies/Hobbies_6';
+import Hobbies_7 from './hobbies/Hobbies_7';
+import Hobbies_8 from './hobbies/Hobbies_8';
+import Hobbies_9 from './hobbies/Hobbies_9';
+import Hobbies_10 from './hobbies/Hobbies_10';
 
 export default {
   BaseInfo_1,
@@ -145,6 +206,63 @@ export default {
 
   InternshipExperience_1,
   InternshipExperience_2,
+  InternshipExperience_3,
+  InternshipExperience_4,
+  InternshipExperience_5,
+  InternshipExperience_6,
+  InternshipExperience_7,
+  InternshipExperience_8,
+  InternshipExperience_9,
+  InternshipExperience_10,
+  InternshipExperience_11,
+
+  WorkExperience_1,
+  WorkExperience_2,
+  WorkExperience_3,
+  WorkExperience_4,
+  WorkExperience_5,
+  WorkExperience_6,
+  WorkExperience_7,
+  WorkExperience_8,
+  WorkExperience_9,
+  WorkExperience_10,
+  WorkExperience_11,
+
+  ProjectExperience_1,
+  ProjectExperience_2,
+  ProjectExperience_3,
+  ProjectExperience_4,
+  ProjectExperience_5,
+  ProjectExperience_6,
+  ProjectExperience_7,
+  ProjectExperience_8,
+  ProjectExperience_9,
+  ProjectExperience_10,
+  ProjectExperience_11,
+
+  Awards_1,
+  Awards_2,
+  Awards_3,
+  Awards_4,
+  Awards_5,
+  Awards_6,
+  Awards_7,
+  Awards_8,
+  Awards_9,
+  Awards_10,
+  Awards_11,
+  Awards_12,
+
+  Hobbies_1,
+  Hobbies_2,
+  Hobbies_3,
+  Hobbies_4,
+  Hobbies_5,
+  Hobbies_6,
+  Hobbies_7,
+  Hobbies_8,
+  Hobbies_9,
+  Hobbies_10,
 
   base_page,
   left_right_page

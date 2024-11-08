@@ -205,7 +205,7 @@ const commonProps = {
   },
   internshipExperience: {
     title: {
-      chName: '简历标题',
+      chName: '实习经验',
       show: true,
       iconfont: '',
       config: true // 是否支持配置
@@ -239,6 +239,128 @@ const commonProps = {
       show: true,
       iconfont: '',
       config: true
+    }
+  },
+  workExperience: {
+    title: {
+      chName: '工作经验',
+      show: true,
+      iconfont: '',
+      config: true // 是否支持配置
+    },
+    date: {
+      chName: '工作日期',
+      show: true,
+      iconfont: '',
+      config: true
+    },
+    contentTtile: {
+      chName: '内容标题',
+      show: true,
+      iconfont: '',
+      config: true
+    },
+    companyName: {
+      chName: '公司名称',
+      show: true,
+      iconfont: '',
+      config: true
+    },
+    posts: {
+      chName: '担任职位',
+      show: true,
+      iconfont: '',
+      config: true
+    },
+    jobContent: {
+      chName: '工作内容',
+      show: true,
+      iconfont: '',
+      config: true
+    }
+  },
+  projectExperience: {
+    title: {
+      chName: '项目经验',
+      show: true,
+      iconfont: '',
+      config: true // 是否支持配置
+    },
+    date: {
+      chName: '项目日期',
+      show: true,
+      iconfont: '',
+      config: true
+    },
+    contentTtile: {
+      chName: '内容标题',
+      show: true,
+      iconfont: '',
+      config: true
+    },
+    companyName: {
+      chName: '项目名称',
+      show: true,
+      iconfont: '',
+      config: true
+    },
+    posts: {
+      chName: '项目角色',
+      show: true,
+      iconfont: '',
+      config: true
+    },
+    jobContent: {
+      chName: '项目内容',
+      show: true,
+      iconfont: '',
+      config: true
+    }
+  },
+  awards: {
+    title: {
+      chName: '荣誉奖项',
+      show: true,
+      iconfont: '',
+      config: true // 是否支持配置
+    },
+    date: {
+      chName: '获奖日期',
+      show: true,
+      iconfont: '',
+      config: true // 是否支持配置
+    },
+    awardsName: {
+      chName: '奖项名称',
+      show: true,
+      iconfont: '',
+      config: true
+    },
+    awardsGrade: {
+      chName: '奖项等级',
+      show: true,
+      iconfont: '',
+      config: true
+    },
+    awardsAbstract: {
+      chName: '奖项简介',
+      show: false,
+      iconfont: '',
+      config: true
+    }
+  },
+  hobbies: {
+    title: {
+      chName: '兴趣爱好',
+      show: true,
+      iconfont: '',
+      config: true // 是否支持配置
+    },
+    content: {
+      chName: '兴趣爱好',
+      show: true,
+      iconfont: '',
+      config: true // 是否支持配置
     }
   }
 };

@@ -13,6 +13,12 @@ export default [
         bottom: 1,
         left: 0
       },
+      margin: {
+        top: 0,
+        right: 0,
+        bottom: 15,
+        left: 0
+      },
       borderStyle: 'solid',
       borderColor: '#254665',
       background: ''

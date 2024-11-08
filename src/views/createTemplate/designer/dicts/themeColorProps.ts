@@ -366,6 +366,370 @@ const themeColorProps: any = {
       moduleTitle: ['color', 'borderColor'],
       moduleTitleFont: ['color', 'borderColor']
     }
+  },
+  InternshipExperience_3: {
+    css: [],
+    customCss: {
+      moduleTitle: ['color', 'borderColor'],
+      moduleTitleFont: ['color', 'borderColor'],
+      moduleTitleIcon: ['background']
+    }
+  },
+  InternshipExperience_4: {
+    css: [],
+    customCss: {
+      moduleTitle: ['borderColor']
+    }
+  },
+  InternshipExperience_5: {
+    css: [],
+    customCss: {
+      moduleTitle: ['borderColor'],
+      moduleTitleFontBox: ['background']
+    }
+  },
+  InternshipExperience_6: {
+    css: [],
+    customCss: {
+      moduleTitle: ['color']
+    }
+  },
+  InternshipExperience_7: {
+    css: [],
+    customCss: {
+      moduleTitle: ['color']
+    }
+  },
+  InternshipExperience_8: {
+    css: [],
+    customCss: {
+      moduleTitle: ['borderColor', 'color'],
+      moduleTitleIcon: ['background'],
+      moduleTitleRightBox: ['borderColor']
+    }
+  },
+  InternshipExperience_9: {
+    css: [],
+    customCss: {
+      moduleTitle: ['borderColor', 'color'],
+      moduleTitleIcon: ['background'],
+      moduleTitleRightBox: ['borderColor']
+    }
+  },
+  InternshipExperience_10: {
+    css: [],
+    customCss: {
+      moduleTitle: ['color', 'borderColor'],
+      moduleTitleFont: ['color', 'borderColor']
+    }
+  },
+  InternshipExperience_11: {
+    css: [],
+    customCss: {
+      moduleTitle: ['color']
+    }
+  },
+  WorkExperience_1: {
+    css: [],
+    customCss: {
+      moduleTitle: ['color', 'borderColor'],
+      moduleTitleFont: ['color', 'borderColor']
+    }
+  },
+  WorkExperience_2: {
+    css: [],
+    customCss: {
+      moduleTitle: ['color', 'borderColor'],
+      moduleTitleFont: ['color', 'borderColor']
+    }
+  },
+  WorkExperience_3: {
+    css: [],
+    customCss: {
+      moduleTitle: ['color', 'borderColor'],
+      moduleTitleFont: ['color', 'borderColor'],
+      moduleTitleIcon: ['background']
+    }
+  },
+  WorkExperience_4: {
+    css: [],
+    customCss: {
+      moduleTitle: ['borderColor']
+    }
+  },
+  WorkExperience_5: {
+    css: [],
+    customCss: {
+      moduleTitle: ['borderColor'],
+      moduleTitleFontBox: ['background']
+    }
+  },
+  WorkExperience_6: {
+    css: [],
+    customCss: {
+      moduleTitle: ['color']
+    }
+  },
+  WorkExperience_7: {
+    css: [],
+    customCss: {
+      moduleTitle: ['color']
+    }
+  },
+  WorkExperience_8: {
+    css: [],
+    customCss: {
+      moduleTitle: ['borderColor', 'color'],
+      moduleTitleIcon: ['background'],
+      moduleTitleRightBox: ['borderColor']
+    }
+  },
+  WorkExperience_9: {
+    css: [],
+    customCss: {
+      moduleTitle: ['borderColor', 'color'],
+      moduleTitleIcon: ['background'],
+      moduleTitleRightBox: ['borderColor']
+    }
+  },
+  WorkExperience_10: {
+    css: [],
+    customCss: {
+      moduleTitle: ['color', 'borderColor'],
+      moduleTitleFont: ['color', 'borderColor']
+    }
+  },
+  WorkExperience_11: {
+    css: [],
+    customCss: {
+      moduleTitle: ['color']
+    }
+  },
+  ProjectExperience_1: {
+    css: [],
+    customCss: {
+      moduleTitle: ['color', 'borderColor'],
+      moduleTitleFont: ['color', 'borderColor']
+    }
+  },
+  ProjectExperience_2: {
+    css: [],
+    customCss: {
+      moduleTitle: ['color', 'borderColor'],
+      moduleTitleFont: ['color', 'borderColor']
+    }
+  },
+  ProjectExperience_3: {
+    css: [],
+    customCss: {
+      moduleTitle: ['color', 'borderColor'],
+      moduleTitleFont: ['color', 'borderColor'],
+      moduleTitleIcon: ['background']
+    }
+  },
+  ProjectExperience_4: {
+    css: [],
+    customCss: {
+      moduleTitle: ['borderColor']
+    }
+  },
+  ProjectExperience_5: {
+    css: [],
+    customCss: {
+      moduleTitle: ['borderColor'],
+      moduleTitleFontBox: ['background']
+    }
+  },
+  ProjectExperience_6: {
+    css: [],
+    customCss: {
+      moduleTitle: ['color']
+    }
+  },
+  ProjectExperience_7: {
+    css: [],
+    customCss: {
+      moduleTitle: ['color']
+    }
+  },
+  ProjectExperience_8: {
+    css: [],
+    customCss: {
+      moduleTitle: ['borderColor', 'color'],
+      moduleTitleIcon: ['background'],
+      moduleTitleRightBox: ['borderColor']
+    }
+  },
+  ProjectExperience_9: {
+    css: [],
+    customCss: {
+      moduleTitle: ['borderColor', 'color'],
+      moduleTitleIcon: ['background'],
+      moduleTitleRightBox: ['borderColor']
+    }
+  },
+  ProjectExperience_10: {
+    css: [],
+    customCss: {
+      moduleTitle: ['color', 'borderColor'],
+      moduleTitleFont: ['color', 'borderColor']
+    }
+  },
+  ProjectExperience_11: {
+    css: [],
+    customCss: {
+      moduleTitle: ['color']
+    }
+  },
+  Awards_1: {
+    css: [],
+    customCss: {
+      moduleTitle: ['color', 'borderColor'],
+      moduleTitleFont: ['color', 'borderColor']
+    }
+  },
+  Awards_2: {
+    css: [],
+    customCss: {
+      moduleTitle: ['color', 'borderColor'],
+      moduleTitleFont: ['color', 'borderColor']
+    }
+  },
+  Awards_3: {
+    css: [],
+    customCss: {
+      moduleTitle: ['color', 'borderColor'],
+      moduleTitleFont: ['color', 'borderColor'],
+      moduleTitleIcon: ['background']
+    }
+  },
+  Awards_4: {
+    css: [],
+    customCss: {
+      moduleTitle: ['borderColor']
+    }
+  },
+  Awards_5: {
+    css: [],
+    customCss: {
+      moduleTitle: ['borderColor'],
+      moduleTitleFontBox: ['background']
+    }
+  },
+  Awards_6: {
+    css: [],
+    customCss: {
+      moduleTitle: ['color']
+    }
+  },
+  Awards_7: {
+    css: [],
+    customCss: {
+      moduleTitle: ['color']
+    }
+  },
+  Awards_8: {
+    css: [],
+    customCss: {
+      moduleTitle: ['borderColor', 'color'],
+      moduleTitleIcon: ['background'],
+      moduleTitleRightBox: ['borderColor']
+    }
+  },
+  Awards_9: {
+    css: [],
+    customCss: {
+      moduleTitle: ['borderColor', 'color'],
+      moduleTitleIcon: ['background'],
+      moduleTitleRightBox: ['borderColor']
+    }
+  },
+  Awards_10: {
+    css: [],
+    customCss: {
+      moduleTitle: ['color', 'borderColor'],
+      moduleTitleFont: ['color', 'borderColor']
+    }
+  },
+  Awards_11: {
+    css: [],
+    customCss: {
+      moduleTitle: ['color']
+    }
+  },
+  Awards_12: {
+    css: [],
+    customCss: {
+      moduleTitle: ['color']
+    }
+  },
+  Hobbies_1: {
+    css: [],
+    customCss: {
+      moduleTitle: ['color', 'borderColor'],
+      moduleTitleFont: ['color', 'borderColor']
+    }
+  },
+  Hobbies_2: {
+    css: [],
+    customCss: {
+      moduleTitle: ['color', 'borderColor'],
+      moduleTitleFont: ['color', 'borderColor']
+    }
+  },
+  Hobbies_3: {
+    css: [],
+    customCss: {
+      moduleTitle: ['color', 'borderColor'],
+      moduleTitleFont: ['color', 'borderColor'],
+      moduleTitleIcon: ['background']
+    }
+  },
+  Hobbies_4: {
+    css: [],
+    customCss: {
+      moduleTitle: ['borderColor']
+    }
+  },
+  Hobbies_5: {
+    css: [],
+    customCss: {
+      moduleTitle: ['borderColor'],
+      moduleTitleFontBox: ['background']
+    }
+  },
+  Hobbies_6: {
+    css: [],
+    customCss: {
+      moduleTitle: ['color']
+    }
+  },
+  Hobbies_7: {
+    css: [],
+    customCss: {
+      moduleTitle: ['color']
+    }
+  },
+  Hobbies_8: {
+    css: [],
+    customCss: {
+      moduleTitle: ['borderColor', 'color'],
+      moduleTitleIcon: ['background'],
+      moduleTitleRightBox: ['borderColor']
+    }
+  },
+  Hobbies_9: {
+    css: [],
+    customCss: {
+      moduleTitle: ['color', 'borderColor'],
+      moduleTitleFont: ['color', 'borderColor']
+    }
+  },
+  Hobbies_10: {
+    css: [],
+    customCss: {
+      moduleTitle: ['color']
+    }
   }
 };
 export default themeColorProps;

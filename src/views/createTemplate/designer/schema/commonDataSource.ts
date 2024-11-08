@@ -517,6 +517,283 @@ const commonDataSource: any = {
         width: '100%'
       }
     }
+  },
+  work_experience: {
+    list: {
+      type: 'list',
+      label: '工作经验',
+      value: [
+        {
+          date: {
+            type: 'datePicker',
+            label: '工作日期',
+            value: ['2021-10', '2022-10'],
+            props: {
+              width: '49%'
+            }
+          },
+          contentTtile: {
+            type: 'input',
+            label: '内容标题',
+            value: '工作内容',
+            props: {
+              width: '49%'
+            }
+          },
+          companyName: {
+            type: 'input',
+            label: '公司名称',
+            value: '化简科技股份有限公司',
+            props: {
+              width: '49%'
+            }
+          },
+          posts: {
+            type: 'input',
+            label: '担任职位',
+            value: '前端开发工程师',
+            props: {
+              width: '49%'
+            }
+          },
+          jobContent: {
+            type: 'listLi',
+            label: '工作内容',
+            value: [
+              {
+                content: {
+                  type: 'textarea',
+                  label: '内容',
+                  value: '主要负责相关功能模块的前端开发、部署运维等工作',
+                  props: {
+                    width: '95%'
+                  }
+                }
+              },
+              {
+                content: {
+                  type: 'textarea',
+                  label: '内容',
+                  value: '主要负责相关功能模块的前端开发、部署运维等工作',
+                  props: {
+                    width: '95%'
+                  }
+                }
+              },
+              {
+                content: {
+                  type: 'textarea',
+                  label: '内容',
+                  value: '主要负责相关功能模块的前端开发、部署运维等工作',
+                  props: {
+                    width: '95%'
+                  }
+                }
+              },
+              {
+                content: {
+                  type: 'textarea',
+                  label: '内容',
+                  value: '主要负责相关功能模块的前端开发、部署运维等工作',
+                  props: {
+                    width: '95%'
+                  }
+                }
+              }
+            ],
+            props: {
+              width: '100%'
+            }
+          }
+        }
+      ],
+      props: {
+        width: '100%'
+      }
+    }
+  },
+  project_experience: {
+    list: {
+      type: 'list',
+      label: '项目经验',
+      value: [
+        {
+          date: {
+            type: 'datePicker',
+            label: '项目日期',
+            value: ['2021-10', '2022-10'],
+            props: {
+              width: '49%'
+            }
+          },
+          contentTtile: {
+            type: 'input',
+            label: '内容标题',
+            value: '项目内容',
+            props: {
+              width: '49%'
+            }
+          },
+          companyName: {
+            type: 'input',
+            label: '项目名称',
+            value: '化简开源项目',
+            props: {
+              width: '49%'
+            }
+          },
+          posts: {
+            type: 'input',
+            label: '项目角色',
+            value: '全栈开发工程师',
+            props: {
+              width: '49%'
+            }
+          },
+          jobContent: {
+            type: 'listLi',
+            label: '项目内容',
+            value: [
+              {
+                content: {
+                  type: 'textarea',
+                  label: '内容',
+                  value: '主要负责相关功能模块的前端开发、部署运维等工作',
+                  props: {
+                    width: '95%'
+                  }
+                }
+              },
+              {
+                content: {
+                  type: 'textarea',
+                  label: '内容',
+                  value: '主要负责相关功能模块的前端开发、部署运维等工作',
+                  props: {
+                    width: '95%'
+                  }
+                }
+              },
+              {
+                content: {
+                  type: 'textarea',
+                  label: '内容',
+                  value: '主要负责相关功能模块的前端开发、部署运维等工作',
+                  props: {
+                    width: '95%'
+                  }
+                }
+              },
+              {
+                content: {
+                  type: 'textarea',
+                  label: '内容',
+                  value: '主要负责相关功能模块的前端开发、部署运维等工作',
+                  props: {
+                    width: '95%'
+                  }
+                }
+              }
+            ],
+            props: {
+              width: '100%'
+            }
+          }
+        }
+      ],
+      props: {
+        width: '100%'
+      }
+    }
+  },
+  awards: {
+    list: {
+      type: 'list',
+      label: '荣誉奖项',
+      value: [
+        {
+          date: {
+            type: 'date',
+            label: '获奖日期',
+            value: '2019-6',
+            props: {
+              width: '49%'
+            }
+          },
+          awardsName: {
+            type: 'input',
+            label: '奖项名称',
+            value: '校级象棋大赛',
+            props: {
+              width: '49%'
+            }
+          },
+          awardsGrade: {
+            type: 'input',
+            label: '奖项等级',
+            value: '校级三等奖',
+            props: {
+              width: '49%'
+            }
+          },
+          awardsAbstract: {
+            type: 'textarea',
+            label: '奖项简介',
+            value: '该比赛是全国性质的比赛，主要是锻炼学生的创新能力，以及学习沟通能力',
+            props: {
+              width: '100%'
+            }
+          }
+        },
+        {
+          date: {
+            type: 'date',
+            label: '获奖日期',
+            value: '2019-7',
+            props: {
+              width: '49%'
+            }
+          },
+          awardsName: {
+            type: 'input',
+            label: '奖项名称',
+            value: '国家奖学金',
+            props: {
+              width: '49%'
+            }
+          },
+          awardsGrade: {
+            type: 'input',
+            label: '奖项等级',
+            value: '一等奖学金',
+            props: {
+              width: '49%'
+            }
+          },
+          awardsAbstract: {
+            type: 'textarea',
+            label: '奖项简介',
+            value: '该比赛是全国性质的比赛，主要是锻炼学生的创新能力，以及学习沟通能力',
+            props: {
+              width: '100%'
+            }
+          }
+        }
+      ],
+      props: {
+        width: '100%'
+      }
+    }
+  },
+  hobbies: {
+    content: {
+      type: 'textarea',
+      label: '兴趣爱好',
+      value: '我喜欢打篮球、看电影、阅读，我也喜欢很多极限运动等等',
+      props: {
+        width: '100%'
+      }
+    }
   }
 };
 export default commonDataSource;

@@ -107,7 +107,7 @@
   // 新增一项
   const addItem = () => {
     const data = cloneDeep(dataObj.value.value[0]);
-    data.content.value = '实习内容';
+    data.content.value = '请填写内容';
     dataObj.value.value.push(data);
   };
 

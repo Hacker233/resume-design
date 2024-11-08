@@ -6,6 +6,10 @@ import edu_background from './modules/edu_background';
 import skill_specialties from './modules/skill_specialties';
 import campus_experience from './modules/campus_experience';
 import internship_experience from './modules/intership_experience';
+import work_experience from './modules/work_experience';
+import project_experience from './modules/project_experience';
+import awards from './modules/awards';
+import hobbies from './modules/hobbies';
 
 const modulesList: IModulesList = {
   resume_title,
@@ -14,7 +18,11 @@ const modulesList: IModulesList = {
   edu_background,
   skill_specialties,
   campus_experience,
-  internship_experience
+  internship_experience,
+  work_experience,
+  project_experience,
+  awards,
+  hobbies
 };
 
 export default modulesList;
