@@ -362,6 +362,46 @@ const commonProps = {
       iconfont: '',
       config: true // 是否支持配置
     }
+  },
+  self_evaluation: {
+    title: {
+      chName: '自我评价',
+      show: true,
+      iconfont: '',
+      config: true // 是否支持配置
+    },
+    content: {
+      chName: '自我评价',
+      show: true,
+      iconfont: '',
+      config: true // 是否支持配置
+    }
+  },
+  works_display: {
+    title: {
+      chName: '作品展示',
+      show: true,
+      iconfont: '',
+      config: true // 是否支持配置
+    },
+    worksName: {
+      chName: '作品名称',
+      show: true,
+      iconfont: '',
+      config: true // 是否支持配置
+    },
+    worksLink: {
+      chName: '作品链接',
+      show: true,
+      iconfont: '',
+      config: true // 是否支持配置
+    },
+    worksIntroduce: {
+      chName: '作品简介',
+      show: true,
+      iconfont: '',
+      config: true // 是否支持配置
+    }
   }
 };
 export default commonProps;

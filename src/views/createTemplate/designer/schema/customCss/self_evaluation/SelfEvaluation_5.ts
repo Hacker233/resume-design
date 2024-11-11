@@ -54,7 +54,7 @@ export default [
     }
   },
   {
-    title: '爱好简介样式',
+    title: '自我评价样式',
     prop: 'abstract',
     css: {
       width: '100%',

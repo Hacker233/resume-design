@@ -3,61 +3,60 @@ export default [
     title: '模块标题整体样式',
     prop: 'moduleTitle',
     css: {
-      width: '100%',
-      height: '35px',
       display: 'flex',
       alignItems: 'center',
+      justifyContent: 'flex-start',
       borderWidth: {
         top: 0,
         right: 0,
-        bottom: 1,
+        bottom: 0,
         left: 0
       },
-      padding: {
+      margin: {
         top: 0,
-        right: 0,
+        right: 35,
         bottom: 0,
         left: 0
       },
       borderStyle: 'solid',
-      borderColor: '#da180f',
-      background: ''
-    }
-  },
-  {
-    title: '模块标题样式',
-    prop: 'moduleTitleFontBox',
-    css: {
-      height: '100%',
-      background: '#da180f',
-      position: 'relative',
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      padding: {
-        top: 0,
-        right: 25,
-        bottom: 0,
-        left: 35
-      }
+      background: 'none',
+      borderColor: '#254665',
+      color: '#254665'
     }
   },
   {
     title: '模块标题字体样式',
     prop: 'moduleTitleFont',
     css: {
-      fontSize: 18,
-      color: '#fff',
-      fontWeight: 500,
+      height: '100%',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'flex-start',
+      fontSize: 20,
+      fontWeight: 600,
       letterSpacing: 2,
-      background: ''
+      background: 'none',
+      borderWidth: {
+        top: 0,
+        right: 0,
+        bottom: 0,
+        left: 0
+      },
+      margin: {
+        top: 0,
+        right: 15,
+        bottom: 0,
+        left: 0
+      },
+      borderColor: 'rgb(0, 0, 0)',
+      borderStyle: 'solid'
     }
   },
   {
-    title: '爱好简介样式',
+    title: '自我评价样式',
     prop: 'abstract',
     css: {
-      width: '100%',
+      flex: 1,
       fontSize: 14,
       color: '#7c7b7b',
       textAlign: 'justify',
@@ -67,10 +66,10 @@ export default [
         top: 0,
         right: 0,
         bottom: 0,
-        left: 45
+        left: 0
       },
       margin: {
-        top: 25,
+        top: 0,
         right: 0,
         bottom: 0,
         left: 0

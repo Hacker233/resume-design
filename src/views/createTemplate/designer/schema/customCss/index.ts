@@ -137,6 +137,30 @@ import Hobbies_8 from './hobbies/Hobbies_8';
 import Hobbies_9 from './hobbies/Hobbies_9';
 import Hobbies_10 from './hobbies/Hobbies_10';
 
+// 自我评价
+import SelfEvaluation_1 from './self_evaluation/SelfEvaluation_1';
+import SelfEvaluation_2 from './self_evaluation/SelfEvaluation_2';
+import SelfEvaluation_3 from './self_evaluation/SelfEvaluation_3';
+import SelfEvaluation_4 from './self_evaluation/SelfEvaluation_4';
+import SelfEvaluation_5 from './self_evaluation/SelfEvaluation_5';
+import SelfEvaluation_6 from './self_evaluation/SelfEvaluation_6';
+import SelfEvaluation_7 from './self_evaluation/SelfEvaluation_7';
+import SelfEvaluation_8 from './self_evaluation/SelfEvaluation_8';
+import SelfEvaluation_9 from './self_evaluation/SelfEvaluation_9';
+import SelfEvaluation_10 from './self_evaluation/SelfEvaluation_10';
+
+// 作品展示
+import WorksDisplay_1 from './works_display/WorksDisplay_1';
+import WorksDisplay_2 from './works_display/WorksDisplay_2';
+import WorksDisplay_3 from './works_display/WorksDisplay_3';
+import WorksDisplay_4 from './works_display/WorksDisplay_4';
+import WorksDisplay_5 from './works_display/WorksDisplay_5';
+import WorksDisplay_6 from './works_display/WorksDisplay_6';
+import WorksDisplay_7 from './works_display/WorksDisplay_7';
+import WorksDisplay_8 from './works_display/WorksDisplay_8';
+import WorksDisplay_9 from './works_display/WorksDisplay_9';
+import WorksDisplay_10 from './works_display/WorksDisplay_10';
+
 export default {
   BaseInfo_1,
   BaseInfo_2,
@@ -263,6 +287,28 @@ export default {
   Hobbies_8,
   Hobbies_9,
   Hobbies_10,
+
+  SelfEvaluation_1,
+  SelfEvaluation_2,
+  SelfEvaluation_3,
+  SelfEvaluation_4,
+  SelfEvaluation_5,
+  SelfEvaluation_6,
+  SelfEvaluation_7,
+  SelfEvaluation_8,
+  SelfEvaluation_9,
+  SelfEvaluation_10,
+
+  WorksDisplay_1,
+  WorksDisplay_2,
+  WorksDisplay_3,
+  WorksDisplay_4,
+  WorksDisplay_5,
+  WorksDisplay_6,
+  WorksDisplay_7,
+  WorksDisplay_8,
+  WorksDisplay_9,
+  WorksDisplay_10,
 
   base_page,
   left_right_page

@@ -794,6 +794,79 @@ const commonDataSource: any = {
         width: '100%'
       }
     }
+  },
+  self_evaluation: {
+    content: {
+      type: 'textarea',
+      label: '自我评价',
+      value: '我个人擅长编写代码、与人沟通，为人和善、助人为乐等等',
+      props: {
+        width: '100%'
+      }
+    }
+  },
+  works_display: {
+    list: {
+      type: 'list',
+      label: '作品展示',
+      value: [
+        {
+          worksName: {
+            type: 'input',
+            label: '作品名称',
+            value: '化简',
+            props: {
+              width: '49%'
+            }
+          },
+          worksLink: {
+            type: 'input',
+            label: '作品链接',
+            value: 'https://91huajian.cn',
+            props: {
+              width: '49%'
+            }
+          },
+          worksIntroduce: {
+            type: 'textarea',
+            label: '作品简介',
+            value: '该项目是一个开源项目，主要用户简历制作等等',
+            props: {
+              width: '100%'
+            }
+          }
+        },
+        {
+          worksName: {
+            type: 'input',
+            label: '作品名称',
+            value: '化简',
+            props: {
+              width: '49%'
+            }
+          },
+          worksLink: {
+            type: 'input',
+            label: '作品链接',
+            value: 'https://91huajian.cn',
+            props: {
+              width: '49%'
+            }
+          },
+          worksIntroduce: {
+            type: 'textarea',
+            label: '作品简介',
+            value: '该项目是一个开源项目，主要用户简历制作等等',
+            props: {
+              width: '100%'
+            }
+          }
+        }
+      ],
+      props: {
+        width: '100%'
+      }
+    }
   }
 };
 export default commonDataSource;

@@ -730,6 +730,142 @@ const themeColorProps: any = {
     customCss: {
       moduleTitle: ['color']
     }
+  },
+  SelfEvaluation_1: {
+    css: [],
+    customCss: {
+      moduleTitle: ['color', 'borderColor'],
+      moduleTitleFont: ['color', 'borderColor']
+    }
+  },
+  SelfEvaluation_2: {
+    css: [],
+    customCss: {
+      moduleTitle: ['color', 'borderColor'],
+      moduleTitleFont: ['color', 'borderColor']
+    }
+  },
+  SelfEvaluation_3: {
+    css: [],
+    customCss: {
+      moduleTitle: ['color', 'borderColor'],
+      moduleTitleFont: ['color', 'borderColor'],
+      moduleTitleIcon: ['background']
+    }
+  },
+  SelfEvaluation_4: {
+    css: [],
+    customCss: {
+      moduleTitle: ['borderColor']
+    }
+  },
+  SelfEvaluation_5: {
+    css: [],
+    customCss: {
+      moduleTitle: ['borderColor'],
+      moduleTitleFontBox: ['background']
+    }
+  },
+  SelfEvaluation_6: {
+    css: [],
+    customCss: {
+      moduleTitle: ['color']
+    }
+  },
+  SelfEvaluation_7: {
+    css: [],
+    customCss: {
+      moduleTitle: ['color']
+    }
+  },
+  SelfEvaluation_8: {
+    css: [],
+    customCss: {
+      moduleTitle: ['borderColor', 'color'],
+      moduleTitleIcon: ['background'],
+      moduleTitleRightBox: ['borderColor']
+    }
+  },
+  SelfEvaluation_9: {
+    css: [],
+    customCss: {
+      moduleTitle: ['color', 'borderColor'],
+      moduleTitleFont: ['color', 'borderColor']
+    }
+  },
+  SelfEvaluation_10: {
+    css: [],
+    customCss: {
+      moduleTitle: ['color']
+    }
+  },
+  WorksDisplay_1: {
+    css: [],
+    customCss: {
+      moduleTitle: ['color', 'borderColor'],
+      moduleTitleFont: ['color', 'borderColor']
+    }
+  },
+  WorksDisplay_2: {
+    css: [],
+    customCss: {
+      moduleTitle: ['color', 'borderColor'],
+      moduleTitleFont: ['color', 'borderColor']
+    }
+  },
+  WorksDisplay_3: {
+    css: [],
+    customCss: {
+      moduleTitle: ['color', 'borderColor'],
+      moduleTitleFont: ['color', 'borderColor'],
+      moduleTitleIcon: ['background']
+    }
+  },
+  WorksDisplay_4: {
+    css: [],
+    customCss: {
+      moduleTitle: ['borderColor']
+    }
+  },
+  WorksDisplay_5: {
+    css: [],
+    customCss: {
+      moduleTitle: ['borderColor'],
+      moduleTitleFontBox: ['background']
+    }
+  },
+  WorksDisplay_6: {
+    css: [],
+    customCss: {
+      moduleTitle: ['color']
+    }
+  },
+  WorksDisplay_7: {
+    css: [],
+    customCss: {
+      moduleTitle: ['color']
+    }
+  },
+  WorksDisplay_8: {
+    css: [],
+    customCss: {
+      moduleTitle: ['borderColor', 'color'],
+      moduleTitleIcon: ['background'],
+      moduleTitleRightBox: ['borderColor']
+    }
+  },
+  WorksDisplay_9: {
+    css: [],
+    customCss: {
+      moduleTitle: ['color', 'borderColor'],
+      moduleTitleFont: ['color', 'borderColor']
+    }
+  },
+  WorksDisplay_10: {
+    css: [],
+    customCss: {
+      moduleTitle: ['color']
+    }
   }
 };
 export default themeColorProps;

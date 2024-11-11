@@ -135,6 +135,7 @@ export const useGetBoxStyle = (props: { module: IModule }) => {
       transition: props.module.css.transition || 'none',
       listStyle: props.module.css.listStyle ?? 'disc',
       listStylePosition: props.module.css.listStylePosition ?? 'outside',
+      textDecoration: props.module.css?.textDecoration ?? 'auto',
 
       // 处理旋转
       transform: props.module.css?.rotate

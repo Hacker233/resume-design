@@ -4,7 +4,7 @@ export default [
     prop: 'moduleTitle',
     css: {
       width: '100%',
-      height: '35px',
+      height: 30,
       display: 'flex',
       alignItems: 'center',
       borderWidth: {
@@ -13,33 +13,15 @@ export default [
         bottom: 1,
         left: 0
       },
-      padding: {
+      margin: {
         top: 0,
         right: 0,
-        bottom: 0,
+        bottom: 15,
         left: 0
       },
       borderStyle: 'solid',
-      borderColor: '#da180f',
+      borderColor: '#254665',
       background: ''
-    }
-  },
-  {
-    title: '模块标题样式',
-    prop: 'moduleTitleFontBox',
-    css: {
-      height: '100%',
-      background: '#da180f',
-      position: 'relative',
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      padding: {
-        top: 0,
-        right: 25,
-        bottom: 0,
-        left: 35
-      }
     }
   },
   {
@@ -54,7 +36,7 @@ export default [
     }
   },
   {
-    title: '爱好简介样式',
+    title: '自我评价样式',
     prop: 'abstract',
     css: {
       width: '100%',
@@ -74,7 +56,8 @@ export default [
         right: 0,
         bottom: 0,
         left: 0
-      }
+      },
+      background: ''
     }
   }
 ];

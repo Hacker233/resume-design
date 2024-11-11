@@ -135,6 +135,30 @@ import Hobbies_8 from '../modules/Hobbies/Hobbies_8.vue';
 import Hobbies_9 from '../modules/Hobbies/Hobbies_9.vue';
 import Hobbies_10 from '../modules/Hobbies/Hobbies_10.vue';
 
+// 自我评价
+import SelfEvaluation_1 from '../modules/SelfEvaluation/SelfEvaluation_1.vue';
+import SelfEvaluation_2 from '../modules/SelfEvaluation/SelfEvaluation_2.vue';
+import SelfEvaluation_3 from '../modules/SelfEvaluation/SelfEvaluation_3.vue';
+import SelfEvaluation_4 from '../modules/SelfEvaluation/SelfEvaluation_4.vue';
+import SelfEvaluation_5 from '../modules/SelfEvaluation/SelfEvaluation_5.vue';
+import SelfEvaluation_6 from '../modules/SelfEvaluation/SelfEvaluation_6.vue';
+import SelfEvaluation_7 from '../modules/SelfEvaluation/SelfEvaluation_7.vue';
+import SelfEvaluation_8 from '../modules/SelfEvaluation/SelfEvaluation_8.vue';
+import SelfEvaluation_9 from '../modules/SelfEvaluation/SelfEvaluation_9.vue';
+import SelfEvaluation_10 from '../modules/SelfEvaluation/SelfEvaluation_10.vue';
+
+// 作品展示
+import WorksDisplay_1 from '../modules/WorksDisplay/WorksDisplay_1.vue';
+import WorksDisplay_2 from '../modules/WorksDisplay/WorksDisplay_2.vue';
+import WorksDisplay_3 from '../modules/WorksDisplay/WorksDisplay_3.vue';
+import WorksDisplay_4 from '../modules/WorksDisplay/WorksDisplay_4.vue';
+import WorksDisplay_5 from '../modules/WorksDisplay/WorksDisplay_5.vue';
+import WorksDisplay_6 from '../modules/WorksDisplay/WorksDisplay_6.vue';
+import WorksDisplay_7 from '../modules/WorksDisplay/WorksDisplay_7.vue';
+import WorksDisplay_8 from '../modules/WorksDisplay/WorksDisplay_8.vue';
+import WorksDisplay_9 from '../modules/WorksDisplay/WorksDisplay_9.vue';
+import WorksDisplay_10 from '../modules/WorksDisplay/WorksDisplay_10.vue';
+
 // 定义页面组件列表
 const moduleComponents: any = {
   ResumeTitle_1,
@@ -265,6 +289,30 @@ const moduleComponents: any = {
   Hobbies_7,
   Hobbies_8,
   Hobbies_9,
-  Hobbies_10
+  Hobbies_10,
+
+  // 自我评价
+  SelfEvaluation_1,
+  SelfEvaluation_2,
+  SelfEvaluation_3,
+  SelfEvaluation_4,
+  SelfEvaluation_5,
+  SelfEvaluation_6,
+  SelfEvaluation_7,
+  SelfEvaluation_8,
+  SelfEvaluation_9,
+  SelfEvaluation_10,
+
+  // 作品展示
+  WorksDisplay_1,
+  WorksDisplay_2,
+  WorksDisplay_3,
+  WorksDisplay_4,
+  WorksDisplay_5,
+  WorksDisplay_6,
+  WorksDisplay_7,
+  WorksDisplay_8,
+  WorksDisplay_9,
+  WorksDisplay_10
 };
 export default moduleComponents;

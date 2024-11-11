@@ -31,6 +31,7 @@ import textAlign from './textAlign.vue';
 import display from './display.vue';
 import listStylePosition from './listStylePosition.vue';
 import listStyle from './listStyle.vue';
+import textDecoration from './textDecoration.vue';
 
 const settersStyleCptMap: ISetterMap = {
   width,
@@ -63,6 +64,7 @@ const settersStyleCptMap: ISetterMap = {
   textAlign,
   display,
   listStylePosition,
-  listStyle
+  listStyle,
+  textDecoration
 };
 export default settersStyleCptMap;

@@ -112,6 +112,7 @@ export const useGetCustomStyle = (module: IModule | IHJNewSchema, prop: string) 
           transition: element.css?.transition || '',
           listStyle: element.css.listStyle ?? 'disc',
           listStylePosition: element.css?.listStylePosition ?? 'outside',
+          textDecoration: element.css?.textDecoration ?? 'auto',
 
           // 处理旋转
           transform: element.css?.rotate

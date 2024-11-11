@@ -10,6 +10,8 @@ import work_experience from './modules/work_experience';
 import project_experience from './modules/project_experience';
 import awards from './modules/awards';
 import hobbies from './modules/hobbies';
+import self_evaluation from './modules/self_evaluation';
+import works_display from './modules/works_display';
 
 const modulesList: IModulesList = {
   resume_title,
@@ -22,7 +24,9 @@ const modulesList: IModulesList = {
   work_experience,
   project_experience,
   awards,
-  hobbies
+  hobbies,
+  self_evaluation,
+  works_display
 };
 
 export default modulesList;
