@@ -402,6 +402,46 @@ const commonProps = {
       iconfont: '',
       config: true // 是否支持配置
     }
+  },
+  custom_1: {
+    title: {
+      chName: '自定义模块_1',
+      show: false,
+      iconfont: '',
+      config: true // 是否支持配置
+    },
+    name: {
+      chName: '姓名',
+      show: true,
+      iconfont: '',
+      config: true // 是否支持配置
+    },
+    abstract: {
+      chName: '一句话简介',
+      show: true,
+      iconfont: '',
+      config: true // 是否支持配置
+    }
+  },
+  custom_2: {
+    title: {
+      chName: '自定义模块_2',
+      show: false,
+      iconfont: '',
+      config: true // 是否支持配置
+    },
+    name: {
+      chName: '姓名',
+      show: true,
+      iconfont: '',
+      config: true // 是否支持配置
+    },
+    abstract: {
+      chName: '一句话简介',
+      show: true,
+      iconfont: '',
+      config: true // 是否支持配置
+    }
   }
 };
 export default commonProps;

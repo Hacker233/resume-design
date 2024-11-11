@@ -12,6 +12,7 @@ import awards from './modules/awards';
 import hobbies from './modules/hobbies';
 import self_evaluation from './modules/self_evaluation';
 import works_display from './modules/works_display';
+import custom from './modules/custom';
 
 const modulesList: IModulesList = {
   resume_title,
@@ -26,7 +27,8 @@ const modulesList: IModulesList = {
   awards,
   hobbies,
   self_evaluation,
-  works_display
+  works_display,
+  custom
 };
 
 export default modulesList;

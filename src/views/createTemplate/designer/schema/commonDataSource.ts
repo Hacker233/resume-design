@@ -867,6 +867,42 @@ const commonDataSource: any = {
         width: '100%'
       }
     }
+  },
+  custom_1: {
+    name: {
+      type: 'input',
+      label: '姓名',
+      value: '化简',
+      props: {
+        width: '49%'
+      }
+    },
+    abstract: {
+      type: 'textarea',
+      label: '一句话简介',
+      value: '一个唯心主义者，永远在追逐梦想的道路上',
+      props: {
+        width: '100%'
+      }
+    }
+  },
+  custom_2: {
+    name: {
+      type: 'input',
+      label: '姓名',
+      value: '化简',
+      props: {
+        width: '49%'
+      }
+    },
+    abstract: {
+      type: 'textarea',
+      label: '一句话简介',
+      value: '一个唯心主义者，永远在追逐梦想的道路上',
+      props: {
+        width: '100%'
+      }
+    }
   }
 };
 export default commonDataSource;

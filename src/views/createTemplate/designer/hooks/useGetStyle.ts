@@ -67,6 +67,7 @@ export const useGetBoxStyle = (props: { module: IModule }) => {
           ? props.module.css.height
           : `${props.module.css.height}px`
         : '',
+      backgroundColor: props.module.css?.backgroundColor ?? '',
       background: background,
       backgroundRepeat: props.module.css?.backgroundRepeat || '',
       opacity: props.module.css.opacity || 1,

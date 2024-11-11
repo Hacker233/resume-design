@@ -43,6 +43,7 @@ export const useGetCustomStyle = (module: IModule | IHJNewSchema, prop: string) 
               ? element.css.height
               : `${element.css.height}px`
             : '',
+          backgroundColor: element.css?.backgroundColor ?? '',
           background: background,
           backgroundRepeat: element.css?.backgroundRepeat || '',
           opacity: element.css?.opacity ?? '',

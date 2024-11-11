@@ -161,6 +161,10 @@ import WorksDisplay_8 from './works_display/WorksDisplay_8';
 import WorksDisplay_9 from './works_display/WorksDisplay_9';
 import WorksDisplay_10 from './works_display/WorksDisplay_10';
 
+// 自定义模块
+import Custom_1 from './custom/Custom_1';
+import Custom_2 from './custom/Custom_2';
+
 export default {
   BaseInfo_1,
   BaseInfo_2,
@@ -309,6 +313,9 @@ export default {
   WorksDisplay_8,
   WorksDisplay_9,
   WorksDisplay_10,
+
+  Custom_1,
+  Custom_2,
 
   base_page,
   left_right_page
