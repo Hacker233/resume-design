@@ -24,7 +24,5 @@
 
   // 返回样式
   const boxStyle = useGetBoxStyle(props);
-
-  console.log('教育背景列表', props.module.dataSource);
 </script>
 <style lang="scss" scoped></style>

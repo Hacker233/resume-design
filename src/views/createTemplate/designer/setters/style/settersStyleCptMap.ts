@@ -32,6 +32,8 @@ import display from './display.vue';
 import listStylePosition from './listStylePosition.vue';
 import listStyle from './listStyle.vue';
 import textDecoration from './textDecoration.vue';
+import moduleMargin from './moduleMargin.vue';
+import modulePadding from './modulePadding.vue';
 
 const settersStyleCptMap: ISetterMap = {
   width,
@@ -65,6 +67,8 @@ const settersStyleCptMap: ISetterMap = {
   display,
   listStylePosition,
   listStyle,
-  textDecoration
+  textDecoration,
+  moduleMargin,
+  modulePadding
 };
 export default settersStyleCptMap;

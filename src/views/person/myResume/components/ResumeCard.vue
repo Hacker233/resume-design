@@ -1,6 +1,6 @@
 <template>
   <div class="template-card-box" @mouseover="mouseover" @mouseleave="mouseleave">
-    <img :src="cardData.previewUrl" alt="" srcset="" />
+    <img :src="type === 'old' ? cardData.previewUrl : cardData.template_cover" alt="" srcset="" />
     <!-- 遮罩层 -->
     <div v-show="isShowLayer" class="mask-layer">
       <div class="delete-box" @click="deleteUserResume">
@@ -12,11 +12,11 @@
 </template>
 <script setup lang="ts">
   import { ref } from 'vue';
-  import { ITempList } from '@/template/type';
   import { ElMessageBox } from 'element-plus';
   import 'element-plus/es/components/message-box/style/index';
   const props = defineProps<{
-    cardData: ITempList;
+    cardData: any;
+    type: string;
   }>();
   const emit = defineEmits(['delete']);
 
@@ -49,7 +49,11 @@
       type: 'warning'
     })
       .then(async () => {
-        emit('delete', props.cardData.ID);
+        if (props.type === 'old') {
+          emit('delete', props.cardData.ID);
+        } else {
+          emit('delete', props.cardData._id);
+        }
       })
       .catch(() => {});
   };

@@ -36,7 +36,6 @@
     const paddingLeft = props.module.css.padding.left || 0; // 组件左侧内边距
     // 获取标题高度一半
     if (moduleTitleRef.value) {
-      console.log('标题高度', moduleTitleRef.value.clientHeight);
       moduleTitleHalf.value = moduleTitleRef.value.clientHeight / 2;
     }
     // 获取iconBox宽度一半

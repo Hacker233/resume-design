@@ -1,7 +1,7 @@
 <!-- 模块属性配置面板 -->
 <template>
   <div class="right-setter-box">
-    <data-config v-if="selectedModuleId"></data-config>
+    <data-config v-if="HJNewJsonStore.componentsTree.length"></data-config>
     <!-- 没有选中组件时展示 -->
     <div v-else class="no-data">
       <no-data width="40%" height="auto"></no-data>
@@ -14,7 +14,7 @@
   import { storeToRefs } from 'pinia';
   import DataConfig from './DataConfig.vue';
 
-  const { selectedModuleId } = storeToRefs(appStore.useCreateTemplateStore);
+  const { HJNewJsonStore } = storeToRefs(appStore.useCreateTemplateStore);
 </script>
 <style lang="scss" scoped>
   .right-setter-box {

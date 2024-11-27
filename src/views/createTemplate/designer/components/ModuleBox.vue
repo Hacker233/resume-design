@@ -1,11 +1,27 @@
 <!-- 组件渲染盒子 -->
 <template>
-  <div :class="['module-box', { 'module-active': isSelectedModule }]" @click="selectModule">
+  <div
+    v-if="module.customProps.showModule"
+    :class="[
+      'module-box',
+      { 'module-active': isSelectedModule && !preview, 'module-box-preview': preview }
+    ]"
+    @click="selectModule"
+  >
     <component
       :is="moduleComponents[module.componentName]"
       :module="module"
-      class="module-component"
-    ></component>
+      :class="['module-component', { 'module-preview': preview }]"
+    >
+      <!-- 模块标题组件 -->
+      <template v-if="module.customProps?.hasOwnProperty('ModuleTitleCpt')" #module-title>
+        <component
+          :is="ModuleTitleCpt[module.customProps.ModuleTitleCpt]"
+          v-if="module.props.title.show"
+          :module="module"
+        ></component>
+      </template>
+    </component>
   </div>
 </template>
 <script lang="ts" setup>
@@ -13,9 +29,12 @@
   import { IModule } from '../../types/IHJNewSchema';
   import moduleComponents from '../utils/registerModules';
   import { storeToRefs } from 'pinia';
+  import ModuleTitleCpt from '../modules/ModuleTitle/index';
+  import { useGetSelectedModule } from '../hooks/useGetSelectedModule';
 
   const props = defineProps<{
     module: IModule;
+    preview: boolean;
   }>();
 
   const isSelectedModule = computed(() => {
@@ -25,7 +44,12 @@
   const { selectedModuleId } = storeToRefs(appStore.useCreateTemplateStore);
   const { dataConfigScrollToView } = appStore.useCreateTemplateStore;
   const selectModule = () => {
+    if (props.preview) {
+      return;
+    }
     selectedModuleId.value = props.module.id;
+    const module = useGetSelectedModule(selectedModuleId.value);
+    module.customProps.unfoldModule = true; // 直接展开
     dataConfigScrollToView();
     console.log('选中的模块ID', selectedModuleId.value);
   };
@@ -41,6 +65,14 @@
     }
     .module-component {
       cursor: move !important;
+    }
+    .module-preview {
+      cursor: inherit !important;
+    }
+  }
+  .module-box-preview {
+    &:hover {
+      box-shadow: none;
     }
   }
   .module-active {

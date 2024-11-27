@@ -74,5 +74,6 @@
     fill: currentColor;
     vertical-align: -2px;
     font-size: v-bind('props.size');
+    outline: none;
   }
 </style>

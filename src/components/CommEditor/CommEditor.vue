@@ -106,7 +106,6 @@
 
   const handleCreated = (editor: any) => {
     editorRef.value = editor; // 记录 editor 实例，重要！
-    console.log(editor.getAllMenuKeys());
   };
 </script>
 <style lang="scss" scoped>

@@ -1,64 +1,92 @@
 <template>
-  <c-scrollbar trigger="hover" style="height: calc(100vh - 50px)">
-    <div class="data-config-box">
-      <template v-for="moduleItem in HJNewJsonStore.componentsTree" :key="moduleItem.id">
+  <div class="data-config-box">
+    <!-- 数据整体操作 -->
+    <div class="data-config-title-box">
+      <div class="left"></div>
+      <div class="right">
+        <!-- 展开收起所有 -->
+        <div class="unfold-box-all" @click="openAll">
+          <span>{{ isOpenAll ? '展开所有' : '收起所有' }}</span>
+          <svg-icon
+            :class="['open-all-icon', { 'open-all': isOpenAll }]"
+            icon-name="icon-z044"
+            color="#74a274"
+            size="13px"
+          />
+        </div>
+      </div>
+    </div>
+    <c-scrollbar trigger="always" style="height: 100%; background-color: #fff">
+      <template v-for="(moduleItem, index) in HJNewJsonStore.componentsTree" :key="moduleItem.id">
         <div
           :ref="(el) => getDataModuleRef(el, moduleItem)"
           :class="['module-box', { 'module-select': selectedModuleId === moduleItem.id }]"
           @click="handleSelectDataModule(moduleItem)"
         >
           <!-- 模块标题 -->
-          <div class="module-title-box">
+          <div
+            :class="[
+              'module-title-box',
+              { 'module-title-box-unfold': !moduleItem.customProps.unfoldModule }
+            ]"
+          >
             <data-title-left :id="moduleItem.id"></data-title-left>
             <data-title-right
               :id="moduleItem.id"
+              :module="moduleItem"
+              :is-unfold="moduleItem.customProps.unfoldModule"
+              :is-show-module="moduleItem.customProps.showModule"
               @open-style-drawer="handleOpenStyleDrawer"
+              @handle-unfold="handleUnfold(index)"
+              @handle-collapse="handleCollapse(index)"
+              @handle-change-switch="handleChangeSwitch($event, index)"
             ></data-title-right>
           </div>
 
           <!-- 模块数据填写区域 -->
-          <div v-if="moduleItem" class="module-content-box">
-            <!-- 组件 -->
-            <template v-for="(value, key, dataIndex) in moduleItem.dataSource" :key="dataIndex">
-              <!-- 列表组件 -->
-              <template v-if="value.type === 'list'">
-                <div :style="getFiledStyle(value)">
-                  <hj-list :id="moduleItem.id" :key-value="key"></hj-list>
-                </div>
+          <template v-if="moduleItem">
+            <div v-show="moduleItem.customProps.unfoldModule" class="module-content-box">
+              <template v-for="(value, key, dataIndex) in moduleItem.dataSource" :key="dataIndex">
+                <!-- 列表组件 -->
+                <template v-if="value.type === 'list'">
+                  <div :style="getFiledStyle(value)">
+                    <hj-list :id="moduleItem.id" :key-value="key"></hj-list>
+                  </div>
+                </template>
+                <!-- 非列表组件 -->
+                <template v-else>
+                  <div v-if="moduleItem.props[key].config" :style="getFiledStyle(value)">
+                    <component
+                      :is="dataSourceCptMap[value.type]"
+                      v-model="moduleItem.dataSource[key].value"
+                      :label="moduleItem.dataSource[key].label"
+                      :key-value="key"
+                      :module="moduleItem"
+                      :disabled="!moduleItem.props[key].config"
+                    >
+                      <!-- 组件图标 -->
+                      <template #label-left>
+                        <icon-select-pop
+                          v-if="moduleItem.props[key].iconfont"
+                          v-model="moduleItem.props[key].iconfont"
+                          size="18px"
+                        ></icon-select-pop>
+                      </template>
+                      <!-- 组件开关 -->
+                      <template #label-right>
+                        <div class="field-label-right-box">
+                          <el-switch
+                            v-model="moduleItem.props[key].show"
+                            :disabled="!moduleItem.props[key].config"
+                          />
+                        </div>
+                      </template>
+                    </component>
+                  </div>
+                </template>
               </template>
-              <!-- 非列表组件 -->
-              <template v-else>
-                <div v-if="moduleItem.props[key].config" :style="getFiledStyle(value)">
-                  <component
-                    :is="dataSourceCptMap[value.type]"
-                    v-model="moduleItem.dataSource[key].value"
-                    :label="moduleItem.dataSource[key].label"
-                    :key-value="key"
-                    :module="moduleItem"
-                    :disabled="!moduleItem.props[key].config"
-                  >
-                    <!-- 组件图标 -->
-                    <template #label-left>
-                      <icon-select-pop
-                        v-if="moduleItem.props[key].iconfont"
-                        v-model="moduleItem.props[key].iconfont"
-                        size="18px"
-                      ></icon-select-pop>
-                    </template>
-                    <!-- 组件开关 -->
-                    <template #label-right>
-                      <div class="field-label-right-box">
-                        <el-switch
-                          v-model="moduleItem.props[key].show"
-                          :disabled="!moduleItem.props[key].config"
-                        />
-                      </div>
-                    </template>
-                  </component>
-                </div>
-              </template>
-            </template>
-          </div>
+            </div>
+          </template>
         </div>
       </template>
 
@@ -67,8 +95,8 @@
         :drawer="styleDrawer"
         @close-style-drawer="handleCloseDrawer"
       ></module-style-setting-drawer>
-    </div>
-  </c-scrollbar>
+    </c-scrollbar>
+  </div>
 </template>
 
 <script lang="ts" setup>
@@ -97,6 +125,30 @@
   // 关闭弹窗
   const handleCloseDrawer = () => {
     styleDrawer.value = false;
+  };
+
+  // 返回显示展开所有还是显示收起所有
+  const isOpenAll = computed(() => {
+    for (let i = 0; i < HJNewJsonStore.value.componentsTree.length; i++) {
+      const element = HJNewJsonStore.value.componentsTree[i];
+      if (!element.customProps.unfoldModule) {
+        return true;
+      }
+    }
+    return false;
+  });
+
+  // 意见展开全部或者收起所有
+  const openAll = () => {
+    if (isOpenAll.value) {
+      for (let i = 0; i < HJNewJsonStore.value.componentsTree.length; i++) {
+        HJNewJsonStore.value.componentsTree[i].customProps.unfoldModule = true;
+      }
+    } else {
+      for (let i = 0; i < HJNewJsonStore.value.componentsTree.length; i++) {
+        HJNewJsonStore.value.componentsTree[i].customProps.unfoldModule = false;
+      }
+    }
   };
 
   // 监听selectedModuleId变化
@@ -147,45 +199,110 @@
       width: value.props.width
     };
   };
+
+  // 收起
+  const handleUnfold = (index: number) => {
+    HJNewJsonStore.value.componentsTree[index].customProps.unfoldModule = false;
+  };
+  // 展开
+  const handleCollapse = (index: number) => {
+    HJNewJsonStore.value.componentsTree[index].customProps.unfoldModule = true;
+  };
+
+  // 显示或隐藏
+  const handleChangeSwitch = (value: boolean, index: number) => {
+    HJNewJsonStore.value.componentsTree[index].customProps.showModule = value;
+  };
 </script>
 
 <style lang="scss" scoped>
   .data-config-box {
     height: 100%;
     width: 100%;
-    padding: 40px 20px;
+    // padding: 40px 20px;
     box-sizing: border-box;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    .data-config-title-box {
+      width: 100%;
+      height: 60px;
+      background-image: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 20px;
+      .right {
+        display: flex;
+        align-items: center;
+        .unfold-box-all {
+          font-size: 14px;
+          cursor: pointer;
+          color: #74a274;
+          transition: all 0.3s;
+          user-select: none;
+          &:hover {
+            opacity: 0.7;
+          }
+          .open-all-icon {
+            margin-left: 5px;
+            transition: all 0.3s;
+          }
+          .open-all {
+            transform: rotate(180deg);
+          }
+        }
+      }
+    }
+
     .module-box {
-      padding: 10px 20px;
+      flex: 1;
       transition: all 0.3s;
       border-radius: 10px;
       cursor: pointer;
+      border: 1px solid #f0f0f0;
+      margin: 20px;
+      overflow: hidden;
+
       &:hover {
         box-shadow: 0 1px 9px 10px rgba(0, 0, 0, 0.02);
       }
+
       .module-title-box {
-        margin-bottom: 20px;
+        height: 65px;
+        // margin-bottom: 20px;
         height: 50px;
         border-bottom: 1px solid #eee;
         display: flex;
         align-items: center;
         justify-content: space-between;
+        transition: all 0.3s;
+        padding: 0 20px;
+        box-sizing: border-box;
+        background-image: linear-gradient(135deg, #fdfcfb 0%, #f1e5dc 100%);
       }
+      .module-title-box-unfold {
+        border-bottom: 1px solid transparent;
+      }
+
       .module-content-box {
         display: flex;
         justify-content: space-between;
         flex-wrap: wrap;
+        padding: 20px 20px;
+        box-sizing: border-box;
         .module-filed-box {
           width: 49%;
         }
         .module-list-filed-box {
           width: 100%;
         }
+        transition: max-height 0.3s ease-in-out, padding 0.3s ease-in-out;
       }
     }
+
     .module-select {
       border-radius: 10px;
-      margin: 5px 0;
       box-shadow: 0 1px 9px 10px rgba(0, 0, 0, 0.04);
     }
   }

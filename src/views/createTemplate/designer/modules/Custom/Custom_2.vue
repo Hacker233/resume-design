@@ -28,8 +28,8 @@
       </div>
     </div>
     <div :style="bottomStyle">
-      <div :style="bottomLeft" class="left"></div>
-      <div :style="bottomRight" class="right"></div>
+      <div :style="bottomLeftStyle"></div>
+      <div :style="bottomRightStyle"></div>
     </div>
   </div>
 </template>
@@ -73,16 +73,36 @@
   const bottomRight = useGetCustomStyle(props.module, 'bottomRight');
 
   // 返回底部左侧背景色
-  const bottomLeftBgc = computed(() => {
-    return bottomLeft?.backgrounColor || '#254665';
+  const bottomLeftStyle = computed(() => {
+    if (bottomLeft?.value?.background || bottomLeft?.value?.backgroundColor) {
+      let color = bottomLeft?.value?.background || bottomLeft?.value?.backgroundColor;
+      bottomLeft.value.backgroundColor = '';
+      return {
+        ...bottomLeft.value,
+        background: `linear-gradient(-45deg, transparent 20px, ${color} 0) top right`
+      };
+    } else {
+      return {
+        ...bottomLeft.value,
+        background: 'linear-gradient(-45deg, transparent 20px, #254665 0) top right'
+      };
+    }
+  });
+
+  // 返回底部右侧背景色
+  const bottomRightStyle = computed(() => {
+    if (bottomRight?.value?.background || bottomRight?.value?.backgroundColor) {
+      let color = bottomRight?.value?.background || bottomRight?.value?.backgroundColor;
+      bottomRight.value.backgroundColor = '';
+      return {
+        ...bottomRight.value,
+        background: `linear-gradient(135deg, transparent 18px, ${color} 0) top left`
+      };
+    } else {
+      return {
+        ...bottomRight.value,
+        background: 'linear-gradient(135deg, transparent 18px, #74a274 0) top left'
+      };
+    }
   });
 </script>
-<style lang="scss" scoped>
-  .left {
-    background: linear-gradient(-45deg, transparent 20px, v-bind('bottomLeftBgc') 0) top right;
-  }
-  .right {
-    background-color: #74a274;
-    background: linear-gradient(135deg, transparent 18px, #74a274 0) top left;
-  }
-</style>

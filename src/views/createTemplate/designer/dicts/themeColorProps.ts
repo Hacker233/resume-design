@@ -14,6 +14,12 @@ const themeColorProps: any = {
       moduleTitle: ['borderColor']
     }
   },
+  BaseInfo_4: {
+    css: [],
+    customCss: {
+      userInfoBlock: ['background', 'backgroundColor']
+    }
+  },
   JobIntention_1: {
     css: [],
     customCss: {
@@ -46,7 +52,7 @@ const themeColorProps: any = {
     css: [],
     customCss: {
       moduleTitle: ['borderColor'],
-      moduleTitleFontBox: ['background']
+      moduleTitleFontBox: ['background', 'backgroundColor']
     }
   },
   JobIntention_6: {
@@ -114,7 +120,7 @@ const themeColorProps: any = {
     css: [],
     customCss: {
       moduleTitle: ['borderColor'],
-      moduleTitleFontBox: ['background']
+      moduleTitleFontBox: ['background', 'backgroundColor']
     }
   },
   EduBackground_6: {
@@ -196,7 +202,7 @@ const themeColorProps: any = {
     css: [],
     customCss: {
       moduleTitle: ['borderColor'],
-      moduleTitleFontBox: ['background']
+      moduleTitleFontBox: ['background', 'backgroundColor']
     }
   },
   SkillSpecialties_6: {
@@ -309,7 +315,7 @@ const themeColorProps: any = {
     css: [],
     customCss: {
       moduleTitle: ['borderColor'],
-      moduleTitleFontBox: ['background']
+      moduleTitleFontBox: ['background', 'backgroundColor']
     }
   },
   CampusExperience_6: {
@@ -385,7 +391,7 @@ const themeColorProps: any = {
     css: [],
     customCss: {
       moduleTitle: ['borderColor'],
-      moduleTitleFontBox: ['background']
+      moduleTitleFontBox: ['background', 'backgroundColor']
     }
   },
   InternshipExperience_6: {
@@ -461,7 +467,7 @@ const themeColorProps: any = {
     css: [],
     customCss: {
       moduleTitle: ['borderColor'],
-      moduleTitleFontBox: ['background']
+      moduleTitleFontBox: ['background', 'backgroundColor']
     }
   },
   WorkExperience_6: {
@@ -537,7 +543,7 @@ const themeColorProps: any = {
     css: [],
     customCss: {
       moduleTitle: ['borderColor'],
-      moduleTitleFontBox: ['background']
+      moduleTitleFontBox: ['background', 'backgroundColor']
     }
   },
   ProjectExperience_6: {
@@ -613,7 +619,7 @@ const themeColorProps: any = {
     css: [],
     customCss: {
       moduleTitle: ['borderColor'],
-      moduleTitleFontBox: ['background']
+      moduleTitleFontBox: ['background', 'backgroundColor']
     }
   },
   Awards_6: {
@@ -695,7 +701,7 @@ const themeColorProps: any = {
     css: [],
     customCss: {
       moduleTitle: ['borderColor'],
-      moduleTitleFontBox: ['background']
+      moduleTitleFontBox: ['background', 'backgroundColor']
     }
   },
   Hobbies_6: {
@@ -763,7 +769,7 @@ const themeColorProps: any = {
     css: [],
     customCss: {
       moduleTitle: ['borderColor'],
-      moduleTitleFontBox: ['background']
+      moduleTitleFontBox: ['background', 'backgroundColor']
     }
   },
   SelfEvaluation_6: {
@@ -831,7 +837,7 @@ const themeColorProps: any = {
     css: [],
     customCss: {
       moduleTitle: ['borderColor'],
-      moduleTitleFontBox: ['background']
+      moduleTitleFontBox: ['background', 'backgroundColor']
     }
   },
   WorksDisplay_6: {
@@ -865,6 +871,13 @@ const themeColorProps: any = {
     css: [],
     customCss: {
       moduleTitle: ['color']
+    }
+  },
+  Custom_2: {
+    css: [],
+    customCss: {
+      bottomLeft: ['backgroundColor', 'background'],
+      iconBox: ['background']
     }
   }
 };

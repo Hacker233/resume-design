@@ -69,7 +69,7 @@ const commonDataSource: any = {
     abstract: {
       type: 'input',
       label: '一句话简介',
-      value: '一句话简介，尽量不要太长',
+      value: '一句话介绍自己，为什么选择你而不是别人',
       props: {
         width: '49%'
       }
@@ -171,7 +171,8 @@ const commonDataSource: any = {
           majorCourse: {
             type: 'editor',
             label: '主修课程',
-            value: '计算机科学与技术、情报管理学、高等数学等等',
+            value:
+              '尽量简洁，突出重点，成绩优异的话建议写上GPA及排名等信息，如：GPA：3.72/4（专业前10%）GRE：324',
             props: {
               width: '100%'
             }
@@ -214,7 +215,8 @@ const commonDataSource: any = {
           majorCourse: {
             type: 'editor',
             label: '主修课程',
-            value: '计算机科学与技术、情报管理学、高等数学等等',
+            value:
+              '尽量简洁，突出重点，成绩优异的话建议写上GPA及排名等信息，如：GPA：3.72/4（专业前10%）GRE：324',
             props: {
               width: '100%'
             }
@@ -252,7 +254,8 @@ const commonDataSource: any = {
           introduce: {
             type: 'textarea',
             label: '技能介绍',
-            value: '简要概述对该项技能的掌握及运用程度等等',
+            value:
+              '列出你的专业技能：首先，列出你的专业技能，包括你擅长的软件、工具、编程语言、技术和方法。这些技能应该与你申请的职位相关。',
             props: {
               width: '100%'
             }
@@ -279,7 +282,7 @@ const commonDataSource: any = {
           introduce: {
             type: 'textarea',
             label: '技能介绍',
-            value: '简要概述对该项技能的掌握及运用程度等等',
+            value: '分类：将你的专业技能分成几个类别，例如编程语言、软件、技术等。',
             props: {
               width: '100%'
             }
@@ -306,7 +309,8 @@ const commonDataSource: any = {
           introduce: {
             type: 'textarea',
             label: '技能介绍',
-            value: '简要概述对该项技能的掌握及运用程度等等',
+            value:
+              '强调重点：在每个类别中，强调你最擅长的技能和经验。这些技能应该与你申请的职位相关。',
             props: {
               width: '100%'
             }
@@ -333,7 +337,8 @@ const commonDataSource: any = {
           introduce: {
             type: 'textarea',
             label: '技能介绍',
-            value: '简要概述对该项技能的掌握及运用程度等等',
+            value:
+              '使用关键词：使用关键词来描述你的技能，这些关键词应该与你申请的职位相关。这样可以帮助你的简历在招聘人员的筛选中更容易被发现。',
             props: {
               width: '100%'
             }
@@ -470,7 +475,7 @@ const commonDataSource: any = {
                 content: {
                   type: 'textarea',
                   label: '内容',
-                  value: '主要负责相关功能模块的前端开发、部署运维等工作',
+                  value: '公司名称、实习时间：在简历中列出实习的公司名称和实习时间。',
                   props: {
                     width: '95%'
                   }
@@ -480,7 +485,7 @@ const commonDataSource: any = {
                 content: {
                   type: 'textarea',
                   label: '内容',
-                  value: '主要负责相关功能模块的前端开发、部署运维等工作',
+                  value: '实习职位：列出实习期间所担任的职位。',
                   props: {
                     width: '95%'
                   }
@@ -490,7 +495,8 @@ const commonDataSource: any = {
                 content: {
                   type: 'textarea',
                   label: '内容',
-                  value: '主要负责相关功能模块的前端开发、部署运维等工作',
+                  value:
+                    '工作内容：详细描述实习期间所从事的工作内容，可以列出具体的工作任务和项目。',
                   props: {
                     width: '95%'
                   }
@@ -500,7 +506,8 @@ const commonDataSource: any = {
                 content: {
                   type: 'textarea',
                   label: '内容',
-                  value: '主要负责相关功能模块的前端开发、部署运维等工作',
+                  value:
+                    '工作业绩：如果有相关的工作成果，可以在简历中列出，例如参与的项目、完成的任务等。',
                   props: {
                     width: '95%'
                   }
@@ -830,7 +837,7 @@ const commonDataSource: any = {
           worksIntroduce: {
             type: 'textarea',
             label: '作品简介',
-            value: '该项目是一个开源项目，主要用户简历制作等等',
+            value: '该项目是一个开源项目，主要用于简历制作等等',
             props: {
               width: '100%'
             }
@@ -856,7 +863,7 @@ const commonDataSource: any = {
           worksIntroduce: {
             type: 'textarea',
             label: '作品简介',
-            value: '该项目是一个开源项目，主要用户简历制作等等',
+            value: '该项目是一个开源项目，主要用于简历制作等等',
             props: {
               width: '100%'
             }
@@ -889,8 +896,8 @@ const commonDataSource: any = {
   custom_2: {
     name: {
       type: 'input',
-      label: '姓名',
-      value: '化简',
+      label: '标题',
+      value: '个人简介',
       props: {
         width: '49%'
       }
@@ -898,7 +905,7 @@ const commonDataSource: any = {
     abstract: {
       type: 'textarea',
       label: '一句话简介',
-      value: '一个唯心主义者，永远在追逐梦想的道路上',
+      value: '给我一个机会，我必全力以赴！',
       props: {
         width: '100%'
       }

@@ -38,7 +38,6 @@
     <!-- 页面JSON -->
     <view-json-drawer
       :drawer="pageDrawer"
-      :json="pageJson"
       @close-json-drawer="closePageJsonDrawer"
     ></view-json-drawer>
 
@@ -78,10 +77,8 @@
   };
 
   // 页面JSON弹窗
-  const pageJson = ref<any>({});
   const pageDrawer = ref<boolean>(false);
   const openPageJSON = () => {
-    pageJson.value = HJNewJsonStore.value;
     pageDrawer.value = true;
   };
   const closePageJsonDrawer = () => {

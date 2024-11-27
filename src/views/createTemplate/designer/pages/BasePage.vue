@@ -7,12 +7,13 @@
     :sort="true"
     item-key="id"
     :style="pageStyle"
+    :disabled="preview"
     ghost-class="page-ghost"
     @drop="handleDrop"
   >
     <template #item="{ element }">
       <div :ref="(el) => getDataModuleRef(el, element)" class="create-template-elemet">
-        <module-box :module="element"></module-box>
+        <module-box :module="element" :preview="preview"></module-box>
       </div>
     </template>
   </draggable>
@@ -25,6 +26,10 @@
   import { useGetPageStyle } from '../hooks/useGetPageStyle';
   import { ComponentPublicInstance } from 'vue';
   import { IModule } from '../../types/IHJNewSchema';
+
+  defineProps<{
+    preview: boolean;
+  }>();
 
   const { HJNewJsonStore, selectedModuleId } = storeToRefs(appStore.useCreateTemplateStore);
 

@@ -16,7 +16,24 @@ const LeftRightPage = {
     opacity: 1,
     fontFamily: '',
     themeColor: '',
-    backgroundPath: ''
+    padding: {
+      top: 0,
+      right: 0,
+      bottom: 0,
+      left: 0
+    },
+    modulePadding: {
+      top: 0,
+      right: 0,
+      bottom: 0,
+      left: 0
+    },
+    moduleMargin: {
+      top: 0,
+      right: 0,
+      bottom: 0,
+      left: 0
+    }
   }, // 全局范围的css样式
   customCss: customCss['left_right_page'],
   config: {

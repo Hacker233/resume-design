@@ -28,6 +28,7 @@ declare module '@vue/runtime-core' {
     ElAvatar: typeof import('element-plus/es')['ElAvatar']
     ElBacktop: typeof import('element-plus/es')['ElBacktop']
     ElButton: typeof import('element-plus/es')['ElButton']
+    ElCheckbox: typeof import('element-plus/es')['ElCheckbox']
     ElCollapse: typeof import('element-plus/es')['ElCollapse']
     ElCollapseItem: typeof import('element-plus/es')['ElCollapseItem']
     ElConfigProvider: typeof import('element-plus/es')['ElConfigProvider']
@@ -38,6 +39,7 @@ declare module '@vue/runtime-core' {
     ElDropdown: typeof import('element-plus/es')['ElDropdown']
     ElDropdownItem: typeof import('element-plus/es')['ElDropdownItem']
     ElDropdownMenu: typeof import('element-plus/es')['ElDropdownMenu']
+    ElEmpty: typeof import('element-plus/es')['ElEmpty']
     ElForm: typeof import('element-plus/es')['ElForm']
     ElFormItem: typeof import('element-plus/es')['ElFormItem']
     ElIcon: typeof import('element-plus/es')['ElIcon']
@@ -50,6 +52,7 @@ declare module '@vue/runtime-core' {
     ElPagination: typeof import('element-plus/es')['ElPagination']
     ElPopconfirm: typeof import('element-plus/es')['ElPopconfirm']
     ElPopover: typeof import('element-plus/es')['ElPopover']
+    ElProgress: typeof import('element-plus/es')['ElProgress']
     ElRadio: typeof import('element-plus/es')['ElRadio']
     ElRadioGroup: typeof import('element-plus/es')['ElRadioGroup']
     ElScrollbar: typeof import('element-plus/es')['ElScrollbar']
@@ -61,6 +64,8 @@ declare module '@vue/runtime-core' {
     ElSwitch: typeof import('element-plus/es')['ElSwitch']
     ElTable: typeof import('element-plus/es')['ElTable']
     ElTableColumn: typeof import('element-plus/es')['ElTableColumn']
+    ElTabPane: typeof import('element-plus/es')['ElTabPane']
+    ElTabs: typeof import('element-plus/es')['ElTabs']
     ElTag: typeof import('element-plus/es')['ElTag']
     ElTooltip: typeof import('element-plus/es')['ElTooltip']
     ElUpload: typeof import('element-plus/es')['ElUpload']
@@ -104,11 +109,15 @@ declare module '@vue/runtime-core' {
     SkillSpecialtiesCom: typeof import('./components/ModelComs/SkillSpecialtiesCom.vue')['default']
     SvgIcon: typeof import('./components/SvgIcon/SvgIcon.vue')['default']
     TemplateCard: typeof import('./components/TemplateCard/TemplateCard.vue')['default']
+    TemplateCardNew: typeof import('./components/TemplateCardNew/TemplateCardNew.vue')['default']
     TipJsonDialog: typeof import('./components/TipJsonDialog/TipJsonDialog.vue')['default']
     UserInfo: typeof import('./components/packages/components/comment/src/user-info.vue')['default']
     WorkExperienceCom: typeof import('./components/ModelComs/WorkExperienceCom.vue')['default']
     WorksDisplayCom: typeof import('./components/ModelComs/WorksDisplayCom.vue')['default']
     WXBuyQrcodeDialog: typeof import('./components/WXBuyQrcodeDialog/index.vue')['default']
     ZoomAndOut: typeof import('./components/ZoomAndOut/ZoomAndOut.vue')['default']
+  }
+  export interface ComponentCustomProperties {
+    vLoading: typeof import('element-plus/es')['ElLoadingDirective']
   }
 }

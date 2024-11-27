@@ -6,6 +6,7 @@ export default [
       width: 270,
       background: '#254665',
       height: '100%',
+      position: 'absolute',
       margin: {
         bottom: 0,
         left: 0,

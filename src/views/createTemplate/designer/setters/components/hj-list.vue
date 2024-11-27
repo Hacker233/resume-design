@@ -142,10 +142,10 @@
       cursor: move;
       transition: all 0.3s;
       border-radius: 10px;
-      padding: 0 10px;
-      margin: 0 -10px;
+      padding: 0 5px;
+      margin-top: 10px;
       &:hover {
-        box-shadow: 0 1px 9px 10px rgba(0, 0, 0, 0.05);
+        box-shadow: 0 1px 4px 6px rgba(0, 0, 0, 0.05);
       }
       .list-title {
         width: 100%;

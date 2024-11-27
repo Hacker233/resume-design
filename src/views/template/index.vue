@@ -28,6 +28,12 @@
         @handle-current-change="handleCurrentChange"
       ></Pagination>
     </div>
+
+    <!-- 旧版公告弹窗 -->
+    <notice-dialog
+      :dialog-notice-visible="dialogNoticeVisible"
+      @cancle="noticeCancle"
+    ></notice-dialog>
   </div>
 </template>
 <script lang="ts" setup>
@@ -37,6 +43,13 @@
   import TemplateListVue from './components/TemplateList.vue';
   import NoDataVue from '@/components/NoData/NoData.vue';
   import CommonLoading from '@/components/CommonLoading/CommonLoading.vue';
+  import NoticeDialog from './components/NoticeDialog.vue';
+
+  const dialogNoticeVisible = ref<boolean>(false);
+  dialogNoticeVisible.value = true;
+  const noticeCancle = () => {
+    dialogNoticeVisible.value = false;
+  };
 
   // 是否显示骨架
   const isShowSkeleton = ref<boolean>(true);

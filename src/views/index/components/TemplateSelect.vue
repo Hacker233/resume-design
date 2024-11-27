@@ -10,7 +10,7 @@
     <div class="card-list">
       <template v-if="templateList.length">
         <div v-for="(item, index) in templateList" :key="index" class="card-list-item-box">
-          <template-card :card-data="item" @to-design="toDesign"> </template-card>
+          <template-card-new :card-data="item" @to-design="toDesign"> </template-card-new>
         </div>
       </template>
       <template v-else>
@@ -26,30 +26,26 @@
   </div>
 </template>
 <script setup lang="ts">
-  // import templateList from '@/template';
-  import TemplateCard from '@/components/TemplateCard/TemplateCard.vue';
+  import TemplateCardNew from '@/components/TemplateCardNew/TemplateCardNew.vue';
   import IntroduceTitleVue from './IntroduceTitle.vue';
-  import { ITempList } from '@/template/type';
   import { useRouter } from 'vue-router';
   import { onUnmounted, ref } from 'vue';
   import { openGlobalLoading } from '@/utils/common';
   import appStore from '@/store';
-  import { getTemplateListAsync } from '@/http/api/resume';
   import SkeletonCard from '@/components/SkeletonCard/SkeletonCard.vue';
+  import { templateListAsync } from '@/http/api/createTemplate';
+  import { storeToRefs } from 'pinia';
 
   // 跳转至设计页面
-  const { resetResumeJson } = appStore.useResumeJsonNewStore;
-  const { resetSelectModel } = appStore.useSelectMaterialStore;
+  const { resetResumeJson } = appStore.useCreateTemplateStore;
+  const { selectedModuleId } = storeToRefs(appStore.useCreateTemplateStore);
   const router = useRouter();
-  const toDesign = (item: ITempList) => {
+  const toDesign = (item: any) => {
     openGlobalLoading(); // 等待动画层
     resetResumeJson(); // 重置json数据
-    resetSelectModel(); // 重置选中模块
+    selectedModuleId.value = ''; // 重置选中模块
     router.push({
-      path: '/designer',
-      query: {
-        id: item.ID
-      }
+      path: `/designResume/${item._id}`
     });
   };
 
@@ -66,9 +62,10 @@
   const getTemplateList = async () => {
     let params = {
       page: page,
-      limit: limit
+      limit: limit,
+      templateStatus: 1
     };
-    const data = await getTemplateListAsync(params);
+    const data = await templateListAsync(params);
     if (data.status === 200) {
       templateList.value = data.data.list;
     } else {
@@ -80,7 +77,7 @@
   // 点击查看更多
   const seeMore = () => {
     router.push({
-      name: 'Template'
+      name: 'Resume'
     });
   };
 

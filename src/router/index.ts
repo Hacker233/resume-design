@@ -4,9 +4,10 @@ import { closeGlobalLoading } from '@/utils/common';
 import CONFIG from '@/config';
 
 const Designer = () => import('@/views/designer/index.vue');
+const DesignResume = () => import('@/views/designerResume/index.vue');
 const Index = () => import('@/views/index/index.vue');
-// const Custom = () => import('@/views/custom/index.vue');
-const Custom = () => import('@/views/createTemplate/designer/index.vue');
+const Custom = () => import('@/views/custom/index.vue');
+const CreateTemplate = () => import('@/views/createTemplate/designer/index.vue'); // 创建模板
 const EmailVerify = () => import('@/views/emailVerify/index.vue');
 const ForgetPassword = () => import('@/views/forgetPassword/index.vue');
 const ResetPassword = () => import('@/views/resetPassword/index.vue');
@@ -15,8 +16,10 @@ const PersonDetail = () => import('@/views/person/personDetial/index.vue');
 const AccountSetting = () => import('@/views/person/accountSetting/index.vue');
 const MyComment = () => import('@/views/person/myComment/index.vue');
 const MyResume = () => import('@/views/person/myResume/index.vue');
-const PdfPreview = () => import('@/views/PdfPreview/index.vue');
+const PdfPreview = () => import('@/views/PdfPreview/index.vue'); // 老版本简历预览界面
+const ResumePreview = () => import('@/views/createTemplate/previewer/index.vue');
 const Template = () => import('@/views/template/index.vue');
+const Resume = () => import('@/views/resumeList/index.vue');
 const Word = () => import('@/views/word/index.vue');
 const WordPreview = () => import('@/views/wordPreview/index.vue');
 const PPT = () => import('@/views/ppt/index.vue');
@@ -94,6 +97,10 @@ const WebConfig = () => import('@/views/admin/WebsiteManage/WebConfig/index.vue'
 const MembershipList = () => import('@/views/admin/userManage/membershipList/index.vue');
 const MembershipConfigManage = () =>
   import('@/views/admin/MembershipManage/MembershipConfigManage/index.vue');
+// 模版风格管理
+const TemplateStyle = () => import('@/views/admin/CreateTemplateManage/templateCategory/index.vue');
+// 模板列表管理
+const TemplateListNew = () => import('@/views/admin/CreateTemplateManage/templateList/index.vue');
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -117,6 +124,17 @@ const routes: Array<RouteRecordRaw> = [
       requireLogin: true
     },
     component: Designer
+  },
+  {
+    path: '/designResume/:id',
+    name: 'DesignResume',
+    meta: {
+      title: '设计简历',
+      keepAlive: true,
+      isShowComNav: false,
+      requireLogin: false
+    },
+    component: DesignResume
   },
   {
     path: '/legoDesigner',
@@ -166,12 +184,23 @@ const routes: Array<RouteRecordRaw> = [
     path: '/custom',
     name: 'Custom',
     meta: {
-      title: '自定义',
+      title: '创建模版',
       keepAlive: true,
       isShowComNav: false,
       requireLogin: true
     },
     component: Custom
+  },
+  {
+    path: '/createTemplate',
+    name: 'CreateTemplate',
+    meta: {
+      title: '创建模板',
+      keepAlive: true,
+      isShowComNav: false,
+      requireLogin: true
+    },
+    component: CreateTemplate
   },
   {
     path: '/pdfPreview',
@@ -183,6 +212,18 @@ const routes: Array<RouteRecordRaw> = [
       requireLogin: false
     },
     component: PdfPreview
+  },
+  // 新版简历预览页面
+  {
+    path: '/resumePreview',
+    name: 'ResumePreview',
+    meta: {
+      title: '简历预览页',
+      keepAlive: false,
+      isShowComNav: false,
+      requireLogin: false
+    },
+    component: ResumePreview
   },
   {
     path: '/emailVerify',
@@ -227,6 +268,17 @@ const routes: Array<RouteRecordRaw> = [
       requireLogin: false
     },
     component: Template
+  },
+  {
+    path: '/resume',
+    name: 'Resume',
+    meta: {
+      title: '简历模版列表',
+      keepAlive: true,
+      isShowComNav: true,
+      requireLogin: false
+    },
+    component: Resume
   },
   {
     path: '/word',
@@ -604,6 +656,28 @@ const routes: Array<RouteRecordRaw> = [
           requireLogin: true
         },
         component: TemplateCategory
+      },
+      {
+        path: 'templateStyle',
+        name: 'TemplateStyle',
+        meta: {
+          title: '模板风格',
+          keepAlive: true,
+          isShowComNav: false,
+          requireLogin: true
+        },
+        component: TemplateStyle
+      },
+      {
+        path: 'templateListNew',
+        name: 'TemplateListNew',
+        meta: {
+          title: '模板列表',
+          keepAlive: true,
+          isShowComNav: false,
+          requireLogin: true
+        },
+        component: TemplateListNew
       },
       {
         path: 'TobeAudit',

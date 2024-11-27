@@ -10,19 +10,25 @@
     @open="handleOpen"
   >
     <json-editor v-model="code" class="json-editor"></json-editor>
+    <div v-if="!json" class="view-json-footer">
+      <el-button type="primary" size="normal" @click="changeJSON">确认修改</el-button>
+    </div>
   </el-drawer>
 </template>
 <script lang="ts" setup>
+  import appStore from '@/store';
   import JsonEditor from 'json-editor-vue3';
+  import { cloneDeep } from 'lodash';
+  import { storeToRefs } from 'pinia';
 
   const emit = defineEmits(['closeJsonDrawer']);
   interface IJsonDrawer {
     drawer: boolean;
-    json: any;
+    json?: any;
   }
   const props = withDefaults(defineProps<IJsonDrawer>(), {
     drawer: false,
-    json: {}
+    json: null
   });
 
   // 关闭弹窗
@@ -30,17 +36,30 @@
     emit('closeJsonDrawer');
   };
 
-  const code = ref('');
+  const code = ref<any>({});
 
   // 打开弹窗
   const handleOpen = () => {
-    code.value = props.json;
+    const { HJNewJsonStore } = storeToRefs(appStore.useCreateTemplateStore);
+    if (props.json) {
+      code.value = props.json;
+      return;
+    }
+    code.value = cloneDeep(HJNewJsonStore.value);
+  };
+
+  // 确认修改JSON
+  const changeJSON = () => {
+    const { HJNewJsonStore } = storeToRefs(appStore.useCreateTemplateStore);
+    HJNewJsonStore.value = code.value;
+    emit('closeJsonDrawer');
   };
 </script>
 <style lang="scss">
   .json-drawer {
     .json-editor {
       flex: 1;
+      overflow-y: hidden;
       .jsoneditor-repair,
       .jsoneditor-poweredBy,
       .jsoneditor-transform {
@@ -139,5 +158,12 @@
         }
       }
     }
+  }
+  .view-json-footer {
+    height: 60px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding-right: 20px;
   }
 </style>

@@ -16,6 +16,7 @@ export default {
   category: 'base_info', // 组件分类
   props: {}, // 组件属性
   css: {
+    themeColor: 'red',
     alignItems: 'center',
     height: 200,
     padding: {

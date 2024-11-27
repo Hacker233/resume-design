@@ -49,9 +49,129 @@ export const useGetPageStyle = () => {
     () => HJNewJsonStore.value.css.fontFamily,
     (newVal) => {
       if (newVal) {
-        console.log('全局主题色变化', newVal);
+        console.log('全局字体变化', newVal);
         HJNewJsonStore.value.componentsTree.forEach((module: IModule) => {
           module.css['fontFamily'] = newVal;
+        });
+      }
+    },
+    {
+      deep: true
+    }
+  );
+
+  // 全局模块左内边距发生变化
+  watch(
+    () => HJNewJsonStore.value.css.modulePadding?.left,
+    (newVal, oldVal) => {
+      if (newVal && oldVal) {
+        HJNewJsonStore.value.componentsTree.forEach((module: IModule) => {
+          module.css['padding'].left = newVal;
+        });
+      }
+    },
+    {
+      deep: true
+    }
+  );
+
+  // 全局模块上内边距发生变化
+  watch(
+    () => HJNewJsonStore.value.css.modulePadding?.top,
+    (newVal, oldVal) => {
+      if (newVal && oldVal) {
+        HJNewJsonStore.value.componentsTree.forEach((module: IModule) => {
+          module.css['padding'].top = newVal;
+        });
+      }
+    },
+    {
+      deep: true
+    }
+  );
+
+  // 全局模块右内边距发生变化
+  watch(
+    () => HJNewJsonStore.value.css.modulePadding?.right,
+    (newVal, oldVal) => {
+      if (newVal && oldVal) {
+        HJNewJsonStore.value.componentsTree.forEach((module: IModule) => {
+          module.css['padding'].right = newVal;
+        });
+      }
+    },
+    {
+      deep: true
+    }
+  );
+
+  // 全局模块下内边距发生变化
+  watch(
+    () => HJNewJsonStore.value.css.modulePadding?.bottom,
+    (newVal, oldVal) => {
+      if (newVal && oldVal) {
+        HJNewJsonStore.value.componentsTree.forEach((module: IModule) => {
+          module.css['padding'].bottom = newVal;
+        });
+      }
+    },
+    {
+      deep: true
+    }
+  );
+
+  // 全局模块左外边距发生变化
+  watch(
+    () => HJNewJsonStore.value.css.moduleMargin?.left,
+    (newVal, oldVal) => {
+      if (newVal && oldVal) {
+        HJNewJsonStore.value.componentsTree.forEach((module: IModule) => {
+          module.css['margin'].left = newVal;
+        });
+      }
+    },
+    {
+      deep: true
+    }
+  );
+
+  // 全局模块上内边距发生变化
+  watch(
+    () => HJNewJsonStore.value.css.moduleMargin?.top,
+    (newVal, oldVal) => {
+      if (newVal && oldVal) {
+        HJNewJsonStore.value.componentsTree.forEach((module: IModule) => {
+          module.css['margin'].top = newVal;
+        });
+      }
+    },
+    {
+      deep: true
+    }
+  );
+
+  // 全局模块右内边距发生变化
+  watch(
+    () => HJNewJsonStore.value.css.moduleMargin?.right,
+    (newVal, oldVal) => {
+      if (newVal && oldVal) {
+        HJNewJsonStore.value.componentsTree.forEach((module: IModule) => {
+          module.css['margin'].right = newVal;
+        });
+      }
+    },
+    {
+      deep: true
+    }
+  );
+
+  // 全局模块下内边距发生变化
+  watch(
+    () => HJNewJsonStore.value.css.moduleMargin?.bottom,
+    (newVal, oldVal) => {
+      if (newVal && oldVal) {
+        HJNewJsonStore.value.componentsTree.forEach((module: IModule) => {
+          module.css['margin'].bottom = newVal;
         });
       }
     },

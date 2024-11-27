@@ -5,8 +5,8 @@
     :size="700"
     class="module-style-setting-drawer"
     modal-class="modal-style-setting-drawer"
-    direction="rtl"
-    title="模块样式设置"
+    :direction="route.query.type !== 'create' ? 'ltr' : 'rtl'"
+    title="全局主题样式设置"
     destroy-on-close
     @close="handleClose"
   >
@@ -56,6 +56,8 @@
   import { storeToRefs } from 'pinia';
   import settersStyleCptMap from '../setters/style/settersStyleCptMap';
   import appStore from '@/store';
+
+  const route = useRoute();
 
   const emit = defineEmits(['closeStyleDrawer']);
 

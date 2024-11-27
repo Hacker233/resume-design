@@ -20,12 +20,41 @@
         @blur="blurTitle"
       />
     </div>
-    <div class="nav-right"></div>
+    <div class="nav-right">
+      <el-tooltip effect="light" content="提交模版" placement="bottom">
+        <el-button
+          size="default"
+          type="primary"
+          :icon="UploadFilled"
+          circle
+          @click="publishTemplate"
+        />
+      </el-tooltip>
+      <el-tooltip effect="light" content="模版列表" placement="bottom">
+        <el-button size="default" type="primary" :icon="Folder" circle @click="templateList" />
+      </el-tooltip>
+    </div>
   </div>
+
+  <!-- 提交审核弹窗 -->
+  <submit-audit-dialog
+    :template-info="templateInfo"
+    :dialog-visible="dialogVisible"
+    @cancle="cancle"
+    @success="success"
+  ></submit-audit-dialog>
 </template>
 <script lang="ts" setup>
   import appStore from '@/store';
   import { storeToRefs } from 'pinia';
+  import { UploadFilled, Folder } from '@element-plus/icons-vue';
+  import SubmitAuditDialog from './SubmitAuditDialog.vue';
+
+  const emit = defineEmits(['publishSuccess']);
+
+  defineProps<{
+    templateInfo: any;
+  }>();
 
   const { HJNewJsonStore } = storeToRefs(appStore.useCreateTemplateStore);
   // 更改标题
@@ -37,6 +66,31 @@
   };
   const blurTitle = () => {
     isShowIpt.value = false;
+  };
+
+  // 打开提交弹窗
+  const dialogVisible = ref<boolean>(false);
+  const publishTemplate = () => {
+    dialogVisible.value = true;
+  };
+
+  // 取消弹窗
+  const cancle = () => {
+    dialogVisible.value = false;
+  };
+
+  // 上传成功
+  const success = (id: string) => {
+    dialogVisible.value = false;
+    emit('publishSuccess', id);
+  };
+
+  // 跳转至模版列表
+  const router = useRouter();
+  const templateList = () => {
+    router.push({
+      path: '/admin/templateListNew'
+    });
   };
 </script>
 <style lang="scss" scoped>

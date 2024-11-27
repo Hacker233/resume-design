@@ -135,6 +135,13 @@
       ...modulesList[element.category].props,
       ...element.props
     };
+    element.customProps = {
+      ...element.props.customProps,
+      ...{
+        showModule: true, // 是否展示模块
+        unfoldModule: true // 是否展开模块
+      }
+    };
     return cloneDeep(element);
   };
 </script>

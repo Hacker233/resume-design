@@ -25,6 +25,7 @@ export const useGetBoxStyle = (props: { module: IModule }) => {
     }
   };
 
+  // 模块主题色发生变化，将所有涉及到与主题色相关的元素都设置为主题色
   watch(
     () => props.module.css.themeColor,
     (newVal) => {

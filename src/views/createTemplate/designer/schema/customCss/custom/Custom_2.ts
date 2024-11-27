@@ -80,13 +80,13 @@ export default [
       fontFamily: 'monospace',
       padding: {
         top: 0,
-        right: 10,
+        right: 15,
         bottom: 0,
         left: 0
       },
       margin: {
         top: 0,
-        right: 10,
+        right: 15,
         bottom: 0,
         left: 0
       },
@@ -96,6 +96,7 @@ export default [
         bottom: 0,
         left: 0
       },
+      borderStyle: 'solid',
       background: ''
     }
   },
