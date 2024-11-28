@@ -61,6 +61,7 @@ export default {
       name: true,
       abstract: true,
       avatar: true
-    }
+    },
+    ModuleTitleCpt: 'ModuleTitle_2'
   } // 自定义属性字段
 };

@@ -5,7 +5,7 @@ export default {
   componentName: 'BaseInfo_3', // 组件名
   commentType: '', // 组件类型
   icon: '', // 组件icon
-  title: '基本资料', // 组件中文名称
+  title: '基础信息', // 组件中文名称
   description: '基础信息模块', // 组件描述信息
   screenShot: {
     width: '100%',
@@ -15,9 +15,11 @@ export default {
   keywords: '基础信息', // 组件关键词，用于搜索
   category: 'base_info', // 组件分类
   props: {
-    degree: {
-      chName: '学历',
-      show: false
+    title: {
+      chName: '基础信息',
+      show: true,
+      iconfont: '',
+      config: true // 是否支持配置
     }
   }, // 组件属性
   css: {
@@ -35,5 +37,7 @@ export default {
   }, // 组件样式
   customCss: customCss['BaseInfo_3'],
   dataSource: {}, // 组件单独数据
-  customProps: {} // 自定义属性字段
+  customProps: {
+    ModuleTitleCpt: 'ModuleTitle_1'
+  } // 自定义属性字段
 };

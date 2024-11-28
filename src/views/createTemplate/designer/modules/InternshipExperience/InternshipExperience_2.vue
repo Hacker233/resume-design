@@ -1,7 +1,7 @@
 <template>
   <div :style="boxStyle">
     <!-- 模块标题 -->
-    <module-title_4 v-if="module.props.title.show" :module="module"></module-title_4>
+    <slot name="module-title"></slot>
     <!-- 实习经验列表 -->
     <template v-for="(item, index) in module.dataSource.list.value" :key="index">
       <hj-internship-experience2
@@ -15,7 +15,6 @@
 <script setup lang="ts">
   import { IModule } from '@/views/createTemplate/types/IHJNewSchema';
   import { useGetBoxStyle } from '../../hooks/useGetStyle';
-  import ModuleTitle_4 from '../ModuleTitle/ModuleTitle_4.vue';
   import hjInternshipExperience2 from '../components/hj-internship-experience-2.vue';
 
   const props = defineProps<{
@@ -24,4 +23,3 @@
   // 返回样式
   const boxStyle = useGetBoxStyle(props);
 </script>
-<style lang="scss" scoped></style>

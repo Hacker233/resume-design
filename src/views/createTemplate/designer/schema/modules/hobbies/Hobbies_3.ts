@@ -37,5 +37,7 @@ export default {
   }, // 组件样式
   customCss: customCss['Hobbies_3'],
   dataSource: {}, // 组件单独数据
-  customProps: {} // 自定义属性字段
+  ustomProps: {
+    ModuleTitleCpt: 'ModuleTitle_5'
+  } // 自定义属性字段
 };

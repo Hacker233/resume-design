@@ -7,6 +7,7 @@ export default [
       background: '#254665',
       height: '100%',
       position: 'absolute',
+      zIndex: 1,
       margin: {
         bottom: 0,
         left: 0,
@@ -24,7 +25,7 @@ export default [
       height: '100%',
       margin: {
         bottom: 0,
-        left: 0,
+        left: 270,
         right: 0,
         top: 0
       }

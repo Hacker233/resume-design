@@ -1,7 +1,7 @@
 <template>
   <div :style="boxStyle">
     <!-- 模块标题 -->
-    <module-title_8 v-if="module.props.title.show" :module="module"></module-title_8>
+    <slot name="module-title"></slot>
     <div style="flex: 1">
       <!-- 教育背景列表 -->
       <template v-for="(item, index) in module.dataSource.list.value" :key="index">
@@ -17,7 +17,6 @@
 <script setup lang="ts">
   import { IModule } from '@/views/createTemplate/types/IHJNewSchema';
   import { useGetBoxStyle } from '../../hooks/useGetStyle';
-  import ModuleTitle_8 from '../ModuleTitle/ModuleTitle_8.vue';
   import hjAwards1 from '../components/hj-awards-1.vue';
 
   const props = defineProps<{

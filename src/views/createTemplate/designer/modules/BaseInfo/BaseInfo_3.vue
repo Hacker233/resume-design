@@ -1,7 +1,7 @@
 <template>
   <div :style="boxStyle">
     <!-- 模块标题 -->
-    <module-title_1 :module="module"></module-title_1>
+    <slot name="module-title"></slot>
     <div :style="userInfoAvatar">
       <!-- 个人信息 -->
       <div :style="userInfoBlock">
@@ -22,7 +22,6 @@
   import { useGetBoxStyle } from '../../hooks/useGetStyle';
   import { useGetCustomStyle } from '../../hooks/useGetCustomStyle';
   // 子组件
-  import ModuleTitle_1 from '../ModuleTitle/ModuleTitle_1.vue';
   import hjAvatar1 from '../components/hj-avatar-1.vue';
   import hjName1 from '../components/hj-name-1.vue';
   import hjAbstract1 from '../components/hj-abstract-1.vue';
@@ -33,8 +32,6 @@
 
   // 返回样式
   const boxStyle = useGetBoxStyle(props);
-  console.log('baseinfo样式', boxStyle);
-
   // 信息和头像整体样式
   const userInfoAvatar = useGetCustomStyle(props.module, 'userInfoAvatar');
 

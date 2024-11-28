@@ -36,5 +36,7 @@ export default {
   }, // 组件样式
   customCss: customCss['Awards_2'],
   dataSource: {}, // 组件单独数据
-  customProps: {} // 自定义属性字段
+  customProps: {
+    ModuleTitleCpt: 'ModuleTitle_4'
+  } // 自定义属性字段
 };
