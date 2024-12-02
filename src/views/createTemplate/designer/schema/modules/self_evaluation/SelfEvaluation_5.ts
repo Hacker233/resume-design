@@ -18,7 +18,7 @@ export default {
     title: {
       chName: '自我评价',
       show: true,
-      iconfont: 'icon-ziwopingjia',
+      iconfont: '',
       config: true // 是否支持配置
     }
   }, // 组件属性

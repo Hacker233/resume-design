@@ -18,7 +18,7 @@ export default {
     title: {
       chName: '求职意向',
       show: true,
-      iconfont: 'icon-yixianggangwei',
+      iconfont: '',
       config: true // 是否支持配置
     }
   }, // 组件属性

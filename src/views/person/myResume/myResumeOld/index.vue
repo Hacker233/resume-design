@@ -3,8 +3,7 @@
     <!-- 简历列表 -->
     <div v-if="!isShowSkeleton" class="resume-list">
       <template v-for="(item, index) in templateList" :key="index">
-        <resume-card :card-data="item" type="old" @to-design="toDesign" @delete="deleteUserResume">
-        </resume-card>
+        <resume-card :card-data="item" type="old" @delete="deleteUserResume"> </resume-card>
       </template>
       <!-- 无数据页 -->
       <no-data-vue v-if="!templateList.length"></no-data-vue>
@@ -70,8 +69,6 @@
     page.value = currentPage;
     getUserResumeList();
   };
-  // 跳转至设计页面
-  const toDesign = () => {};
 </script>
 <style lang="scss" scoped>
   .my-resume-box {

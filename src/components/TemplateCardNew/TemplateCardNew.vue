@@ -83,6 +83,9 @@
         color: #949ba0;
         transform: translateY(0%) scale(1);
       }
+      .template-card-box {
+        border-radius: 5px 5px 0 0;
+      }
     }
     .template-card-box {
       height: 400px;
@@ -91,6 +94,8 @@
       z-index: 0;
       user-select: none;
       transition: all 0.3s;
+      border-radius: 5px;
+      overflow: hidden;
 
       img {
         width: 100%;

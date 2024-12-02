@@ -18,7 +18,7 @@
 </script>
 <style lang="scss" scoped>
   .my-resume-new-tab-box {
-    .el-tabs__content {
+    :deep(.el-tabs__content) {
       padding: 0;
     }
   }

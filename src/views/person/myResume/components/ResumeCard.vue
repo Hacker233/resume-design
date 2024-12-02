@@ -14,6 +14,10 @@
   import { ref } from 'vue';
   import { ElMessageBox } from 'element-plus';
   import 'element-plus/es/components/message-box/style/index';
+  import { openGlobalLoading } from '@/utils/common';
+  import appStore from '@/store';
+  import { storeToRefs } from 'pinia';
+
   const props = defineProps<{
     cardData: any;
     type: string;
@@ -30,15 +34,26 @@
   };
 
   // 点击继续制作
+  const { resetResumeJson } = appStore.useCreateTemplateStore;
+  const { selectedModuleId } = storeToRefs(appStore.useCreateTemplateStore);
   const router = useRouter();
   const toDesign = () => {
     console.log(props.cardData);
-    router.push({
-      path: '/designer',
-      query: {
-        id: props.cardData.ID
-      }
-    });
+    if (props.type === 'old') {
+      router.push({
+        path: '/designer',
+        query: {
+          id: props.cardData.ID
+        }
+      });
+    } else {
+      openGlobalLoading(); // 等待动画层
+      resetResumeJson(); // 重置json数据
+      selectedModuleId.value = ''; // 重置选中模块
+      router.push({
+        path: `/designResume/${props.cardData.template_id}`
+      });
+    }
   };
 
   // 点击删除简历

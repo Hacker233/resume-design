@@ -2,11 +2,11 @@
 <template>
   <div class="module-select-list">
     <div class="module-select">
-      <div class="left-title" @click="selectNone">
+      <div v-if="showTitle" class="left-title" @click="selectNone">
         <span>模块</span>
         <span>选择</span>
       </div>
-      <c-scrollbar trigger="hover" style="height: calc(100vh - 110px)">
+      <c-scrollbar trigger="hover">
         <ul>
           <li
             v-for="(val, index) in modulesList"
@@ -22,16 +22,12 @@
     </div>
     <div class="module-list-box">
       <!-- 模块列表标题 -->
-      <div class="list-title">
+      <div v-if="showTitle" class="list-title">
         <h1>{{ currentModuleListObj.moduleChName || '请选择模块' }}</h1>
       </div>
       <template v-if="selectedModuleListId">
         <!-- 模块列表图 -->
-        <c-scrollbar
-          v-if="currentModuleListObj.list.length"
-          trigger="hover"
-          style="height: calc(100vh - 110px)"
-        >
+        <c-scrollbar v-if="currentModuleListObj.list.length" trigger="hover">
           <div v-viewer class="list-box">
             <!-- 拖拽组件 -->
             <draggable
@@ -86,7 +82,15 @@
   import { getUuid } from '@/utils/common';
   import NoData from './NoData.vue';
 
+  interface IModuleSelect {
+    showTitle?: boolean;
+  }
+  withDefaults(defineProps<IModuleSelect>(), {
+    showTitle: true
+  });
+
   const { selectedModuleListId } = storeToRefs(appStore.useCreateTemplateStore);
+  selectedModuleListId.value = '';
 
   // 点击模块选择
   const currentModuleListObj = ref<any>({});
@@ -150,10 +154,14 @@
   .module-select-list {
     display: flex;
     width: 100%;
+    height: 100%;
     .module-select {
       width: 65px;
       border-right: 1px solid #eee;
       flex-shrink: 0;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
       .left-title {
         width: 100%;
         height: 60px;
@@ -205,6 +213,8 @@
     .module-list-box {
       flex: 1;
       overflow: hidden;
+      display: flex;
+      flex-direction: column;
       .list-title {
         height: 60px;
         display: flex;

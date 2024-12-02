@@ -18,7 +18,7 @@ export default {
     title: {
       chName: '兴趣爱好',
       show: true,
-      iconfont: 'icon-xingquaihao',
+      iconfont: '',
       config: true // 是否支持配置
     }
   }, // 组件属性

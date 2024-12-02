@@ -18,7 +18,7 @@ export default {
     title: {
       chName: '作品展示',
       show: true,
-      iconfont: 'icon-zhuanyezhishijineng',
+      iconfont: '',
       config: true // 是否支持配置
     }
   }, // 组件属性

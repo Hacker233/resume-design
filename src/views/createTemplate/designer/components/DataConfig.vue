@@ -2,7 +2,37 @@
   <div class="data-config-box">
     <!-- 数据整体操作 -->
     <div class="data-config-title-box">
-      <div class="left"></div>
+      <div class="left">
+        <el-popover placement="bottom" :width="400" trigger="click">
+          <template #reference>
+            <div>
+              <el-tooltip effect="light" content="模块快捷操作" placement="bottom">
+                <svg-icon icon-name="icon-mobanguanli" color="#74a274" size="28px"></svg-icon>
+              </el-tooltip>
+            </div>
+          </template>
+          <!-- 快捷操作列表 -->
+          <div class="module-fast--popver-content-box">
+            <div
+              v-for="(moduleItem, index) in HJNewJsonStore.componentsTree"
+              :key="moduleItem.id"
+              class="module-item"
+            >
+              <div class="left-title">{{ moduleItem.title }}</div>
+              <data-title-right
+                :id="moduleItem.id"
+                :module="moduleItem"
+                :is-unfold="moduleItem.customProps.unfoldModule"
+                :is-show-module="moduleItem.customProps.showModule"
+                @open-style-drawer="handleOpenStyleDrawer"
+                @handle-unfold="handleUnfold(index)"
+                @handle-collapse="handleCollapse(index)"
+                @handle-change-switch="handleChangeSwitch($event, index)"
+              ></data-title-right>
+            </div>
+          </div>
+        </el-popover>
+      </div>
       <div class="right">
         <!-- 展开收起所有 -->
         <div class="unfold-box-all" @click="openAll">
@@ -232,6 +262,17 @@
       justify-content: space-between;
       align-items: center;
       padding: 0 20px;
+      .left {
+        .svg-icon {
+          cursor: pointer;
+          padding: 3px;
+          transition: all 0.3s;
+          &:hover {
+            background-color: #eee;
+            border-radius: 4px;
+          }
+        }
+      }
       .right {
         display: flex;
         align-items: center;
@@ -304,6 +345,21 @@
     .module-select {
       border-radius: 10px;
       box-shadow: 0 1px 9px 10px rgba(0, 0, 0, 0.04);
+    }
+  }
+</style>
+<style lang="scss">
+  .module-fast--popver-content-box {
+    .module-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid #eee;
+      padding: 10px 0;
+      .left-title {
+        font-weight: 600;
+        font-size: 16px;
+      }
     }
   }
 </style>

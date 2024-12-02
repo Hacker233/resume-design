@@ -1,5 +1,5 @@
 <template>
-  <div ref="pageWrapperRef" class="page-wrapper">
+  <div ref="pageWrapperRef" v-loading="isLoading" class="page-wrapper">
     <div ref="componentBoxRef" class="components-wrapper">
       <!-- 动态渲染的组件，添加ref -->
       <component
@@ -29,6 +29,15 @@
 
   // 初始化JSON数据
   const { HJNewJsonStore, selectedModuleId } = storeToRefs(appStore.useCreateTemplateStore);
+  HJNewJsonStore.value.componentsTree = [];
+
+  const isLoading = computed(() => {
+    if (route.query.type === 'create') {
+      return false;
+    } else {
+      return !HJNewJsonStore.value.componentsTree.length;
+    }
+  });
 
   // 动态组件的 ref
   const dynamicComponentRef = ref<any>(null);

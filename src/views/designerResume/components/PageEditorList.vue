@@ -11,6 +11,11 @@
           <svg-icon icon-name="icon-json-full" color="#2cbd99" size="20px"></svg-icon>
         </li>
       </el-tooltip>
+      <el-tooltip effect="light" content="添加任意模块" placement="right">
+        <li @click="openAddModuleDrawer">
+          <svg-icon icon-name="icon-database" color="#2cbd99" size="20px"></svg-icon>
+        </li>
+      </el-tooltip>
       <el-tooltip v-if="selectedModuleId" effect="light" content="查看模块JSON" placement="right">
         <li @click="openModuleJSON">
           <svg-icon icon-name="icon-json" color="#2cbd99" size="20px"></svg-icon>
@@ -36,6 +41,12 @@
       :drawer="themeSettingDrawer"
       @close-style-drawer="handleCloseDrawer"
     ></theme-style-setting-drawer>
+
+    <!-- 添加任意模块抽屉 -->
+    <add-any-module-drawer
+      :drawer="addModuleDrawer"
+      @close-style-drawer="handleCloseAddModuleDrawer"
+    ></add-any-module-drawer>
   </div>
 </template>
 <script lang="ts" setup>
@@ -44,6 +55,7 @@
   import ThemeStyleSettingDrawer from '@/views/createTemplate/designer/components/ThemeStyleSettingDrawer.vue';
   import { storeToRefs } from 'pinia';
   import { useGetSelectedModule } from '@/views/createTemplate/designer/hooks/useGetSelectedModule';
+  import AddAnyModuleDrawer from './AddAnyModuleDrawer.vue';
 
   const { selectedModuleId } = storeToRefs(appStore.useCreateTemplateStore);
 
@@ -76,6 +88,17 @@
   // 关闭主题设置抽屉
   const handleCloseDrawer = () => {
     themeSettingDrawer.value = false;
+  };
+
+  // 添加任意模块抽屉
+  const addModuleDrawer = ref<boolean>(false);
+  const openAddModuleDrawer = () => {
+    addModuleDrawer.value = !addModuleDrawer.value;
+  };
+
+  // 关闭添加模块抽屉
+  const handleCloseAddModuleDrawer = () => {
+    addModuleDrawer.value = false;
   };
 </script>
 <style lang="scss" scoped>
