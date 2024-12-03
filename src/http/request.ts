@@ -37,7 +37,7 @@ const http = new Request({
       const status = error.response?.status;
       const errorMessages: Record<number, string> = {
         400: '请求错误(400)',
-        401: '未授权，请重新登录',
+        401: '请登录网站',
         403: '拒绝访问(403)',
         404: '请求出错(404)',
         408: '请求超时(408)',

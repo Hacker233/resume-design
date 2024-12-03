@@ -8,7 +8,7 @@ const Page_1 = {
   constants: {}, // 全局常量
   props: {
     pageName: 'Page_1',
-    screenShot: 'page_1.png'
+    screenShot: 'page_3.png'
   },
   css: {
     width: 820,

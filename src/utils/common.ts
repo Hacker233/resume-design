@@ -300,5 +300,8 @@ export const getAssetsImagesFile = (url: string) => {
 
 // 将数字转换为带有千分位逗号的字符串
 export const formatNumberWithCommas = (number: any) => {
+  if (!Number.isInteger(number)) {
+    return 0;
+  }
   return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 };

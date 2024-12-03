@@ -23,7 +23,7 @@
     <div :style="topLeftStyle"></div>
     <div :style="topRightStyle"></div>
   </div>
-  <div :styl="lineLeftStyle"> </div>
+  <div :style="lineLeftStyle"> </div>
   <div :style="lineRightStyle"> </div>
   <div class="line-bottom">
     <div :style="bottomLeftStyle"></div>
@@ -113,6 +113,8 @@
     z-index: 1;
     height: 30px;
     padding: 0;
+    display: flex;
+    align-items: center;
   }
   .line-bottom {
     position: absolute;
@@ -122,6 +124,8 @@
     z-index: 1;
     height: 30px;
     padding: 0;
+    display: flex;
+    align-items: center;
   }
 </style>
 <style lang="scss">

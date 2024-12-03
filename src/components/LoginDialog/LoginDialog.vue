@@ -186,7 +186,6 @@
   });
 
   const { websiteConfig } = appStore.useWebsiteConfigStore;
-
   // 登录数据
   interface IForm {
     email: string;

@@ -137,6 +137,9 @@
 
     clearInterval(timer);
     percentage.value = 100;
+    // 查询用简币信息
+    const { getUserIntegralTotal } = appStore.useUserInfoStore;
+    getUserIntegralTotal();
   };
 
   // 关闭进度弹窗

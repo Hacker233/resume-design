@@ -98,7 +98,7 @@ export const exportPNGNew = async (id?: string) => {
   const { HJNewJsonStore } = appStore.useCreateTemplateStore;
   const fileName = HJNewJsonStore.config.title;
   const params = {
-    url: `${location.origin}/pdfPreview?type=page&id=${id}`,
+    url: `${location.origin}/resumePreview?type=page&id=${id}`,
     format: 'A4',
     integralPayGoodsId: id
   };

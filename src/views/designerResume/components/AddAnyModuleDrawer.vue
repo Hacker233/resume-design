@@ -35,6 +35,7 @@
   .modal-add-any-module-drawer {
     background-color: rgba(78, 78, 78, 0);
     width: 600px;
+    box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
     .el-drawer__body {
       border-top: 1px solid #eee;
       .c-scrollbar {
