@@ -30,7 +30,7 @@ export default {
   }, // 组件样式
   customCss: customCss['Hobbies_7'],
   dataSource: {}, // 组件单独数据
-  ustomProps: {
+  customProps: {
     ModuleTitleCpt: 'ModuleTitle_8'
   } // 自定义属性字段
 };

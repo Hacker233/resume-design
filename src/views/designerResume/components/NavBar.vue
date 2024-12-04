@@ -249,6 +249,7 @@
         }
       }
       .resume-title {
+        flex-shrink: 0;
         p {
           display: flex;
           align-items: center;
@@ -268,6 +269,7 @@
         display: flex;
         align-items: center;
         margin-left: 15px;
+        flex-shrink: 0;
         .draft-tips {
           margin-right: 7px;
           font-size: 12px;

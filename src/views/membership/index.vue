@@ -143,6 +143,7 @@
                 <div class="line">简历模版</div>
                 <div class="line">软件资源</div>
                 <div class="line">网盘资源</div>
+                <div class="line">简历创建份数</div>
               </div>
             </div>
           </div>
@@ -171,6 +172,7 @@
                 <div class="line"
                   >消耗简币下载<img width="22" src="@/assets/images/jianB.png" alt="简币"
                 /></div>
+                <div class="line">2份简历</div>
               </div>
             </div>
           </div>
@@ -187,6 +189,7 @@
                 <div class="line">无限制</div>
                 <div class="line">无限制</div>
                 <div class="line">无限制</div>
+                <div class="line">4份简历</div>
               </div>
             </div>
           </div>
@@ -203,6 +206,7 @@
                 <div class="line">无限制</div>
                 <div class="line">无限制</div>
                 <div class="line">无限制</div>
+                <div class="line">8份简历</div>
               </div>
             </div>
           </div>
@@ -213,6 +217,7 @@
                 <p>（一顿饭钱）</p>
               </div>
               <div class="welfare">
+                <div class="line">无限制</div>
                 <div class="line">无限制</div>
                 <div class="line">无限制</div>
                 <div class="line">无限制</div>

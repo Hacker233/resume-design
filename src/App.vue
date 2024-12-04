@@ -12,16 +12,10 @@
     <router-view v-show="!isLoading" v-slot="{}" :key="refreshUuid"></router-view>
     <loading-com-vue v-show="isLoading"></loading-com-vue>
   </el-config-provider>
-
-  <!-- 公告弹窗 -->
-  <notice-dialog
-    :dialog-notice-visible="dialogNoticeVisible"
-    @cancle="noticeCancle"
-  ></notice-dialog>
 </template>
 <script lang="ts" setup>
   import LoadingComVue from '@/components/Loading/LoadingCom.vue'; // 全局等待层
-  import NoticeDialog from './components/NoticeDialog/NoticeDialog.vue';
+
   import appStore from './store';
   import { storeToRefs } from 'pinia';
   // import { openAndCloseLoadingByTime } from './utils/common';
@@ -42,18 +36,6 @@
       }
     ]
   });
-
-  const dialogNoticeVisible = ref<boolean>(false);
-  const readNotice = localStorage.getItem('readNotice');
-  if (readNotice == '1') {
-    dialogNoticeVisible.value = false;
-  } else {
-    dialogNoticeVisible.value = true;
-  }
-
-  const noticeCancle = () => {
-    dialogNoticeVisible.value = false;
-  };
 
   const { isLoading } = storeToRefs(appStore.useLoadingStore);
   // openAndCloseLoadingByTime(1500); // 等待动画层

@@ -31,6 +31,6 @@ export default {
   customCss: customCss['CampusExperience_6'],
   dataSource: {}, // 组件单独数据
   customProps: {
-    ModuleTitleCpt: 'ModuleTitle_6'
+    ModuleTitleCpt: 'ModuleTitle_7'
   } // 自定义属性字段
 };

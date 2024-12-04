@@ -29,7 +29,7 @@ export default {
   }, // 组件样式
   customCss: customCss['SelfEvaluation_6'],
   dataSource: {}, // 组件单独数据
-  ustomProps: {
+  customProps: {
     ModuleTitleCpt: 'ModuleTitle_7'
   } // 自定义属性字段
 };

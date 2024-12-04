@@ -31,6 +31,12 @@
     <!-- GitHub卡片 -->
     <github-card></github-card>
   </div>
+
+  <!-- 公告弹窗 -->
+  <notice-dialog
+    :dialog-notice-visible="dialogNoticeVisible"
+    @cancle="noticeCancle"
+  ></notice-dialog>
 </template>
 <script setup lang="ts">
   import NavBar from '@/components/NavBar/NavBar.vue';
@@ -45,6 +51,19 @@
   import { throttle } from 'lodash';
   import GithubCard from '@/components/GihubCard/GithubCard.vue';
   import WebData from './components/WebData.vue';
+  import NoticeDialog from '@/components/NoticeDialog/NoticeDialog.vue';
+
+  const dialogNoticeVisible = ref<boolean>(false);
+  const readNotice = localStorage.getItem('readNotice');
+  if (readNotice == '1') {
+    dialogNoticeVisible.value = false;
+  } else {
+    dialogNoticeVisible.value = true;
+  }
+
+  const noticeCancle = () => {
+    dialogNoticeVisible.value = false;
+  };
 
   // 监听元素滚动
   onMounted(() => {
