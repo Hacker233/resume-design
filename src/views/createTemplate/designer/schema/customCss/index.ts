@@ -20,10 +20,6 @@ import JobIntention_8 from './job_intention/JobIntention_8';
 import JobIntention_9 from './job_intention/JobIntention_9';
 import JobIntention_10 from './job_intention/JobIntention_10';
 
-// 页面
-import base_page from './pages/base_page';
-import left_right_page from './pages/left_right_page';
-
 import ResumeTitle_1 from './resume_title/ResumeTitle_1';
 import ResumeTitle_2 from './resume_title/ResumeTitle_2';
 
@@ -164,6 +160,11 @@ import WorksDisplay_10 from './works_display/WorksDisplay_10';
 // 自定义模块
 import Custom_1 from './custom/Custom_1';
 import Custom_2 from './custom/Custom_2';
+import Custom_3 from './custom/Custom_3';
+
+// 页面
+import base_page from './pages/base_page';
+import left_right_page from './pages/left_right_page';
 import page_1 from './pages/page_1';
 
 export default {
@@ -317,6 +318,7 @@ export default {
 
   Custom_1,
   Custom_2,
+  Custom_3,
 
   base_page,
   left_right_page,

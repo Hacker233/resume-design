@@ -20,6 +20,14 @@ const themeColorProps: any = {
       userInfoBlock: ['background', 'backgroundColor']
     }
   },
+  BaseInfo_9: {
+    css: [],
+    customCss: {
+      moduleTitleFont: ['color'],
+      moduleTitleIcon: ['color'],
+      elSliderBar: ['background']
+    }
+  },
   JobIntention_1: {
     css: [],
     customCss: {
@@ -879,6 +887,10 @@ const themeColorProps: any = {
       bottomLeft: ['backgroundColor', 'background'],
       iconBox: ['background']
     }
+  },
+  Custom_3: {
+    css: ['background'],
+    customCss: {}
   }
 };
 export default themeColorProps;

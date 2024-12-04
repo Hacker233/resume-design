@@ -162,6 +162,7 @@ import WorksDisplay_10 from '../modules/WorksDisplay/WorksDisplay_10.vue';
 // 自定义模块
 import Custom_1 from '../modules/Custom/Custom_1.vue';
 import Custom_2 from '../modules/Custom/Custom_2.vue';
+import Custom_3 from '../modules/Custom/Custom_3.vue';
 
 // 定义页面组件列表
 const moduleComponents: any = {
@@ -321,6 +322,7 @@ const moduleComponents: any = {
 
   // 自定义模块
   Custom_1,
-  Custom_2
+  Custom_2,
+  Custom_3
 };
 export default moduleComponents;

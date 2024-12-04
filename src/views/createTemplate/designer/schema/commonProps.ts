@@ -442,6 +442,32 @@ const commonProps = {
       iconfont: '',
       config: true // 是否支持配置
     }
+  },
+  custom_3: {
+    title: {
+      chName: '自定义模块_3',
+      show: false,
+      iconfont: '',
+      config: true // 是否支持配置
+    },
+    name: {
+      chName: '姓名',
+      show: true,
+      iconfont: '',
+      config: true // 是否支持配置
+    },
+    abstract: {
+      chName: '一句话简介',
+      show: true,
+      iconfont: '',
+      config: true // 是否支持配置
+    },
+    avatar: {
+      chName: '证件照',
+      show: true,
+      iconfont: '',
+      config: true // 是否支持配置
+    } // 头像地址
   }
 };
 export default commonProps;
