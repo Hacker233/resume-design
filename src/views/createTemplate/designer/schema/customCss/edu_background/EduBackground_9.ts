@@ -236,7 +236,6 @@ export default [
     title: '主修课程整体样式',
     prop: 'majorCourse',
     css: {
-      width: '100%',
       lineHeight: 1.5,
       display: 'flex',
       flexDirection: 'column',

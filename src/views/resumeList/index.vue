@@ -80,6 +80,7 @@
     .content-box {
       width: 1300px;
       margin: 0 auto;
+      padding-bottom: 30px;
     }
   }
 </style>

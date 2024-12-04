@@ -236,7 +236,6 @@ export default [
     title: '校园经历内容样式',
     prop: 'campusContent',
     css: {
-      width: '100%',
       lineHeight: 1.5,
       letterSpacing: 1,
       display: 'flex',
