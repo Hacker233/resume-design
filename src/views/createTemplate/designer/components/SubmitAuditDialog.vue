@@ -59,7 +59,7 @@
           clearable
         >
           <el-option
-            v-for="(item, index) in templatePost"
+            v-for="(item, index) in templatePostList"
             :key="index"
             :label="item.title"
             :value="item.title"
@@ -114,7 +114,7 @@
   import { FormInstance, FormRules, UploadProps } from 'element-plus';
   import appStore from '@/store';
   import { getTemplateStyleListAsync, templateAddAsync } from '@/http/api/createTemplate';
-  import { templateUseList, templatePost } from '@/dictionary/createTemplate';
+  import { templateUseList, templatePostList } from '@/dictionary/createTemplate';
   import { storeToRefs } from 'pinia';
 
   const { HJNewJsonStore } = storeToRefs(appStore.useCreateTemplateStore);
@@ -153,8 +153,8 @@
 
   // 职业列表
   const postList = computed(() => {
-    for (let i = 0; i < templatePost.length; i++) {
-      const element = templatePost[i];
+    for (let i = 0; i < templatePostList.length; i++) {
+      const element = templatePostList[i];
       if (element.title === ruleForm.templateIndustry) {
         return element.job;
       }

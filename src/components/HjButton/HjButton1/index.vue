@@ -46,7 +46,7 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: #1fd1f9;
+    // background-color: #1fd1f9;
     background-image: linear-gradient(300deg, #1fd1f9 0%, #1a45a0 50%);
     transition: all 0.3s ease;
   }

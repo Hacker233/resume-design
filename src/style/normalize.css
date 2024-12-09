@@ -33,7 +33,7 @@ body {
   background-color: #f3f3f3;
 }
 body::-webkit-scrollbar {
-  display: none;
+  /* display: none; */
 }
 
 /**
@@ -408,6 +408,7 @@ template {
 * {
   -webkit-print-color-adjust: exact !important; /*Chrome, Safari */
   color-adjust: exact !important; /*Firefox*/
+  outline: none;
 }
 
 .el-message {

@@ -99,6 +99,16 @@
               <el-dropdown-menu>
                 <el-dropdown-item @click="toPerson">个人中心</el-dropdown-item>
                 <el-dropdown-item @click="toMyIntegral"> 我的资产 </el-dropdown-item>
+                <!-- 管理员入口 -->
+                <el-dropdown-item
+                  v-if="
+                    appStore.useUserInfoStore.userInfo &&
+                    appStore.useUserInfoStore.userInfo.roles.indexOf('Admin') !== -1
+                  "
+                  @click="toAdmin"
+                >
+                  管理端
+                </el-dropdown-item>
                 <el-dropdown-item @click="loginout">退出登录</el-dropdown-item>
               </el-dropdown-menu>
             </template>
@@ -118,8 +128,8 @@
   interface IBgcColor {
     bgColor?: string;
     fontColor?: string;
-    iconColor?: string;
     position?: string;
+    iconColor?: string;
   }
   const route = useRoute();
   const props = withDefaults(defineProps<IBgcColor>(), {
@@ -165,6 +175,11 @@
   // const toWebCode = () => {
   //   router.push('/webcode');
   // };
+
+  // 跳转至管理员界面
+  const toAdmin = () => {
+    router.push('/admin');
+  };
 
   // 跳转至开通会员
   const toMembership = () => {
@@ -239,8 +254,9 @@
       flex: 1;
       height: 100%;
       display: flex;
-      justify-content: center;
+      justify-content: flex-start;
       align-items: center;
+      padding-left: 30px;
       .el-menu {
         border: none;
         height: 100%;

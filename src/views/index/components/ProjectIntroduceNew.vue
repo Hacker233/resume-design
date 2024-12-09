@@ -5,35 +5,7 @@
       <div class="scene">
         <!--太陽月亮-->
         <div class="sun"></div>
-        <div class="moon"></div>
-        <!--左上角文字-->
-        <div class="left-top-content">
-          <h1>一款开源的、免费的简历设计制作神器</h1>
-          <p
-            >内置两款设计器、快速设计、简历、封面、海报均可免费制作，支持一键导出高清PDF、JSON数据等。</p
-          >
-
-          <!-- 查看更多按钮 -->
-          <div class="see-more-box">
-            <hj-button-1 text="在线制作" @click="freeMakeResume"></hj-button-1>
-            <hj-button-1 text="积木创作" @click="toLego"></hj-button-1>
-            <hj-button-1
-              v-config:open_get_source_code
-              text="获取源码"
-              @click="toWebCode"
-            ></hj-button-1>
-          </div>
-
-          <!-- 下滑提示按钮 -->
-          <div class="scroll-more-box" @click.prevent="freeMakeResume">
-            <svg-icon
-              icon-name="icon-z044"
-              size="35px"
-              color="rgba(255, 255, 255, 0.5)"
-              class-name="more-icon"
-            ></svg-icon>
-          </div>
-        </div>
+        <!-- <div class="moon"></div> -->
         <div class="allstars">
           <div class="star1"></div>
           <div class="star2"></div>
@@ -67,7 +39,7 @@
           <div class="star30"></div>
         </div>
         <!--建築物們-->
-        <div class="building">
+        <!-- <div class="building">
           <div class="house1">
             <div class="window">
               <div class="circle"></div>
@@ -94,28 +66,57 @@
               </div>
             </div>
           </div>
-        </div>
+        </div> -->
       </div>
     </label>
+    <!--内容区域-->
+    <div class="content-box">
+      <h1>一款开源、免费、专业的简历制作神器</h1>
+      <p>交付源码级JSON，提供海量模版，实时导出超高清PDF</p>
+
+      <!-- 查看更多按钮 -->
+      <div class="see-more-box">
+        <hj-button-1 text="免费制作专业简历" @click="freeMakeResume"></hj-button-1>
+        <!-- <hj-button-1 text="积木创作" @click="toLego"></hj-button-1>
+        <hj-button-1 v-config:open_get_source_code text="获取源码" @click="toWebCode"></hj-button-1> -->
+      </div>
+
+      <!-- 示例图 -->
+      <img class="mac-png" src="../../../assets//images/index-mac.svg" alt="" />
+
+      <!-- 下滑提示按钮 -->
+      <div class="scroll-more-box" @click.prevent="seeMore">
+        <svg-icon
+          icon-name="icon-z044"
+          size="25px"
+          color="rgba(255, 255, 255, 0.5)"
+          class-name="more-icon"
+        ></svg-icon>
+      </div>
+    </div>
   </div>
 </template>
 <script lang="ts" setup>
   import { closeGlobalLoading } from '@/utils/common';
   import HjButton1 from '@/components/HjButton/HjButton1/index.vue';
 
-  const emit = defineEmits(['freeMake', 'legoDesign', 'webcode']);
+  const emit = defineEmits(['freeMake', 'legoDesign', 'webcode', 'seeMore']);
   const freeMakeResume = () => {
     emit('freeMake');
   };
-  // 成为赞助者
-  const toWebCode = () => {
-    emit('webcode');
+
+  const seeMore = () => {
+    emit('seeMore');
   };
+  // 成为赞助者
+  // const toWebCode = () => {
+  //   emit('webcode');
+  // };
 
   // 跳转到积木创作
-  const toLego = () => {
-    emit('legoDesign');
-  };
+  // const toLego = () => {
+  //   emit('legoDesign');
+  // };
 
   // 页面销毁
   onUnmounted(() => {
@@ -125,6 +126,7 @@
 <style lang="scss" scoped>
   .project-introduce-new-box {
     position: relative;
+    height: 100vh;
   }
   *,
   *:before,
@@ -666,35 +668,55 @@
   }
 
   // 左侧内容
-  .left-top-content {
+  .content-box {
+    position: absolute;
+    top: 0;
     width: 100%;
     height: 100%;
     color: #fff;
     display: flex;
     flex-direction: column;
-    padding-left: 100px;
-    justify-content: center;
+    justify-content: flex-start;
+    align-items: center;
+    padding-top: 65px;
+    box-sizing: border-box;
     h1 {
-      font-size: 2.5vw;
+      font-size: 4vh;
       margin-bottom: 30px;
+      margin-top: 8vh;
+      letter-spacing: 2px;
     }
     p {
-      font-size: 1vw;
-      opacity: 0.8;
+      width: 700px;
+      font-size: 1.5vh;
+      text-align: center;
+      line-height: 2;
+      letter-spacing: 2px;
     }
     .see-more-box {
-      margin-top: 40px;
+      margin-top: 4vh;
       display: flex;
       z-index: 1;
-      .custom-btn {
-        margin-right: 30px;
+      :deep(.custom-btn) {
+        width: 300px;
+        height: 50px;
+        span {
+          font-size: 18px;
+          letter-spacing: 5px;
+        }
       }
+    }
+    .mac-png {
+      height: 56%;
+      width: auto;
+      position: absolute;
+      bottom: 4.5vh;
     }
 
     .scroll-more-box {
       position: absolute;
       left: 50%;
-      bottom: 50px;
+      bottom: 5px;
       z-index: 1;
       transition: all 0.3s;
       &:hover {

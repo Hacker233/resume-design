@@ -6,18 +6,26 @@
     <div ref="introduceRef">
       <project-introduce
         @free-make="freeMake"
+        @see-more="seeMore"
         @lego-design="legoDesign"
         @webcode="webcode"
       ></project-introduce>
     </div>
     <!-- 模板选择 -->
     <template-select ref="templeTef"></template-select>
+    <!-- 根据用途挑选简历 -->
+    <select-template-by-use></select-template-by-use>
+    <!-- 简历功能介绍 -->
+    <resume-function-introduce></resume-function-introduce>
+    <!-- 网站开源信息 -->
+    <website-open-source></website-open-source>
+
     <!-- 积木创作 -->
-    <lego-design-introduce-vue ref="legoDesignRef"></lego-design-introduce-vue>
+    <!-- <lego-design-introduce-vue ref="legoDesignRef"></lego-design-introduce-vue> -->
     <!-- 自定义模板 -->
-    <custom-template-vue ref="customTempleRef"></custom-template-vue>
+    <!-- <custom-template-vue ref="customTempleRef"></custom-template-vue> -->
     <!-- 成为赞助者 -->
-    <sponsor-com-vue ref="sponsorRefs"></sponsor-com-vue>
+    <!-- <sponsor-com-vue ref="sponsorRefs"></sponsor-com-vue> -->
     <!-- 网站相关数据 -->
     <web-data></web-data>
     <!-- footer -->
@@ -26,10 +34,10 @@
     <el-backtop :right="50" :bottom="80" />
 
     <!-- 联系我 -->
-    <call-me></call-me>
+    <!-- <call-me></call-me> -->
 
     <!-- GitHub卡片 -->
-    <github-card></github-card>
+    <!-- <github-card></github-card> -->
   </div>
 
   <!-- 公告弹窗 -->
@@ -42,16 +50,19 @@
   import NavBar from '@/components/NavBar/NavBar.vue';
   import ProjectIntroduce from './components/ProjectIntroduceNew.vue';
   import TemplateSelect from './components/TemplateSelect.vue';
-  import CustomTemplateVue from './components/CustomTemplate.vue';
-  import SponsorComVue from './components/SponsorCom.vue';
+  // import CustomTemplateVue from './components/CustomTemplate.vue';
+  // import SponsorComVue from './components/SponsorCom.vue';
   import FooterCom from '@/components/FooterCom/FooterCom.vue';
-  import LegoDesignIntroduceVue from './components/LegoDesignIntroduce.vue';
-  import CallMe from './components/CallMe.vue';
+  // import LegoDesignIntroduceVue from './components/LegoDesignIntroduce.vue';
+  // import CallMe from './components/CallMe.vue';
   import { onBeforeUnmount, onMounted, ref } from 'vue';
   import { throttle } from 'lodash';
-  import GithubCard from '@/components/GihubCard/GithubCard.vue';
+  // import GithubCard from '@/components/GihubCard/GithubCard.vue';
   import WebData from './components/WebData.vue';
   import NoticeDialog from '@/components/NoticeDialog/NoticeDialog.vue';
+  import SelectTemplateByUse from './components/SelectTemplateByUse.vue';
+  import ResumeFunctionIntroduce from './components/ResumeFunctionIntroduce.vue';
+  import WebsiteOpenSource from './components/WebsiteOpenSource.vue';
 
   const dialogNoticeVisible = ref<boolean>(false);
   const readNotice = localStorage.getItem('readNotice');
@@ -93,8 +104,13 @@
   };
 
   // 点击免费制作
-  const templeTef = ref<any>(null);
   const freeMake = () => {
+    router.push('/resume');
+  };
+
+  // 下滑
+  const templeTef = ref<any>(null);
+  const seeMore = () => {
     templeTef.value.scrollIntoView();
   };
 

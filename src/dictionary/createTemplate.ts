@@ -75,7 +75,7 @@ export const templateIndustryList = [
 ];
 
 // 行业/岗位
-export const templatePost = [
+export const templatePostList = [
   {
     title: '职能支持',
     job: [

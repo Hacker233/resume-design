@@ -65,7 +65,7 @@
       >
       <ul>
         <li
-          v-for="(item, index) in templatePostList"
+          v-for="(item, index) in templatePostListCP"
           :key="index"
           :class="['li', { active: filterValue.templatePost === item }]"
           @click="handleSelectTemplatePost(item)"
@@ -78,16 +78,29 @@
 </template>
 <script setup lang="ts">
   import { getTemplateStyleListAsync } from '@/http/api/createTemplate';
-  import { templateUseList, templateIndustryList, templatePost } from '@/dictionary/createTemplate';
+  import {
+    templateUseList,
+    templateIndustryList,
+    templatePostList
+  } from '@/dictionary/createTemplate';
+  import { deleteNull } from '@/utils/common';
 
   const emit = defineEmits(['categoryChange']);
 
-  const filterValue = reactive({
+  const filterValue = reactive<any>({
     templateStyle: '',
     templateUse: '',
     templateIndustry: '',
     templatePost: ''
   });
+
+  // 初始化筛选
+  const route = useRoute();
+  const { templateStyle, templateUse, templateIndustry, templatePost } = route.query;
+  filterValue.templateStyle = templateStyle || '';
+  filterValue.templateUse = templateUse;
+  filterValue.templateIndustry = templateIndustry;
+  filterValue.templatePost = templatePost;
 
   // 查询模版风格
   const categoryList = ref<any>([]);
@@ -116,9 +129,9 @@
     '产品经理',
     '项目经理'
   ]);
-  const templatePostList = computed(() => {
+  const templatePostListCP = computed(() => {
     if (filterValue.templateIndustry) {
-      const filter: any = templatePost.find(
+      const filter: any = templatePostList.find(
         (item: any) => item.title === filterValue.templateIndustry
       );
       return filter.job;
@@ -157,10 +170,23 @@
   watch(
     () => filterValue,
     () => {
+      updateRouter();
       emit('categoryChange');
     },
     { deep: true }
   );
+
+  // 更新路由
+  const router = useRouter();
+  const updateRouter = () => {
+    // 重置路由
+    router.replace({
+      path: route.path,
+      query: {
+        ...deleteNull(filterValue)
+      }
+    });
+  };
 
   defineExpose({
     filterValue

@@ -305,3 +305,16 @@ export const formatNumberWithCommas = (number: any) => {
   }
   return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 };
+
+/**
+ * 移除对象的空值属性，包括null、undefined、空字符串。不含深层次的空值属性
+ * @param obj 对象类型
+ * @returns 处理后的对象
+ */
+export function deleteNull(obj: object) {
+  return Object.entries(obj).reduce((a: any, [k, v]: Array<any>) => {
+    if (v == null || v === '' || String(v).trim() === '') return a;
+    a[k] = v;
+    return a;
+  }, {});
+}
