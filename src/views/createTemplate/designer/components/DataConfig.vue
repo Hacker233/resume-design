@@ -200,7 +200,7 @@
     async (newVal) => {
       if (newVal) {
         // 如果选中了模块
-        dataConfigScrollToView();
+        // dataConfigScrollToView();
       }
     },
     {

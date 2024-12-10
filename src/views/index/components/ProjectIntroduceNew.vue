@@ -681,14 +681,14 @@
     padding-top: 65px;
     box-sizing: border-box;
     h1 {
-      font-size: 4vh;
+      font-size: min(4vh, 52px);
       margin-bottom: 30px;
       margin-top: 8vh;
       letter-spacing: 2px;
     }
     p {
       width: 700px;
-      font-size: 1.5vh;
+      font-size: min(1.5vh, 20px);
       text-align: center;
       line-height: 2;
       letter-spacing: 2px;
@@ -711,6 +711,7 @@
       width: auto;
       position: absolute;
       bottom: 4.5vh;
+      max-width: 90%;
     }
 
     .scroll-more-box {

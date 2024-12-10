@@ -110,3 +110,12 @@ export const deleteUserResumeAsync: any = (params: { id: any }) => {
     method: 'delete'
   });
 };
+
+// 管理员分页查询用户简历列表
+export const getUserResumeListAsync: any = (params: any) => {
+  return http.request({
+    url: '/huajian/createUserTemplate/getUserResumeList',
+    method: 'get',
+    params: params
+  });
+};

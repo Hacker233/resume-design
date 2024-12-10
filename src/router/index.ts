@@ -101,6 +101,8 @@ const MembershipConfigManage = () =>
 const TemplateStyle = () => import('@/views/admin/CreateTemplateManage/templateCategory/index.vue');
 // 模板列表管理
 const TemplateListNew = () => import('@/views/admin/CreateTemplateManage/templateList/index.vue');
+const UserTemplateList = () =>
+  import('@/views/admin/CreateTemplateManage/userTemplateList/index.vue');
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -678,6 +680,17 @@ const routes: Array<RouteRecordRaw> = [
           requireLogin: true
         },
         component: TemplateListNew
+      },
+      {
+        path: 'userTemplateList',
+        name: 'UserTemplateList',
+        meta: {
+          title: '用户简历列表',
+          keepAlive: true,
+          isShowComNav: false,
+          requireLogin: true
+        },
+        component: UserTemplateList
       },
       {
         path: 'TobeAudit',
