@@ -126,7 +126,7 @@
 <style lang="scss" scoped>
   .project-introduce-new-box {
     position: relative;
-    height: 100vh;
+    max-height: 1800px;
   }
   *,
   *:before,
@@ -136,10 +136,20 @@
 
   .scene {
     width: 100%;
-    height: 100vh;
+    max-height: 1800px;
     overflow: hidden;
     background: linear-gradient(#1d2b49, #1a45a0, #91cdff, #fff);
     background-size: 100% 300%;
+  }
+
+  /* 当视口宽度大于等于600px时，改变宽度 */
+  @media (min-width: 600px) {
+    .scene {
+      height: 100vh;
+    }
+    .project-introduce-new-box {
+      height: 100vh;
+    }
   }
 
   .building {
@@ -708,10 +718,10 @@
     }
     .mac-png {
       height: 56%;
-      width: auto;
       position: absolute;
       bottom: 4.5vh;
-      max-width: 90%;
+      max-height: 800px;
+      min-width: 800px;
     }
 
     .scroll-more-box {
