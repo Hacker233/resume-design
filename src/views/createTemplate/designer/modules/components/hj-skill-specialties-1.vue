@@ -3,10 +3,10 @@
     <template v-for="(item, index) in module.dataSource.list.value" :key="index">
       <li
         v-show="module.props.introduce.show"
+        v-dompurify-html="item.introduce.value"
         :style="skillSpecialtiesLi"
         :class="[{ 'odd-li': isOddLi(index + 1) }]"
       >
-        {{ item.introduce.value }}
       </li>
     </template>
   </ul>

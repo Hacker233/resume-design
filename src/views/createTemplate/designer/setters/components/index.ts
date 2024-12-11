@@ -18,4 +18,43 @@ const dataSourceCptMap: ISetterMap = {
   textarea: hjTextarea,
   date: hjDate
 };
+
+// 组件切换对照
+export const cptSwitchList = (type: string) => {
+  let list: any = [];
+  switch (type) {
+    // case 'input':
+    //   list = [
+    //     {
+    //       label: '富文本编辑器',
+    //       value: 'editor'
+    //     },
+    //     {
+    //       label: '多行文本输入框',
+    //       value: 'textarea'
+    //     }
+    //   ];
+    //   break;
+    case 'editor':
+      list = [
+        {
+          label: '多行文本输入框',
+          value: 'textarea'
+        }
+      ];
+      break;
+    case 'textarea':
+      list = [
+        {
+          label: '富文本编辑器',
+          value: 'editor'
+        }
+      ];
+      break;
+    default:
+      list = [];
+      break;
+  }
+  return list;
+};
 export default dataSourceCptMap;

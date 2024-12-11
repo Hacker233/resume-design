@@ -5,7 +5,10 @@
         <span class="label">{{ label }}</span>
         <slot name="label-left"></slot>
       </div>
-      <slot name="label-right"></slot>
+      <div class="label-right">
+        <!-- <slot name="component-switch"></slot> -->
+        <slot name="label-right"></slot>
+      </div>
     </div>
     <el-input
       v-model="inputValue"
@@ -78,6 +81,10 @@
           color: rgb(130, 139, 162);
           margin-left: 1px;
         }
+      }
+      .label-right {
+        display: flex;
+        align-items: center;
       }
     }
 

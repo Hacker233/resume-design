@@ -6,9 +6,11 @@
         <a v-show="module.props.worksLink.show" :style="worksLink" :href="item.worksLink.value">{{
           item.worksLink.value
         }}</a>
-        <p v-show="module.props.worksIntroduce.show" :style="worksIntroduce">{{
-          item.worksIntroduce.value
-        }}</p>
+        <p
+          v-show="module.props.worksIntroduce.show"
+          v-dompurify-html="item.worksIntroduce.value"
+          :style="worksIntroduce"
+        ></p>
       </li>
     </template>
   </ul>

@@ -1,5 +1,5 @@
 <template>
-  <p :style="abstract">{{ module.dataSource.content.value }}</p>
+  <p v-dompurify-html="module.dataSource.content.value" :style="abstract"></p>
 </template>
 <script lang="ts" setup>
   import { IModule } from '@/views/createTemplate/types/IHJNewSchema';

@@ -6,12 +6,21 @@
       animation="500"
       :sort="true"
       item-key="id"
+      handle=".move-icon"
     >
       <template #item="{ element, index }">
         <div>
           <div class="list-item-box">
             <div class="list-title">
               <el-divider content-position="right">{{ module.title }}-{{ index + 1 }}</el-divider>
+              <el-tooltip effect="light" content="拖拽换序" placement="bottom">
+                <svg-icon
+                  class="move-icon"
+                  icon-name="icon-tuozhuai"
+                  color="#1e2532"
+                  size="26px"
+                ></svg-icon>
+              </el-tooltip>
               <el-tooltip effect="light" content="删除该项" placement="bottom">
                 <el-button
                   :disabled="module.dataSource[keyValue].value.length === 1"
@@ -70,6 +79,15 @@
                           size="18px"
                         ></icon-select-pop>
                       </template>
+                      <!-- 组件类型切换 -->
+                      <template #component-switch>
+                        <component-type-pop
+                          v-model="value.type"
+                          :content="value"
+                          :type="value.type"
+                          @editor-switch="handleEditorSwitch($event, value)"
+                        ></component-type-pop>
+                      </template>
                       <!-- 组件开关 -->
                       <template #label-right>
                         <div class="field-label-right-box">
@@ -104,6 +122,7 @@
   import draggable from 'vuedraggable';
   import { Delete } from '@element-plus/icons-vue';
   import hjListLi from './hj-list-li.vue';
+  import ComponentTypePop from '../../components/ComponentTypePop.vue';
 
   const props = defineProps<{
     id: string;
@@ -133,13 +152,18 @@
   const deleteItem = (index: number) => {
     module.dataSource[props.keyValue].value.splice(index, 1);
   };
+
+  // 如果是富文本组件切换至其他组件
+  const handleEditorSwitch = (value: string, item: any) => {
+    console.log('富文本组件切换至其他组件', value, item);
+    item.value = value;
+  };
 </script>
 <style lang="scss" scoped>
   .hj-list-data-box {
     width: 100%;
     .list-item-box {
       width: 100%;
-      cursor: move;
       transition: all 0.3s;
       border-radius: 10px;
       padding: 0 5px;
@@ -149,6 +173,19 @@
       }
       .list-title {
         width: 100%;
+        .svg-icon {
+          cursor: pointer;
+          padding: 3px;
+          transition: all 0.3s;
+          margin-left: 15px;
+          &:hover {
+            background-color: #eee;
+            border-radius: 4px;
+          }
+        }
+        .move-icon {
+          cursor: move;
+        }
       }
       .module-list-content-box {
         display: flex;

@@ -14,15 +14,24 @@
         animation="500"
         :sort="true"
         item-key="id"
+        handle=".move-icon"
       >
         <template #item="{ element, index }">
           <div>
             <div class="list-item-box">
               <!-- 模块数据填写区域 -->
               <div class="module-list-content-box">
+                <el-tooltip effect="light" content="拖拽换序" placement="bottom">
+                  <svg-icon
+                    class="move-icon"
+                    icon-name="icon-tuozhuai3"
+                    color="#1e2532"
+                    size="26px"
+                  ></svg-icon>
+                </el-tooltip>
                 <!-- 数据填写组件 -->
                 <template v-for="(value, key, dataIndex) in element" :key="dataIndex">
-                  <div :style="getFiledStyle(value)">
+                  <div class="data-item" :style="getFiledStyle(value)">
                     <component
                       :is="dataSourceCptMap[value.type]"
                       v-model="value.value"
@@ -32,6 +41,15 @@
                     >
                     </component>
                   </div>
+                </template>
+                <!-- 组件类型切换 -->
+                <template v-for="(value, key, dataIndex) in element" :key="dataIndex">
+                  <component-type-pop
+                    v-model="value.type"
+                    :content="value"
+                    :type="value.type"
+                    @editor-switch="handleEditorSwitch($event, value)"
+                  ></component-type-pop>
                 </template>
                 <!-- 删除图标 -->
                 <el-tooltip effect="light" content="删除该项" placement="bottom">
@@ -63,6 +81,7 @@
   import { cloneDeep } from 'lodash';
   import draggable from 'vuedraggable';
   import { Delete } from '@element-plus/icons-vue';
+  import ComponentTypePop from '../../components/ComponentTypePop.vue';
 
   const emit = defineEmits(['update:modelValue']);
 
@@ -115,6 +134,12 @@
   const deleteItem = (index: number) => {
     dataObj.value.value.splice(index, 1);
   };
+
+  // 如果是富文本组件切换至其他组件
+  const handleEditorSwitch = (value: string, item: any) => {
+    console.log('富文本组件切换至其他组件', value, item);
+    item.value = value;
+  };
 </script>
 <style lang="scss" scoped>
   .hj-list-li-box {
@@ -145,7 +170,6 @@
         width: 100%;
         .list-item-box {
           width: 100%;
-          cursor: move;
           transition: all 0.3s;
           border-radius: 6px;
           &:hover {
@@ -160,9 +184,29 @@
             align-items: center;
             flex-wrap: wrap;
             margin: 5px 0;
-            padding: 2px 10px 2px 2px;
+            padding: 5px 10px 5px 0;
             .field {
               margin-bottom: 0;
+            }
+            .data-item {
+              flex: 1;
+              margin: 0 10px;
+              .field {
+                height: auto;
+              }
+            }
+            .svg-icon {
+              cursor: pointer;
+              padding: 3px;
+              transition: all 0.3s;
+              margin-left: 15px;
+              &:hover {
+                background-color: #eee;
+                border-radius: 4px;
+              }
+            }
+            .move-icon {
+              cursor: move;
             }
           }
           .list-title {

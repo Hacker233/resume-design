@@ -102,6 +102,15 @@
                           size="18px"
                         ></icon-select-pop>
                       </template>
+                      <!-- 组件类型切换 -->
+                      <template #component-switch>
+                        <component-type-pop
+                          v-model="moduleItem.dataSource[key].type"
+                          :content="moduleItem.dataSource[key]"
+                          :type="value.type"
+                          @editor-switch="handleEditorSwitch($event, moduleItem.dataSource[key])"
+                        ></component-type-pop>
+                      </template>
                       <!-- 组件开关 -->
                       <template #label-right>
                         <div class="field-label-right-box">
@@ -140,6 +149,7 @@
   import { ComponentPublicInstance } from 'vue';
   import hjList from '../setters/components/hj-list.vue'; // 数据配置，列表组件
   import IconSelectPop from '@/components/IconSelectPop/IconSelectPop.vue';
+  import ComponentTypePop from './ComponentTypePop.vue';
 
   const { HJNewJsonStore, selectedModuleId, moduleDataConfigRefList } = storeToRefs(
     appStore.useCreateTemplateStore
@@ -242,6 +252,12 @@
   // 显示或隐藏
   const handleChangeSwitch = (value: boolean, index: number) => {
     HJNewJsonStore.value.componentsTree[index].customProps.showModule = value;
+  };
+
+  // 如果是富文本组件切换至其他组件
+  const handleEditorSwitch = (value: string, item: any) => {
+    console.log('富文本组件切换至其他组件', value, item);
+    item.value = value;
   };
 </script>
 

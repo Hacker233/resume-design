@@ -1,27 +1,35 @@
 <template>
   <div class="field">
-    <div class="field-top">
+    <div v-if="showTop" class="field-top">
       <div class="label-left">
         <span class="label">{{ label }}</span>
         <slot name="label-left"></slot>
       </div>
-      <slot name="label-right"></slot>
+      <div class="label-right">
+        <slot name="component-switch"></slot>
+        <slot name="label-right"></slot>
+      </div>
     </div>
     <comm-editor v-model="inputValue"></comm-editor>
   </div>
 </template>
 
 <script lang="ts" setup>
-  import { IModule } from '@/views/createTemplate/types/IHJNewSchema';
-
   const emit = defineEmits(['update:modelValue']);
 
-  const props = defineProps<{
+  interface TP {
     modelValue: string | number;
     label: string;
     keyValue: string;
-    module: IModule;
-  }>();
+    showTop?: boolean;
+  }
+
+  const props = withDefaults(defineProps<TP>(), {
+    modelValue: '',
+    label: '',
+    keyValue: '',
+    showTop: true
+  });
 
   // 添加一个可响应的 inputValue，并监听 modelValue 的变化
   const inputValue = ref(props.modelValue);
@@ -62,6 +70,10 @@
           margin-left: 1px;
         }
       }
+      .label-right {
+        display: flex;
+        align-items: center;
+      }
     }
 
     .editor-box {
@@ -69,6 +81,7 @@
       border-radius: 4px;
       overflow: hidden;
       transition: all 0.3s;
+      cursor: auto;
       &:hover {
         border: 1px solid #d4d5d8;
       }
