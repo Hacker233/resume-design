@@ -1,5 +1,5 @@
 <template>
-  <div class="module-title-6" :style="moduleTitleStyle">
+  <div ref="titleRef" class="module-title-11" :style="moduleTitleStyle">
     <hj-h1-1 :title="module.title" :style="moduleTitleFontStyle"></hj-h1-1>
   </div>
 </template>

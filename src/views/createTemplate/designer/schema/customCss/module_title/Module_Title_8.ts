@@ -1,15 +1,14 @@
 export default [
   {
-    title: '信息模块样式',
-    prop: 'userInfoBlock',
+    title: '模块标题整体样式',
+    prop: 'moduleTitle',
     css: {
-      width: '100%',
+      height: 40,
       display: 'flex',
-      flexDirection: 'column',
       alignItems: 'center',
       justifyContent: 'flex-start',
-      flex: 1,
-      padding: {
+      flexShrink: 0,
+      borderWidth: {
         top: 0,
         right: 0,
         bottom: 0,
@@ -17,28 +16,29 @@ export default [
       },
       margin: {
         top: 0,
-        right: 0,
+        right: 35,
         bottom: 0,
         left: 0
       },
-      background: 'none'
+      borderStyle: 'solid',
+      background: 'none',
+      borderColor: '#254665',
+      color: '#254665'
     }
   },
   {
-    title: '用户基础资料样式',
-    prop: 'userBaseInfo',
+    title: '模块标题字体样式',
+    prop: 'moduleTitleFont',
     css: {
       height: '100%',
-      fontSize: 14,
-      color: 'rgb(41, 41, 41)',
       display: 'flex',
-      flexDirection: 'column',
       alignItems: 'center',
       justifyContent: 'flex-start',
-      fontWeight: 500,
+      fontSize: 20,
+      fontWeight: 600,
       letterSpacing: 2,
-      lineHeight: 2,
-      padding: {
+      background: 'none',
+      borderWidth: {
         top: 0,
         right: 0,
         bottom: 0,
@@ -46,11 +46,12 @@ export default [
       },
       margin: {
         top: 0,
-        right: 0,
+        right: 15,
         bottom: 0,
         left: 0
       },
-      background: 'none'
+      borderColor: 'rgb(0, 0, 0)',
+      borderStyle: 'solid'
     }
   }
 ];

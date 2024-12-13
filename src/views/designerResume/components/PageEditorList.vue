@@ -21,6 +21,16 @@
           <svg-icon icon-name="icon-json" color="#2cbd99" size="20px"></svg-icon>
         </li>
       </el-tooltip>
+      <el-tooltip
+        v-if="selectedModuleId && isModuleTitle"
+        effect="light"
+        content="切换模块标题组件"
+        placement="right"
+      >
+        <li @click="selectModuleTitle">
+          <svg-icon icon-name="icon-fuwuqi" color="#2cbd99" size="20px"></svg-icon>
+        </li>
+      </el-tooltip>
     </ul>
 
     <!-- 模块JSON -->
@@ -47,6 +57,12 @@
       :drawer="addModuleDrawer"
       @close-style-drawer="handleCloseAddModuleDrawer"
     ></add-any-module-drawer>
+
+    <!-- 切换模块标题弹窗 -->
+    <select-module-title-dialog
+      :dialog-module-title-visible="dialogModuleTitleVisible"
+      @cancle="handleCancleModuleTitle"
+    ></select-module-title-dialog>
   </div>
 </template>
 <script lang="ts" setup>
@@ -56,8 +72,21 @@
   import { storeToRefs } from 'pinia';
   import { useGetSelectedModule } from '@/views/createTemplate/designer/hooks/useGetSelectedModule';
   import AddAnyModuleDrawer from './AddAnyModuleDrawer.vue';
+  import SelectModuleTitleDialog from '@/views/createTemplate/designer/components/SelectModuleTitleDialog.vue';
 
   const { selectedModuleId } = storeToRefs(appStore.useCreateTemplateStore);
+
+  // 该模块是否有moduleTitle
+  const isModuleTitle = computed(() => {
+    const selectModule = useGetSelectedModule(selectedModuleId.value);
+    if (
+      selectModule.customProps.hasOwnProperty('ModuleTitleCpt') &&
+      selectModule.customProps.ModuleTitleCpt
+    ) {
+      return true;
+    }
+    return false;
+  });
 
   // 模块JSON弹窗
   const moduleJson = ref<any>({});
@@ -99,6 +128,17 @@
   // 关闭添加模块抽屉
   const handleCloseAddModuleDrawer = () => {
     addModuleDrawer.value = false;
+  };
+
+  // 打开切换模块title弹窗
+  const dialogModuleTitleVisible = ref<boolean>(false);
+  const selectModuleTitle = () => {
+    dialogModuleTitleVisible.value = true;
+  };
+
+  // 关闭切换模块标题弹窗
+  const handleCancleModuleTitle = () => {
+    dialogModuleTitleVisible.value = false;
   };
 </script>
 <style lang="scss" scoped>

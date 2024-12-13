@@ -162,12 +162,27 @@ import Custom_1 from './custom/Custom_1';
 import Custom_2 from './custom/Custom_2';
 import Custom_3 from './custom/Custom_3';
 
+// 模块标题自定义样式
+import ModuleTitle_1 from './module_title/Module_Title_1';
+import ModuleTitle_2 from './module_title/Module_Title_2';
+import ModuleTitle_3 from './module_title/Module_Title_3';
+import ModuleTitle_4 from './module_title/Module_Title_4';
+import ModuleTitle_5 from './module_title/Module_Title_5';
+import ModuleTitle_6 from './module_title/Module_Title_6';
+import ModuleTitle_7 from './module_title/Module_Title_7';
+import ModuleTitle_8 from './module_title/Module_Title_8';
+import ModuleTitle_9 from './module_title/Module_Title_9';
+import ModuleTitle_10 from './module_title/Module_Title_10';
+import ModuleTitle_11 from './module_title/Module_Title_11';
+import ModuleTitle_12 from './module_title/Module_Title_12';
+import ModuleTitle_13 from './module_title/Module_Title_13';
+
 // 页面
 import base_page from './pages/base_page';
 import left_right_page from './pages/left_right_page';
 import page_1 from './pages/page_1';
 
-export default {
+const customCss: any = {
   BaseInfo_1,
   BaseInfo_2,
   BaseInfo_3,
@@ -320,7 +335,22 @@ export default {
   Custom_2,
   Custom_3,
 
+  ModuleTitle_1,
+  ModuleTitle_2,
+  ModuleTitle_3,
+  ModuleTitle_4,
+  ModuleTitle_5,
+  ModuleTitle_6,
+  ModuleTitle_7,
+  ModuleTitle_8,
+  ModuleTitle_9,
+  ModuleTitle_10,
+  ModuleTitle_11,
+  ModuleTitle_12,
+  ModuleTitle_13,
+
   base_page,
   left_right_page,
   page_1
 };
+export default customCss;

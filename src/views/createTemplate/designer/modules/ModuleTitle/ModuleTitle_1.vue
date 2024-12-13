@@ -1,5 +1,5 @@
 <template>
-  <div ref="moduleTitleRef" class="model-title-box" :style="moduleTitleStyle">
+  <div ref="moduleTitleRef" class="model-title-1" :style="moduleTitleStyle">
     <div class="title-box">
       <hj-h1-1 :title="module.title" :style="moduleTitleFontStyle"></hj-h1-1>
     </div>
@@ -54,7 +54,7 @@
   });
 </script>
 <style lang="scss" scoped>
-  .model-title-box {
+  .model-title-1 {
     .title-box {
       width: 165px;
       height: 100%;

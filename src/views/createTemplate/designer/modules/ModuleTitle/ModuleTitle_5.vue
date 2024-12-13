@@ -1,5 +1,5 @@
 <template>
-  <div ref="moduleTitleRef" class="module-title-3" :style="moduleTitleStyle">
+  <div ref="moduleTitleRef" class="module-title-5" :style="moduleTitleStyle">
     <div ref="iconBoxRef" class="icon-box" :style="moduleTitleIconStyle">
       <svg-icon
         :icon-name="module.props.title.iconfont"

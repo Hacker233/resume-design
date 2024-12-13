@@ -13,6 +13,7 @@ const commonCss: any = {
     color: '#fff',
     letterSpacing: 0,
     opacity: 1,
+    position: 'static',
     padding: {
       top: 0,
       right: 0,
@@ -54,6 +55,7 @@ const commonCss: any = {
     color: '#121c26',
     letterSpacing: 0,
     opacity: 1,
+    position: 'static',
     padding: {
       top: 0,
       right: 0,
@@ -95,6 +97,7 @@ const commonCss: any = {
     color: '#757575',
     letterSpacing: 0,
     opacity: 1,
+    position: 'static',
     padding: {
       top: 0,
       right: 0,
@@ -136,6 +139,7 @@ const commonCss: any = {
     color: '#757575',
     letterSpacing: 0,
     opacity: 1,
+    position: 'static',
     padding: {
       top: 0,
       right: 0,
@@ -176,6 +180,7 @@ const commonCss: any = {
     color: '#fff',
     letterSpacing: 0,
     opacity: 1,
+    position: 'static',
     padding: {
       top: 0,
       right: 0,
@@ -217,6 +222,7 @@ const commonCss: any = {
     color: '#121c26',
     letterSpacing: 0,
     opacity: 1,
+    position: 'static',
     padding: {
       top: 0,
       right: 0,
@@ -258,6 +264,7 @@ const commonCss: any = {
     color: '#121c26',
     letterSpacing: 0,
     opacity: 1,
+    position: 'static',
     padding: {
       top: 0,
       right: 0,
@@ -299,6 +306,7 @@ const commonCss: any = {
     color: '#121c26',
     letterSpacing: 0,
     opacity: 1,
+    position: 'static',
     padding: {
       top: 0,
       right: 0,
@@ -340,6 +348,7 @@ const commonCss: any = {
     color: '#121c26',
     letterSpacing: 0,
     opacity: 1,
+    position: 'static',
     padding: {
       top: 0,
       right: 0,
@@ -381,6 +390,7 @@ const commonCss: any = {
     color: '#757575',
     letterSpacing: 0,
     opacity: 1,
+    position: 'static',
     padding: {
       top: 0,
       right: 0,
@@ -422,6 +432,7 @@ const commonCss: any = {
     color: '#757575',
     letterSpacing: 0,
     opacity: 1,
+    position: 'static',
     padding: {
       top: 0,
       right: 0,
@@ -463,6 +474,7 @@ const commonCss: any = {
     color: '#757575',
     letterSpacing: 0,
     opacity: 1,
+    position: 'static',
     padding: {
       top: 0,
       right: 0,
@@ -504,6 +516,7 @@ const commonCss: any = {
     color: '#757575',
     letterSpacing: 0,
     opacity: 1,
+    position: 'static',
     padding: {
       top: 0,
       right: 0,
@@ -545,6 +558,7 @@ const commonCss: any = {
     color: '#757575',
     letterSpacing: 0,
     opacity: 1,
+    position: 'static',
     padding: {
       top: 0,
       right: 0,
@@ -586,6 +600,7 @@ const commonCss: any = {
     color: '#757575',
     letterSpacing: 0,
     opacity: 1,
+    position: 'static',
     padding: {
       top: 0,
       right: 0,
@@ -628,6 +643,7 @@ const commonCss: any = {
     color: '#757575',
     letterSpacing: 0,
     opacity: 1,
+    position: 'static',
     padding: {
       top: 0,
       right: 0,

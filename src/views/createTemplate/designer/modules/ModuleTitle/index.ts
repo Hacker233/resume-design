@@ -1,6 +1,4 @@
 import ModuleTitle_1 from './ModuleTitle_1.vue';
-import ModuleTitle_10 from './ModuleTitle_10.vue';
-import ModuleTitle_11 from './ModuleTitle_11.vue';
 import ModuleTitle_2 from './ModuleTitle_2.vue';
 import ModuleTitle_3 from './ModuleTitle_3.vue';
 import ModuleTitle_4 from './ModuleTitle_4.vue';
@@ -9,6 +7,10 @@ import ModuleTitle_6 from './ModuleTitle_6.vue';
 import ModuleTitle_7 from './ModuleTitle_7.vue';
 import ModuleTitle_8 from './ModuleTitle_8.vue';
 import ModuleTitle_9 from './ModuleTitle_9.vue';
+import ModuleTitle_10 from './ModuleTitle_10.vue';
+import ModuleTitle_11 from './ModuleTitle_11.vue';
+import ModuleTitle_12 from './ModuleTitle_12.vue';
+import ModuleTitle_13 from './ModuleTitle_13.vue';
 
 const ModuleTitleCpt: any = {
   ModuleTitle_1,
@@ -21,7 +23,118 @@ const ModuleTitleCpt: any = {
   ModuleTitle_8,
   ModuleTitle_9,
   ModuleTitle_10,
-  ModuleTitle_11
+  ModuleTitle_11,
+  ModuleTitle_12,
+  ModuleTitle_13
+};
+
+// 模块标题对应快照
+export const ModuleTitleScreenShotList = [
+  {
+    cptName: 'ModuleTitle_1',
+    img: 'ModuleTitle_1.png',
+    iconfont: false
+  },
+  {
+    cptName: 'ModuleTitle_2',
+    img: 'ModuleTitle_2.png',
+    iconfont: true
+  },
+  {
+    cptName: 'ModuleTitle_3',
+    img: 'ModuleTitle_3.png',
+    iconfont: false
+  },
+  {
+    cptName: 'ModuleTitle_4',
+    img: 'ModuleTitle_4.png',
+    iconfont: true
+  },
+  {
+    cptName: 'ModuleTitle_5',
+    img: 'ModuleTitle_5.png',
+    iconfont: true
+  },
+  {
+    cptName: 'ModuleTitle_6',
+    img: 'ModuleTitle_6.png',
+    iconfont: false
+  },
+  {
+    cptName: 'ModuleTitle_7',
+    img: 'ModuleTitle_7.png',
+    iconfont: false
+  },
+  {
+    cptName: 'ModuleTitle_8',
+    img: 'ModuleTitle_8.png',
+    iconfont: false
+  },
+  {
+    cptName: 'ModuleTitle_9',
+    img: 'ModuleTitle_9.png',
+    iconfont: true
+  },
+  {
+    cptName: 'ModuleTitle_10',
+    img: 'ModuleTitle_10.png',
+    iconfont: false
+  },
+  {
+    cptName: 'ModuleTitle_11',
+    img: 'ModuleTitle_11.png',
+    iconfont: false
+  },
+  {
+    cptName: 'ModuleTitle_12',
+    img: 'ModuleTitle_12.png',
+    iconfont: false
+  },
+  {
+    cptName: 'ModuleTitle_13',
+    img: 'ModuleTitle_12.png',
+    iconfont: true
+  }
+];
+
+// 模块标题对应的默认图标列表
+export const moduleTitleIconList: any = {
+  base_info: {
+    titleIcon: 'icon-jibenziliao'
+  },
+  job_intention: {
+    titleIcon: 'icon-yixianggangwei'
+  },
+  edu_background: {
+    titleIcon: 'icon-yixianggangwei'
+  },
+  skill_specialties: {
+    titleIcon: 'icon-zhuanyezhishijineng'
+  },
+  campus_experience: {
+    titleIcon: 'icon-jiatimianban_timu'
+  },
+  internship_experience: {
+    titleIcon: 'icon-biyeshixi'
+  },
+  work_experience: {
+    titleIcon: 'icon-gongzuojingyan'
+  },
+  project_experience: {
+    titleIcon: 'icon-xiangmu'
+  },
+  awards: {
+    titleIcon: 'icon-rongyu1'
+  },
+  hobbies: {
+    titleIcon: 'icon-xingquaihao'
+  },
+  self_evaluation: {
+    titleIcon: 'icon-ziwopingjia'
+  },
+  works_display: {
+    titleIcon: 'icon-zhuanyezhishijineng'
+  }
 };
 
 export default ModuleTitleCpt;

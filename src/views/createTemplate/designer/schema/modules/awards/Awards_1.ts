@@ -20,6 +20,7 @@ export default {
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'flex-start',
+    position: 'static',
     padding: {
       top: 0,
       right: 40,

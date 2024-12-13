@@ -14,7 +14,6 @@
 
   // 返回模块整体样式
   const moduleTitleStyle: any = useGetCustomStyle(props.module, 'moduleTitle');
-
   // 返回标题字体样式
   const moduleTitleFontStyle = useGetCustomStyle(props.module, 'moduleTitleFont');
 </script>

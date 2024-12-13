@@ -1,5 +1,5 @@
 <template>
-  <div class="model-title-9-box" :style="moduleTitleStyle">
+  <div class="model-title-2-box" :style="moduleTitleStyle">
     <!-- 图标 -->
     <div class="title-icon-box">
       <svg-icon
@@ -27,7 +27,7 @@
   const moduleTitleFontStyle = useGetCustomStyle(props.module, 'moduleTitleFont');
 </script>
 <style lang="scss" scoped>
-  .model-title-9-box {
+  .model-title-2-box {
     .title-icon-box {
       margin-bottom: 10px;
       display: flex;

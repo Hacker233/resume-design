@@ -44,6 +44,6 @@ export default {
   customCss: customCss['SkillSpecialties_14'],
   dataSource: {}, // 组件单独数据
   customProps: {
-    ModuleTitleCpt: 'ModuleTitle_3'
+    ModuleTitleCpt: 'ModuleTitle_12'
   } // 自定义属性字段
 };

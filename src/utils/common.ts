@@ -318,3 +318,13 @@ export function deleteNull(obj: object) {
     return a;
   }, {});
 }
+
+// 获取assets/images/moduleTitle文件下的图片
+export const getModuleTitleImagesFile = (url: string) => {
+  const isOnlineUrl = url.includes('https://');
+  if (isOnlineUrl) {
+    return url;
+  } else {
+    return new URL(`../assets/images/moduleTitle/${url}`, import.meta.url).href;
+  }
+};

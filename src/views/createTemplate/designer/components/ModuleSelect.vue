@@ -81,6 +81,7 @@
   import { cloneDeep } from 'lodash';
   import { getUuid } from '@/utils/common';
   import NoData from './NoData.vue';
+  import customCss from '../schema/customCss/index';
 
   interface IModuleSelect {
     showTitle?: boolean;
@@ -147,6 +148,24 @@
         unfoldModule: true // 是否展开模块
       }
     };
+    // 添加模块标题的自定义样式
+    if (element.customProps.hasOwnProperty('ModuleTitleCpt')) {
+      const customCssKey: string = element.customProps.ModuleTitleCpt;
+      const moduleTitleCustomCssArray = cloneDeep(customCss[customCssKey]);
+      // 收集不在 element.customCss 中的元素
+      const newItems: any[] = [];
+      moduleTitleCustomCssArray.forEach((item2: any) => {
+        const index = element.customCss.findIndex((item1: any) => item1.prop === item2.prop);
+        if (index === -1) {
+          newItems.push(item2);
+        } else {
+          // 如果存在，替换 element.customCss 中的元素
+          element.customCss[index] = item2;
+        }
+      });
+      // 将不在 element.customCss 中的元素整体插入到最前面
+      element.customCss.unshift(...newItems);
+    }
     return cloneDeep(element);
   };
 </script>

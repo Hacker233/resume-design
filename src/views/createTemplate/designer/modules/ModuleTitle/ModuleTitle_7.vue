@@ -1,5 +1,5 @@
 <template>
-  <div class="module-title-3" :style="moduleTitleStyle">
+  <div class="module-title-7" :style="moduleTitleStyle">
     <hj-h1-1 :title="module.title" :style="moduleTitleFontStyle"></hj-h1-1>
     <img src="@/assets/images/j1_span.png" alt="" />
   </div>
