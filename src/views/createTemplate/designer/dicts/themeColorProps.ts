@@ -10,9 +10,7 @@ const themeColorProps: any = {
   },
   BaseInfo_3: {
     css: [],
-    customCss: {
-      moduleTitle: ['borderColor']
-    }
+    customCss: {}
   },
   BaseInfo_4: {
     css: [],
@@ -23,874 +21,582 @@ const themeColorProps: any = {
   BaseInfo_9: {
     css: [],
     customCss: {
-      moduleTitleFont: ['color'],
-      moduleTitleIcon: ['color'],
       elSliderBar: ['background']
+    }
+  },
+  BaseInfo_10: {
+    css: [],
+    customCss: {
+      nameAbstractBox: ['background']
     }
   },
   JobIntention_1: {
     css: [],
-    customCss: {
-      moduleTitle: ['color', 'borderColor'],
-      moduleTitleFont: ['color', 'borderColor']
-    }
+    customCss: {}
   },
   JobIntention_2: {
     css: [],
-    customCss: {
-      moduleTitle: ['color', 'borderColor'],
-      moduleTitleFont: ['color', 'borderColor']
-    }
+    customCss: {}
   },
   JobIntention_3: {
     css: [],
-    customCss: {
-      moduleTitle: ['color', 'borderColor'],
-      moduleTitleFont: ['color', 'borderColor'],
-      moduleTitleIcon: ['background']
-    }
+    customCss: {}
   },
   JobIntention_4: {
     css: [],
-    customCss: {
-      moduleTitle: ['borderColor']
-    }
+    customCss: {}
   },
   JobIntention_5: {
     css: [],
-    customCss: {
-      moduleTitle: ['borderColor'],
-      moduleTitleFontBox: ['background', 'backgroundColor']
-    }
+    customCss: {}
   },
   JobIntention_6: {
     css: [],
-    customCss: {
-      moduleTitle: ['color']
-    }
+    customCss: {}
   },
   JobIntention_7: {
     css: [],
-    customCss: {
-      moduleTitle: ['color']
-    }
+    customCss: {}
   },
   JobIntention_8: {
     css: [],
-    customCss: {
-      moduleTitle: ['borderColor', 'color'],
-      moduleTitleIcon: ['background'],
-      moduleTitleRightBox: ['borderColor']
-    }
+    customCss: {}
   },
   JobIntention_9: {
     css: [],
-    customCss: {
-      moduleTitle: ['color', 'borderColor'],
-      moduleTitleFont: ['color', 'borderColor']
-    }
+    customCss: {}
   },
   JobIntention_10: {
     css: [],
-    customCss: {
-      moduleTitle: ['color']
-    }
+    customCss: {}
   },
   EduBackground_1: {
     css: [],
-    customCss: {
-      moduleTitle: ['color', 'borderColor'],
-      moduleTitleFont: ['color', 'borderColor']
-    }
+    customCss: {}
   },
   EduBackground_2: {
     css: [],
-    customCss: {
-      moduleTitle: ['color', 'borderColor'],
-      moduleTitleFont: ['color', 'borderColor']
-    }
+    customCss: {}
   },
   EduBackground_3: {
     css: [],
-    customCss: {
-      moduleTitle: ['color', 'borderColor'],
-      moduleTitleFont: ['color', 'borderColor'],
-      moduleTitleIcon: ['background']
-    }
+    customCss: {}
   },
   EduBackground_4: {
     css: [],
-    customCss: {
-      moduleTitle: ['borderColor']
-    }
+    customCss: {}
   },
   EduBackground_5: {
     css: [],
-    customCss: {
-      moduleTitle: ['borderColor'],
-      moduleTitleFontBox: ['background', 'backgroundColor']
-    }
+    customCss: {}
   },
   EduBackground_6: {
     css: [],
-    customCss: {
-      moduleTitle: ['color']
-    }
+    customCss: {}
   },
   EduBackground_7: {
     css: [],
-    customCss: {
-      moduleTitle: ['color']
-    }
+    customCss: {}
   },
   EduBackground_8: {
     css: [],
-    customCss: {
-      moduleTitle: ['borderColor', 'color'],
-      moduleTitleIcon: ['background'],
-      moduleTitleRightBox: ['borderColor']
-    }
+    customCss: {}
   },
   EduBackground_9: {
     css: [],
-    customCss: {
-      moduleTitle: ['borderColor', 'color'],
-      moduleTitleIcon: ['background'],
-      moduleTitleRightBox: ['borderColor']
-    }
+    customCss: {}
   },
   EduBackground_10: {
     css: [],
-    customCss: {
-      moduleTitle: ['color', 'borderColor'],
-      moduleTitleFont: ['color', 'borderColor']
-    }
+    customCss: {}
   },
   EduBackground_11: {
     css: [],
-    customCss: {
-      moduleTitle: ['color']
-    }
+    customCss: {}
   },
   EduBackground_12: {
     css: [],
-    customCss: {
-      moduleTitle: ['color']
-    }
+    customCss: {}
   },
   SkillSpecialties_1: {
     css: [],
-    customCss: {
-      moduleTitle: ['color', 'borderColor'],
-      moduleTitleFont: ['color', 'borderColor']
-    }
+    customCss: {}
   },
   SkillSpecialties_2: {
     css: [],
-    customCss: {
-      moduleTitle: ['color', 'borderColor'],
-      moduleTitleFont: ['color', 'borderColor']
-    }
+    customCss: {}
   },
   SkillSpecialties_3: {
     css: [],
-    customCss: {
-      moduleTitle: ['color', 'borderColor'],
-      moduleTitleFont: ['color', 'borderColor'],
-      moduleTitleIcon: ['background']
-    }
+    customCss: {}
   },
   SkillSpecialties_4: {
     css: [],
-    customCss: {
-      moduleTitle: ['borderColor']
-    }
+    customCss: {}
   },
   SkillSpecialties_5: {
     css: [],
-    customCss: {
-      moduleTitle: ['borderColor'],
-      moduleTitleFontBox: ['background', 'backgroundColor']
-    }
+    customCss: {}
   },
   SkillSpecialties_6: {
     css: [],
-    customCss: {
-      moduleTitle: ['color']
-    }
+    customCss: {}
   },
   SkillSpecialties_7: {
     css: [],
-    customCss: {
-      moduleTitle: ['color']
-    }
+    customCss: {}
   },
   SkillSpecialties_8: {
     css: [],
-    customCss: {
-      moduleTitle: ['borderColor', 'color'],
-      moduleTitleIcon: ['background'],
-      moduleTitleRightBox: ['borderColor']
-    }
+    customCss: {}
   },
   SkillSpecialties_9: {
     css: [],
-    customCss: {
-      moduleTitle: ['color', 'borderColor'],
-      moduleTitleFont: ['color', 'borderColor']
-    }
+    customCss: {}
   },
   SkillSpecialties_10: {
     css: [],
-    customCss: {
-      moduleTitle: ['color']
-    }
+    customCss: {}
   },
   SkillSpecialties_11: {
     css: [],
     customCss: {
-      moduleTitle: ['color'],
       elSliderBar: ['background']
     }
   },
   SkillSpecialties_12: {
     css: [],
     customCss: {
-      moduleTitle: ['color'],
       elSliderBar: ['background']
     }
   },
   SkillSpecialties_13: {
     css: [],
     customCss: {
-      moduleTitle: ['color', 'borderColor'],
-      moduleTitleFont: ['color', 'borderColor'],
       elSliderBar: ['background']
     }
   },
   SkillSpecialties_14: {
     css: [],
     customCss: {
-      moduleTitle: ['color'],
       elSliderBar: ['background']
     }
   },
   SkillSpecialties_15: {
     css: [],
     customCss: {
-      moduleTitleFont: ['color'],
-      moduleTitleIcon: ['color'],
       elSliderBar: ['background']
     }
   },
   SkillSpecialties_16: {
     css: [],
     customCss: {
-      moduleTitleFont: ['color'],
-      moduleTitleIcon: ['color'],
       elSliderBar: ['background']
     }
   },
   CampusExperience_1: {
     css: [],
-    customCss: {
-      moduleTitle: ['color', 'borderColor'],
-      moduleTitleFont: ['color', 'borderColor']
-    }
+    customCss: {}
   },
   CampusExperience_2: {
     css: [],
-    customCss: {
-      moduleTitle: ['color', 'borderColor'],
-      moduleTitleFont: ['color', 'borderColor']
-    }
+    customCss: {}
   },
   CampusExperience_3: {
     css: [],
-    customCss: {
-      moduleTitle: ['color', 'borderColor'],
-      moduleTitleFont: ['color', 'borderColor'],
-      moduleTitleIcon: ['background']
-    }
+    customCss: {}
   },
   CampusExperience_4: {
     css: [],
-    customCss: {
-      moduleTitle: ['borderColor']
-    }
+    customCss: {}
   },
   CampusExperience_5: {
     css: [],
-    customCss: {
-      moduleTitle: ['borderColor'],
-      moduleTitleFontBox: ['background', 'backgroundColor']
-    }
+    customCss: {}
   },
   CampusExperience_6: {
     css: [],
-    customCss: {
-      moduleTitle: ['color']
-    }
+    customCss: {}
   },
   CampusExperience_7: {
     css: [],
-    customCss: {
-      moduleTitle: ['color']
-    }
+    customCss: {}
   },
   CampusExperience_8: {
     css: [],
-    customCss: {
-      moduleTitle: ['borderColor', 'color'],
-      moduleTitleIcon: ['background'],
-      moduleTitleRightBox: ['borderColor']
-    }
+    customCss: {}
   },
   CampusExperience_9: {
     css: [],
-    customCss: {
-      moduleTitle: ['borderColor', 'color'],
-      moduleTitleIcon: ['background'],
-      moduleTitleRightBox: ['borderColor']
-    }
+    customCss: {}
   },
   CampusExperience_10: {
     css: [],
-    customCss: {
-      moduleTitle: ['color', 'borderColor'],
-      moduleTitleFont: ['color', 'borderColor']
-    }
+    customCss: {}
   },
   CampusExperience_11: {
     css: [],
-    customCss: {
-      moduleTitle: ['color']
-    }
+    customCss: {}
   },
   InternshipExperience_1: {
     css: [],
-    customCss: {
-      moduleTitle: ['color', 'borderColor'],
-      moduleTitleFont: ['color', 'borderColor']
-    }
+    customCss: {}
   },
   InternshipExperience_2: {
     css: [],
-    customCss: {
-      moduleTitle: ['color', 'borderColor'],
-      moduleTitleFont: ['color', 'borderColor']
-    }
+    customCss: {}
   },
   InternshipExperience_3: {
     css: [],
-    customCss: {
-      moduleTitle: ['color', 'borderColor'],
-      moduleTitleFont: ['color', 'borderColor'],
-      moduleTitleIcon: ['background']
-    }
+    customCss: {}
   },
   InternshipExperience_4: {
     css: [],
-    customCss: {
-      moduleTitle: ['borderColor']
-    }
+    customCss: {}
   },
   InternshipExperience_5: {
     css: [],
-    customCss: {
-      moduleTitle: ['borderColor'],
-      moduleTitleFontBox: ['background', 'backgroundColor']
-    }
+    customCss: {}
   },
   InternshipExperience_6: {
     css: [],
-    customCss: {
-      moduleTitle: ['color']
-    }
+    customCss: {}
   },
   InternshipExperience_7: {
     css: [],
-    customCss: {
-      moduleTitle: ['color']
-    }
+    customCss: {}
   },
   InternshipExperience_8: {
     css: [],
-    customCss: {
-      moduleTitle: ['borderColor', 'color'],
-      moduleTitleIcon: ['background'],
-      moduleTitleRightBox: ['borderColor']
-    }
+    customCss: {}
   },
   InternshipExperience_9: {
     css: [],
-    customCss: {
-      moduleTitle: ['borderColor', 'color'],
-      moduleTitleIcon: ['background'],
-      moduleTitleRightBox: ['borderColor']
-    }
+    customCss: {}
   },
   InternshipExperience_10: {
     css: [],
-    customCss: {
-      moduleTitle: ['color', 'borderColor'],
-      moduleTitleFont: ['color', 'borderColor']
-    }
+    customCss: {}
   },
   InternshipExperience_11: {
     css: [],
-    customCss: {
-      moduleTitle: ['color']
-    }
+    customCss: {}
   },
   WorkExperience_1: {
     css: [],
-    customCss: {
-      moduleTitle: ['color', 'borderColor'],
-      moduleTitleFont: ['color', 'borderColor']
-    }
+    customCss: {}
   },
   WorkExperience_2: {
     css: [],
-    customCss: {
-      moduleTitle: ['color', 'borderColor'],
-      moduleTitleFont: ['color', 'borderColor']
-    }
+    customCss: {}
   },
   WorkExperience_3: {
     css: [],
-    customCss: {
-      moduleTitle: ['color', 'borderColor'],
-      moduleTitleFont: ['color', 'borderColor'],
-      moduleTitleIcon: ['background']
-    }
+    customCss: {}
   },
   WorkExperience_4: {
     css: [],
-    customCss: {
-      moduleTitle: ['borderColor']
-    }
+    customCss: {}
   },
   WorkExperience_5: {
     css: [],
-    customCss: {
-      moduleTitle: ['borderColor'],
-      moduleTitleFontBox: ['background', 'backgroundColor']
-    }
+    customCss: {}
   },
   WorkExperience_6: {
     css: [],
-    customCss: {
-      moduleTitle: ['color']
-    }
+    customCss: {}
   },
   WorkExperience_7: {
     css: [],
-    customCss: {
-      moduleTitle: ['color']
-    }
+    customCss: {}
   },
   WorkExperience_8: {
     css: [],
-    customCss: {
-      moduleTitle: ['borderColor', 'color'],
-      moduleTitleIcon: ['background'],
-      moduleTitleRightBox: ['borderColor']
-    }
+    customCss: {}
   },
   WorkExperience_9: {
     css: [],
-    customCss: {
-      moduleTitle: ['borderColor', 'color'],
-      moduleTitleIcon: ['background'],
-      moduleTitleRightBox: ['borderColor']
-    }
+    customCss: {}
   },
   WorkExperience_10: {
     css: [],
-    customCss: {
-      moduleTitle: ['color', 'borderColor'],
-      moduleTitleFont: ['color', 'borderColor']
-    }
+    customCss: {}
   },
   WorkExperience_11: {
     css: [],
-    customCss: {
-      moduleTitle: ['color']
-    }
+    customCss: {}
   },
   ProjectExperience_1: {
     css: [],
-    customCss: {
-      moduleTitle: ['color', 'borderColor'],
-      moduleTitleFont: ['color', 'borderColor']
-    }
+    customCss: {}
   },
   ProjectExperience_2: {
     css: [],
-    customCss: {
-      moduleTitle: ['color', 'borderColor'],
-      moduleTitleFont: ['color', 'borderColor']
-    }
+    customCss: {}
   },
   ProjectExperience_3: {
     css: [],
-    customCss: {
-      moduleTitle: ['color', 'borderColor'],
-      moduleTitleFont: ['color', 'borderColor'],
-      moduleTitleIcon: ['background']
-    }
+    customCss: {}
   },
   ProjectExperience_4: {
     css: [],
-    customCss: {
-      moduleTitle: ['borderColor']
-    }
+    customCss: {}
   },
   ProjectExperience_5: {
     css: [],
-    customCss: {
-      moduleTitle: ['borderColor'],
-      moduleTitleFontBox: ['background', 'backgroundColor']
-    }
+    customCss: {}
   },
   ProjectExperience_6: {
     css: [],
-    customCss: {
-      moduleTitle: ['color']
-    }
+    customCss: {}
   },
   ProjectExperience_7: {
     css: [],
-    customCss: {
-      moduleTitle: ['color']
-    }
+    customCss: {}
   },
   ProjectExperience_8: {
     css: [],
-    customCss: {
-      moduleTitle: ['borderColor', 'color'],
-      moduleTitleIcon: ['background'],
-      moduleTitleRightBox: ['borderColor']
-    }
+    customCss: {}
   },
   ProjectExperience_9: {
     css: [],
-    customCss: {
-      moduleTitle: ['borderColor', 'color'],
-      moduleTitleIcon: ['background'],
-      moduleTitleRightBox: ['borderColor']
-    }
+    customCss: {}
   },
   ProjectExperience_10: {
     css: [],
-    customCss: {
-      moduleTitle: ['color', 'borderColor'],
-      moduleTitleFont: ['color', 'borderColor']
-    }
+    customCss: {}
   },
   ProjectExperience_11: {
     css: [],
-    customCss: {
-      moduleTitle: ['color']
-    }
+    customCss: {}
   },
   Awards_1: {
     css: [],
-    customCss: {
-      moduleTitle: ['color', 'borderColor'],
-      moduleTitleFont: ['color', 'borderColor']
-    }
+    customCss: {}
   },
   Awards_2: {
     css: [],
-    customCss: {
-      moduleTitle: ['color', 'borderColor'],
-      moduleTitleFont: ['color', 'borderColor']
-    }
+    customCss: {}
   },
   Awards_3: {
     css: [],
-    customCss: {
-      moduleTitle: ['color', 'borderColor'],
-      moduleTitleFont: ['color', 'borderColor'],
-      moduleTitleIcon: ['background']
-    }
+    customCss: {}
   },
   Awards_4: {
     css: [],
-    customCss: {
-      moduleTitle: ['borderColor']
-    }
+    customCss: {}
   },
   Awards_5: {
     css: [],
-    customCss: {
-      moduleTitle: ['borderColor'],
-      moduleTitleFontBox: ['background', 'backgroundColor']
-    }
+    customCss: {}
   },
   Awards_6: {
     css: [],
-    customCss: {
-      moduleTitle: ['color']
-    }
+    customCss: {}
   },
   Awards_7: {
     css: [],
-    customCss: {
-      moduleTitle: ['color']
-    }
+    customCss: {}
   },
   Awards_8: {
     css: [],
-    customCss: {
-      moduleTitle: ['borderColor', 'color'],
-      moduleTitleIcon: ['background'],
-      moduleTitleRightBox: ['borderColor']
-    }
+    customCss: {}
   },
   Awards_9: {
     css: [],
-    customCss: {
-      moduleTitle: ['borderColor', 'color'],
-      moduleTitleIcon: ['background'],
-      moduleTitleRightBox: ['borderColor']
-    }
+    customCss: {}
   },
   Awards_10: {
     css: [],
-    customCss: {
-      moduleTitle: ['color', 'borderColor'],
-      moduleTitleFont: ['color', 'borderColor']
-    }
+    customCss: {}
   },
   Awards_11: {
     css: [],
-    customCss: {
-      moduleTitle: ['color']
-    }
+    customCss: {}
   },
   Awards_12: {
     css: [],
-    customCss: {
-      moduleTitle: ['color']
-    }
+    customCss: {}
   },
   Hobbies_1: {
     css: [],
-    customCss: {
-      moduleTitle: ['color', 'borderColor'],
-      moduleTitleFont: ['color', 'borderColor']
-    }
+    customCss: {}
   },
   Hobbies_2: {
     css: [],
-    customCss: {
-      moduleTitle: ['color', 'borderColor'],
-      moduleTitleFont: ['color', 'borderColor']
-    }
+    customCss: {}
   },
   Hobbies_3: {
     css: [],
-    customCss: {
-      moduleTitle: ['color', 'borderColor'],
-      moduleTitleFont: ['color', 'borderColor'],
-      moduleTitleIcon: ['background']
-    }
+    customCss: {}
   },
   Hobbies_4: {
     css: [],
-    customCss: {
-      moduleTitle: ['borderColor']
-    }
+    customCss: {}
   },
   Hobbies_5: {
     css: [],
-    customCss: {
-      moduleTitle: ['borderColor'],
-      moduleTitleFontBox: ['background', 'backgroundColor']
-    }
+    customCss: {}
   },
   Hobbies_6: {
     css: [],
-    customCss: {
-      moduleTitle: ['color']
-    }
+    customCss: {}
   },
   Hobbies_7: {
     css: [],
-    customCss: {
-      moduleTitle: ['color']
-    }
+    customCss: {}
   },
   Hobbies_8: {
     css: [],
-    customCss: {
-      moduleTitle: ['borderColor', 'color'],
-      moduleTitleIcon: ['background'],
-      moduleTitleRightBox: ['borderColor']
-    }
+    customCss: {}
   },
   Hobbies_9: {
     css: [],
-    customCss: {
-      moduleTitle: ['color', 'borderColor'],
-      moduleTitleFont: ['color', 'borderColor']
-    }
+    customCss: {}
   },
   Hobbies_10: {
     css: [],
-    customCss: {
-      moduleTitle: ['color']
-    }
+    customCss: {}
   },
   SelfEvaluation_1: {
     css: [],
-    customCss: {
-      moduleTitle: ['color', 'borderColor'],
-      moduleTitleFont: ['color', 'borderColor']
-    }
+    customCss: {}
   },
   SelfEvaluation_2: {
     css: [],
-    customCss: {
-      moduleTitle: ['color', 'borderColor'],
-      moduleTitleFont: ['color', 'borderColor']
-    }
+    customCss: {}
   },
   SelfEvaluation_3: {
     css: [],
-    customCss: {
-      moduleTitle: ['color', 'borderColor'],
-      moduleTitleFont: ['color', 'borderColor'],
-      moduleTitleIcon: ['background']
-    }
+    customCss: {}
   },
   SelfEvaluation_4: {
     css: [],
-    customCss: {
-      moduleTitle: ['borderColor']
-    }
+    customCss: {}
   },
   SelfEvaluation_5: {
     css: [],
-    customCss: {
-      moduleTitle: ['borderColor'],
-      moduleTitleFontBox: ['background', 'backgroundColor']
-    }
+    customCss: {}
   },
   SelfEvaluation_6: {
     css: [],
-    customCss: {
-      moduleTitle: ['color']
-    }
+    customCss: {}
   },
   SelfEvaluation_7: {
     css: [],
-    customCss: {
-      moduleTitle: ['color']
-    }
+    customCss: {}
   },
   SelfEvaluation_8: {
     css: [],
-    customCss: {
-      moduleTitle: ['borderColor', 'color'],
-      moduleTitleIcon: ['background'],
-      moduleTitleRightBox: ['borderColor']
-    }
+    customCss: {}
   },
   SelfEvaluation_9: {
     css: [],
-    customCss: {
-      moduleTitle: ['color', 'borderColor'],
-      moduleTitleFont: ['color', 'borderColor']
-    }
+    customCss: {}
   },
   SelfEvaluation_10: {
     css: [],
-    customCss: {
-      moduleTitle: ['color']
-    }
+    customCss: {}
   },
   WorksDisplay_1: {
     css: [],
-    customCss: {
-      moduleTitle: ['color', 'borderColor'],
-      moduleTitleFont: ['color', 'borderColor']
-    }
+    customCss: {}
   },
   WorksDisplay_2: {
     css: [],
-    customCss: {
-      moduleTitle: ['color', 'borderColor'],
-      moduleTitleFont: ['color', 'borderColor']
-    }
+    customCss: {}
   },
   WorksDisplay_3: {
     css: [],
-    customCss: {
-      moduleTitle: ['color', 'borderColor'],
-      moduleTitleFont: ['color', 'borderColor'],
-      moduleTitleIcon: ['background']
-    }
+    customCss: {}
   },
   WorksDisplay_4: {
     css: [],
-    customCss: {
-      moduleTitle: ['borderColor']
-    }
+    customCss: {}
   },
   WorksDisplay_5: {
     css: [],
-    customCss: {
-      moduleTitle: ['borderColor'],
-      moduleTitleFontBox: ['background', 'backgroundColor']
-    }
+    customCss: {}
   },
   WorksDisplay_6: {
     css: [],
-    customCss: {
-      moduleTitle: ['color']
-    }
+    customCss: {}
   },
   WorksDisplay_7: {
     css: [],
-    customCss: {
-      moduleTitle: ['color']
-    }
+    customCss: {}
   },
   WorksDisplay_8: {
     css: [],
-    customCss: {
-      moduleTitle: ['borderColor', 'color'],
-      moduleTitleIcon: ['background'],
-      moduleTitleRightBox: ['borderColor']
-    }
+    customCss: {}
   },
   WorksDisplay_9: {
     css: [],
-    customCss: {
-      moduleTitle: ['color', 'borderColor'],
-      moduleTitleFont: ['color', 'borderColor']
-    }
+    customCss: {}
   },
   WorksDisplay_10: {
     css: [],
-    customCss: {
-      moduleTitle: ['color']
-    }
+    customCss: {}
   },
   Custom_2: {
     css: [],
-    customCss: {
-      bottomLeft: ['backgroundColor', 'background'],
-      iconBox: ['background']
-    }
+    customCss: {}
   },
   Custom_3: {
     css: ['background'],
     customCss: {}
+  }
+};
+
+// 模块标题主题色配置
+export const moduleTitleThemeProps: any = {
+  ModuleTitle_1: {
+    moduleTitle: ['borderColor']
+  },
+  ModuleTitle_2: {},
+  ModuleTitle_3: {
+    moduleTitle: ['color', 'borderColor'],
+    moduleTitleFont: ['color', 'borderColor']
+  },
+  ModuleTitle_4: {
+    moduleTitle: ['borderColor']
+  },
+  ModuleTitle_5: {
+    moduleTitle: ['color', 'borderColor'],
+    moduleTitleFont: ['color', 'borderColor'],
+    moduleTitleIcon: ['background']
+  },
+  ModuleTitle_6: {
+    moduleTitle: ['borderColor'],
+    moduleTitleFontBox: ['background', 'backgroundColor']
+  },
+  ModuleTitle_7: {
+    moduleTitle: ['color']
+  },
+  ModuleTitle_8: {
+    moduleTitle: ['color']
+  },
+  ModuleTitle_9: {
+    moduleTitle: ['borderColor', 'color'],
+    moduleTitleIcon: ['background'],
+    moduleTitleRightBox: ['borderColor']
+  },
+  ModuleTitle_10: {
+    moduleTitle: ['color', 'borderColor'],
+    moduleTitleFont: ['color', 'borderColor']
+  },
+  ModuleTitle_11: {
+    moduleTitle: ['color']
+  },
+  ModuleTitle_12: {
+    moduleTitle: ['color']
+  },
+  ModuleTitle_13: {
+    moduleTitleFont: ['color'],
+    moduleTitleIcon: ['color']
+  },
+  ModuleTitle_14: {
+    moduleTitle: ['borderColor', 'color']
   }
 };
 export default themeColorProps;

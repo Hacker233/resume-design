@@ -1,5 +1,5 @@
 import { IModule } from '../../types/IHJNewSchema';
-import themeColorProps from '../dicts/themeColorProps';
+import themeColorProps, { moduleTitleThemeProps } from '../dicts/themeColorProps';
 
 // 返回最外层样式
 export const useGetBoxStyle = (props: { module: IModule }) => {
@@ -36,6 +36,7 @@ export const useGetBoxStyle = (props: { module: IModule }) => {
           setCssObject['css'].forEach((cssProp: string) => {
             props.module.css[cssProp] = newVal;
           });
+
           // 设置自定义样式跟随主题色
           props.module.customCss.forEach((customCssItem: any) => {
             if (setCssObject['customCss'].hasOwnProperty(customCssItem.prop)) {
@@ -44,6 +45,25 @@ export const useGetBoxStyle = (props: { module: IModule }) => {
               });
             }
           });
+
+          // 单独处理模块标题
+          if (props.module.customProps.ModuleTitleCpt) {
+            const setModuleCssObject =
+              moduleTitleThemeProps[props.module.customProps.ModuleTitleCpt]; // 该模块标题哪一些属性需要跟随主题色
+            if (setModuleCssObject) {
+              for (const key in setModuleCssObject) {
+                props.module.customCss.forEach((customCssItem: any) => {
+                  if (setModuleCssObject[key]) {
+                    setModuleCssObject[key].forEach((cssProp: string) => {
+                      if (customCssItem.prop === key) {
+                        customCssItem.css[cssProp] = newVal;
+                      }
+                    });
+                  }
+                });
+              }
+            }
+          }
         }
       }
     },

@@ -11,6 +11,7 @@ import BaseInfo_6 from './BaseInfo_6';
 import BaseInfo_7 from './BaseInfo_7';
 import BaseInfo_8 from './BaseInfo_8';
 import BaseInfo_9 from './BaseInfo_9';
+import BaseInfo_10 from './BaseInfo_10';
 
 const base_info = {
   id: 'baseInfo', // 模块id
@@ -29,7 +30,8 @@ const base_info = {
     BaseInfo_6,
     BaseInfo_7,
     BaseInfo_8,
-    BaseInfo_9
+    BaseInfo_9,
+    BaseInfo_10
   ]
 };
 

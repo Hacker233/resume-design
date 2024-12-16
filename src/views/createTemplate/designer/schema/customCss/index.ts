@@ -7,6 +7,7 @@ import BaseInfo_6 from './base_info/BaseInfo_6';
 import BaseInfo_7 from './base_info/BaseInfo_7';
 import BaseInfo_8 from './base_info/BaseInfo_8';
 import BaseInfo_9 from './base_info/BaseInfo_9';
+import BaseInfo_10 from './base_info/BaseInfo_10';
 
 // 求职意向
 import JobIntention_1 from './job_intention/JobIntention_1';
@@ -176,6 +177,7 @@ import ModuleTitle_10 from './module_title/Module_Title_10';
 import ModuleTitle_11 from './module_title/Module_Title_11';
 import ModuleTitle_12 from './module_title/Module_Title_12';
 import ModuleTitle_13 from './module_title/Module_Title_13';
+import ModuleTitle_14 from './module_title/Module_Title_14';
 
 // 页面
 import base_page from './pages/base_page';
@@ -192,6 +194,7 @@ const customCss: any = {
   BaseInfo_7,
   BaseInfo_8,
   BaseInfo_9,
+  BaseInfo_10,
 
   JobIntention_1,
   JobIntention_2,
@@ -348,6 +351,7 @@ const customCss: any = {
   ModuleTitle_11,
   ModuleTitle_12,
   ModuleTitle_13,
+  ModuleTitle_14,
 
   base_page,
   left_right_page,

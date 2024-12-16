@@ -12,6 +12,7 @@ import BaseInfo_6 from '../modules/BaseInfo/BaseInfo_6.vue';
 import BaseInfo_7 from '../modules/BaseInfo/BaseInfo_7.vue';
 import BaseInfo_8 from '../modules/BaseInfo/BaseInfo_8.vue';
 import BaseInfo_9 from '../modules/BaseInfo/BaseInfo_9.vue';
+import BaseInfo_10 from '../modules/BaseInfo/BaseInfo_10.vue';
 
 // 求职意向
 import JobIntention_1 from '../modules/JobIntention/JobIntention_1.vue';
@@ -177,6 +178,7 @@ const moduleComponents: any = {
   BaseInfo_7,
   BaseInfo_8,
   BaseInfo_9,
+  BaseInfo_10,
   // 求职意向
   JobIntention_1,
   JobIntention_2,
