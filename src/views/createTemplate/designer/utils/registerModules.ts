@@ -164,6 +164,7 @@ import WorksDisplay_10 from '../modules/WorksDisplay/WorksDisplay_10.vue';
 import Custom_1 from '../modules/Custom/Custom_1.vue';
 import Custom_2 from '../modules/Custom/Custom_2.vue';
 import Custom_3 from '../modules/Custom/Custom_3.vue';
+import BaseInfo_11 from '../modules/BaseInfo/BaseInfo_11.vue';
 
 // 定义页面组件列表
 const moduleComponents: any = {
@@ -179,6 +180,7 @@ const moduleComponents: any = {
   BaseInfo_8,
   BaseInfo_9,
   BaseInfo_10,
+  BaseInfo_11,
   // 求职意向
   JobIntention_1,
   JobIntention_2,

@@ -141,6 +141,12 @@ export default [
         bottom: 0,
         left: 0
       },
+      padding: {
+        top: 0,
+        right: 0,
+        bottom: 10,
+        left: 0
+      },
       borderColor: 'rgb(0, 0, 0)',
       borderStyle: 'solid'
     }

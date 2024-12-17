@@ -104,10 +104,10 @@
     moduleTitleCustomCssArray.forEach((item2: any) => {
       const index = selectModule.customCss.findIndex((item1: any) => item1.prop === item2.prop);
       if (index === -1) {
-        newItems.push(item2);
+        newItems.push(cloneDeep(item2));
       } else {
         // 如果存在，替换 selectModule.customCss 中的元素
-        selectModule.customCss[index] = item2;
+        selectModule.customCss[index] = cloneDeep(item2);
       }
     });
 

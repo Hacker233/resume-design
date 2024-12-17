@@ -30,6 +30,10 @@ const themeColorProps: any = {
       nameAbstractBox: ['background']
     }
   },
+  BaseInfo_11: {
+    css: [],
+    customCss: {}
+  },
   JobIntention_1: {
     css: [],
     customCss: {}
