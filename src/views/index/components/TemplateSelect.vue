@@ -30,22 +30,18 @@
   import IntroduceTitleVue from './IntroduceTitle.vue';
   import { useRouter } from 'vue-router';
   import { onUnmounted, ref } from 'vue';
-  import { openGlobalLoading } from '@/utils/common';
   import appStore from '@/store';
   import SkeletonCard from '@/components/SkeletonCard/SkeletonCard.vue';
   import { templateListAsync } from '@/http/api/createTemplate';
   import { storeToRefs } from 'pinia';
 
   // 跳转至设计页面
-  const { resetResumeJson } = appStore.useCreateTemplateStore;
   const { selectedModuleId } = storeToRefs(appStore.useCreateTemplateStore);
   const router = useRouter();
   const toDesign = (item: any) => {
-    openGlobalLoading(); // 等待动画层
-    resetResumeJson(); // 重置json数据
     selectedModuleId.value = ''; // 重置选中模块
     router.push({
-      path: `/designResume/${item._id}`
+      path: `/resumedetail/${item._id}`
     });
   };
 

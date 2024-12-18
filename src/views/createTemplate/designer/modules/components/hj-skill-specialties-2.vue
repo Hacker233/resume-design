@@ -43,7 +43,6 @@
 
   // 是否需要奇数列设置右边距
   const isOddLi = (index: number) => {
-    console.log('skillSpecialtiesLi.width', skillSpecialtiesLi.value.width);
     if (skillSpecialtiesLi.value.width?.indexOf('%') > -1) {
       if (Number(skillSpecialtiesLi.value.width.split('%')[0]) > 50 || index % 2 == 0) {
         return false;

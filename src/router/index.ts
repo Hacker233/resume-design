@@ -20,6 +20,7 @@ const PdfPreview = () => import('@/views/PdfPreview/index.vue'); // 老版本简
 const ResumePreview = () => import('@/views/createTemplate/previewer/index.vue');
 const Template = () => import('@/views/template/index.vue');
 const Resume = () => import('@/views/resumeList/index.vue');
+const ResumeContent = () => import('@/views/resumeContent/index.vue');
 const Word = () => import('@/views/word/index.vue');
 const WordPreview = () => import('@/views/wordPreview/index.vue');
 const PPT = () => import('@/views/ppt/index.vue');
@@ -281,6 +282,17 @@ const routes: Array<RouteRecordRaw> = [
       requireLogin: false
     },
     component: Resume
+  },
+  {
+    path: '/resumedetail/:id',
+    name: 'ResumeContent',
+    meta: {
+      title: '简历模版详情',
+      keepAlive: true,
+      isShowComNav: true,
+      requireLogin: false
+    },
+    component: ResumeContent
   },
   {
     path: '/word',
