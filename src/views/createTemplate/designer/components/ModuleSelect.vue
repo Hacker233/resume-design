@@ -52,7 +52,9 @@
                     lazy
                   />
                   <!-- 组件的name -->
-                  <span class="module-component-name">{{ element.componentName }}</span>
+                  <span v-if="showModuleName" class="module-component-name">{{
+                    element.componentName
+                  }}</span>
                 </div>
               </template>
             </draggable>
@@ -85,9 +87,11 @@
 
   interface IModuleSelect {
     showTitle?: boolean;
+    showModuleName?: boolean;
   }
   withDefaults(defineProps<IModuleSelect>(), {
-    showTitle: true
+    showTitle: true,
+    showModuleName: true
   });
 
   const { selectedModuleListId } = storeToRefs(appStore.useCreateTemplateStore);

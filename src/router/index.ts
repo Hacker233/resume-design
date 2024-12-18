@@ -1062,7 +1062,15 @@ const routes: Array<RouteRecordRaw> = [
 // const routerHistory = createWebHistory('/');
 const router = createRouter({
   history: createWebHistory(),
-  routes
+  routes,
+  scrollBehavior(to, from, savedPosition) {
+    // 如果有保存的滚动位置，则滚动到该位置
+    if (savedPosition) {
+      return savedPosition;
+    }
+    // 跳转到新的页面时，滚动到顶部
+    return { top: 0 };
+  }
 });
 
 // 全局守卫：登录拦截 本地没有存token,请重新登录

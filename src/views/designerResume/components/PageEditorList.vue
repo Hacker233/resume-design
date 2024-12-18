@@ -61,6 +61,7 @@
     <!-- 切换模块标题弹窗 -->
     <select-module-title-dialog
       :dialog-module-title-visible="dialogModuleTitleVisible"
+      :show-module-title-name="false"
       @cancle="handleCancleModuleTitle"
     ></select-module-title-dialog>
   </div>

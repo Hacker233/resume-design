@@ -46,13 +46,13 @@
   import PageEditorList from './components/PageEditorList.vue';
   import { exportPdfNew, exportPNGNew } from '@/utils/pdf';
   import ProcessBarDialog from '@/components/ProcessBarDialog/ProcessBarDialog.vue';
+  import { useHead } from '@vueuse/head';
 
   const { HJNewJsonStore, selectedPageName } = storeToRefs(appStore.useCreateTemplateStore);
   const route = useRoute();
 
   // 响应式缩放比例
   const zoomScale = ref(1);
-
   const adjustZoomScale = () => {
     const rightBox = document.getElementById('resume-container') as HTMLElement;
     const fixedWidth = 820; // ResumeRender 的固定宽度
@@ -75,6 +75,20 @@
       HJNewJsonStore.value = data.data.template_json;
       HJNewJsonStore.value.props.title = data.data.template_title;
       ElMessage.success('初始化成功');
+      useHead({
+        title: HJNewJsonStore.value.props.title || '91化简-开源简历制作神器',
+        meta: [
+          {
+            name: 'description',
+            content:
+              '91化简-开源简历制作神器！免费制作一份精美的简历！内置两款设计器、快速设计、简历、封面、海报均可免费制作，支持一键导出高清PDF、JSON数据等。'
+          },
+          {
+            name: 'keywords',
+            content: '简历 开源 设计器 制作 PDF 高清简历 免费开源'
+          }
+        ]
+      });
     } else {
       defaultTemplate();
     }
@@ -85,7 +99,21 @@
     const data = await getUsertemplateAsync(route.params.id);
     if (data.data.status === 200) {
       HJNewJsonStore.value = data.data.data.template_json;
-      HJNewJsonStore.value.props.title = data.data.data.template_title;
+      HJNewJsonStore.value.props.title = data.data.data.template_json.config.title;
+      useHead({
+        title: HJNewJsonStore.value.props.title || '91化简-开源简历制作神器',
+        meta: [
+          {
+            name: 'description',
+            content:
+              '91化简-开源简历制作神器！免费制作一份精美的简历！内置两款设计器、快速设计、简历、封面、海报均可免费制作，支持一键导出高清PDF、JSON数据等。'
+          },
+          {
+            name: 'keywords',
+            content: '简历 开源 设计器 制作 PDF 高清简历 免费开源'
+          }
+        ]
+      });
     } else {
       defaultTemplate();
     }

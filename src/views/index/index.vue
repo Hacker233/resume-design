@@ -69,7 +69,7 @@
   if (readNotice == '1') {
     dialogNoticeVisible.value = false;
   } else {
-    dialogNoticeVisible.value = true;
+    dialogNoticeVisible.value = false;
   }
 
   const noticeCancle = () => {

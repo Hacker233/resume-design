@@ -27,7 +27,7 @@
         </el-form>
       </el-collapse-item>
       <!-- 自定义的样式属性 -->
-      <div class="collapse-line-bolck">
+      <div v-if="module?.customCss?.length" class="collapse-line-bolck">
         <h1>内部子组件样式属性设置</h1>
       </div>
       <el-collapse-item

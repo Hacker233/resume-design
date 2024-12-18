@@ -10,7 +10,7 @@
     destroy-on-close
     @close="handleClose"
   >
-    <module-select v-if="drawer" :show-title="false"></module-select>
+    <module-select v-if="drawer" :show-module-name="false" :show-title="false"></module-select>
   </el-drawer>
 </template>
 <script lang="ts" setup>

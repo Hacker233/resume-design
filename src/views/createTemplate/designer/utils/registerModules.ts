@@ -1,6 +1,7 @@
 // 简历标题
 import ResumeTitle_1 from '../modules/ResumeTitle/ResumeTitle_1.vue';
 import ResumeTitle_2 from '../modules/ResumeTitle/ResumeTitle_2.vue';
+import ResumeTitle_3 from '../modules/ResumeTitle/ResumeTitle_3.vue';
 
 // 基础资料
 import BaseInfo_1 from '../modules/BaseInfo/BaseInfo_1.vue';
@@ -13,6 +14,7 @@ import BaseInfo_7 from '../modules/BaseInfo/BaseInfo_7.vue';
 import BaseInfo_8 from '../modules/BaseInfo/BaseInfo_8.vue';
 import BaseInfo_9 from '../modules/BaseInfo/BaseInfo_9.vue';
 import BaseInfo_10 from '../modules/BaseInfo/BaseInfo_10.vue';
+import BaseInfo_11 from '../modules/BaseInfo/BaseInfo_11.vue';
 
 // 求职意向
 import JobIntention_1 from '../modules/JobIntention/JobIntention_1.vue';
@@ -164,12 +166,13 @@ import WorksDisplay_10 from '../modules/WorksDisplay/WorksDisplay_10.vue';
 import Custom_1 from '../modules/Custom/Custom_1.vue';
 import Custom_2 from '../modules/Custom/Custom_2.vue';
 import Custom_3 from '../modules/Custom/Custom_3.vue';
-import BaseInfo_11 from '../modules/BaseInfo/BaseInfo_11.vue';
 
 // 定义页面组件列表
 const moduleComponents: any = {
   ResumeTitle_1,
   ResumeTitle_2,
+  ResumeTitle_3,
+
   BaseInfo_1,
   BaseInfo_2,
   BaseInfo_3,

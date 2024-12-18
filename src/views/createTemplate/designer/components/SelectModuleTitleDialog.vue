@@ -2,7 +2,7 @@
 <template>
   <el-dialog
     :model-value="dialogModuleTitleVisible"
-    title="请选择模块标题组件"
+    title="请选择模块标题样式"
     width="800px"
     :show-close="false"
     :close-on-click-modal="false"
@@ -20,7 +20,9 @@
         </div>
         <img :src="getModuleTitleImagesFile(item.img)" alt="图片" lazy @click="selectPage(item)" />
         <!-- 组件的name -->
-        <span class="module-title-component-name">{{ item.cptName }}</span>
+        <span v-if="showModuleTitleName" class="module-title-component-name">{{
+          item.cptName
+        }}</span>
       </div>
     </div>
     <template #footer>
@@ -44,9 +46,11 @@
   const emit = defineEmits(['cancle', 'updateSuccess']);
   interface TDialog {
     dialogModuleTitleVisible: boolean;
+    showModuleTitleName?: boolean;
   }
   const props = withDefaults(defineProps<TDialog>(), {
-    dialogModuleTitleVisible: false
+    dialogModuleTitleVisible: false,
+    showModuleTitleName: true
   });
 
   const { selectedModuleId } = storeToRefs(appStore.useCreateTemplateStore);

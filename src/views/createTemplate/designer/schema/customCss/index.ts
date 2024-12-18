@@ -24,6 +24,7 @@ import JobIntention_10 from './job_intention/JobIntention_10';
 
 import ResumeTitle_1 from './resume_title/ResumeTitle_1';
 import ResumeTitle_2 from './resume_title/ResumeTitle_2';
+import ResumeTitle_3 from './resume_title/ResumeTitle_3';
 
 // 教育背景
 import EduBackground_1 from './edu_background/EduBackground_1';
@@ -179,6 +180,8 @@ import ModuleTitle_11 from './module_title/Module_Title_11';
 import ModuleTitle_12 from './module_title/Module_Title_12';
 import ModuleTitle_13 from './module_title/Module_Title_13';
 import ModuleTitle_14 from './module_title/Module_Title_14';
+import ModuleTitle_15 from './module_title/Module_Title_15';
+import ModuleTitle_16 from './module_title/Module_Title_16';
 
 // 页面
 import base_page from './pages/base_page';
@@ -211,6 +214,7 @@ const customCss: any = {
 
   ResumeTitle_1,
   ResumeTitle_2,
+  ResumeTitle_3,
 
   EduBackground_1,
   EduBackground_2,
@@ -354,6 +358,8 @@ const customCss: any = {
   ModuleTitle_12,
   ModuleTitle_13,
   ModuleTitle_14,
+  ModuleTitle_15,
+  ModuleTitle_16,
 
   base_page,
   left_right_page,

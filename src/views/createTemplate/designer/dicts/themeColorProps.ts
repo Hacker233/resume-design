@@ -8,6 +8,10 @@ const themeColorProps: any = {
     css: ['background'],
     customCss: {}
   },
+  ResumeTitle_3: {
+    css: ['background'], // 主题样式需要设置为主题色的css属性
+    customCss: {} // 自定义样式中，需要设置为主题色的prop，以及对应的css属性
+  },
   BaseInfo_3: {
     css: [],
     customCss: {}
@@ -601,6 +605,12 @@ export const moduleTitleThemeProps: any = {
   },
   ModuleTitle_14: {
     moduleTitle: ['borderColor', 'color']
+  },
+  ModuleTitle_15: {
+    moduleTitleFont: ['background']
+  },
+  ModuleTitle_16: {
+    moduleTitleFont: ['background', 'backgroundColor']
   }
 };
 export default themeColorProps;
