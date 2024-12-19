@@ -222,7 +222,7 @@
 </script>
 <style lang="scss" scopeds>
   .nav-box {
-    height: 60px;
+    height: 50px;
     width: 100%;
     background-color: #fff;
     position: sticky;

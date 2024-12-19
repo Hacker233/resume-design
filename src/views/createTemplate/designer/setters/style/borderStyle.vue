@@ -1,6 +1,6 @@
 <template>
   <div class="border-style-editor-box">
-    <el-form-item label="边框样式:">
+    <el-form-item label="边框样式">
       <el-popover placement="top" :width="300" trigger="click">
         <!-- 边框样式选项 -->
         <div class="border-editor-style-list">

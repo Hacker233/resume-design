@@ -1,6 +1,6 @@
 <template>
   <div class="height-editor-box">
-    <el-form-item size="default" label="列表标记:">
+    <el-form-item size="default" label="列表标记">
       <el-radio-group v-model="module.css.listStylePosition">
         <el-radio label="inside">内部</el-radio>
         <el-radio label="outside">外部 </el-radio>

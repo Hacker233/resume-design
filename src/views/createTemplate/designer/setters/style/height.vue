@@ -1,6 +1,6 @@
 <template>
   <div class="height-editor-box">
-    <el-form-item size="default" label="高度:">
+    <el-form-item size="default" label="高度">
       <el-input-number
         v-model="numericHeight"
         size="default"

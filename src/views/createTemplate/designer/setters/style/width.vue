@@ -1,6 +1,6 @@
 <template>
   <div class="width-editor-box">
-    <el-form-item size="default" label="宽度:">
+    <el-form-item size="default" label="宽度">
       <el-input-number
         v-model="numericWidth"
         size="default"

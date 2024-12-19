@@ -1,6 +1,6 @@
 <template>
   <div class="font-weight-editor-box">
-    <el-form-item label="字间距:" size="default">
+    <el-form-item label="字间距" size="default">
       <el-input-number v-model="module.css.letterSpacing" :max="1000" :step="1" />
     </el-form-item>
   </div>

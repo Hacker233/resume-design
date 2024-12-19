@@ -1,6 +1,6 @@
 <template>
   <div class="height-editor-box">
-    <el-form-item size="default" label="标记样式:">
+    <el-form-item size="default" label="标记样式">
       <el-radio-group v-model="module.css.listStyle">
         <el-radio label="disc"><li :style="{ listStyle: 'disc' }"></li></el-radio>
         <el-radio label="auto"><li :style="{ listStyle: 'auto' }"></li> </el-radio>

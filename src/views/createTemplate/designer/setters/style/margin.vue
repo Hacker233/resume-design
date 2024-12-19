@@ -1,6 +1,6 @@
 <template>
   <div class="margin-editor-box">
-    <el-form-item label="外边距:">
+    <el-form-item label="外边距">
       <div class="padding-setting-box">
         <div class="left">
           <el-input-number v-model="module.css.margin.left" controls-position="right" />

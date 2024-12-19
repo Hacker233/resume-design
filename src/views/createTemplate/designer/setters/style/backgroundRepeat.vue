@@ -1,6 +1,6 @@
 <template>
   <div class="height-editor-box">
-    <el-form-item size="default" label="背景重复:">
+    <el-form-item size="default" label="背景重复">
       <el-radio-group v-model="module.css.backgroundRepeat">
         <el-radio label="repeat">repeat</el-radio>
         <el-radio label="no-repeat">no-repeat</el-radio>

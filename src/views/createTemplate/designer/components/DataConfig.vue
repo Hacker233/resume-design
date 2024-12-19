@@ -272,7 +272,8 @@
     flex-direction: column;
     .data-config-title-box {
       width: 100%;
-      height: 60px;
+      height: 50px;
+      flex-shrink: 0;
       background-image: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%);
       display: flex;
       justify-content: space-between;

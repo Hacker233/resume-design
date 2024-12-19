@@ -1,6 +1,6 @@
 <template>
   <div class="height-editor-box">
-    <el-form-item size="default" label="布局方式:">
+    <el-form-item size="default" label="布局方式">
       <el-radio-group v-model="module.css.flexDirection">
         <el-radio label="row">水平</el-radio>
         <el-radio label="column">垂直</el-radio>

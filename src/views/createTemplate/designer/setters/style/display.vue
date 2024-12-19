@@ -1,6 +1,6 @@
 <template>
   <div class="height-editor-box">
-    <el-form-item size="default" label="块级属性:">
+    <el-form-item size="default" label="块级属性">
       <el-radio-group v-model="module.css.display">
         <el-radio label="flex">水平排列</el-radio>
         <el-radio label="inline-block">行内块级</el-radio>

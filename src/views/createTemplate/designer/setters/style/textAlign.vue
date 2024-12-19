@@ -1,6 +1,6 @@
 <template>
   <div class="height-editor-box">
-    <el-form-item size="default" label="文字对齐:">
+    <el-form-item size="default" label="文字对齐">
       <el-radio-group v-model="module.css.justifyContent">
         <el-radio label="left">左对齐</el-radio>
         <el-radio label="center">居中 </el-radio>

@@ -1,6 +1,6 @@
 <template>
   <div class="padding-editor-box">
-    <el-form-item label="边框宽度:">
+    <el-form-item label="边框宽度">
       <div class="padding-setting-box">
         <div class="left">
           <el-input-number

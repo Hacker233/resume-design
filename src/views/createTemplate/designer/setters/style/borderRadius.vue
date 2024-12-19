@@ -1,6 +1,6 @@
 <template>
   <div class="padding-editor-box">
-    <el-form-item label="圆角:">
+    <el-form-item label="圆角">
       <div class="padding-setting-box">
         <div class="left">
           <el-input-number

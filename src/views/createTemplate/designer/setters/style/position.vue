@@ -1,6 +1,6 @@
 <template>
   <div class="height-editor-box">
-    <el-form-item size="default" label="定位模式:">
+    <el-form-item size="default" label="定位模式">
       <el-radio-group v-model="module.css.position">
         <el-radio label="static">默认</el-radio>
         <el-radio label="relative">相对定位</el-radio>

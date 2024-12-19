@@ -1,6 +1,6 @@
 <template>
   <div class="height-editor-box">
-    <el-form-item size="default" label="宽度缩小:">
+    <el-form-item size="default" label="宽度缩小">
       <el-radio-group v-model="module.css.flexShrink">
         <el-radio :label="0">不缩小</el-radio>
         <el-radio :label="1">缩小</el-radio>

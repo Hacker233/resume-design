@@ -187,7 +187,7 @@
       flex-direction: column;
       .left-title {
         width: 100%;
-        height: 60px;
+        height: 50px;
         display: flex;
         flex-direction: column;
         justify-content: space-evenly;
@@ -239,7 +239,7 @@
       display: flex;
       flex-direction: column;
       .list-title {
-        height: 60px;
+        height: 50px;
         display: flex;
         align-items: center;
         justify-content: center;

@@ -1,6 +1,6 @@
 <template>
   <div class="font-color-editor-box">
-    <el-form-item label="字体颜色:">
+    <el-form-item label="字体颜色">
       <color-picker-custom-vue v-model="module.css.color"></color-picker-custom-vue>
     </el-form-item>
   </div>

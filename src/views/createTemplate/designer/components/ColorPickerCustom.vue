@@ -9,7 +9,7 @@
         trigger="click"
       >
         <template #reference>
-          <div class="custom-color-btn" title="自定义颜色"> </div>
+          <div class="custom-color-btn"> </div>
         </template>
         <div @click.prevent="">
           <color-picker
@@ -25,15 +25,17 @@
         </div>
       </el-popover>
     </div>
-    <div v-for="(item, index) in colorList" :key="item.hex" :class="['item-box']">
-      <span
-        :class="['item', { active: index === curentIndex || modelValue === item.rgb }]"
-        :style="{
-          'background-color': item.hex
-        }"
-        @click="changTheme(index, item)"
-      ></span>
-    </div>
+    <template v-if="showList">
+      <div v-for="(item, index) in colorListFilter" :key="item.hex" :class="['item-box']">
+        <span
+          :class="['item', { active: index === curentIndex || modelValue === item.rgb }]"
+          :style="{
+            'background-color': item.hex
+          }"
+          @click="changTheme(index, item)"
+        ></span>
+      </div>
+    </template>
   </div>
 </template>
 <script lang="ts" setup>
@@ -43,10 +45,14 @@
   interface IColor {
     modelValue?: any;
     teleported?: boolean;
+    showList?: boolean;
+    listNumber?: number;
   }
   const props = withDefaults(defineProps<IColor>(), {
     modelValue: '',
-    teleported: true
+    teleported: true,
+    showList: true,
+    listNumber: 0
   });
 
   const emit = defineEmits(['update:modelValue', 'change']);
@@ -93,6 +99,14 @@
       hex: '#647ec9'
     }
   ]);
+
+  const colorListFilter = computed(() => {
+    if (props.listNumber > 0) {
+      return colorList.splice(0, props.listNumber);
+    } else {
+      return colorList;
+    }
+  });
 
   // 更改主题色
   const curentIndex = ref<number>(-1);

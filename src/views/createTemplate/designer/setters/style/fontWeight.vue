@@ -1,6 +1,6 @@
 <template>
   <div class="font-weight-editor-box">
-    <el-form-item label="字体粗细:" size="default">
+    <el-form-item label="字体粗细" size="default">
       <el-input-number v-model="module.css.fontWeight" :min="0" :max="1000" :step="100" />
     </el-form-item>
   </div>

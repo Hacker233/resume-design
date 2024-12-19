@@ -1,6 +1,6 @@
 <template>
   <div class="height-editor-box">
-    <el-form-item size="default" label="是否撑满:">
+    <el-form-item size="default" label="是否撑满">
       <el-radio-group v-model="module.css.flex">
         <el-radio :label="1">是</el-radio>
         <el-radio label="">否</el-radio>

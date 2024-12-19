@@ -1,6 +1,6 @@
 <template>
   <div class="font-family-editor-box">
-    <el-form-item label="字体选择:" size="default">
+    <el-form-item label="字体选择" size="default">
       <el-select
         v-model="module.css.fontFamily"
         :teleported="true"

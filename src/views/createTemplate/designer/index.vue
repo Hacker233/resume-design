@@ -10,6 +10,8 @@
       </div>
       <!-- 中间设计区 -->
       <div class="design-center">
+        <!-- 全局主题设置 -->
+        <global-theme-setting-bar></global-theme-setting-bar>
         <div class="center-wrapper">
           <!-- 简历渲染区域 -->
           <resume-render></resume-render>
@@ -38,6 +40,7 @@
   import pageSchemas from './schema/pageSchema';
   import { getTemplateByIdAsync } from '@/http/api/createTemplate';
   import ResumeRender from './components/ResumeRender.vue';
+  import GlobalThemeSettingBar from './components/GlobalThemeSettingBar.vue';
 
   const templateInfo = ref<any>(null);
   const route = useRoute();
@@ -111,7 +114,7 @@
         min-width: 300px;
       }
       .design-center {
-        height: calc(100vh - 50px);
+        height: calc(100vh - 100px);
         flex: 1;
         min-width: 970px;
         position: relative;
@@ -128,7 +131,7 @@
             min-height: 300px;
             position: absolute;
             right: 15px;
-            top: 20px;
+            top: 70px;
           }
         }
       }

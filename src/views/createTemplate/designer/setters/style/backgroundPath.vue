@@ -1,6 +1,6 @@
 <template>
   <div class="avatar-editor">
-    <el-form-item label="背景图片:">
+    <el-form-item label="背景图片">
       <el-upload
         class="hj-avatar-uploader"
         :action="uploadAddress()"

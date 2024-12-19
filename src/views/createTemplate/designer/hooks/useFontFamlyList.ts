@@ -3,6 +3,7 @@
  */
 export const useFontFamilyList = () => {
   return reactive<Array<string>>([
+    '微软雅黑',
     '阿里巴巴普惠体',
     '阿里妈妈东方大楷',
     '阿里妈妈数黑体',

@@ -1,6 +1,6 @@
 <template>
   <div class="rotate-editor-box">
-    <el-form-item label="旋转角度:">
+    <el-form-item label="旋转角度">
       <el-input-number v-model="module.css.rotate" :min="-360" :max="360" />
       <span class="unit">deg</span>
     </el-form-item>

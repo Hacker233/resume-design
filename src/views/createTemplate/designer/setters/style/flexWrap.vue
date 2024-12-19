@@ -1,6 +1,6 @@
 <template>
   <div class="height-editor-box">
-    <el-form-item size="default" label="自动换行:">
+    <el-form-item size="default" label="自动换行">
       <el-radio-group v-model="module.css.flexWrap">
         <el-radio label="wrap">是</el-radio>
         <el-radio label="no-wrap">否</el-radio>

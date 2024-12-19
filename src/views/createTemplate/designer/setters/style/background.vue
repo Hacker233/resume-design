@@ -1,6 +1,6 @@
 <template>
   <div class="font-color-editor-box">
-    <el-form-item label="背景颜色:">
+    <el-form-item label="背景颜色">
       <color-picker-custom-vue v-model="module.css.background"></color-picker-custom-vue>
     </el-form-item>
   </div>

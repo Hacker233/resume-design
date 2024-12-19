@@ -1,6 +1,6 @@
 <template>
   <div class="font-color-editor-box">
-    <el-form-item label="边框颜色:">
+    <el-form-item label="边框颜色">
       <color-picker-custom-vue v-model="module.css.borderColor"></color-picker-custom-vue>
     </el-form-item>
   </div>

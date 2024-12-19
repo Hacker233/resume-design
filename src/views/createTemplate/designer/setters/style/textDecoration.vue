@@ -1,6 +1,6 @@
 <template>
   <div class="height-editor-box">
-    <el-form-item size="default" label="链接标志:">
+    <el-form-item size="default" label="链接标志">
       <el-radio-group v-model="module.css.textDecoration">
         <el-radio label="none">无</el-radio>
         <el-radio label="line-through">中划线 </el-radio>

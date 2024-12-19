@@ -1,6 +1,6 @@
 <template>
   <div class="font-weight-editor-box">
-    <el-form-item label="透明度:" size="default">
+    <el-form-item label="透明度" size="default">
       <el-input-number v-model="module.css.opacity" :min="0" :max="1" :step="0.1" />
     </el-form-item>
   </div>

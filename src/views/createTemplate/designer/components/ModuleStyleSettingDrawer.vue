@@ -16,7 +16,7 @@
         <h1>组件整体样式属性设置</h1>
       </div>
       <el-collapse-item title="组件整体样式" name="styleProp">
-        <el-form label-width="90px" label-position="left">
+        <el-form label-width="100px" label-position="right">
           <div v-for="(value, key, index) in module.css" :key="index">
             <component
               :is="getStyleSetterCom(key)"
@@ -36,8 +36,8 @@
         :title="customItem.title"
         :name="customItem.prop"
       >
-        <el-form label-width="90px" label-position="left">
-          <el-form-item label="自定义Prop:">
+        <el-form label-width="100px" label-position="right">
+          <el-form-item v-if="route.query.type === 'create'" label="Prop">
             <el-input v-model="customItem.prop" disabled />
           </el-form-item>
           <div v-for="(value, key, index) in customItem.css" :key="index">
@@ -131,6 +131,19 @@
         }
         .el-collapse-item__wrap {
           border-bottom: none;
+        }
+        .el-form-item {
+          margin-bottom: 22px;
+        }
+        .el-form-item__label {
+          font-weight: 600;
+          font-size: 14px;
+          letter-spacing: 1px;
+          width: 100px;
+          margin-right: 20px;
+          padding: 0 10px 0 5px;
+          border-radius: 4px;
+          background-image: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%);
         }
       }
     }

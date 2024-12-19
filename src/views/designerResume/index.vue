@@ -10,6 +10,8 @@
       </div>
       <!-- 简历预览 -->
       <div id="resume-container" class="right">
+        <!-- 主题配置 -->
+        <global-theme-setting-bar></global-theme-setting-bar>
         <div
           v-loading="!HJNewJsonStore.componentsTree.length"
           class="resume-container"
@@ -47,6 +49,7 @@
   import { exportPdfNew, exportPNGNew } from '@/utils/pdf';
   import ProcessBarDialog from '@/components/ProcessBarDialog/ProcessBarDialog.vue';
   import { useHead } from '@vueuse/head';
+  import GlobalThemeSettingBar from '../createTemplate/designer/components/GlobalThemeSettingBar.vue';
 
   const { HJNewJsonStore, selectedPageName } = storeToRefs(appStore.useCreateTemplateStore);
   const route = useRoute();
@@ -232,11 +235,13 @@
         overflow-x: hidden;
         overflow-y: auto;
         display: flex;
-        justify-content: center; // 水平居中
-        align-items: flex-start;
-        padding: 20px; // 添加 padding
+        flex-direction: column;
+        align-items: center;
+        padding-bottom: 20px;
+        position: relative;
 
         .resume-container {
+          margin-top: 20px;
           width: 820px; // 固定宽度
           height: auto;
         }
@@ -246,7 +251,7 @@
         min-height: 300px;
         position: absolute;
         right: 15px;
-        top: 80px;
+        top: 130px;
       }
     }
 
