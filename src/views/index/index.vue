@@ -63,6 +63,21 @@
   import SelectTemplateByUse from './components/SelectTemplateByUse.vue';
   import ResumeFunctionIntroduce from './components/ResumeFunctionIntroduce.vue';
   import WebsiteOpenSource from './components/WebsiteOpenSource.vue';
+  import { useHead } from '@vueuse/head';
+  useHead({
+    title: '91化简-一款免费开源的简历制作神器',
+    meta: [
+      {
+        name: 'description',
+        content:
+          '91化简-开源简历制作神器！免费制作一份精美的简历！内置两款设计器、快速设计、简历、封面、海报均可免费制作，支持一键导出高清PDF、JSON数据等。'
+      },
+      {
+        name: 'keywords',
+        content: '简历 开源 设计器 制作 PDF 高清简历 免费开源'
+      }
+    ]
+  });
 
   const dialogNoticeVisible = ref<boolean>(false);
   const readNotice = localStorage.getItem('readNotice');
