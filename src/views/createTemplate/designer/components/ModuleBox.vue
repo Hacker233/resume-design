@@ -60,6 +60,7 @@
     display: flex;
     box-sizing: border-box;
     overflow: hidden;
+    position: relative;
     &:hover {
       box-shadow: 0 10px 22px 2px #00253a3d;
     }

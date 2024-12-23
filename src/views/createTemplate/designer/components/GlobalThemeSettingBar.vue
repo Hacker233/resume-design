@@ -27,17 +27,13 @@
         ></color-picker-custom>
       </el-tooltip>
     </div>
-    <!-- 模块间距 -->
+    <!-- 模块内间距 -->
     <div class="module-padding">
       <el-popover placement="bottom" :width="350" trigger="click">
         <template #reference>
           <div>
             <el-tooltip effect="light" content="模块内边距" placement="bottom">
-              <svg-icon
-                icon-name="icon-zujianyangshi-bianju"
-                color="#606266"
-                size="28px"
-              ></svg-icon>
+              <svg-icon icon-name="icon-23waibianju" color="#606266" size="28px"></svg-icon>
             </el-tooltip>
           </div>
         </template>
@@ -64,6 +60,56 @@
         </div>
       </el-popover>
     </div>
+    <!-- 模块外边距 -->
+    <div class="module-padding">
+      <el-popover placement="bottom" :width="350" trigger="click">
+        <template #reference>
+          <div>
+            <el-tooltip effect="light" content="模块外边距" placement="bottom">
+              <svg-icon icon-name="icon-waibianju" color="#606266" size="30px"></svg-icon>
+            </el-tooltip>
+          </div>
+        </template>
+        <!-- 快捷操作列表 -->
+        <div class="global-module-padding--popver-content-box">
+          <template v-if="HJNewJsonStore.css?.moduleMargin">
+            <div class="padding-item">
+              <p>上外边距</p>
+              <el-slider v-model="HJNewJsonStore.css.moduleMargin.top" show-input />
+            </div>
+            <div class="padding-item">
+              <p>右外边距</p>
+              <el-slider v-model="HJNewJsonStore.css.moduleMargin.right" show-input />
+            </div>
+            <div class="padding-item">
+              <p>下外边距</p>
+              <el-slider v-model="HJNewJsonStore.css.moduleMargin.bottom" show-input />
+            </div>
+            <div class="padding-item">
+              <p>左外边距</p>
+              <el-slider v-model="HJNewJsonStore.css.moduleMargin.left" show-input />
+            </div>
+          </template>
+        </div>
+      </el-popover>
+    </div>
+    <!-- 模块标题整体切换 -->
+    <div class="module-global-switch">
+      <el-tooltip effect="light" content="模块标题整体切换" placement="bottom">
+        <svg-icon
+          icon-name="icon-mokuaizhuanhua"
+          color="#606266"
+          size="32px"
+          @click="selectModuleTitle"
+        ></svg-icon>
+      </el-tooltip>
+    </div>
+
+    <!-- 切换模块标题弹窗 -->
+    <select-global-module-title-dialog
+      :dialog-module-title-visible="dialogModuleTitleVisible"
+      @cancle="handleCancleModuleTitle"
+    ></select-global-module-title-dialog>
   </div>
 </template>
 <script setup lang="ts">
@@ -71,6 +117,7 @@
   import { useFontFamilyList } from '../hooks/useFontFamlyList';
   import appStore from '@/store';
   import ColorPickerCustom from './ColorPickerCustom.vue';
+  import SelectGlobalModuleTitleDialog from './SelectGlobalModuleTitleDialog.vue';
 
   const { HJNewJsonStore } = storeToRefs(appStore.useCreateTemplateStore);
   const defaultFamily = ref<string>('微软雅黑');
@@ -86,6 +133,17 @@
   // 字体变化
   const secondFontFamilyChange = (value: string) => {
     HJNewJsonStore.value.css.fontFamily = value;
+  };
+
+  // 打开切换模块title弹窗
+  const dialogModuleTitleVisible = ref<boolean>(false);
+  const selectModuleTitle = () => {
+    dialogModuleTitleVisible.value = true;
+  };
+
+  // 关闭切换模块标题弹窗
+  const handleCancleModuleTitle = () => {
+    dialogModuleTitleVisible.value = false;
   };
 </script>
 <style lang="scss" scoped>
@@ -124,6 +182,18 @@
       }
     }
     .module-padding {
+      margin-right: 5px;
+      .svg-icon {
+        cursor: pointer;
+        padding: 4px;
+        transition: all 0.3s;
+        &:hover {
+          background-color: #eee;
+          border-radius: 4px;
+        }
+      }
+    }
+    .module-global-switch {
       .svg-icon {
         cursor: pointer;
         padding: 4px;
