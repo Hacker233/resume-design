@@ -12,6 +12,8 @@ dist
 dist-ssr
 certs/fullchain.crt
 certs/private.pem
+certs/maobucv.crt
+certs/maobucv.pem
 
 auto-import.d.ts
 components.d.ts

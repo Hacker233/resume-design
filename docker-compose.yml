@@ -12,13 +12,3 @@ services:
     volumes:
       - ./certs:/etc/nginx/ssl
       - ./nginx.conf:/etc/nginx/nginx.conf
-  lobe-chat:
-    image: lobehub/lobe-chat
-    container_name: lobe-chat
-    restart: always
-    ports:
-      - '3210:3210'
-    environment:
-      OPENAI_API_KEY: sk-xxxx
-      OPENAI_PROXY_URL: https://api-proxy.com/v1
-      ACCESS_CODE: lobe66
