@@ -1,7 +1,7 @@
 <template>
   <div ref="indexRef" class="index-box" @scroll="handleScroll">
     <!-- 导航栏 -->
-    <nav-bar :bg-color="navColor" :font-color="fontColor" :icon-color="iconColor"></nav-bar>
+    <!-- <nav-bar :bg-color="navColor" :font-color="fontColor" :icon-color="iconColor"></nav-bar> -->
     <!-- 项目介绍栏 -->
     <div ref="introduceRef">
       <project-introduce
@@ -18,7 +18,7 @@
     <!-- 简历功能介绍 -->
     <resume-function-introduce></resume-function-introduce>
     <!-- 网站开源信息 -->
-    <website-open-source></website-open-source>
+    <!-- <website-open-source></website-open-source> -->
 
     <!-- 积木创作 -->
     <!-- <lego-design-introduce-vue ref="legoDesignRef"></lego-design-introduce-vue> -->
@@ -29,7 +29,7 @@
     <!-- 网站相关数据 -->
     <web-data></web-data>
     <!-- footer -->
-    <footer-com></footer-com>
+    <!-- <footer-com></footer-com> -->
     <!-- 回到顶部 -->
     <el-backtop :right="50" :bottom="80" />
 
@@ -47,12 +47,12 @@
   ></notice-dialog>
 </template>
 <script setup lang="ts">
-  import NavBar from '@/components/NavBar/NavBar.vue';
+  // import NavBar from '@/components/NavBar/NavBar.vue';
   import ProjectIntroduce from './components/ProjectIntroduceNew.vue';
   import TemplateSelect from './components/TemplateSelect.vue';
   // import CustomTemplateVue from './components/CustomTemplate.vue';
   // import SponsorComVue from './components/SponsorCom.vue';
-  import FooterCom from '@/components/FooterCom/FooterCom.vue';
+  // import FooterCom from '@/components/FooterCom/FooterCom.vue';
   // import LegoDesignIntroduceVue from './components/LegoDesignIntroduce.vue';
   // import CallMe from './components/CallMe.vue';
   import { onBeforeUnmount, onMounted, ref } from 'vue';
@@ -62,7 +62,7 @@
   import NoticeDialog from '@/components/NoticeDialog/NoticeDialog.vue';
   import SelectTemplateByUse from './components/SelectTemplateByUse.vue';
   import ResumeFunctionIntroduce from './components/ResumeFunctionIntroduce.vue';
-  import WebsiteOpenSource from './components/WebsiteOpenSource.vue';
+  // import WebsiteOpenSource from './components/WebsiteOpenSource.vue';
   import { useHead } from '@vueuse/head';
   useHead({
     title: '91化简-一款免费开源的简历制作神器',

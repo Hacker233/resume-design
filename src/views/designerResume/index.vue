@@ -1,7 +1,7 @@
 <template>
   <div class="design-resume-box">
     <!-- 导航栏 -->
-    <nav-bar @reset="getTemplateData" @generate-report="generateReport"></nav-bar>
+    <!-- <nav-bar @reset="getTemplateData" @generate-report="generateReport"></nav-bar> -->
     <!-- 底部区域 -->
     <div class="bottom-box">
       <!-- 数据配置 -->
@@ -36,7 +36,7 @@
 </template>
 
 <script lang="ts" setup>
-  import NavBar from './components/NavBar.vue';
+  // import NavBar from './components/NavBar.vue';
   import DataConfig from '../createTemplate/designer/components/DataConfig.vue';
   import appStore from '@/store';
   import { storeToRefs } from 'pinia';
@@ -176,6 +176,7 @@
   // 关闭进度弹窗
   const cancleProgress = () => {
     dialogVisible.value = false;
+    generateReport('pds');
     percentage.value = 10;
   };
 </script>

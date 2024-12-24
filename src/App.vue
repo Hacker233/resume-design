@@ -1,14 +1,14 @@
 <template>
   <el-config-provider size="small" :locale="zhCn">
     <!-- 导航栏 -->
-    <nav-bar
+    <!-- <nav-bar
       v-if="route.meta.isShowComNav"
       :key="refreshUuid"
       bg-color="#fff"
       font-color="green"
       position="sticky"
       icon-color="green"
-    ></nav-bar>
+    ></nav-bar> -->
     <router-view v-show="!isLoading" v-slot="{}" :key="refreshUuid"></router-view>
     <loading-com-vue v-show="isLoading"></loading-com-vue>
   </el-config-provider>
@@ -40,7 +40,7 @@
   const { isLoading } = storeToRefs(appStore.useLoadingStore);
   // openAndCloseLoadingByTime(1500); // 等待动画层
   const { refreshUuid } = appStore.useRefreshStore;
-  const route = useRoute();
+  // const route = useRoute();
 
   // 查询和更新用户信息
   const { getAndUpdateUserInfo } = appStore.useUserInfoStore;
