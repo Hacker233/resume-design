@@ -31,4 +31,19 @@ const modulesList: IModulesList = {
   custom
 };
 
+// 允许用户添加的模块
+export const userAddModule: any = {
+  jobIntention: job_intention,
+  eduBackground: edu_background,
+  skillSpecialties: skill_specialties,
+  campusExperience: campus_experience,
+  internshipExperience: internship_experience,
+  workExperience: work_experience,
+  projectExperience: project_experience,
+  awards: awards,
+  hobbies: hobbies,
+  selfEvaluation: self_evaluation,
+  worksDisplay: works_display
+};
+
 export default modulesList;

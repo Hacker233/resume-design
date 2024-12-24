@@ -1,10 +1,12 @@
 <template>
   <div class="right-content-box">
-    <!-- 菜单标题 -->
-    <content-title-vue
-      v-if="route.meta.showTitle"
-      :title="(route.meta.title as string)"
-    ></content-title-vue>
+    <div class="menu-title">
+      <!-- 菜单标题 -->
+      <content-title-vue
+        v-if="route.meta.showTitle"
+        :title="(route.meta.title as string)"
+      ></content-title-vue>
+    </div>
     <div class="router-box">
       <router-view></router-view>
     </div>

@@ -246,7 +246,7 @@
     background-color: v-bind('props.bgColor');
     z-index: 10;
     user-select: none;
-    padding: 0 60px;
+    padding: 0 30px;
     position: v-bind('props.position');
     top: 0;
     transition: all 0.3s;
@@ -314,7 +314,8 @@
         font-size: 12px;
         color: v-bind('props.fontColor');
         margin-right: 20px;
-        letter-spacing: 2px;
+        letter-spacing: 1px;
+        flex-shrink: 0;
       }
       .contact-me {
         cursor: pointer;
@@ -329,6 +330,7 @@
       .attendance-box {
         margin-right: 10px;
         height: 28px;
+        flex-shrink: 0;
         .button {
           height: 100%;
           padding: 6px 9px 6px 12px;
@@ -415,6 +417,7 @@
         height: 28px;
         cursor: pointer;
         transition: all 0.3s;
+        flex-shrink: 0;
         &:hover {
           opacity: 0.9;
         }

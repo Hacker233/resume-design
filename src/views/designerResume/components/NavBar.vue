@@ -73,7 +73,7 @@
 </template>
 <script lang="ts" setup>
   import appStore from '@/store';
-  import { ElMessage, ElMessageBox } from 'element-plus';
+  import { ElMessageBox, ElNotification } from 'element-plus';
   import 'element-plus/es/components/message-box/style/index';
   import { storeToRefs } from 'pinia';
   import DownloadDialog from '../../designer/components/DownloadDialog.vue';
@@ -138,7 +138,12 @@
         draftTips.value = `已保存：${formatListDate(result.data.data.updateDate)}`;
         resolve('保存草稿成功');
       } else {
-        ElMessage.error(result.data.message);
+        // ElMessage.error(result.data.message);
+        ElNotification({
+          title: '保存失败',
+          message: result.data.message,
+          type: 'error'
+        });
         resolve(null);
       }
     });

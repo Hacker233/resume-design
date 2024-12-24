@@ -56,19 +56,19 @@
       iconfont: 'icon-zaixianyonghu',
       title: '在线简历',
       path: '/person/myOnlineResume'
-    },
-    {
-      index: 'MyComment',
-      iconfont: 'icon-pinglun1',
-      title: '我的评论',
-      path: '/person/myComment'
-    },
-    {
-      index: 'MyContribute',
-      iconfont: 'icon-caogaoxiang1',
-      title: '我的贡献',
-      path: '/person/myContribute'
     }
+    // {
+    //   index: 'MyComment',
+    //   iconfont: 'icon-pinglun1',
+    //   title: '我的评论',
+    //   path: '/person/myComment'
+    // },
+    // {
+    //   index: 'MyContribute',
+    //   iconfont: 'icon-caogaoxiang1',
+    //   title: '我的贡献',
+    //   path: '/person/myContribute'
+    // }
   ]);
 
   const route = useRoute();
