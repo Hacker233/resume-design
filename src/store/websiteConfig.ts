@@ -19,7 +19,7 @@ export const useWebsiteConfigStore = defineStore('websiteConfig', () => {
     open_sign_in: true,
     open_business: true,
     open_sponsor: true,
-    website_title: '91化简-一款免费开源的简历制作神器'
+    website_title: '天之蓝源'
   });
 
   // function saveWebsiteConfig(websiteConfigData: any) {

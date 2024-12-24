@@ -65,7 +65,7 @@
   // import WebsiteOpenSource from './components/WebsiteOpenSource.vue';
   import { useHead } from '@vueuse/head';
   useHead({
-    title: '91化简-一款免费开源的简历制作神器',
+    title: '天之蓝源',
     meta: [
       {
         name: 'description',
