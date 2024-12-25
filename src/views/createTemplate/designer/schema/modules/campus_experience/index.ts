@@ -17,7 +17,7 @@ import CampusExperience_11 from './CampusExperience_11';
 const base_info = {
   id: 'campusExperience', // 模块id
   moduleChName: '校园经历', // 模块中文名
-  category: 'campusExperience', // 模块分了
+  category: 'campus_experience', // 模块分了
   icon: 'icon-xiaoyuan', // 模块图标
   props: commonProps['campusExperience'], // 公共的props
   dataSource: cloneDeep(commonDataSource['campus_experience']), // 该分类下公用数据源

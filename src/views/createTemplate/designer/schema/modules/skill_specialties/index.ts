@@ -22,7 +22,7 @@ import SkillSpecialties_16 from './SkillSpecialties_16';
 const skill_specialties = {
   id: 'skillSpecialties', // 模块id
   moduleChName: '技能特长', // 模块中文名
-  category: 'skillSpecialties', // 模块分了
+  category: 'skill_specialties', // 模块分了
   icon: 'icon-yuzhijineng', // 模块图标
   props: commonProps['skillSpecialties'], // 公共的props
   dataSource: cloneDeep(commonDataSource['skill_specialties']), // 该分类下公用数据源

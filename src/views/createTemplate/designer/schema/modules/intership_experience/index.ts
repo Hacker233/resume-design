@@ -17,7 +17,7 @@ import InternshipExperience_11 from './InternshipExperience_11';
 const internship_experience = {
   id: 'internshipExperience', // 模块id
   moduleChName: '实习经验', // 模块中文名
-  category: 'internshipExperience', // 模块分了
+  category: 'internship_experience', // 模块分了
   icon: 'icon-shixi1', // 模块图标
   props: commonProps['internshipExperience'], // 公共的props
   dataSource: cloneDeep(commonDataSource['internship_experience']), // 该分类下公用数据源

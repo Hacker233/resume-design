@@ -17,7 +17,7 @@ import ProjectExperience_11 from './ProjectExperience_11';
 const project_experience = {
   id: 'projectExperience', // 模块id
   moduleChName: '项目经验', // 模块中文名
-  category: 'projectExperience', // 模块分了
+  category: 'project_experience', // 模块分了
   icon: 'icon-xiangmu1', // 模块图标
   props: commonProps['projectExperience'], // 公共的props
   dataSource: cloneDeep(commonDataSource['project_experience']), // 该分类下公用数据源

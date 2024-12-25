@@ -37,6 +37,12 @@
       <el-form-item label="是否开启商务合作推广:" prop="open_business">
         <el-switch v-model="ruleForm.open_business" />
       </el-form-item>
+      <el-form-item label="是否开启会员中心:" prop="open_membership">
+        <el-switch v-model="ruleForm.open_membership" />
+      </el-form-item>
+      <el-form-item label="是否开启首页菜单:" prop="open_homne_menu">
+        <el-switch v-model="ruleForm.open_homne_menu" />
+      </el-form-item>
     </el-form>
     <el-divider>
       <el-icon><star-filled /></el-icon>
@@ -65,6 +71,8 @@
     open_business: boolean;
     open_sponsor: boolean;
     website_title: string;
+    open_membership: boolean;
+    open_homne_menu: boolean;
   }
   const ruleForm = reactive<IWebConfig>({
     open_sign: true,
@@ -74,7 +82,9 @@
     open_sign_in: true,
     open_business: true,
     open_sponsor: true,
-    website_title: '91化简-一款免费开源的简历制作神器'
+    website_title: '91化简-一款免费开源的简历制作神器',
+    open_membership: true,
+    open_homne_menu: true
   });
   const rules = reactive<FormRules>({
     website_title: [{ required: true, message: '网站标题不能为空！', trigger: 'change' }]
@@ -128,6 +138,8 @@
     ruleForm.open_business = data.open_business;
     ruleForm.open_sponsor = data.open_sponsor;
     ruleForm.website_title = data.website_title;
+    ruleForm.open_membership = data.open_membership;
+    ruleForm.open_homne_menu = data.open_homne_menu;
   };
 </script>
 <style lang="scss" scoped>

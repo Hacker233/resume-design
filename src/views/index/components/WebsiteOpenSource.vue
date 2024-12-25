@@ -19,7 +19,7 @@
           <h1>前端源码</h1>
           <p>gitee开源</p>
         </div>
-        <div class="card" @click="toNestjs">
+        <div v-config:open_get_source_code class="card" @click="toNestjs">
           <img src="../../../assets/images/resumeFunctionIntro/nestjs.svg" alt="" srcset="" />
           <h1>后端源码</h1>
           <p>nestjs框架</p>

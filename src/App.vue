@@ -23,7 +23,6 @@
   import { addWebsiteViewsAsync } from './http/api/panel';
   import { useHead } from '@vueuse/head';
   useHead({
-    title: '91化简-一款免费开源的简历制作神器',
     meta: [
       {
         name: 'description',

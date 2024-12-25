@@ -9,7 +9,7 @@ import ResumeTitle_3 from './ResumeTitle_3';
 const resume_title = {
   id: 'resumeTitle', // 模块id
   moduleChName: '简历标题', // 模块中文名
-  category: 'resumeTitle', // 模块分了
+  category: 'resume_title', // 模块分了
   icon: 'icon-title', // 模块图标
   props: commonProps['resumeTitle'], // 公共的props
   dataSource: cloneDeep(commonDataSource['resume_title']), // 该分类下公用数据源

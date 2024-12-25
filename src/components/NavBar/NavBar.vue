@@ -5,7 +5,7 @@
       :icon-color="iconColor ? iconColor : '#fff'"
       :font-color="fontColor ? fontColor : '#fff'"
     ></logo-com>
-    <div class="center">
+    <div v-config:open_homne_menu class="center">
       <el-menu
         :default-active="route.path"
         class="el-menu-demo"
@@ -46,7 +46,7 @@
         </div>
       </div> -->
       <!-- 开通会员 -->
-      <div class="membership-box" @click="toMembership">
+      <div v-config:open_membership class="membership-box" @click="toMembership">
         <div v-if="!membershipInfo.hasMembership" class="content-box">开通会员 </div>
         <div
           v-else-if="membershipInfo.hasMembership && membershipInfo.daysRemaining > 0"

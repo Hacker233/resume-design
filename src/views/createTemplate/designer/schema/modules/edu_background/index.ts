@@ -18,7 +18,7 @@ import EduBackground_12 from './EduBackground_12';
 const edu_background = {
   id: 'eduBackground', // 模块id
   moduleChName: '教育背景', // 模块中文名
-  category: 'eduBackground', // 模块分了
+  category: 'edu_background', // 模块分了
   icon: 'icon-jiaoyu', // 模块图标
   props: commonProps['eduBackground'], // 公共的props
   dataSource: cloneDeep(commonDataSource['edu_background']), // 该分类下公用数据源

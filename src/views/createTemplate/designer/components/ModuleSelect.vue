@@ -80,10 +80,8 @@
   import { getImgListStyleImageFile } from '../utils/getImgListStyleImageFile';
   import draggable from 'vuedraggable';
   import { IModule } from '../../types/IHJNewSchema';
-  import { cloneDeep } from 'lodash';
-  import { getUuid } from '@/utils/common';
   import NoData from './NoData.vue';
-  import customCss from '../schema/customCss/index';
+  import { useSetModuleSchema } from '../hooks/useSetModuleSchema';
 
   interface IModuleSelect {
     showTitle?: boolean;
@@ -130,47 +128,7 @@
 
   // 组件数据
   const handleData = (data: IModule) => {
-    const element = cloneDeep(data);
-    element.id = getUuid();
-    element.dataSource = {
-      ...modulesList[element.category].dataSource,
-      ...element.dataSource
-    };
-    element.css = {
-      ...modulesList[element.category].css,
-      ...element.css
-    };
-    element.props = {
-      ...modulesList[element.category].props,
-      ...element.props
-    };
-
-    element.customProps = {
-      ...element.customProps,
-      ...{
-        showModule: true, // 是否展示模块
-        unfoldModule: true // 是否展开模块
-      }
-    };
-    // 添加模块标题的自定义样式
-    if (element.customProps.hasOwnProperty('ModuleTitleCpt')) {
-      const customCssKey: string = element.customProps.ModuleTitleCpt;
-      const moduleTitleCustomCssArray = cloneDeep(customCss[customCssKey]);
-      // 收集不在 element.customCss 中的元素
-      const newItems: any[] = [];
-      moduleTitleCustomCssArray.forEach((item2: any) => {
-        const index = element.customCss.findIndex((item1: any) => item1.prop === item2.prop);
-        if (index === -1) {
-          newItems.push(cloneDeep(item2));
-        } else {
-          // 如果存在，替换 element.customCss 中的元素
-          element.customCss[index] = cloneDeep(item2);
-        }
-      });
-      // 将不在 element.customCss 中的元素整体插入到最前面
-      element.customCss.unshift(...newItems);
-    }
-    return cloneDeep(element);
+    return useSetModuleSchema(data);
   };
 </script>
 <style lang="scss" scoped>

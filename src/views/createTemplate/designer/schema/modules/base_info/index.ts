@@ -17,7 +17,7 @@ import BaseInfo_11 from './BaseInfo_11';
 const base_info = {
   id: 'baseInfo', // 模块id
   moduleChName: '基本资料', // 模块中文名
-  category: 'baseInfo', // 模块分了
+  category: 'base_info', // 模块分了
   icon: 'icon-jichuxinxi', // 模块图标
   props: commonProps['baseInfo'], // 公共的props
   dataSource: cloneDeep(commonDataSource['base_info']), // 该分类下公用数据源

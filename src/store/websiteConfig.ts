@@ -11,6 +11,8 @@ export const useWebsiteConfigStore = defineStore('websiteConfig', () => {
     open_business: boolean;
     open_sponsor: boolean;
     website_title: string;
+    open_membership: boolean;
+    open_homne_menu: boolean;
   }>({
     open_sign: true,
     open_comment: true,
@@ -19,7 +21,9 @@ export const useWebsiteConfigStore = defineStore('websiteConfig', () => {
     open_sign_in: true,
     open_business: true,
     open_sponsor: true,
-    website_title: '91化简-一款免费开源的简历制作神器'
+    website_title: '91化简-一款免费开源的简历制作神器',
+    open_membership: true,
+    open_homne_menu: true
   });
 
   function saveWebsiteConfig(websiteConfigData: any) {
@@ -31,6 +35,8 @@ export const useWebsiteConfigStore = defineStore('websiteConfig', () => {
     websiteConfig.open_business = websiteConfigData.open_business;
     websiteConfig.open_sponsor = websiteConfigData.open_sponsor;
     websiteConfig.website_title = websiteConfigData.website_title;
+    websiteConfig.open_membership = websiteConfigData.open_membership;
+    websiteConfig.open_homne_menu = websiteConfigData.open_homne_menu;
     document.title = websiteConfig.website_title;
   }
   // 查询网站配置信息

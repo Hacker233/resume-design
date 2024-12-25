@@ -64,8 +64,13 @@
   import ResumeFunctionIntroduce from './components/ResumeFunctionIntroduce.vue';
   import WebsiteOpenSource from './components/WebsiteOpenSource.vue';
   import { useHead } from '@vueuse/head';
+  import { storeToRefs } from 'pinia';
+  import appStore from '@/store';
+
+  const { websiteConfig } = storeToRefs(appStore.useWebsiteConfigStore);
+
   useHead({
-    title: '91化简-一款免费开源的简历制作神器',
+    title: websiteConfig.value.website_title || '91化简-一款免费开源的简历制作神器',
     meta: [
       {
         name: 'description',

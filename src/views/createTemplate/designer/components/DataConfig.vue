@@ -32,6 +32,47 @@
             </div>
           </div>
         </el-popover>
+        <el-popover placement="bottom" :width="400" trigger="click">
+          <template #reference>
+            <div>
+              <el-tooltip effect="light" content="快速添加模块" placement="bottom">
+                <svg-icon
+                  icon-name="icon-zengjiatianjiajiahao"
+                  color="#74a274"
+                  size="28px"
+                ></svg-icon>
+              </el-tooltip>
+            </div>
+          </template>
+          <!-- 模块列表选择 -->
+          <div class="module-selected--popver-content-box">
+            <div
+              v-for="(value, key) in userAddModule"
+              :key="key"
+              :class="[
+                'add-module-item',
+                { existence: existenceModule.indexOf(value.category) > -1 }
+              ]"
+              @click="handleAddModule(value)"
+            >
+              <el-tooltip
+                effect="light"
+                content="已有该模块"
+                placement="bottom"
+                :disabled="existenceModule.indexOf(value.category) < 0"
+              >
+                <div>
+                  <svg-icon
+                    :icon-name="value.icon"
+                    :color="existenceModule.indexOf(value.category) > -1 ? '#ccc' : '#606266'"
+                    size="16px"
+                  ></svg-icon>
+                  <span>{{ value.moduleChName }}</span>
+                </div>
+              </el-tooltip>
+            </div>
+          </div>
+        </el-popover>
       </div>
       <div class="right">
         <!-- 展开收起所有 -->
@@ -150,6 +191,11 @@
   import hjList from '../setters/components/hj-list.vue'; // 数据配置，列表组件
   import IconSelectPop from '@/components/IconSelectPop/IconSelectPop.vue';
   import ComponentTypePop from './ComponentTypePop.vue';
+  import { userAddModule } from '../schema/index';
+  import { useSetModuleSchema } from '../hooks/useSetModuleSchema';
+  import { moduleTitleIconList, ModuleTitleScreenShotList } from '../modules/ModuleTitle';
+  import { useGetSelectedModule } from '../hooks/useGetSelectedModule';
+  import { cloneDeep } from 'lodash';
 
   const { HJNewJsonStore, selectedModuleId, moduleDataConfigRefList } = storeToRefs(
     appStore.useCreateTemplateStore
@@ -259,6 +305,114 @@
     console.log('富文本组件切换至其他组件', value, item);
     item.value = value;
   };
+
+  // 统计使用最多的moduleTitle
+  const mostModuleTitleCptName = computed(() => {
+    const moduleTitleNameList: any = [];
+    HJNewJsonStore.value.componentsTree.forEach((item: any) => {
+      if (item.customProps.hasOwnProperty('ModuleTitleCpt')) {
+        moduleTitleNameList.push({
+          moduleId: item.id,
+          moduleTitleName: item.customProps.ModuleTitleCpt
+        });
+      }
+    });
+    return getMostFrequentModuleTitleName(moduleTitleNameList);
+  });
+
+  const getMostFrequentModuleTitleName = (
+    moduleTitleNameList: { moduleId: string; moduleTitleName: string }[]
+  ) => {
+    if (moduleTitleNameList.length === 0) {
+      return null; // 如果数组为空，直接返回 null 或适合的默认值
+    }
+
+    // Step 1: 统计每个 moduleTitleName 出现的次数
+    const titleCountMap: { [key: string]: number } = {};
+    moduleTitleNameList.forEach((item) => {
+      titleCountMap[item.moduleTitleName] = (titleCountMap[item.moduleTitleName] || 0) + 1;
+    });
+
+    // Step 2: 找出出现次数最多的 moduleTitleName
+    let mostFrequentItem = moduleTitleNameList[0];
+    let maxCount = titleCountMap[mostFrequentItem.moduleTitleName];
+
+    moduleTitleNameList.forEach((item) => {
+      const count = titleCountMap[item.moduleTitleName];
+      if (count > maxCount) {
+        mostFrequentItem = item;
+        maxCount = count;
+      }
+    });
+
+    // Step 3: 如果每个 moduleTitleName 都不同，则返回第一项
+    return mostFrequentItem;
+  };
+
+  // 已经有了的模块
+  const existenceModule = computed(() => {
+    const existenceList = ref<any>([]);
+    HJNewJsonStore.value.componentsTree.forEach((item: any) => {
+      existenceList.value.push(item.category);
+    });
+    console.log('已添加模块', existenceList.value);
+    return existenceList.value;
+  });
+
+  // 点击添加模块
+  const handleAddModule = (value: any) => {
+    if (existenceModule.value.indexOf(value.category) > -1) {
+      return;
+    }
+    const data = value.list[0]; // 默认添加第一项
+    // 设置模块标题，标题图标
+    if (data.customProps.hasOwnProperty('ModuleTitleCpt')) {
+      data.customProps.ModuleTitleCpt = mostModuleTitleCptName.value?.moduleTitleName; // 设置moduleTitleCpt
+      // 查找对应模块标题的相关配置，这是图标
+      const moduleConfig = ModuleTitleScreenShotList.find(
+        (item: any) => item.cptName === data.customProps.ModuleTitleCpt
+      );
+      if (moduleConfig?.iconfont) {
+        data.props.title.iconfont = moduleTitleIconList[data.category].titleIcon;
+      }
+    }
+    const element = useSetModuleSchema(data);
+    // 设置模块标题样式
+    if (element.customProps.hasOwnProperty('ModuleTitleCpt')) {
+      const copyModule = useGetSelectedModule(mostModuleTitleCptName.value?.moduleId);
+      const copyCustomCss = cloneDeep(copyModule.customCss); // 需要拷贝模块的自定义样式
+      const moduleTitleProp = [
+        'moduleTitle',
+        'moduleTitleFont',
+        'moduleTitleIcon',
+        'moduleTitleFontBox',
+        'moduleTitleRightBox'
+      ]; // 模块标题所有可能存在的prop
+      const moduleCssList: any = [];
+      copyCustomCss.forEach((item: any) => {
+        if (moduleTitleProp.indexOf(item.prop) > -1) {
+          moduleCssList.push(item);
+        }
+      });
+      console.log('需要copy模块的标题样式', moduleCssList);
+      // 将拷贝的样式替换调初始的样式
+      const newItems: any[] = [];
+      moduleCssList.forEach((item2: any) => {
+        const index = element.customCss.findIndex((item1: any) => item1.prop === item2.prop);
+        if (index === -1) {
+          newItems.push(cloneDeep(item2));
+        } else {
+          // 如果存在，替换 selectModule.customCss 中的元素
+          element.customCss[index] = cloneDeep(item2);
+        }
+      });
+
+      // 将不在 selectModule.customCss 中的元素整体插入到最前面
+      element.customCss.unshift(...newItems);
+    }
+    console.log('需要添加的模块', element);
+    HJNewJsonStore.value.componentsTree.push(element);
+  };
 </script>
 
 <style lang="scss" scoped>
@@ -280,10 +434,13 @@
       align-items: center;
       padding: 0 20px;
       .left {
+        display: flex;
+        align-items: center;
         .svg-icon {
           cursor: pointer;
           padding: 3px;
           transition: all 0.3s;
+          margin-right: 10px;
           &:hover {
             background-color: #eee;
             border-radius: 4px;
@@ -376,6 +533,41 @@
       .left-title {
         font-weight: 600;
         font-size: 16px;
+      }
+    }
+  }
+  .module-selected--popver-content-box {
+    display: grid; /* 启用 grid 布局 */
+    grid-template-columns: repeat(3, 1fr); /* 每行最多显示 3 个元素，且每个元素占据相同的宽度 */
+    gap: 15px 10px; /* 设置 grid 元素之间的间隙 */
+    padding: 10px;
+    .add-module-item {
+      padding: 5px 15px;
+      border-radius: 15px;
+      background-color: antiquewhite;
+      cursor: pointer;
+      flex-shrink: 0;
+      transition: all 0.3s;
+      border: 1px solid transparent;
+      display: flex;
+      align-items: center;
+      font-size: 14px;
+      &:hover {
+        border: 1px solid rgb(224, 205, 182);
+        opacity: 0.8;
+      }
+      .svg-icon {
+        flex-shrink: 0;
+        margin-right: 5px;
+      }
+    }
+    .existence {
+      cursor: not-allowed;
+      background-color: rgb(243.9, 244.2, 244.8);
+      color: rgb(188, 188, 189);
+      &:hover {
+        border: 1px solid transparent;
+        opacity: 1;
       }
     }
   }

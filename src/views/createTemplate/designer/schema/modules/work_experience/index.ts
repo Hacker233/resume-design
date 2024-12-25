@@ -17,7 +17,7 @@ import WorkExperience_11 from './WorkExperience_11';
 const work_experience = {
   id: 'workExperience', // 模块id
   moduleChName: '工作经验', // 模块中文名
-  category: 'workExperience', // 模块分了
+  category: 'work_experience', // 模块分了
   icon: 'icon-gongzuotai', // 模块图标
   props: commonProps['workExperience'], // 公共的props
   dataSource: cloneDeep(commonDataSource['work_experience']), // 该分类下公用数据源
