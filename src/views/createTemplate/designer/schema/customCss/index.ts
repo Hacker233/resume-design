@@ -9,6 +9,7 @@ import BaseInfo_8 from './base_info/BaseInfo_8';
 import BaseInfo_9 from './base_info/BaseInfo_9';
 import BaseInfo_10 from './base_info/BaseInfo_10';
 import BaseInfo_11 from './base_info/BaseInfo_11';
+import BaseInfo_12 from './base_info/BaseInfo_12';
 
 // 求职意向
 import JobIntention_1 from './job_intention/JobIntention_1';
@@ -200,6 +201,7 @@ const customCss: any = {
   BaseInfo_9,
   BaseInfo_10,
   BaseInfo_11,
+  BaseInfo_12,
 
   JobIntention_1,
   JobIntention_2,

@@ -38,6 +38,12 @@ const themeColorProps: any = {
     css: [],
     customCss: {}
   },
+  BaseInfo_12: {
+    css: [],
+    customCss: {
+      leftTopBox: ['background']
+    }
+  },
   JobIntention_1: {
     css: [],
     customCss: {}
@@ -567,7 +573,7 @@ export const moduleTitleThemeProps: any = {
     moduleTitleFont: ['color', 'borderColor']
   },
   ModuleTitle_4: {
-    moduleTitle: ['borderColor']
+    moduleTitle: ['borderColor', 'color', 'borderColor']
   },
   ModuleTitle_5: {
     moduleTitle: ['color', 'borderColor'],

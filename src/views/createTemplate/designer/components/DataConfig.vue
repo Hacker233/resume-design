@@ -32,7 +32,12 @@
             </div>
           </div>
         </el-popover>
-        <el-popover placement="bottom" :width="400" trigger="click">
+        <el-popover
+          v-if="route.query.type !== 'create'"
+          placement="bottom"
+          :width="400"
+          trigger="click"
+        >
           <template #reference>
             <div>
               <el-tooltip effect="light" content="快速添加模块" placement="bottom">
@@ -197,6 +202,7 @@
   import { useGetSelectedModule } from '../hooks/useGetSelectedModule';
   import { cloneDeep } from 'lodash';
 
+  const route = useRoute();
   const { HJNewJsonStore, selectedModuleId, moduleDataConfigRefList } = storeToRefs(
     appStore.useCreateTemplateStore
   );

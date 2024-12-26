@@ -15,6 +15,7 @@ import BaseInfo_8 from '../modules/BaseInfo/BaseInfo_8.vue';
 import BaseInfo_9 from '../modules/BaseInfo/BaseInfo_9.vue';
 import BaseInfo_10 from '../modules/BaseInfo/BaseInfo_10.vue';
 import BaseInfo_11 from '../modules/BaseInfo/BaseInfo_11.vue';
+import BaseInfo_12 from '../modules/BaseInfo/BaseInfo_12.vue';
 
 // 求职意向
 import JobIntention_1 from '../modules/JobIntention/JobIntention_1.vue';
@@ -173,6 +174,7 @@ const moduleComponents: any = {
   ResumeTitle_2,
   ResumeTitle_3,
 
+  // 基础信息
   BaseInfo_1,
   BaseInfo_2,
   BaseInfo_3,
@@ -184,6 +186,8 @@ const moduleComponents: any = {
   BaseInfo_9,
   BaseInfo_10,
   BaseInfo_11,
+  BaseInfo_12,
+
   // 求职意向
   JobIntention_1,
   JobIntention_2,
