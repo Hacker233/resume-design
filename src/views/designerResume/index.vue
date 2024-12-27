@@ -1,9 +1,9 @@
 <template>
   <div class="design-resume-box">
     <!-- 导航栏 -->
-    <nav-bar @reset="getTemplateData" @generate-report="generateReport"></nav-bar>
+    <nav-bar @reset="reset" @generate-report="generateReport"></nav-bar>
     <!-- 底部区域 -->
-    <div class="bottom-box">
+    <div :key="bottomBoxKey" class="bottom-box">
       <!-- 数据配置 -->
       <div v-loading="!HJNewJsonStore.componentsTree.length" class="left">
         <data-config v-if="HJNewJsonStore.componentsTree.length"></data-config>
@@ -95,6 +95,13 @@
     } else {
       defaultTemplate();
     }
+  };
+
+  // 重置
+  const bottomBoxKey = ref<number>(0);
+  const reset = () => {
+    getTemplateData();
+    bottomBoxKey.value++; // 增加key，强制重新渲染
   };
 
   // 查询用户数据

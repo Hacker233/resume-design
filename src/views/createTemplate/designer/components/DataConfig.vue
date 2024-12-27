@@ -201,6 +201,7 @@
   import { moduleTitleIconList, ModuleTitleScreenShotList } from '../modules/ModuleTitle';
   import { useGetSelectedModule } from '../hooks/useGetSelectedModule';
   import { cloneDeep } from 'lodash';
+  import { moduleTitleCustomProp } from '../dicts/moduleTitleCssProp';
 
   const route = useRoute();
   const { HJNewJsonStore, selectedModuleId, moduleDataConfigRefList } = storeToRefs(
@@ -387,13 +388,7 @@
     if (element.customProps.hasOwnProperty('ModuleTitleCpt')) {
       const copyModule = useGetSelectedModule(mostModuleTitleCptName.value?.moduleId);
       const copyCustomCss = cloneDeep(copyModule.customCss); // 需要拷贝模块的自定义样式
-      const moduleTitleProp = [
-        'moduleTitle',
-        'moduleTitleFont',
-        'moduleTitleIcon',
-        'moduleTitleFontBox',
-        'moduleTitleRightBox'
-      ]; // 模块标题所有可能存在的prop
+      const moduleTitleProp = moduleTitleCustomProp; // 模块标题所有可能存在的prop
       const moduleCssList: any = [];
       copyCustomCss.forEach((item: any) => {
         if (moduleTitleProp.indexOf(item.prop) > -1) {

@@ -19,6 +19,12 @@ export default [
         bottom: 20,
         left: 0
       },
+      padding: {
+        top: 0,
+        right: 0,
+        bottom: 0,
+        left: 0
+      },
       borderColor: '#254665',
       borderStyle: 'solid',
       background: 'none'
