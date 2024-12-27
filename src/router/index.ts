@@ -539,7 +539,7 @@ const routes: Array<RouteRecordRaw> = [
           keepAlive: true,
           isShowComNav: true,
           requireLogin: true,
-          showTitle: true
+          showTitle: false
         },
         component: MyResume
       },

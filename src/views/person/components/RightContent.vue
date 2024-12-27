@@ -2,10 +2,7 @@
   <div class="right-content-box">
     <div class="menu-title">
       <!-- 菜单标题 -->
-      <content-title-vue
-        v-if="route.meta.showTitle"
-        :title="(route.meta.title as string)"
-      ></content-title-vue>
+      <content-title-vue v-if="showTitle" :title="(route.meta.title as string)"></content-title-vue>
     </div>
     <div class="router-box">
       <router-view></router-view>
@@ -16,6 +13,9 @@
   import ContentTitleVue from './ContentTitle.vue';
 
   const route = useRoute();
+  const showTitle = computed(() => {
+    return route.meta.showTitle;
+  });
 </script>
 <style lang="scss" scoped>
   .right-content-box {

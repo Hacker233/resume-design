@@ -54,7 +54,7 @@
           </div>
         </template>
         <!-- 快捷操作列表 -->
-        <div class="global-module-padding--popver-content-box">
+        <div class="global-module-line-height-content-box">
           <div class="padding-item">
             <el-input-number
               v-model="lineHeight"
@@ -437,6 +437,12 @@
       .el-input-number {
         width: 90px;
       }
+    }
+  }
+  .global-module-line-height-content-box {
+    .padding-item {
+      margin: 0;
+      padding: 0;
     }
   }
 </style>
