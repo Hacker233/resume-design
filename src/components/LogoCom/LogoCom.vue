@@ -6,8 +6,8 @@
       :color="iconColor"
       size="25px"
     ></svg-icon>
-    <span>91化简</span> -->
-    <img src="@/assets/images/logo-banner.png" />
+    <span>猫步简历</span> -->
+    <img src="@/assets/images/logo-maobu.png" />
   </div>
 </template>
 <script lang="ts" setup>
@@ -27,7 +27,7 @@
 </script>
 <style lang="scss" scoped>
   .logo {
-    height: 100%;
+    height: 80%;
     display: flex;
     align-items: center;
     cursor: pointer;

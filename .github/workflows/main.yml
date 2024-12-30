@@ -1,4 +1,4 @@
-name: 部署化简到生产服务器上
+name: 部署猫步简历到生产服务器上
 on:
   #监听push操作
   #pull_request:

@@ -153,7 +153,7 @@
                 "model" : "CUSTOM_1",
                 "show" : true,
                 "title" : "姓名简介",
-                "name" : "91化简",
+                "name" : "猫步简历",
                 "abstract" : "用一句话来概括一下自己把！",
                 "isShow" : {
                     "abstract" : true,
@@ -9931,7 +9931,7 @@
 }
 {
     "_id" : ObjectId("632c05e44ff15c41d2b8b5c4"),
-    "USER" : "化简",
+    "USER" : "猫步简历",
     "EMAIL" : "1584775297@qq.com",
     "previewUrl" : "https://91huajian.cn:9000/resume/templatePreview/屏幕截图 2022-09-22 145033-1663829470221.png",
     "ID" : "1b36e194f13d4f278d55bc1af41f2a1e",
@@ -10628,7 +10628,7 @@
 }
 {
     "_id" : ObjectId("632c0a624ff15c41d2b8b629"),
-    "USER" : "化简",
+    "USER" : "猫步简历",
     "EMAIL" : "1584775297@qq.com",
     "previewUrl" : "https://91huajian.cn:9000/resume/templatePreview/1-1663830622711.png",
     "ID" : "b54330d576164c85b393a9c6adee823b",
@@ -11445,7 +11445,7 @@
 }
 {
     "_id" : ObjectId("632c0a7d4ff15c41d2b8b62e"),
-    "USER" : "化简",
+    "USER" : "猫步简历",
     "EMAIL" : "1584775297@qq.com",
     "previewUrl" : "https://91huajian.cn:9000/resume/templatePreview/2-1663830641551.png",
     "ID" : "6906cc06b34c4307bf6580b95d669b6e",
@@ -16125,7 +16125,7 @@
                 "model" : "BASE_INFO",
                 "show" : true,
                 "title" : "基本资料",
-                "name" : "化简",
+                "name" : "猫步简历",
                 "age" : NumberInt(25),
                 "avatarShape" : "",
                 "address" : "所在地区",
@@ -16799,7 +16799,7 @@
                 "model" : "BASE_INFO",
                 "show" : true,
                 "title" : "基本资料",
-                "name" : "化简",
+                "name" : "猫步简历",
                 "age" : NumberInt(25),
                 "avatarShape" : "",
                 "address" : "所在地区",
@@ -17474,7 +17474,7 @@
                 "model" : "BASE_INFO",
                 "show" : true,
                 "title" : "基本资料",
-                "name" : "化简",
+                "name" : "猫步简历",
                 "age" : NumberInt(25),
                 "avatarShape" : "CIRCLE_AVATAR",
                 "address" : "所在地区",

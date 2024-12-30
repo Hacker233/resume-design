@@ -17,7 +17,7 @@
             <span class="svg-icon">0枚</span>
           </li>
           <li>
-            化简官方微信交流群
+            猫步简历官方微信交流群
             <svg-icon icon-name="icon-duigou_kuai" color="#2ddd9d" size="22px"></svg-icon>
           </li>
           <li>
@@ -77,7 +77,7 @@
             <svg-icon icon-name="icon-shanchu_huaban" color="#333" size="16px"></svg-icon>
           </li>
           <li>
-            是否与化简官网一致
+            是否与猫步简历官网一致
             <svg-icon icon-name="icon-shanchu_huaban" color="#333" size="16px"></svg-icon>
           </li>
         </ul>
@@ -103,7 +103,7 @@
             <span class="svg-icon">990枚</span>
           </li>
           <li>
-            化简官方微信交流群
+            猫步简历官方微信交流群
             <svg-icon icon-name="icon-duigou_kuai" color="#2ddd9d" size="22px"></svg-icon>
           </li>
           <li>
@@ -167,7 +167,7 @@
             <svg-icon icon-name="icon-shanchu_huaban" color="#333" size="16px"></svg-icon>
           </li>
           <li>
-            是否与化简官网一致
+            是否与猫步简历官网一致
             <svg-icon icon-name="icon-shanchu_huaban" color="#333" size="16px"></svg-icon>
           </li>
         </ul>
@@ -194,7 +194,7 @@
             <span class="svg-icon">3990枚</span>
           </li>
           <li>
-            化简官方微信交流群
+            猫步简历官方微信交流群
             <svg-icon icon-name="icon-duigou_kuai" color="#2ddd9d" size="22px"></svg-icon>
           </li>
           <li>
@@ -258,7 +258,7 @@
             <svg-icon icon-name="icon-shanchu_huaban" color="#333" size="16px"></svg-icon>
           </li>
           <li>
-            是否与化简官网一致
+            是否与猫步简历官网一致
             <svg-icon icon-name="icon-shanchu_huaban" color="#333" size="16px"></svg-icon>
           </li>
         </ul>
@@ -285,7 +285,7 @@
             <span class="svg-icon">无限量</span>
           </li>
           <li>
-            化简官方微信交流群
+            猫步简历官方微信交流群
             <svg-icon icon-name="icon-duigou_kuai" color="#2ddd9d" size="22px"></svg-icon>
           </li>
           <li>
@@ -349,14 +349,14 @@
             <svg-icon icon-name="icon-duigou_kuai" color="#2ddd9d" size="22px"></svg-icon>
           </li>
           <li>
-            是否与化简官网一致
+            是否与猫步简历官网一致
             <svg-icon icon-name="icon-duigou_kuai" color="#2ddd9d" size="22px"></svg-icon>
           </li>
         </ul>
       </div>
       <div class="bottom">
         <p>持续更新迭代</p>
-        <span>与化简官网完全保持一致</span>
+        <span>与猫步简历官网完全保持一致</span>
       </div>
     </div>
 
@@ -367,7 +367,7 @@
       </div>
       <div class="pay-tips">
         <p>支付成功后，添加作者微信，凭支付记录获取相关权限！</p>
-        <p class="vx">作者微信：LHQfighting（备注“化简”）</p>
+        <p class="vx">作者微信：LHQfighting（备注“猫步简历”）</p>
       </div>
     </el-dialog>
   </div>

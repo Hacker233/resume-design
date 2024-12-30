@@ -37,7 +37,7 @@ const LeftRightPage = {
   }, // 全局范围的css样式
   customCss: customCss['left_right_page'],
   config: {
-    title: '91化简', // 页面标题
+    title: '猫步简历', // 页面标题
     layout: {
       left: {},
       right: {}

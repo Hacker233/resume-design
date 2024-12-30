@@ -8,7 +8,7 @@
         size="18px"
         class-name="li-list-style-image"
       ></svg-icon>
-      91化简
+      猫步简历
     </li>
   </ul>
 </template>

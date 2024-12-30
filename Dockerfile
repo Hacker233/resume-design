@@ -4,8 +4,6 @@ FROM nginx:latest
 # 将本地的 dist 目录复制到 nginx 的默认静态文件目录
 COPY ./dist /usr/share/nginx/html
 
-COPY ./dist2 /usr/share/nginx/maobucv/html
-
 # 暴露容器的 80 和 443 端口
 EXPOSE 80
 EXPOSE 443

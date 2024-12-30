@@ -99,7 +99,7 @@
     const data = await getVXQunListUnauthAsync();
     if (data.status === 200) {
       data.data.map((item: { name: string }) => {
-        if (item.name === '化简微信交流群') {
+        if (item.name === '猫步简历微信交流群') {
           vxQunList.value.push(item);
         }
       });

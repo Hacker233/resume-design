@@ -74,7 +74,7 @@
                 </div>
                 <div class="bottom">
                   <p class="content-desc"
-                    >每邀请一位新用户注册化简，您将获得+20个简币（新用户注册时填写您的专属邀请码）</p
+                    >每邀请一位新用户注册猫步简历，您将获得+20个简币（新用户注册时填写您的专属邀请码）</p
                   >
                   <div class="attendance-box">
                     <div class="button" @click="getInviteCode">获取专属邀请码</div>
@@ -91,7 +91,7 @@
                 </div>
                 <div class="bottom">
                   <p class="content-desc"
-                    >给化简项目点Star，添加小编微信，凭点赞截图获取+20（入口在首页右侧浮窗）</p
+                    >给猫步简历项目点Star，添加小编微信，凭点赞截图获取+20（入口在首页右侧浮窗）</p
                   >
                   <div class="attendance-box" @click="toGithub">
                     <div class="button"> 去点Star </div>
@@ -145,7 +145,7 @@
                 <h2>购买源码</h2>
 
                 <div class="desc"
-                  >购买源码后，你可以将化简官网部署为个人网站，同时你将拥有化简网站内的所有资源，以及开源作者的贴心指导！</div
+                  >购买源码后，你可以将猫步简历官网部署为个人网站，同时你将拥有猫步简历网站内的所有资源，以及开源作者的贴心指导！</div
                 >
                 <div class="actions"> 立即前往>> </div></div
               >

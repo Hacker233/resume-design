@@ -13,7 +13,7 @@ const commonDataSource: any = {
     name: {
       type: 'input',
       label: '姓名',
-      value: '化简',
+      value: '猫步简历',
       props: {
         width: '49%'
       }
@@ -146,7 +146,7 @@ const commonDataSource: any = {
           schoolName: {
             type: 'input',
             label: '学校名称',
-            value: '化简科技大学',
+            value: '猫步简历科技大学',
             props: {
               width: '49%'
             }
@@ -454,7 +454,7 @@ const commonDataSource: any = {
           companyName: {
             type: 'input',
             label: '公司名称',
-            value: '化简科技股份有限公司',
+            value: '猫步简历科技股份有限公司',
             props: {
               width: '49%'
             }
@@ -550,7 +550,7 @@ const commonDataSource: any = {
           companyName: {
             type: 'input',
             label: '公司名称',
-            value: '化简科技股份有限公司',
+            value: '猫步简历科技股份有限公司',
             props: {
               width: '49%'
             }
@@ -644,7 +644,7 @@ const commonDataSource: any = {
           companyName: {
             type: 'input',
             label: '项目名称',
-            value: '化简开源项目',
+            value: '猫步简历开源项目',
             props: {
               width: '49%'
             }
@@ -821,7 +821,7 @@ const commonDataSource: any = {
           worksName: {
             type: 'input',
             label: '作品名称',
-            value: '化简',
+            value: '猫步简历',
             props: {
               width: '49%'
             }
@@ -847,7 +847,7 @@ const commonDataSource: any = {
           worksName: {
             type: 'input',
             label: '作品名称',
-            value: '化简',
+            value: '猫步简历',
             props: {
               width: '49%'
             }
@@ -879,7 +879,7 @@ const commonDataSource: any = {
     name: {
       type: 'input',
       label: '姓名',
-      value: '化简',
+      value: '猫步简历',
       props: {
         width: '49%'
       }
@@ -915,7 +915,7 @@ const commonDataSource: any = {
     name: {
       type: 'input',
       label: '姓名',
-      value: '化简',
+      value: '猫步简历',
       props: {
         width: '49%'
       }

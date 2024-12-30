@@ -6,7 +6,7 @@
     <div class="content-bottom-box">
       <!-- 头部标题位置 -->
       <div class="title-box">
-        <h1>将91化简私有化部署为你自己的网站</h1>
+        <h1>将91猫步简历私有化部署为你自己的网站</h1>
       </div>
 
       <!-- 定价表title -->
@@ -68,17 +68,17 @@
     {
       iconfont: 'icon-codepen',
       title: '整套的前端源码',
-      introduce: '91化简完整的前端源码，可直接运行使用并打包部署。'
+      introduce: '猫步简历完整的前端源码，可直接运行使用并打包部署。'
     },
     {
       iconfont: 'icon-_houduankaifa',
       title: '完整的后端源码',
-      introduce: '91化简完整的后端源码，配置好数据库以及文件存储服务环境后可使用。'
+      introduce: '猫步简历完整的后端源码，配置好数据库以及文件存储服务环境后可使用。'
     },
     {
       iconfont: 'icon-database',
       title: 'Mongodb数据库',
-      introduce: '91化简后台使用的测试数据库，提供相关测试数据。'
+      introduce: '猫步简历后台使用的测试数据库，提供相关测试数据。'
     },
     {
       iconfont: 'icon-fuwuqi',
@@ -93,17 +93,18 @@
     {
       iconfont: 'icon-wendang',
       title: '前端项目部署文档',
-      introduce: '全面的91化简前端项目部署上线的文档，学会此文档，可以让你快速入门部署前端项目。'
+      introduce:
+        '全面的91猫步简历前端项目部署上线的文档，学会此文档，可以让你快速入门部署前端项目。'
     },
     {
       iconfont: 'icon-fuzhi',
       title: '后端项目部署文档',
-      introduce: '教你如何将91化简后端项目部署到服务器，并且配置好数据库、邮件服务、minio等等。'
+      introduce: '教你如何将91猫步简历后端项目部署到服务器，并且配置好数据库、邮件服务、minio等等。'
     },
     {
       iconfont: 'icon-zhinan',
       title: '项目开发指南',
-      introduce: '教你如何使用91化简项目，比如如何开发新的简历模板、开发后台接口等等。'
+      introduce: '教你如何使用91猫步简历项目，比如如何开发新的简历模板、开发后台接口等等。'
     },
     {
       iconfont: 'icon-zuozhe',

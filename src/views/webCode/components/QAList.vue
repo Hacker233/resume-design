@@ -3,7 +3,7 @@
     <el-collapse v-model="activeName" accordion>
       <el-collapse-item name="1">
         <template #title>
-          <h3 class="q-title">1.能否使用任意版本的91化简产品，并在后续进行充值升级？</h3>
+          <h3 class="q-title">1.能否使用任意版本的91猫步简历产品，并在后续进行充值升级？</h3>
         </template>
         <div class="answer-box">
           <p>可以购买任意版本后续升级。</p>

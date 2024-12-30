@@ -12,7 +12,7 @@ const MODEL_DATA_JSON: IMODELDATAJSON = {
     model: 'BASE_INFO',
     show: true,
     title: '基本资料',
-    name: '化简',
+    name: '猫步简历',
     age: 25,
     avatarShape: '', // 头像形状
     address: '所在地区', // 所在地址
@@ -267,7 +267,7 @@ const MODEL_DATA_JSON: IMODELDATAJSON = {
     model: 'CUSTOM_1',
     show: true,
     title: '姓名简介',
-    name: '化简',
+    name: '猫步简历',
     abstract: '一句话介绍自己，不宜过长',
     isShow: {
       abstract: true,
@@ -291,7 +291,7 @@ const MODEL_DATA_JSON: IMODELDATAJSON = {
     model: 'CUSTOM_3',
     show: true,
     title: '姓名简介',
-    name: '化简',
+    name: '猫步简历',
     abstract: '给我一个机会，我必全力以赴！',
     avatarShape: 'CIRCLE_AVATAR', // 头像形状
     avatar: 'https://91huajian.cn:9000/resume/avatar/file-1663290281512.jpg', // 头像地址

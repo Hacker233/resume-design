@@ -237,7 +237,7 @@
       :total-amount="selectedPrice"
       :order-type="2"
       :options="membershipOptions"
-      subject="购买化简会员"
+      subject="购买猫步简历会员"
       @pay-success="handlePaySuccess"
       @cancel="handleCancel"
     ></buy-qr-code-dialog>
@@ -249,7 +249,7 @@
       :order-type="2"
       pay-type="wxpay"
       :options="membershipOptions"
-      subject="购买化简会员"
+      subject="购买猫步简历会员"
       @pay-success="handleWXPaySuccess"
       @cancel="handleWXCancel"
     ></w-x-buy-qr-code-dialog>
