@@ -60,17 +60,17 @@
     <div class="icp-record-number">
       <p>
         <a href="https://beian.miit.gov.cn" target="_blank" rel="noopener noreferrer"
-          >蜀ICP备2020034752号-3</a
+          >蜀ICP备2020034752号-4</a
         >
       </p>
-      <p>
+      <!-- <p>
         <a
           target="_blank"
           href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=51010802001313"
           style="display: inline-block; text-decoration: none; height: 20px; line-height: 20px"
           >川公网安备 51010802001313号</a
         >
-      </p>
+      </p> -->
     </div>
   </div>
 </template>
