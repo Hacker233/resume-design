@@ -42,7 +42,7 @@
       <div class="bottom-right">
         <img
           :src="
-            articleInfo.article_cover || 'https://91huajian.cn:9000/resume/logo/article_default.jpg'
+            articleInfo.article_cover || 'https://maobucv.com:9000/resume/logo/article_default.jpg'
           "
           alt=""
           srcset=""

@@ -58,7 +58,7 @@ export default defineConfig(async ({ command, mode }: ConfigEnv) => {
         routes: ['/', '/template'] // 预渲染的路径列表
       }),
       sitemap({
-        hostname: 'https://91huajian.cn' // 修正 URL
+        hostname: 'https://maobucv.com' // 修正 URL
       })
     ],
     esbuild: {

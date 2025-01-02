@@ -10,7 +10,7 @@
     const params = {
       response_type: 'code',
       client_id: '102066932',
-      redirect_uri: encodeURI('https://91huajian.cn/person'),
+      redirect_uri: encodeURI('https://maobucv.com/person'),
       state: 'hello'
     };
     const data = await qqLoginASync(params);

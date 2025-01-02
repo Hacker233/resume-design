@@ -237,7 +237,7 @@
   // 上传文件地址
   const uploadAddress = () => {
     return CONFIG.serverAddress + '/huajian/upload/file/wordTemplate';
-    // return 'https://91huajian.cn/huajian/upload/file/wordTemplate';
+    // return 'https://maobucv.com/huajian/upload/file/wordTemplate';
   };
 
   // 预览图列表

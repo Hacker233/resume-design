@@ -28,7 +28,7 @@
 
 <p align="center"><b>基于Vue3 + TypeScript + Vite + Element-plus + pinia实现</b></p>
 
-**在线地址：[https://91huajian.cn](https://91huajian.cn/)**
+**在线地址：[https://maobucv.com](https://maobucv.com/)**
 
 
 # 目录
@@ -90,12 +90,12 @@
 - [x] 完善的管理端系统，让网站变得可配置化
 
 
-......更多功能请到官网体验：[猫步简历](https://91huajian.cn/)
+......更多功能请到官网体验：[猫步简历](https://maobucv.com/)
 
 # 🎇 项目演示截图
 
 **网站首页：**
-<p align=center><img src="https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/e6475e91ab344eb28f338ea50716face~tplv-k3u1fbpfcp-zoom-in-crop-mark:1512:0:0:0.awebp?" alt="网页捕获_26-4-2023_17656_91huajian.cn.jpeg"  /></p>
+<p align=center><img src="https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/e6475e91ab344eb28f338ea50716face~tplv-k3u1fbpfcp-zoom-in-crop-mark:1512:0:0:0.awebp?" alt="网页捕获_26-4-2023_17656_maobucv.com.jpeg"  /></p>
 
 **管理端：**
 
@@ -109,7 +109,7 @@
 
 <p align=center><img src="https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/0ad17cb4117c48d1a73ac4f533f027e9~tplv-k3u1fbpfcp-watermark.image?" alt="design-2.png"  /></p>
 
-......更多页面请到官网体验：[猫步简历](https://91huajian.cn/)
+......更多页面请到官网体验：[猫步简历](https://maobucv.com/)
 
 # 🐶 技术栈介绍
 
@@ -165,12 +165,12 @@ pnpm install
 // src/config/index.ts
 
 const serverAddress =
-  import.meta.env.MODE === 'development' ? 'http://localhost:3399' : 'https://91huajian.cn';
+  import.meta.env.MODE === 'development' ? 'http://localhost:3399' : 'https://maobucv.com';
 const CONFIG = {
   // serverAddress: 'http://localhost:3399',
-  // serverAddress: 'https://91huajian.cn',
+  // serverAddress: 'https://maobucv.com',
   serverAddress: serverAddress,
-  smallpigAddress: 'https://91huajian.cn' // 此地址为资源分享菜单的后台地址，可不管
+  smallpigAddress: 'https://maobucv.com' // 此地址为资源分享菜单的后台地址，可不管
 };
 export default CONFIG;
 ```
@@ -178,16 +178,16 @@ export default CONFIG;
 ```
 // src/config/index.ts
 
-const serverAddress = 'https://91huajian.cn';
+const serverAddress = 'https://maobucv.com';
 const CONFIG = {
   // serverAddress: 'http://localhost:3399',
-  // serverAddress: 'https://91huajian.cn',
+  // serverAddress: 'https://maobucv.com',
   serverAddress: serverAddress,
-  smallpigAddress: 'https://91huajian.cn' // 此地址为资源分享菜单的后台地址，可不管
+  smallpigAddress: 'https://maobucv.com' // 此地址为资源分享菜单的后台地址，可不管
 };
 export default CONFIG;
 ```
-**备注**：如想搭建自己的后台，可到[猫步简历官网](https://91huajian.cn)获取后端源码。
+**备注**：如想搭建自己的后台，可到[猫步简历官网](https://maobucv.com)获取后端源码。
 
 ## 运行项目
 
@@ -468,7 +468,7 @@ git push
 
 - **知识星球学习社区**
 
-此社区只开放给已获取猫步简历项目后端源代码的伙伴，社区内部会持续推送最新后端源码，后端源码具体获取方式可到猫步简历官网查看：[猫步简历](https://91huajian.cn)
+此社区只开放给已获取猫步简历项目后端源代码的伙伴，社区内部会持续推送最新后端源码，后端源码具体获取方式可到猫步简历官网查看：[猫步简历](https://maobucv.com)
 
 <p align="center">
     <img width="200" src="https://gitee.com/sharemore52/resume-design/raw/main/src/assets/images/vx.jpg">

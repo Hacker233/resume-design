@@ -829,7 +829,7 @@ const commonDataSource: any = {
           worksLink: {
             type: 'input',
             label: '作品链接',
-            value: 'https://91huajian.cn',
+            value: 'https://maobucv.com',
             props: {
               width: '49%'
             }
@@ -855,7 +855,7 @@ const commonDataSource: any = {
           worksLink: {
             type: 'input',
             label: '作品链接',
-            value: 'https://91huajian.cn',
+            value: 'https://maobucv.com',
             props: {
               width: '49%'
             }
