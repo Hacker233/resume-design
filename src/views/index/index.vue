@@ -70,7 +70,7 @@
   const { websiteConfig } = storeToRefs(appStore.useWebsiteConfigStore);
 
   useHead({
-    title: websiteConfig.value.website_title || '猫步简历-一款免费开源的简历制作神器',
+    title: websiteConfig.value.website_title || '猫步简历 - 一款免费开源的简历制作神器',
     meta: [
       {
         name: 'description',

@@ -6,7 +6,7 @@
     <div class="content-bottom-box">
       <!-- 头部标题位置 -->
       <div class="title-box">
-        <h1>将91猫步简历私有化部署为你自己的网站</h1>
+        <h1>将猫步简历私有化部署为你自己的网站</h1>
       </div>
 
       <!-- 定价表title -->
@@ -93,18 +93,17 @@
     {
       iconfont: 'icon-wendang',
       title: '前端项目部署文档',
-      introduce:
-        '全面的91猫步简历前端项目部署上线的文档，学会此文档，可以让你快速入门部署前端项目。'
+      introduce: '全面的猫步简历前端项目部署上线的文档，学会此文档，可以让你快速入门部署前端项目。'
     },
     {
       iconfont: 'icon-fuzhi',
       title: '后端项目部署文档',
-      introduce: '教你如何将91猫步简历后端项目部署到服务器，并且配置好数据库、邮件服务、minio等等。'
+      introduce: '教你如何将猫步简历后端项目部署到服务器，并且配置好数据库、邮件服务、minio等等。'
     },
     {
       iconfont: 'icon-zhinan',
       title: '项目开发指南',
-      introduce: '教你如何使用91猫步简历项目，比如如何开发新的简历模板、开发后台接口等等。'
+      introduce: '教你如何使用猫步简历项目，比如如何开发新的简历模板、开发后台接口等等。'
     },
     {
       iconfont: 'icon-zuozhe',
