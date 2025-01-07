@@ -2,6 +2,7 @@
   <div class="avatar-1-box" :style="avatar">
     <el-image
       v-if="module?.dataSource.avatar.value"
+      :fit="avatar.objectFit"
       :style="elImageStyle"
       :src="module.dataSource.avatar.value"
     />
@@ -25,8 +26,8 @@
   // 返回el-img样式
   const elImageStyle = computed(() => {
     return {
-      width: '115px',
-      height: '115px',
+      width: '100%',
+      height: '100%',
       borderTopLeftRadius: avatar?.value.borderTopLeftRadius,
       borderTopRightRadius: avatar?.value.borderTopRightRadius,
       borderBottomLeftRadius: avatar?.value.borderBottomLeftRadius,

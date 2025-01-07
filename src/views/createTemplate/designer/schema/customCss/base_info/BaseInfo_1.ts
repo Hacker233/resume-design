@@ -33,6 +33,7 @@ const BaseInfo_1 = [
       flexShrink: 0,
       backgroundColor: '#eee',
       opacity: 1,
+      objectFit: 'fill',
       padding: {
         top: 0,
         right: 0,

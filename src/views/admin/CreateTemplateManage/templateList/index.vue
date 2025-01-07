@@ -101,7 +101,8 @@
   const getTemplateList = async () => {
     let params = {
       page: page.value,
-      limit: limit.value
+      limit: limit.value,
+      createDate: 'desc'
     };
     const data = await templateListAsync(params);
     if (data.status === 200) {

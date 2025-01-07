@@ -64,6 +64,7 @@
     let params = {
       page: page.value,
       limit: limit.value,
+      templateStatus: 1,
       ...categoryDom.value.filterValue
     };
     const data = await templateListAsync(params);

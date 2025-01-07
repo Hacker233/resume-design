@@ -34,6 +34,7 @@ import listStyle from './listStyle.vue';
 import textDecoration from './textDecoration.vue';
 import moduleMargin from './moduleMargin.vue';
 import modulePadding from './modulePadding.vue';
+import objectFit from './objectFit.vue';
 
 const settersStyleCptMap: ISetterMap = {
   width,
@@ -69,6 +70,7 @@ const settersStyleCptMap: ISetterMap = {
   listStyle,
   textDecoration,
   moduleMargin,
-  modulePadding
+  modulePadding,
+  objectFit
 };
 export default settersStyleCptMap;

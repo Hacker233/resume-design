@@ -32,6 +32,7 @@ const BaseInfo_2 = [
       rotate: 0,
       backgroundColor: '#eee',
       opacity: 1,
+      objectFit: 'fill',
       padding: {
         top: 0,
         right: 0,

@@ -114,6 +114,7 @@ export const useGetCustomStyle = (module: IModule | IHJNewSchema, prop: string) 
           listStyle: element.css.listStyle ?? 'disc',
           listStylePosition: element.css?.listStylePosition ?? 'outside',
           textDecoration: element.css?.textDecoration ?? 'auto',
+          objectFit: element.css?.objectFit ?? '',
 
           // 处理旋转
           transform: element.css?.rotate
