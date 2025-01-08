@@ -2,7 +2,7 @@
   <div class="resume-list-box">
     <div class="content-box">
       <!-- 分类列表 -->
-      <category-list ref="categoryDom" @category-change="getTemplateList"></category-list>
+      <category-list ref="categoryDom" @category-change="categoryChange"></category-list>
       <!-- 模板列表 -->
       <template-list-vue
         v-if="templateList.length && !isShowSkeleton"
@@ -77,6 +77,13 @@
       ElMessage.error(data.message);
       isShowSkeleton.value = false;
     }
+  };
+
+  // 分类发生变化
+  const categoryChange = () => {
+    currentPage.value = 1;
+    templateList.value = [];
+    getTemplateList();
   };
 
   onMounted(() => {
