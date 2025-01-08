@@ -3,5 +3,6 @@ export const moduleTitleCustomProp = [
   'moduleTitleFont',
   'moduleTitleIcon',
   'moduleTitleFontBox',
-  'moduleTitleRightBox'
+  'moduleTitleRightBox',
+  'moduleTitleRightLine'
 ];

@@ -10,6 +10,7 @@ import BaseInfo_9 from './base_info/BaseInfo_9';
 import BaseInfo_10 from './base_info/BaseInfo_10';
 import BaseInfo_11 from './base_info/BaseInfo_11';
 import BaseInfo_12 from './base_info/BaseInfo_12';
+import BaseInfo_13 from './base_info/BaseInfo_13';
 
 // 求职意向
 import JobIntention_1 from './job_intention/JobIntention_1';
@@ -183,6 +184,7 @@ import ModuleTitle_13 from './module_title/Module_Title_13';
 import ModuleTitle_14 from './module_title/Module_Title_14';
 import ModuleTitle_15 from './module_title/Module_Title_15';
 import ModuleTitle_16 from './module_title/Module_Title_16';
+import ModuleTitle_17 from './module_title/Module_Title_17';
 
 // 页面
 import base_page from './pages/base_page';
@@ -202,6 +204,7 @@ const customCss: any = {
   BaseInfo_10,
   BaseInfo_11,
   BaseInfo_12,
+  BaseInfo_13,
 
   JobIntention_1,
   JobIntention_2,
@@ -362,6 +365,7 @@ const customCss: any = {
   ModuleTitle_14,
   ModuleTitle_15,
   ModuleTitle_16,
+  ModuleTitle_17,
 
   base_page,
   left_right_page,

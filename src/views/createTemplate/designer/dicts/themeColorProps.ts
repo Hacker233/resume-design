@@ -44,6 +44,12 @@ const themeColorProps: any = {
       leftTopBox: ['background']
     }
   },
+  BaseInfo_13: {
+    css: [],
+    customCss: {
+      topBgcStyle: ['background', 'backgroundColor']
+    }
+  },
   JobIntention_1: {
     css: [],
     customCss: {}
@@ -616,6 +622,9 @@ export const moduleTitleThemeProps: any = {
     moduleTitleFont: ['background']
   },
   ModuleTitle_16: {
+    moduleTitleFont: ['background', 'backgroundColor']
+  },
+  ModuleTitle_17: {
     moduleTitleFont: ['background', 'backgroundColor']
   }
 };
