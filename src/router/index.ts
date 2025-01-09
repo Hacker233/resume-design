@@ -2,6 +2,7 @@ import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
 import LoginDialog from '@/components/LoginDialog/LoginDialog';
 import { closeGlobalLoading } from '@/utils/common';
 import CONFIG from '@/config';
+import { getUserPermissionAsync } from '@/http/api/user';
 
 const Designer = () => import('@/views/designer/index.vue');
 const DesignResume = () => import('@/views/designerResume/index.vue');
@@ -52,6 +53,8 @@ const QQLogin = () => import('@/views/QQLoginTemp/qqLogin.vue');
 const ImgCompress = () => import('@/views/imgCompress/index.vue');
 // 会员充值界面
 const Membership = () => import('@/views/membership/index.vue');
+// 无权限页
+const NoPermission = () => import('@/views/noPermission/index.vue');
 
 // 管理员界面
 const AdminIndex = () => import('@/views/admin/index.vue');
@@ -113,7 +116,8 @@ const routes: Array<RouteRecordRaw> = [
       title: '首页',
       keepAlive: true,
       isShowComNav: false, // 是否显示公共的导航栏
-      requireLogin: false
+      requireLogin: false,
+      requireAdmin: false
     },
     component: Index
   },
@@ -124,7 +128,8 @@ const routes: Array<RouteRecordRaw> = [
       title: '设计',
       keepAlive: true,
       isShowComNav: false,
-      requireLogin: true
+      requireLogin: true,
+      requireAdmin: false
     },
     component: Designer
   },
@@ -135,7 +140,8 @@ const routes: Array<RouteRecordRaw> = [
       title: '设计简历',
       keepAlive: true,
       isShowComNav: false,
-      requireLogin: false
+      requireLogin: false,
+      requireAdmin: false
     },
     component: DesignResume
   },
@@ -146,7 +152,8 @@ const routes: Array<RouteRecordRaw> = [
       title: '积木搭建',
       keepAlive: true,
       isShowComNav: false,
-      requireLogin: true
+      requireLogin: true,
+      requireAdmin: false
     },
     component: LegoDesigner
   },
@@ -157,7 +164,8 @@ const routes: Array<RouteRecordRaw> = [
       title: '积木制作打印预览页',
       keepAlive: false,
       isShowComNav: false,
-      requireLogin: false
+      requireLogin: false,
+      requireAdmin: false
     },
     component: LegoPrintPdfPreview
   },
@@ -168,7 +176,8 @@ const routes: Array<RouteRecordRaw> = [
       title: '积木模板',
       keepAlive: true,
       isShowComNav: true,
-      requireLogin: false
+      requireLogin: false,
+      requireAdmin: false
     },
     component: LegoTemplateList
   },
@@ -179,7 +188,8 @@ const routes: Array<RouteRecordRaw> = [
       title: '作品发布成功',
       keepAlive: true,
       isShowComNav: true,
-      requireLogin: true
+      requireLogin: true,
+      requireAdmin: false
     },
     component: PostWorkSuccess
   },
@@ -190,7 +200,8 @@ const routes: Array<RouteRecordRaw> = [
       title: '创建模版',
       keepAlive: true,
       isShowComNav: false,
-      requireLogin: true
+      requireLogin: true,
+      requireAdmin: false
     },
     component: Custom
   },
@@ -201,7 +212,8 @@ const routes: Array<RouteRecordRaw> = [
       title: '创建模板',
       keepAlive: true,
       isShowComNav: false,
-      requireLogin: true
+      requireLogin: true,
+      requireAdmin: true
     },
     component: CreateTemplate
   },
@@ -212,7 +224,8 @@ const routes: Array<RouteRecordRaw> = [
       title: '简历预览页',
       keepAlive: false,
       isShowComNav: false,
-      requireLogin: false
+      requireLogin: false,
+      requireAdmin: false
     },
     component: PdfPreview
   },
@@ -224,7 +237,8 @@ const routes: Array<RouteRecordRaw> = [
       title: '简历预览页',
       keepAlive: false,
       isShowComNav: false,
-      requireLogin: false
+      requireLogin: false,
+      requireAdmin: false
     },
     component: ResumePreview
   },
@@ -235,7 +249,8 @@ const routes: Array<RouteRecordRaw> = [
       title: '邮箱验证',
       keepAlive: false,
       isShowComNav: true,
-      requireLogin: false
+      requireLogin: false,
+      requireAdmin: false
     },
     component: EmailVerify
   },
@@ -246,7 +261,8 @@ const routes: Array<RouteRecordRaw> = [
       title: '忘记密码',
       keepAlive: false,
       isShowComNav: true,
-      requireLogin: false
+      requireLogin: false,
+      requireAdmin: false
     },
     component: ForgetPassword
   },
@@ -257,7 +273,8 @@ const routes: Array<RouteRecordRaw> = [
       title: '重置密码',
       keepAlive: false,
       isShowComNav: true,
-      requireLogin: false
+      requireLogin: false,
+      requireAdmin: false
     },
     component: ResetPassword
   },
@@ -268,7 +285,8 @@ const routes: Array<RouteRecordRaw> = [
       title: '模板列表',
       keepAlive: true,
       isShowComNav: true,
-      requireLogin: false
+      requireLogin: false,
+      requireAdmin: false
     },
     component: Template
   },
@@ -279,7 +297,8 @@ const routes: Array<RouteRecordRaw> = [
       title: '简历模版列表',
       keepAlive: true,
       isShowComNav: true,
-      requireLogin: false
+      requireLogin: false,
+      requireAdmin: false
     },
     component: Resume
   },
@@ -290,7 +309,8 @@ const routes: Array<RouteRecordRaw> = [
       title: '简历模版详情',
       keepAlive: true,
       isShowComNav: true,
-      requireLogin: false
+      requireLogin: false,
+      requireAdmin: false
     },
     component: ResumeContent
   },
@@ -301,7 +321,8 @@ const routes: Array<RouteRecordRaw> = [
       title: '简历模板',
       keepAlive: true,
       isShowComNav: true,
-      requireLogin: false
+      requireLogin: false,
+      requireAdmin: false
     },
     component: Word
   },
@@ -312,7 +333,8 @@ const routes: Array<RouteRecordRaw> = [
       title: 'PPT模板',
       keepAlive: true,
       isShowComNav: true,
-      requireLogin: false
+      requireLogin: false,
+      requireAdmin: false
     },
     component: PPT
   },
@@ -323,7 +345,8 @@ const routes: Array<RouteRecordRaw> = [
       title: '软件分享',
       keepAlive: true,
       isShowComNav: true,
-      requireLogin: false
+      requireLogin: false,
+      requireAdmin: false
     },
     component: SoftShare
   },
@@ -334,7 +357,8 @@ const routes: Array<RouteRecordRaw> = [
       title: '网站分享',
       keepAlive: true,
       isShowComNav: true,
-      requireLogin: false
+      requireLogin: false,
+      requireAdmin: false
     },
     component: WebsiteShare
   },
@@ -345,7 +369,8 @@ const routes: Array<RouteRecordRaw> = [
       title: '网盘资源',
       keepAlive: true,
       isShowComNav: true,
-      requireLogin: false
+      requireLogin: false,
+      requireAdmin: false
     },
     component: PanShare
   },
@@ -356,7 +381,8 @@ const routes: Array<RouteRecordRaw> = [
       title: '网盘资源详情',
       keepAlive: true,
       isShowComNav: true,
-      requireLogin: false
+      requireLogin: false,
+      requireAdmin: false
     },
     component: PanShareDetail
   },
@@ -367,7 +393,8 @@ const routes: Array<RouteRecordRaw> = [
       title: '软件详情',
       keepAlive: true,
       isShowComNav: true,
-      requireLogin: false
+      requireLogin: false,
+      requireAdmin: false
     },
     component: SoftDetail
   },
@@ -378,7 +405,8 @@ const routes: Array<RouteRecordRaw> = [
       title: '网站详情',
       keepAlive: true,
       isShowComNav: true,
-      requireLogin: false
+      requireLogin: false,
+      requireAdmin: false
     },
     component: WebsiteDetail
   },
@@ -389,7 +417,8 @@ const routes: Array<RouteRecordRaw> = [
       title: '网站详情',
       keepAlive: true,
       isShowComNav: true,
-      requireLogin: false
+      requireLogin: false,
+      requireAdmin: false
     },
     component: QQLogin
   },
@@ -400,7 +429,8 @@ const routes: Array<RouteRecordRaw> = [
       title: '图片压缩',
       keepAlive: true,
       isShowComNav: true,
-      requireLogin: false
+      requireLogin: false,
+      requireAdmin: false
     },
     component: ImgCompress
   },
@@ -411,9 +441,22 @@ const routes: Array<RouteRecordRaw> = [
       title: '会员充值',
       keepAlive: true,
       isShowComNav: true,
-      requireLogin: true
+      requireLogin: true,
+      requireAdmin: false
     },
     component: Membership
+  },
+  {
+    path: '/noPermission',
+    name: 'NoPermission',
+    meta: {
+      title: '暂无权限',
+      keepAlive: true,
+      isShowComNav: true,
+      requireLogin: false,
+      requireAdmin: false
+    },
+    component: NoPermission
   },
   {
     path: '/webCode',
@@ -422,7 +465,8 @@ const routes: Array<RouteRecordRaw> = [
       title: '源码获取',
       keepAlive: true,
       isShowComNav: true,
-      requireLogin: false
+      requireLogin: false,
+      requireAdmin: false
     },
     component: WebCode
   },
@@ -433,7 +477,8 @@ const routes: Array<RouteRecordRaw> = [
       title: '部署指南',
       keepAlive: true,
       isShowComNav: true,
-      requireLogin: true
+      requireLogin: true,
+      requireAdmin: false
     },
     component: DeployDoc
   },
@@ -444,7 +489,8 @@ const routes: Array<RouteRecordRaw> = [
       title: 'word模板详情',
       keepAlive: true,
       isShowComNav: true,
-      requireLogin: false
+      requireLogin: false,
+      requireAdmin: false
     },
     component: WordPreview
   },
@@ -455,7 +501,8 @@ const routes: Array<RouteRecordRaw> = [
       title: 'ppt模板详情',
       keepAlive: true,
       isShowComNav: true,
-      requireLogin: false
+      requireLogin: false,
+      requireAdmin: false
     },
     component: PPTPreview
   },
@@ -467,7 +514,8 @@ const routes: Array<RouteRecordRaw> = [
       title: '个人中心',
       keepAlive: true,
       isShowComNav: true,
-      requireLogin: true
+      requireLogin: true,
+      requireAdmin: false
     },
     component: Person,
     children: [
@@ -479,7 +527,8 @@ const routes: Array<RouteRecordRaw> = [
           keepAlive: true,
           isShowComNav: true,
           requireLogin: true,
-          showTitle: true
+          showTitle: true,
+          requireAdmin: false
         },
         component: PersonDetail
       },
@@ -491,7 +540,8 @@ const routes: Array<RouteRecordRaw> = [
           keepAlive: true,
           isShowComNav: true,
           requireLogin: true,
-          showTitle: false
+          showTitle: false,
+          requireAdmin: false
         },
         component: PersonIntegral
       },
@@ -503,7 +553,8 @@ const routes: Array<RouteRecordRaw> = [
           keepAlive: true,
           isShowComNav: true,
           requireLogin: true,
-          showTitle: true
+          showTitle: true,
+          requireAdmin: false
         },
         component: AccountSetting
       },
@@ -515,7 +566,8 @@ const routes: Array<RouteRecordRaw> = [
           keepAlive: true,
           isShowComNav: true,
           requireLogin: true,
-          showTitle: true
+          showTitle: true,
+          requireAdmin: false
         },
         component: MyComment
       },
@@ -527,7 +579,8 @@ const routes: Array<RouteRecordRaw> = [
           keepAlive: true,
           isShowComNav: true,
           requireLogin: true,
-          showTitle: false
+          showTitle: false,
+          requireAdmin: false
         },
         component: LegoCreate
       },
@@ -539,7 +592,8 @@ const routes: Array<RouteRecordRaw> = [
           keepAlive: true,
           isShowComNav: true,
           requireLogin: true,
-          showTitle: false
+          showTitle: false,
+          requireAdmin: false
         },
         component: MyResume
       },
@@ -551,7 +605,8 @@ const routes: Array<RouteRecordRaw> = [
           keepAlive: true,
           isShowComNav: true,
           requireLogin: true,
-          showTitle: true
+          showTitle: true,
+          requireAdmin: false
         },
         component: MyOnlineResume
       },
@@ -563,7 +618,8 @@ const routes: Array<RouteRecordRaw> = [
           keepAlive: true,
           isShowComNav: true,
           requireLogin: true,
-          showTitle: false
+          showTitle: false,
+          requireAdmin: false
         },
         component: MyContribute
       }
@@ -576,7 +632,8 @@ const routes: Array<RouteRecordRaw> = [
       title: '在线简历',
       keepAlive: false,
       isShowComNav: false,
-      requireLogin: false
+      requireLogin: false,
+      requireAdmin: false
     },
     component: OnlinePreview
   },
@@ -587,7 +644,8 @@ const routes: Array<RouteRecordRaw> = [
       title: '文章详情',
       keepAlive: true,
       isShowComNav: true,
-      requireLogin: true
+      requireLogin: true,
+      requireAdmin: false
     },
     component: ArticleDetail
   },
@@ -600,7 +658,8 @@ const routes: Array<RouteRecordRaw> = [
       title: '管理员页面',
       keepAlive: true,
       isShowComNav: false,
-      requireLogin: true
+      requireLogin: true,
+      requireAdmin: true
     },
     component: AdminIndex,
     redirect: '/admin/panel',
@@ -612,7 +671,8 @@ const routes: Array<RouteRecordRaw> = [
           title: '管理面板',
           keepAlive: true,
           isShowComNav: false,
-          requireLogin: true
+          requireLogin: true,
+          requireAdmin: true
         },
         component: Panel
       },
@@ -623,7 +683,8 @@ const routes: Array<RouteRecordRaw> = [
           title: '微信群管理',
           keepAlive: true,
           isShowComNav: false,
-          requireLogin: true
+          requireLogin: true,
+          requireAdmin: true
         },
         component: VXQun
       },
@@ -634,7 +695,8 @@ const routes: Array<RouteRecordRaw> = [
           title: '网站配置项',
           keepAlive: true,
           isShowComNav: false,
-          requireLogin: true
+          requireLogin: true,
+          requireAdmin: true
         },
         component: WebConfig
       },
@@ -645,7 +707,8 @@ const routes: Array<RouteRecordRaw> = [
           title: '新增模板',
           keepAlive: true,
           isShowComNav: false,
-          requireLogin: true
+          requireLogin: true,
+          requireAdmin: true
         },
         component: AddTemplate
       },
@@ -656,7 +719,8 @@ const routes: Array<RouteRecordRaw> = [
           title: '模板列表',
           keepAlive: true,
           isShowComNav: false,
-          requireLogin: true
+          requireLogin: true,
+          requireAdmin: true
         },
         component: TemplateList
       },
@@ -667,7 +731,8 @@ const routes: Array<RouteRecordRaw> = [
           title: '模板分类',
           keepAlive: true,
           isShowComNav: false,
-          requireLogin: true
+          requireLogin: true,
+          requireAdmin: true
         },
         component: TemplateCategory
       },
@@ -678,7 +743,8 @@ const routes: Array<RouteRecordRaw> = [
           title: '模板风格',
           keepAlive: true,
           isShowComNav: false,
-          requireLogin: true
+          requireLogin: true,
+          requireAdmin: true
         },
         component: TemplateStyle
       },
@@ -689,7 +755,8 @@ const routes: Array<RouteRecordRaw> = [
           title: '模板列表',
           keepAlive: true,
           isShowComNav: false,
-          requireLogin: true
+          requireLogin: true,
+          requireAdmin: true
         },
         component: TemplateListNew
       },
@@ -700,7 +767,8 @@ const routes: Array<RouteRecordRaw> = [
           title: '用户简历列表',
           keepAlive: true,
           isShowComNav: false,
-          requireLogin: true
+          requireLogin: true,
+          requireAdmin: true
         },
         component: UserTemplateList
       },
@@ -711,7 +779,8 @@ const routes: Array<RouteRecordRaw> = [
           title: '待审核模板',
           keepAlive: true,
           isShowComNav: false,
-          requireLogin: true
+          requireLogin: true,
+          requireAdmin: true
         },
         component: TobeAudit
       },
@@ -722,7 +791,8 @@ const routes: Array<RouteRecordRaw> = [
           title: '用户列表',
           keepAlive: true,
           isShowComNav: false,
-          requireLogin: true
+          requireLogin: true,
+          requireAdmin: true
         },
         component: UserList
       },
@@ -733,7 +803,8 @@ const routes: Array<RouteRecordRaw> = [
           title: '会员列表',
           keepAlive: true,
           isShowComNav: false,
-          requireLogin: true
+          requireLogin: true,
+          requireAdmin: true
         },
         component: MembershipList
       },
@@ -744,7 +815,8 @@ const routes: Array<RouteRecordRaw> = [
           title: '会员配置管理',
           keepAlive: true,
           isShowComNav: false,
-          requireLogin: true
+          requireLogin: true,
+          requireAdmin: true
         },
         component: MembershipConfigManage
       },
@@ -755,7 +827,8 @@ const routes: Array<RouteRecordRaw> = [
           title: '赞助列表',
           keepAlive: true,
           isShowComNav: false,
-          requireLogin: true
+          requireLogin: true,
+          requireAdmin: true
         },
         component: SponsorList
       },
@@ -766,7 +839,8 @@ const routes: Array<RouteRecordRaw> = [
           title: '简历列表',
           keepAlive: true,
           isShowComNav: false,
-          requireLogin: true
+          requireLogin: true,
+          requireAdmin: true
         },
         component: ResumeList
       },
@@ -777,7 +851,8 @@ const routes: Array<RouteRecordRaw> = [
           title: 'word模板',
           keepAlive: true,
           isShowComNav: false,
-          requireLogin: true
+          requireLogin: true,
+          requireAdmin: true
         },
         component: WordTemplateList
       },
@@ -788,7 +863,8 @@ const routes: Array<RouteRecordRaw> = [
           title: 'word分类',
           keepAlive: true,
           isShowComNav: false,
-          requireLogin: true
+          requireLogin: true,
+          requireAdmin: true
         },
         component: WordCategoryList
       },
@@ -799,7 +875,8 @@ const routes: Array<RouteRecordRaw> = [
           title: 'ppt分类',
           keepAlive: true,
           isShowComNav: false,
-          requireLogin: true
+          requireLogin: true,
+          requireAdmin: true
         },
         component: PPTCategoryList
       },
@@ -810,7 +887,8 @@ const routes: Array<RouteRecordRaw> = [
           title: 'ppt模板',
           keepAlive: true,
           isShowComNav: false,
-          requireLogin: true
+          requireLogin: true,
+          requireAdmin: true
         },
         component: PPTTemplateList
       },
@@ -821,7 +899,8 @@ const routes: Array<RouteRecordRaw> = [
           title: '评论列表',
           keepAlive: true,
           isShowComNav: false,
-          requireLogin: true
+          requireLogin: true,
+          requireAdmin: true
         },
         component: CommentList
       },
@@ -832,7 +911,8 @@ const routes: Array<RouteRecordRaw> = [
           title: '新增文章',
           keepAlive: true,
           isShowComNav: false,
-          requireLogin: true
+          requireLogin: true,
+          requireAdmin: true
         },
         component: AddArticle
       },
@@ -843,7 +923,8 @@ const routes: Array<RouteRecordRaw> = [
           title: '文章列表',
           keepAlive: true,
           isShowComNav: false,
-          requireLogin: true
+          requireLogin: true,
+          requireAdmin: true
         },
         component: ArticleList
       },
@@ -854,7 +935,8 @@ const routes: Array<RouteRecordRaw> = [
           title: '文章分类',
           keepAlive: true,
           isShowComNav: false,
-          requireLogin: true
+          requireLogin: true,
+          requireAdmin: true
         },
         component: ArticleCategory
       },
@@ -865,7 +947,8 @@ const routes: Array<RouteRecordRaw> = [
           title: '文章发布成功',
           keepAlive: true,
           isShowComNav: false,
-          requireLogin: true
+          requireLogin: true,
+          requireAdmin: true
         },
         component: PublishSuccess
       },
@@ -876,7 +959,8 @@ const routes: Array<RouteRecordRaw> = [
           title: '付费列表',
           keepAlive: true,
           isShowComNav: false,
-          requireLogin: true
+          requireLogin: true,
+          requireAdmin: true
         },
         component: PayList
       },
@@ -887,7 +971,8 @@ const routes: Array<RouteRecordRaw> = [
           title: '易支付订单',
           keepAlive: true,
           isShowComNav: false,
-          requireLogin: true
+          requireLogin: true,
+          requireAdmin: true
         },
         component: YipayList
       },
@@ -898,7 +983,8 @@ const routes: Array<RouteRecordRaw> = [
           title: '日志列表',
           keepAlive: true,
           isShowComNav: false,
-          requireLogin: true
+          requireLogin: true,
+          requireAdmin: true
         },
         component: IntegralList
       },
@@ -909,7 +995,8 @@ const routes: Array<RouteRecordRaw> = [
           title: '简币消费配置',
           keepAlive: true,
           isShowComNav: false,
-          requireLogin: true
+          requireLogin: true,
+          requireAdmin: true
         },
         component: IntegralPayConfig
       },
@@ -920,7 +1007,8 @@ const routes: Array<RouteRecordRaw> = [
           title: '当面付订单',
           keepAlive: true,
           isShowComNav: false,
-          requireLogin: true
+          requireLogin: true,
+          requireAdmin: true
         },
         component: AliPayTradeList
       },
@@ -931,7 +1019,8 @@ const routes: Array<RouteRecordRaw> = [
           title: '积木分类',
           keepAlive: true,
           isShowComNav: false,
-          requireLogin: true
+          requireLogin: true,
+          requireAdmin: true
         },
         component: LegoCategory
       },
@@ -942,7 +1031,8 @@ const routes: Array<RouteRecordRaw> = [
           title: '积木列表',
           keepAlive: true,
           isShowComNav: false,
-          requireLogin: true
+          requireLogin: true,
+          requireAdmin: true
         },
         component: LegoTemplateListManage
       },
@@ -953,7 +1043,8 @@ const routes: Array<RouteRecordRaw> = [
           title: '用户创作列表',
           keepAlive: true,
           isShowComNav: false,
-          requireLogin: true
+          requireLogin: true,
+          requireAdmin: true
         },
         component: LegoUserTemplateList
       },
@@ -964,7 +1055,8 @@ const routes: Array<RouteRecordRaw> = [
           title: '软件分享管理',
           keepAlive: true,
           isShowComNav: false,
-          requireLogin: true
+          requireLogin: true,
+          requireAdmin: true
         },
         component: SoftShareManage
       },
@@ -975,7 +1067,8 @@ const routes: Array<RouteRecordRaw> = [
           title: '软件分类管理',
           keepAlive: true,
           isShowComNav: false,
-          requireLogin: true
+          requireLogin: true,
+          requireAdmin: true
         },
         component: SoftCategoryManage
       },
@@ -986,7 +1079,8 @@ const routes: Array<RouteRecordRaw> = [
           title: '网站大类管理',
           keepAlive: true,
           isShowComNav: false,
-          requireLogin: true
+          requireLogin: true,
+          requireAdmin: true
         },
         component: WebsiteTypeManage
       },
@@ -997,7 +1091,8 @@ const routes: Array<RouteRecordRaw> = [
           title: '网站分类管理',
           keepAlive: true,
           isShowComNav: false,
-          requireLogin: true
+          requireLogin: true,
+          requireAdmin: true
         },
         component: WebsiteCategoryManage
       },
@@ -1008,7 +1103,8 @@ const routes: Array<RouteRecordRaw> = [
           title: '网站分享管理',
           keepAlive: true,
           isShowComNav: false,
-          requireLogin: true
+          requireLogin: true,
+          requireAdmin: true
         },
         component: WebsiteManage
       },
@@ -1019,7 +1115,8 @@ const routes: Array<RouteRecordRaw> = [
           title: '网盘资源分类管理',
           keepAlive: true,
           isShowComNav: false,
-          requireLogin: true
+          requireLogin: true,
+          requireAdmin: true
         },
         component: PanShareCategoryManage
       },
@@ -1030,7 +1127,8 @@ const routes: Array<RouteRecordRaw> = [
           title: '网盘资源管理',
           keepAlive: true,
           isShowComNav: false,
-          requireLogin: true
+          requireLogin: true,
+          requireAdmin: true
         },
         component: PanShareManage
       },
@@ -1041,7 +1139,8 @@ const routes: Array<RouteRecordRaw> = [
           title: '首页导航菜单管理',
           keepAlive: true,
           isShowComNav: false,
-          requireLogin: true
+          requireLogin: true,
+          requireAdmin: true
         },
         component: IndexMenuManage
       },
@@ -1052,7 +1151,8 @@ const routes: Array<RouteRecordRaw> = [
           title: '首页导航菜单管理',
           keepAlive: true,
           isShowComNav: false,
-          requireLogin: true
+          requireLogin: true,
+          requireAdmin: true
         },
         component: AdminMenuManage
       }
@@ -1074,16 +1174,26 @@ const router = createRouter({
 });
 
 // 全局守卫：登录拦截 本地没有存token,请重新登录
-router.beforeEach((to, from, next) => {
+router.beforeEach(async (to, from, next) => {
   const token = localStorage.getItem('token');
   const userInfo = localStorage.getItem('userInfo');
-  // 需要权限且已经登录
+  // 需要权限且未登录
   if (to.meta.requireLogin && !token) {
     closeGlobalLoading(); // 关闭全局等待层
     LoginDialog(true, to.fullPath);
   } else if (to.meta.requireLogin && token) {
     // 需要权限且已经登录
     if (userInfo) {
+      // 判断该页面是否是管理员才能进入
+      const requireAdmin = to.meta.requireAdmin;
+      if (requireAdmin) {
+        const data = await getUserPermissionAsync();
+        const isAdmin = data.data.data;
+        if (!isAdmin) {
+          next('/noPermission');
+        }
+      }
+
       const emailVerify = JSON.parse(userInfo as string).auth.email.valid;
       if (emailVerify || !CONFIG.isEmailVerify) {
         next();

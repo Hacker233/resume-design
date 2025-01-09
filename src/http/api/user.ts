@@ -141,3 +141,11 @@ export const qqLoginASync: any = (params: any) => {
     params: params
   });
 };
+
+// 判断用户是否拥有管理权限
+export const getUserPermissionAsync: any = () => {
+  return http.request({
+    url: '/huajian/users/getUserPermission',
+    method: 'get'
+  });
+};
