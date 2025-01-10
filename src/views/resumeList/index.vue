@@ -81,7 +81,7 @@
 
   // 分类发生变化
   const categoryChange = () => {
-    currentPage.value = 1;
+    page.value = 1;
     templateList.value = [];
     getTemplateList();
   };

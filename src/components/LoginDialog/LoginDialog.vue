@@ -154,7 +154,7 @@
               <button class="ghost-button ghost" @click="signIn">立即登录</button>
             </div>
             <div class="overlay-panel overlay-right">
-              <h1>你好, 简友！</h1>
+              <h1>你好, 猫友！</h1>
               <p v-if="websiteConfig.open_sign">还没有账号？快来注册吧！</p>
               <button v-if="websiteConfig.open_sign" class="ghost-button ghost" @click="signUp"
                 >立即注册</button
