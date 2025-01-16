@@ -10,34 +10,51 @@
     <div class="function-card-box">
       <div class="card-top">
         <div class="card">
-          <img src="../../../assets/images//resumeFunctionIntro/cloud.svg" alt="" srcset="" />
+          <img src="../../../assets/images/resumeFunctionIntro/cloud.svg" alt="" srcset="" />
           <h1>云端存储</h1>
           <p>数据存储至云端，实时同步，永不丢失</p>
         </div>
         <div class="card">
-          <img src="../../../assets/images//resumeFunctionIntro/module.svg" alt="" srcset="" />
+          <img src="../../../assets/images/resumeFunctionIntro/module.svg" alt="" srcset="" />
           <h1>模块定制</h1>
           <p>所有简历模块皆可自由调整、隐藏或显示</p>
         </div>
         <div class="card">
-          <img src="../../../assets/images//resumeFunctionIntro/theme.svg" alt="" srcset="" />
+          <img src="../../../assets/images/resumeFunctionIntro/theme.svg" alt="" srcset="" />
           <h1>皮肤色彩定制</h1>
           <p>海量皮肤随心定制，做出独一无二的简历</p>
         </div>
       </div>
+      <div class="card-top">
+        <div class="card">
+          <img src="../../../assets/images/resumeFunctionIntro/ainew.svg" alt="" srcset="" />
+          <h1>AI帮写</h1>
+          <p>AI智能帮写简历，快速完成简历</p>
+        </div>
+        <div class="card">
+          <img src="../../../assets/images/resumeFunctionIntro/aiedit.svg" alt="" srcset="" />
+          <h1>AI润色</h1>
+          <p>AI帮改简历、提高专业性</p>
+        </div>
+        <div class="card">
+          <img src="../../../assets/images/resumeFunctionIntro/aifanyi.svg" alt="" srcset="" />
+          <h1>AI翻译</h1>
+          <p>AI多语言翻译简历、快速生成</p>
+        </div>
+      </div>
       <div class="card-bottom">
         <div class="card">
-          <img src="../../../assets/images//resumeFunctionIntro/download.svg" alt="" srcset="" />
+          <img src="../../../assets/images/resumeFunctionIntro/download.svg" alt="" srcset="" />
           <h1>多端下载</h1>
           <p>多端一键下载简历，打印、投递更方便</p>
         </div>
         <div class="card">
-          <img src="../../../assets/images//resumeFunctionIntro/data.svg" alt="" srcset="" />
+          <img src="../../../assets/images/resumeFunctionIntro/data.svg" alt="" srcset="" />
           <h1>专注数据</h1>
           <p>专注于简历数据填写，排除其他干扰</p>
         </div>
         <div class="card">
-          <img src="../../../assets/images//resumeFunctionIntro/json.svg" alt="" srcset="" />
+          <img src="../../../assets/images/resumeFunctionIntro/json.svg" alt="" srcset="" />
           <h1>导出JSON</h1>
           <p>源码级别JSON数据导出，本地编辑 </p>
         </div>

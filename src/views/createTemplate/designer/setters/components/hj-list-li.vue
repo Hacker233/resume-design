@@ -26,7 +26,7 @@
                     class="move-icon"
                     icon-name="icon-tuozhuai3"
                     color="#1e2532"
-                    size="26px"
+                    size="20px"
                   ></svg-icon>
                 </el-tooltip>
                 <!-- 数据填写组件 -->
@@ -38,9 +38,14 @@
                       :show-top="false"
                       :label="value.label"
                       :key-value="key"
+                      :module-id="id"
                     >
                     </component>
                   </div>
+                </template>
+                <!-- AI组件 -->
+                <template v-for="(value, key, dataIndex) in element" :key="dataIndex">
+                  <ai-button v-model="value.value" :module-id="id"></ai-button>
                 </template>
                 <!-- 组件类型切换 -->
                 <template v-for="(value, key, dataIndex) in element" :key="dataIndex">
@@ -54,6 +59,7 @@
                 <!-- 删除图标 -->
                 <el-tooltip effect="light" content="删除该项" placement="bottom">
                   <el-button
+                    size="small"
                     :disabled="dataObj.value.length === 1"
                     type="danger"
                     :icon="Delete"
@@ -82,12 +88,14 @@
   import draggable from 'vuedraggable';
   import { Delete } from '@element-plus/icons-vue';
   import ComponentTypePop from '../../components/ComponentTypePop.vue';
+  import AiButton from '../../components/AiButton.vue';
 
   const emit = defineEmits(['update:modelValue']);
 
   const props = defineProps<{
     modelValue: {};
     keyValue: string | number;
+    id: string;
   }>();
 
   console.log('嵌套列表', props.modelValue, props.keyValue);
@@ -190,7 +198,7 @@
             }
             .data-item {
               flex: 1;
-              margin: 0 10px;
+              margin: 0 10px 0 5px;
               .field {
                 height: auto;
               }
@@ -199,11 +207,14 @@
               cursor: pointer;
               padding: 3px;
               transition: all 0.3s;
-              margin-left: 15px;
+              margin-left: 8px;
               &:hover {
                 background-color: #eee;
                 border-radius: 4px;
               }
+            }
+            :deep(.ai-button-1) {
+              margin-left: 0;
             }
             .move-icon {
               cursor: move;

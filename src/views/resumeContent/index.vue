@@ -25,10 +25,12 @@
             >使用人数：<span>{{ templateData.template_views }}</span
             >人</p
           >
-          <!-- 使用此模版 -->
-          <el-button class="use-template-btn" type="primary" size="large" @click="handleToUse"
-            >使用此模版</el-button
-          >
+          <div class="use-template-box">
+            <!-- 使用此模版 -->
+            <el-button class="use-template-btn" type="primary" size="large" @click="handleToUse"
+              >使用此模版</el-button
+            >
+          </div>
           <!-- 特别说明 -->
           <div class="template-tips">
             <p class="tips">特此说明：</p>
@@ -272,16 +274,21 @@
             font-weight: bold;
           }
         }
-        .use-template-btn {
-          height: 50px;
-          width: 100%;
-          font-size: 16px;
-          letter-spacing: 2px;
-          margin-top: 20px;
+        .use-template-box {
           display: flex;
-          align-items: center;
-          padding: 0;
+          justify-content: space-between;
+          .use-template-btn {
+            height: 50px;
+            width: 100%;
+            font-size: 16px;
+            letter-spacing: 2px;
+            margin-top: 20px;
+            display: flex;
+            align-items: center;
+            padding: 0;
+          }
         }
+
         .template-tips {
           display: flex;
           flex-direction: column;

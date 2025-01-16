@@ -139,6 +139,7 @@
                       :key-value="key"
                       :module="moduleItem"
                       :disabled="!moduleItem.props[key].config"
+                      :module-id="moduleItem.id"
                     >
                       <!-- 组件图标 -->
                       <template #label-left>

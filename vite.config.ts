@@ -15,9 +15,6 @@ export default defineConfig(async ({ command, mode }: ConfigEnv) => {
   const env = loadEnv(mode, root); // 加载 env 环境
   const viteEnv = wrapperEnv(env);
 
-  // 动态导入 vite-plugin-sitemap
-  const { default: sitemap } = await import('vite-plugin-sitemap');
-
   return {
     // base: './',
     resolve: {
@@ -56,9 +53,6 @@ export default defineConfig(async ({ command, mode }: ConfigEnv) => {
       prerender({
         staticDir: path.resolve(__dirname, 'dist'), // 指定预渲染的静态文件目录
         routes: ['/', '/template'] // 预渲染的路径列表
-      }),
-      sitemap({
-        hostname: 'https://maobucv.com' // 修正 URL
       })
     ],
     esbuild: {

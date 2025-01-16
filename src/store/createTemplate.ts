@@ -11,6 +11,7 @@ export const useCreateTemplateStore = defineStore('createTemplate', () => {
   const resume_json = cloneDeep(HJNewSchema); // 简历数据
   const moduleDataConfigRefList = ref<any>({}); // 存储数据配置页面每个组件的ref
   const HJNewJsonStore = ref<IHJNewSchema>(resume_json);
+  const resetKey = ref<number>(0);
   function changeResumeJsonData(obj: IHJNewSchema) {
     HJNewJsonStore.value = cloneDeep(obj);
   }
@@ -38,6 +39,7 @@ export const useCreateTemplateStore = defineStore('createTemplate', () => {
     selectedPageName,
     HJNewJsonStore,
     moduleDataConfigRefList,
+    resetKey,
     dataConfigScrollToView,
     changeResumeJsonData,
     pushComponent,

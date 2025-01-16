@@ -49,6 +49,16 @@
     }
   );
 
+  watch(
+    () => props.modelValue,
+    (newVal) => {
+      htmlContent.value = newVal;
+    },
+    {
+      deep: true
+    }
+  );
+
   // 模式
   const mode = ref<string>('simple');
 

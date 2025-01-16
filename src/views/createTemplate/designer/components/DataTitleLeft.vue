@@ -20,6 +20,7 @@
         icon-name="icon-tubiao_bianji"
         color="#1e2532"
         size="22px"
+        class="edit-icon"
         @click="toggleEdit"
       ></svg-icon>
     </el-tooltip>
@@ -67,7 +68,7 @@
         margin-top: 2px;
       }
     }
-    .svg-icon {
+    .edit-icon {
       cursor: pointer;
       padding: 3px;
       transition: all 0.3s;

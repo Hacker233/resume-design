@@ -21,7 +21,7 @@ export const useWebsiteConfigStore = defineStore('websiteConfig', () => {
     open_sign_in: true,
     open_business: true,
     open_sponsor: true,
-    website_title: '猫步简历 - 一款免费开源的简历制作神器',
+    website_title: '猫步简历 - 一款免费开源的AI简历生成 | 制作神器',
     open_membership: true,
     open_homne_menu: true
   });

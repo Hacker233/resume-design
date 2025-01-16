@@ -38,7 +38,7 @@
                 <!-- 列表组件 -->
                 <template v-if="value.type === 'listLi'">
                   <div :style="getFiledStyle(value)">
-                    <hj-list-li v-model="element[key]" :key-value="key">
+                    <hj-list-li :id="id" v-model="element[key]" :key-value="key">
                       <!-- 组件图标 -->
                       <template #label-left>
                         <icon-select-pop
@@ -69,6 +69,7 @@
                       :label="value.label"
                       :key-value="key"
                       :module="module"
+                      :module-id="id"
                       :disabled="!module.props[key].config"
                     >
                       <!-- 组件图标 -->

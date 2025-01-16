@@ -99,7 +99,6 @@
     "vite-plugin-optimize-persist": "^0.1.2",
     "vite-plugin-package-config": "^0.1.1",
     "vite-plugin-prerender": "^1.0.8",
-    "vite-plugin-sitemap": "^0.7.1",
     "vite-plugin-svg-icons": "^2.0.1",
     "vite-plugin-vue-setup-extend": "^0.4.0",
     "vue-global-api": "^0.4.1",

@@ -130,6 +130,7 @@
     width: 820px;
     margin: 0 auto;
     box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+    white-space: pre-line;
     .lines {
       z-index: 10;
       width: 820px;

@@ -8,7 +8,7 @@
     <template #reference>
       <div class="icon-popper-box">
         <el-tooltip effect="light" content="填写框类型切换" placement="bottom">
-          <svg-icon icon-name="icon-ruanjianguanli" color="#74a274" size="18px"></svg-icon>
+          <svg-icon icon-name="icon-ruanjianguanli" color="#74a274" size="20px"></svg-icon>
         </el-tooltip>
       </div>
     </template>

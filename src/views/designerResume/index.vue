@@ -3,7 +3,7 @@
     <!-- 导航栏 -->
     <nav-bar @reset="reset" @generate-report="generateReport"></nav-bar>
     <!-- 底部区域 -->
-    <div :key="bottomBoxKey" class="bottom-box">
+    <div :key="resetKey" class="bottom-box">
       <!-- 数据配置 -->
       <div v-loading="!HJNewJsonStore.componentsTree.length" class="left">
         <data-config v-if="HJNewJsonStore.componentsTree.length"></data-config>
@@ -98,10 +98,10 @@
   };
 
   // 重置
-  const bottomBoxKey = ref<number>(0);
+  const { resetKey } = storeToRefs(appStore.useCreateTemplateStore);
   const reset = () => {
     getTemplateData();
-    bottomBoxKey.value++; // 增加key，强制重新渲染
+    resetKey.value++; // 增加key，强制重新渲染
   };
 
   // 查询用户数据
@@ -195,6 +195,7 @@
     flex-direction: column;
     box-sizing: border-box;
     overflow-y: hidden;
+    white-space: pre-line;
 
     .bottom-box {
       width: 100%;

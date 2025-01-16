@@ -4,6 +4,8 @@
       <div class="label-left">
         <span class="label">{{ label }}</span>
         <slot name="label-left"></slot>
+        <!-- AI操作 -->
+        <ai-button v-model="inputValue" :module-id="moduleId"></ai-button>
       </div>
       <div class="label-right">
         <slot name="component-switch"></slot>
@@ -15,6 +17,8 @@
 </template>
 
 <script lang="ts" setup>
+  import AiButton from '../../components/AiButton.vue';
+
   const emit = defineEmits(['update:modelValue']);
 
   interface TP {
@@ -22,13 +26,15 @@
     label: string;
     keyValue: string;
     showTop?: boolean;
+    moduleId?: string;
   }
 
   const props = withDefaults(defineProps<TP>(), {
     modelValue: '',
     label: '',
     keyValue: '',
-    showTop: true
+    showTop: true,
+    moduleId: ''
   });
 
   // 添加一个可响应的 inputValue，并监听 modelValue 的变化
