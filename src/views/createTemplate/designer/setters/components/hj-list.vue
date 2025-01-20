@@ -136,7 +136,7 @@
   // 返回数据填写组件样式
   const getFiledStyle = (value: any) => {
     return {
-      width: value.props.width
+      width: value?.props?.width
     };
   };
 

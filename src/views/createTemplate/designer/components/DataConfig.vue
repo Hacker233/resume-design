@@ -131,7 +131,7 @@
                 </template>
                 <!-- 非列表组件 -->
                 <template v-else>
-                  <div v-if="moduleItem.props[key].config" :style="getFiledStyle(value)">
+                  <div v-if="moduleItem.props[key]?.config" :style="getFiledStyle(value)">
                     <component
                       :is="dataSourceCptMap[value.type]"
                       v-model="moduleItem.dataSource[key].value"
@@ -290,7 +290,7 @@
   // 返回数据填写组件样式
   const getFiledStyle = (value: any) => {
     return {
-      width: value.props.width
+      width: value?.props?.width
     };
   };
 

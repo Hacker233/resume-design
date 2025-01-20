@@ -48,9 +48,11 @@ const http = new Request({
         504: '网络超时(504)',
         505: 'HTTP版本不受支持(505)'
       };
-      const message = errorMessages[status as number] || `连接出错(${status || '服务端错误'})!`;
-      console.log('error111', error);
-      ElMessage.error(message);
+      if (status) {
+        const message = errorMessages[status as number] || `连接出错(${status || '服务端错误'})!`;
+        console.log('error111', error);
+        ElMessage.error(message);
+      }
       return Promise.reject(error);
     }
   }

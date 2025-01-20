@@ -60,7 +60,7 @@ class Request {
       const controller = new AbortController();
       const timeoutId = setTimeout(() => {
         controller.abort(); // 超时取消请求
-      }, 60000); // 60秒
+      }, 60000 * 5); // 60秒
 
       if (url) {
         this.requestUrlList.add(url);

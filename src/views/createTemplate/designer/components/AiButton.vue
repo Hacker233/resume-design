@@ -24,8 +24,10 @@
   ></ai-edit-dialog>
 </template>
 <script setup lang="ts">
+  import LoginDialog from '@/components/LoginDialog/LoginDialog';
   import { useGetSelectedModule } from '../hooks/useGetSelectedModule';
   import AiEditDialog from './AiEditDialog.vue';
+  import appStore from '@/store';
 
   const emit = defineEmits(['update:modelValue']);
 
@@ -46,6 +48,11 @@
   const aiType = ref<string>('new');
   const selectedModule = ref<any>(null);
   const aiEdit = () => {
+    const { token } = appStore.useTokenStore;
+    if (!token) {
+      openLoginDialog();
+      return;
+    }
     aiType.value = 'edit';
     selectedModule.value = useGetSelectedModule(props.moduleId);
     dialogAiVisible.value = true;
@@ -54,6 +61,11 @@
 
   // 点击AI帮我写
   const aiNew = () => {
+    const { token } = appStore.useTokenStore;
+    if (!token) {
+      openLoginDialog();
+      return;
+    }
     aiType.value = 'new';
     // 选中的module
     selectedModule.value = useGetSelectedModule(props.moduleId);
@@ -73,6 +85,11 @@
   // 写入简历
   const updateSuccess = (content: any) => {
     inputValue.value = content;
+  };
+
+  // 打开登录弹窗
+  const openLoginDialog = () => {
+    LoginDialog(true);
   };
 </script>
 <style lang="scss" scoped>

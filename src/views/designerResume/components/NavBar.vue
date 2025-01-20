@@ -30,6 +30,16 @@
     <div class="nav-center"> </div>
     <div class="nav-right">
       <el-button type="text" style="margin-right: 10px" @click="toOld">旧版入口</el-button>
+      <!-- <el-tooltip effect="dark" content="AI智能简历体检" placement="bottom">
+        <div class="icon-box icon-AI-YH" @click="downloadResume">
+          <svg-icon icon-name="icon-zhinengyouhua" color="#fff" size="26px"></svg-icon>
+        </div>
+      </el-tooltip> -->
+      <el-tooltip effect="dark" content="AI智能语种切换" placement="bottom">
+        <div class="icon-box icon-AI" @click="languageSelect">
+          <svg-icon icon-name="icon-alimt" color="#fff" size="26px"></svg-icon>
+        </div>
+      </el-tooltip>
       <el-tooltip effect="dark" content="下载到本地" placement="bottom">
         <div class="icon-box icon-download" @click="downloadResume">
           <svg-icon icon-name="icon-xiazai" color="#fff" size="17px"></svg-icon>
@@ -70,6 +80,12 @@
   <PreviewImage v-if="dialogPreviewVisible" @close="closePreview">
     <resume-preview :show-line="true"></resume-preview>
   </PreviewImage>
+
+  <!-- 语种切换弹窗 -->
+  <translate-dialog
+    :dialog-translate-visible="dialogTranslateVisible"
+    @cancle="translateCancle"
+  ></translate-dialog>
 </template>
 <script lang="ts" setup>
   import appStore from '@/store';
@@ -82,6 +98,8 @@
   import { saveDraftAsync } from '@/http/api/createTemplate';
   import { formatListDate } from '@/utils/common';
   import ResumePreview from '@/views/createTemplate/previewer/index.vue';
+  import TranslateDialog from './TranslateDialog.vue';
+  import LoginDialog from '@/components/LoginDialog/LoginDialog';
 
   const { HJNewJsonStore } = storeToRefs(appStore.useCreateTemplateStore);
   const emit = defineEmits([
@@ -194,9 +212,30 @@
     dialogDownloadVisible.value = true;
   };
 
+  // 打开智能语种切换弹窗
+  const dialogTranslateVisible = ref<boolean>(false);
+  const languageSelect = () => {
+    const { token } = appStore.useTokenStore;
+    if (!token) {
+      openLoginDialog();
+      return;
+    }
+    dialogTranslateVisible.value = true;
+  };
+
+  // 关闭翻译弹窗
+  const translateCancle = () => {
+    dialogTranslateVisible.value = false;
+  };
+
   // 关闭弹窗
   const closeDownloadDialog = () => {
     dialogDownloadVisible.value = false;
+  };
+
+  // 打开登录弹窗
+  const openLoginDialog = () => {
+    LoginDialog(true);
   };
 
   // 点击下载
@@ -349,6 +388,46 @@
         .icon-tips {
           font-size: 12px;
           margin-top: 8px;
+        }
+      }
+      .icon-AI {
+        border-radius: 50%;
+        margin-right: 15px;
+        background-image: linear-gradient(
+          to top,
+          #4fb576 0%,
+          #44c489 30%,
+          #28a9ae 46%,
+          #28a2b7 59%,
+          #4c7788 71%,
+          #6c4f63 86%,
+          #432c39 100%
+        );
+        height: 36px;
+        width: 36px;
+        transition: all 0.3s;
+        &:hover {
+          opacity: 0.8;
+        }
+      }
+      .icon-AI-YH {
+        border-radius: 50%;
+        margin-right: 15px;
+        background-image: linear-gradient(
+          to top,
+          #fcc5e4 0%,
+          #fda34b 15%,
+          #ff7882 35%,
+          #c8699e 52%,
+          #7046aa 71%,
+          #0c1db8 87%,
+          #020f75 100%
+        );
+        height: 36px;
+        width: 36px;
+        transition: all 0.3s;
+        &:hover {
+          opacity: 0.8;
         }
       }
       .icon-download {

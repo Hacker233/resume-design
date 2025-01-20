@@ -45,23 +45,16 @@
       </div>
       <div class="ai-content ai-content-right">
         <template v-if="type === 'edit'">
-          <h1 class="title">润色前：</h1>
+          <h1 class="title">润色后：</h1>
         </template>
         <template v-else>
           <h1 class="title">AI创作内容</h1>
         </template>
-        <!-- <div
-          v-loading="aiLoading"
-          v-dompurify-html="aiEditContent"
-          :element-loading-text="type === 'edit' ? 'AI拼命润色中~' : '拼命创作中'"
-          class="content"
-        ></div> -->
         <el-input
           v-model="aiEditContent"
           v-loading="aiLoading"
           type="textarea"
           :element-loading-text="type === 'edit' ? 'AI拼命润色中~' : '拼命创作中'"
-          readonly
           placeholder="AI创作内容将展示在这里"
         >
         </el-input>

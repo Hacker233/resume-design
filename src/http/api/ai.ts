@@ -8,3 +8,8 @@ export const aiInvokeAsync: any = (data: any) => {
     data: data
   });
 };
+
+// 取消请求
+export const cancleAiInvokeAsync: any = () => {
+  return http.cancelRequest('/huajian/ai/invoke');
+};
