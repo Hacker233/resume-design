@@ -36,9 +36,12 @@
         </div>
       </el-tooltip> -->
       <el-tooltip effect="dark" content="AI智能语种切换" placement="bottom">
-        <div class="icon-box icon-AI" @click="languageSelect">
-          <svg-icon icon-name="icon-alimt" color="#fff" size="26px"></svg-icon>
-        </div>
+        <div class="ai-bot-container" @click="languageSelect"
+          ><img src="../../../assets/images/ai-translate.webp" width="24" height="24" /><div
+            class="ai-bot-text"
+            >AI翻译</div
+          ></div
+        >
       </el-tooltip>
       <el-tooltip effect="dark" content="下载到本地" placement="bottom">
         <div class="icon-box icon-download" @click="downloadResume">
@@ -390,26 +393,6 @@
           margin-top: 8px;
         }
       }
-      .icon-AI {
-        border-radius: 50%;
-        margin-right: 15px;
-        background-image: linear-gradient(
-          to top,
-          #4fb576 0%,
-          #44c489 30%,
-          #28a9ae 46%,
-          #28a2b7 59%,
-          #4c7788 71%,
-          #6c4f63 86%,
-          #432c39 100%
-        );
-        height: 36px;
-        width: 36px;
-        transition: all 0.3s;
-        &:hover {
-          opacity: 0.8;
-        }
-      }
       .icon-AI-YH {
         border-radius: 50%;
         margin-right: 15px;
@@ -428,6 +411,33 @@
         transition: all 0.3s;
         &:hover {
           opacity: 0.8;
+        }
+      }
+      .ai-bot-container {
+        align-items: center;
+        background: linear-gradient(271deg, #f6f3ff -0.08%, #f2fdff 99.45%);
+        border-radius: 24px;
+        box-sizing: border-box;
+        display: inline-flex;
+        font-size: 14px;
+        height: 32px;
+        margin-right: 15px;
+        overflow: hidden;
+        padding: 6px 8px;
+        user-select: none;
+        cursor: pointer;
+        &:hover {
+          opacity: 0.8;
+        }
+        .ai-bot-text {
+          -webkit-text-fill-color: transparent;
+          background: linear-gradient(271deg, #4734f4 0.3%, #4c79ff 99.35%);
+          -webkit-background-clip: text;
+          background-clip: text;
+          font-family: PingFang SC;
+          font-size: 14px;
+          line-height: 20px;
+          margin-left: 4px;
         }
       }
       .icon-download {

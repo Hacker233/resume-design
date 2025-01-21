@@ -47,6 +47,7 @@
   import { ElNotification } from 'element-plus';
   import { cloneDeep } from 'lodash';
   import { storeToRefs } from 'pinia';
+  import { extractValues, parseJSON, restoreJsonData } from '../../../utils/jsonUtils';
 
   const emit = defineEmits(['cancle', 'updateSuccess']);
   interface TDialog {
@@ -106,10 +107,15 @@
         value: element.title
       };
     });
+    console.log('需要翻译的内容', JSON.stringify(message));
+    const extractValue = extractValues(message); // 提取value
+    console.log('提取出的value', JSON.stringify(extractValue));
+    // const restoreJsonValue = restoreJsonData(extractValue, message); // 将翻译结果还原为原数据
+    // console.log('还原的数据', restoreJsonValue);
     // 点击AI
     let params = {
       model: 'glm-4-flash',
-      messages: JSON.stringify(message),
+      messages: JSON.stringify(extractValue),
       number: 0,
       type: 'translate',
       languages: language.value
@@ -126,13 +132,17 @@
         const result = aiEditContent.value.replace(/```json/g, '');
         const resule2 = result.replace(/```/g, '');
         console.log('翻译结果', resule2);
+        const restoreJsonValue = restoreJsonData(parseJSON(resule2), message); // 将翻译结果还原为原数据
+        console.log('还原的数据', restoreJsonValue);
         const { HJNewJsonStore } = storeToRefs(appStore.useCreateTemplateStore);
-        const resultObj = JSON.parse(resule2);
-        for (let key in resultObj) {
+        for (let key in restoreJsonValue) {
           HJNewJsonStore.value.componentsTree.forEach((item: any, index: number) => {
             if (index === Number(key)) {
-              HJNewJsonStore.value.componentsTree[index].dataSource = cloneDeep(resultObj[key]); // 赋值内容
-              HJNewJsonStore.value.componentsTree[index].title = resultObj['title'][key].value; // 模块标题
+              HJNewJsonStore.value.componentsTree[index].dataSource = cloneDeep(
+                restoreJsonValue[key]
+              ); // 赋值内容
+              HJNewJsonStore.value.componentsTree[index].title =
+                restoreJsonValue['title'][key].value; // 模块标题
             }
           });
         }
@@ -144,6 +154,7 @@
           message: '解析结果失败，内容过多，请尝试按模块翻译',
           type: 'error'
         });
+        cancle();
       }
     } else {
       ElMessage.warning('AI使用人数太多，请重试~~');
@@ -152,13 +163,6 @@
     aiLoading.value = false;
     console.log(data);
   };
-
-  // 提交
-  // const submit = () => {
-  //   console.log('ai内容:', aiEditContent.value);
-  //   emit('updateSuccess', aiEditContent.value);
-  //   cancle();
-  // };
 </script>
 <style lang="scss">
   .ai-content-translate-select-warpper {
