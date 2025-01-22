@@ -120,65 +120,58 @@ export const parseWithErrorHandling = (input: any): any => {
 };
 
 // 提取值
-export const extractValues = (data: any): any[] => {
-  const values: any = [];
-  function traverse(obj: any) {
-    for (const key in obj) {
-      if (typeof obj[key] === 'object') {
-        if (Array.isArray(obj[key])) {
-          obj[key].forEach((item: any) => {
-            if (typeof item === 'object') {
-              traverse(item);
-            } else {
-              values.push(item);
-            }
-          });
-        } else {
-          if (key === 'value') {
-            values.push(obj[key]);
-          } else {
-            traverse(obj[key]);
+export const extractValues = (obj: any, result: any = {}, path = '') => {
+  for (const key in obj) {
+    if (obj.hasOwnProperty(key)) {
+      const newPath = path ? `${path}.${key}` : key;
+      if (typeof obj[key] === 'object' && !Array.isArray(obj[key])) {
+        extractValues(obj[key], result, newPath);
+      } else if (Array.isArray(obj[key])) {
+        obj[key].forEach((item: any, index: any) => {
+          if (typeof item === 'object') {
+            extractValues(item, result, `${newPath}[${index}]`);
           }
-        }
-      } else {
-        if (key === 'value') {
-          values.push(obj[key]);
-        }
+        });
+      } else if (key === 'value') {
+        result[newPath] = obj[key];
       }
     }
   }
-  traverse(data);
-  return values;
+  return result;
 };
 
 // 恢复原始 JSON 数据
-export const restoreJsonData = (values: any[], structure: any): any => {
-  let index = 0;
-  function buildObject(obj: any) {
-    for (const key in obj) {
-      if (typeof obj[key] === 'object') {
-        if (Array.isArray(obj[key])) {
-          obj[key] = obj[key].map((item: any) => {
-            if (typeof item === 'object') {
-              return buildObject(item);
-            } else {
-              return values[index++];
-            }
-          });
-        } else {
-          if (key === 'value') {
-            obj[key] = values[index++];
-          } else {
-            buildObject(obj[key]);
-          }
+export const restoreValues = (template: any, values: any) => {
+  function setNestedValue(obj: any, path: any, value: any) {
+    const keys = path.split('.');
+    let currentObj = obj;
+    for (let i = 0; i < keys.length - 1; i++) {
+      const key = keys[i];
+      const arrayMatch = key.match(/(\w+)\[(\d+)\]/);
+      if (arrayMatch) {
+        const arrayKey = arrayMatch[1];
+        const index = parseInt(arrayMatch[2], 10);
+        if (!currentObj[arrayKey]) {
+          currentObj[arrayKey] = [];
         }
+        while (currentObj[arrayKey].length <= index) {
+          currentObj[arrayKey].push({});
+        }
+        currentObj = currentObj[arrayKey][index];
       } else {
-        if (key === 'value') {
-          obj[key] = values[index++];
+        if (!currentObj[key]) {
+          currentObj[key] = {};
         }
+        currentObj = currentObj[key];
       }
     }
-    return obj;
+    currentObj[keys[keys.length - 1]] = value;
   }
-  return buildObject(JSON.parse(JSON.stringify(structure)));
+
+  Object.keys(values).forEach((path) => {
+    const value = values[path];
+    setNestedValue(template, path, value);
+  });
+
+  return template;
 };

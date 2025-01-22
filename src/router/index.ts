@@ -60,6 +60,7 @@ const NoPermission = () => import('@/views/noPermission/index.vue');
 const AdminIndex = () => import('@/views/admin/index.vue');
 const Panel = () => import('@/views/admin/panel/index.vue');
 const VXQun = () => import('@/views/admin/WebsiteManage/VXQunManage/index.vue');
+const Links = () => import('@/views/admin/WebsiteManage/LinksManage/index.vue');
 const AddTemplate = () => import('@/views/admin/templateManage/addTemplate/index.vue');
 const TemplateList = () => import('@/views/admin/templateManage/templateList/index.vue');
 const TemplateCategory = () => import('@/views/admin/templateManage/templateCategory/index.vue');
@@ -687,6 +688,18 @@ const routes: Array<RouteRecordRaw> = [
           requireAdmin: true
         },
         component: VXQun
+      },
+      {
+        path: 'Links',
+        name: 'Links',
+        meta: {
+          title: '友链管理',
+          keepAlive: true,
+          isShowComNav: false,
+          requireLogin: true,
+          requireAdmin: true
+        },
+        component: Links
       },
       {
         path: 'webConfig',

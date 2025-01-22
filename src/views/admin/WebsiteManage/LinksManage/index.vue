@@ -1,17 +1,17 @@
 <template>
   <div class="vx-qun-box">
-    <!-- 新增微信群 -->
+    <!-- 新增友情链接 -->
     <div class="top-box">
-      <el-button type="primary" size="default" @click="openAddDialog"> 新增微信群 </el-button>
+      <el-button type="primary" size="default" @click="openAddDialog"> 新增友链 </el-button>
     </div>
   </div>
 
   <!-- 表格列表 -->
-  <el-table class="vxqun-list-table" :data="qunList" style="width: 100%" size="default" border>
-    <el-table-column prop="name" label="群名称" />
-    <el-table-column prop="qr_code" label="二维码">
+  <el-table class="link-list-table" :data="qunList" style="width: 100%" size="default" border>
+    <el-table-column prop="name" label="友链名称" />
+    <el-table-column prop="link" label="链接">
       <template #default="scope">
-        <img v-viewer class="preview-img" :src="scope.row.qr_code" alt="" srcset="" />
+        <a :href="scope.row.link" target="_blank" rel="noopener noreferrer">{{ scope.row.link }}</a>
       </template>
     </el-table-column>
     <el-table-column prop="createDate" label="创建日期">
@@ -31,21 +31,19 @@
     <el-table-column label="操作" width="150">
       <template #default="scope">
         <el-button link size="small" @click="edit(scope.row)">编辑</el-button>
-        <el-button link type="primary" size="small" @click="deleteTemplate(scope.row)"
-          >删除</el-button
-        >
+        <el-button link type="primary" size="small" @click="deleteLink(scope.row)">删除</el-button>
       </template>
     </el-table-column>
   </el-table>
   <!-- 新增和编辑分类弹窗 -->
-  <qun-dialog
+  <link-dialog
     :dialog-pay-visible="dialogPayVisible"
     :row="row"
     :title="title"
     :btn-text="btnText"
     @cancle="cancle"
     @update-success="updateSuccess"
-  ></qun-dialog>
+  ></link-dialog>
 
   <!-- 分页组件 -->
   <Pagination
@@ -58,11 +56,11 @@
   ></Pagination>
 </template>
 <script lang="ts" setup>
-  import QunDialog from './components/QunDialog.vue';
+  import LinkDialog from './components/LinkDialog.vue';
   import { formatListDate } from '@/utils/common';
   import { ElMessageBox } from 'element-plus';
   import 'element-plus/es/components/message-box/style/index';
-  import { getVXQunListAsync, vxqunDeleteAsync } from '@/http/api/website';
+  import { getLinksListAsync, linksDeleteAsync } from '@/http/api/website';
 
   const dialogPayVisible = ref<boolean>(false);
   const row = ref<any>(null);
@@ -72,7 +70,7 @@
   // 打开弹窗
   const openAddDialog = () => {
     btnText.value = '添加';
-    title.value = '添加二维码';
+    title.value = '添加友链';
     dialogPayVisible.value = true;
   };
 
@@ -84,65 +82,64 @@
   // 提交成功
   const updateSuccess = () => {
     dialogPayVisible.value = false;
-    getPaystatsList();
+    getLinksList();
   };
 
   // 改变页码时
   const handleCurrentChange = (currentPage: number) => {
     page.value = currentPage;
-    getPaystatsList();
+    getLinksList();
   };
 
   // 改变每页数量
   const handleSizeChange = (pageSize: number) => {
     limit.value = pageSize;
     console.log('改变每页数量', pageSize);
-    getPaystatsList();
+    getLinksList();
   };
 
-  // 查询群列表
+  // 查询友链列表
   const page = ref<number>(1);
   const limit = ref<number>(10);
   const total = ref<number>(0);
   const currentPage = ref<number>(1);
   let qunList = ref<any>([]);
-  const getPaystatsList = async () => {
+  const getLinksList = async () => {
     let params = {
       page: page.value,
       limit: limit.value
     };
-    const data = await getVXQunListAsync(params);
-    if (data.data.status === 200) {
-      qunList.value = data.data.data.list;
-      total.value = data.data.data.page.count;
-      currentPage.value = data.data.data.page.currentPage;
-      console.log('qunList', qunList);
+    const data = await getLinksListAsync(params);
+    if (data.status === 200) {
+      qunList.value = data.data.list;
+      total.value = data.data.page.count;
+      currentPage.value = data.data.page.currentPage;
     } else {
       ElMessage.error(data.data.message);
     }
   };
-  getPaystatsList();
+  getLinksList();
 
   // 编辑
   const edit = (item: any) => {
     btnText.value = '修改';
-    title.value = '修改群';
+    title.value = '修改友链';
     row.value = item;
     dialogPayVisible.value = true;
   };
 
   // 删除群
-  const deleteTemplate = (row: any) => {
-    ElMessageBox.confirm('删除该条数据后无法恢复，确定继续？', '警告', {
+  const deleteLink = (row: any) => {
+    ElMessageBox.confirm('删除该条友链将无法恢复，确定继续？', '警告', {
       confirmButtonText: '确定',
       cancelButtonText: '取消',
       type: 'warning'
     })
       .then(async () => {
-        const data = await vxqunDeleteAsync(row._id);
+        const data = await linksDeleteAsync(row._id);
         if (data.data.status === 200) {
           ElMessage.success('删除成功');
-          getPaystatsList();
+          getLinksList();
         } else {
           ElMessage.error(data.data.message);
         }
@@ -157,7 +154,7 @@
     }
   }
 
-  .vxqun-list-table {
+  .link-list-table {
     .preview-img {
       max-width: 100px;
       cursor: pointer;

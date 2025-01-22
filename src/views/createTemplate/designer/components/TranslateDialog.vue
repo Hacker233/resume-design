@@ -43,18 +43,18 @@
 
 <script lang="ts" setup>
   import { aiInvokeAsync, cancleAiInvokeAsync } from '@/http/api/ai';
-  import appStore from '@/store';
   import { ElNotification } from 'element-plus';
-  import { cloneDeep } from 'lodash';
-  import { storeToRefs } from 'pinia';
-  import { extractValues, parseJSON, restoreValues } from '../../../utils/jsonUtils';
+  import { extractValues, parseJSON, restoreValues } from '@/utils/jsonUtils';
+  import { useGetSelectedModule } from '../hooks/useGetSelectedModule';
 
   const emit = defineEmits(['cancle', 'updateSuccess']);
   interface TDialog {
     dialogTranslateVisible: boolean;
+    id: string;
   }
   const props = withDefaults(defineProps<TDialog>(), {
-    dialogTranslateVisible: false
+    dialogTranslateVisible: false,
+    id: ''
   });
 
   watch(
@@ -62,8 +62,8 @@
     async (newVal) => {
       if (newVal) {
         aiLoading.value = false;
-        const { HJNewJsonStore } = appStore.useCreateTemplateStore;
-        aiEditContent.value = HJNewJsonStore;
+        const module = useGetSelectedModule(props.id);
+        aiEditContent.value = module;
       }
     }
   );
@@ -101,12 +101,10 @@
     let message: any = {
       title: {}
     };
-    aiEditContent.value.componentsTree.forEach((element: any, index: number) => {
-      message[index] = cloneDeep(element.dataSource); // 简历内容
-      message['title'][index] = {
-        value: element.title
-      };
-    });
+    message['dataSource'] = aiEditContent.value.dataSource; // 简历内容
+    message['title'] = {
+      value: aiEditContent.value.title
+    };
     console.log('需要翻译的内容', JSON.stringify(message));
     const extractValue = extractValues(message); // 提取value
     console.log('提取出的value', JSON.stringify(extractValue));
@@ -132,21 +130,13 @@
       try {
         const result = aiEditContent.value.replace(/```json/g, '');
         const resule2 = result.replace(/```/g, '');
-        console.log('翻译结果', resule2);
+        console.log('翻译结果', parseJSON(resule2));
         const restoreJsonValue = restoreValues(message, parseJSON(resule2)); // 将翻译结果还原为原数据
         console.log('还原的数据', restoreJsonValue);
-        const { HJNewJsonStore } = storeToRefs(appStore.useCreateTemplateStore);
-        for (let key in restoreJsonValue) {
-          HJNewJsonStore.value.componentsTree.forEach((item: any, index: number) => {
-            if (index === Number(key)) {
-              HJNewJsonStore.value.componentsTree[index].dataSource = cloneDeep(
-                restoreJsonValue[key]
-              ); // 赋值内容
-              HJNewJsonStore.value.componentsTree[index].title =
-                restoreJsonValue['title'][key].value; // 模块标题
-            }
-          });
-        }
+        // 更新JSON
+        const module = useGetSelectedModule(props.id);
+        module.title = restoreJsonValue['title'].value;
+        module.dataSource = restoreJsonValue['dataSource'];
         ElMessage.success('语种切换成功~~');
         cancle();
       } catch (error) {

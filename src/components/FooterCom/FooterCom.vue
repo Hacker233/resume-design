@@ -3,14 +3,10 @@
     <!-- 相关推荐 -->
     <div class="recommend">
       <!-- 联系我 -->
-      <div class="contact-me">
-        <div v-viewer class="add-wechat">
-          <img src="@/assets/images/wechat.jpg" alt="个人微信" />
-          <p>添加微信</p>
-        </div>
-        <div v-viewer class="concern-zhihu">
-          <img src="@/assets/images/gzh.jpg" alt="资料分享大师" />
-          <p>关注公众号</p>
+      <div v-viewer class="contact-me">
+        <div v-for="(item, index) in vxQunList" :key="index" class="add-wechat">
+          <img :src="item.qr_code" :alt="item.name" />
+          <p>{{ item.name }}</p>
         </div>
       </div>
       <!-- 关于我 -->
@@ -44,14 +40,17 @@
       <!-- 友情链接 -->
       <div class="links">
         <h1>友情链接</h1>
-        <p>
-          <a href="https://www.ubrand.com/" target="_blank" rel="noopener noreferrer">AI品牌设计</a>
-        </p>
-        <p>
-          <a href="https://hao.logosc.cn/" target="_blank" rel="noopener noreferrer">AI神器集</a>
-        </p>
+        <div class="links-box">
+          <template v-for="(item, index) in linksList" :key="index">
+            <p>
+              <a :href="item.link" target="_blank" rel="noopener noreferrer">{{ item.name }}</a>
+            </p>
+          </template>
+        </div>
       </div>
     </div>
+    <!-- 分割线 -->
+    <div class="line"></div>
     <!-- 版权声明 -->
     <div class="copyright-notice">
       <p>Copyright © 2024 猫步简历 All Rights Reserved.</p>
@@ -74,6 +73,44 @@
     </div>
   </div>
 </template>
+<script setup lang="ts">
+  import { getLinksListAsync, getVXQunListUnauthAsync } from '@/http/api/website';
+
+  // 查询微信微信群列表
+  const vxQunList = ref<any>([]);
+  const getVXQunListUnauth = async () => {
+    vxQunList.value = [];
+    const data = await getVXQunListUnauthAsync();
+    if (data.status === 200) {
+      vxQunList.value = data.data;
+    } else {
+      ElMessage.error(data.data.message);
+    }
+  };
+  getVXQunListUnauth();
+
+  // 查询友链列表
+  const page = ref<number>(1);
+  const limit = ref<number>(20);
+  const total = ref<number>(0);
+  const currentPage = ref<number>(1);
+  let linksList = ref<any>([]);
+  const getLinksList = async () => {
+    let params = {
+      page: page.value,
+      limit: limit.value
+    };
+    const data = await getLinksListAsync(params);
+    if (data.status === 200) {
+      linksList.value = data.data.list;
+      total.value = data.data.page.count;
+      currentPage.value = data.data.page.currentPage;
+    } else {
+      ElMessage.error(data.data.message);
+    }
+  };
+  getLinksList();
+</script>
 <style lang="scss" scoped>
   .footer-box {
     width: 100%;
@@ -85,11 +122,11 @@
     .recommend {
       display: flex;
       padding: 20px 0;
-      border-bottom: 1px solid #5b5b5b;
-      width: 600px;
+
+      width: 100%;
       height: 250px;
       display: flex;
-      justify-content: space-between;
+      justify-content: center;
       align-items: center;
       h1 {
         color: #a3a5a7;
@@ -130,6 +167,7 @@
         display: flex;
         flex-direction: column;
         padding-top: 30px;
+        margin-right: 40px;
         p {
           color: #fff;
           display: flex;
@@ -152,23 +190,36 @@
         flex-direction: column;
         height: 100%;
         padding-top: 30px;
-        p {
-          color: #fff;
+        .links-box {
           display: flex;
-          justify-content: flex-start;
-          margin-bottom: 10px;
-          font-size: 14px;
-          a {
-            color: inherit;
-            text-decoration: none;
-            letter-spacing: 2px;
-            transition: all 0.3s;
-            &:hover {
-              color: rgb(123, 238, 123);
+          flex-wrap: wrap;
+          max-width: 200px;
+          p {
+            color: #fff;
+            display: flex;
+            justify-content: flex-start;
+            font-size: 14px;
+            box-sizing: border-box;
+            flex-shrink: 0;
+            a {
+              color: inherit;
+              text-decoration: none;
+              letter-spacing: 2px;
+              transition: all 0.3s;
+              flex-shrink: 0;
+              margin: 0 20px 10px 0;
+              &:hover {
+                color: rgb(123, 238, 123);
+              }
             }
           }
         }
       }
+    }
+    .line {
+      height: 1px;
+      width: 650px;
+      background-color: #5b5b5b;
     }
     .copyright-notice {
       margin: 15px 0;
