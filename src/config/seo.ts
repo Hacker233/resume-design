@@ -1,0 +1,1 @@
+export const keywords = 'AI简历,AI开源简历,免费简历,PDF简历,高清简历,简历模板,简历制作工具,AI生成简历';

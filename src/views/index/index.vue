@@ -66,6 +66,7 @@
   import { useHead } from '@vueuse/head';
   import { storeToRefs } from 'pinia';
   import appStore from '@/store';
+  import { keywords } from '@/config/seo';
 
   const { websiteConfig } = storeToRefs(appStore.useWebsiteConfigStore);
 
@@ -79,7 +80,7 @@
       },
       {
         name: 'keywords',
-        content: '简历 开源 设计器 制作 PDF 高清简历 免费开源'
+        content: keywords
       }
     ]
   });

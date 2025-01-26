@@ -50,6 +50,7 @@
   import ProcessBarDialog from '@/components/ProcessBarDialog/ProcessBarDialog.vue';
   import { useHead } from '@vueuse/head';
   import GlobalThemeSettingBar from '../createTemplate/designer/components/GlobalThemeSettingBar.vue';
+  import { keywords } from '@/config/seo';
 
   const { HJNewJsonStore, selectedPageName } = storeToRefs(appStore.useCreateTemplateStore);
   const route = useRoute();
@@ -88,7 +89,7 @@
           },
           {
             name: 'keywords',
-            content: '简历 开源 设计器 制作 PDF 高清简历 免费开源'
+            content: keywords
           }
         ]
       });

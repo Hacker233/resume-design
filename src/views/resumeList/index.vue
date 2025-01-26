@@ -34,6 +34,7 @@
   import CommonLoading from '@/components/CommonLoading/CommonLoading.vue';
   import { templateListAsync } from '@/http/api/createTemplate';
   import { useHead } from '@vueuse/head';
+  import { keywords } from '@/config/seo';
   useHead({
     title: '在线制作模版',
     meta: [
@@ -43,7 +44,7 @@
       },
       {
         name: 'keywords',
-        content: '简历 开源 设计器 制作 PDF 高清简历 免费开源'
+        content: keywords
       }
     ]
   });

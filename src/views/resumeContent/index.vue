@@ -74,6 +74,7 @@
   import { storeToRefs } from 'pinia';
   import { openGlobalLoading } from '@/utils/common';
   import { useHead } from '@vueuse/head';
+  import { keywords } from '@/config/seo';
 
   const { resetResumeJson } = appStore.useCreateTemplateStore;
   const { HJNewJsonStore, selectedModuleId } = storeToRefs(appStore.useCreateTemplateStore);
@@ -103,7 +104,7 @@
           },
           {
             name: 'keywords',
-            content: '简历 开源 设计器 制作 PDF 高清简历 免费开源'
+            content: keywords
           }
         ]
       });

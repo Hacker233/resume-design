@@ -22,6 +22,7 @@
   import zhCn from 'element-plus/es/locale/lang/zh-cn';
   import { addWebsiteViewsAsync } from './http/api/panel';
   import { useHead } from '@vueuse/head';
+  import { keywords } from '@/config/seo';
   useHead({
     meta: [
       {
@@ -31,7 +32,7 @@
       },
       {
         name: 'keywords',
-        content: '简历 开源 设计器 制作 PDF 高清简历 免费开源'
+        content: keywords
       }
     ]
   });
