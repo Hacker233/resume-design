@@ -1,5 +1,42 @@
 #!/bin/sh
 . "$(dirname "$0")/_/husky.sh"
 
-echo "正在校验文件... 请不要关闭进程"
-pnpm exec lint-staged -q
+# 设置Node.js堆内存上限 (解决JS堆溢出问题)
+export NODE_OPTIONS="--max_old_space_size=4096"
+
+# 跨平台颜色定义
+if [ -t 1 ]; then
+  RED=$(printf '\033[31m')
+  GREEN=$(printf '\033[32m')
+  YELLOW=$(printf '\033[33m')
+  CYAN=$(printf '\033[36m')
+  RESET=$(printf '\033[0m')
+else
+  RED=""
+  GREEN=""
+  YELLOW=""
+  CYAN=""
+  RESET=""
+fi
+
+# 进度提示 (带时间戳)
+echo "${CYAN}[$(date +%H:%M:%S)] 正在校验暂存文件...${RESET}"
+
+# 执行lint-staged并捕获结果
+start_time=$(date +%s.%N)
+pnpm exec lint-staged --concurrent 2 --quiet
+lint_status=$?
+end_time=$(date +%s.%N)
+elapsed_time=$(printf "%.2f" $(echo "$end_time - $start_time" | bc))
+
+# 结果处理
+if [ $lint_status -ne 0 ]; then
+  echo "\n${RED}❌ 代码校验未通过，发现以下问题：${RESET}"
+  echo "${YELLOW}├ 请根据上方提示修改代码"
+  echo "├ 或执行 ${CYAN}pnpm exec lint-staged --debug${YELLOW} 查看详细日志"
+  echo "└ 紧急情况可使用 ${CYAN}git commit --no-verify${YELLOW} 跳过检查${RESET}\n"
+  exit 1
+else
+  echo "${GREEN}✅ 校验通过 (耗时${elapsed_time}s)"
+  echo "  ${CYAN}└ 自动修复了部分问题，请检查文件变更后再次提交${RESET}\n"
+fi

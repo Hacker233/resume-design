@@ -66,7 +66,7 @@
   import { useHead } from '@vueuse/head';
   import { storeToRefs } from 'pinia';
   import appStore from '@/store';
-  import { keywords } from '@/config/seo';
+  import { description, keywords } from '@/config/seo';
 
   const { websiteConfig } = storeToRefs(appStore.useWebsiteConfigStore);
 
@@ -75,8 +75,7 @@
     meta: [
       {
         name: 'description',
-        content:
-          '猫步简历-开源简历制作神器！免费制作一份精美的简历！内置两款设计器、快速设计、简历、封面、海报均可免费制作，支持一键导出高清PDF、JSON数据等。'
+        content: description
       },
       {
         name: 'keywords',

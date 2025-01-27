@@ -48,7 +48,8 @@ const PanShare = () => import('@/views/panShre/index.vue');
 const PanShareDetail = () => import('@/views/panShreDetail/index.vue');
 // QQ登录临时审核页面
 const QQLogin = () => import('@/views/QQLoginTemp/qqLogin.vue');
-
+// 404页面
+const NotFoundPage = () => import('@/views/404/index.vue');
 // 图片压缩
 const ImgCompress = () => import('@/views/imgCompress/index.vue');
 // 会员充值界面
@@ -1170,6 +1171,11 @@ const routes: Array<RouteRecordRaw> = [
         component: AdminMenuManage
       }
     ]
+  },
+  {
+    path: '/:pathMatch(.*)*',
+    name: 'NotFound',
+    component: NotFoundPage
   }
 ];
 // const routerHistory = createWebHistory('/');

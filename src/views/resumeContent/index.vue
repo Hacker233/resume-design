@@ -74,7 +74,7 @@
   import { storeToRefs } from 'pinia';
   import { openGlobalLoading } from '@/utils/common';
   import { useHead } from '@vueuse/head';
-  import { keywords } from '@/config/seo';
+  import { description, keywords } from '@/config/seo';
 
   const { resetResumeJson } = appStore.useCreateTemplateStore;
   const { HJNewJsonStore, selectedModuleId } = storeToRefs(appStore.useCreateTemplateStore);
@@ -99,8 +99,7 @@
         meta: [
           {
             name: 'description',
-            content:
-              '猫步简历-开源简历制作神器！免费制作一份精美的简历！内置两款设计器、快速设计、简历、封面、海报均可免费制作，支持一键导出高清PDF、JSON数据等。'
+            content: description
           },
           {
             name: 'keywords',
