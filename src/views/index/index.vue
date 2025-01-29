@@ -71,7 +71,8 @@
   const { websiteConfig } = storeToRefs(appStore.useWebsiteConfigStore);
 
   useHead({
-    title: websiteConfig.value.website_title || '猫步简历 - 一款免费开源的AI简历生成 | 制作神器',
+    title:
+      websiteConfig.value.website_title || '猫步简历 - 开源免费AI简历生成器 | 一键导出PDF/JSON',
     meta: [
       {
         name: 'description',

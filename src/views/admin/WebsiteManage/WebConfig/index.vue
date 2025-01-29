@@ -82,7 +82,7 @@
     open_sign_in: true,
     open_business: true,
     open_sponsor: true,
-    website_title: '猫步简历 - 一款免费开源的AI简历生成 | 制作神器',
+    website_title: '猫步简历 - 开源免费AI简历生成器 | 一键导出PDF/JSON',
     open_membership: true,
     open_homne_menu: true
   });
