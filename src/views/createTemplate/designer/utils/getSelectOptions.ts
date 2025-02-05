@@ -14,6 +14,10 @@ const selectOptions: any = {
       value: '高中'
     },
     {
+      label: '中专',
+      value: '中专'
+    },
+    {
       label: '大专',
       value: '大专'
     },

@@ -124,7 +124,8 @@
       model: 'glm-4-flash',
       messages: props.content,
       number: textNumber.value,
-      type: props.type
+      type: props.type,
+      moduleTitle: props.module.title
     };
     if (props.type === 'new') {
       params.messages = aiPropmt.value;

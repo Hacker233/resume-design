@@ -71,6 +71,10 @@
   // 可选择语种
   const languageList = ref<any>([
     {
+      label: '简体中文',
+      value: '简体中文'
+    },
+    {
       label: '英语',
       value: '英语'
     },
@@ -119,7 +123,8 @@
       messages: JSON.stringify(extractValue),
       number: 0,
       type: 'translate',
-      languages: language.value
+      languages: language.value,
+      moduleTitle: aiEditContent.value.title
     };
     if (!params.languages) {
       ElMessage.warning('请先选择目标语种');

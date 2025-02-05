@@ -7,6 +7,7 @@ export const useDegreeList = () => {
   const degreeList: Array<string> = reactive([
     '初中',
     '高中',
+    '中专',
     '大专',
     '本科',
     '全日制本科',
