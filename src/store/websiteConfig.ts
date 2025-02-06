@@ -1,5 +1,6 @@
 import { getWebsiteConfigAsync } from '@/http/api/websiteConfig';
 import { defineStore } from 'pinia';
+import { title } from '@/config/seo';
 
 export const useWebsiteConfigStore = defineStore('websiteConfig', () => {
   const websiteConfig = reactive<{
@@ -21,7 +22,7 @@ export const useWebsiteConfigStore = defineStore('websiteConfig', () => {
     open_sign_in: true,
     open_business: true,
     open_sponsor: true,
-    website_title: '猫步简历 - 开源免费AI简历生成器 | 一键导出PDF/JSON',
+    website_title: title,
     open_membership: true,
     open_homne_menu: true
   });

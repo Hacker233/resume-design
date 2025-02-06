@@ -50,7 +50,7 @@
   import ProcessBarDialog from '@/components/ProcessBarDialog/ProcessBarDialog.vue';
   import { useHead } from '@vueuse/head';
   import GlobalThemeSettingBar from '../createTemplate/designer/components/GlobalThemeSettingBar.vue';
-  import { description, keywords } from '@/config/seo';
+  import { title } from '@/config/seo';
 
   const { HJNewJsonStore, selectedPageName } = storeToRefs(appStore.useCreateTemplateStore);
   const route = useRoute();
@@ -80,17 +80,7 @@
       HJNewJsonStore.value.props.title = data.data.template_title;
       ElMessage.success('初始化成功');
       useHead({
-        title: HJNewJsonStore.value.props.title || '猫步简历-开源简历制作神器',
-        meta: [
-          {
-            name: 'description',
-            content: description
-          },
-          {
-            name: 'keywords',
-            content: keywords
-          }
-        ]
+        title: HJNewJsonStore.value.props.title || title
       });
     } else {
       defaultTemplate();
@@ -111,17 +101,7 @@
       HJNewJsonStore.value = data.data.data.template_json;
       HJNewJsonStore.value.props.title = data.data.data.template_json.config.title;
       useHead({
-        title: HJNewJsonStore.value.props.title || '猫步简历-开源简历制作神器',
-        meta: [
-          {
-            name: 'description',
-            content: description
-          },
-          {
-            name: 'keywords',
-            content: '简历 开源 设计器 制作 PDF 高清简历 免费开源'
-          }
-        ]
+        title: HJNewJsonStore.value.props.title || title
       });
     } else {
       defaultTemplate();

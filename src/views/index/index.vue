@@ -66,23 +66,12 @@
   import { useHead } from '@vueuse/head';
   import { storeToRefs } from 'pinia';
   import appStore from '@/store';
-  import { description, keywords } from '@/config/seo';
+  import { title } from '@/config/seo';
 
   const { websiteConfig } = storeToRefs(appStore.useWebsiteConfigStore);
 
   useHead({
-    title:
-      websiteConfig.value.website_title || '猫步简历 - 开源免费AI简历生成器 | 一键导出PDF/JSON',
-    meta: [
-      {
-        name: 'description',
-        content: description
-      },
-      {
-        name: 'keywords',
-        content: keywords
-      }
-    ]
+    title: websiteConfig.value.website_title || title
   });
 
   const dialogNoticeVisible = ref<boolean>(false);

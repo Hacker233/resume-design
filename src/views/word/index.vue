@@ -44,7 +44,6 @@
   import NoDataVue from '@/components/NoData/NoData.vue';
   import CommonLoading from '@/components/CommonLoading/CommonLoading.vue';
   import { useHead } from '@vueuse/head';
-  import { keywords } from '@/config/seo';
 
   useHead({
     title: 'Word简历模版下载',
@@ -52,10 +51,6 @@
       {
         name: 'description',
         content: '提供海量、精美的Word简历模版'
-      },
-      {
-        name: 'keywords',
-        content: keywords
       }
     ]
   });

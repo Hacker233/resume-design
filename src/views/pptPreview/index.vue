@@ -128,6 +128,8 @@
   import appStore from '@/store';
   import { useUserIsPayGoods } from '@/hooks/useUsrIsPayGoods';
   import { storeToRefs } from 'pinia';
+  import { useHead } from '@vueuse/head';
+  import { title } from '@/config/seo';
 
   // 获取用户会员信息
   const { membershipInfo } = storeToRefs(appStore.useMembershipStore);
@@ -146,6 +148,10 @@
       pptInfo.value.previewUrl = JSON.parse(pptInfo.value.previewUrl);
       bigPreviewUrl.value = pptInfo.value.previewUrl[0].url;
       currentIndex.value = 0;
+      // 设置seo
+      useHead({
+        title: pptInfo.value.name || title
+      });
     } else {
       ElMessage.error(data.message);
     }

@@ -21,20 +21,6 @@
   // import { openAndCloseLoadingByTime } from './utils/common';
   import zhCn from 'element-plus/es/locale/lang/zh-cn';
   import { addWebsiteViewsAsync } from './http/api/panel';
-  import { useHead } from '@vueuse/head';
-  import { description, keywords } from '@/config/seo';
-  useHead({
-    meta: [
-      {
-        name: 'description',
-        content: description
-      },
-      {
-        name: 'keywords',
-        content: keywords
-      }
-    ]
-  });
 
   const { isLoading } = storeToRefs(appStore.useLoadingStore);
   // openAndCloseLoadingByTime(1500); // 等待动画层

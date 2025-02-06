@@ -119,6 +119,8 @@
   import appStore from '@/store';
   import { useUserIsPayGoods } from '@/hooks/useUsrIsPayGoods';
   import { storeToRefs } from 'pinia';
+  import { title } from '@/config/seo';
+  import { useHead } from '@vueuse/head';
 
   // 获取用户会员信息
   const { membershipInfo } = storeToRefs(appStore.useMembershipStore);
@@ -137,6 +139,10 @@
       wordInfo.value.previewUrl = JSON.parse(wordInfo.value.previewUrl);
       bigPreviewUrl.value = wordInfo.value.previewUrl[0].url;
       currentIndex.value = 0;
+      // 设置seo
+      useHead({
+        title: wordInfo.value.name || title
+      });
     } else {
       ElMessage.error(data.message);
     }

@@ -74,7 +74,7 @@
   import { storeToRefs } from 'pinia';
   import { openGlobalLoading } from '@/utils/common';
   import { useHead } from '@vueuse/head';
-  import { description, keywords } from '@/config/seo';
+  import { title } from '@/config/seo';
 
   const { resetResumeJson } = appStore.useCreateTemplateStore;
   const { HJNewJsonStore, selectedModuleId } = storeToRefs(appStore.useCreateTemplateStore);
@@ -95,17 +95,7 @@
       HJNewJsonStore.value = data.data.template_json;
       HJNewJsonStore.value.props.title = data.data.template_title;
       useHead({
-        title: templateData.value.template_title,
-        meta: [
-          {
-            name: 'description',
-            content: description
-          },
-          {
-            name: 'keywords',
-            content: keywords
-          }
-        ]
+        title: templateData.value.template_title || title
       });
     }
   };

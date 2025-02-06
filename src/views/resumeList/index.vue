@@ -34,17 +34,11 @@
   import CommonLoading from '@/components/CommonLoading/CommonLoading.vue';
   import { templateListAsync } from '@/http/api/createTemplate';
   import { useHead } from '@vueuse/head';
-  import { keywords } from '@/config/seo';
   useHead({
-    title: '在线制作模版',
     meta: [
       {
         name: 'description',
         content: '提供海量、精美的在线制作简历模版'
-      },
-      {
-        name: 'keywords',
-        content: keywords
       }
     ]
   });

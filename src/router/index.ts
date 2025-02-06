@@ -3,6 +3,8 @@ import LoginDialog from '@/components/LoginDialog/LoginDialog';
 import { closeGlobalLoading } from '@/utils/common';
 import CONFIG from '@/config';
 import { getUserPermissionAsync } from '@/http/api/user';
+import { title, description, keywords } from '@/config/seo';
+import { useHead } from '@vueuse/head';
 
 const Designer = () => import('@/views/designer/index.vue');
 const DesignResume = () => import('@/views/designerResume/index.vue');
@@ -115,7 +117,7 @@ const routes: Array<RouteRecordRaw> = [
     path: '/',
     name: 'Index',
     meta: {
-      title: '首页',
+      title: title,
       keepAlive: true,
       isShowComNav: false, // 是否显示公共的导航栏
       requireLogin: false,
@@ -296,7 +298,7 @@ const routes: Array<RouteRecordRaw> = [
     path: '/resume',
     name: 'Resume',
     meta: {
-      title: '简历模版列表',
+      title: '在线制作模版列表',
       keepAlive: true,
       isShowComNav: true,
       requireLogin: false,
@@ -1194,6 +1196,22 @@ const router = createRouter({
 
 // 全局守卫：登录拦截 本地没有存token,请重新登录
 router.beforeEach(async (to, from, next) => {
+  // 设置标题、描述、关键词
+  console.log('路由跳转 to:', to);
+  useHead({
+    title: (to.meta.title as string) || title,
+    meta: [
+      {
+        name: 'description',
+        content: description
+      },
+      {
+        name: 'keywords',
+        content: keywords
+      }
+    ]
+  });
+
   const token = localStorage.getItem('token');
   const userInfo = localStorage.getItem('userInfo');
   // 需要权限且未登录
