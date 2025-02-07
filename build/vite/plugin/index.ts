@@ -8,6 +8,7 @@ import OptimizationPersist from 'vite-plugin-optimize-persist';
 import PkgConfig from 'vite-plugin-package-config';
 import DefineOptions from 'unplugin-vue-define-options/vite';
 import { viteCommonjs } from '@originjs/vite-plugin-commonjs';
+import visualizer from 'rollup-plugin-visualizer';
 
 export const createVitePlugins = async (viteEnv: ViteEnv, isBuild: boolean) => {
   const { VITE_BUILD_COMPRESS, VITE_BUILD_COMPRESS_DELETE_ORIGIN_FILE } = viteEnv;
@@ -25,6 +26,15 @@ export const createVitePlugins = async (viteEnv: ViteEnv, isBuild: boolean) => {
 
   // 仅在生产环境使用的插件
   if (isBuild) {
+    // Rollup Visualizer 插件
+    vitePlugins.push(
+      visualizer({
+        filename: 'stats.html',
+        open: true,
+        gzipSize: true,
+        brotliSize: true
+      })
+    );
     vitePlugins.push(
       configCompressPlugin(VITE_BUILD_COMPRESS, VITE_BUILD_COMPRESS_DELETE_ORIGIN_FILE)
     );

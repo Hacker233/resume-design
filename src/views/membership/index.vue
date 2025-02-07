@@ -121,12 +121,12 @@
         <div class="title"> 权益对比 </div>
         <div class="vip-yige">
           <div class="welfareBg">
-            <div class="lineBg color0"></div>
-            <div class="lineBg color1"></div>
-            <div class="lineBg color0"></div>
-            <div class="lineBg color1"></div>
-            <div class="lineBg color0"></div>
-            <div class="lineBg color1"></div>
+            <div
+              v-for="(color, index) in colors"
+              :key="index"
+              class="lineBg"
+              :class="'color' + (index % 2)"
+            ></div>
           </div>
           <div class="cotent-item-wrapper first">
             <div class="cotent-item cotent-item-type">
@@ -137,93 +137,38 @@
                 </div>
               </div>
               <div class="welfare first-column">
-                <div class="line firstLine"> 积木创作 </div>
-                <div class="line">在线制作</div>
-                <div class="line">PPT模板</div>
-                <div class="line">简历模版</div>
-                <div class="line">软件资源</div>
-                <div class="line">网盘资源</div>
-                <div class="line">简历创建份数</div>
+                <div
+                  v-for="(benefit, index) in benefits"
+                  :key="index"
+                  class="line"
+                  :class="{ firstLine: index === 0 }"
+                  >{{ benefit.name }}</div
+                >
               </div>
             </div>
           </div>
-          <div class="cotent-item-wrapper firstContent">
-            <div class="cotent-item">
-              <div class="item-card non-vip">
-                <h1>免费版</h1>
-                <p>（欢迎白嫖）</p>
+          <div
+            v-for="(membership, index) in memberships"
+            :key="index"
+            class="cotent-item-wrapper"
+            :class="{ firstContent: index === 0, last: index === memberships.length - 1 }"
+          >
+            <div class="cotent-item" :class="{ active: membership.isActive }">
+              <div class="item-card" :class="membership.class">
+                <h1>{{ membership.label }}</h1>
+                <p>{{ membership.description }}</p>
               </div>
               <div class="welfare">
-                <div class="line firstLine"
-                  >消耗简币导出<img width="22" src="@/assets/images/jianB.png" alt="简币"
-                /></div>
-                <div class="line"
-                  >消耗简币导出<img width="22" src="@/assets/images/jianB.png" alt="简币"
-                /></div>
-                <div class="line"
-                  >消耗简币下载 <img width="22" src="@/assets/images/jianB.png" alt="简币"
-                /></div>
-                <div class="line specialLine"
-                  >消耗简币下载<img width="22" src="@/assets/images/jianB.png" alt="简币"
-                /></div>
-                <div class="line specialLine"
-                  >消耗简币下载<img width="22" src="@/assets/images/jianB.png" alt="简币"
-                /></div>
-                <div class="line"
-                  >消耗简币下载<img width="22" src="@/assets/images/jianB.png" alt="简币"
-                /></div>
-                <div class="line">2份简历</div>
-              </div>
-            </div>
-          </div>
-          <div class="cotent-item-wrapper">
-            <div class="cotent-item">
-              <div class="item-card vip">
-                <h1>月度会员版</h1>
-                <p>（一瓶饮料钱）</p>
-              </div>
-              <div class="welfare">
-                <div class="line">无限制</div>
-                <div class="line">无限制</div>
-                <div class="line">无限制</div>
-                <div class="line">无限制</div>
-                <div class="line">无限制</div>
-                <div class="line">无限制</div>
-                <div class="line">4份简历</div>
-              </div>
-            </div>
-          </div>
-          <div class="cotent-item-wrapper">
-            <div class="cotent-item">
-              <div class="item-card svip">
-                <h1>年度会员版</h1>
-                <p>（一杯奶茶钱）</p>
-              </div>
-              <div class="welfare">
-                <div class="line">无限制</div>
-                <div class="line">无限制</div>
-                <div class="line">无限制</div>
-                <div class="line">无限制</div>
-                <div class="line">无限制</div>
-                <div class="line">无限制</div>
-                <div class="line">8份简历</div>
-              </div>
-            </div>
-          </div>
-          <div class="cotent-item-wrapper last">
-            <div class="cotent-item active">
-              <div class="item-card ssvip">
-                <h1>永久会员版</h1>
-                <p>（一顿饭钱）</p>
-              </div>
-              <div class="welfare">
-                <div class="line">无限制</div>
-                <div class="line">无限制</div>
-                <div class="line">无限制</div>
-                <div class="line">无限制</div>
-                <div class="line">无限制</div>
-                <div class="line">无限制</div>
-                <div class="line">无限制</div>
+                <div
+                  v-for="(benefit, bIndex) in membership.benefits"
+                  :key="bIndex"
+                  v-dompurify-html="benefit.content"
+                  class="line"
+                  :class="{
+                    specialLine: benefits[bIndex].special && index !== 0,
+                    firstLine: bIndex === 0
+                  }"
+                ></div>
               </div>
             </div>
           </div>
@@ -352,6 +297,107 @@
     dialogWXQrcodeVisible.value = false;
     emit('cancel');
   };
+  // 数据结构化
+  const jianBImage = new URL('@/assets/images/jianB.png', import.meta.url).href;
+  const colors = ['0', '1'];
+  const benefits = [
+    { name: 'AI简历翻译', special: false },
+    { name: 'AI简历润色', special: false },
+    { name: 'AI简历创作', special: false },
+    { name: '导出PDF文件', special: false },
+    { name: '导出PNG图片', special: false },
+    { name: '下载Word简历模版', special: false },
+    { name: '下载PPT模版', special: false },
+    { name: '制作简历份数', special: false }
+  ];
+
+  const memberships = [
+    {
+      label: '免费版',
+      description: '(欢迎白嫖)',
+      class: 'non-vip',
+      isActive: false,
+      benefits: [
+        {
+          content: '无限制使用',
+          special: false
+        },
+        {
+          content: '无限制使用',
+          special: false
+        },
+        {
+          content: '无限制使用',
+          special: false
+        },
+        {
+          content: '消耗简币导出<img width="22" src="' + jianBImage + '" alt="简币"/>',
+          special: false
+        },
+        {
+          content: '消耗简币导出<img width="22" src="' + jianBImage + '" alt="简币"/>',
+          special: false
+        },
+        {
+          content: '消耗简币下载<img width="22" src="' + jianBImage + '" alt="简币"/>',
+          special: false
+        },
+        {
+          content: '消耗简币下载<img width="22" src="' + jianBImage + '" alt="简币"/>',
+          special: false
+        },
+        { content: '2份简历', special: false }
+      ]
+    },
+    {
+      label: '月度会员版',
+      description: '(一瓶饮料钱)',
+      class: 'vip',
+      isActive: false,
+      benefits: [
+        { content: '无限制使用', special: false },
+        { content: '无限制使用', special: false },
+        { content: '无限制使用', special: false },
+        { content: '无限制导出', special: false },
+        { content: '无限制导出', special: false },
+        { content: '无限制下载', special: false },
+        { content: '无限制下载', special: false },
+        { content: '4份简历', special: false }
+      ]
+    },
+    {
+      label: '年度会员版',
+      description: '(一杯奶茶钱)',
+      class: 'svip',
+      isActive: false,
+      benefits: [
+        { content: '无限制使用', special: false },
+        { content: '无限制使用', special: false },
+        { content: '无限制使用', special: false },
+        { content: '无限制导出', special: false },
+        { content: '无限制导出', special: false },
+        { content: '无限制下载', special: false },
+        { content: '无限制下载', special: false },
+        { content: '8份简历', special: false }
+      ]
+    },
+    {
+      label: '永久会员版',
+      description: '(一顿饭钱)',
+      class: 'ssvip',
+      isActive: true,
+      benefits: [
+        { content: '无限制使用', special: false },
+        { content: '无限制使用', special: false },
+        { content: '无限制使用', special: false },
+        { content: '无限制导出', special: false },
+        { content: '无限制导出', special: false },
+        { content: '无限制下载', special: false },
+        { content: '无限制下载', special: false },
+        { content: '无限制份数', special: false }
+      ]
+    }
+  ];
 </script>
 <style lang="scss" scoped>
   .membership-box {
