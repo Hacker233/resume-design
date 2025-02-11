@@ -1,31 +1,12 @@
 import { getPNGAsync, getResumePdfAsync } from '@/http/api/resume';
 import appStore from '@/store';
 
+import { saveAs } from 'file-saver'; // 引入 file-saver 库
+
 // 辅助函数：创建并触发下载
 const triggerDownload = (blob: any, fileName: any) => {
-  const blobUrl = window.URL.createObjectURL(blob);
-  const downloadElement = document.createElement('a');
-  downloadElement.href = blobUrl;
-  downloadElement.download = fileName;
-  document.body.appendChild(downloadElement);
-  downloadElement.click();
-  document.body.removeChild(downloadElement);
-  window.URL.revokeObjectURL(blobUrl);
-};
-
-// 辅助函数：通过iframe加载PDF
-const loadPdfInIframe = (blob: any, fileName: any) => {
-  const blobUrl = window.URL.createObjectURL(blob);
-  const iframe = document.createElement('iframe');
-  iframe.style.display = 'none';
-  iframe.src = blobUrl;
-
-  iframe.onload = () => {
-    triggerDownload(blob, fileName);
-    document.body.removeChild(iframe);
-  };
-
-  document.body.appendChild(iframe);
+  // 使用 file-saver 的 saveAs 方法来触发下载
+  saveAs(blob, fileName);
 };
 
 // 生成pdf方法
@@ -41,13 +22,17 @@ export const exportPdf = async (id?: string, height?: string) => {
     format: 'A4',
     integralPayGoodsId: id
   };
+
+  ElMessage.info('正在生成PDF，请稍等...'); // 提示用户生成中
+
   const pdfData = await getResumePdfAsync(params);
   if (pdfData.status) {
     ElMessage.error('网络过慢，请求超时，请重新尝试导出');
     return;
   } else {
     const blob = new Blob([pdfData], { type: 'application/pdf' });
-    loadPdfInIframe(blob, `${fileName}.pdf`);
+    triggerDownload(blob, `${fileName}.pdf`);
+    ElMessage.success('下载完成！');
   }
 };
 
@@ -60,6 +45,7 @@ export const exportPNG = async (id?: string, height?: string) => {
     format: 'A4',
     integralPayGoodsId: id
   };
+
   const pngData = await getPNGAsync(params);
   if (pngData.status) {
     ElMessage.error('网络过慢，请求超时，请重新尝试导出');
@@ -70,13 +56,7 @@ export const exportPNG = async (id?: string, height?: string) => {
   }
 };
 
-export const getPdfUrl = (id?: string, height?: string) => {
-  return `${location.origin}/pdfPreview?id=${id}&&height=${height}`;
-};
-
-// 改版后
-
-// 生成pdf方法
+// 改版后生成pdf方法
 export const exportPdfNew = async (id?: string) => {
   const { HJNewJsonStore } = appStore.useCreateTemplateStore;
   const fileName = HJNewJsonStore.config.title;
@@ -89,17 +69,18 @@ export const exportPdfNew = async (id?: string) => {
     format: 'A4',
     integralPayGoodsId: id
   };
+
   const pdfData = await getResumePdfAsync(params);
   if (pdfData.status) {
     ElMessage.error('网络过慢，请求超时，请重新尝试导出');
     return;
   } else {
     const blob = new Blob([pdfData], { type: 'application/pdf' });
-    loadPdfInIframe(blob, `${fileName}.pdf`);
+    triggerDownload(blob, `${fileName}.pdf`);
   }
 };
 
-// 生成PNG方法
+// 改版后生成PNG方法
 export const exportPNGNew = async (id?: string) => {
   const { HJNewJsonStore } = appStore.useCreateTemplateStore;
   const fileName = HJNewJsonStore.config.title;
