@@ -1,362 +1,39 @@
 <template>
   <div class="product-price-box">
-    <!-- 免费版 -->
-    <div class="card">
-      <div class="top color-1">
-        <h3>免费版</h3>
-        <div class="price-box">
+    <!-- 动态渲染权益卡片 -->
+    <div v-for="(plan, index) in pricePlans" :key="index" class="card">
+      <div class="top" :style="{ backgroundColor: plan.buttonColor }">
+        <h3>{{ plan.title }}</h3>
+        <div :class="['price-box', { 'price-pay': index !== 0 }]">
           <span>￥</span>
-          <p>0</p>
+          <p>{{ plan.price }}</p>
         </div>
-        <div class="button button-pay" @click="toGithub"> 去下载 </div>
+        <div class="button button-pay" @click="handleButtonClick(plan)">
+          {{ plan.buttonText }}
+        </div>
       </div>
       <div class="center">
         <ul>
-          <li>
-            可获得简币数量
-            <span class="svg-icon">0枚</span>
-          </li>
-          <li>
-            猫步简历官方微信交流群
-            <svg-icon icon-name="icon-duigou_kuai" color="#2ddd9d" size="22px"></svg-icon>
-          </li>
-          <li>
-            前端最新源码
-            <svg-icon icon-name="icon-duigou_kuai" color="#2ddd9d" size="22px"></svg-icon>
-          </li>
-          <li>
-            个人用户可用于商业应用开发
-            <svg-icon icon-name="icon-duigou_kuai" color="#2ddd9d" size="22px"></svg-icon>
-          </li>
-          <li>
-            网站开发部署文档
-            <svg-icon icon-name="icon-shanchu_huaban" color="#333" size="16px"></svg-icon>
-          </li>
-          <li>
-            网站后端源码
-            <svg-icon icon-name="icon-shanchu_huaban" color="#333" size="16px"></svg-icon>
-          </li>
-          <li>
-            是否具备后台管理系统
-            <svg-icon icon-name="icon-shanchu_huaban" color="#333" size="16px"></svg-icon>
-          </li>
-          <li>
-            赠送上千套word简历模板
-            <svg-icon icon-name="icon-shanchu_huaban" color="#333" size="16px"></svg-icon>
-          </li>
-          <li>
-            赠送上千套PPT模板
-            <svg-icon icon-name="icon-shanchu_huaban" color="#333" size="16px"></svg-icon>
-          </li>
-          <li>
-            企业用户可用于商业应用开发
-            <svg-icon icon-name="icon-shanchu_huaban" color="#333" size="16px"></svg-icon>
-          </li>
-          <li>
-            一对一技术指导
-            <svg-icon icon-name="icon-shanchu_huaban" color="#333" size="16px"></svg-icon>
-          </li>
-          <li>
-            系统具备简币积分体系功能
-            <svg-icon icon-name="icon-shanchu_huaban" color="#333" size="16px"></svg-icon>
-          </li>
-          <li>
-            后端代码持续更新
-            <svg-icon icon-name="icon-shanchu_huaban" color="#333" size="16px"></svg-icon>
-          </li>
-          <li>
-            网站功能持续更新迭代
-            <svg-icon icon-name="icon-shanchu_huaban" color="#333" size="16px"></svg-icon>
-          </li>
-          <li>
-            存量bug修复
-            <svg-icon icon-name="icon-shanchu_huaban" color="#333" size="16px"></svg-icon>
-          </li>
-          <li>
-            二次开发指导
-            <svg-icon icon-name="icon-shanchu_huaban" color="#333" size="16px"></svg-icon>
-          </li>
-          <li>
-            是否与猫步简历官网一致
-            <svg-icon icon-name="icon-shanchu_huaban" color="#333" size="16px"></svg-icon>
+          <li v-for="(feature, i) in plan.features" :key="i">
+            {{ feature.text }}
+            <template v-if="feature.desc">
+              <span>{{ feature.desc }}</span>
+            </template>
+            <template v-else>
+              <svg-icon
+                v-if="feature.included"
+                icon-name="icon-duigou_kuai"
+                color="#2ddd9d"
+                size="22px"
+              />
+              <svg-icon v-else icon-name="icon-shanchu_huaban" color="#333" size="16px" />
+            </template>
           </li>
         </ul>
       </div>
       <div class="bottom">
-        <p>无后端源码</p>
-      </div>
-    </div>
-    <!-- 99元版 -->
-    <div class="card">
-      <div class="top color-2">
-        <h3>基础版</h3>
-        <div class="price-box price-pay">
-          <span>￥</span>
-          <p>99</p>
-        </div>
-        <div class="button button-pay" @click="to99"> 立即获取 </div>
-      </div>
-      <div class="center">
-        <ul>
-          <li>
-            可获得简币数量
-            <span class="svg-icon">990枚</span>
-          </li>
-          <li>
-            猫步简历官方微信交流群
-            <svg-icon icon-name="icon-duigou_kuai" color="#2ddd9d" size="22px"></svg-icon>
-          </li>
-          <li>
-            前端最新源码
-            <svg-icon icon-name="icon-duigou_kuai" color="#2ddd9d" size="22px"></svg-icon>
-          </li>
-          <li>
-            个人用户可用于商业应用开发
-            <svg-icon icon-name="icon-duigou_kuai" color="#2ddd9d" size="22px"></svg-icon>
-          </li>
-          <li>
-            网站开发部署文档
-            <svg-icon icon-name="icon-duigou_kuai" color="#2ddd9d" size="22px"></svg-icon>
-          </li>
-          <li>
-            网站后端源码
-            <svg-icon icon-name="icon-duigou_kuai" color="#2ddd9d" size="22px"></svg-icon>
-          </li>
-          <li>
-            是否具备后台管理系统
-            <svg-icon icon-name="icon-duigou_kuai" color="#2ddd9d" size="22px"></svg-icon>
-          </li>
-          <li>
-            赠送网站月度会员（价值9.9￥）
-            <svg-icon icon-name="icon-duigou_kuai" color="#2ddd9d" size="22px"></svg-icon>
-          </li>
-          <li>
-            赠送上千套word简历模板
-            <svg-icon icon-name="icon-shanchu_huaban" color="#333" size="16px"></svg-icon>
-          </li>
-          <li>
-            赠送上千套PPT模板
-            <svg-icon icon-name="icon-shanchu_huaban" color="#333" size="16px"></svg-icon>
-          </li>
-          <li>
-            企业用户可用于商业应用开发
-            <svg-icon icon-name="icon-shanchu_huaban" color="#333" size="16px"></svg-icon>
-          </li>
-          <li>
-            一对一技术指导
-            <svg-icon icon-name="icon-shanchu_huaban" color="#333" size="16px"></svg-icon>
-          </li>
-          <li>
-            系统具备简币积分体系功能
-            <svg-icon icon-name="icon-shanchu_huaban" color="#333" size="16px"></svg-icon>
-          </li>
-          <li>
-            后端代码持续更新
-            <svg-icon icon-name="icon-shanchu_huaban" color="#333" size="16px"></svg-icon>
-          </li>
-          <li>
-            网站功能持续更新迭代
-            <svg-icon icon-name="icon-shanchu_huaban" color="#333" size="16px"></svg-icon>
-          </li>
-          <li>
-            存量bug修复
-            <svg-icon icon-name="icon-shanchu_huaban" color="#333" size="16px"></svg-icon>
-          </li>
-          <li>
-            二次开发指导
-            <svg-icon icon-name="icon-shanchu_huaban" color="#333" size="16px"></svg-icon>
-          </li>
-          <li>
-            是否与猫步简历官网一致
-            <svg-icon icon-name="icon-shanchu_huaban" color="#333" size="16px"></svg-icon>
-          </li>
-        </ul>
-      </div>
-      <div class="bottom">
-        <p>后端源码更新至2023年2月</p>
-        <span>具备基础后台功能，无积分、积木创作等新功能</span>
-      </div>
-    </div>
-    <!-- 399元版 -->
-    <div class="card">
-      <div class="top color-3">
-        <h3>升级版</h3>
-        <div class="price-box price-pay">
-          <span>￥</span>
-          <p>399</p>
-        </div>
-        <div class="button button-pay" @click="to399"> 立即获取 </div>
-      </div>
-      <div class="center">
-        <ul>
-          <li>
-            可获得简币数量
-            <span class="svg-icon">3990枚</span>
-          </li>
-          <li>
-            猫步简历官方微信交流群
-            <svg-icon icon-name="icon-duigou_kuai" color="#2ddd9d" size="22px"></svg-icon>
-          </li>
-          <li>
-            前端最新源码
-            <svg-icon icon-name="icon-duigou_kuai" color="#2ddd9d" size="22px"></svg-icon>
-          </li>
-          <li>
-            个人用户可用于商业应用开发
-            <svg-icon icon-name="icon-duigou_kuai" color="#2ddd9d" size="22px"></svg-icon>
-          </li>
-          <li>
-            网站开发部署文档
-            <svg-icon icon-name="icon-duigou_kuai" color="#2ddd9d" size="22px"></svg-icon>
-          </li>
-          <li>
-            网站后端源码
-            <svg-icon icon-name="icon-duigou_kuai" color="#2ddd9d" size="22px"></svg-icon>
-          </li>
-          <li>
-            是否具备后台管理系统
-            <svg-icon icon-name="icon-duigou_kuai" color="#2ddd9d" size="22px"></svg-icon>
-          </li>
-          <li>
-            赠送网站年度会员（价值29.9￥）
-            <svg-icon icon-name="icon-duigou_kuai" color="#2ddd9d" size="22px"></svg-icon>
-          </li>
-          <li>
-            赠送上千套word简历模板
-            <svg-icon icon-name="icon-duigou_kuai" color="#2ddd9d" size="22px"></svg-icon>
-          </li>
-          <li>
-            赠送上千套PPT模板
-            <svg-icon icon-name="icon-duigou_kuai" color="#2ddd9d" size="22px"></svg-icon>
-          </li>
-          <li>
-            企业用户可用于商业应用开发
-            <svg-icon icon-name="icon-duigou_kuai" color="#2ddd9d" size="22px"></svg-icon>
-          </li>
-          <li>
-            一对一技术指导
-            <svg-icon icon-name="icon-duigou_kuai" color="#2ddd9d" size="22px"></svg-icon>
-          </li>
-          <li>
-            系统具备简币积分体系功能
-            <svg-icon icon-name="icon-duigou_kuai" color="#2ddd9d" size="22px"></svg-icon>
-          </li>
-          <li>
-            后端代码持续更新
-            <svg-icon icon-name="icon-shanchu_huaban" color="#333" size="16px"></svg-icon>
-          </li>
-          <li>
-            网站功能持续更新迭代
-            <svg-icon icon-name="icon-shanchu_huaban" color="#333" size="16px"></svg-icon>
-          </li>
-          <li>
-            存量bug修复
-            <svg-icon icon-name="icon-shanchu_huaban" color="#333" size="16px"></svg-icon>
-          </li>
-          <li>
-            二次开发指导
-            <svg-icon icon-name="icon-shanchu_huaban" color="#333" size="16px"></svg-icon>
-          </li>
-          <li>
-            是否与猫步简历官网一致
-            <svg-icon icon-name="icon-shanchu_huaban" color="#333" size="16px"></svg-icon>
-          </li>
-        </ul>
-      </div>
-      <div class="bottom">
-        <p>后端源码更新至2023年5月</p>
-        <span>具备完善的后台功能，如积分、积木创作等等</span>
-      </div>
-    </div>
-    <!-- 699元版 -->
-    <div class="card">
-      <div class="top color-4">
-        <h3>永久更新版</h3>
-        <div class="price-box price-pay">
-          <span>￥</span>
-          <p>699</p>
-        </div>
-        <div class="button button-pay" @click="to699"> 立即获取 </div>
-      </div>
-      <div class="center">
-        <ul>
-          <li>
-            可获得简币数量
-            <span class="svg-icon">无限量</span>
-          </li>
-          <li>
-            猫步简历官方微信交流群
-            <svg-icon icon-name="icon-duigou_kuai" color="#2ddd9d" size="22px"></svg-icon>
-          </li>
-          <li>
-            前端最新源码
-            <svg-icon icon-name="icon-duigou_kuai" color="#2ddd9d" size="22px"></svg-icon>
-          </li>
-          <li>
-            个人用户可用于商业应用开发
-            <svg-icon icon-name="icon-duigou_kuai" color="#2ddd9d" size="22px"></svg-icon>
-          </li>
-          <li>
-            网站开发部署文档
-            <svg-icon icon-name="icon-duigou_kuai" color="#2ddd9d" size="22px"></svg-icon>
-          </li>
-          <li>
-            网站后端源码
-            <svg-icon icon-name="icon-duigou_kuai" color="#2ddd9d" size="22px"></svg-icon>
-          </li>
-          <li>
-            是否具备后台管理系统
-            <svg-icon icon-name="icon-duigou_kuai" color="#2ddd9d" size="22px"></svg-icon>
-          </li>
-          <li>
-            赠送网站永久会员（价值59.9￥）
-            <svg-icon icon-name="icon-duigou_kuai" color="#2ddd9d" size="22px"></svg-icon>
-          </li>
-          <li>
-            赠送上千套word简历模板
-            <svg-icon icon-name="icon-duigou_kuai" color="#2ddd9d" size="22px"></svg-icon>
-          </li>
-          <li>
-            赠送上千套PPT模板
-            <svg-icon icon-name="icon-duigou_kuai" color="#2ddd9d" size="22px"></svg-icon>
-          </li>
-          <li>
-            企业用户可用于商业应用开发
-            <svg-icon icon-name="icon-duigou_kuai" color="#2ddd9d" size="22px"></svg-icon>
-          </li>
-          <li>
-            一对一技术指导
-            <svg-icon icon-name="icon-duigou_kuai" color="#2ddd9d" size="22px"></svg-icon>
-          </li>
-          <li>
-            系统具备简币积分体系功能
-            <svg-icon icon-name="icon-duigou_kuai" color="#2ddd9d" size="22px"></svg-icon>
-          </li>
-          <li>
-            后端代码持续更新
-            <svg-icon icon-name="icon-duigou_kuai" color="#2ddd9d" size="22px"></svg-icon>
-          </li>
-          <li>
-            网站功能持续更新迭代
-            <svg-icon icon-name="icon-duigou_kuai" color="#2ddd9d" size="22px"></svg-icon>
-          </li>
-          <li>
-            存量bug修复
-            <svg-icon icon-name="icon-duigou_kuai" color="#2ddd9d" size="22px"></svg-icon>
-          </li>
-          <li>
-            二次开发指导
-            <svg-icon icon-name="icon-duigou_kuai" color="#2ddd9d" size="22px"></svg-icon>
-          </li>
-          <li>
-            是否与猫步简历官网一致
-            <svg-icon icon-name="icon-duigou_kuai" color="#2ddd9d" size="22px"></svg-icon>
-          </li>
-        </ul>
-      </div>
-      <div class="bottom">
-        <p>持续更新迭代</p>
-        <span>与猫步简历官网完全保持一致</span>
+        <p>{{ plan.bottomText }}</p>
+        <span v-if="plan.bottomDesc">{{ plan.bottomDesc }}</span>
       </div>
     </div>
 
@@ -373,26 +50,33 @@
   </div>
 </template>
 <script lang="ts" setup>
-  // 免费版跳转
-  const toGithub = () => {
-    window.open('https://github.com/Hacker233/resume-design', '_blank');
-  };
+  import { pricePlans } from './pricePlans'; // 引入权益配置
+  import type { PricePlan } from './pricePlans'; // 引入PricePlan类型
+
   const dialogVisible = ref<boolean>(false);
-  const imgSrc = ref<string>('https://maobucv.com:9000/resume/logo/vx-pay1.jpg');
-  // 99元弹窗
-  const to99 = () => {
-    imgSrc.value = 'https://maobucv.com:9000/resume/logo/vx-pay1.jpg';
-    dialogVisible.value = true;
-  };
-  // 399元弹窗
-  const to399 = () => {
-    imgSrc.value = 'https://maobucv.com:9000/resume/logo/vx-pay399.jpg';
-    dialogVisible.value = true;
-  };
-  // 699元弹窗
-  const to699 = () => {
-    imgSrc.value = 'https://maobucv.com:9000/resume/logo/vx-pay699.jpg';
-    dialogVisible.value = true;
+  const imgSrc = ref<string>('');
+
+  // 处理按钮点击事件
+  const handleButtonClick = (plan: PricePlan) => {
+    switch (plan.title) {
+      case '免费版':
+        window.open('https://github.com/Hacker233/resume-design', '_blank');
+        break;
+      case '基础版':
+        imgSrc.value = 'https://maobucv.com:9000/resume/logo/vx-pay1.jpg';
+        dialogVisible.value = true;
+        break;
+      case '升级版':
+        imgSrc.value = 'https://maobucv.com:9000/resume/logo/vx-pay399.jpg';
+        dialogVisible.value = true;
+        break;
+      case '永久更新版':
+        imgSrc.value = 'https://maobucv.com:9000/resume/logo/vx-pay699.jpg';
+        dialogVisible.value = true;
+        break;
+      default:
+        break;
+    }
   };
 </script>
 <style lang="scss" scoped>
@@ -435,6 +119,8 @@
           justify-content: center;
           align-items: flex-end;
           color: #6d7581;
+          font-weight: 600;
+
           span {
             font-size: 18px;
             padding-bottom: 5px;
@@ -444,6 +130,7 @@
             letter-spacing: 1px;
           }
         }
+
         .price-pay {
           color: #fff;
           font-weight: 600;
@@ -505,6 +192,12 @@
             justify-content: center;
             font-size: 14px;
             .svg-icon {
+              position: absolute;
+              right: 0;
+              top: 50%;
+              transform: translate(0, -50%);
+            }
+            span {
               position: absolute;
               right: 0;
               top: 50%;

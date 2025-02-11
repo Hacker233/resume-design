@@ -6,7 +6,7 @@
     <div class="content-bottom-box">
       <!-- 头部标题位置 -->
       <div class="title-box">
-        <h1>将猫步简历私有化部署为你自己的网站</h1>
+        <h1>获取整站源码，私有化部署为你自己的网站！</h1>
       </div>
 
       <!-- 定价表title -->

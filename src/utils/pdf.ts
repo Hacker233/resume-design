@@ -1,6 +1,33 @@
 import { getPNGAsync, getResumePdfAsync } from '@/http/api/resume';
 import appStore from '@/store';
 
+// 辅助函数：创建并触发下载
+const triggerDownload = (blob: any, fileName: any) => {
+  const blobUrl = window.URL.createObjectURL(blob);
+  const downloadElement = document.createElement('a');
+  downloadElement.href = blobUrl;
+  downloadElement.download = fileName;
+  document.body.appendChild(downloadElement);
+  downloadElement.click();
+  document.body.removeChild(downloadElement);
+  window.URL.revokeObjectURL(blobUrl);
+};
+
+// 辅助函数：通过iframe加载PDF
+const loadPdfInIframe = (blob: any, fileName: any) => {
+  const blobUrl = window.URL.createObjectURL(blob);
+  const iframe = document.createElement('iframe');
+  iframe.style.display = 'none';
+  iframe.src = blobUrl;
+
+  iframe.onload = () => {
+    triggerDownload(blob, fileName);
+    document.body.removeChild(iframe);
+  };
+
+  document.body.appendChild(iframe);
+};
+
 // 生成pdf方法
 export const exportPdf = async (id?: string, height?: string) => {
   const { resumeJsonNewStore } = appStore.useResumeJsonNewStore;
@@ -20,14 +47,7 @@ export const exportPdf = async (id?: string, height?: string) => {
     return;
   } else {
     const blob = new Blob([pdfData], { type: 'application/pdf' });
-    const downloadElement = document.createElement('a');
-    const href = window.URL.createObjectURL(blob); //创建下载的链接
-    downloadElement.href = href;
-    downloadElement.download = `${fileName}.pdf`; //下载后的文件名，根据需求定义
-    document.body.appendChild(downloadElement);
-    downloadElement.click(); //点击下载
-    document.body.removeChild(downloadElement); //下载完成移除元素
-    window.URL.revokeObjectURL(href); //释放掉blob对象
+    loadPdfInIframe(blob, `${fileName}.pdf`);
   }
 };
 
@@ -40,20 +60,13 @@ export const exportPNG = async (id?: string, height?: string) => {
     format: 'A4',
     integralPayGoodsId: id
   };
-  const pdfData = await getPNGAsync(params);
-  if (pdfData.status) {
+  const pngData = await getPNGAsync(params);
+  if (pngData.status) {
     ElMessage.error('网络过慢，请求超时，请重新尝试导出');
     return;
   } else {
-    const blob = new Blob([pdfData], { type: 'application/image' });
-    const downloadElement = document.createElement('a');
-    const href = window.URL.createObjectURL(blob); //创建下载的链接
-    downloadElement.href = href;
-    downloadElement.download = `${fileName}.png`; //下载后的文件名，根据需求定义
-    document.body.appendChild(downloadElement);
-    downloadElement.click(); //点击下载
-    document.body.removeChild(downloadElement); //下载完成移除元素
-    window.URL.revokeObjectURL(href); //释放掉blob对象
+    const blob = new Blob([pngData], { type: 'image/png' });
+    triggerDownload(blob, `${fileName}.png`);
   }
 };
 
@@ -82,14 +95,7 @@ export const exportPdfNew = async (id?: string) => {
     return;
   } else {
     const blob = new Blob([pdfData], { type: 'application/pdf' });
-    const downloadElement = document.createElement('a');
-    const href = window.URL.createObjectURL(blob); //创建下载的链接
-    downloadElement.href = href;
-    downloadElement.download = `${fileName}.pdf`; //下载后的文件名，根据需求定义
-    document.body.appendChild(downloadElement);
-    downloadElement.click(); //点击下载
-    document.body.removeChild(downloadElement); //下载完成移除元素
-    window.URL.revokeObjectURL(href); //释放掉blob对象
+    loadPdfInIframe(blob, `${fileName}.pdf`);
   }
 };
 
@@ -102,19 +108,12 @@ export const exportPNGNew = async (id?: string) => {
     format: 'A4',
     integralPayGoodsId: id
   };
-  const pdfData = await getPNGAsync(params);
-  if (pdfData.status) {
+  const pngData = await getPNGAsync(params);
+  if (pngData.status) {
     ElMessage.error('网络过慢，请求超时，请重新尝试导出');
     return;
   } else {
-    const blob = new Blob([pdfData], { type: 'application/image' });
-    const downloadElement = document.createElement('a');
-    const href = window.URL.createObjectURL(blob); //创建下载的链接
-    downloadElement.href = href;
-    downloadElement.download = `${fileName}.png`; //下载后的文件名，根据需求定义
-    document.body.appendChild(downloadElement);
-    downloadElement.click(); //点击下载
-    document.body.removeChild(downloadElement); //下载完成移除元素
-    window.URL.revokeObjectURL(href); //释放掉blob对象
+    const blob = new Blob([pngData], { type: 'image/png' });
+    triggerDownload(blob, `${fileName}.png`);
   }
 };
