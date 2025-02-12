@@ -91,6 +91,7 @@
                 v-if="appStore.useUserInfoStore.userInfo.photos.profilePic.url"
                 :size="45"
                 :src="appStore.useUserInfoStore.userInfo.photos.profilePic.url"
+                alt="头像"
               />
               <el-avatar v-else :size="45">
                 {{ appStore.useUserInfoStore.userInfo.name.split('')[0] }}
