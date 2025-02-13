@@ -65,10 +65,27 @@
   // 工具栏配置
   const toolbarConfig: Partial<IToolbarConfig> = {
     /* 工具栏配置 */
-    toolbarKeys: ['bold', 'clearStyle', 'bulletedList', 'numberedList', 'lineHeight']
+    toolbarKeys: [
+      'bold', // 字体加粗
+      'underline', // 字体下划线
+      'italic', // 字体斜体
+      'through', // 字体删除线
+      'code', // 字体代码
+      'sub', // 下标 "sup", // 上标
+      'clearStyle', // 清除字体样式
+      'fontSize', // 字体大小
+      'fontFamily', // 字体
+      'justifyLeft', // 左对齐
+      'justifyRight', // 右对齐
+      'justifyCenter', // 居中对齐
+      'justifyJustify', // 两端对齐
+      'lineHeight', // 行间距
+      'bulletedList', // 无序列表
+      'numberedList' // 有序列表
+    ]
   };
 
-  const editorConfig = {
+  const editorConfig: any = {
     placeholder: '请输入内容...',
     MENU_CONF: {
       // 图片上传配置
@@ -103,8 +120,21 @@
         onFailed(file: File, res: any) {
           console.log(`${file.name} 上传失败`, res);
         }
+      },
+      fontFamily: {
+        fontFamilyList: [
+          '黑体',
+          '楷体',
+          { name: '仿宋', value: '仿宋' },
+          'Arial',
+          'Tahoma',
+          'Verdana'
+        ]
       }
     }
+  };
+  editorConfig.MENU_CONF['emotion'] = {
+    emotions: '😀 😃 😄 😁 😆 😅 😂 🤣 😊 😇 🙂 🙃 😉'.split(' ') // 数组
   };
 
   // 组件销毁时，也及时销毁编辑器

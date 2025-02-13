@@ -53,7 +53,7 @@
     <div class="line"></div>
     <!-- 版权声明 -->
     <div class="copyright-notice">
-      <p>Copyright © 2024 猫步简历 All Rights Reserved.</p>
+      <p>Copyright © 2025 猫步简历 All Rights Reserved.</p>
     </div>
     <!-- 备案号 -->
     <div class="icp-record-number">

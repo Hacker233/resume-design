@@ -3,13 +3,15 @@
     <!-- 模块标题 -->
     <slot name="module-title"></slot>
     <!-- 实习经验列表 -->
-    <template v-for="(item, index) in module.dataSource.list.value" :key="index">
-      <hj-internship-experience1
-        :module="module"
-        :data-source-item="item"
-        :data-source-index="index"
-      ></hj-internship-experience1>
-    </template>
+    <div style="flex: 1">
+      <template v-for="(item, index) in module.dataSource.list.value" :key="index">
+        <hj-internship-experience1
+          :module="module"
+          :data-source-item="item"
+          :data-source-index="index"
+        ></hj-internship-experience1>
+      </template>
+    </div>
   </div>
 </template>
 <script setup lang="ts">
