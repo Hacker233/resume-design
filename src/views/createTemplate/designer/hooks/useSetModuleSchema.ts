@@ -17,10 +17,24 @@ export const useSetModuleSchema = (data: any) => {
     ...modulesList[element.category].css,
     ...element.css
   };
-  element.props = {
-    ...modulesList[element.category].props,
-    ...element.props
-  };
+  console.log(JSON.stringify(modulesList[element.category].props));
+  console.log(JSON.stringify(element.props));
+
+  // 处理props
+  const obj1 = { ...modulesList[element.category].props };
+  const obj2 = { ...element.props };
+  const result = { ...obj1 }; // 复制 obj1
+  // 遍历 obj2，动态合并属性
+  for (const key in obj2) {
+    if (obj2.hasOwnProperty(key)) {
+      result[key] = {
+        ...(obj1[key] || {}), // 确保 obj1[key] 存在
+        ...obj2[key] // 覆盖 obj1[key] 中的同名属性
+      };
+    }
+  }
+
+  element.props = result;
 
   element.customProps = {
     ...element.customProps,

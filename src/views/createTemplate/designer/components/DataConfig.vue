@@ -381,7 +381,8 @@
         (item: any) => item.cptName === data.customProps.ModuleTitleCpt
       );
       if (moduleConfig?.iconfont) {
-        data.props.title.iconfont = moduleTitleIconList[data.category].titleIcon;
+        data.props.title = data.props.title || {}; // 确保 title 存在
+        data.props.title.iconfont = moduleTitleIconList[data.category]?.titleIcon;
       }
     }
     const element = useSetModuleSchema(data);
