@@ -66,14 +66,6 @@ const commonDataSource: any = {
         width: '49%'
       }
     }, // 邮箱
-    abstract: {
-      type: 'input',
-      label: '一句话简介',
-      value: '一句话介绍自己，为什么选择你而不是别人',
-      props: {
-        width: '49%'
-      }
-    }, // 简介
     degree: {
       type: 'select',
       label: '学历',
@@ -82,7 +74,15 @@ const commonDataSource: any = {
       props: {
         width: '49%'
       }
-    }
+    }, // 学历
+    abstract: {
+      type: 'textarea',
+      label: '一句话简介',
+      value: '一句话介绍自己，为什么选择你而不是别人',
+      props: {
+        width: '100%'
+      }
+    } // 简介
   },
   job_intention: {
     intendedPositions: {
