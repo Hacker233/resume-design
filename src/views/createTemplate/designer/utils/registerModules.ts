@@ -139,6 +139,8 @@ import Hobbies_7 from '../modules/Hobbies/Hobbies_7.vue';
 import Hobbies_8 from '../modules/Hobbies/Hobbies_8.vue';
 import Hobbies_9 from '../modules/Hobbies/Hobbies_9.vue';
 import Hobbies_10 from '../modules/Hobbies/Hobbies_10.vue';
+import Hobbies_11 from '../modules/Hobbies/Hobbies_11.vue';
+import Hobbies_12 from '../modules/Hobbies/Hobbies_12.vue';
 
 // 自我评价
 import SelfEvaluation_1 from '../modules/SelfEvaluation/SelfEvaluation_1.vue';
@@ -308,6 +310,8 @@ const moduleComponents: any = {
   Hobbies_8,
   Hobbies_9,
   Hobbies_10,
+  Hobbies_11,
+  Hobbies_12,
 
   // 自我评价
   SelfEvaluation_1,

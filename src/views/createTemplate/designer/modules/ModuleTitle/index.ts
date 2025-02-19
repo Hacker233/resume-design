@@ -15,6 +15,8 @@ import ModuleTitle_14 from './ModuleTitle_14.vue';
 import ModuleTitle_15 from './ModuleTitle_15.vue';
 import ModuleTitle_16 from './ModuleTitle_16.vue';
 import ModuleTitle_17 from './ModuleTitle_17.vue';
+import ModuleTitle_18 from './ModuleTitle_18.vue';
+import ModuleTitle_19 from './ModuleTitle_19.vue';
 
 const ModuleTitleCpt: any = {
   ModuleTitle_1,
@@ -33,7 +35,9 @@ const ModuleTitleCpt: any = {
   ModuleTitle_14,
   ModuleTitle_15,
   ModuleTitle_16,
-  ModuleTitle_17
+  ModuleTitle_17,
+  ModuleTitle_18,
+  ModuleTitle_19
 };
 
 // 模块标题对应快照
@@ -121,6 +125,16 @@ export const ModuleTitleScreenShotList = [
   {
     cptName: 'ModuleTitle_17',
     img: 'ModuleTitle_17.png',
+    iconfont: false
+  },
+  {
+    cptName: 'ModuleTitle_18',
+    img: 'ModuleTitle_18.png',
+    iconfont: false
+  },
+  {
+    cptName: 'ModuleTitle_19',
+    img: 'ModuleTitle_19.png',
     iconfont: false
   }
 ];

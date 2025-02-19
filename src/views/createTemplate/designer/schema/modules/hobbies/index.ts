@@ -12,6 +12,8 @@ import Hobbies_7 from './Hobbies_7';
 import Hobbies_8 from './Hobbies_8';
 import Hobbies_9 from './Hobbies_9';
 import Hobbies_10 from './Hobbies_10';
+import Hobbies_11 from './Hobbies_11';
+import Hobbies_12 from './Hobbies_12';
 
 const hobbies = {
   id: 'hobbies', // 模块id
@@ -31,7 +33,9 @@ const hobbies = {
     Hobbies_7,
     Hobbies_8,
     Hobbies_9,
-    Hobbies_10
+    Hobbies_10,
+    Hobbies_11,
+    Hobbies_12
   ]
 };
 

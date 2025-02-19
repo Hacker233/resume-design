@@ -137,6 +137,8 @@ import Hobbies_7 from './hobbies/Hobbies_7';
 import Hobbies_8 from './hobbies/Hobbies_8';
 import Hobbies_9 from './hobbies/Hobbies_9';
 import Hobbies_10 from './hobbies/Hobbies_10';
+import Hobbies_11 from './hobbies/Hobbies_11';
+import Hobbies_12 from './hobbies/Hobbies_12';
 
 // 自我评价
 import SelfEvaluation_1 from './self_evaluation/SelfEvaluation_1';
@@ -185,6 +187,8 @@ import ModuleTitle_14 from './module_title/Module_Title_14';
 import ModuleTitle_15 from './module_title/Module_Title_15';
 import ModuleTitle_16 from './module_title/Module_Title_16';
 import ModuleTitle_17 from './module_title/Module_Title_17';
+import ModuleTitle_18 from './module_title/Module_Title_18';
+import ModuleTitle_19 from './module_title/Module_Title_19';
 
 // 页面
 import base_page from './pages/base_page';
@@ -322,6 +326,8 @@ const customCss: any = {
   Hobbies_8,
   Hobbies_9,
   Hobbies_10,
+  Hobbies_11,
+  Hobbies_12,
 
   SelfEvaluation_1,
   SelfEvaluation_2,
@@ -366,6 +372,8 @@ const customCss: any = {
   ModuleTitle_15,
   ModuleTitle_16,
   ModuleTitle_17,
+  ModuleTitle_18,
+  ModuleTitle_19,
 
   base_page,
   left_right_page,

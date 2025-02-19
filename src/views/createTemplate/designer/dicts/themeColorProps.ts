@@ -478,6 +478,14 @@ const themeColorProps: any = {
     css: [],
     customCss: {}
   },
+  Hobbies_11: {
+    css: [],
+    customCss: {}
+  },
+  Hobbies_12: {
+    css: [],
+    customCss: {}
+  },
   SelfEvaluation_1: {
     css: [],
     customCss: {}
@@ -626,6 +634,12 @@ export const moduleTitleThemeProps: any = {
   },
   ModuleTitle_17: {
     moduleTitleFont: ['background', 'backgroundColor']
+  },
+  ModuleTitle_18: {
+    moduleTitle: ['background', 'backgroundColor']
+  },
+  ModuleTitle_19: {
+    moduleTitle: ['background', 'backgroundColor']
   }
 };
 export default themeColorProps;
