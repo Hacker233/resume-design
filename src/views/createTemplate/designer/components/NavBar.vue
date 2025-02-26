@@ -21,6 +21,14 @@
       />
     </div>
     <div class="nav-right">
+      <!-- <el-tooltip effect="dark" content="AI智能诊断" placement="bottom">
+        <div class="ai-bot-container" @click="aiOptimize"
+          ><img src="@/assets/images/ai-translate.webp" width="24" height="24" /><div
+            class="ai-bot-text"
+            >AI诊断</div
+          ></div
+        >
+      </el-tooltip> -->
       <el-tooltip effect="light" content="提交模版" placement="bottom">
         <el-button
           size="default"
@@ -43,12 +51,19 @@
     @cancle="cancle"
     @success="success"
   ></submit-audit-dialog>
+
+  <!-- AI诊断抽屉 -->
+  <ai-optimize-drawer
+    :drawer="aiDrawer"
+    @close-ai-optimize-drawer="closeAiDrawer"
+  ></ai-optimize-drawer>
 </template>
 <script lang="ts" setup>
   import appStore from '@/store';
   import { storeToRefs } from 'pinia';
   import { UploadFilled, Folder } from '@element-plus/icons-vue';
   import SubmitAuditDialog from './SubmitAuditDialog.vue';
+  import AiOptimizeDrawer from './AiOptimizeDrawer.vue';
 
   const emit = defineEmits(['publishSuccess']);
 
@@ -92,6 +107,16 @@
       path: '/admin/templateListNew'
     });
   };
+
+  // 打开AI诊断抽屉
+  const aiDrawer = ref<boolean>(false);
+  const closeAiDrawer = () => {
+    aiDrawer.value = false;
+  };
+  // const aiOptimize = () => {
+  //   aiDrawer.value = true;
+  //   console.log('AI诊断');
+  // };
 </script>
 <style lang="scss" scoped>
   .nav-bar-box {
@@ -137,6 +162,33 @@
       display: flex;
       align-items: center;
       justify-content: flex-end;
+      .ai-bot-container {
+        align-items: center;
+        background: linear-gradient(271deg, #f6f3ff -0.08%, #f2fdff 99.45%);
+        border-radius: 24px;
+        box-sizing: border-box;
+        display: inline-flex;
+        font-size: 14px;
+        height: 32px;
+        margin-right: 15px;
+        overflow: hidden;
+        padding: 6px 8px;
+        user-select: none;
+        cursor: pointer;
+        &:hover {
+          opacity: 0.8;
+        }
+        .ai-bot-text {
+          -webkit-text-fill-color: transparent;
+          background: linear-gradient(271deg, #4734f4 0.3%, #4c79ff 99.35%);
+          -webkit-background-clip: text;
+          background-clip: text;
+          font-family: PingFang SC;
+          font-size: 14px;
+          line-height: 20px;
+          margin-left: 4px;
+        }
+      }
       .audit-btn {
         margin-right: 15px;
       }

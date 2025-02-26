@@ -1,13 +1,11 @@
 import { fileURLToPath } from 'url';
 import { ConfigEnv, defineConfig, loadEnv } from 'vite';
-import path from 'path'; // 导入 path 模块
 
 import { createBuild } from './build/vite/build';
 import { wrapperEnv } from './build/utils';
 import { createProxy } from './build/vite/proxy';
 import { createVitePlugins } from './build/vite/plugin';
 import autoprefixer from 'autoprefixer';
-import prerender from 'vite-plugin-prerender';
 
 export default defineConfig(async ({ command, mode }: ConfigEnv) => {
   const root = process.cwd(); // 当前工作目录
@@ -48,13 +46,7 @@ export default defineConfig(async ({ command, mode }: ConfigEnv) => {
         ]
       }
     },
-    plugins: [
-      ...(await createVitePlugins(viteEnv, isBuild)),
-      prerender({
-        staticDir: path.resolve(__dirname, 'dist'), // 指定预渲染的静态文件目录
-        routes: ['/', '/template'] // 预渲染的路径列表
-      })
-    ],
+    plugins: [...(await createVitePlugins(viteEnv, isBuild))],
     esbuild: {
       logOverride: { 'this-is-undefined-in-esm': 'silent' }
     },

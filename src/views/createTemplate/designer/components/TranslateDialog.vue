@@ -42,7 +42,7 @@
 </template>
 
 <script lang="ts" setup>
-  import { aiInvokeAsync, cancleAiInvokeAsync } from '@/http/api/ai';
+  import { cancleAiTranslateTextAsync, translateTextAsync } from '@/http/api/ai';
   import { ElNotification } from 'element-plus';
   import { extractValues, parseJSON, restoreValues } from '@/utils/jsonUtils';
   import { useGetSelectedModule } from '../hooks/useGetSelectedModule';
@@ -90,7 +90,7 @@
 
   // 取消
   const cancle = () => {
-    cancleAiInvokeAsync();
+    cancleAiTranslateTextAsync();
     emit('cancle');
   };
 
@@ -117,21 +117,18 @@
     // debugger;
     // 点击AI
     let params = {
-      model: 'glm-4-flash',
-      messages: JSON.stringify(extractValue),
-      number: 0,
-      type: 'translate',
-      languages: language.value,
-      moduleTitle: aiEditContent.value.title
+      model: '',
+      text: JSON.stringify(extractValue),
+      languages: language.value
     };
     if (!params.languages) {
       ElMessage.warning('请先选择目标语种');
       return;
     }
     aiLoading.value = true;
-    const data = await aiInvokeAsync(params);
+    const data = await translateTextAsync(params);
     if (data.data.status === 200) {
-      aiEditContent.value = data.data.data[0].message.content;
+      aiEditContent.value = data.data.data;
       try {
         const result = aiEditContent.value.replace(/```json/g, '');
         const resule2 = result.replace(/```/g, '');
@@ -154,7 +151,7 @@
       }
     } else {
       ElMessage.warning('AI使用人数太多，请重试~~');
-      cancleAiInvokeAsync();
+      cancleAiTranslateTextAsync();
     }
     aiLoading.value = false;
     console.log(data);

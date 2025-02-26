@@ -111,6 +111,7 @@ const TemplateStyle = () => import('@/views/admin/CreateTemplateManage/templateC
 const TemplateListNew = () => import('@/views/admin/CreateTemplateManage/templateList/index.vue');
 const UserTemplateList = () =>
   import('@/views/admin/CreateTemplateManage/userTemplateList/index.vue');
+const AiModelList = () => import('@/views/admin/AI/AiModelList/index.vue');
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -787,6 +788,18 @@ const routes: Array<RouteRecordRaw> = [
           requireAdmin: true
         },
         component: UserTemplateList
+      },
+      {
+        path: 'aiModelList',
+        name: 'AiModelList',
+        meta: {
+          title: 'AI模型列表',
+          keepAlive: true,
+          isShowComNav: false,
+          requireLogin: true,
+          requireAdmin: true
+        },
+        component: AiModelList
       },
       {
         path: 'TobeAudit',
