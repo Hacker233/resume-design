@@ -2,6 +2,7 @@ import type { BuildOptions } from 'vite';
 
 // 提取环境常量以提高可读性
 const isProduction = process.env.VITE_ENV === 'production';
+console.log('是否生产', isProduction);
 const isDev = !isProduction;
 
 // 生成 Vite 的构建配置
@@ -70,7 +71,7 @@ export function createBuild(viteEnv: { VITE_ENV: string; VITE_OUTPUT_DIR: string
       compress: {
         drop_console: isProduction, // 生产环境移除 console
         drop_debugger: true, // 生产环境移除 debugger
-        pure_funcs: ['console.log'] // 移除 console.log
+        pure_funcs: ['console.log', 'console.info', 'console.warn', 'console.error'] // 生产环境移除指定函数
       },
       mangle: true, // 启用混淆
       keep_classnames: false, // 移除类名

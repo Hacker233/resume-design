@@ -55,10 +55,34 @@
   import { formatListDate } from '@/utils/common';
   const emit = defineEmits(['toArticleDetail']);
   interface IArticleInfo {
-    articleInfo: any;
+    articleInfo: {
+      article_title: string;
+      article_abstract: string;
+      article_views: number;
+      commentCount: number;
+      article_tags: string[];
+      userInfo: {
+        name: string;
+        avatar: string;
+      };
+      createDate: string;
+      article_cover: string;
+    };
   }
   const props = withDefaults(defineProps<IArticleInfo>(), {
-    articleInfo: null
+    articleInfo: () => ({
+      article_title: '',
+      article_abstract: '',
+      article_views: 0,
+      commentCount: 0,
+      article_tags: [],
+      userInfo: {
+        name: '',
+        avatar: ''
+      },
+      createDate: '',
+      article_cover: ''
+    })
   });
 
   // 跳转至文章详情

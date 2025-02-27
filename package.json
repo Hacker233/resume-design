@@ -7,7 +7,7 @@
     "dev": "vite",
     "build:local": "vue-tsc --noEmit && vite build",
     "build:dev": "vue-tsc --noEmit && vite build --mode development",
-    "build": "cross-env NODE_ENV=production ./node_modules/vite/bin/vite.js build",
+    "build": "cross-env NODE_ENV=production VITE_ENV=production ./node_modules/vite/bin/vite.js build",
     "preview:dev": "npm run build:dev && vite preview",
     "preview": "npm run build && vite preview",
     "preview:dist": "vite preview",
