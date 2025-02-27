@@ -2,7 +2,6 @@ import type { BuildOptions } from 'vite';
 
 // 提取环境常量以提高可读性
 const isProduction = process.env.VITE_ENV === 'production';
-console.log('是否生产', isProduction);
 const isDev = !isProduction;
 
 // 生成 Vite 的构建配置
