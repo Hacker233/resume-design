@@ -22,8 +22,8 @@
         <span v-if="!orderIsFail">
           （请使用微信在3分钟内完成支付：<span v-if="m < 10">0</span>{{ m }}:<span v-if="s < 10"
             >0</span
-          >{{ s }}）
-        </span>
+          >{{ s }}）</span
+        >
         <span v-else>（订单已失效）</span>
       </div>
     </div>
@@ -216,44 +216,63 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    background-color: #ffffff;
 
     .qrcode-wrapper {
       position: relative;
       width: 220px;
       height: 220px;
-      border-radius: 3px;
+      border-radius: 10px;
       overflow: hidden;
-      margin-bottom: 10px;
+      margin-bottom: 15px;
+      transition: transform 0.3s;
+
+      &:hover {
+        transform: scale(1.05);
+      }
 
       .qrcode-fail {
         width: 100%;
         height: 100%;
         font-size: 16px;
-        background-color: rgba(0, 0, 0, 0.9);
+        background-color: rgba(0, 0, 0, 0.7);
         display: flex;
         align-items: center;
         justify-content: center;
         position: absolute;
         top: 0;
         left: 0;
-        backdrop-filter: blur(1px);
-        border-radius: 3px;
-        color: rgb(255, 255, 255);
+        backdrop-filter: blur(2px);
+        border-radius: 10px;
+        color: #ff4d4f;
       }
     }
   }
 
   .countdown-box {
-    font-size: 12px;
+    font-size: 14px;
     color: #e6a23c;
-    margin-top: 10px;
+    margin-top: 15px;
+    font-weight: bold;
   }
 
   .cancel-order {
     width: 100%;
-    height: 40px;
-    font-size: 16px;
-    letter-spacing: 2px;
+    height: 45px;
+    font-size: 18px;
+    letter-spacing: 1px;
+    background-color: #f56c6c;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+
+    &:hover {
+      background-color: #ff7875;
+    }
   }
 </style>
 <style lang="scss">

@@ -29,7 +29,7 @@ export const deleteMembershipAsync: any = (id: string) => {
 // 管理员更新会员记录
 export const updateMembershipAsync: any = (id: string, data: any) => {
   return http.request({
-    url: `/huajian/memberships/updateMembership/${id}`,
+    url: '/huajian/memberships/updateMembershipByAdmin',
     method: 'put',
     data: data
   });
