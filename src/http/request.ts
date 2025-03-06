@@ -16,7 +16,7 @@ const handleUnauthorized = () => {
   LoginDialog(true); // 显示登录对话框
 };
 
-const http = new Request({
+const http: any = new Request({
   baseURL: CONFIG.serverAddress,
   timeout: 1000 * 60 * 5,
   interceptors: {
@@ -57,5 +57,63 @@ const http = new Request({
     }
   }
 });
+
+/**
+ * 流式请求方法
+ * @param url 请求地址
+ * @param data 请求数据
+ * @param onMessage 接收到数据时的回调
+ * @param onError 发生错误时的回调
+ * @returns AbortController 用于取消请求
+ */
+http.streamRequest = (
+  url: string,
+  data: any,
+  onMessage: (chunk: string | object) => void,
+  onError: (error: any) => void,
+  onComplete?: () => void // 新增完成回调
+): AbortController => {
+  const controller = new AbortController();
+  const signal = controller.signal;
+
+  fetch(`${CONFIG.serverAddress}${url}`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `${appStore.useTokenStore.token}`
+    },
+    body: JSON.stringify(data),
+    signal
+  })
+    .then(async (response) => {
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      const reader = response.body?.getReader();
+      const decoder = new TextDecoder();
+
+      if (reader) {
+        try {
+          while (true) {
+            const { done, value } = await reader.read();
+            if (done) {
+              onComplete?.(); // 流式传输结束时触发完成回调
+              break;
+            }
+            const chunk = decoder.decode(value);
+            onMessage(chunk);
+          }
+        } catch (error) {
+          onError(error);
+        }
+      }
+    })
+    .catch((error) => {
+      onError(error);
+    });
+
+  return controller;
+};
 
 export default http;

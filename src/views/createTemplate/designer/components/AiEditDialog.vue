@@ -10,18 +10,45 @@
     @open="handleOpen"
   >
     <div class="ai-content-edit-page-select-warpper">
+      <!-- 当前简币数量 -->
+      <div class="content-box">
+        <h1 class="title"
+          >您当前简币数量
+          <div class="get-bi-method" @click="openGetDialog">获取简币</div>
+        </h1>
+        <div class="content">
+          <p class="jb-num"
+            >{{ formatNumberWithCommas(appStore.useUserInfoStore.userIntegralInfo.integralTotal) }}
+            <img width="22" src="@/assets/images/jianB.png" alt="简币"
+          /></p>
+        </div>
+        <!-- <div class="get-bi-method" @click="openGetDialog">获取简币</div> -->
+      </div>
       <!-- 新增模型选择器 -->
       <div class="model-selector">
-        <el-select v-model="selectedModel" placeholder="请选择模型" size="normal">
-          <el-option label="默认模型 (glm-4-flash)" value="" />
-          <el-option
-            v-for="model in freeModels"
-            :key="model.model_name"
-            :label="model.model_description"
-            :value="model.model_name"
-          />
-        </el-select>
-        <p class="model-tips">默认模型为 glm-4-flash，您也可以选择其他免费模型。</p>
+        <el-radio-group v-model="selectedModel">
+          <el-radio value="" size="large" border>
+            免费模型
+            <span class="free-tag">免费</span>
+          </el-radio>
+          <template v-if="modelList.length > 0">
+            <el-tooltip
+              v-for="(item, index) in modelList"
+              :key="index"
+              effect="dark"
+              :content="`每次消耗 ${Math.abs(payValue)} 简币`"
+              placement="top"
+            >
+              <el-radio :label="item" size="large" border>
+                {{ item }}
+                <span class="tips">
+                  {{ Math.abs(payValue) }}
+                  <img width="22" src="@/assets/images/jianB.png" alt="简币" />
+                </span>
+              </el-radio>
+            </el-tooltip>
+          </template>
+        </el-radio-group>
       </div>
       <div class="bottom">
         <div class="ai-content ai-content-left">
@@ -32,14 +59,15 @@
             <h1 class="title">请输入您的创作关键词</h1>
           </template>
           <div v-if="type === 'edit'" v-dompurify-html="content" class="content"></div>
-          <el-input v-else v-model="aiPropmt" type="textarea" :placeholder="placeholder">
+          <el-input
+            v-else
+            v-model="aiPropmt"
+            type="textarea"
+            :placeholder="placeholder"
+            maxlength="3000"
+            show-word-limit
+          >
           </el-input>
-          <!-- 字数限定 -->
-          <div class="text-number-box">
-            <p>限定字数：</p>
-            <el-input-number v-model="textNumber" :min="10" :max="2000" />
-            <span class="tips">(不超过2000字)</span>
-          </div>
         </div>
         <div class="ai-content-center">
           <svg-icon
@@ -67,7 +95,6 @@
           </template>
           <el-input
             v-model="aiEditContent"
-            v-loading="aiLoading"
             type="textarea"
             :element-loading-text="type === 'edit' ? 'AI拼命润色中~' : '拼命创作中'"
             placeholder="AI创作内容将展示在这里"
@@ -83,12 +110,34 @@
       </span>
     </template>
   </el-dialog>
+
+  <!-- 获取简币弹窗 -->
+  <pay-integral-dialog
+    :title="title"
+    :dialog-get-integral-visible="dialogGetIntegralVisible"
+    :pay-number="-Math.abs(payValue) || 0"
+    placeholder="下载该创作"
+    @cancle="handleCancleDialog"
+    @confirm="handleConfirmDialog"
+  ></pay-integral-dialog>
 </template>
 
 <script lang="ts" setup>
-  import { createTextAsync, polishTextAsync, aiModelListAsync } from '@/http/api/ai';
-  import { ElMessage } from 'element-plus';
+  import {
+    polishTextStreamAsync,
+    createTextStreamAsync,
+    cancelPolishTextStreamAsync,
+    cancelCreateTextStreamAsync,
+    getPolishIntegralAsync,
+    getPolishModelListAsync,
+    getCreateIntegralAsync,
+    getCreateModelListAsync
+  } from '@/http/api/ai';
+  import { ElMessage, ElNotification, ElMessageBox } from 'element-plus'; // 引入 ElMessageBox
   import { ref, watch, computed } from 'vue';
+  import { formatNumberWithCommas } from '@/utils/common';
+  import appStore from '@/store';
+  import jianBImage from '@/assets/images/jianB.png';
 
   const emit = defineEmits(['cancle', 'updateSuccess']);
   interface TDialog {
@@ -110,24 +159,58 @@
   const aiPropmt = ref<string>('');
   const aiLoading = ref<boolean>(false);
   const aiEditContent = ref<string>('');
-  const textNumber = ref<number>(100);
   const selectedModel = ref<string>(''); // 选中的模型
-  const freeModels = ref<any[]>([]); // 免费模型列表
+  const streamController = ref<AbortController | null>(null); // 流式请求控制器
+  const modelList = ref<string[]>([]); // 模型列表
+  const payValue = ref<number>(0); // 消费简币数量
+  const { getAndUpdateUserInfo } = appStore.useUserInfoStore;
 
   // 默认模型
   const defaultModel = computed(() => (selectedModel.value ? selectedModel.value : ''));
 
-  // 获取模型列表
-  const getAiModelList = async () => {
+  // 弹窗打开
+  const handleOpen = () => {
+    console.log('selectedModel:', selectedModel.value); // 确保初始值为空字符串
+    if (props.type === 'edit') {
+      // 查询AI润色需要的简币数量
+      getPolishCoin();
+      // 查询简历润色支持的模型列表
+      getPolishModelList();
+    } else {
+      getCreateIntegral();
+      getCreateModelList();
+    }
+    selectedModel.value = ''; // 确保初始值为空字符串
+  };
+
+  // 查询AI润色需要的简币数量
+  const getPolishCoin = async () => {
+    const response = await getPolishIntegralAsync();
+    if (response.data.status === 200) {
+      // 设置简币数量
+      payValue.value = response.data.data;
+    } else {
+      ElMessage.error(response.data.message);
+    }
+  };
+
+  // 查询AI创作需要的简币数量
+  const getCreateIntegral = async () => {
+    const response = await getCreateIntegralAsync();
+    if (response.data.status === 200) {
+      // 设置简币数量
+      payValue.value = response.data.data;
+    } else {
+      ElMessage.error(response.data.message);
+    }
+  };
+
+  // 查询简历润色支持的模型列表
+  const getPolishModelList = async () => {
     try {
-      const params = {
-        page: 1,
-        limit: 100
-      };
-      const response = await aiModelListAsync(params);
+      const response = await getPolishModelListAsync();
       if (response.data.status === 200) {
-        const list = response.data.data.list;
-        freeModels.value = list.filter((model: any) => model.model_is_free); // 免费模型列表
+        modelList.value = response.data.data;
       } else {
         ElMessage.error(response.data.message);
       }
@@ -136,58 +219,121 @@
     }
   };
 
-  // 弹窗打开
-  const handleOpen = () => {
-    getAiModelList();
+  // 查询简历创作支持的模型列表
+  const getCreateModelList = async () => {
+    try {
+      const response = await getCreateModelListAsync();
+      if (response.data.status === 200) {
+        modelList.value = response.data.data;
+      } else {
+        ElMessage.error(response.data.message);
+      }
+    } catch (error) {
+      ElMessage.error('获取模型列表失败');
+    }
   };
 
   watch(
     () => props.dialogAiVisible,
-    async (newVal) => {
+    (newVal) => {
       if (newVal) {
-        if (props.type === 'edit') {
-          dialogTitle.value = `简历润色优化 - ${props.module.title}`;
-        } else {
-          dialogTitle.value = `AI简历内容代写 - ${props.module.title}`;
-        }
+        dialogTitle.value =
+          props.type === 'edit'
+            ? `简历润色优化 - ${props.module.title}`
+            : `AI简历内容创作 - ${props.module.title}`;
         currentModule.value = props.module;
         aiLoading.value = false;
         aiEditContent.value = '';
-        selectedModel.value = ''; // 重置选中的模型
+        selectedModel.value = ''; // 确保初始值为空字符串
       }
     }
   );
 
   // 取消
   const cancle = () => {
+    if (streamController.value) {
+      const cancelMethod =
+        props.type === 'edit' ? cancelPolishTextStreamAsync : cancelCreateTextStreamAsync;
+      cancelMethod(streamController.value);
+    }
     emit('cancle');
   };
 
+  // 处理流式数据
+  const handleStreamData = (chunk: string) => {
+    const lines = chunk.split('\n');
+    lines.forEach((line) => {
+      const trimmedLine = line.trim();
+      if (trimmedLine.startsWith('data:')) {
+        const dataPart = trimmedLine.slice(5).trim();
+        try {
+          const parsedData = JSON.parse(dataPart);
+          const content = parsedData.data;
+          if (content) {
+            aiEditContent.value += content;
+          }
+        } catch (e) {
+          ElNotification({ title: '提示', message: trimmedLine, type: 'error' });
+        }
+      }
+    });
+  };
+
   // 点击开始润色或创作
+
   const aiEdit = async () => {
     if (aiLoading.value) return;
-    aiLoading.value = true;
 
-    let params = {
+    // 如果选择了付费模型，弹出确认框
+    if (defaultModel.value) {
+      try {
+        await ElMessageBox.confirm(
+          `<div style="display: flex; align-items: center;">本次操作将消耗 ${formatNumberWithCommas(
+            payValue.value
+          )} <img style="margin-left: 5px;" width="22" src="${jianBImage}" alt="简币" />，是否继续？</div>`,
+          '提示',
+          {
+            confirmButtonText: '确定',
+            cancelButtonText: '取消',
+            type: 'warning',
+            dangerouslyUseHTMLString: true
+          }
+        );
+      } catch (error) {
+        // 用户点击了取消
+        return;
+      }
+    }
+
+    aiLoading.value = true;
+    aiEditContent.value = '';
+
+    const params = {
       model: defaultModel.value,
       text: props.type === 'edit' ? props.content : aiPropmt.value,
-      number: textNumber.value,
       moduleTitle: props.module.title
     };
 
-    try {
-      const data =
-        props.type === 'edit' ? await polishTextAsync(params) : await createTextAsync(params);
-      if (data.data.status === 200) {
-        aiEditContent.value = data.data.data;
-      } else {
-        ElMessage.warning('AI使用人数太多，请重试~~');
+    const streamMethod = props.type === 'edit' ? polishTextStreamAsync : createTextStreamAsync;
+    const controller = streamMethod(
+      params,
+      handleStreamData,
+      (error: any) => {
+        ElMessage.error(error.message || `${props.type === 'edit' ? '润色' : '创作'}失败`);
+        aiLoading.value = false;
+      },
+      () => {
+        aiLoading.value = false;
+        getAndUpdateUserInfo();
+        if (defaultModel.value) {
+          // 手动更新用户简币数量
+          appStore.useUserInfoStore.userIntegralInfo.integralTotal =
+            appStore.useUserInfoStore.userIntegralInfo.integralTotal + payValue.value;
+        }
+        ElMessage.success(`${props.type === 'edit' ? '简历润色' : '简历创作'}成功`);
       }
-    } catch (error) {
-      ElMessage.error('操作失败，请重试');
-    } finally {
-      aiLoading.value = false;
-    }
+    );
+    streamController.value = controller;
   };
 
   // 提交
@@ -195,6 +341,24 @@
     console.log('ai内容:', aiEditContent.value);
     emit('updateSuccess', aiEditContent.value);
     cancle();
+  };
+
+  // 打开获取简币弹窗
+  const dialogGetIntegralVisible = ref<boolean>(false);
+  const title = ref<string>('');
+  const openGetDialog = () => {
+    title.value = '如何获取简币';
+    dialogGetIntegralVisible.value = true;
+  };
+
+  // 取消警告弹窗
+  const handleCancleDialog = () => {
+    dialogGetIntegralVisible.value = false;
+  };
+
+  // 确定警告弹窗
+  const handleConfirmDialog = () => {
+    dialogGetIntegralVisible.value = false;
   };
 </script>
 <style lang="scss">
@@ -231,8 +395,79 @@
     display: flex;
     flex-direction: column;
     position: relative; /* 为模型选择器定位 */
+    .content-box {
+      font-size: 12px;
+      color: #777777;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      border-bottom: none;
+      margin-bottom: 15px;
+      p {
+        height: 40px;
+        font-size: 14px;
+        display: flex;
+        align-items: center;
+        color: #fb8444;
+        img {
+          margin-left: 5px;
+        }
+      }
+      .jb-num {
+        font-size: 18px;
+        font-weight: 600;
+        background: -webkit-linear-gradient(top, #ff0000, #00ff00); /*设置线性渐变*/
+        /*为了支持更多的浏览器*/
+        background-clip: text; /*背景被裁剪到文字*/
+        -webkit-text-fill-color: transparent; /*设置文字的填充颜色*/
+        letter-spacing: 1px;
+      }
+      .title {
+        font-size: 16px;
+        color: #009a74;
+        position: relative;
+        height: 20px;
+        display: flex;
+        align-items: center;
+        margin-left: 10px;
+        letter-spacing: 1px;
+        &::before {
+          content: '';
+          position: absolute;
+          height: 10px;
+          width: 3px;
+          background-color: #009a74;
+          left: -10px;
+        }
+        .get-bi-method {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          padding: 6px 10px;
+          height: 25px;
+          background-color: #70f5c4;
+          border-radius: 15px;
+          font-size: 13px;
+          transition: all 0.3s;
+          margin: 0 auto;
+          margin-left: 15px;
+          cursor: pointer;
+          letter-spacing: 1px;
+          user-select: none;
+          &:hover {
+            opacity: 0.8;
+          }
+        }
+      }
+      .content {
+        font-size: 14px;
+        color: #333333;
+        margin-top: 10px;
+        margin-left: 10px;
+      }
+    }
     .model-selector {
-      width: 43%;
+      width: 100%;
       margin-bottom: 20px;
       .el-select {
         width: 100%;
@@ -288,7 +523,7 @@
           line-height: 1.5;
           letter-spacing: 1px;
           text-align: justify;
-          font-size: 13px;
+          font-size: 12px;
           color: #333333;
         }
         .text-number-box {
@@ -329,6 +564,62 @@
           font-size: 14px;
           margin-top: 8px;
           color: #4e97fb;
+        }
+      }
+    }
+    .el-radio {
+      display: flex;
+      align-items: center;
+      margin-bottom: 10px; // 增加间距
+      border-radius: 8px; // 圆角
+      padding: 10px; // 内边距
+      transition: all 0.3s ease; // 过渡效果
+      border: 1px solid #dcdfe6; // 默认边框颜色
+
+      &:hover {
+        background-color: #f5f7fa; // 鼠标悬停背景色
+        border-color: #4e97fb; // 鼠标悬停边框颜色
+      }
+
+      &.is-checked {
+        background-color: #e8f4ff; // 选中背景色
+        border-color: #4e97fb; // 选中边框颜色
+
+        .el-radio__label {
+          color: #4e97fb; // 选中文字颜色
+        }
+      }
+
+      .el-radio__label {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        font-size: 14px; // 字体大小
+        color: #606266; // 默认文字颜色
+
+        .free-tag {
+          margin-left: 10px;
+          padding: 4px 8px;
+          background-color: #e8f5e9; // 免费标签背景色
+          color: #4caf50; // 免费标签文字颜色
+          border-radius: 12px;
+          font-size: 12px;
+          font-weight: bold;
+        }
+
+        .tips {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          margin-left: 10px;
+          font-size: 14px;
+          color: #4e97fb; // 简币文字颜色
+          font-weight: bold;
+
+          img {
+            margin-left: 5px;
+          }
         }
       }
     }

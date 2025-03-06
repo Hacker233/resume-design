@@ -18,6 +18,22 @@
     <el-table-column prop="integral_pay_name" label="消费名称" />
     <el-table-column prop="integral_pay_num" label="消费数量" />
     <el-table-column prop="integral_pay_desc" label="消费描述" />
+    <el-table-column prop="integral_pay_model" label="AI模型">
+      <template #default="scope">
+        <div v-if="scope.row.integral_pay_model && scope.row.integral_pay_model.length > 0">
+          <el-tag
+            v-for="(model, index) in scope.row.integral_pay_model"
+            :key="index"
+            type="success"
+            size="default"
+            style="margin-right: 5px; margin-bottom: 5px"
+          >
+            {{ model }}
+          </el-tag>
+        </div>
+        <span v-else>-</span>
+      </template>
+    </el-table-column>
     <el-table-column label="操作" width="150">
       <template #default="scope">
         <el-button link size="small" @click="edit(scope.row)">编辑</el-button>

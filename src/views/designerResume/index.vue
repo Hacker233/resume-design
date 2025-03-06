@@ -231,6 +231,7 @@
           margin-top: 20px;
           width: 820px; // 固定宽度
           height: auto;
+          z-index: 1;
         }
       }
       .page-eidtor-box {
