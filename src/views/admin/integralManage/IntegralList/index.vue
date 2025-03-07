@@ -54,7 +54,12 @@
         <template #default="scope">
           <div class="integral-value-box">
             <span>{{ getFormatIntegral(scope.row.integral_value) }}</span>
-            <img width="24" src="@/assets/images/jianB.png" alt="简币" />
+            <img
+              width="24"
+              src="@/assets/images/jianB.png"
+              alt="简币"
+              title="简币 - 您的专属虚拟货币"
+            />
           </div>
         </template>
       </el-table-column>

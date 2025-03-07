@@ -14,7 +14,7 @@
     <div class="content-box">
       <!-- 动态标题 -->
       <h1 class="dynamic-title">一款开源、免费、专业的AI简历生成制作神器</h1>
-      <p>AI赋能，AI简历润色、修改，交付源码级JSON，提供海量模版。</p>
+      <h2>AI赋能，AI简历润色、修改，交付源码级JSON，提供海量模版。</h2>
 
       <!-- DeepSeek 提示 -->
       <div class="deepseek-tip">已接入 DeepSeek，精准、专业的AI简历优化</div>
@@ -24,8 +24,13 @@
         <hj-button-1 text="免费制作专业简历" @click="freeMakeResume"></hj-button-1>
       </div>
 
-      <!-- 示例图 -->
-      <img class="mac-png" src="../../../assets/images/index-mac.svg" alt="" />
+      <!-- 简历图 -->
+      <img
+        class="mac-png"
+        src="../../../assets/images/index-mac.svg"
+        alt="猫步简历制作"
+        title="猫步简历制作"
+      />
 
       <!-- 下滑提示按钮 -->
       <div class="scroll-more-box" @click.prevent="seeMore">
@@ -159,7 +164,7 @@
       text-align: center;
     }
 
-    p {
+    h2 {
       width: 700px;
       font-size: min(1.5vh, 20px);
       text-align: center;

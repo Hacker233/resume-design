@@ -1,7 +1,11 @@
 <template>
   <div class="card-wraper" @mouseover="mouseover" @mouseleave="mouseleave">
     <div class="template-card-box">
-      <img :src="cardData.template_cover" alt="" srcset="" />
+      <img
+        :src="cardData.template_cover"
+        :alt="cardData.template_title"
+        :title="cardData.template_title"
+      />
       <!-- 遮罩层 -->
       <div ref="maskLayerRef" class="mask-layer">
         <div class="preview-icon" title="预览" @click="previreImg">

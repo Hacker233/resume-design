@@ -28,7 +28,7 @@
             ></count-to>
             <span>次</span>
           </p>
-          <h1>累计访问量</h1>
+          <h3>累计访问量</h3>
         </li>
         <li v-config:open_sign>
           <svg-icon
@@ -48,7 +48,7 @@
             ></count-to>
             <span>人</span>
           </p>
-          <h1>累计注册</h1>
+          <h3>累计注册</h3>
         </li>
         <li>
           <svg-icon
@@ -68,7 +68,7 @@
             ></count-to>
             <span>份</span>
           </p>
-          <h1>累计制作简历</h1>
+          <h3>累计制作简历</h3>
         </li>
       </ul>
     </div>
@@ -147,7 +147,7 @@
           box-shadow: 0 4px 6px 5px rgb(0 0 0 / 5%);
           border-radius: 4px;
           margin: 0 40px;
-          h1 {
+          h3 {
             font-size: 18px;
             letter-spacing: 1px;
             font-weight: 500;

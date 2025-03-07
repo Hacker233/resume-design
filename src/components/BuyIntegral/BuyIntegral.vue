@@ -52,7 +52,12 @@
       <h3>获得简币</h3>
       <div class="integral-num">
         <span>{{ totalAmount * 10 }}</span>
-        <img width="24" src="@/assets/images/jianB.png" alt="简币" />
+        <img
+          width="24"
+          src="@/assets/images/jianB.png"
+          alt="简币"
+          title="简币 - 您的专属虚拟货币"
+        />
       </div>
     </div>
     <!-- 充值按钮 -->

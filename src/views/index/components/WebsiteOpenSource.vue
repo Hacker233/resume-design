@@ -1,4 +1,4 @@
-<!-- 根据简历用途选择模版 -->
+<!-- 开源信息 -->
 <template>
   <div class="resume-function-introduce-box">
     <introduce-title-vue
@@ -10,36 +10,62 @@
     <div class="function-card-box">
       <div class="card-top">
         <div class="card" @click="toGithub">
-          <img src="../../../assets/images/resumeFunctionIntro/github.svg" alt="" srcset="" />
-          <h1>前端源码</h1>
+          <img
+            src="../../../assets/images/resumeFunctionIntro/github.svg"
+            alt="GitHub 开源"
+            title="访问 GitHub 查看前端源码"
+            loading="lazy"
+          />
+          <h3>前端源码</h3>
           <p>github开源</p>
         </div>
         <div class="card" @click="toGitee">
-          <img src="../../../assets/images/resumeFunctionIntro/gitee.svg" alt="" srcset="" />
-          <h1>前端源码</h1>
+          <img
+            src="../../../assets/images/resumeFunctionIntro/gitee.svg"
+            alt="Gitee 开源"
+            title="访问 Gitee 查看前端源码"
+            loading="lazy"
+          />
+          <h3>前端源码</h3>
           <p>gitee开源</p>
         </div>
         <div v-config:open_get_source_code class="card" @click="toNestjs">
-          <img src="../../../assets/images/resumeFunctionIntro/nestjs.svg" alt="" srcset="" />
-          <h1>后端源码</h1>
+          <img
+            src="../../../assets/images/resumeFunctionIntro/nestjs.svg"
+            alt="NestJS 后端源码"
+            title="查看 NestJS 后端源码"
+            loading="lazy"
+          />
+          <h3>后端源码</h3>
           <p>nestjs框架</p>
         </div>
         <el-popover :width="200" trigger="hover" placement="right" teleported>
           <template #reference>
             <div class="card">
-              <img src="../../../assets/images/resumeFunctionIntro/author.svg" alt="" srcset="" />
-              <h1>开源作者</h1>
+              <img
+                src="../../../assets/images/resumeFunctionIntro/author.svg"
+                alt="开源作者"
+                title="了解开源作者信息"
+                loading="lazy"
+              />
+              <h3>开源作者</h3>
               <p>独立开发者</p>
             </div>
           </template>
           <!-- 内容区域 -->
           <div class="vx-box">
             <div class="vx-title">
-              <h1>添加微信</h1>
+              <h3>添加微信</h3>
               <p>进入交流群，迅速解答疑问！</p>
             </div>
             <div class="vx-img">
-              <img class="bgc-img" src="@/assets/images/vx.jpg" alt="" />
+              <img
+                class="bgc-img"
+                src="@/assets/images/vx.jpg"
+                alt="微信二维码"
+                title="扫描二维码添加微信"
+                loading="lazy"
+              />
             </div>
           </div>
         </el-popover>
@@ -105,7 +131,7 @@
           width: 60px;
           height: auto;
         }
-        h1 {
+        h3 {
           font-size: 18px;
           color: #383737;
           margin: 10px;
@@ -125,7 +151,7 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      h1 {
+      h3 {
         font-size: 14px;
       }
       p {

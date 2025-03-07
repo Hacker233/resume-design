@@ -5,7 +5,12 @@
       <!-- 价格 -->
       <div class="price-box">
         <span>{{ cardData.pan_source_price }}</span>
-        <img width="22" src="@/assets/images/jianB.png" alt="简币" />
+        <img
+          width="22"
+          src="@/assets/images/jianB.png"
+          alt="简币"
+          title="简币 - 您的专属虚拟货币"
+        />
       </div>
       <!-- 遮罩层 -->
       <div ref="maskLayerRef" class="mask-layer">

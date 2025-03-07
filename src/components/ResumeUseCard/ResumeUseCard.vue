@@ -3,11 +3,11 @@
     <div v-for="(item, index) in list" :key="index" class="card-item" @click="handleToCard(item)">
       <!-- 图片 -->
       <div class="img-box">
-        <img :src="getAssetsImagesFile(item.src)" alt="" />
+        <img :src="getAssetsImagesFile(item.src)" :alt="item.title" :title="item.title" />
       </div>
       <!-- 标题 -->
       <div class="title-box">
-        <h1>{{ item.title }}</h1>
+        <h3>{{ item.title }}</h3>
       </div>
     </div>
   </div>
@@ -98,7 +98,7 @@
         border-top: 1px solid #eee;
         flex-shrink: 0;
         background-image: linear-gradient(to right, #ffecd2 0%, #fcb69f 100%);
-        h1 {
+        h3 {
           font-size: 18px;
           font-weight: 600;
           margin: 0;

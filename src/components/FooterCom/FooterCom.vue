@@ -5,41 +5,46 @@
       <!-- 联系我 -->
       <div v-viewer class="contact-me">
         <div v-for="(item, index) in vxQunList" :key="index" class="add-wechat">
-          <img :src="item.qr_code" :alt="item.name" />
-          <p>{{ item.name }}</p>
+          <img
+            :src="item.qr_code"
+            :alt="`${item.name} 二维码`"
+            :title="`扫描二维码添加 ${item.name}`"
+            loading="lazy"
+          />
+          <h3>{{ item.name }}</h3>
         </div>
       </div>
       <!-- 关于我 -->
       <div class="about-me">
-        <h1>社交平台</h1>
-        <p>
+        <h2>社交平台</h2>
+        <h3>
           <a
             href="https://space.bilibili.com/493520625?spm_id_from=333.1007.0.0"
             target="_blank"
             rel="noopener noreferrer"
             >哔哩哔哩</a
           >
-        </p>
-        <p>
+        </h3>
+        <h3>
           <a
             href="https://juejin.cn/user/3034307822112798"
             target="_blank"
             rel="noopener noreferrer"
             >稀土掘金</a
           >
-        </p>
-        <p>
+        </h3>
+        <h3>
           <a
             href="https://www.zhihu.com/people/luhongquan"
             target="_blank"
             rel="noopener noreferrer"
             >个人知乎</a
           >
-        </p>
+        </h3>
       </div>
       <!-- 友情链接 -->
       <div class="links">
-        <h1>友情链接</h1>
+        <h2>友情链接</h2>
         <div class="links-box">
           <template v-for="(item, index) in linksList" :key="index">
             <p>
@@ -128,7 +133,7 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      h1 {
+      h2 {
         color: #a3a5a7;
         font-size: 16px;
         padding-bottom: 10px;
@@ -141,7 +146,7 @@
           width: 105px;
           height: 105px;
         }
-        p {
+        h3 {
           font-size: 14px;
           color: #fff;
           margin-top: 10px;
@@ -168,7 +173,7 @@
         flex-direction: column;
         padding-top: 30px;
         margin-right: 40px;
-        p {
+        h3 {
           color: #fff;
           display: flex;
           justify-content: flex-start;

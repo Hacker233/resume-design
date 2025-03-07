@@ -28,7 +28,13 @@
     <el-table-column prop="model_price" label="收费价格">
       <template #default="scope">
         <div class="model-price">
-          {{ scope.row.model_price }}<img width="24" src="@/assets/images/jianB.png" alt="简币" />
+          {{ scope.row.model_price
+          }}<img
+            width="24"
+            src="@/assets/images/jianB.png"
+            alt="简币"
+            title="简币 - 您的专属虚拟货币"
+          />
         </div>
       </template>
     </el-table-column>

@@ -65,7 +65,12 @@
       <!-- 简币 -->
       <div v-config:open_get_source_code class="jb-num-box" @click="toMyIntegral">
         <div class="content">
-          <img width="22" src="@/assets/images/jianB.png" alt="简币" />
+          <img
+            width="22"
+            src="@/assets/images/jianB.png"
+            alt="简币"
+            title="简币 - 您的专属虚拟货币"
+          />
           <span>{{ appStore.useUserInfoStore.userIntegralInfo.integralTotal || 0 }}</span>
         </div>
       </div>
@@ -91,7 +96,8 @@
                 v-if="appStore.useUserInfoStore.userInfo.photos.profilePic.url"
                 :size="45"
                 :src="appStore.useUserInfoStore.userInfo.photos.profilePic.url"
-                alt="头像"
+                alt="用户头像"
+                title="用户个人头像"
               />
               <el-avatar v-else :size="45">
                 {{ appStore.useUserInfoStore.userInfo.name.split('')[0] }}

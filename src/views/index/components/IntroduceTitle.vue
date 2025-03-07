@@ -1,6 +1,6 @@
 <template>
   <div class="title">
-    <h1>{{ title }}</h1>
+    <h2>{{ title }}</h2>
     <p>{{ subtitle }}</p>
   </div>
 </template>
@@ -19,7 +19,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    h1 {
+    h2 {
       position: relative;
       letter-spacing: 3px;
       margin-bottom: 25px;

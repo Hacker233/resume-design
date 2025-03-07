@@ -12,7 +12,12 @@
     <template #header>
       <div class="get-integral-header-box">
         如何获取简币？
-        <img width="24" src="@/assets/images/jianB.png" alt="简币" />
+        <img
+          width="24"
+          src="@/assets/images/jianB.png"
+          alt="简币"
+          title="简币 - 您的专属虚拟货币"
+        />
       </div>
     </template>
     <div class="get-integral-content-box">
@@ -44,7 +49,12 @@
       <!-- 方式二 -->
       <div class="way way-2">
         <p class="way-tips"
-          >每次评论免费获得+1<img width="24" src="@/assets/images/jianB.png" alt="简币" />
+          >每次评论免费获得+1<img
+            width="24"
+            src="@/assets/images/jianB.png"
+            alt="简币"
+            title="简币 - 您的专属虚拟货币"
+          />
           <span class="small-tips"
             >（每日最多+{{ Most_Integral_Comment }}，评论被删除将扣除已获得简币！）</span
           >

@@ -43,7 +43,12 @@
                 {{ item }}
                 <span class="tips">
                   {{ Math.abs(payValue) }}
-                  <img width="22" src="@/assets/images/jianB.png" alt="简币" />
+                  <img
+                    width="22"
+                    src="@/assets/images/jianB.png"
+                    alt="简币"
+                    title="简币 - 您的专属虚拟货币"
+                  />
                 </span>
               </el-radio>
             </el-tooltip>
