@@ -140,3 +140,49 @@ export const getCreateModelListAsync: any = () => {
     method: 'get'
   });
 };
+
+// 查询AI简历优化需要的简币数量
+export const getOptimizeResumeIntegralAsync: any = () => {
+  return http.request({
+    url: '/huajian/ai/getOptimizeResumeIntegral',
+    method: 'get'
+  });
+};
+
+// 查询AI简历优化支持的模型列表
+export const getOptimizeResumeModelListAsync: any = () => {
+  return http.request({
+    url: '/huajian/ai/getOptimizeResumeModelList',
+    method: 'get'
+  });
+};
+
+// 流式传输AI简历优化文本
+export const optimizeResumeStreamAsync: any = (
+  data: any,
+  onMessage: (chunk: string) => void,
+  onError: (error: any) => void,
+  onComplete?: () => void
+) => {
+  return http.streamRequest(
+    '/huajian/ai/optimizeResumeStream',
+    data,
+    onMessage,
+    onError,
+    onComplete
+  );
+};
+
+// 取消流式传输AI简历优化文本
+export const cancelOptimizeResumeStreamAsync: any = (controller: AbortController) => {
+  controller.abort(); // 取消请求
+};
+
+// 查询用户AI简历诊断列表
+export const getAiOptimizeLogsListAsync: any = (params: any) => {
+  return http.request({
+    url: '/huajian/ai/getAiOptimizeLogsList',
+    method: 'get',
+    params: params
+  });
+};

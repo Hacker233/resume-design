@@ -14,7 +14,7 @@
     <div class="content-box">
       <!-- 动态标题 -->
       <h1 class="dynamic-title">一款开源、免费、专业的AI简历生成制作神器</h1>
-      <h2>AI赋能，AI简历润色、修改，交付源码级JSON，提供海量模版。</h2>
+      <h2>AI智能润色、修改、AI智能诊断，交付源码级JSON，提供海量模版。</h2>
 
       <!-- DeepSeek 提示 -->
       <div class="deepseek-tip">已接入 DeepSeek，精准、专业的AI简历优化</div>

@@ -6,6 +6,11 @@ declare module '*.vue' {
   const component: DefineComponent<{}, {}, any>;
   export default component;
 }
+declare module 'marked' {
+  interface MarkedOptions {
+    highlight?: (code: string, language: string) => string;
+  }
+}
 declare module 'jspdf';
 declare module 'colorpicker-v3';
 declare module 'vue3-pdfjs/esm';

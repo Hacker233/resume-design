@@ -27,7 +27,7 @@
       <!-- 新增模型选择器 -->
       <div class="model-selector">
         <el-radio-group v-model="selectedModel">
-          <el-radio value="" size="large" border>
+          <el-radio label="" size="large" border>
             免费模型
             <span class="free-tag">免费</span>
           </el-radio>

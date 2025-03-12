@@ -30,11 +30,14 @@
     <div class="nav-center"> </div>
     <div class="nav-right">
       <el-button type="text" style="margin-right: 10px" @click="toOld">旧版入口</el-button>
-      <!-- <el-tooltip effect="dark" content="AI智能简历体检" placement="bottom">
-        <div class="icon-box icon-AI-YH" @click="downloadResume">
-          <svg-icon icon-name="icon-zhinengyouhua" color="#fff" size="26px"></svg-icon>
-        </div>
-      </el-tooltip> -->
+      <el-tooltip effect="dark" content="AI智能诊断" placement="bottom">
+        <div class="ai-bot-container" @click="aiOptimize"
+          ><img src="@/assets/images/ai-translate.webp" width="24" height="24" /><div
+            class="ai-bot-text"
+            >AI简历诊断</div
+          ></div
+        >
+      </el-tooltip>
       <el-tooltip effect="dark" content="AI智能语种切换" placement="bottom">
         <div class="ai-bot-container" @click="languageSelect"
           ><img src="../../../assets/images/ai-translate.webp" width="24" height="24" /><div
@@ -89,6 +92,20 @@
     :dialog-translate-visible="dialogTranslateVisible"
     @cancle="translateCancle"
   ></translate-dialog>
+
+  <!-- AI诊断确认弹窗 -->
+  <ai-optimize-dialog
+    :dialog-ai-optimize-visible="dialogAiOptimizeVisible"
+    @cancle="aiDialogCancle"
+    @update-success="updateSuccess"
+  ></ai-optimize-dialog>
+
+  <!-- AI诊断抽屉 -->
+  <ai-optimize-drawer
+    :drawer="aiDrawer"
+    :model-info-obj="modelInfoObj"
+    @close-ai-optimize-drawer="closeAiDrawer"
+  ></ai-optimize-drawer>
 </template>
 <script lang="ts" setup>
   import appStore from '@/store';
@@ -103,6 +120,8 @@
   import ResumePreview from '@/views/createTemplate/previewer/index.vue';
   import TranslateDialog from './TranslateDialog.vue';
   import LoginDialog from '@/components/LoginDialog/LoginDialog';
+  import AiOptimizeDrawer from '@/views/createTemplate/designer/components/AiOptimizeDrawer.vue';
+  import AiOptimizeDialog from '@/views/createTemplate/designer/components/AiOptimizeDialog.vue';
 
   const { HJNewJsonStore } = storeToRefs(appStore.useCreateTemplateStore);
   const emit = defineEmits([
@@ -263,6 +282,32 @@
       })
       .catch(() => {});
   };
+
+  // 打开AI诊断确认弹窗
+  const dialogAiOptimizeVisible = ref<boolean>(false);
+  const aiDrawer = ref<boolean>(false);
+  const aiOptimize = () => {
+    dialogAiOptimizeVisible.value = true;
+  };
+
+  // AI诊断确认弹窗取消
+  const aiDialogCancle = () => {
+    dialogAiOptimizeVisible.value = false;
+  };
+
+  // AI诊断确认弹窗确认
+  const modelInfoObj = ref<any>({}); // 选择的模型
+  const updateSuccess = (modelInfo: any) => {
+    dialogAiOptimizeVisible.value = false;
+    aiDrawer.value = true;
+    modelInfoObj.value = modelInfo;
+  };
+
+  // 关闭AI诊断抽屉
+  const closeAiDrawer = () => {
+    aiDrawer.value = false;
+  };
+
   defineExpose({
     saveDataToLocal
   });

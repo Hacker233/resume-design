@@ -328,3 +328,112 @@ export const getModuleTitleImagesFile = (url: string) => {
     return new URL(`../assets/images/moduleTitle/${url}`, import.meta.url).href;
   }
 };
+
+/**
+ * 处理简历 JSON 数据
+ * @param {Object} resumeData - 原始简历数据
+ * @returns {Object} - 处理后的简历数据
+ */
+export const processResumeData = (resumeData: any) => {
+  const processedData: { [key: string]: any } = {};
+
+  // 遍历每个模块
+  resumeData.componentsTree.forEach((module: any, index: number) => {
+    // 如果 showModule 为 false，跳过该模块
+    if (module.customProps?.showModule === false) {
+      return;
+    }
+
+    // 自定义较短的键名，例如 module_1, module_2
+    const moduleKey = `module_${index + 1}`;
+
+    // 处理模块的 props，过滤 show 为 false 的属性
+    const moduleData: any = { _title: module.title }; // 将 title 存放在 _title 字段中
+    for (const [key, prop] of Object.entries(module.props || {})) {
+      if ((prop as any).show !== false) {
+        // 如果属性是 dataSource，直接使用其 value
+        if (module.dataSource && module.dataSource[key]) {
+          moduleData[key] = module.dataSource[key].value;
+        } else {
+          moduleData[key] = (prop as any).value || (prop as any).chName || '';
+        }
+      }
+    }
+
+    // 如果模块有 list 数据，处理 list
+    if (module.dataSource?.list) {
+      moduleData.list = module.dataSource.list.value.map((item: any) => {
+        const processedItem: any = {};
+        // 遍历对象的每个键值对
+        for (const entry of Object.entries(item)) {
+          const itemKey: string = entry[0]; // itemKey 是字符串类型
+          const itemProp: any = entry[1]; // itemProp 可以是任意类型
+
+          // 如果 itemProp 的 show 属性为 false，跳过该字段
+          if (module.props[itemKey]?.show === false) {
+            continue;
+          }
+          // 如果 itemProp 是数组，单独处理
+          if (Array.isArray(itemProp.value)) {
+            processedItem[itemKey] = itemProp.value.map((element: any) => {
+              // 如果元素是字符串，直接保留
+              if (typeof element === 'string') {
+                return element;
+              }
+              // 如果元素是对象，递归处理
+              else if (typeof element === 'object') {
+                return processItem(element);
+              }
+              // 其他情况（如数字、布尔值等），直接保留
+              return element;
+            });
+          }
+          // 如果 itemProp 是一个对象且包含 value 属性，提取 value
+          else if (itemProp !== null && typeof itemProp === 'object' && 'value' in itemProp) {
+            processedItem[itemKey] = itemProp.value;
+          }
+          // 如果 itemProp 是字符串、数字，直接保留
+          else if (typeof itemProp === 'string' || typeof itemProp === 'number') {
+            processedItem[itemKey] = itemProp;
+          }
+          // 如果 itemProp 是对象，递归处理
+          else if (typeof itemProp === 'object') {
+            processedItem[itemKey] = processItem(itemProp);
+          }
+        }
+
+        return processedItem;
+      });
+    }
+
+    // 将处理后的模块数据添加到结果中
+    processedData[moduleKey] = moduleData;
+  });
+
+  return processedData;
+};
+
+/**
+ * 递归处理 item 数据，只保留 value 或实际内容
+ * @param {Object} item - 待处理的数据
+ * @returns {Object} - 处理后的数据
+ */
+const processItem = (item: any) => {
+  const processedItem: any = {};
+  for (const entryItem of Object.entries(item)) {
+    const key: string = entryItem[0];
+    const value: any = entryItem[1];
+
+    if (typeof value === 'object' && value.value !== undefined) {
+      // 如果 value 是一个对象且包含 value 字段，则只提取 value
+      processedItem[key] = value?.value ?? null;
+    } else if (typeof value === 'string' || typeof value === 'number' || Array.isArray(value)) {
+      // 如果 value 是字符串、数字或数组，直接保留
+      processedItem[key] = value;
+    } else if (typeof value === 'object') {
+      // 如果 value 是对象，递归处理
+      processedItem[key] = processItem(value);
+    }
+  }
+  return processedItem;
+};

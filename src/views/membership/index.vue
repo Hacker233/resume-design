@@ -301,6 +301,7 @@
   const jianBImage = new URL('@/assets/images/jianB.png', import.meta.url).href;
   const colors = ['0', '1'];
   const benefits = [
+    { name: 'AI简历诊断', special: false },
     { name: 'AI简历翻译', special: false },
     { name: 'AI简历润色', special: false },
     { name: 'AI简历创作', special: false },
@@ -318,6 +319,10 @@
       class: 'non-vip',
       isActive: false,
       benefits: [
+        {
+          content: '无限制使用',
+          special: false
+        },
         {
           content: '无限制使用',
           special: false
@@ -358,6 +363,7 @@
         { content: '无限制使用', special: false },
         { content: '无限制使用', special: false },
         { content: '无限制使用', special: false },
+        { content: '无限制使用', special: false },
         { content: '无限制导出', special: false },
         { content: '无限制导出', special: false },
         { content: '无限制下载', special: false },
@@ -374,6 +380,7 @@
         { content: '无限制使用', special: false },
         { content: '无限制使用', special: false },
         { content: '无限制使用', special: false },
+        { content: '无限制使用', special: false },
         { content: '无限制导出', special: false },
         { content: '无限制导出', special: false },
         { content: '无限制下载', special: false },
@@ -387,6 +394,7 @@
       class: 'ssvip',
       isActive: true,
       benefits: [
+        { content: '无限制使用', special: false },
         { content: '无限制使用', special: false },
         { content: '无限制使用', special: false },
         { content: '无限制使用', special: false },
