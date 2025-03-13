@@ -126,8 +126,7 @@
         if (props.modelInfoObj.selectedModel) {
           // 手动更新用户简币数量
           appStore.useUserInfoStore.userIntegralInfo.integralTotal =
-            appStore.useUserInfoStore.userIntegralInfo.integralTotal +
-            props.modelInfoObj.payValue.value;
+            appStore.useUserInfoStore.userIntegralInfo.integralTotal + props.modelInfoObj.payValue;
         }
         isLoading.value = false;
         ElMessage.success('AI诊断成功');
