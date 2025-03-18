@@ -1,6 +1,6 @@
 <!-- 首页标题栏 -->
 <template>
-  <div class="nav-bar-box">
+  <div :class="['nav-bar-box', { 'background-nav': props.bgColor ? true : false }]">
     <logo-com
       :icon-color="iconColor ? iconColor : '#fff'"
       :font-color="fontColor ? fontColor : '#fff'"
@@ -248,6 +248,18 @@
   };
 </script>
 <style lang="scss" scoped>
+  .background-nav {
+    // 增强毛玻璃效果
+    backdrop-filter: blur(16px); // 增加模糊强度
+    -webkit-backdrop-filter: blur(12px); // Safari 和其他 WebKit 浏览器
+    background-color: rgba(255, 255, 255, 0.5); // 半透明背景（浅色）
+    // background-color: rgba(0, 0, 0, 0.3); // 半透明背景（深色）
+
+    // 备用背景颜色（如果浏览器不支持毛玻璃效果）
+    @supports not (backdrop-filter: blur(12px)) {
+      background-color: v-bind('props.bgColor');
+    }
+  }
   .nav-bar-box {
     display: flex;
     height: 65px;
@@ -255,21 +267,20 @@
     box-sizing: border-box;
     align-items: center;
     justify-content: space-between;
-    backdrop-filter: blur(8px);
-    background-color: v-bind('props.bgColor');
     z-index: 10;
     user-select: none;
     padding: 0 30px;
     position: v-bind('props.position');
     top: 0;
     transition: all 0.3s;
+
     .center {
       flex: 1;
       height: 100%;
       display: flex;
       justify-content: flex-start;
       align-items: center;
-      padding-left: 30px;
+      padding-left: 2vw;
       .el-menu {
         border: none;
         height: 100%;
@@ -283,12 +294,17 @@
           justify-content: center;
           align-items: center;
           width: 100%;
-          color: v-bind('props.fontColor');
+          // 渐变字体
+          background: linear-gradient(45deg, #2ddd9d, #137c56); // 自定义渐变颜色
+          -webkit-background-clip: text; // Safari 和其他 WebKit 浏览器
+          background-clip: text;
           padding: 0 15px !important;
           letter-spacing: 3px;
           font-size: 16px;
           border-bottom: 4px solid transparent;
           transition: all 0.3s;
+          color: transparent;
+          font-weight: 550;
           &:hover {
             border-color: #2ddd9d;
             background-color: rgba(#ccc, 0.1);
@@ -296,9 +312,14 @@
         }
         .el-sub-menu {
           height: 100%;
-          color: v-bind('props.fontColor');
+          // 渐变字体
+          background: linear-gradient(45deg, #2ddd9d, #137c56); // 自定义渐变颜色
+          -webkit-background-clip: text; // Safari 和其他 WebKit 浏览器
+          background-clip: text;
           border-bottom: 4px solid transparent;
           width: 136px;
+          color: transparent;
+          font-weight: 550;
           &:hover {
             border-bottom: 4px solid #2ddd9d !important;
             background-color: rgba(#ccc, 0.1);
@@ -306,10 +327,18 @@
           :deep(.el-sub-menu__title) {
             letter-spacing: 3px;
             font-size: 16px;
-            color: v-bind('props.fontColor');
+            // 渐变字体
+            background: linear-gradient(45deg, #2ddd9d, #137c56); // 自定义渐变颜色
+            -webkit-background-clip: text; // Safari 和其他 WebKit 浏览器
+            background-clip: text;
             border: none;
+            color: transparent;
+            font-weight: 550;
             &:hover {
               background-color: rgba(#ccc, 0.1);
+            }
+            .el-sub-menu__icon-arrow {
+              color: #21a474;
             }
           }
         }
@@ -561,22 +590,35 @@
         justify-content: center;
         align-items: center;
         width: 100%;
-        color: v-bind('props.fontColor');
+        // 渐变字体
+        background: linear-gradient(45deg, #2ddd9d, #137c56); // 自定义渐变颜色
+        -webkit-background-clip: text; // Safari 和其他 WebKit 浏览器
+        background-clip: text;
         padding: 0 15px !important;
         letter-spacing: 3px;
         font-size: 16px;
         border-bottom: 4px solid transparent;
         transition: all 0.3s;
+        color: transparent;
+        font-weight: 550;
         &:hover {
           background-color: rgba(#ccc, 0.1);
         }
         :deep(.el-sub-menu__title) {
           letter-spacing: 3px;
           font-size: 16px;
-          color: v-bind('props.fontColor');
+          // 渐变字体
+          background: linear-gradient(45deg, #2ddd9d, #137c56); // 自定义渐变颜色
+          -webkit-background-clip: text; // Safari 和其他 WebKit 浏览器
+          background-clip: text;
           border: none;
+          color: transparent;
+          font-weight: 550;
           &:hover {
             background-color: rgba(#ccc, 0.1);
+          }
+          .el-sub-menu__icon-arrow {
+            color: #21a474;
           }
         }
       }

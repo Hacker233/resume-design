@@ -209,35 +209,6 @@
       min-width: 800px;
       object-fit: contain;
     }
-
-    .scroll-more-box {
-      position: absolute;
-      left: 50%;
-      bottom: 5px;
-      z-index: 1;
-      transition: all 0.3s;
-
-      &:hover {
-        opacity: 0.7;
-      }
-
-      .more-icon {
-        cursor: pointer;
-        animation: myfirst 2s infinite;
-      }
-    }
-
-    @keyframes myfirst {
-      0% {
-        transform: translate(0px, 0px);
-      }
-      50% {
-        transform: translate(0px, -10px);
-      }
-      100% {
-        transform: translate(0px, 0px);
-      }
-    }
   }
 
   input:checked + .scene {

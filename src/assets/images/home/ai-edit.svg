@@ -1,0 +1,55 @@
+<svg width="128.000000" height="128.000000" viewBox="0 0 128 128" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+	<desc>
+			Created with Pixso.
+	</desc>
+	<defs>
+		<clipPath id="clip7_252">
+			<rect id="04" width="128.000000" height="128.000000" fill="white" fill-opacity="0"/>
+		</clipPath>
+		<linearGradient x1="111.289780" y1="39.822445" x2="36.777954" y2="39.822445" id="paint_linear_21_42_0" gradientUnits="userSpaceOnUse">
+			<stop stop-color="#EEF5FF"/>
+			<stop offset="1.000000" stop-color="#97C7FF"/>
+		</linearGradient>
+		<linearGradient x1="90.511826" y1="87.467339" x2="16.000000" y2="87.467339" id="paint_linear_21_41_0" gradientUnits="userSpaceOnUse">
+			<stop stop-color="#97C7FF"/>
+			<stop offset="1.000000" stop-color="#EEF5FF"/>
+		</linearGradient>
+		<linearGradient x1="44.500000" y1="96.000000" x2="44.500000" y2="103.000000" id="paint_linear_21_40_0" gradientUnits="userSpaceOnUse">
+			<stop stop-color="#C5DEFF"/>
+			<stop offset="1.000000" stop-color="#82BBFF"/>
+		</linearGradient>
+		<linearGradient x1="53.500000" y1="96.000000" x2="53.500000" y2="103.000000" id="paint_linear_21_39_0" gradientUnits="userSpaceOnUse">
+			<stop stop-color="#C5DEFF"/>
+			<stop offset="1.000000" stop-color="#82BBFF"/>
+		</linearGradient>
+		<linearGradient x1="77.000000" y1="51.000000" x2="53.437500" y2="74.562500" id="paint_linear_7_297_0" gradientUnits="userSpaceOnUse">
+			<stop stop-color="#F3F8FF"/>
+			<stop offset="0.546875" stop-color="#B9D9FF"/>
+			<stop offset="1.000000" stop-color="#96C6FF"/>
+		</linearGradient>
+		<linearGradient x1="103.000000" y1="62.000015" x2="99.000015" y2="79.000015" id="paint_linear_21_38_0" gradientUnits="userSpaceOnUse">
+			<stop stop-color="#F3F8FF"/>
+			<stop offset="1.000000" stop-color="#96C6FF"/>
+		</linearGradient>
+		<linearGradient x1="24.000000" y1="65.000000" x2="28.000000" y2="48.000000" id="paint_linear_21_37_0" gradientUnits="userSpaceOnUse">
+			<stop stop-color="#F3F8FF"/>
+			<stop offset="1.000000" stop-color="#96C6FF"/>
+		</linearGradient>
+		<linearGradient x1="95.500000" y1="16.000000" x2="85.000000" y2="28.000000" id="paint_linear_21_36_0" gradientUnits="userSpaceOnUse">
+			<stop stop-color="#D8E9FF"/>
+			<stop offset="1.000000" stop-color="#99C8FF"/>
+		</linearGradient>
+	</defs>
+	<g clip-path="url(#clip7_252)">
+		<path id="Subtract" d="M36.77 90.51C28.64 75.48 30.92 56.32 43.62 43.62C56.32 30.92 75.48 28.64 90.51 36.77C88.72 33.48 86.44 30.39 83.66 27.6C68.18 12.13 43.08 12.13 27.6 27.6C12.13 43.08 12.13 68.18 27.6 83.66C30.39 86.44 33.48 88.72 36.77 90.51Z" fill="#1B70F0" fill-opacity="1.000000" fill-rule="evenodd"/>
+		<path id="Subtract" d="M36.77 90.51C51.8 98.64 70.96 96.36 83.66 83.66C96.36 70.96 98.64 51.8 90.51 36.77C93.8 38.56 96.89 40.84 99.68 43.62C115.16 59.1 115.16 84.2 99.68 99.68C84.2 115.16 59.1 115.16 43.62 99.68C40.84 96.89 38.56 93.8 36.77 90.51Z" fill="#1B70F0" fill-opacity="1.000000" fill-rule="evenodd"/>
+		<path id="Subtract" d="M83.66 43.62C72.64 32.6 56.75 29.43 42.93 34.09C41.04 34.73 39.23 32.73 40.46 31.16C41.43 29.93 42.48 28.74 43.62 27.6C59.1 12.13 84.2 12.13 99.68 27.6C106.99 34.92 110.85 44.38 111.25 53.95C111.34 56.13 108.31 56.39 107.36 54.43C105.48 50.52 102.92 46.86 99.68 43.62C98.54 42.48 97.35 41.43 96.12 40.46C94.55 39.23 92.55 41.04 93.19 42.93C94.39 46.5 95.08 50.22 95.23 53.95C95.33 56.13 92.29 56.39 91.35 54.43C89.46 50.52 86.9 46.86 83.66 43.62Z" fill="url(#paint_linear_21_42_0)" fill-opacity="1.000000" fill-rule="evenodd"/>
+		<path id="Subtract" d="M35.93 72.85C34.99 70.89 31.95 71.15 32.05 73.33C32.2 77.06 32.89 80.78 34.09 84.35C34.73 86.24 32.73 88.05 31.16 86.82C29.93 85.85 28.74 84.8 27.6 83.66C24.36 80.42 21.8 76.76 19.92 72.85C18.97 70.89 15.94 71.15 16.03 73.33C16.43 82.9 20.29 92.36 27.6 99.68C43.08 115.16 68.18 115.16 83.66 99.68C84.8 98.54 85.85 97.35 86.82 96.12C88.05 94.55 86.24 92.55 84.35 93.19C70.53 97.85 54.64 94.68 43.62 83.66C40.38 80.42 37.82 76.76 35.93 72.85Z" fill="url(#paint_linear_21_41_0)" fill-opacity="1.000000" fill-rule="evenodd"/>
+		<path id="Vector 24" d="M48 103L41 96" stroke="url(#paint_linear_21_40_0)" stroke-opacity="1.000000" stroke-width="2.000000" stroke-linecap="round"/>
+		<path id="Vector 25" d="M57 103L50 96" stroke="url(#paint_linear_21_39_0)" stroke-opacity="1.000000" stroke-width="2.000000" stroke-linecap="round"/>
+		<circle id="Ellipse 2" cx="64.000000" cy="64.000000" r="13.000000" fill="url(#paint_linear_7_297_0)" fill-opacity="1.000000"/>
+		<path id="Union" d="M103 65C103 66.1 102.1 67 101 67C99.89 67 99 66.1 99 65C99 63.89 99.89 63 101 63C102.1 63 103 63.89 103 65ZM103 71C103 72.1 102.1 73 101 73C99.89 73 99 72.1 99 71C99 69.89 99.89 69 101 69C102.1 69 103 69.89 103 71ZM103 77C103 78.1 102.1 79 101 79C99.89 79 99 78.1 99 77C99 75.89 99.89 75 101 75C102.1 75 103 75.89 103 77Z" fill="url(#paint_linear_21_38_0)" fill-opacity="1.000000" fill-rule="evenodd"/>
+		<path id="Union" d="M24 50C24 48.89 24.89 48 26 48C27.1 48 28 48.89 28 50C28 51.1 27.1 52 26 52C24.89 52 24 51.1 24 50ZM24 56C24 54.89 24.89 54 26 54C27.1 54 28 54.89 28 56C28 57.1 27.1 58 26 58C24.89 58 24 57.1 24 56ZM24 62C24 60.89 24.89 60 26 60C27.1 60 28 60.89 28 62C28 63.1 27.1 64 26 64C24.89 64 24 63.1 24 62Z" fill="url(#paint_linear_21_37_0)" fill-opacity="1.000000" fill-rule="evenodd"/>
+		<path id="Polygon 4" d="M89.44 17.2C90.35 15.6 92.64 15.6 93.55 17.2L97.67 24.4C98.59 26 97.44 28 95.61 28L87.38 28C85.55 28 84.4 26 85.32 24.4L89.44 17.2Z" fill="url(#paint_linear_21_36_0)" fill-opacity="1.000000" fill-rule="evenodd"/>
+	</g>
+</svg>

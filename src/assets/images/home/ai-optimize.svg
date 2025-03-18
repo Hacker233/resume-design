@@ -1,0 +1,45 @@
+<svg width="128.000000" height="128.000000" viewBox="0 0 128 128" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+	<desc>
+			Created with Pixso.
+	</desc>
+	<defs>
+		<clipPath id="clip5_297">
+			<rect id="03" width="128.000000" height="128.000000" fill="white" fill-opacity="0"/>
+		</clipPath>
+		<linearGradient x1="78.500000" y1="64.000008" x2="22.000000" y2="64.000008" id="paint_linear_21_35_0" gradientUnits="userSpaceOnUse">
+			<stop stop-color="#96C6FF"/>
+			<stop offset="1.000000" stop-color="#F3F8FF"/>
+		</linearGradient>
+		<linearGradient x1="16.000004" y1="62.499996" x2="42.000008" y2="65.499985" id="paint_linear_21_33_0" gradientUnits="userSpaceOnUse">
+			<stop stop-color="#ECF4FF"/>
+			<stop offset="1.000000" stop-color="#8EC2FF"/>
+		</linearGradient>
+		<linearGradient x1="69.500008" y1="61.000000" x2="52.500004" y2="64.000000" id="paint_linear_21_32_0" gradientUnits="userSpaceOnUse">
+			<stop stop-color="#8EC2FF"/>
+			<stop offset="1.000000" stop-color="#DBEAFF"/>
+		</linearGradient>
+		<linearGradient x1="75.000000" y1="42.000000" x2="75.000000" y2="36.000000" id="paint_linear_21_31_0" gradientUnits="userSpaceOnUse">
+			<stop stop-color="#BCDBFF"/>
+			<stop offset="1.000000" stop-color="#639EF8"/>
+		</linearGradient>
+		<linearGradient x1="69.000000" y1="28.000000" x2="69.000000" y2="34.000000" id="paint_linear_21_30_0" gradientUnits="userSpaceOnUse">
+			<stop stop-color="#BCDBFF"/>
+			<stop offset="1.000000" stop-color="#639EF8"/>
+		</linearGradient>
+		<linearGradient x1="71.000000" y1="95.000000" x2="61.000000" y2="105.000000" id="paint_linear_21_29_0" gradientUnits="userSpaceOnUse">
+			<stop stop-color="#639EF8"/>
+			<stop offset="1.000000" stop-color="#B6D7FF"/>
+		</linearGradient>
+	</defs>
+	<g clip-path="url(#clip5_297)">
+		<path id="Subtract" d="M60 102C80.98 102 98 84.98 98 64C98 43.01 80.98 26 60 26C39.01 26 22 43.01 22 64C22 84.98 39.01 102 60 102ZM60 83C70.49 83 79 74.49 79 64C79 53.5 70.49 45 60 45C49.5 45 41 53.5 41 64C41 74.49 49.5 83 60 83Z" fill="url(#paint_linear_21_35_0)" fill-opacity="1.000000" fill-rule="evenodd"/>
+		<path id="Vector 1" d="M73 110L61 110C58.23 110 56 107.76 56 105L56 23C56 20.23 58.23 18 61 18L61.99 18C76.02 18 88.77 26.14 94.66 38.87L108.02 67.73C108.94 69.72 107.49 72 105.3 72L99 72L99 90C99 93.31 96.31 96 93 96L81 96C79.34 96 78 97.34 78 99L78 105C78 107.76 75.76 110 73 110Z" fill="#1B70F0" fill-opacity="1.000000" fill-rule="evenodd"/>
+		<circle id="Ellipse 2" cx="60.000000" cy="64.000000" r="11.000000" fill="#1B70F0" fill-opacity="1.000000"/>
+		<circle id="Ellipse 4" cx="91.000000" cy="53.000000" r="3.000000" fill="#FFFFFF" fill-opacity="1.000000"/>
+		<path id="Union" d="M21.4 48.5C22.55 46.5 25.44 46.5 26.59 48.5L31.79 57.5C32.94 59.5 31.5 62 29.19 62L18.8 62C16.49 62 15.05 59.5 16.2 57.5L21.4 48.5ZM21.4 79.5C22.55 81.5 25.44 81.5 26.59 79.5L31.79 70.5C32.94 68.5 31.5 66 29.19 66L18.8 66C16.49 66 15.05 68.5 16.2 70.5L21.4 79.5Z" fill="url(#paint_linear_21_33_0)" fill-opacity="1.000000" fill-rule="evenodd"/>
+		<path id="Subtract" d="M66 64C66 67.31 63.31 70 60 70C59.02 70 58.1 69.76 57.28 69.35C55.91 68.65 56.72 67 58.27 67L59 67C59.55 67 60 66.55 60 66C60 65.44 59.55 65 59 65L55.08 65C54.5 65 54 64.57 54 64C54 60.68 56.68 58 60 58C60.97 58 61.89 58.23 62.71 58.64C64.08 59.34 63.27 61 61.72 61L61 61C60.44 61 60 61.44 60 62C60 62.55 60.44 63 61 63L64.91 63C65.49 63 66 63.42 66 64Z" fill="url(#paint_linear_21_32_0)" fill-opacity="1.000000" fill-rule="evenodd"/>
+		<path id="Ellipse 36" d="M69 36C69 37.59 69.63 39.11 70.75 40.24C71.88 41.36 73.4 42 75 42C76.59 42 78.11 41.36 79.24 40.24C80.36 39.11 81 37.59 81 36" stroke="url(#paint_linear_21_31_0)" stroke-opacity="1.000000" stroke-width="2.000000" stroke-linecap="round"/>
+		<path id="Ellipse 37" d="M75 34C75 32.4 74.36 30.88 73.24 29.75C72.11 28.63 70.59 28 69 28C67.4 28 65.88 28.63 64.75 29.75C63.63 30.88 63 32.4 63 34" stroke="url(#paint_linear_21_30_0)" stroke-opacity="1.000000" stroke-width="2.000000" stroke-linecap="round"/>
+		<path id="Union" d="M64.75 96.87C64.75 97.91 63.91 98.75 62.87 98.75C61.83 98.75 61 97.91 61 96.87C61 95.83 61.83 95 62.87 95C63.91 95 64.75 95.83 64.75 96.87ZM64.75 103.12C64.75 104.16 63.91 105 62.87 105C61.83 105 61 104.16 61 103.12C61 102.08 61.83 101.25 62.87 101.25C63.91 101.25 64.75 102.08 64.75 103.12ZM71 103.12C71 104.16 70.16 105 69.12 105C68.08 105 67.25 104.16 67.25 103.12C67.25 102.08 68.08 101.25 69.12 101.25C70.16 101.25 71 102.08 71 103.12Z" fill="url(#paint_linear_21_29_0)" fill-opacity="1.000000" fill-rule="evenodd"/>
+	</g>
+</svg>

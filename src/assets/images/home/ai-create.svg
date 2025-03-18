@@ -1,0 +1,52 @@
+<svg width="128.000000" height="128.000000" viewBox="0 0 128 128" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+	<desc>
+			Created with Pixso.
+	</desc>
+	<defs>
+		<clipPath id="clip20_157">
+			<rect id="06" width="128.000000" height="128.000000" fill="white" fill-opacity="0"/>
+		</clipPath>
+		<linearGradient x1="64.000000" y1="15.499995" x2="64.000000" y2="85.000008" id="paint_linear_20_160_0" gradientUnits="userSpaceOnUse">
+			<stop stop-color="#F3F8FF"/>
+			<stop offset="0.619792" stop-color="#8FC2FF"/>
+			<stop offset="1.000000" stop-color="#5CA6FF"/>
+		</linearGradient>
+		<linearGradient x1="nan" y1="nan" x2="nan" y2="nan" id="paint_linear_21_65_0" gradientUnits="userSpaceOnUse">
+			<stop stop-color="#F0F7FF"/>
+			<stop offset="1.000000" stop-color="#A4CDFF"/>
+		</linearGradient>
+		<linearGradient x1="96.683350" y1="30.999998" x2="71.550018" y2="51.759785" id="paint_linear_21_64_0" gradientUnits="userSpaceOnUse">
+			<stop stop-color="#F3F8FF"/>
+			<stop offset="1.000000" stop-color="#AED3FF"/>
+		</linearGradient>
+		<linearGradient x1="64.000000" y1="62.000000" x2="64.000000" y2="99.000000" id="paint_linear_21_62_0" gradientUnits="userSpaceOnUse">
+			<stop stop-color="#BFDCFF"/>
+			<stop offset="0.395833" stop-color="#B3D5FF"/>
+			<stop offset="1.000000" stop-color="#79B6FF"/>
+		</linearGradient>
+		<linearGradient x1="76.000000" y1="80.000000" x2="52.000000" y2="80.000000" id="paint_linear_20_174_0" gradientUnits="userSpaceOnUse">
+			<stop stop-color="#EAF3FF"/>
+			<stop offset="0.505208" stop-color="#EAF3FF"/>
+			<stop offset="1.000000" stop-color="#E3F0FF"/>
+		</linearGradient>
+		<linearGradient x1="64.000000" y1="97.000000" x2="64.000000" y2="109.000000" id="paint_linear_21_60_0" gradientUnits="userSpaceOnUse">
+			<stop stop-color="#82BBFF"/>
+			<stop offset="1.000000" stop-color="#D0E5FF"/>
+		</linearGradient>
+		<linearGradient x1="50.500000" y1="27.999998" x2="29.000002" y2="54.500000" id="paint_linear_21_58_0" gradientUnits="userSpaceOnUse">
+			<stop stop-color="#F3F8FF"/>
+			<stop offset="1.000000" stop-color="#A8D0FF"/>
+		</linearGradient>
+	</defs>
+	<g clip-path="url(#clip20_157)">
+		<rect id="Rectangle 9" x="12.000000" y="27.000000" rx="6.000000" width="104.000000" height="64.000000" fill="#1B70F0" fill-opacity="1.000000"/>
+		<rect id="Rectangle 10" x="18.000000" y="19.000000" rx="4.000000" width="92.000000" height="66.000000" fill="url(#paint_linear_20_160_0)" fill-opacity="1.000000"/>
+		<path id="Line 10" d="M64 25L64 54" stroke="url(#paint_linear_21_65_0)" stroke-opacity="1.000000" stroke-width="2.000000" stroke-linecap="round"/>
+		<path id="Union" d="M78 33.5C78 34.88 76.88 36 75.5 36C74.11 36 73 34.88 73 33.5C73 32.11 74.11 31 75.5 31C76.88 31 78 32.11 78 33.5ZM87 33.5C87 34.88 85.88 36 84.5 36C83.11 36 82 34.88 82 33.5C82 32.11 83.11 31 84.5 31C85.88 31 87 32.11 87 33.5ZM93.5 36C92.11 36 91 34.88 91 33.5C91 32.11 92.11 31 93.5 31C94.88 31 96 32.11 96 33.5C96 34.88 94.88 36 93.5 36ZM81.5 44C80.11 44 79 42.88 79 41.5C79 40.11 80.11 39 81.5 39C82.88 39 84 40.11 84 41.5C84 42.88 82.88 44 81.5 44ZM93 41.5C93 42.88 91.88 44 90.5 44C89.11 44 88 42.88 88 41.5C88 40.11 89.11 39 90.5 39C91.88 39 93 40.11 93 41.5ZM99.5 44C98.11 44 97 42.88 97 41.5C97 40.11 98.11 39 99.5 39C100.88 39 102 40.11 102 41.5C102 42.88 100.88 44 99.5 44ZM78 49.5C78 50.88 76.88 52 75.5 52C74.11 52 73 50.88 73 49.5C73 48.11 74.11 47 75.5 47C76.88 47 78 48.11 78 49.5ZM84.5 52C83.11 52 82 50.88 82 49.5C82 48.11 83.11 47 84.5 47C85.88 47 87 48.11 87 49.5C87 50.88 85.88 52 84.5 52ZM96 49.5C96 50.88 94.88 52 93.5 52C92.11 52 91 50.88 91 49.5C91 48.11 92.11 47 93.5 47C94.88 47 96 48.11 96 49.5Z" fill="url(#paint_linear_21_64_0)" fill-opacity="1.000000" fill-rule="evenodd"/>
+		<path id="Ellipse 19" d="M94.96 78.79C95.58 79.48 95.58 80.51 94.96 81.2C91.38 85.24 78.87 98 64 98C49.12 98 36.61 85.24 33.03 81.2C32.41 80.51 32.41 79.48 33.03 78.79C36.61 74.75 49.12 62 64 62C78.87 62 91.38 74.75 94.96 78.79Z" fill="url(#paint_linear_21_62_0)" fill-opacity="1.000000" fill-rule="evenodd"/>
+		<circle id="Ellipse 21" cx="64.000000" cy="80.000000" r="12.000000" fill="url(#paint_linear_20_174_0)" fill-opacity="1.000000"/>
+		<path id="Subtract" d="M64 88C68.41 88 72 84.41 72 80C72 79.59 71.91 79.05 71.81 78.55C71.66 77.83 70.78 77.57 70.14 77.94C69.7 78.19 69.22 78.4 68.8 78.4C67.03 78.4 65.6 76.96 65.6 75.19C65.6 74.77 65.68 74.37 65.83 73.99C66.13 73.26 65.97 72.2 65.18 72.08C64.8 72.02 64.4 72 64 72C59.58 72 56 75.58 56 80C56 84.41 59.58 88 64 88Z" fill="#1B70F0" fill-opacity="1.000000" fill-rule="evenodd"/>
+		<path id="Union" d="M46 102C46 100.895 46.8954 100 48 100C49.1046 100 50 100.895 50 102C50 103.105 49.1046 104 48 104C46.8954 104 46 103.105 46 102ZM80 100C78.8954 100 78 100.895 78 102C78 103.105 78.8954 104 80 104C81.1046 104 82 103.105 82 102C82 100.895 81.1046 100 80 100ZM62 107C62 105.895 62.8954 105 64 105C65.1046 105 66 105.895 66 107C66 108.105 65.1046 109 64 109C62.8954 109 62 108.105 62 107Z" clip-rule="evenodd" fill="url(#paint_linear_21_60_0)" fill-opacity="1.000000" fill-rule="evenodd"/>
+		<path id="Union" d="M28.24 28C27.23 28 26.42 28.81 26.42 29.82L26.42 33.46C26.42 34.47 27.23 35.28 28.24 35.28L31.89 35.28C32.89 35.28 33.71 34.47 33.71 33.46L33.71 29.82C33.71 28.81 32.89 28 31.89 28L28.24 28ZM41 35.28C43.01 35.28 44.64 33.65 44.64 31.64C44.64 29.63 43.01 28 41 28C38.98 28 37.35 29.63 37.35 31.64C37.35 33.65 38.98 35.28 41 35.28ZM52.72 28.45C52.37 27.84 51.49 27.84 51.14 28.45L47.98 33.92C47.9 34.06 47.86 34.22 47.86 34.37C47.86 34.85 48.24 35.28 48.77 35.28L55.08 35.28C55.61 35.28 56 34.85 56 34.37C56 34.22 55.96 34.06 55.87 33.92L52.72 28.45ZM37.35 41.75L37.35 45.39C37.35 46.4 38.17 47.21 39.17 47.21L42.82 47.21C43.82 47.21 44.64 46.4 44.64 45.39L44.64 41.75C44.64 40.74 43.82 39.93 42.82 39.93L39.17 39.93C38.17 39.93 37.35 40.74 37.35 41.75ZM51.93 47.21C53.94 47.21 55.57 45.58 55.57 43.57C55.57 41.56 53.94 39.93 51.93 39.93C49.91 39.93 48.28 41.56 48.28 43.57C48.28 45.58 49.91 47.21 51.93 47.21ZM30.85 40.38C30.5 39.78 29.62 39.78 29.27 40.38L26.12 45.85C26.03 46 26 46.15 26 46.3C26 46.78 26.38 47.21 26.91 47.21L33.22 47.21C33.75 47.21 34.13 46.78 34.13 46.3C34.13 46.15 34.09 46 34.01 45.85L30.85 40.38ZM44.64 55.64C44.64 53.63 43.01 52 41 52C38.98 52 37.35 53.63 37.35 55.64C37.35 57.65 38.98 59.28 41 59.28C43.01 59.28 44.64 57.65 44.64 55.64Z" fill="url(#paint_linear_21_58_0)" fill-opacity="1.000000" fill-rule="evenodd"/>
+	</g>
+</svg>

@@ -48,7 +48,7 @@
 </template>
 <script setup lang="ts">
   import NavBar from '@/components/NavBar/NavBar.vue';
-  import ProjectIntroduce from './components/ProjectIntroduceNew.vue';
+  import ProjectIntroduce from './components/IndexProduct.vue';
   import TemplateSelect from './components/TemplateSelect.vue';
   // import CustomTemplateVue from './components/CustomTemplate.vue';
   // import SponsorComVue from './components/SponsorCom.vue';
@@ -99,17 +99,17 @@
     handleScroll();
   }, 300);
   const navColor = ref<string>('');
-  const fontColor = ref<string>('#fff');
-  const iconColor = ref<string>('#fff');
+  const fontColor = ref<string>('green');
+  const iconColor = ref<string>('green');
   const handleScroll = () => {
     if (document.documentElement.scrollTop > 0) {
-      navColor.value = 'rgba(255, 255, 255, 0.95)';
+      navColor.value = 'rgba(255, 255, 255, 1)';
       fontColor.value = 'green';
       iconColor.value = 'green';
     } else {
-      navColor.value = 'rgba(255, 255, 255, 0)';
-      iconColor.value = '#fff';
-      fontColor.value = '#fff';
+      navColor.value = '';
+      iconColor.value = 'green';
+      fontColor.value = 'green';
     }
   };
 
