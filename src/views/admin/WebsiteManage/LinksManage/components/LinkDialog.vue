@@ -22,6 +22,16 @@
       <el-form-item label="友情链接:" prop="link">
         <el-input v-model="ruleForm.link" />
       </el-form-item>
+      <el-form-item label="审核状态">
+        <el-select v-model="ruleForm.audit" placeholder="请选择审核状态" size="default">
+          <el-option
+            v-for="item in optionsAudit"
+            :key="item.value"
+            :label="item.label"
+            :value="item.value"
+          />
+        </el-select>
+      </el-form-item>
     </el-form>
     <template #footer>
       <span class="dialog-footer">
@@ -35,7 +45,7 @@
 </template>
 
 <script lang="ts" setup>
-  import { linksAddAsync, vxqunUpdateAsync } from '@/http/api/website';
+  import { linksAddAsync, linksUpdateAsync } from '@/http/api/website';
   import { FormInstance, FormRules } from 'element-plus';
 
   const emit = defineEmits(['cancle', 'updateSuccess']);
@@ -52,12 +62,28 @@
     title: '新增群'
   });
 
+  const optionsAudit = ref<any>([
+    {
+      label: '同意',
+      value: 1
+    },
+    {
+      label: '拒绝',
+      value: 2
+    },
+    {
+      label: '待审核',
+      value: 0
+    }
+  ]);
+
   watch(
     () => props.row,
     (newVal) => {
       if (newVal) {
         ruleForm.name = props.row.name;
         ruleForm.link = props.row.link;
+        ruleForm.audit = props.row.audit;
       }
     },
     {
@@ -68,15 +94,18 @@
   interface IPay {
     name: string;
     link: string;
+    audit: number;
   }
   // 表单填写数据
   const ruleForm = reactive<IPay>({
     name: '',
-    link: ''
+    link: '',
+    audit: 0
   });
   const rules = reactive<FormRules>({
     name: [{ required: true, message: '网站名称不能为空！', trigger: 'change' }],
-    link: [{ required: true, message: '友情链接不能为空！', trigger: 'change' }]
+    link: [{ required: true, message: '友情链接不能为空！', trigger: 'change' }],
+    audit: [{ required: true, message: '请选择审核状态', trigger: 'change' }]
   });
 
   // 取消
@@ -95,7 +124,8 @@
         if (props.btnText === '添加') {
           let params = {
             name: ruleForm.name,
-            link: ruleForm.link
+            link: ruleForm.link,
+            audit: ruleForm.audit
           };
           sureLoading.value = true;
           const data = await linksAddAsync(params);
@@ -112,9 +142,10 @@
           let params = {
             id: props.row._id,
             name: ruleForm.name,
-            link: ruleForm.link
+            link: ruleForm.link,
+            audit: ruleForm.audit
           };
-          const data = await vxqunUpdateAsync(params);
+          const data = await linksUpdateAsync(params);
           if (data.data.status === 200) {
             ElMessage.success('修改成功');
             sureLoading.value = false;

@@ -8,6 +8,11 @@
 
   <!-- 表格列表 -->
   <el-table class="link-list-table" :data="qunList" style="width: 100%" size="default" border>
+    <el-table-column prop="apply_email" label="申请人邮箱">
+      <template #default="scope">
+        <span>{{ scope.row.apply_email || '-' }}</span>
+      </template>
+    </el-table-column>
     <el-table-column prop="name" label="友链名称" />
     <el-table-column prop="link" label="链接">
       <template #default="scope">
@@ -28,6 +33,16 @@
         </div>
       </template>
     </el-table-column>
+    <el-table-column prop="audit" label="审核状态">
+      <template #default="scope">
+        <div>
+          <el-tag v-if="scope.row.audit == 1" type="success">审核通过</el-tag>
+          <el-tag v-else-if="scope.row.audit == 2" type="error">拒绝</el-tag>
+          <el-tag v-else-if="scope.row.audit == 0" type="info">待审核</el-tag>
+          <el-tag v-else-if="!scope.row.audit" type="success">审核通过</el-tag>
+        </div>
+      </template>
+    </el-table-column>
     <el-table-column label="操作" width="150">
       <template #default="scope">
         <el-button link size="small" @click="edit(scope.row)">编辑</el-button>
@@ -35,7 +50,7 @@
       </template>
     </el-table-column>
   </el-table>
-  <!-- 新增和编辑分类弹窗 -->
+  <!-- 新增和编辑友链弹窗 -->
   <link-dialog
     :dialog-pay-visible="dialogPayVisible"
     :row="row"

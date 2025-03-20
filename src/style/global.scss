@@ -34,3 +34,32 @@ $primary-title-font-size: 20px;
 
 $primary-text-color: #757575;
 $primary-text-font-size: 14px;
+
+.el-dialog {
+  border-radius: 24px;
+  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.15);
+  background-color: #ffffff;
+  overflow: hidden;
+  & .el-dialog__header {
+    background-color: transparent;
+    padding: 24px;
+    color: #333333;
+    font-size: 24px;
+    font-weight: bold;
+    border-bottom: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  & .el-dialog__body {
+    padding: 24px;
+  }
+  & .el-dialog__footer {
+    background-color: #ffffff;
+    padding: 24px;
+    border-top: none;
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+  }
+}

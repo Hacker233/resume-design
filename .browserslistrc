@@ -1,0 +1,6 @@
+{
+  "browserslist": [
+    "last 2 versions",
+    "not IE <= 11"
+  ]
+}

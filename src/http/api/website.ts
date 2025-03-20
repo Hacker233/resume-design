@@ -77,3 +77,12 @@ export const getLinksListAsync: any = (params: any) => {
     params: params
   });
 };
+
+// 用户申请友链
+export const applyLinksAsync: any = (data: any) => {
+  return http.request({
+    url: '/huajian/links/applyLinks',
+    method: 'post',
+    data: data
+  });
+};

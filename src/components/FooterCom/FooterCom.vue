@@ -44,7 +44,10 @@
       </div>
       <!-- 友情链接 -->
       <div class="links">
-        <h2>友情链接</h2>
+        <div class="links-box">
+          <h2>友情链接</h2>
+          <h2 class="apply-links" @click="applyLinks">申请友链</h2>
+        </div>
         <div class="links-box">
           <template v-for="(item, index) in linksList" :key="index">
             <p>
@@ -77,6 +80,13 @@
       </p> -->
     </div>
   </div>
+
+  <!-- 申请友链弹窗 -->
+  <apply-links-dialog
+    :dialog-apply-links-visible="dialogApplyLinksVisible"
+    @cancle="cancleApplyLinks"
+    @update-success="updateApplyLinksSuccess"
+  ></apply-links-dialog>
 </template>
 <script setup lang="ts">
   import { getLinksListAsync, getVXQunListUnauthAsync } from '@/http/api/website';
@@ -107,7 +117,7 @@
     };
     const data = await getLinksListAsync(params);
     if (data.status === 200) {
-      linksList.value = data.data.list;
+      linksList.value = data.data.list.filter((item: any) => item.audit === 1);
       total.value = data.data.page.count;
       currentPage.value = data.data.page.currentPage;
     } else {
@@ -115,6 +125,18 @@
     }
   };
   getLinksList();
+
+  // 申请友链弹窗
+  const dialogApplyLinksVisible = ref<boolean>(false);
+  const applyLinks = () => {
+    dialogApplyLinksVisible.value = true;
+  };
+  const cancleApplyLinks = () => {
+    dialogApplyLinksVisible.value = false;
+  };
+  const updateApplyLinksSuccess = () => {
+    dialogApplyLinksVisible.value = false;
+  };
 </script>
 <style lang="scss" scoped>
   .footer-box {
@@ -199,6 +221,9 @@
           display: flex;
           flex-wrap: wrap;
           max-width: 200px;
+          h2 {
+            margin-right: 38px;
+          }
           p {
             color: #fff;
             display: flex;
@@ -216,6 +241,14 @@
               &:hover {
                 color: rgb(123, 238, 123);
               }
+            }
+          }
+          .apply-links {
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-right: 0;
+            &:hover {
+              color: rgb(123, 238, 123);
             }
           }
         }

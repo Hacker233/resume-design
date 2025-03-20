@@ -7,6 +7,7 @@ export {}
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
+    ApplyLinksDialog: typeof import('./components/ApplyLinksDialog/ApplyLinksDialog.vue')['default']
     AvatarPopoverShape: typeof import('./components/AvatarPopoverShape/AvatarPopoverShape.vue')['default']
     AwardsCom: typeof import('./components/ModelComs/AwardsCom.vue')['default']
     BuyIntegral: typeof import('./components/BuyIntegral/BuyIntegral.vue')['default']
