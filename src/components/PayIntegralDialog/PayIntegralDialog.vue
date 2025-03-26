@@ -91,7 +91,7 @@
                 </div>
                 <div class="bottom">
                   <p class="content-desc"
-                    >给猫步简历项目点Star，添加小编微信，凭点赞截图获取+20（入口在首页右侧浮窗）</p
+                    >给猫步简历项目点Star，添加小编微信，凭点赞截图获取+20（入口在首页开源信息栏目）</p
                   >
                   <div class="attendance-box" @click="toGithub">
                     <div class="button"> 去点Star </div>

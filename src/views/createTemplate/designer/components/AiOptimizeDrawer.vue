@@ -36,7 +36,7 @@
 <script lang="ts" setup>
   import { cancelOptimizeResumeStreamAsync, optimizeResumeStreamAsync } from '@/http/api/ai';
   import appStore from '@/store';
-  import { formatNumberWithCommas, processResumeData } from '@/utils/common';
+  import { extractResumeData, formatNumberWithCommas } from '@/utils/common';
   import { ElNotification, ElMessage } from 'element-plus';
   import { storeToRefs } from 'pinia';
   import MarkdownIt from 'markdown-it';
@@ -105,7 +105,7 @@
     // 获取简历数据
     const { HJNewJsonStore } = storeToRefs(appStore.useCreateTemplateStore);
     // 提取 dataSource 数据
-    const dataSource = processResumeData(HJNewJsonStore.value);
+    const dataSource = extractResumeData(HJNewJsonStore.value);
     console.log('dataSource', JSON.stringify(dataSource));
     const params = {
       model: props.modelInfoObj.selectedModel,

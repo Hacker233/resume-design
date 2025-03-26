@@ -98,10 +98,10 @@
 <style lang="scss">
   .invitation-dialog-box {
     .el-dialog__header {
-      display: none;
+      display: none !important;
     }
     .el-dialog__body {
-      padding: 0;
+      padding: 0 !important;
     }
     .invitation-page {
       width: 500px;

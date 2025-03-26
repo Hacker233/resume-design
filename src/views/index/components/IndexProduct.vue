@@ -14,6 +14,7 @@
           <!-- 查看更多按钮 -->
           <div class="see-more-box">
             <hj-button-1 text="免费制作专业简历" @click="freeMakeResume"></hj-button-1>
+            <!-- <hj-button-1 text="AI智能生成简历" @click="generateAiResume"></hj-button-1> -->
           </div>
           <!-- 核心功能介绍 -->
           <div class="card-box">
@@ -76,6 +77,14 @@
   const freeMakeResume = () => {
     emit('freeMake');
   };
+
+  // 跳转AI生成简历
+  // const router = useRouter();
+  // const generateAiResume = () => {
+  //   router.push({
+  //     path: '/generateAiResume'
+  //   });
+  // };
 
   const seeMore = () => {
     emit('seeMore');
@@ -142,6 +151,9 @@
             display: flex;
             z-index: 1;
             margin: 30px 0 80px 0;
+            > :first-child {
+              margin-right: 30px;
+            }
 
             :deep(.custom-btn) {
               width: 250px;

@@ -31,12 +31,12 @@
     <div class="nav-right">
       <el-button type="text" style="margin-right: 10px" @click="toOld">旧版入口</el-button>
       <el-tooltip effect="dark" content="AI智能诊断" placement="bottom">
-        <div class="ai-bot-container" @click="aiOptimize"
-          ><img src="@/assets/images/ai-translate.webp" width="24" height="24" /><div
+        <div class="ai-bot-container ai-optimize-box" @click="aiOptimize"
+          ><img src="@/assets/images/home/ai-optimize.svg" width="24" height="24" /><div
             class="ai-bot-text"
             >AI简历诊断</div
-          ></div
-        >
+          >
+        </div>
       </el-tooltip>
       <el-tooltip effect="dark" content="AI智能语种切换" placement="bottom">
         <div class="ai-bot-container" @click="languageSelect"
@@ -483,6 +483,12 @@
           font-size: 14px;
           line-height: 20px;
           margin-left: 4px;
+        }
+      }
+      .ai-optimize-box {
+        img {
+          border: 2px solid #91adff;
+          border-radius: 50%;
         }
       }
       .icon-download {

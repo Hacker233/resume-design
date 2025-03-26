@@ -111,6 +111,7 @@
       color: #8c939d;
       font-size: 12px;
       margin-top: 5px;
+      text-align: justify;
     }
     :deep(.field-label-right-box) {
       position: absolute;

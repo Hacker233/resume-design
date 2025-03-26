@@ -2,6 +2,7 @@ import { uuid } from 'vue-uuid';
 import moment from 'moment'; // 日期处理
 import appStore from '@/store';
 import * as imageConversion from 'image-conversion'; // 图片压缩
+import { cloneDeep } from 'lodash';
 // 工具方法--px转数字
 export const pxTonumber = (value: string | undefined): number => {
   if (value) {
@@ -334,7 +335,7 @@ export const getModuleTitleImagesFile = (url: string) => {
  * @param {Object} resumeData - 原始简历数据
  * @returns {Object} - 处理后的简历数据
  */
-export const processResumeData = (resumeData: any) => {
+export const processResumeData = (resumeData: any, useId?: boolean) => {
   const processedData: { [key: string]: any } = {};
 
   // 遍历每个模块
@@ -345,7 +346,7 @@ export const processResumeData = (resumeData: any) => {
     }
 
     // 自定义较短的键名，例如 module_1, module_2
-    const moduleKey = `module_${index + 1}`;
+    const moduleKey = useId ? module.id : `module_${index + 1}`;
 
     // 处理模块的 props，过滤 show 为 false 的属性
     const moduleData: any = { _title: module.title }; // 将 title 存放在 _title 字段中
@@ -437,3 +438,234 @@ const processItem = (item: any) => {
   }
   return processedItem;
 };
+
+// 将简历中的JSON数据提取出来
+export const extractResumeData = (resumeData: any) => {
+  const extractedData: any = {};
+
+  // 遍历每个模块
+  resumeData.componentsTree.forEach((module: any) => {
+    // 截取 id 的最后十位
+    const shortId = module.id.slice(-10);
+    extractedData[shortId] = {};
+    extractedData[shortId].moduleContent = extractContentData(cloneDeep(module.dataSource));
+    extractedData[shortId].moduleTitle = module.title;
+  });
+
+  return extractedData;
+};
+
+// 将content中的简历内容提取出来
+export const extractContentData = (contentData: any) => {
+  const content: any = {};
+  // 如果有list字段，list字段是一个对象
+  if (contentData?.list) {
+    content.list = {};
+    content.list.value = processValue(contentData.list.value);
+  } else {
+    // 遍历每个模块
+    Object.keys(contentData).forEach((key: any) => {
+      const relKey = `${key}_${contentData[key].label}`;
+      content[relKey] = {};
+      content[relKey].value = processValue(contentData[key].value);
+    });
+  }
+  return content;
+};
+
+// 处理value
+// 定义递归类型
+type ProcessedValue = string | number | ProcessedObject | ProcessedList;
+
+interface ProcessedObject {
+  [key: string]: ProcessedValue;
+}
+
+type ProcessedList = ProcessedValue[];
+
+export const processValue = (value: any): ProcessedValue => {
+  // 如果 value 是字符串或字符串数组，直接返回
+  if (
+    typeof value === 'string' ||
+    (Array.isArray(value) && value.every((item) => typeof item === 'string'))
+  ) {
+    return value as ProcessedValue;
+  }
+
+  // 如果 value 是对象数组，递归处理每个对象
+  if (Array.isArray(value)) {
+    return value.map((item) => processValue(item)) as ProcessedList;
+  }
+
+  // 如果 value 是对象，处理每个属性
+  if (typeof value === 'object' && value !== null) {
+    const result: ProcessedObject = {};
+    for (const key in value) {
+      if (value.hasOwnProperty(key)) {
+        const item = value[key];
+        const relKey = `${key}_${item.label}`;
+        if (typeof item === 'object' && item !== null && 'label' in item && 'value' in item) {
+          // 只保留 label 和 value 字段
+          result[relKey] = {
+            value: processValue(item.value)
+          } as ProcessedValue;
+        } else {
+          // 递归处理其他情况
+          result[relKey] = processValue(item);
+        }
+      }
+    }
+    return result as ProcessedValue;
+  }
+
+  // 其他情况直接返回
+  return value as ProcessedValue;
+};
+
+/**
+ * @description 将数据JSON还原
+ */
+// 还原label字段
+/**
+ * 恢复数据函数
+ * 该函数用于从给定的数据对象中恢复特定模块的内容
+ * 它会遍历输入对象中的每个模块，确保每个模块包含必要的属性，并尝试恢复模块的内容
+ * 如果模块不符合要求，则会跳过该模块；如果恢复过程中遇到错误，则会记录错误
+ *
+ * @param data 包含模块数据的对象，期望是一个非空的普通对象
+ * @returns 返回恢复后的数据对象
+ * @throws 如果输入数据不是非空的普通对象，则抛出TypeError
+ */
+export const restoreData = (data: any) => {
+  // 定义常量，便于维护
+  const MODULE_TITLE: any = 'moduleTitle';
+  const MODULE_CONTENT: any = 'moduleContent';
+
+  // 验证输入是否为对象类型
+  if (typeof data !== 'object' || data === null || Array.isArray(data)) {
+    throw new TypeError('Input data must be a non-null plain object');
+  }
+
+  // 初始化恢复后的数据对象
+  const restoredData: any = {};
+
+  // 遍历每个模块
+  for (const [key, module] of Object.entries(data)) {
+    try {
+      // 检查模块是否包含必要属性
+      if (
+        typeof module !== 'object' ||
+        module === null ||
+        !(MODULE_TITLE in module) ||
+        !(MODULE_CONTENT in module)
+      ) {
+        console.warn(`Skipping invalid module with key: ${key}`);
+        continue;
+      }
+
+      // 恢复数据
+      restoredData[key] = {
+        [MODULE_TITLE]: (module as { [key: string]: any })[MODULE_TITLE], // 使用类型断言
+        [MODULE_CONTENT]: restoreContentData((module as { [key: string]: any })[MODULE_CONTENT]) // 使用类型断言
+      };
+    } catch (error) {
+      // 捕获并记录恢复内容时的异常
+      console.error(`Error restoring content for module with key: ${key}`, error);
+    }
+  }
+
+  // 返回恢复后的数据对象
+  return restoredData;
+};
+
+/**
+ * 恢复内容数据的结构
+ * 该函数旨在将具有特定格式的键和嵌套结构的数据对象或数组转换为一种规范化格式
+ * 主要处理的是将形如"fieldName_label"的键拆分为fieldName和label，并保留其值
+ * 如果键不包含下划线，则直接保留该键值对
+ *
+ * @param contentData 任意类型的参数，期望是对象或数组，但函数会处理null或非对象/数组的情况
+ * @returns 返回转换后的数据结构，如果不是对象或数组则原样返回
+ */
+function restoreContentData(contentData: any): any {
+  // 边界条件处理：如果内容为空或非对象/数组，直接返回
+  if (contentData == null || typeof contentData !== 'object') {
+    return contentData;
+  }
+
+  // 如果是数组，递归处理每个元素
+  if (Array.isArray(contentData)) {
+    return contentData.map((item) => restoreContentData(item));
+  }
+
+  // 如果是对象，遍历每个字段并递归处理
+  const restoredContent: any = {};
+  for (const key of Object.keys(contentData)) {
+    // 针对包含下划线的键进行拆分处理
+    if (key.includes('_')) {
+      // 拆分键名和标签
+      const parts = key.split('_');
+      // 验证键的格式，确保至少包含一个下划线用于分隔
+      if (parts.length < 2) {
+        throw new Error(`Invalid key format: "${key}". Expected format: "fieldName_label".`);
+      }
+      const fieldName = parts[0];
+      const label = parts.slice(1).join('_'); // 处理多个下划线的情况
+      // 递归处理值，并构建新的键值对结构
+      restoredContent[fieldName] = {
+        label,
+        value: restoreContentData(contentData[key]?.value) // 安全访问 value
+      };
+    } else {
+      // 对于不包含下划线的键，直接保留并递归处理值
+      restoredContent[key] = restoreContentData(contentData[key]);
+    }
+  }
+
+  // 返回处理后的对象
+  return restoredContent;
+}
+
+// 恢复数据的ID以及将AI生成后的内容重新赋值到原JSON上去
+export const restoreDataId = (oldData: any, newData: any) => {
+  oldData.componentsTree.forEach((item: any) => {
+    const shortId = item.id.slice(-10); // 截取 id 的最后十位
+    if (newData.hasOwnProperty(shortId)) {
+      // 将原数据的多出属性合并到新数据中
+      mergeData(item.dataSource, newData[shortId].moduleContent);
+      // 将新数据完全赋值给原数据
+      item.dataSource = newData[shortId].moduleContent;
+    }
+  });
+
+  return oldData;
+};
+
+// 递归合并数据
+function mergeData(oldData: any, newData: any) {
+  for (const key in oldData) {
+    if (oldData.hasOwnProperty(key)) {
+      // 如果新数据中没有当前属性，则直接复制
+      if (!newData.hasOwnProperty(key)) {
+        newData[key] = oldData[key];
+      } else {
+        // 如果当前属性是对象，递归合并
+        if (
+          typeof oldData[key] === 'object' &&
+          oldData[key] !== null &&
+          !Array.isArray(oldData[key])
+        ) {
+          mergeData(oldData[key], newData[key]);
+        }
+        // 如果当前属性是数组，递归合并每个元素
+        else if (Array.isArray(oldData[key])) {
+          for (let i = 0; i < oldData[key].length; i++) {
+            if (newData[key][i]) {
+              mergeData(oldData[key][i], newData[key][i]);
+            }
+          }
+        }
+      }
+    }
+  }
+}

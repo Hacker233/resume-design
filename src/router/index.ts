@@ -58,6 +58,8 @@ const ImgCompress = () => import('@/views/imgCompress/index.vue');
 const Membership = () => import('@/views/membership/index.vue');
 // 无权限页
 const NoPermission = () => import('@/views/noPermission/index.vue');
+// AI智能简历生成页面
+const GenerateAiResume = () => import('@/views/generateAiResume/index.vue');
 
 // 管理员界面
 const AdminIndex = () => import('@/views/admin/index.vue');
@@ -462,6 +464,18 @@ const routes: Array<RouteRecordRaw> = [
       requireAdmin: false
     },
     component: NoPermission
+  },
+  {
+    path: '/generateAiResume',
+    name: 'GenerateAiResume',
+    meta: {
+      title: 'AI智能简历生成',
+      keepAlive: true,
+      isShowComNav: true,
+      requireLogin: false,
+      requireAdmin: false
+    },
+    component: GenerateAiResume
   },
   {
     path: '/webCode',

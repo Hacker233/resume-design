@@ -202,9 +202,9 @@
       h3 {
         font-size: 16px;
         letter-spacing: 1px;
+        margin-bottom: 15px;
       }
       .card-box {
-        margin-top: 10px;
         display: flex;
         align-items: center;
         justify-content: space-between;
@@ -217,6 +217,7 @@
       h3 {
         font-size: 16px;
         letter-spacing: 1px;
+        margin-bottom: 15px;
       }
       .pay-way-box {
         display: flex;
@@ -262,12 +263,20 @@
       h3 {
         font-size: 16px;
         letter-spacing: 1px;
+        margin-bottom: 15px;
       }
       .integral-num {
         display: flex;
         align-items: center;
         span {
           margin-right: 10px;
+          font-size: 18px;
+          font-weight: 600;
+          background: -webkit-linear-gradient(top, #ff0000, #00ff00); /*设置线性渐变*/
+          /*为了支持更多的浏览器*/
+          background-clip: text; /*背景被裁剪到文字*/
+          -webkit-text-fill-color: transparent; /*设置文字的填充颜色*/
+          letter-spacing: 1px;
         }
       }
     }

@@ -149,10 +149,26 @@ export const getOptimizeResumeIntegralAsync: any = () => {
   });
 };
 
+// 查询AI简历智能生成需要的简币数量
+export const getGenerateResumeIntegralAsync: any = () => {
+  return http.request({
+    url: '/huajian/ai/getGenerateResumeIntegral',
+    method: 'get'
+  });
+};
+
 // 查询AI简历优化支持的模型列表
 export const getOptimizeResumeModelListAsync: any = () => {
   return http.request({
     url: '/huajian/ai/getOptimizeResumeModelList',
+    method: 'get'
+  });
+};
+
+// 查询AI简历智能生成支持的模型列表
+export const getGenerateResumeModelListAsync: any = () => {
+  return http.request({
+    url: '/huajian/ai/getGenerateResumeModelList',
     method: 'get'
   });
 };
@@ -185,4 +201,25 @@ export const getAiOptimizeLogsListAsync: any = (params: any) => {
     method: 'get',
     params: params
   });
+};
+
+// AI生成简历（流式传输）
+export const generateResumeStreamAsync: any = (
+  data: any, // 生成简历的参数
+  onMessage: (chunk: string) => void, // 流式数据回调
+  onError: (error: any) => void, // 错误回调
+  onComplete?: () => void // 完成回调
+) => {
+  return http.streamRequest(
+    '/huajian/ai/generateResumeStream', // 后端接口路径
+    data, // 请求参数
+    onMessage, // 流式数据回调
+    onError, // 错误回调
+    onComplete // 完成回调
+  );
+};
+
+// 取消流式传输AI生成简历
+export const cancelGenerateResumeStreamAsync: any = (controller: AbortController) => {
+  controller.abort(); // 取消请求
 };
