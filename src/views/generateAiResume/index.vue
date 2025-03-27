@@ -46,61 +46,82 @@
         ></ai-model-select>
         <AiLoading v-if="active === 2 && isAiLoading" />
         <!-- 生成的简历预览 -->
-        <ResumePreview v-show="active === 2 && !isAiLoading && generateResumeSuccess" />
+        <div
+          v-show="active === 2 && !isAiLoading && generateResumeSuccess"
+          class="resume-preview-container"
+        >
+          <ResumePreview />
+          <div class="preview-overlay">
+            <!-- 毛玻璃遮罩层 -->
+            <div class="frosted-glass"></div>
+            <h3 class="cyber-title">全部内容查看请前往编辑页面</h3>
+          </div>
+        </div>
       </div>
       <template v-if="!generateResumeSuccess">
         <!-- 下一步 -->
         <template v-if="!isAiLoading">
           <div class="next-step-box">
-            <div v-if="active !== 0" class="next-step" @click="prevStep">
-              <button>上一步</button>
+            <div v-if="active !== 0" class="next-step">
+              <el-button class="custom-button" @click="prevStep">上一步</el-button>
             </div>
-            <div v-if="active !== 2" class="next-step" @click="nextStep">
-              <button>下一步</button>
+            <div v-if="active !== 2" class="next-step">
+              <el-button class="custom-button" @click="nextStep">下一步</el-button>
             </div>
-            <div v-else class="next-step" @click="generateResume">
-              <button>立即生成简历</button>
+            <div v-else class="next-step">
+              <el-button class="custom-button" @click="generateResume">立即生成简历</el-button>
             </div>
           </div>
         </template>
         <template v-else>
           <div class="next-step-box">
-            <div class="next-step" @click="cancleGenerateResume">
-              <button>取消生成</button>
+            <div class="next-step">
+              <el-button class="custom-button" @click="cancleGenerateResume">取消生成</el-button>
             </div>
           </div>
         </template>
       </template>
       <template v-else>
         <div class="next-step-box">
-          <div v-if="active !== 0" class="next-step" @click="prevStep">
-            <button>上一步</button>
+          <div v-if="active !== 0" class="next-step">
+            <el-button class="custom-button" @click="prevStep">上一步</el-button>
           </div>
-          <div class="next-step" @click="cancleGenerateResume">
-            <button>前往编辑</button>
+          <div class="next-step">
+            <el-button class="custom-button" :loading="isEditing" @click="goEdit">
+              {{ isEditing ? '处理中...' : '前往编辑' }}
+            </el-button>
           </div>
         </div>
       </template>
     </div>
   </div>
 </template>
+
 <script lang="ts" setup>
   import KeyWords from './components/KeyWords.vue';
   import AiTemplateSelect from './components/AiTemplateSelect.vue';
-  import { getTemplateByIdAsync } from '@/http/api/createTemplate';
+  import { getTemplateByIdAsync, getUsertemplateAsync } from '@/http/api/createTemplate';
   import AiModelSelect from './components/AiModelSelect.vue';
-  import { extractResumeData, restoreData, restoreDataId } from '@/utils/common';
+  import {
+    extractResumeData,
+    formatNumberWithCommas,
+    restoreData,
+    restoreDataId
+  } from '@/utils/common';
   import appStore from '@/store';
   import { storeToRefs } from 'pinia';
   import { cancelGenerateResumeStreamAsync, generateResumeStreamAsync } from '@/http/api/ai';
   import { cloneDeep } from 'lodash';
   import AiLoading from './components/AiLoading.vue';
   import ResumePreview from './components/ResumePreview.vue';
-  import { ElNotification } from 'element-plus';
+  import { ElNotification, ElMessage, ElMessageBox } from 'element-plus';
+  import jianBImage from '@/assets/images/jianB.png';
 
   const active = ref(0);
+  const isEditing = ref(false); // 是否正在处理编辑
 
   const generateParams = ref({
+    model: '',
     keyWords: '',
     template: null
   });
@@ -109,6 +130,7 @@
   const keyWordsRef = ref<any>(null);
   const aiModelSelectRef = ref<any>(null);
   const aiTemplateSelectRef = ref<any>(null);
+  const selectTemplateId = ref(''); // 选中的模版id
   const nextStep = () => {
     if (active.value === 0) {
       if (keyWordsRef.value) {
@@ -130,6 +152,7 @@
         return;
       }
       active.value++;
+      selectTemplateId.value = aiTemplateSelectRef.value.selectTemplateId;
       // 查询简历模版JSON
       getTemplateData();
     }
@@ -137,7 +160,7 @@
 
   // 查询模版数据
   const getTemplateData = async () => {
-    const data = await getTemplateByIdAsync(aiTemplateSelectRef.value.selectTemplateId);
+    const data = await getTemplateByIdAsync(selectTemplateId.value);
     if (data.status === 200) {
       generateParams.value.template = data.data.template_json;
     } else {
@@ -160,9 +183,11 @@
   // 生成简历
   const isAiLoading = ref(false); // AI是否正在返回
   const generateResumeSuccess = ref(false); // 生成简历是否成功
-  const { HJNewJsonStore } = storeToRefs(appStore.useCreateTemplateStore);
-  const generateResume = () => {
+  const { getUserIntegralTotal } = appStore.useUserInfoStore;
+  const { HJNewJsonStore, fromAiGenerate } = storeToRefs(appStore.useCreateTemplateStore);
+  const generateResume = async () => {
     console.log(generateParams.value);
+    generateParams.value.model = aiModelSelectRef.value.selectedModel;
     if (!generateParams.value.keyWords) {
       ElMessage.warning('请填写关键词');
       return;
@@ -171,6 +196,26 @@
       return;
     }
     HJNewJsonStore.value = generateParams.value.template;
+    // 如果选择了付费模型，弹出确认框
+    if (generateParams.value.model) {
+      try {
+        await ElMessageBox.confirm(
+          `<div style="display: flex; align-items: center;">本次操作将消耗 ${formatNumberWithCommas(
+            aiModelSelectRef.value.payValue
+          )} <img style="margin-left: 5px;" width="22" src="${jianBImage}" alt="简币" />，是否继续？</div>`,
+          '提示',
+          {
+            confirmButtonText: '确定',
+            cancelButtonText: '取消',
+            type: 'warning',
+            dangerouslyUseHTMLString: true
+          }
+        );
+      } catch (error) {
+        // 用户点击了取消
+        return;
+      }
+    }
     getResume();
   };
   // 取消生成简历
@@ -192,7 +237,7 @@
     console.log('dataSource', JSON.stringify(dataSource));
 
     const params = {
-      model: '', // 使用的AI模型
+      model: generateParams.value.model, // 使用的AI模型
       keywords: generateParams.value.keyWords,
       template: dataSource
     };
@@ -202,8 +247,7 @@
       params,
       handleStreamData,
       (error: any) => {
-        ElMessage.error(error.message || 'AI诊断失败');
-        console.log('AI诊断失败', error);
+        ElMessage.error(error.message || 'AI智能简历生成失败');
         isAiLoading.value = false;
       },
       () => {
@@ -215,12 +259,15 @@
         const resetLabel = restoreData(JSON.parse(resule2));
         console.log('还原label后的数据', resetLabel);
         // 彻底还原数据
-        const resetData = restoreDataId(HJNewJsonStore.value, resetLabel);
+        const resetData = restoreDataId(cloneDeep(HJNewJsonStore.value), resetLabel);
         console.log('彻底还原后的数据', resetData);
         HJNewJsonStore.value = resetData;
         ElMessage.success('AI简历生成成功');
         isAiLoading.value = false;
         generateResumeSuccess.value = true;
+        if (generateParams.value.model) {
+          getUserIntegralTotal();
+        }
       }
     );
     streamController.value = controller;
@@ -245,6 +292,52 @@
         }
       }
     });
+  };
+
+  // 前往编辑
+  const router = useRouter();
+  const goEdit = async () => {
+    if (!generateResumeSuccess.value || !selectTemplateId.value) {
+      ElMessage.warning('请先生成简历哦');
+      return;
+    }
+
+    isEditing.value = true;
+    try {
+      // 查询用户是否使用过该模版创建过简历
+      const { data } = await getUsertemplateAsync(selectTemplateId.value);
+      if (data.status === 200) {
+        // 使用ElMessageBox代替ElMessage.warning
+        try {
+          await ElMessageBox.confirm(
+            '检测到您已经使用过该模板创建过简历，此操作将覆盖原有数据，请谨慎操作？',
+            '提示',
+            {
+              confirmButtonText: '继续编辑',
+              cancelButtonText: '取消',
+              type: 'warning'
+            }
+          );
+          fromAiGenerate.value = true;
+          router.push({
+            path: `/designResume/${selectTemplateId.value}`
+          });
+        } catch (error) {
+          // 用户点击了"取消"或关闭了对话框
+          console.log('用户取消了编辑操作');
+          return;
+        }
+      } else {
+        fromAiGenerate.value = true;
+        router.push({
+          path: `/designResume/${selectTemplateId.value}`
+        });
+      }
+    } catch (error) {
+      ElMessage.error('处理编辑请求时出错');
+    } finally {
+      isEditing.value = false;
+    }
   };
 </script>
 
@@ -368,6 +461,7 @@
       align-items: center;
       justify-content: center;
       margin: 40px 0;
+
       .next-step {
         background: #fff0f9;
         border-radius: 99px;
@@ -378,28 +472,83 @@
         padding: 8px;
         width: 280px;
         transition: all 0.3s ease;
-        &:hover {
-          opacity: 0.7;
-        }
+
         &:first-child {
           margin: 0 10px;
         }
+
         &:last-child {
           margin: 0 10px;
         }
-        button {
-          background: linear-gradient(138deg, #3b2af9, #562cf7 22%, #dd34ee 89%, #f5e17d);
-          border-radius: 99px;
-          box-shadow: 0 0 4px 1px #9569c066;
-          color: #fff;
-          font-size: 18px;
-          height: 100%;
-          width: 100%;
-          cursor: pointer;
-          border: none;
-          letter-spacing: 2px;
+
+        &:hover {
+          opacity: 0.7;
         }
       }
+    }
+  }
+
+  // 自定义按钮样式
+  .custom-button {
+    background: linear-gradient(138deg, #3b2af9, #562cf7 22%, #dd34ee 89%, #f5e17d) !important;
+    border-radius: 99px !important;
+    box-shadow: 0 0 4px 1px #9569c066 !important;
+    color: #fff !important;
+    font-size: 18px !important;
+    height: 100% !important;
+    width: 100% !important;
+    letter-spacing: 2px !important;
+    border: none !important;
+    padding: 0 !important;
+    transition: all 0.3s ease !important;
+
+    &.is-loading {
+      opacity: 0.7;
+    }
+  }
+
+  .resume-preview-container {
+    position: relative;
+    width: 820px;
+  }
+
+  .preview-overlay {
+    height: 60px;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .frosted-glass {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(218, 232, 254, 0.6);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      z-index: 10;
+    }
+
+    .cyber-title {
+      font-family: 'Orbitron', sans-serif;
+      color: #5a4ff3;
+      text-shadow: 0 0 10px rgba(90, 79, 243, 0.3), 0 0 20px rgba(90, 79, 243, 0.2);
+      margin-bottom: 16px;
+      font-size: 18px;
+      letter-spacing: 1px;
+      background: linear-gradient(90deg, #5a4ff3, #00d2ff);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      animation: textGlow 2s infinite alternate;
+      margin: 0;
+      padding: 0;
+      z-index: 11;
     }
   }
 </style>

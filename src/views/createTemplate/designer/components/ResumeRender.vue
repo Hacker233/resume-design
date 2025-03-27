@@ -28,14 +28,25 @@
   const route = useRoute();
 
   // 初始化JSON数据
-  const { HJNewJsonStore, selectedModuleId } = storeToRefs(appStore.useCreateTemplateStore);
-  HJNewJsonStore.value.componentsTree = [];
+  const { HJNewJsonStore, selectedModuleId, fromAiGenerate } = storeToRefs(
+    appStore.useCreateTemplateStore
+  );
+  if (!fromAiGenerate.value) {
+    HJNewJsonStore.value.componentsTree = [];
+  }
+
+  const props = defineProps({
+    isLoading: {
+      type: Boolean,
+      default: false
+    }
+  });
 
   const isLoading = computed(() => {
     if (route.query.type === 'create') {
       return false;
     } else {
-      return !HJNewJsonStore.value.componentsTree.length;
+      return props.isLoading;
     }
   });
 

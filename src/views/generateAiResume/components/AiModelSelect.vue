@@ -2,7 +2,7 @@
   <div class="aimodel-select">
     <!-- 添加了动态科技边框 -->
     <div class="cyber-border"></div>
-    <AiModelSelect :ai-type="aiType" />
+    <AiModelSelect :ai-type="aiType" @handle-model-change="handleModelChange" />
   </div>
 </template>
 <script setup lang="ts">
@@ -10,6 +10,20 @@
 
   // 使用的AI用途
   const aiType = ref('generateResume');
+
+  const selectedModel = ref(''); // 选中的模型
+  const payValue = ref(0); // 需要的简币
+
+  // 监听选中的模型
+  const handleModelChange = (item: any) => {
+    selectedModel.value = item.value;
+    payValue.value = item.payValue;
+  };
+
+  defineExpose({
+    selectedModel,
+    payValue
+  });
 </script>
 <style lang="scss" scoped>
   .aimodel-select {

@@ -5,19 +5,19 @@
     <!-- 底部区域 -->
     <div :key="resetKey" class="bottom-box">
       <!-- 数据配置 -->
-      <div v-loading="!HJNewJsonStore.componentsTree.length" class="left">
+      <div v-loading="isLoading" class="left">
         <data-config v-if="HJNewJsonStore.componentsTree.length"></data-config>
+        <!-- 暂无数据 -->
+        <div v-else class="no-data-box">
+          <no-data-vue></no-data-vue>
+        </div>
       </div>
       <!-- 简历预览 -->
       <div id="resume-container" class="right">
         <!-- 主题配置 -->
         <global-theme-setting-bar></global-theme-setting-bar>
-        <div
-          v-loading="!HJNewJsonStore.componentsTree.length"
-          class="resume-container"
-          :style="{ zoom: zoomScale }"
-        >
-          <resume-render></resume-render>
+        <div v-loading="isLoading" class="resume-container" :style="{ zoom: zoomScale }">
+          <resume-render :is-loading="isLoading"></resume-render>
         </div>
       </div>
       <!-- 操作列 -->
@@ -51,8 +51,12 @@
   import { useHead } from '@vueuse/head';
   import GlobalThemeSettingBar from '../createTemplate/designer/components/GlobalThemeSettingBar.vue';
   import { title } from '@/config/seo';
+  import NoDataVue from '@/components/NoData/NoData.vue';
 
-  const { HJNewJsonStore, selectedPageName } = storeToRefs(appStore.useCreateTemplateStore);
+  const isLoading = ref(true);
+  const { HJNewJsonStore, selectedPageName, fromAiGenerate } = storeToRefs(
+    appStore.useCreateTemplateStore
+  );
   const route = useRoute();
 
   // 响应式缩放比例
@@ -82,6 +86,7 @@
       useHead({
         title: HJNewJsonStore.value.props.title || title
       });
+      isLoading.value = false;
     } else {
       defaultTemplate();
     }
@@ -103,6 +108,7 @@
       useHead({
         title: HJNewJsonStore.value.props.title || title
       });
+      isLoading.value = false;
     } else {
       defaultTemplate();
     }
@@ -112,12 +118,19 @@
   const defaultTemplate = () => {
     HJNewJsonStore.value = pageSchemas[selectedPageName.value];
     HJNewJsonStore.value.id = getUuid();
+    isLoading.value = false;
   };
 
   const { token } = appStore.useTokenStore;
   if (token) {
-    // 查询用户简历
-    getUserTemplate();
+    // 如果是从AI智能生成简历跳转过来，则不查询模版
+    console.log('fromAiGenerate', fromAiGenerate.value);
+    if (!fromAiGenerate.value) {
+      // 查询用户简历
+      getUserTemplate();
+    } else {
+      isLoading.value = false;
+    }
   } else {
     getTemplateData();
   }
@@ -130,6 +143,7 @@
   });
 
   onBeforeUnmount(() => {
+    fromAiGenerate.value = false;
     window.removeEventListener('resize', adjustZoomScale);
   });
 
@@ -194,6 +208,11 @@
         max-width: 40%; // 防止超出
         min-width: 450px; // 设置最小宽度（可以根据需求调整）
         background: #fff;
+        .no-data-box {
+          height: 100%;
+          display: flex;
+          align-items: center;
+        }
 
         .no-data {
           height: 100%;

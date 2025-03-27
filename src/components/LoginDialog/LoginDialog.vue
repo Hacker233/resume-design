@@ -695,10 +695,10 @@
   .login-dialog-box {
     border-radius: 12px;
     .el-dialog__header {
-      display: none;
+      display: none !important;
     }
     .el-dialog__body {
-      padding: 0;
+      padding: 0 !important;
       min-height: 500px;
     }
   }

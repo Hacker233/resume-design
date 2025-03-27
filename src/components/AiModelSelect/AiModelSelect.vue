@@ -65,6 +65,8 @@
   import { formatNumberWithCommas } from '@/utils/common';
   import appStore from '@/store';
 
+  const emit = defineEmits(['handleModelChange']);
+
   interface TDialog {
     dialogAiOptimizeVisible: boolean;
     aiType?: string;
@@ -86,6 +88,10 @@
   const handleModelChange = (value: string) => {
     console.log('value:', value); // 打印 value 的值
     selectedModel.value = value;
+    emit('handleModelChange', {
+      value: value,
+      payValue: payValue.value
+    });
   };
 
   // 计算属性
