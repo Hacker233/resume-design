@@ -116,6 +116,7 @@
   import ResumePreview from './components/ResumePreview.vue';
   import { ElNotification, ElMessage, ElMessageBox } from 'element-plus';
   import jianBImage from '@/assets/images/jianB.png';
+  import LoginDialog from '@/components/LoginDialog/LoginDialog';
 
   const active = ref(0);
   const isEditing = ref(false); // 是否正在处理编辑
@@ -131,7 +132,14 @@
   const aiModelSelectRef = ref<any>(null);
   const aiTemplateSelectRef = ref<any>(null);
   const selectTemplateId = ref(''); // 选中的模版id
+
   const nextStep = () => {
+    // 判断是否登录
+    const { token } = appStore.useTokenStore;
+    if (!token) {
+      LoginDialog(true);
+      return;
+    }
     if (active.value === 0) {
       if (keyWordsRef.value) {
         keyWordsRef.value.ruleFormRef.validate((valid: any) => {
