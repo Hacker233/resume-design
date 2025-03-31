@@ -33,8 +33,6 @@
 </template>
 
 <script lang="ts" setup>
-  import { defineEmits, defineProps, withDefaults, watch, ref, computed } from 'vue';
-
   const emit = defineEmits(['cancle']);
 
   interface TDialog {

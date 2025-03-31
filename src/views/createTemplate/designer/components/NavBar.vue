@@ -21,11 +21,11 @@
       />
     </div>
     <div class="nav-right">
-      <!-- <el-tooltip effect="dark" content="AI智能诊断" placement="bottom">
+      <!-- <el-tooltip effect="dark" content="AI简历生成" placement="bottom">
         <div class="ai-bot-container" @click="aiOptimize"
           ><img src="@/assets/images/ai-translate.webp" width="24" height="24" /><div
             class="ai-bot-text"
-            >AI诊断</div
+            >AI生成</div
           ></div
         >
       </el-tooltip> -->
@@ -52,18 +52,13 @@
     @success="success"
   ></submit-audit-dialog>
 
-  <!-- AI诊断抽屉 -->
-  <ai-optimize-drawer
-    :drawer="aiDrawer"
-    @close-ai-optimize-drawer="closeAiDrawer"
-  ></ai-optimize-drawer>
+  <!-- AI简历生成弹窗 -->
 </template>
 <script lang="ts" setup>
   import appStore from '@/store';
   import { storeToRefs } from 'pinia';
   import { UploadFilled, Folder } from '@element-plus/icons-vue';
   import SubmitAuditDialog from './SubmitAuditDialog.vue';
-  import AiOptimizeDrawer from './AiOptimizeDrawer.vue';
 
   const emit = defineEmits(['publishSuccess']);
 
@@ -109,10 +104,8 @@
   };
 
   // 打开AI诊断抽屉
-  const aiDrawer = ref<boolean>(false);
-  const closeAiDrawer = () => {
-    aiDrawer.value = false;
-  };
+  // const aiDrawer = ref<boolean>(false);
+
   // const aiOptimize = () => {
   //   aiDrawer.value = true;
   //   console.log('AI诊断');

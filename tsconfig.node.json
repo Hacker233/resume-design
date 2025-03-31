@@ -8,6 +8,7 @@
   "include": [
     "vite.config.ts",
     "build/**/*.ts",
-    "types/*.d.ts"
+    "types/*.d.ts",
+    "src/**/*.ts" // 添加 src 目录
   ]
 }

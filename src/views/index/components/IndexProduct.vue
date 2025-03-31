@@ -169,17 +169,11 @@
           }
 
           .card-box {
-            display: grid;
-            width: 80%;
-            grid-template-columns: repeat(
-              auto-fill,
-              minmax(200px, 1fr)
-            ); // 自动填充，最小200px，最大1fr
-            gap: 20px; // 卡片之间的间隙
-            justify-content: center; // 居中布局
+            display: flex;
+            flex-wrap: wrap;
 
             .card {
-              width: 100%; // 宽度自适应
+              width: 200px; // 宽度自适应
               height: 180px;
               background-color: #fff;
               border-radius: 20px;
@@ -190,6 +184,8 @@
               flex-direction: column;
               user-select: none;
               flex-shrink: 0;
+              margin-right: 30px;
+              margin-bottom: 30px;
 
               h3 {
                 font-size: 18px;

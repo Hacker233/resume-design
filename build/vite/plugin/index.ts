@@ -8,6 +8,8 @@ import OptimizationPersist from 'vite-plugin-optimize-persist';
 import PkgConfig from 'vite-plugin-package-config';
 import DefineOptions from 'unplugin-vue-define-options/vite';
 import { viteCommonjs } from '@originjs/vite-plugin-commonjs';
+import { createHtmlPlugin } from 'vite-plugin-html';
+import { title, description, keywords } from '../../../src/config/seo';
 
 export const createVitePlugins = async (viteEnv: ViteEnv, isBuild: boolean) => {
   const { VITE_BUILD_COMPRESS, VITE_BUILD_COMPRESS_DELETE_ORIGIN_FILE } = viteEnv;
@@ -20,7 +22,16 @@ export const createVitePlugins = async (viteEnv: ViteEnv, isBuild: boolean) => {
     DefineOptions(),
     PkgConfig(),
     OptimizationPersist(),
-    viteCommonjs()
+    viteCommonjs(),
+    createHtmlPlugin({
+      inject: {
+        data: {
+          SEO_TITLE: title,
+          SEO_DESCRIPTION: description,
+          SEO_KEYWORDS: keywords
+        }
+      }
+    })
   ];
 
   // 仅在生产环境使用的插件

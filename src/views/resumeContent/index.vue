@@ -30,6 +30,14 @@
             <el-button class="use-template-btn" type="primary" size="large" @click="handleToUse"
               >使用此模版</el-button
             >
+            <!-- AI智能生成 -->
+            <el-button
+              class="use-template-btn ai-generate-btn"
+              type="primary"
+              size="large"
+              @click="toAiGenerateResume"
+              >AI智能生成</el-button
+            >
           </div>
           <!-- 特别说明 -->
           <div class="template-tips">
@@ -127,6 +135,16 @@
   const toWordTemplate = () => {
     router.push({
       path: '/word'
+    });
+  };
+
+  // AI智能生成简历
+  const toAiGenerateResume = () => {
+    router.push({
+      path: '/generateAiResume',
+      query: {
+        templateId: templateData.value._id
+      }
     });
   };
 
@@ -276,6 +294,25 @@
             display: flex;
             align-items: center;
             padding: 0;
+          }
+          .ai-generate-btn {
+            background: linear-gradient(
+              138deg,
+              #3b2af9,
+              #562cf7 22%,
+              #dd34ee 89%,
+              #f5e17d
+            ) !important;
+            color: #fff !important;
+            width: 100% !important;
+            letter-spacing: 2px !important;
+            border: none !important;
+            padding: 0 !important;
+            transition: all 0.3s ease !important;
+            border: none;
+            &:hover {
+              opacity: 0.8;
+            }
           }
         }
 

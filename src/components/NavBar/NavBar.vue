@@ -53,7 +53,8 @@
           v-else-if="membershipInfo.hasMembership && membershipInfo.daysRemaining > 0"
           class="content-box"
         >
-          <svg-icon icon-name="icon-VIP" size="20px" color="#789e45"></svg-icon>
+          <!-- <svg-icon icon-name="icon-VIP" size="20px" color="#789e45"></svg-icon> -->
+          <img src="@/assets/images/membership.svg" alt="会员" title="会员" width="20" />
           <span v-if="membershipInfo.type === 'lifetime'">永久会员</span>
           <span v-else>还剩{{ membershipInfo.daysRemaining }}天到期</span>
         </div>
@@ -82,13 +83,19 @@
           >
           <el-button class="login-btn" type="primary" @click="openLoginDialog">登录</el-button>
         </div>
-        <div v-else class="user-avatar-box">
+        <div
+          v-else
+          :class="[
+            'user-avatar-box',
+            { 'user-avatar-box-vip': membershipInfo.hasMembership && !membershipInfo.isExpired }
+          ]"
+        >
           <!-- vip图标 -->
           <div
             v-if="membershipInfo.hasMembership && !membershipInfo.isExpired"
             class="user-vip-icon"
           >
-            <svg-icon icon-name="icon-VIP" size="20px" color="yellow"></svg-icon>
+            <img src="@/assets/images/membership.svg" alt="会员" title="会员" width="18" />
           </div>
           <el-dropdown v-config:open_person_in :teleported="false">
             <span class="el-dropdown-link">
@@ -543,13 +550,13 @@
           cursor: pointer;
           position: relative;
           right: -7px;
-          bottom: -5px;
+          bottom: 0;
           z-index: 1;
           .user-vip-icon {
             position: absolute;
-            right: -5px;
-            bottom: -8px;
-            z-index: 1;
+            right: 13px;
+            top: -12px;
+            z-index: 2;
           }
           .name-content {
             width: 100%;
@@ -560,6 +567,65 @@
             font-size: 20px;
             color: v-bind('nameColor');
             background-color: v-bind('iconColor');
+          }
+          .el-dropdown {
+            z-index: 1;
+          }
+        }
+        .user-avatar-box-vip {
+          position: relative;
+          width: 45px; /* 同步实际头像尺寸 */
+          height: 45px;
+          border-radius: 50%;
+          background: #fff;
+        }
+
+        .user-avatar-box-vip::before {
+          content: '';
+          position: absolute;
+          top: -1px; /* 超细边框偏移量 */
+          left: -1px;
+          right: -1px;
+          bottom: -1px;
+          background: linear-gradient(45deg, #ffd700 25%, #ffaa00 50%, #ffd700 75%);
+          background-size: 200% 100%; /* 优化小尺寸渐变效果 */
+          border-radius: 50%;
+          animation: vip-glow 4s linear infinite; /* 减慢动画速度 */
+          z-index: -1;
+        }
+
+        .user-avatar-box-vip::after {
+          content: '';
+          position: absolute;
+          top: 0; /* 贴合主容器 */
+          left: 0;
+          right: 0;
+          bottom: 0;
+          border-radius: 50%;
+          box-shadow: 0 0 3px rgba(255, 215, 0, 0.3); /* 微型发光 */
+          animation: vip-shine 2s ease-in-out infinite;
+        }
+
+        @keyframes vip-glow {
+          0% {
+            background-position: 200% 50%;
+            transform: rotate(0deg);
+          }
+          100% {
+            background-position: -200% 50%;
+            transform: rotate(360deg);
+          }
+        }
+
+        @keyframes vip-shine {
+          0%,
+          100% {
+            opacity: 0.6;
+            box-shadow: 0 0 2px #ffd70033;
+          }
+          50% {
+            opacity: 1;
+            box-shadow: 0 0 4px #ffd70066;
           }
         }
       }

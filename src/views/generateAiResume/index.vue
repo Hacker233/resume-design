@@ -8,7 +8,7 @@
         class="custom-steps-horizontal"
         finish-status="success"
       >
-        <el-step title="第一步" description="关键词填写">
+        <el-step title="第一步" description="填写简历关键信息">
           <template #icon>
             <div class="step-icon">
               <div class="progress-bar"></div>
@@ -16,7 +16,7 @@
             </div>
           </template>
         </el-step>
-        <el-step title="第二步" description="简历模版选择">
+        <el-step v-if="!templateId" :title="templateId ? '' : '第二步'" description="简历模版选择">
           <template #icon>
             <div class="step-icon">
               <div class="progress-bar"></div>
@@ -24,11 +24,11 @@
             </div>
           </template>
         </el-step>
-        <el-step title="第三步" description="AI智能生成简历">
+        <el-step :title="templateId ? '第二步' : '第三步'" description="AI智能生成简历">
           <template #icon>
             <div class="step-icon">
               <div class="progress-bar"></div>
-              <span class="step-number">3</span>
+              <span class="step-number">{{ lastActive + 1 }}</span>
             </div>
           </template>
         </el-step>
@@ -37,17 +37,19 @@
       <div class="steps-components-box">
         <!-- 关键词填写区域 -->
         <key-words v-show="active === 0" ref="keyWordsRef"></key-words>
-        <!-- 模版选择区域 -->
-        <ai-template-select v-if="active === 1" ref="aiTemplateSelectRef"></ai-template-select>
+        <template v-if="!templateId">
+          <!-- 模版选择区域 -->
+          <ai-template-select v-if="active === 1" ref="aiTemplateSelectRef"></ai-template-select>
+        </template>
         <!-- AI 简历生成区域 -->
         <ai-model-select
-          v-if="active === 2 && !isAiLoading && !generateResumeSuccess"
+          v-if="active === lastActive && !isAiLoading && !generateResumeSuccess"
           ref="aiModelSelectRef"
         ></ai-model-select>
-        <AiLoading v-if="active === 2 && isAiLoading" />
+        <AiLoading v-if="active === lastActive && isAiLoading" />
         <!-- 生成的简历预览 -->
         <div
-          v-show="active === 2 && !isAiLoading && generateResumeSuccess"
+          v-show="active === lastActive && !isAiLoading && generateResumeSuccess"
           class="resume-preview-container"
         >
           <ResumePreview />
@@ -65,7 +67,7 @@
             <div v-if="active !== 0" class="next-step">
               <el-button class="custom-button" @click="prevStep">上一步</el-button>
             </div>
-            <div v-if="active !== 2" class="next-step">
+            <div v-if="active !== lastActive" class="next-step">
               <el-button class="custom-button" @click="nextStep">下一步</el-button>
             </div>
             <div v-else class="next-step">
@@ -176,6 +178,16 @@
       ElMessage.warning('未查询到该模版');
     }
   };
+
+  // 判断是否带有模版ID
+  const route = useRoute();
+  const templateId = route.query.templateId as string;
+  const lastActive = ref(2); // 最后一步的active
+  if (templateId) {
+    selectTemplateId.value = templateId;
+    lastActive.value = 1;
+    getTemplateData();
+  }
 
   // 上一步
   const prevStep = () => {
