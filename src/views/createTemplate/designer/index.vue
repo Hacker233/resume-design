@@ -1,9 +1,13 @@
 <template>
   <div class="create-template-box">
     <!-- 导航栏 -->
-    <nav-bar :template-info="templateInfo" @publish-success="publishSuccess"></nav-bar>
+    <nav-bar
+      :template-info="templateInfo"
+      @publish-success="publishSuccess"
+      @refresh="generateSuccess"
+    ></nav-bar>
     <!-- 内容区容器 -->
-    <div class="content-wrapper">
+    <div :key="resetKey" class="content-wrapper">
       <!-- 左侧物料区 -->
       <div class="module-left">
         <module-select></module-select>
@@ -46,6 +50,14 @@
   const route = useRoute();
   const id = ref<any>('');
   id.value = route.query.id; // 获取模版id
+
+  // 重置
+  const { resetKey, fromAiGenerate } = storeToRefs(appStore.useCreateTemplateStore);
+  const generateSuccess = async () => {
+    resetKey.value++; // 增加key，强制重新渲染
+    await nextTick();
+    fromAiGenerate.value = false;
+  };
 
   // 初始化JSON数据
   const { HJNewJsonStore, selectedPageName } = storeToRefs(appStore.useCreateTemplateStore);

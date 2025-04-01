@@ -657,11 +657,20 @@ function mergeData(oldData: any, newData: any) {
         ) {
           mergeData(oldData[key], newData[key]);
         }
-        // 如果当前属性是数组，递归合并每个元素
+        // 如果当前属性是数组
         else if (Array.isArray(oldData[key])) {
-          for (let i = 0; i < oldData[key].length; i++) {
-            if (newData[key][i]) {
-              mergeData(oldData[key][i], newData[key][i]);
+          // 检查数组元素是否是字符串
+          const isStringArray = oldData[key].length > 0 && typeof oldData[key][0] === 'string';
+
+          if (isStringArray) {
+            // 如果是字符串数组，直接使用旧值
+            newData[key] = oldData[key];
+          } else {
+            // 如果是对象数组，递归合并每个元素
+            for (let i = 0; i < oldData[key].length; i++) {
+              if (newData[key][i]) {
+                mergeData(oldData[key][i], newData[key][i]);
+              }
             }
           }
         }

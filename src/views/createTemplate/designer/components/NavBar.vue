@@ -21,14 +21,14 @@
       />
     </div>
     <div class="nav-right">
-      <!-- <el-tooltip effect="dark" content="AI简历生成" placement="bottom">
-        <div class="ai-bot-container" @click="aiOptimize"
+      <el-tooltip effect="dark" content="AI简历生成" placement="bottom">
+        <div class="ai-bot-container" @click="aiGenerate"
           ><img src="@/assets/images/ai-translate.webp" width="24" height="24" /><div
             class="ai-bot-text"
             >AI生成</div
           ></div
         >
-      </el-tooltip> -->
+      </el-tooltip>
       <el-tooltip effect="light" content="提交模版" placement="bottom">
         <el-button
           size="default"
@@ -53,14 +53,20 @@
   ></submit-audit-dialog>
 
   <!-- AI简历生成弹窗 -->
+  <ai-generate-dialog
+    :dialog-generate-visible="dialogGenerateVisible"
+    @cancle="cancleGenerateDialog"
+    @update-success="updateSuccess"
+  ></ai-generate-dialog>
 </template>
 <script lang="ts" setup>
   import appStore from '@/store';
   import { storeToRefs } from 'pinia';
   import { UploadFilled, Folder } from '@element-plus/icons-vue';
   import SubmitAuditDialog from './SubmitAuditDialog.vue';
+  import AiGenerateDialog from './AiGenerateDialog.vue';
 
-  const emit = defineEmits(['publishSuccess']);
+  const emit = defineEmits(['publishSuccess', 'refresh']);
 
   defineProps<{
     templateInfo: any;
@@ -104,12 +110,20 @@
   };
 
   // 打开AI诊断抽屉
-  // const aiDrawer = ref<boolean>(false);
+  const dialogGenerateVisible = ref<boolean>(false);
+  const aiGenerate = () => {
+    dialogGenerateVisible.value = true;
+  };
 
-  // const aiOptimize = () => {
-  //   aiDrawer.value = true;
-  //   console.log('AI诊断');
-  // };
+  const cancleGenerateDialog = () => {
+    dialogGenerateVisible.value = false;
+  };
+
+  // 简历生成成功
+  const updateSuccess = () => {
+    dialogGenerateVisible.value = false;
+    emit('refresh');
+  };
 </script>
 <style lang="scss" scoped>
   .nav-bar-box {

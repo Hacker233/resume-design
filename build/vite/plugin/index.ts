@@ -9,7 +9,7 @@ import PkgConfig from 'vite-plugin-package-config';
 import DefineOptions from 'unplugin-vue-define-options/vite';
 import { viteCommonjs } from '@originjs/vite-plugin-commonjs';
 import { createHtmlPlugin } from 'vite-plugin-html';
-import { title, description, keywords } from '../../../src/config/seo';
+import { title, description, keywords } from './seo';
 
 export const createVitePlugins = async (viteEnv: ViteEnv, isBuild: boolean) => {
   const { VITE_BUILD_COMPRESS, VITE_BUILD_COMPRESS_DELETE_ORIGIN_FILE } = viteEnv;
