@@ -301,6 +301,7 @@
   const jianBImage = new URL('@/assets/images/jianB.png', import.meta.url).href;
   const colors = ['0', '1'];
   const benefits = [
+    { name: 'AI智能生成简历', special: false },
     { name: 'AI简历诊断', special: false },
     { name: 'AI简历翻译', special: false },
     { name: 'AI简历润色', special: false },
@@ -320,19 +321,23 @@
       isActive: false,
       benefits: [
         {
-          content: '无限制使用',
+          content: '消耗简币生成<img width="22" src="' + jianBImage + '" alt="简币"/>',
           special: false
         },
         {
-          content: '无限制使用',
+          content: '消耗简币诊断<img width="22" src="' + jianBImage + '" alt="简币"/>',
           special: false
         },
         {
-          content: '无限制使用',
+          content: '消耗简币翻译<img width="22" src="' + jianBImage + '" alt="简币"/>',
           special: false
         },
         {
-          content: '无限制使用',
+          content: '消耗简币润色<img width="22" src="' + jianBImage + '" alt="简币"/>',
+          special: false
+        },
+        {
+          content: '消耗简币创作<img width="22" src="' + jianBImage + '" alt="简币"/>',
           special: false
         },
         {
@@ -364,6 +369,7 @@
         { content: '无限制使用', special: false },
         { content: '无限制使用', special: false },
         { content: '无限制使用', special: false },
+        { content: '无限制使用', special: false },
         { content: '无限制导出', special: false },
         { content: '无限制导出', special: false },
         { content: '无限制下载', special: false },
@@ -381,6 +387,7 @@
         { content: '无限制使用', special: false },
         { content: '无限制使用', special: false },
         { content: '无限制使用', special: false },
+        { content: '无限制使用', special: false },
         { content: '无限制导出', special: false },
         { content: '无限制导出', special: false },
         { content: '无限制下载', special: false },
@@ -394,6 +401,7 @@
       class: 'ssvip',
       isActive: true,
       benefits: [
+        { content: '无限制使用', special: false },
         { content: '无限制使用', special: false },
         { content: '无限制使用', special: false },
         { content: '无限制使用', special: false },

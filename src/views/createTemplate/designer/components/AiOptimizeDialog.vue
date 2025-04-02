@@ -26,10 +26,20 @@
       <!-- 模型选择器 -->
       <div class="model-selector">
         <el-radio-group v-model="selectedModel" @change="handleModelChange">
-          <el-radio label="" size="large" border>
-            免费模型
-            <span class="free-tag">免费</span>
-          </el-radio>
+          <el-tooltip effect="dark" content="限会员使用" placement="top">
+            <el-radio label="" size="large" border :disabled="!isMember">
+              免费模型
+              <span class="free-tag">免费</span>
+              <!-- 皇冠 -->
+              <img
+                class="vip-icon"
+                src="@/assets/images/membership.svg"
+                alt="会员"
+                title="会员"
+                width="20"
+              />
+            </el-radio>
+          </el-tooltip>
           <template v-if="modelList.length > 0">
             <el-tooltip
               v-for="(item, index) in modelList"
@@ -92,6 +102,7 @@
   import appStore from '@/store';
   import jianBImage from '@/assets/images/jianB.png';
   import AiOptimizeDialogLogs from './AiOptimizeDialogLogs.vue';
+  import { storeToRefs } from 'pinia';
 
   const emit = defineEmits(['cancle', 'updateSuccess']);
 
@@ -136,6 +147,16 @@
     }
   };
 
+  // 判断是否是会员
+  const { membershipInfo } = storeToRefs(appStore.useMembershipStore);
+  const isMember = computed(() => {
+    if (membershipInfo.value.hasMembership && membershipInfo.value.daysRemaining > 0) {
+      return true;
+    } else {
+      return false;
+    }
+  });
+
   // 查询AI简历优化需要的简币数量
   const getOptimizeResumeCoin = async () => {
     const response = await getOptimizeResumeIntegralAsync();
@@ -152,6 +173,9 @@
       const response = await getOptimizeResumeModelListAsync();
       if (response.data.status === 200) {
         modelList.value = response.data.data;
+        if (modelList.value.length > 0) {
+          selectedModel.value = modelList.value[0];
+        }
       } else {
         ElMessage.error(response.data.message);
       }
@@ -163,6 +187,10 @@
   // 提交
   const submit = async () => {
     console.log('selectedModel:', selectedModel.value); // 打印 selectedModel 的值
+    if (!isMember.value && !selectedModel.value) {
+      ElMessage.error('请选择模型');
+      return;
+    }
     isSubmitting.value = true;
     if (selectedModel.value) {
       try {
@@ -418,6 +446,11 @@
             margin-left: 5px;
           }
         }
+      }
+      .vip-icon {
+        position: absolute; // 绝对定位
+        top: -12px;
+        right: -6px;
       }
     }
   }

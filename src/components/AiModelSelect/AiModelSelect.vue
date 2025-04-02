@@ -16,12 +16,22 @@
 
     <!-- 模型选择器 -->
     <div class="model-selector">
-      <h1 class="title"> 请选择AI模型 </h1>
+      <h1 class="title"> 请选择AI模型1 </h1>
       <el-radio-group v-model="selectedModel" @change="handleModelChange">
-        <el-radio label="" size="large" border>
-          免费模型
-          <span class="free-tag">免费</span>
-        </el-radio>
+        <el-tooltip effect="dark" content="限会员使用" placement="top">
+          <el-radio label="" size="large" border :disabled="!isMember">
+            免费模型
+            <span class="free-tag">免费</span>
+            <!-- 皇冠 -->
+            <img
+              class="vip-icon"
+              src="@/assets/images/membership.svg"
+              alt="会员"
+              title="会员"
+              width="20"
+            />
+          </el-radio>
+        </el-tooltip>
         <template v-if="modelList.length > 0">
           <el-tooltip
             v-for="(item, index) in modelList"
@@ -64,6 +74,7 @@
   } from '@/http/api/ai';
   import { formatNumberWithCommas } from '@/utils/common';
   import appStore from '@/store';
+  import { storeToRefs } from 'pinia';
 
   const emit = defineEmits(['handleModelChange']);
 
@@ -75,6 +86,16 @@
   const props = withDefaults(defineProps<TDialog>(), {
     dialogAiOptimizeVisible: false,
     aiType: 'optimizeResume'
+  });
+
+  // 判断是否是会员
+  const { membershipInfo } = storeToRefs(appStore.useMembershipStore);
+  const isMember = computed(() => {
+    if (membershipInfo.value.hasMembership && membershipInfo.value.daysRemaining > 0) {
+      return true;
+    } else {
+      return false;
+    }
   });
 
   // 响应式数据
@@ -124,6 +145,7 @@
     const response = await getGenerateResumeIntegralAsync();
     if (response.data.status === 200) {
       payValue.value = response.data.data;
+      handleModelChange(selectedModel.value);
     } else {
       ElMessage.error(response.data.message);
     }
@@ -135,6 +157,10 @@
       const response = await getOptimizeResumeModelListAsync();
       if (response.data.status === 200) {
         modelList.value = response.data.data;
+        if (modelList.value.length > 0) {
+          selectedModel.value = modelList.value[0];
+          handleModelChange(selectedModel.value);
+        }
       } else {
         ElMessage.error(response.data.message);
       }
@@ -149,6 +175,10 @@
       const response = await getGenerateResumeModelListAsync();
       if (response.data.status === 200) {
         modelList.value = response.data.data;
+        if (modelList.value.length > 0) {
+          selectedModel.value = modelList.value[0];
+          handleModelChange(selectedModel.value);
+        }
       } else {
         ElMessage.error(response.data.message);
       }
@@ -293,6 +323,7 @@
       padding: 10px; // 内边距
       transition: all 0.3s ease; // 过渡效果
       border: 1px solid #dcdfe6; // 默认边框颜色
+      position: relative;
 
       &:hover {
         background-color: #f5f7fa; // 鼠标悬停背景色
@@ -339,6 +370,11 @@
             margin-left: 5px;
           }
         }
+      }
+      .vip-icon {
+        position: absolute; // 绝对定位
+        top: -12px;
+        right: -6px;
       }
     }
   }

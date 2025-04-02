@@ -123,11 +123,11 @@
 
   // 简历具体职业
   const defaultIndustryList = ref<any>([
-    '前端工程师',
-    '平面设计师',
-    '运营助理',
+    '前端开发',
+    '广告设计',
+    '内容运营',
     '产品经理',
-    '项目经理'
+    '新媒体运营'
   ]);
   const templatePostListCP = computed(() => {
     if (filterValue.templateIndustry) {

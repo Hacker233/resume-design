@@ -27,10 +27,20 @@
       <!-- 新增模型选择器 -->
       <div class="model-selector">
         <el-radio-group v-model="selectedModel">
-          <el-radio label="" size="large" border>
-            免费模型
-            <span class="free-tag">免费</span>
-          </el-radio>
+          <el-tooltip effect="dark" content="限会员使用" placement="top">
+            <el-radio label="" size="large" border :disabled="!isMember">
+              免费模型
+              <span class="free-tag">免费</span>
+              <!-- 皇冠 -->
+              <img
+                class="vip-icon"
+                src="@/assets/images/membership.svg"
+                alt="会员"
+                title="会员"
+                width="20"
+              />
+            </el-radio>
+          </el-tooltip>
           <template v-if="modelList.length > 0">
             <el-tooltip
               v-for="(item, index) in modelList"
@@ -143,6 +153,7 @@
   import { formatNumberWithCommas } from '@/utils/common';
   import appStore from '@/store';
   import jianBImage from '@/assets/images/jianB.png';
+  import { storeToRefs } from 'pinia';
 
   const emit = defineEmits(['cancle', 'updateSuccess']);
   interface TDialog {
@@ -188,6 +199,16 @@
     selectedModel.value = ''; // 确保初始值为空字符串
   };
 
+  // 判断是否是会员
+  const { membershipInfo } = storeToRefs(appStore.useMembershipStore);
+  const isMember = computed(() => {
+    if (membershipInfo.value.hasMembership && membershipInfo.value.daysRemaining > 0) {
+      return true;
+    } else {
+      return false;
+    }
+  });
+
   // 查询AI润色需要的简币数量
   const getPolishCoin = async () => {
     const response = await getPolishIntegralAsync();
@@ -216,6 +237,9 @@
       const response = await getPolishModelListAsync();
       if (response.data.status === 200) {
         modelList.value = response.data.data;
+        if (modelList.value.length > 0) {
+          selectedModel.value = modelList.value[0];
+        }
       } else {
         ElMessage.error(response.data.message);
       }
@@ -230,6 +254,9 @@
       const response = await getCreateModelListAsync();
       if (response.data.status === 200) {
         modelList.value = response.data.data;
+        if (modelList.value.length > 0) {
+          selectedModel.value = modelList.value[0];
+        }
       } else {
         ElMessage.error(response.data.message);
       }
@@ -593,6 +620,11 @@
         .el-radio__label {
           color: #4e97fb; // 选中文字颜色
         }
+      }
+      .vip-icon {
+        position: absolute; // 绝对定位
+        top: -12px;
+        right: -6px;
       }
 
       .el-radio__label {

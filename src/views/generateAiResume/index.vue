@@ -200,6 +200,16 @@
     }
   };
 
+  // 判断是否是会员
+  const { membershipInfo } = storeToRefs(appStore.useMembershipStore);
+  const isMember = computed(() => {
+    if (membershipInfo.value.hasMembership && membershipInfo.value.daysRemaining > 0) {
+      return true;
+    } else {
+      return false;
+    }
+  });
+
   // 生成简历
   const isAiLoading = ref(false); // AI是否正在返回
   const generateResumeSuccess = ref(false); // 生成简历是否成功
@@ -208,6 +218,11 @@
   const generateResume = async () => {
     console.log(generateParams.value);
     generateParams.value.model = aiModelSelectRef.value.selectedModel;
+    // 不是会员，并且没有选择模型，弹出提示框
+    if (!isMember.value && !generateParams.value.model) {
+      ElMessage.warning('请选择模型');
+      return;
+    }
     if (!generateParams.value.keyWords) {
       ElMessage.warning('请填写关键词');
       return;
