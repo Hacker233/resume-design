@@ -47,7 +47,7 @@
                 alt="AI创作"
                 title="AI创作"
               />
-              <h3>AI创作</h3>
+              <h3>AI生成</h3>
             </div>
           </div>
         </div>
