@@ -12,3 +12,12 @@ services:
     volumes:
       - ./certs:/etc/nginx/ssl
       - ./nginx.conf:/etc/nginx/nginx.conf
+      - ./nav/certs:/etc/nginx/nav/ssl
+      - ./nav/html:/etc/nginx/nav/html
+
+  php-fpm:
+    image: php:8.2-fpm-alpine
+    container_name: nav-php-fpm
+    restart: always
+    volumes:
+      - ./nav/html:/var/www/html
