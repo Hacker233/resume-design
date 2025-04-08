@@ -4,9 +4,6 @@ FROM nginx:latest
 # 将本地的 dist 目录复制到 nginx 的默认静态文件目录
 COPY ./dist /usr/share/nginx/html
 
-# 将子域名站点的 nav 目录复制到特定位置
-COPY ./nav /usr/share/nginx/nav
-
 # 暴露容器的 80 和 443 端口
 EXPOSE 80
 EXPOSE 443
