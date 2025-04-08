@@ -4,6 +4,10 @@ FROM nginx:latest
 # 将本地的 dist 目录复制到 nginx 的默认静态文件目录
 COPY ./dist /usr/share/nginx/html
 
+# 设置文件和目录权限
+RUN chown -R nginx:nginx /usr/share/nginx/html && \
+    chmod -R 755 /usr/share/nginx/html
+
 # 暴露容器的 80 和 443 端口
 EXPOSE 80
 EXPOSE 443
