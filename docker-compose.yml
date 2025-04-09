@@ -22,6 +22,7 @@ services:
     restart: always
     volumes:
       - ./nav/html:/var/www/html
+      - ./php-fpm.conf:/usr/local/etc/php-fpm.d/www.conf
       - php-socket:/var/run/php
 
 volumes:
