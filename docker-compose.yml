@@ -12,19 +12,7 @@ services:
     volumes:
       - ./certs:/etc/nginx/ssl
       - ./nginx.conf:/etc/nginx/nginx.conf
-      - ./nav/certs:/etc/nginx/nav/ssl
-      - ./nav/html:/var/www/html
-      - php-socket:/var/run/php
 
-  php-fpm:
-    image: php:8.2-fpm-alpine
-    container_name: nav-php-fpm
-    restart: always
-    command: ["php-fpm", "-y", "/usr/local/etc/php-fpm.d/www.conf"]
-    volumes:
-      - ./nav/html:/var/www/html
-      - ./php-fpm.conf:/usr/local/etc/php-fpm.d/www.conf
-      - php-socket:/var/run/php
-
-volumes:
-  php-socket:
+## 执行命令 
+## docker-compose down
+## docker-compose down
