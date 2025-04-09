@@ -15,4 +15,4 @@ services:
 
 ## 执行命令 
 ## docker-compose down
-## docker-compose down
+## docker-compose up --build -d

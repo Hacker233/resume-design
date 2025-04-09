@@ -45,4 +45,4 @@ volumes:
 
 ## 执行命令 
 ## docker-compose -f docker-compose-nav down
-## docker-compose -f docker-compose-nav down
+## docker-compose -f docker-compose-nav up --build -d
