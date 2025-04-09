@@ -20,6 +20,7 @@ services:
     image: php:8.2-fpm-alpine
     container_name: nav-php-fpm
     restart: always
+    command: ["php-fpm", "-y", "/usr/local/etc/php-fpm.d/www.conf"]
     volumes:
       - ./nav/html:/var/www/html
       - ./php-fpm.conf:/usr/local/etc/php-fpm.d/www.conf
