@@ -14,6 +14,7 @@ services:
       - ./nginx.conf:/etc/nginx/nginx.conf
       - ./nav/certs:/etc/nginx/nav/ssl
       - ./nav/html:/etc/nginx/nav/html
+      - php-socket:/var/run/php
 
   php-fpm:
     image: php:8.2-fpm-alpine
@@ -21,3 +22,7 @@ services:
     restart: always
     volumes:
       - ./nav/html:/var/www/html
+      - php-socket:/var/run/php
+
+volumes:
+  php-socket:
