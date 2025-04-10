@@ -12,35 +12,15 @@ services:
       - ./certs:/etc/nginx/ssl
       - ./nginx-nav.conf:/etc/nginx/nginx.conf
       - ./nav/certs:/etc/nginx/nav/ssl
-      - ./nav/html:/var/www/html
-      - php-socket:/var/run/php
-      - php-log:/var/log/php-fpm
-    networks:
-      - php_network
 
-  php-fpm:
-    container_name: nav-php-fpm
-    build:
-      context: .
-      dockerfile: Dockerfile.php
-    command: ["php-fpm", "-F", "-y", "/usr/local/etc/php-fpm.d/www.conf"]
+  twonav:
+    image: tznb/twonav:latest
+    container_name: twonav
+    restart: unless-stopped
     ports:
-      - "9888:9001"
+      - "8088:80"
     volumes:
-      - ./nav/html:/var/www/html
-      - ./php-fpm.conf:/usr/local/etc/php-fpm.d/www.conf
-      - php-socket:/var/run/php
-      - php-log:/var/log/php-fpm
-    networks:
-      - php_network
-
-networks:
-  php_network:
-    driver: bridge
-
-volumes:
-  php-socket:
-  php-log:
+      - /www/wwwroot/twonav:/www
 
 
 ## 执行命令 
