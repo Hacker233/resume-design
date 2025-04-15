@@ -644,6 +644,10 @@
         align-items: center;
         justify-content: center;
         letter-spacing: 2px;
+        // 渐变字体
+        background: linear-gradient(45deg, #2ddd9d, #137c56); // 自定义渐变颜色
+        -webkit-background-clip: text; // Safari 和其他 WebKit 浏览器
+        background-clip: text;
       }
       .el-sub-menu {
         height: 50px;

@@ -42,6 +42,10 @@
 
   // 非路由跳转
   const toOtherweb = (item: { path: any }) => {
+    if (item.path.indexOf('http') !== -1) {
+      location.assign(item.path);
+      return;
+    }
     location.assign(`https://maobucv.com${item.path}`);
   };
 </script>
