@@ -139,7 +139,7 @@ export const pricePlans: PricePlan[] = [
       { text: 'AI简历翻译', included: true, desc: '' },
       { text: 'AI简历创作', included: true, desc: '' },
       { text: 'AI简历诊断', included: true, desc: '' },
-      { text: 'AI简历生成', included: false, desc: '' },
+      { text: 'AI简历生成', included: true, desc: '' },
       { text: '是否与猫步简历官网一致', included: true, desc: '' }
     ],
     bottomText: '持续更新迭代',
