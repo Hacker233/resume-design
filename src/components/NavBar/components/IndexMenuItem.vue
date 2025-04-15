@@ -13,7 +13,10 @@
       <index-menu-item v-if="child.status === 1" :item="child" :key-index="item.name + index" />
     </template>
   </el-sub-menu>
-  <el-menu-item v-else :index="item.path">{{ item.title }}</el-menu-item>
+  <template v-else>
+    <el-menu-item v-if="item.isRouter === 1" :index="item.path">{{ item.title }}</el-menu-item>
+    <el-menu-item v-else @click="toOtherweb(item)">{{ item.title }}</el-menu-item>
+  </template>
 </template>
 
 <script lang="ts" setup>
@@ -22,6 +25,7 @@
     path: string;
     title: string;
     status: number;
+    isRouter: number;
     children?: MenuItem[];
   }
 
@@ -35,4 +39,9 @@
       required: true
     }
   });
+
+  // 非路由跳转
+  const toOtherweb = (item: { path: any }) => {
+    location.assign(`https://maobucv.com${item.path}`);
+  };
 </script>

@@ -56,6 +56,16 @@
           />
         </el-select>
       </el-form-item>
+      <el-form-item label="是否路由跳转" prop="isRouter">
+        <el-select v-model="ruleForm.isRouter" placeholder="请选择是否路由跳转" style="width: 100%">
+          <el-option
+            v-for="item in isRouterListOptions"
+            :key="item.value"
+            :label="item.label"
+            :value="item.value"
+          />
+        </el-select>
+      </el-form-item>
     </el-form>
     <template #footer>
       <span class="dialog-footer">
@@ -98,6 +108,7 @@
         ruleForm.path = props.row.path;
         ruleForm.index = props.row.index;
         ruleForm.status = props.row.status;
+        ruleForm.isRouter = props.row.isRouter;
       }
     },
     {
@@ -122,6 +133,7 @@
     path: String;
     index: Number;
     status: Number;
+    isRouter: Number;
   }
   // 表单填写数据
   const ruleForm = reactive<IIndexMenu>({
@@ -130,7 +142,8 @@
     title: '', // 菜单中文名
     path: '',
     index: 0, // 菜单权重
-    status: 1
+    status: 1,
+    isRouter: 1
   });
   const rules = reactive<FormRules>({
     name: [{ required: true, message: '菜单英文名不能为空', trigger: 'change' }],
@@ -148,6 +161,18 @@
     {
       value: 2,
       label: '不启用'
+    }
+  ];
+
+  // 是否路由跳转
+  const isRouterListOptions = [
+    {
+      value: 1,
+      label: '是'
+    },
+    {
+      value: 2,
+      label: '否'
     }
   ];
 
@@ -173,7 +198,8 @@
             title: ruleForm.title,
             path: ruleForm.path,
             index: ruleForm.index,
-            status: ruleForm.status
+            status: ruleForm.status,
+            isRouter: ruleForm.isRouter
           };
           sureLoading.value = true;
           const data = await addIndexMenuAsync(params);
@@ -194,7 +220,8 @@
             title: ruleForm.title,
             path: ruleForm.path,
             index: ruleForm.index,
-            status: ruleForm.status
+            status: ruleForm.status,
+            isRouter: ruleForm.isRouter
           };
           const data = await updateIndexMenuAsync(params);
           if (data.data.status === 200) {

@@ -43,6 +43,13 @@
         </template>
       </el-table-column>
 
+      <el-table-column prop="isRouter" label="是否路由跳转">
+        <template #default="scope">
+          <el-tag v-if="scope.row.isRouter === 1" type="success">是</el-tag>
+          <el-tag v-else type="danger">否</el-tag>
+        </template>
+      </el-table-column>
+
       <el-table-column prop="createDate" label="创建日期">
         <template #default="scope">
           <div>

@@ -18,7 +18,7 @@
           <!-- 只显示启用中的 -->
           <index-menu-item v-if="item.status === 1" :item="item" :key-index="item.name + index" />
         </template>
-        <el-menu-item @click="toArticles">求职攻略</el-menu-item>
+        <!-- <el-menu-item @click="toArticles">求职攻略</el-menu-item> -->
       </el-menu>
     </div>
     <!-- GitHub -->
@@ -248,11 +248,6 @@
     }
   };
   getTodayAttendancePersonTotal();
-
-  // 跳转至wordpress页面
-  const toArticles = () => {
-    location.assign('https://maobucv.com/articles');
-  };
 </script>
 <style lang="scss" scoped>
   .background-nav {
