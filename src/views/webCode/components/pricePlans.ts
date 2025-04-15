@@ -40,6 +40,8 @@ export const pricePlans: PricePlan[] = [
       { text: 'AI简历润色', included: false, desc: '' },
       { text: 'AI简历翻译', included: false, desc: '' },
       { text: 'AI简历创作', included: false, desc: '' },
+      { text: 'AI简历诊断', included: false, desc: '' },
+      { text: 'AI简历生成', included: false, desc: '' },
       { text: '是否与猫步简历官网一致', included: false, desc: '' }
     ],
     bottomText: '无后端源码'
@@ -71,6 +73,7 @@ export const pricePlans: PricePlan[] = [
       { text: 'AI简历翻译', included: false, desc: '' },
       { text: 'AI简历创作', included: false, desc: '' },
       { text: 'AI简历诊断', included: false, desc: '' },
+      { text: 'AI简历生成', included: false, desc: '' },
       { text: '是否与猫步简历官网一致', included: false, desc: '' }
     ],
     bottomText: '后端源码更新至2023年2月',
@@ -103,6 +106,7 @@ export const pricePlans: PricePlan[] = [
       { text: 'AI简历创作', included: false, desc: '' },
       { text: 'AI简历创作', included: false, desc: '' },
       { text: 'AI简历诊断', included: false, desc: '' },
+      { text: 'AI简历生成', included: false, desc: '' },
       { text: '是否与猫步简历官网一致', included: false, desc: '' }
     ],
     bottomText: '后端源码更新至2023年8月',
@@ -135,6 +139,7 @@ export const pricePlans: PricePlan[] = [
       { text: 'AI简历翻译', included: true, desc: '' },
       { text: 'AI简历创作', included: true, desc: '' },
       { text: 'AI简历诊断', included: true, desc: '' },
+      { text: 'AI简历生成', included: false, desc: '' },
       { text: '是否与猫步简历官网一致', included: true, desc: '' }
     ],
     bottomText: '持续更新迭代',
