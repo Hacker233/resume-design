@@ -31,6 +31,15 @@
           <svg-icon icon-name="icon-fuwuqi" color="#2cbd99" size="20px"></svg-icon>
         </li>
       </el-tooltip>
+      <el-tooltip
+        effect="light"
+        content="如有内容位于分割线处，请通过调整模块边距或上下文中内容处回车来解决"
+        placement="right"
+      >
+        <li>
+          <svg-icon icon-name="icon-wenti" color="#2cbd99" size="20px"></svg-icon>
+        </li>
+      </el-tooltip>
     </ul>
 
     <!-- 模块JSON -->
