@@ -671,7 +671,7 @@ function mergeData(oldData: any, newData: any) {
               } else {
                 // 代表新数据长度大于旧数据长度
                 oldData[key][i] = cloneDeep(oldData[key][0]);
-                mergeData(oldData[key][0], newData[key][i]);
+                mergeData(oldData[key][i], newData[key][i]);
               }
             }
             // // 如果是对象数组，递归合并每个元素
