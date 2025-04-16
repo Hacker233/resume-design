@@ -661,17 +661,25 @@ function mergeData(oldData: any, newData: any) {
         else if (Array.isArray(oldData[key])) {
           // 检查数组元素是否是字符串
           const isStringArray = oldData[key].length > 0 && typeof oldData[key][0] === 'string';
-
           if (isStringArray) {
             // 如果是字符串数组，直接使用旧值
             newData[key] = oldData[key];
           } else {
-            // 如果是对象数组，递归合并每个元素
-            for (let i = 0; i < oldData[key].length; i++) {
-              if (newData[key][i]) {
+            for (let i = 0; i < newData[key].length; i++) {
+              if (oldData[key][i]) {
                 mergeData(oldData[key][i], newData[key][i]);
+              } else {
+                // 代表新数据长度大于旧数据长度
+                oldData[key][i] = cloneDeep(oldData[key][0]);
+                mergeData(oldData[key][0], newData[key][i]);
               }
             }
+            // // 如果是对象数组，递归合并每个元素
+            // for (let i = 0; i < oldData[key].length; i++) {
+            //   if (newData[key][i]) {
+            //     mergeData(oldData[key][i], newData[key][i]);
+            //   }
+            // }
           }
         }
       }
