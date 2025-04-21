@@ -41,11 +41,11 @@
   });
 
   // 非路由跳转
-  const toOtherweb = (item: { path: any }) => {
-    if (item.path.indexOf('http') !== -1) {
-      location.assign(item.path);
-      return;
+  const toOtherweb = (item: { path: string }) => {
+    if (item.path.includes('http')) {
+      window.open(item.path, '_blank', 'noopener,noreferrer');
+    } else {
+      window.open(`https://maobucv.com${item.path}`, '_blank', 'noopener,noreferrer');
     }
-    location.assign(`https://maobucv.com${item.path}`);
   };
 </script>
