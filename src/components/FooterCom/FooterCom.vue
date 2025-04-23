@@ -51,7 +51,9 @@
         <div class="links-box">
           <template v-for="(item, index) in linksList" :key="index">
             <p>
-              <a :href="item.link" target="_blank" rel="noopener noreferrer">{{ item.name }}</a>
+              <a :href="appendRefParam(item.link)" target="_blank" rel="noopener noreferrer">{{
+                item.name
+              }}</a>
             </p>
           </template>
         </div>
@@ -136,6 +138,11 @@
   };
   const updateApplyLinksSuccess = () => {
     dialogApplyLinksVisible.value = false;
+  };
+
+  const appendRefParam = (url: string) => {
+    // 如果 URL 已经有查询参数，用 & 连接；否则用 ? 开头
+    return url.includes('?') ? `${url}&ref=maobucv.com` : `${url}?ref=maobucv.com`;
   };
 </script>
 <style lang="scss" scoped>
