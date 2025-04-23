@@ -86,3 +86,12 @@ export const applyLinksAsync: any = (data: any) => {
     data: data
   });
 };
+
+// 职行AI获取用户简历数据
+export const getUserResumeByJobzxAsync: any = (params: any) => {
+  return http.request({
+    url: '/huajian/common/getUserResumeByJobzx',
+    method: 'get',
+    params: params
+  });
+};

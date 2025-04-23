@@ -20,6 +20,8 @@
 </template>
 
 <script lang="ts" setup>
+  import appStore from '@/store';
+
   interface MenuItem {
     name: string;
     path: string;
@@ -43,6 +45,17 @@
   // 非路由跳转
   const toOtherweb = (item: { path: string }) => {
     if (item.path.includes('http')) {
+      // 职行AI
+      if (item.path.includes('jobzx')) {
+        // 获取用户id
+        const { token } = appStore.useTokenStore;
+        let id = '';
+        if (token) {
+          id = appStore.useUserInfoStore.userInfo._id;
+        }
+        window.open(item.path + '&id=' + id, '_blank', 'noopener,noreferrer');
+        return;
+      }
       window.open(item.path, '_blank', 'noopener,noreferrer');
     } else {
       window.open(`https://maobucv.com${item.path}`, '_blank', 'noopener,noreferrer');
