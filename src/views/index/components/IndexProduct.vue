@@ -170,10 +170,16 @@
 
           .card-box {
             display: flex;
-            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: flex-start;
+            width: 100%;
+            flex-shrink: 1;
 
             .card {
-              width: 200px; // 宽度自适应
+              width: calc(25% - 15px);
+              min-width: 120px;
+              max-width: 220px;
+              flex-shrink: 1;
               height: 180px;
               background-color: #fff;
               border-radius: 20px;
@@ -183,9 +189,7 @@
               padding-top: 15px;
               flex-direction: column;
               user-select: none;
-              flex-shrink: 0;
-              margin-right: 30px;
-              margin-bottom: 30px;
+              flex-shrink: 1;
 
               h3 {
                 font-size: 18px;

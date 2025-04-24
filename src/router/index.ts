@@ -60,6 +60,8 @@ const Membership = () => import('@/views/membership/index.vue');
 const NoPermission = () => import('@/views/noPermission/index.vue');
 // AI智能简历生成页面
 const GenerateAiResume = () => import('@/views/generateAiResume/index.vue');
+// 简历定制服务页面
+const ResumeService = () => import('@/views/resumeServices/index.vue');
 
 // 管理员界面
 const AdminIndex = () => import('@/views/admin/index.vue');
@@ -476,6 +478,18 @@ const routes: Array<RouteRecordRaw> = [
       requireAdmin: false
     },
     component: GenerateAiResume
+  },
+  {
+    path: '/resumeService',
+    name: 'ResumeService',
+    meta: {
+      title: '简历定制服务',
+      keepAlive: true,
+      isShowComNav: true,
+      requireLogin: false,
+      requireAdmin: false
+    },
+    component: ResumeService
   },
   {
     path: '/webCode',
