@@ -271,7 +271,7 @@
     justify-content: space-between;
     z-index: 10;
     user-select: none;
-    padding: 0 30px;
+    padding: 0 20px 0 30px;
     position: v-bind('props.position');
     top: 0;
     transition: all 0.3s;
@@ -290,18 +290,18 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        .el-menu-item {
+        :deep(.el-menu-item) {
           height: 100%;
           display: flex;
           justify-content: center;
           align-items: center;
           width: 100%;
           // 渐变字体
-          background: linear-gradient(45deg, #2ddd9d, #137c56); // 自定义渐变颜色
-          -webkit-background-clip: text; // Safari 和其他 WebKit 浏览器
-          background-clip: text;
+          background: linear-gradient(45deg, #2ddd9d, #137c56) !important; // 自定义渐变颜色
+          -webkit-background-clip: text !important; // Safari 和其他 WebKit 浏览器
+          background-clip: text !important;
           padding: 0 15px !important;
-          letter-spacing: 3px;
+          letter-spacing: 1px;
           font-size: 16px;
           border-bottom: 4px solid transparent;
           transition: all 0.3s;
@@ -319,7 +319,7 @@
           -webkit-background-clip: text; // Safari 和其他 WebKit 浏览器
           background-clip: text;
           border-bottom: 4px solid transparent;
-          width: 136px;
+          width: 130px;
           color: transparent;
           font-weight: 550;
           &:hover {
@@ -327,7 +327,7 @@
             background-color: rgba(#ccc, 0.1);
           }
           :deep(.el-sub-menu__title) {
-            letter-spacing: 3px;
+            letter-spacing: 1px;
             font-size: 16px;
             // 渐变字体
             background: linear-gradient(45deg, #2ddd9d, #137c56); // 自定义渐变颜色
@@ -495,7 +495,7 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        margin: 0 10px;
+        margin: 0 0 0 10px;
         height: 28px;
         cursor: pointer;
         transition: all 0.3s;
@@ -635,7 +635,7 @@
 
     .el-menu {
       padding: 0;
-      min-width: 134px;
+      min-width: 130px;
       .el-menu-item {
         height: 50px;
         font-size: 14px;
@@ -643,7 +643,7 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        letter-spacing: 2px;
+        letter-spacing: 1px;
         // 渐变字体
         background: linear-gradient(45deg, #2ddd9d, #137c56); // 自定义渐变颜色
         -webkit-background-clip: text; // Safari 和其他 WebKit 浏览器
@@ -660,7 +660,7 @@
         -webkit-background-clip: text; // Safari 和其他 WebKit 浏览器
         background-clip: text;
         padding: 0 15px !important;
-        letter-spacing: 3px;
+        letter-spacing: 1px;
         font-size: 16px;
         border-bottom: 4px solid transparent;
         transition: all 0.3s;
@@ -670,7 +670,7 @@
           background-color: rgba(#ccc, 0.1);
         }
         :deep(.el-sub-menu__title) {
-          letter-spacing: 3px;
+          letter-spacing: 1px;
           font-size: 16px;
           // 渐变字体
           background: linear-gradient(45deg, #2ddd9d, #137c56); // 自定义渐变颜色

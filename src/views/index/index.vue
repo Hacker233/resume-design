@@ -15,6 +15,8 @@
     <template-select ref="templeTef"></template-select>
     <!-- 根据用途挑选简历 -->
     <select-template-by-use></select-template-by-use>
+    <!-- 简历优化服务 -->
+    <resume-service></resume-service>
     <!-- 简历功能介绍 -->
     <resume-function-introduce></resume-function-introduce>
     <!-- 网站开源信息 -->
@@ -28,8 +30,7 @@
     <!-- <sponsor-com-vue ref="sponsorRefs"></sponsor-com-vue> -->
     <!-- 网站相关数据 -->
     <web-data></web-data>
-    <!-- footer -->
-    <footer-com></footer-com>
+
     <!-- 回到顶部 -->
     <el-backtop :right="50" :bottom="80" />
 
@@ -39,7 +40,8 @@
     <!-- GitHub卡片 -->
     <!-- <github-card></github-card> -->
   </div>
-
+  <!-- footer -->
+  <footer-com></footer-com>
   <!-- 公告弹窗 -->
   <notice-dialog
     :dialog-notice-visible="dialogNoticeVisible"
@@ -63,6 +65,7 @@
   import SelectTemplateByUse from './components/SelectTemplateByUse.vue';
   import ResumeFunctionIntroduce from './components/ResumeFunctionIntroduce.vue';
   import WebsiteOpenSource from './components/WebsiteOpenSource.vue';
+  import ResumeService from './components/ResumeService.vue';
   import { useHead } from '@vueuse/head';
   import { storeToRefs } from 'pinia';
   import appStore from '@/store';

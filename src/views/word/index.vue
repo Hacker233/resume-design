@@ -32,6 +32,7 @@
     <!-- 回到顶部 -->
     <el-backtop :right="50" :bottom="80" />
   </div>
+  <FooterCom />
 </template>
 <script lang="ts" setup>
   import {
@@ -44,6 +45,7 @@
   import NoDataVue from '@/components/NoData/NoData.vue';
   import CommonLoading from '@/components/CommonLoading/CommonLoading.vue';
   import { useHead } from '@vueuse/head';
+  import FooterCom from '@/components/FooterCom/FooterCom.vue';
 
   useHead({
     title: 'Word简历模版下载',
@@ -142,6 +144,7 @@
 <style lang="scss" scoped>
   .resume-word-box {
     width: 100%;
+    padding-bottom: 30px;
     .content-box {
       margin: 0 auto;
       min-height: 500px;

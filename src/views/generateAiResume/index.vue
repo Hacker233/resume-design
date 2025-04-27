@@ -97,6 +97,7 @@
       </template>
     </div>
   </div>
+  <footer-com />
 </template>
 
 <script lang="ts" setup>
@@ -119,6 +120,7 @@
   import { ElNotification, ElMessage, ElMessageBox } from 'element-plus';
   import jianBImage from '@/assets/images/jianB.png';
   import LoginDialog from '@/components/LoginDialog/LoginDialog';
+  import FooterCom from '@/components/FooterCom/FooterCom.vue';
 
   const active = ref(0);
   const isEditing = ref(false); // 是否正在处理编辑
@@ -381,7 +383,6 @@
     width: 100vw;
     height: calc(100vh - 65px);
     overflow: auto;
-    position: fixed;
     background: linear-gradient(180deg, #efe5fd 0%, #fbf9fe 100%);
     display: flex;
     align-items: flex-start;

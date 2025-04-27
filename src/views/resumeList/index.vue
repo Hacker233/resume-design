@@ -26,6 +26,7 @@
       ></Pagination>
     </div>
   </div>
+  <footer-com />
 </template>
 <script setup lang="ts">
   import CategoryList from './components/CategoryList.vue';
@@ -34,6 +35,7 @@
   import CommonLoading from '@/components/CommonLoading/CommonLoading.vue';
   import { templateListAsync } from '@/http/api/createTemplate';
   import { useHead } from '@vueuse/head';
+  import FooterCom from '@/components/FooterCom/FooterCom.vue';
   useHead({
     meta: [
       {
@@ -94,6 +96,7 @@
 <style lang="scss" scoped>
   .resume-list-box {
     width: 100%;
+    padding-bottom: 30px;
     .content-box {
       width: 1300px;
       margin: 0 auto;

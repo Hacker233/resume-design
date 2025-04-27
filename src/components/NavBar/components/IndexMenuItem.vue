@@ -62,3 +62,27 @@
     }
   };
 </script>
+<style lang="scss" scoped>
+  :deep(.el-menu-item) {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    // 渐变字体
+    background: linear-gradient(45deg, #2ddd9d, #137c56) !important; // 自定义渐变颜色
+    -webkit-background-clip: text !important; // Safari 和其他 WebKit 浏览器
+    background-clip: text !important;
+    padding: 0 15px !important;
+    letter-spacing: 1px;
+    font-size: 16px;
+    border-bottom: 4px solid transparent;
+    transition: all 0.3s;
+    color: transparent;
+    font-weight: 550;
+    &:hover {
+      border-color: #2ddd9d;
+      background-color: rgba(#ccc, 0.1);
+    }
+  }
+</style>

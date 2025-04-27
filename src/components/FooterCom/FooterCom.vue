@@ -144,6 +144,10 @@
     // 如果 URL 已经有查询参数，用 & 连接；否则用 ? 开头
     return url.includes('?') ? `${url}&ref=maobucv.com` : `${url}?ref=maobucv.com`;
   };
+
+  defineExpose({
+    vxQunList
+  });
 </script>
 <style lang="scss" scoped>
   .footer-box {
