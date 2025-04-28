@@ -38,25 +38,81 @@
           <div class="have-attend">已签到</div>
         </el-tooltip>
       </div>
-
-      <!-- 源码购买 -->
-      <!-- <div v-config:open_get_source_code class="get-source-code" @click="toWebCode">
-        <div class="content-box">
-          <svg-icon icon-name="icon-VIP" size="20px" color="#789e45"></svg-icon>
-          <span>获取源码</span>
-        </div>
-      </div> -->
       <!-- 开通会员 -->
       <div v-config:open_membership class="membership-box" @click="toMembership">
-        <div v-if="!membershipInfo.hasMembership" class="content-box">开通会员 </div>
+        <template v-if="!membershipInfo.hasMembership">
+          <el-popover popper-class="create-membership-popper">
+            <template #reference>
+              <div class="content-box not-membership">
+                <img src="@/assets/images/membership.svg" alt="猫步会员" title="会员" width="20" />
+                <span>开通会员</span>
+              </div>
+            </template>
+            <div class="create-membership-pop-content">
+              <div
+                v-for="(item, index) in membershipCardList"
+                :key="index"
+                :class="[
+                  'member-goods-item',
+                  ['monthly', 'yearly', 'lifetime'].indexOf(item.value) > -1
+                    ? item.value
+                    : 'monthly'
+                ]"
+              >
+                <template v-if="['monthly', 'yearly', 'lifetime'].indexOf(item.value) > -1">
+                  <img :src="getAssetsImagesFile(`membership/${item.value}.gif`)" />
+                </template>
+                <template v-else>
+                  <div>
+                    <img :src="getAssetsImagesFile(`membership/monthly.gif`)" />
+                  </div>
+                </template>
+                <div class="info-container">
+                  <div :class="['goods-name', `name-${item.value}`]">
+                    <img
+                      src="@/assets/images/membership.svg"
+                      alt="猫步会员"
+                      title="会员"
+                      width="20"
+                    />
+                    开通{{ item.label }}
+                  </div>
+                  <!-- 权益 -->
+                  <div v-if="item.value === 'monthly'" class="goods-tips">
+                    <p>31天会员权益</p>
+                    <p>4份简历存储</p>
+                    <p>无限制导出</p>
+                    <p>无限制使用AI</p>
+                  </div>
+                  <div v-else-if="item.value === 'yearly'" class="goods-tips">
+                    <p>365天会员权益</p>
+                    <p>8份简历存储</p>
+                    <p>无限制导出</p>
+                    <p>无限制使用AI</p>
+                  </div>
+                  <div v-else-if="item.value === 'lifetime'" class="goods-tips">
+                    <p>永久会员权益</p>
+                    <p>无限制简历存储</p>
+                    <p>无限制导出</p>
+                    <p>无限制使用AI</p>
+                  </div>
+                  <div :class="['price-desc', `desc-${item.value}`]" @click="toMembership">
+                    立即开通
+                  </div>
+                </div>
+              </div>
+            </div>
+          </el-popover>
+        </template>
+
         <div
           v-else-if="membershipInfo.hasMembership && membershipInfo.daysRemaining > 0"
-          class="content-box"
+          class="content-box is-membership"
         >
           <!-- <svg-icon icon-name="icon-VIP" size="20px" color="#789e45"></svg-icon> -->
           <img src="@/assets/images/membership.svg" alt="会员" title="会员" width="20" />
           <span v-if="membershipInfo.type === 'lifetime'">永久会员</span>
-          <span v-else>还剩{{ membershipInfo.daysRemaining }}天到期</span>
+          <span v-else>剩余{{ membershipInfo.daysRemaining }}天</span>
         </div>
         <!-- 已过期 -->
         <div v-else class="content-box expiredDays">
@@ -67,7 +123,7 @@
       <div v-config:open_get_source_code class="jb-num-box" @click="toMyIntegral">
         <div class="content">
           <img
-            width="22"
+            width="18"
             src="@/assets/images/jianB.png"
             alt="简币"
             title="简币 - 您的专属虚拟货币"
@@ -139,6 +195,8 @@
   import { addIntegralLogAsync, getTodayAttendancePersonTotalAsync } from '@/http/api/integral';
   import { storeToRefs } from 'pinia';
   import IndexMenuItem from './components/IndexMenuItem.vue';
+  import { getMembershipConfigsByUserAsync } from '@/http/api/membership';
+  import { getAssetsImagesFile } from '@/utils/common';
 
   interface IBgcColor {
     bgColor?: string;
@@ -248,6 +306,25 @@
     }
   };
   getTodayAttendancePersonTotal();
+
+  // 获取会员配置列表
+  const membershipCardList = ref<any>([]);
+  const getMembershipConfigsByUser = async () => {
+    const data = await getMembershipConfigsByUserAsync();
+    if (data.status === 200) {
+      membershipCardList.value = data.data.map((item: any) => {
+        return {
+          label: item.membershipName,
+          value: item.type,
+          price: item.price,
+          orgPrice: item.originalPrice
+        };
+      });
+    } else {
+      ElMessage.error(data.data.message);
+    }
+  };
+  getMembershipConfigsByUser();
 </script>
 <style lang="scss" scoped>
   .background-nav {
@@ -457,7 +534,7 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        margin: 0 10px;
+        margin: 0 8px;
         height: 28px;
         cursor: pointer;
         transition: all 0.3s;
@@ -478,16 +555,56 @@
             font-size: 12px;
             letter-spacing: 1px;
             color: #617745;
-            margin: 2px 0 0 4px;
+            margin: 2px 0 3px 4px;
           }
           .svg-icon {
             margin-right: 5px;
           }
         }
-        .expiredDays {
-          background-color: #3b7962;
+        .not-membership {
+          background: linear-gradient(
+            300deg,
+            #4c4d51,
+            #2a2a31 10%,
+            #85858a 40%,
+            #393a3c 60%,
+            #393838 80%,
+            #5e5f62 100%
+          );
+          transition: all 0.3s;
+          &:hover {
+            opacity: 0.9;
+          }
           span {
-            color: rgb(237, 218, 218);
+            color: #fff;
+          }
+        }
+        .is-membership {
+          background-image: linear-gradient(to right, #fa709a 0%, #f8da2c 100%);
+          transition: all 0.3s;
+          &:hover {
+            opacity: 0.9;
+          }
+          span {
+            color: #fff;
+          }
+        }
+        .expiredDays {
+          background: linear-gradient(
+            300deg,
+            #4c4d51,
+            #2a2a31 10%,
+            #85858a 40%,
+            #393a3c 60%,
+            #393838 80%,
+            #5e5f62 100%
+          );
+          transition: all 0.3s;
+          &:hover {
+            opacity: 0.9;
+          }
+          span {
+            color: #fff;
           }
         }
       }
@@ -508,17 +625,16 @@
           justify-content: space-between;
           padding: 0 10px;
           height: 100%;
-          background-color: #83ffd1;
+          background-image: linear-gradient(to right, #fa709a 0%, #f8da2c 100%);
           border-radius: 15px;
           span {
-            margin-left: 5px;
-            font-size: 12px;
+            font-size: 13px;
             letter-spacing: 1px;
-            color: #617745;
-            margin-top: 2px;
+            color: #fff;
+            margin-left: 2px;
           }
           img {
-            margin-right: 5px;
+            margin-right: 2px;
           }
         }
       }
@@ -686,6 +802,117 @@
             color: #21a474;
           }
         }
+      }
+    }
+  }
+
+  // 开通会员浮窗
+  .create-membership-popper {
+    width: 260px !important;
+    padding: 15px 5px 0 5px !important;
+    border-radius: 12px;
+    .create-membership-pop-content {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      .member-goods-item {
+        width: 235px;
+        height: 150px;
+        border-radius: 12px;
+        background-repeat: no-repeat;
+        background-size: cover;
+        position: relative;
+        cursor: pointer;
+        transition: all 0.3s;
+        flex-shrink: 0;
+        margin-bottom: 15px;
+        padding: 10px 15px;
+        img {
+          width: 94px;
+          height: 94px;
+          position: absolute;
+          right: 16px;
+          top: 14px;
+          z-index: 1;
+        }
+        .info-container {
+          box-sizing: border-box;
+          display: flex;
+          flex-direction: column;
+          .goods-name {
+            font-size: 15px;
+            font-weight: 600;
+            line-height: 28px;
+            display: flex;
+            align-items: center;
+            z-index: 10;
+            img {
+              width: 22px;
+              height: auto;
+              margin-right: 5px;
+              position: inherit;
+              margin-bottom: 2px;
+            }
+          }
+          .goods-tips {
+            flex: 1;
+            font-size: 12px;
+            color: #333;
+            margin: 5px 0 10px 0;
+          }
+          .price-desc {
+            font-size: 12px;
+            letter-spacing: 1px;
+            font-weight: 400;
+            color: #72511d !important;
+            background: linear-gradient(270deg, #ada48a, #eae5b7 45%, #f5efd6);
+            width: fit-content;
+            padding: 2px 10px;
+            border-radius: 40px;
+            box-shadow: 0 0 10px rgba(26, 22, 15, 0.3);
+            transition: all 0.3s;
+            &:hover {
+              opacity: 0.8;
+            }
+          }
+          .name-monthly {
+            background: linear-gradient(70.95deg, #3974af 29.76%, #2d537a 71.28%);
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+          }
+          .name-yearly {
+            background: linear-gradient(83.16deg, #af764c 19.01%, #774d26 88.14%);
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+          }
+          .name-lifetime {
+            background: linear-gradient(83.16deg, #4c50af 19.01%, #3b2677 88.14%);
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+          }
+          .desc-monthly {
+            color: #6face1;
+          }
+          .desc-yearly {
+            color: #c99b68;
+          }
+          .desc-lifetime {
+            color: #746dbb;
+          }
+        }
+      }
+      .active {
+        border: 1.5px solid #2d537a;
+      }
+      .monthly {
+        background-image: url(@/assets/images/membership/membership-monthly.png);
+      }
+      .yearly {
+        background-image: url(@/assets/images/membership/membership-yearly.png);
+      }
+      .lifetime {
+        background-image: url(@/assets/images/membership/membership-lifetime.png);
       }
     }
   }

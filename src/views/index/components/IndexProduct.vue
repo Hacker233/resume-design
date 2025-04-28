@@ -15,6 +15,7 @@
           <div class="see-more-box">
             <hj-button-1 text="免费制作专业简历" @click="freeMakeResume"></hj-button-1>
             <hj-button-1 text="AI智能生成简历" @click="generateAiResume"></hj-button-1>
+            <hj-button-1 text="简历服务" @click="resumeContact"></hj-button-1>
           </div>
           <!-- 核心功能介绍 -->
           <div class="card-box">
@@ -86,6 +87,13 @@
     });
   };
 
+  // 跳转至简历服务页面
+  const resumeContact = () => {
+    router.push({
+      path: '/resumeService'
+    });
+  };
+
   const seeMore = () => {
     emit('seeMore');
   };
@@ -149,18 +157,19 @@
 
           .see-more-box {
             display: flex;
+            flex-wrap: wrap;
             z-index: 1;
             margin: 30px 0 80px 0;
-            > :first-child {
-              margin-right: 30px;
-            }
 
             :deep(.custom-btn) {
-              width: 250px;
               height: 50px;
+              margin-bottom: 15px;
+              margin-right: 25px;
+              width: auto;
+              min-width: 150px;
               span {
                 font-size: 18px;
-                letter-spacing: 5px;
+                letter-spacing: 4px;
               }
             }
             .btn-9:after {
