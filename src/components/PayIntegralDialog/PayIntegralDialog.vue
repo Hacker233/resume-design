@@ -65,7 +65,7 @@
                 </div>
               </li>
 
-              <li>
+              <li v-config:open_invite_register>
                 <div class="top">
                   <h1>邀请注册</h1>
                   <div class="circle"

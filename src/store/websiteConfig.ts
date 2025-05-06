@@ -14,6 +14,7 @@ export const useWebsiteConfigStore = defineStore('websiteConfig', () => {
     website_title: string;
     open_membership: boolean;
     open_homne_menu: boolean;
+    open_invite_register: boolean;
   }>({
     open_sign: true,
     open_comment: true,
@@ -24,7 +25,8 @@ export const useWebsiteConfigStore = defineStore('websiteConfig', () => {
     open_sponsor: true,
     website_title: title,
     open_membership: true,
-    open_homne_menu: true
+    open_homne_menu: true,
+    open_invite_register: true
   });
 
   function saveWebsiteConfig(websiteConfigData: any) {
@@ -38,6 +40,7 @@ export const useWebsiteConfigStore = defineStore('websiteConfig', () => {
     websiteConfig.website_title = websiteConfigData.website_title;
     websiteConfig.open_membership = websiteConfigData.open_membership;
     websiteConfig.open_homne_menu = websiteConfigData.open_homne_menu;
+    websiteConfig.open_invite_register = websiteConfigData.open_invite_register;
     document.title = websiteConfig.website_title;
   }
   // 查询网站配置信息

@@ -85,7 +85,7 @@
               </div>
             </el-form-item>
             <!-- 注册邀请码 -->
-            <el-form-item>
+            <el-form-item v-if="websiteConfig.open_invite_register">
               <el-input
                 v-model.trim="registerForm.inviteCode"
                 class="forms_field-input"

@@ -12,7 +12,7 @@
             <div class="get-bi-method" @click="openGetDialog">获取简币</div>
           </div>
           <!-- 邀请注册 -->
-          <div class="integral-line invitation-people">
+          <div v-config:open_invite_register class="integral-line invitation-people">
             <span>邀请有奖：</span>
             <div class="get-bi-method" @click="openInvitationDialog">立即邀请</div>
           </div>
