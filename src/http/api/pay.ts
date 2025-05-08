@@ -78,3 +78,12 @@ export const yipayTradeQueryByAdminAsync: any = (params: any) => {
     params: params
   });
 };
+
+// 获取易支付页面支付链接
+export const yipayGetPayURLAsync: any = (data: any) => {
+  return http.request({
+    url: '/huajian/yiPay/getPayPageURL',
+    method: 'post',
+    data: data
+  });
+};

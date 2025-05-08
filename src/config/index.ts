@@ -3,7 +3,7 @@ const CONFIG = {
   isEmailVerify: true, // 邮箱注册后，是否需要去邮件验证。true：开启验证。false：未开启验证
   serverAddress: import.meta.env.VITE_SERVER_ADDRESS, // 动态设置后台地址
   smallpigAddress: 'https://maobucv.com', // 另一个后台地址，如果没有多个后台，无需填写此字段
-  aiModel: 'glm-4-flash' // ai模型
+  yiPayWay: 'page' // 易支付的支付方式：page：跳转页面支付，qrcode：二维码支付
 };
 
 export default CONFIG;

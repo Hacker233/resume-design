@@ -98,7 +98,7 @@
                 :class="['pay-way-zfb', { 'pay-active': payType === 'zfb' }]"
                 @click="selectPayWay('zfb')"
               >
-                <img src="@/assets/images/pay/zfb.png" alt="支付宝" />
+                <img src="@/assets/images/pay/zfb1.png" alt="支付宝" />
               </div>
               <div
                 :class="['pay-way-wx', { 'pay-active': payType === 'wxpay' }]"
@@ -207,6 +207,8 @@
   import { getMembershipConfigsByUserAsync } from '@/http/api/membership';
   import BuyQrCodeDialog from '@/components/BuyQrcodeDialog/index.vue';
   import WXBuyQrCodeDialog from '@/components/WXBuyQrcodeDialog/index.vue';
+  import CONFIG from '@/config';
+  import { yipayTradePagePayAsync } from '@/utils/pay';
 
   const emit = defineEmits(['paySuccess', 'cancel']);
 
@@ -269,7 +271,17 @@
       dialogQrcodeVisible.value = true;
     } else if (payType.value === 'wxpay') {
       console.log('微信支付');
-      dialogWXQrcodeVisible.value = true;
+      if (CONFIG.yiPayWay === 'page') {
+        let params = {
+          type: 'wxpay', // 支付类型
+          totalAmount: selectedPrice.value,
+          subject: '购买猫步简历会员',
+          orderType: 2
+        };
+        await yipayTradePagePayAsync(params);
+      } else {
+        dialogWXQrcodeVisible.value = true;
+      }
     }
   };
 
@@ -686,7 +698,7 @@
                 margin-right: 20px;
                 border: 2px solid transparent;
                 border-radius: 5px;
-                padding: 3px;
+                padding: 3px 2px;
                 cursor: pointer;
                 user-select: none;
                 transition: all 0.3s;
@@ -704,6 +716,7 @@
                 cursor: pointer;
                 user-select: none;
                 transition: all 0.3s;
+                padding: 4px;
                 img {
                   width: 100%;
                   height: 100%;

@@ -3,7 +3,7 @@
   <el-dialog
     class="pay-qrcode-dialog"
     :model-value="dialogWXQrcodeVisible"
-    width="400px"
+    width="420px"
     :show-close="false"
     :close-on-click-modal="false"
     :append-to-body="false"
@@ -11,13 +11,14 @@
     @close="handleClose"
   >
     <div class="qrcode-box">
-      <h3>{{ props.subject }}</h3>
+      <p class="subject">{{ props.subject }}</p>
+      <p class="totalAmount">￥{{ props.totalAmount.toFixed(2) }} </p>
       <div v-loading="loading" class="qrcode-wrapper">
-        <qrcode-vue :value="qrCodeLink" :size="220" level="H" foreground="#00c091" />
+        <qrcode-vue :value="qrCodeLink" :size="300" level="H" foreground="#333" />
         <!-- 二维码失效遮罩层 -->
         <div v-if="orderIsFail" class="qrcode-fail">订单已失效</div>
       </div>
-      <p>订单金额：{{ props.totalAmount.toFixed(2) }} ￥</p>
+
       <div class="countdown-box">
         <span v-if="!orderIsFail">
           （请使用微信在3分钟内完成支付：<span v-if="m < 10">0</span>{{ m }}:<span v-if="s < 10"
@@ -26,10 +27,12 @@
         >
         <span v-else>（订单已失效）</span>
       </div>
-    </div>
-    <template #footer>
+
       <el-button class="cancel-order" @click="cancelOrder">取消订单</el-button>
-    </template>
+
+      <div class="wx-tip">请使用微信扫码支付</div>
+    </div>
+    <template #footer> </template>
   </el-dialog>
 </template>
 
@@ -216,23 +219,22 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 20px;
     border-radius: 10px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
     background-color: #ffffff;
+    text-align: center;
+    background: #fff;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px 0 #ddd;
+    overflow: hidden;
 
     .qrcode-wrapper {
       position: relative;
-      width: 220px;
-      height: 220px;
-      border-radius: 10px;
+      width: 300px;
+      height: 300px;
       overflow: hidden;
       margin-bottom: 15px;
       transition: transform 0.3s;
-
-      &:hover {
-        transform: scale(1.05);
-      }
 
       .qrcode-fail {
         width: 100%;
@@ -250,6 +252,17 @@
         color: #ff4d4f;
       }
     }
+    .subject {
+      font-size: 16px;
+      color: #000;
+    }
+    .totalAmount {
+      font-size: 40px;
+      margin: 10px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
   }
 
   .countdown-box {
@@ -258,11 +271,19 @@
     margin-top: 15px;
     font-weight: bold;
   }
+  .wx-tip {
+    font-size: 16px;
+    width: 100%;
+    background: #222;
+    color: #fff;
+    padding: 20px;
+    letter-spacing: 1px;
+  }
 
   .cancel-order {
-    width: 100%;
-    height: 45px;
-    font-size: 18px;
+    height: 40px;
+    font-size: 16px;
+    margin: 20px 0;
     letter-spacing: 1px;
     background-color: #f56c6c;
     color: white;
@@ -278,8 +299,17 @@
 <style lang="scss">
   // 弹窗样式
   .pay-qrcode-dialog {
+    padding: 30px 0 0 0;
+    box-shadow: 0 5px 15px 0 #ddd;
+    border-radius: 18px;
     .el-dialog__header {
-      display: none;
+      display: none !important;
+    }
+    .el-dialog__footer {
+      display: none !important;
+    }
+    .el-dialog__body {
+      padding: 0 !important;
     }
   }
 </style>
