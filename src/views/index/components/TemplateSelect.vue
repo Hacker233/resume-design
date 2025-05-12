@@ -91,6 +91,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    background-image: linear-gradient(to top, rgb(242, 244, 247) 0%, white 100%);
     .card-list {
       display: flex;
       flex-wrap: wrap;

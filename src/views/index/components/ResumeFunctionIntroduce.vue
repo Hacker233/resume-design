@@ -3,7 +3,7 @@
   <div class="resume-function-introduce-box">
     <introduce-title-vue
       title="简历制作功能介绍"
-      subtitle=""
+      subtitle="专注简历制作，提升求职效率"
       title-color="#000"
       subtitle-color="#7f8b96"
     ></introduce-title-vue>

@@ -3,7 +3,7 @@
   <div class="resume-function-introduce-box">
     <introduce-title-vue
       title="网站开源信息"
-      subtitle=""
+      subtitle="支持私有化部署、商业化使用"
       title-color="#000"
       subtitle-color="#7f8b96"
     ></introduce-title-vue>

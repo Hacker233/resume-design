@@ -29,7 +29,15 @@
     </div>
     <div class="nav-center"> </div>
     <div class="nav-right">
-      <el-button type="text" style="margin-right: 10px" @click="toOld">旧版入口</el-button>
+      <!-- <el-button type="text" style="margin-right: 10px" @click="toOld">旧版入口</el-button> -->
+      <el-tooltip effect="dark" content="AI面试助手" placement="bottom">
+        <div class="ai-bot-container ai-optimize-box" @click="toJobzx"
+          ><img src="@/assets/images/home/ai-edit.svg" width="24" height="24" /><div
+            class="ai-bot-text"
+            >AI面试助手</div
+          >
+        </div>
+      </el-tooltip>
       <el-tooltip effect="dark" content="AI智能诊断" placement="bottom">
         <div class="ai-bot-container ai-optimize-box" @click="aiOptimize"
           ><img src="@/assets/images/home/ai-optimize.svg" width="24" height="24" /><div
@@ -122,6 +130,7 @@
   import LoginDialog from '@/components/LoginDialog/LoginDialog';
   import AiOptimizeDrawer from '@/views/createTemplate/designer/components/AiOptimizeDrawer.vue';
   import AiOptimizeDialog from '@/views/createTemplate/designer/components/AiOptimizeDialog.vue';
+  import { useToJobzxAi } from '@/hooks/useToJobzxAi';
 
   const { HJNewJsonStore } = storeToRefs(appStore.useCreateTemplateStore);
   const emit = defineEmits([
@@ -141,9 +150,9 @@
   };
 
   // 跳转至旧版本
-  const toOld = () => {
-    router.push('/template');
-  };
+  // const toOld = () => {
+  //   router.push('/template');
+  // };
 
   // 更改标题
   const titleIpf = ref<any>(null);
@@ -281,6 +290,11 @@
         draftTips.value = '';
       })
       .catch(() => {});
+  };
+
+  // 跳转至职行AI
+  const toJobzx = () => {
+    useToJobzxAi();
   };
 
   // 打开AI诊断确认弹窗

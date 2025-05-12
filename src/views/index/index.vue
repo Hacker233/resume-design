@@ -15,6 +15,8 @@
     <template-select ref="templeTef"></template-select>
     <!-- 根据用途挑选简历 -->
     <select-template-by-use></select-template-by-use>
+    <!-- 职行AI产品介绍栏 -->
+    <jobzx-product ref="jobzxRef" v-config:open_jobzx></jobzx-product>
     <!-- 简历优化服务 -->
     <resume-service></resume-service>
     <!-- 简历功能介绍 -->
@@ -52,6 +54,7 @@
   import NavBar from '@/components/NavBar/NavBar.vue';
   import ProjectIntroduce from './components/IndexProduct.vue';
   import TemplateSelect from './components/TemplateSelect.vue';
+  import JobzxProduct from './components/JobzxProduct.vue';
   // import CustomTemplateVue from './components/CustomTemplate.vue';
   // import SponsorComVue from './components/SponsorCom.vue';
   import FooterCom from '@/components/FooterCom/FooterCom.vue';

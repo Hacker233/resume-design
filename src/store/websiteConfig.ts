@@ -15,6 +15,7 @@ export const useWebsiteConfigStore = defineStore('websiteConfig', () => {
     open_membership: boolean;
     open_homne_menu: boolean;
     open_invite_register: boolean;
+    open_jobzx: boolean;
   }>({
     open_sign: true,
     open_comment: true,
@@ -26,7 +27,8 @@ export const useWebsiteConfigStore = defineStore('websiteConfig', () => {
     website_title: title,
     open_membership: true,
     open_homne_menu: true,
-    open_invite_register: true
+    open_invite_register: true,
+    open_jobzx: false
   });
 
   function saveWebsiteConfig(websiteConfigData: any) {
@@ -41,6 +43,7 @@ export const useWebsiteConfigStore = defineStore('websiteConfig', () => {
     websiteConfig.open_membership = websiteConfigData.open_membership;
     websiteConfig.open_homne_menu = websiteConfigData.open_homne_menu;
     websiteConfig.open_invite_register = websiteConfigData.open_invite_register;
+    websiteConfig.open_jobzx = websiteConfigData.open_jobzx;
     document.title = websiteConfig.website_title;
   }
   // 查询网站配置信息

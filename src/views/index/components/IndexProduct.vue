@@ -6,7 +6,9 @@
         <div class="content-box">
           <!-- 动态标题 -->
           <h1 class="dynamic-title">一款开源、免费、专业的AI简历生成制作神器</h1>
-          <h2>全面接入Deepseek，AI智能润色、修改、AI智能诊断，交付源码级JSON，提供海量模版。</h2>
+          <h2
+            >全面接入Deepseek，AI智能简历生成、智能润色、修改、智能诊断等，交付源码级JSON，提供海量模版。</h2
+          >
 
           <!-- DeepSeek 提示 -->
           <!-- <div class="deepseek-tip">已接入 DeepSeek，精准、专业的AI简历优化</div> -->
@@ -15,6 +17,7 @@
           <div class="see-more-box">
             <hj-button-1 text="免费制作专业简历" @click="freeMakeResume"></hj-button-1>
             <hj-button-1 text="AI智能生成简历" @click="generateAiResume"></hj-button-1>
+            <hj-button-1 text="AI面试助手" @click="toJobzx"></hj-button-1>
             <hj-button-1 text="简历服务" @click="resumeContact"></hj-button-1>
           </div>
           <!-- 核心功能介绍 -->
@@ -72,6 +75,7 @@
 <script lang="ts" setup>
   import { closeGlobalLoading } from '@/utils/common';
   import HjButton1 from '@/components/HjButton/HjButton1/index.vue';
+  import { useToJobzxAi } from '@/hooks/useToJobzxAi';
 
   const emit = defineEmits(['freeMake', 'seeMore']);
 
@@ -92,6 +96,11 @@
     router.push({
       path: '/resumeService'
     });
+  };
+
+  // 前往使用
+  const toJobzx = () => {
+    useToJobzxAi();
   };
 
   const seeMore = () => {
@@ -166,7 +175,8 @@
               margin-bottom: 15px;
               margin-right: 25px;
               width: auto;
-              min-width: 150px;
+              min-width: 130px;
+              padding: 10px 15px;
               span {
                 font-size: 18px;
                 letter-spacing: 4px;

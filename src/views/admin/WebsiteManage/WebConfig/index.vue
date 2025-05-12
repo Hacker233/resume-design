@@ -46,6 +46,9 @@
       <el-form-item label="是否开启邀请注册:" prop="open_invite_register">
         <el-switch v-model="ruleForm.open_invite_register" />
       </el-form-item>
+      <el-form-item label="是否开启职行AI推广:" prop="open_jobzx">
+        <el-switch v-model="ruleForm.open_jobzx" />
+      </el-form-item>
     </el-form>
     <el-divider>
       <el-icon><star-filled /></el-icon>
@@ -78,6 +81,7 @@
     open_membership: boolean;
     open_homne_menu: boolean;
     open_invite_register: boolean;
+    open_jobzx: boolean;
   }
   const ruleForm = reactive<IWebConfig>({
     open_sign: true,
@@ -90,7 +94,8 @@
     website_title: title,
     open_membership: true,
     open_homne_menu: true,
-    open_invite_register: true
+    open_invite_register: true,
+    open_jobzx: false
   });
   const rules = reactive<FormRules>({
     website_title: [{ required: true, message: '网站标题不能为空！', trigger: 'change' }]
@@ -147,6 +152,7 @@
     ruleForm.open_membership = data.open_membership;
     ruleForm.open_homne_menu = data.open_homne_menu;
     ruleForm.open_invite_register = data.open_invite_register;
+    ruleForm.open_jobzx = data.open_jobzx;
   };
 </script>
 <style lang="scss" scoped>

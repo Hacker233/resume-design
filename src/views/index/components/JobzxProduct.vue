@@ -1,9 +1,9 @@
-<!-- 根据简历用途选择模版 -->
+<!-- 职行AI宣传 -->
 <template>
-  <div class="resume-function-introduce-box">
+  <div class="resume-jobzx-ai-box">
     <introduce-title-vue
-      title="简历优化服务"
-      subtitle="猫步简历创始人，专业分析您的简历"
+      title="AI面试助手"
+      subtitle="前沿AI技术，为您的面试提供强大支持"
       title-color="#000"
       subtitle-color="#7f8b96"
     ></introduce-title-vue>
@@ -18,66 +18,60 @@
       </div>
       <!-- 查看更多按钮 -->
       <div class="see-more-box">
-        <HjButton1 text="立即咨询" @click="toContact" />
+        <HjButton1 text="前往使用" @click="toJobzx" />
       </div>
     </div>
   </div>
 </template>
 <script lang="ts" setup>
+  import { useToJobzxAi } from '@/hooks/useToJobzxAi';
   import IntroduceTitleVue from './IntroduceTitle.vue';
   import HjButton1 from '@/components/HjButton/HjButton1/index.vue';
 
   const services = [
     {
-      imageSrc: '@/assets/images/resumeService/resume-style.svg',
-      alt: '简历格式修改',
-      title: '简历格式优化',
-      content:
-        '猫步简历创始人将从专业角度帮您调整简历格式，包括简历行间距、字体大小等等，让您专注于简历内容的编写，你只需要提供一份您已经编写好的简历，简历必须是在猫步简历网站上制作的，或者简历已迁移至猫步简历网站。',
-      price: 59
+      imageSrc: '@/assets/images/jobzx/jobzx-3.svg',
+      alt: '先进的语音识别',
+      title: '先进的语音识别',
+      content: '99.8%的准确率，精准捕捉面试官问题'
     },
     {
-      imageSrc: '@/assets/images/resumeService/resume-content.svg',
-      alt: '简历内容优化',
-      title: '简历内容优化',
-      content:
-        '我们将从专业角度分析您的简历内容，针对您的求职岗位，为您提出相关优化建议，最大程度满足凸显用户特点和高度匹配岗位，最高提升4倍以上的投递通过率。',
-      price: 129
+      imageSrc: '@/assets/images/jobzx/jobzx-2.svg',
+      alt: '智能语义理解',
+      title: '智能语义理解',
+      content: '深度理解面试问题背后的真实意图'
     },
     {
-      imageSrc: '@/assets/images/resumeService/resume-create.svg',
-      alt: '简历定制服务',
-      title: '简历定制服务',
-      content:
-        '从0开始为您制作一份符合岗位需求的专业简历，我们将深度挖掘您的过往经历，结合市场需求，最终给您一份定制化的简历，并且简历可以在猫步简历网站上持续在线制作修改。',
-      price: 229
+      imageSrc: '@/assets/images/jobzx/jobzx-1.svg',
+      alt: '实时大模型推理',
+      title: '实时大模型推理',
+      content: '毫秒级响应，提供专业精准答案'
     }
   ];
 
   const images: any = {
-    '@/assets/images/resumeService/resume-style.svg': new URL(
-      '@/assets/images/resumeService/resume-style.svg',
+    '@/assets/images/jobzx/jobzx-3.svg': new URL(
+      '@/assets/images/jobzx/jobzx-3.svg',
       import.meta.url
     ).href,
-    '@/assets/images/resumeService/resume-content.svg': new URL(
-      '@/assets/images/resumeService/resume-content.svg',
+    '@/assets/images/jobzx/jobzx-2.svg': new URL(
+      '@/assets/images/jobzx/jobzx-2.svg',
       import.meta.url
     ).href,
-    '@/assets/images/resumeService/resume-create.svg': new URL(
-      '@/assets/images/resumeService/resume-create.svg',
+    '@/assets/images/jobzx/jobzx-1.svg': new URL(
+      '@/assets/images/jobzx/jobzx-1.svg',
       import.meta.url
     ).href
   };
 
-  // 立即咨询
-  const router = useRouter();
-  const toContact = () => {
-    router.push('/resumeService');
+  // 前往使用
+  const toJobzx = () => {
+    useToJobzxAi();
   };
 </script>
 <style lang="scss" scoped>
-  .resume-function-introduce-box {
-    background-image: linear-gradient(to top, #dfe9f3 0%, white 100%);
+  .resume-jobzx-ai-box {
+    background-image: linear-gradient(to top, #ffffff 0%, rgb(247, 245, 245) 100%);
     padding-bottom: 20px;
     display: flex;
     flex-direction: column;
@@ -98,11 +92,11 @@
           flex-direction: column;
           justify-content: flex-start;
           align-items: center;
-          width: 295px;
+          width: 350px;
           height: auto;
           box-shadow: rgba(100, 100, 111, 0.1) 0px 7px 29px 0px;
           border-radius: 10px;
-          padding: 10px 15px 50px 15px;
+          padding: 10px 15px 15px 15px;
           box-sizing: border-box;
           transition: all 0.3s;
           padding-top: 20px;
@@ -135,7 +129,6 @@
             line-height: 1.5;
             letter-spacing: 1px;
             padding: 0 10px;
-            height: 150px;
           }
 
           .price-and-consult {
