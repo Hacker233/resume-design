@@ -32,7 +32,11 @@
       <el-table-column prop="status" label="订单状态">
         <template #default="scope">
           <el-tag v-if="scope.row.status == '0'" type="danger" size="default">未支付</el-tag>
-          <el-tag v-else type="success" size="default">已支付</el-tag>
+          <el-tag v-else-if="scope.row.status == '2'" type="info" size="default">已退款</el-tag>
+          <el-tag v-else-if="scope.row.status == '1'" type="success" size="default"
+            >支付成功</el-tag
+          >
+          <el-tag v-else type="error" size="default">未知状态</el-tag>
         </template>
       </el-table-column>
       <el-table-column prop="name" label="商品名称" />
