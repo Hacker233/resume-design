@@ -37,7 +37,7 @@
       <el-form-item label="是否开启商务合作推广:" prop="open_business">
         <el-switch v-model="ruleForm.open_business" />
       </el-form-item>
-      <el-form-item label="是否开启会员中心:" prop="open_membership">
+      <el-form-item label="是否开启会员充值:" prop="open_membership">
         <el-switch v-model="ruleForm.open_membership" />
       </el-form-item>
       <el-form-item label="是否开启首页菜单:" prop="open_homne_menu">

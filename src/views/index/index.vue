@@ -49,6 +49,11 @@
     :dialog-notice-visible="dialogNoticeVisible"
     @cancle="noticeCancle"
   ></notice-dialog>
+  <!-- 签到弹窗 -->
+  <attendance-dialog
+    :dialog-attendance-visible="dialogAttendanceVisible"
+    @close="closeAttendanceDialog"
+  ></attendance-dialog>
 </template>
 <script setup lang="ts">
   import NavBar from '@/components/NavBar/NavBar.vue';
@@ -140,6 +145,20 @@
   const router = useRouter();
   const webcode = () => {
     router.push('/webcode');
+  };
+
+  // 签到弹窗
+  const dialogAttendanceVisible = ref<boolean>(false);
+
+  // 每日弹窗控制
+  const lastPopupDate = localStorage.getItem('lastPopupDate');
+  const currentDate = new Date().toLocaleDateString();
+  if (lastPopupDate !== currentDate) {
+    dialogAttendanceVisible.value = true;
+    localStorage.setItem('lastPopupDate', currentDate);
+  }
+  const closeAttendanceDialog = () => {
+    dialogAttendanceVisible.value = false;
   };
 </script>
 <style lang="scss" scoped>

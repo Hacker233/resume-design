@@ -165,3 +165,12 @@ export const getUserOrderListAsync: any = (params: any) => {
     params: params
   });
 };
+
+// 获取当月签到列表
+export const getMonthAttendanceListAsync: any = (params: any) => {
+  return http.request({
+    url: '/huajian/integral/getMonthAttendanceList',
+    method: 'get',
+    params: params
+  });
+};

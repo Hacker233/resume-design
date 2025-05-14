@@ -32,10 +32,11 @@
           class="button"
           @click="toAttendance"
         >
-          签到
+          <svg-icon icon-name="icon-tubiao_bianji" size="12px" color="#789e45"></svg-icon>
+          <span> 签到 </span>
         </div>
         <el-tooltip v-else content="今天您已经签过到啦~">
-          <div class="have-attend">已签到</div>
+          <div class="button" @click="toAttendance">已签到</div>
         </el-tooltip>
       </div>
       <!-- 开通会员 -->
@@ -134,10 +135,7 @@
       <!-- 登录注册以及用户展示区域 -->
       <div class="user-box">
         <div v-if="!appStore.useUserInfoStore.userInfo" class="logon-register-box">
-          <el-button v-config:open_sign class="register-btn" @click="openRegisterDialog"
-            >注册</el-button
-          >
-          <el-button class="login-btn" type="primary" @click="openLoginDialog">登录</el-button>
+          <el-button class="login-btn" type="primary" @click="openLoginDialog">注册/登录</el-button>
         </div>
         <div
           v-else
@@ -188,11 +186,17 @@
       </div>
     </div>
   </div>
+  <!-- 签到弹窗 -->
+  <attendance-dialog
+    :dialog-attendance-visible="dialogAttendanceVisible"
+    @success="attendanceSuccess"
+    @close="closeAttendanceDialog"
+  ></attendance-dialog>
 </template>
 <script setup lang="ts">
   import appStore from '@/store';
   import LoginDialog from '@/components/LoginDialog/LoginDialog';
-  import { addIntegralLogAsync, getTodayAttendancePersonTotalAsync } from '@/http/api/integral';
+  import { getTodayAttendancePersonTotalAsync } from '@/http/api/integral';
   import { storeToRefs } from 'pinia';
   import IndexMenuItem from './components/IndexMenuItem.vue';
   import { getMembershipConfigsByUserAsync } from '@/http/api/membership';
@@ -228,9 +232,9 @@
   });
 
   // 打开注册弹窗
-  const openRegisterDialog = () => {
-    LoginDialog(false);
-  };
+  // const openRegisterDialog = () => {
+  //   LoginDialog(false);
+  // };
 
   // 打开登录弹窗
   const openLoginDialog = () => {
@@ -280,19 +284,19 @@
   };
 
   // 签到
+  const dialogAttendanceVisible = ref<boolean>(false);
   const toAttendance = async () => {
-    let params = {
-      integralAddType: '1'
-    };
-    const data = await addIntegralLogAsync(params);
-    if (data.data.status === 200) {
-      ElMessage.success('签到成功！简币+1！');
-      // 更新用户简币信息
-      appStore.useUserInfoStore.getUserIntegralTotal();
-      getTodayAttendancePersonTotal();
-    } else {
-      ElMessage.error(data.data.message);
-    }
+    dialogAttendanceVisible.value = true;
+  };
+
+  // 签到成功
+  const attendanceSuccess = async () => {
+    getTodayAttendancePersonTotal(); // 重新获取今日签到人数
+  };
+
+  // 关闭签到弹窗
+  const closeAttendanceDialog = () => {
+    dialogAttendanceVisible.value = false;
   };
 
   // 获取今日签到总人数
@@ -454,7 +458,7 @@
         flex-shrink: 0;
         .button {
           height: 100%;
-          padding: 6px 9px 6px 12px;
+          padding: 6px 8px 6px 8px;
           display: flex;
           align-items: center;
           justify-content: center;
@@ -462,7 +466,7 @@
           border: 1px solid v-bind('props.fontColor');
           text-align: center;
           color: v-bind('props.fontColor');
-          letter-spacing: 4px;
+          letter-spacing: 2px;
           font-size: 13px;
           border-radius: 15px;
           overflow: visible;
@@ -478,6 +482,12 @@
           transition: all 0.3s;
           &:hover {
             opacity: 0.7;
+          }
+          .svg-icon {
+            margin-right: 2px;
+          }
+          span {
+            margin-left: 2px;
           }
         }
         .have-attend {
@@ -651,6 +661,27 @@
           }
           .register-btn {
             margin-left: 15px;
+          }
+          .login-btn {
+            height: 28px;
+            background: #00b277;
+            color: #fff;
+            font-size: 12px;
+            position: relative;
+            padding: 0 12px;
+            width: max-content;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 15px;
+            border: 1px solid #00b277;
+            transition: all 0.2s;
+            margin-left: 15px;
+            letter-spacing: 1px;
+            &:hover {
+              opacity: 0.9;
+            }
+            margin-bottom: 1px;
           }
         }
         .user-avatar-box {
