@@ -15,3 +15,12 @@ export const addWebsiteViewsAsync: any = () => {
     method: 'get'
   });
 };
+
+// 查询区间范围用户注册数
+export const getSignUsersByDateAsync: any = (params: any) => {
+  return http.request({
+    url: '/huajian/panel/getSignUsersByDate',
+    method: 'get',
+    params: params
+  });
+};

@@ -19,9 +19,16 @@
           </el-button-group>
         </template>
         <template #date-cell="{ data }">
-          <div class="date-cell" :class="{ 'future-date': disableFutureDates(new Date(data.day)) }">
+          <div
+            class="date-cell"
+            :class="{
+              'future-date':
+                !moment(data.day).isSame(currentDate, 'month') ||
+                disableFutureDates(new Date(data.day))
+            }"
+          >
             <div class="text">{{ data.day.split('-').pop() }}</div>
-            <div v-if="getSignStatus(data.day)" class="signed-status">
+            <div v-if="!isLoading && getSignStatus(data.day)" class="signed-status">
               <img
                 width="20"
                 src="@/assets/images/jianB.png"
@@ -29,7 +36,10 @@
                 title="简币 - 您的专属虚拟货币"
               />
             </div>
-            <div v-else-if="isPastOrToday(data.day)" class="unsigned-status">
+            <div
+              v-else-if="!isLoading && isCurrentMonthAndPastOrToday(data.day)"
+              class="unsigned-status"
+            >
               <svg-icon
                 icon-name="icon-weiqiandao"
                 class-name="sign-icon"
@@ -130,7 +140,7 @@
 
     // 获取新月份的签到数据
     await fetchAttendanceData();
-    updateCurrentDateDisplay();
+    // updateCurrentDateDisplay(); // 移除该调用
   };
 
   // 判断签到状态
@@ -139,7 +149,10 @@
   };
 
   // 获取签到数据
+  const isLoading = ref(false);
+
   const fetchAttendanceData = async () => {
+    isLoading.value = true;
     console.log('获取签到数据', moment(currentDate.value).format('YYYY-MM'));
     const { token } = appStore.useTokenStore;
     if (token) {
@@ -147,6 +160,7 @@
         currentDate: moment(currentDate.value).format('YYYY-MM')
       };
       const data = await getMonthAttendanceListAsync(params);
+      isLoading.value = false;
 
       if (data.data.status === 200) {
         attendanceData.value = data.data.data.calendar;
@@ -190,8 +204,8 @@
 
   // 更新当前日期显示
   const updateCurrentDateDisplay = () => {
-    currentDay.value = moment(currentDate.value).format('DD');
-    currentDateStr.value = moment(currentDate.value).format('MMM YYYY');
+    currentDay.value = moment().format('DD');
+    currentDateStr.value = moment().format('MMM YYYY');
   };
 
   watch(
@@ -232,8 +246,11 @@
   };
 
   // 判断是否为过去或今天
-  const isPastOrToday = (date: string) => {
-    return moment(date).isSameOrBefore(moment(), 'day');
+  const isCurrentMonthAndPastOrToday = (date: string) => {
+    const momentDate = moment(date);
+    return (
+      momentDate.isSame(currentDate.value, 'month') && momentDate.isSameOrBefore(moment(), 'day')
+    );
   };
 </script>
 

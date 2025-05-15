@@ -37,6 +37,7 @@
     "c-scrollbar": "^1.0.2",
     "colorpicker-v3": "^2.10.2",
     "default-passive-events": "^2.0.0",
+    "echarts": "^5.6.0",
     "element-plus": "2.4.4",
     "fast-glob": "^3.2.12",
     "file-saver": "^2.0.5",
