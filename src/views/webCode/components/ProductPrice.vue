@@ -220,9 +220,13 @@
           letter-spacing: 1px;
         }
         span {
+          display: inline-block;
+          text-align: justify;
           font-size: 12px;
           color: #727272;
           margin-top: 10px;
+          padding: 0 20px;
+          line-height: 1.5;
         }
       }
     }
