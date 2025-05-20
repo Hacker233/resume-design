@@ -93,6 +93,24 @@
                 @keyup.enter="register(registerRuleFormRef)"
               />
             </el-form-item>
+            <!-- 隐私协议、服务条款 -->
+            <el-form-item>
+              <div
+                class="private-service-box"
+                :class="{ 'agree-text-active': selectedPrivateService }"
+              >
+                <el-checkbox
+                  v-model="selectedPrivateService"
+                  class="agree-checkbox"
+                  style="margin-right: 5px"
+                />
+                <span class="agreement-text">
+                  我已阅读并同意
+                  <a href="#" @click.stop="toPrivacy">隐私协议</a> 和
+                  <a href="#" @click.stop="toService">服务条款</a>
+                </span>
+              </div>
+            </el-form-item>
           </el-form>
           <el-button
             class="ghost-button forms_buttons-action"
@@ -165,11 +183,14 @@
       </div>
     </div>
   </el-dialog>
+  <!-- 隐私协议弹窗 -->
+  <private-service-dialog v-model="privateServiceVisiable" :type="type"></private-service-dialog>
 </template>
 <script lang="ts" setup>
   import { ElMessage, FormInstance, FormRules } from 'element-plus';
   import { loginAsync, registerAsync, sendCodeAsync } from '@/http/api/user';
   import appStore from '@/store';
+  import PrivateServiceDialog from './components/PrivateServiceDialog.vue';
   const props = defineProps({
     isLogin: {
       type: Boolean,
@@ -184,6 +205,20 @@
       default: (fun: any) => fun()
     }
   });
+
+  const selectedPrivateService = ref<boolean>(false);
+  const privateServiceVisiable = ref<boolean>(false);
+  const type = ref<'privacy' | 'service' | ''>(''); // 切换登录注册
+  // 打开隐私协议
+  const toPrivacy = () => {
+    type.value = 'privacy';
+    privateServiceVisiable.value = true;
+  };
+  // 打开服务条款
+  const toService = () => {
+    type.value = 'service';
+    privateServiceVisiable.value = true;
+  };
 
   const { websiteConfig } = appStore.useWebsiteConfigStore;
   // 登录数据
@@ -366,6 +401,14 @@
     if (!formEl) return;
     await formEl.validate(async (valid, fields) => {
       if (valid) {
+        // 判断是否勾选隐私协议
+        if (!selectedPrivateService.value) {
+          ElMessage({
+            message: '请勾选隐私协议和服务条款！',
+            type: 'error'
+          });
+          return;
+        }
         isRegisterLoading.value = true;
         let params = {
           name: registerForm.name,
@@ -688,6 +731,20 @@
           opacity: 0.8;
         }
       }
+    }
+
+    :deep(.private-service-box) {
+      opacity: 0.5;
+      .agreement-text {
+        transition: color 0.3s;
+        cursor: pointer;
+        a {
+          color: rgb(103, 103, 217);
+        }
+      }
+    }
+    .agree-text-active {
+      opacity: 1;
     }
   }
 </style>

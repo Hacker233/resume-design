@@ -49,6 +49,12 @@
       <el-form-item label="是否开启职行AI推广:" prop="open_jobzx">
         <el-switch v-model="ruleForm.open_jobzx" />
       </el-form-item>
+      <el-form-item label="网站隐私协议:" prop="privacy_policy">
+        <comm-editor v-model="ruleForm.privacy_policy" height="400px"></comm-editor>
+      </el-form-item>
+      <el-form-item label="网站服务条款:" prop="privacy_policy">
+        <comm-editor v-model="ruleForm.service_agreement" height="400px"></comm-editor>
+      </el-form-item>
     </el-form>
     <el-divider>
       <el-icon><star-filled /></el-icon>
@@ -67,6 +73,7 @@
     webConfigUpdateAsync
   } from '@/http/api/websiteConfig';
   import { FormInstance, FormRules } from 'element-plus';
+  import CommEditor from '@/components/CommEditor/CommEditor.vue';
 
   // 表单填写数据
   interface IWebConfig {
@@ -82,6 +89,8 @@
     open_homne_menu: boolean;
     open_invite_register: boolean;
     open_jobzx: boolean;
+    privacy_policy: string;
+    service_agreement: string;
   }
   const ruleForm = reactive<IWebConfig>({
     open_sign: true,
@@ -95,7 +104,9 @@
     open_membership: true,
     open_homne_menu: true,
     open_invite_register: true,
-    open_jobzx: false
+    open_jobzx: false,
+    privacy_policy: '',
+    service_agreement: ''
   });
   const rules = reactive<FormRules>({
     website_title: [{ required: true, message: '网站标题不能为空！', trigger: 'change' }]
@@ -153,6 +164,8 @@
     ruleForm.open_homne_menu = data.open_homne_menu;
     ruleForm.open_invite_register = data.open_invite_register;
     ruleForm.open_jobzx = data.open_jobzx;
+    ruleForm.privacy_policy = data.privacy_policy;
+    ruleForm.service_agreement = data.service_agreement;
   };
 </script>
 <style lang="scss" scoped>

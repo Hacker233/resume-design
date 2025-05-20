@@ -109,6 +109,7 @@ declare module '@vue/runtime-core' {
     Pagination: typeof import('./components/Pagination/pagination.vue')['default']
     PayIntegralDialog: typeof import('./components/PayIntegralDialog/PayIntegralDialog.vue')['default']
     PreviewImage: typeof import('./components/PreviewImage/PreviewImage.vue')['default']
+    PrivateServiceDialog: typeof import('./components/LoginDialog/components/PrivateServiceDialog.vue')['default']
     ProcessBarDialog: typeof import('./components/ProcessBarDialog/ProcessBarDialog.vue')['default']
     ProjectExperienceCom: typeof import('./components/ModelComs/ProjectExperienceCom.vue')['default']
     QrCode: typeof import('./components/QrCode/QrCode.vue')['default']
