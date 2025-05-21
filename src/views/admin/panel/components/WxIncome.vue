@@ -2,11 +2,10 @@
   <div class="sign-users-container">
     <div class="filter-container">
       <!-- 模块标题 -->
-      <echarts-title title="注册用户数"></echarts-title>
+      <echarts-title title="易支付收入统计"></echarts-title>
       <div class="echart-filter-box">
         <div class="statistics-box">
-          <el-statistic title="总注册人数" :value="totalUsers" />
-          <el-statistic class="ml-4" title="当前范围注册人数" :value="currentRangeUsers" />
+          <el-statistic class="ml-4" title="当前范围收入" :value="currentRangeUsers + '元'" />
         </div>
         <div class="date-box">
           <el-date-picker
@@ -30,14 +29,13 @@
 
 <script lang="ts" setup>
   import ECharts from './ECharts.vue';
-  import { getSignUsersByDateAsync } from '@/http/api/panel';
+  import { getWxIncomeByDateAsync } from '@/http/api/panel';
   import moment from 'moment';
   import EchartsTitle from './EchartsTitle.vue';
   import { DATE_SHORTCUTS } from './utils/dateShortcuts';
 
   const dateRange = ref<any>([]);
   const shortcuts = DATE_SHORTCUTS;
-  const totalUsers = ref(0);
   const currentRangeUsers = ref(0);
   const chartOptions = ref({
     xAxis: {
@@ -57,7 +55,7 @@
     tooltip: {
       trigger: 'axis',
       formatter: (params: any) => {
-        return `注册日期：${params[0].name}<br/>注册人数：${params[0].value}`;
+        return `收入日期：${params[0].name}<br/>收入金额：${params[0].value}元`;
       }
     }
   });
@@ -75,19 +73,18 @@
       startDate: dateRange.value[0],
       endDate: dateRange.value[1]
     };
-    const data = await getSignUsersByDateAsync(params);
+    const data = await getWxIncomeByDateAsync(params);
     if (data.data.status === 200) {
-      totalUsers.value = data.data.data.totalAllUsers;
       currentRangeUsers.value = data.data.data.total;
       chartOptions.value = {
         ...chartOptions.value,
         xAxis: {
           type: 'category',
-          data: data.data.data.items.map((item: any) => item.name)
+          data: data.data.data.items.map((item: any) => item.date)
         },
         series: [
           {
-            data: data.data.data.items.map((item: any) => item.value),
+            data: data.data.data.items.map((item: any) => item.total),
             type: 'line',
             smooth: true
           }

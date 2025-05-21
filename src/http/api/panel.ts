@@ -24,3 +24,38 @@ export const getSignUsersByDateAsync: any = (params: any) => {
     params: params
   });
 };
+
+// 查询收入占比
+export const getPercentageRevenueAsync: any = () => {
+  return http.request({
+    url: '/huajian/panel/getPercentageRevenue',
+    method: 'get'
+  });
+};
+
+// 查询区间范围的收入情况
+export const getIncomeByDateAsync: any = (params: any) => {
+  return http.request({
+    url: '/huajian/panel/getIncomeByDate',
+    method: 'get',
+    params: params
+  });
+};
+
+// 查询区间范围的易支付收入情况
+export const getWxIncomeByDateAsync: any = (params: any) => {
+  return http.request({
+    url: '/huajian/panel/getWxIncomeByDate',
+    method: 'get',
+    params: params
+  });
+};
+
+// 查询区间范围的支付宝收入情况
+export const getAliIncomeByDateAsync: any = (params: any) => {
+  return http.request({
+    url: '/huajian/panel/getAliIncomeByDate',
+    method: 'get',
+    params: params
+  });
+};
