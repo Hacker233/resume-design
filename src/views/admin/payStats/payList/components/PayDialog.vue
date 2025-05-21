@@ -3,7 +3,7 @@
   <el-dialog
     :model-value="dialogPayVisible"
     :title="title"
-    width="500px"
+    width="600px"
     :show-close="false"
     :close-on-click-modal="false"
     append-to-body
@@ -12,7 +12,7 @@
       ref="ruleFormRef"
       :model="ruleForm"
       :rules="rules"
-      label-width="80px"
+      label-width="120px"
       size="default"
       label-position="left"
     >
@@ -20,7 +20,7 @@
         <el-input v-model="ruleForm.email" placeholder="请输入付费用户邮箱" />
       </el-form-item>
       <el-form-item label="付费类型:" prop="type">
-        <el-select v-model="ruleForm.type" placeholder="请选择付费类型">
+        <el-select v-model="ruleForm.type" placeholder="请选择付费类型" style="width: 100%">
           <el-option
             v-for="(item, index) in payList"
             :key="index"
@@ -30,7 +30,10 @@
         </el-select>
       </el-form-item>
       <el-form-item label="付费金额:" prop="money">
-        <el-input-number v-model="ruleForm.money" :min="1" :max="1000000" />
+        <el-input-number v-model="ruleForm.money" :min="1" :max="1000000" style="width: 100%" />
+      </el-form-item>
+      <el-form-item label="是否永久版:" prop="forever">
+        <el-switch v-model="ruleForm.forever" />
       </el-form-item>
     </el-form>
     <template #footer>
@@ -72,6 +75,7 @@
         ruleForm.email = props.row.email;
         ruleForm.type = props.row.type;
         ruleForm.money = props.row.money;
+        ruleForm.forever = props.row.forever;
       }
     },
     {
@@ -83,12 +87,14 @@
     email: string;
     type: string;
     money: number;
+    forever: boolean;
   }
   // 表单填写数据
   const ruleForm = reactive<IPay>({
     email: '',
     type: 'codePay',
-    money: 0
+    money: 0,
+    forever: false
   });
   const rules = reactive<FormRules>({});
 
@@ -109,7 +115,8 @@
           let params = {
             email: ruleForm.email,
             type: ruleForm.type,
-            money: ruleForm.money
+            money: ruleForm.money,
+            forever: ruleForm.forever
           };
           sureLoading.value = true;
           const data = await paystatsAddAsync(params);
@@ -127,7 +134,8 @@
             id: props.row._id,
             email: ruleForm.email,
             type: ruleForm.type,
-            money: ruleForm.money
+            money: ruleForm.money,
+            forever: ruleForm.forever
           };
           const data = await paystatsUpdateAsync(params);
           if (data.data.status === 200) {

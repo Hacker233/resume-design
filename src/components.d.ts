@@ -27,7 +27,6 @@ declare module '@vue/runtime-core' {
     CommonLoading: typeof import('./components/CommonLoading/CommonLoading.vue')['default']
     ContentBox: typeof import('./components/packages/components/comment/src/content-box.vue')['default']
     DateFormItem: typeof import('./components/DateFormItem/DateFormItem.vue')['default']
-    EchartsTitle: typeof import('./components/common/EchartsTitle.vue')['default']
     Editor: typeof import('./components/packages/components/editor/editor.vue')['default']
     EduBackgroundCom: typeof import('./components/ModelComs/EduBackgroundCom.vue')['default']
     ElAlert: typeof import('element-plus/es')['ElAlert']

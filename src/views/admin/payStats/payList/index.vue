@@ -14,6 +14,12 @@
   <!-- 表格列表 -->
   <el-table class="template-list-table" :data="payList" style="width: 100%" size="default" border>
     <el-table-column prop="email" label="用户邮箱" />
+    <el-table-column prop="forever" label="是否永久版">
+      <template #default="scope">
+        <el-tag v-if="scope.row.forever" type="success">是</el-tag>
+        <el-tag v-else type="danger">否</el-tag>
+      </template>
+    </el-table-column>
     <el-table-column prop="type" label="付费类型">
       <template #default="scope">
         <div> {{ payType(scope.row.type) }} </div>
