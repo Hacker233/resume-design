@@ -2,6 +2,14 @@ import moment from 'moment';
 
 export const DATE_SHORTCUTS = [
   {
+    text: '当日',
+    value: () => {
+      const start = moment().startOf('day');
+      const end = moment().endOf('day');
+      return [start.format('YYYY-MM-DD'), end.format('YYYY-MM-DD')];
+    }
+  },
+  {
     text: '当月',
     value: () => {
       const start = moment().startOf('month');

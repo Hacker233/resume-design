@@ -100,8 +100,9 @@
   };
 
   onMounted(() => {
-    const end = moment().format('YYYY-MM-DD');
-    const start = moment().subtract(7, 'days').format('YYYY-MM-DD');
+    // 初始化默认查询当月数据
+    const start = moment().startOf('month').format('YYYY-MM-DD');
+    const end = moment().endOf('month').format('YYYY-MM-DD');
     dateRange.value = [start, end];
     fetchChartData();
   });

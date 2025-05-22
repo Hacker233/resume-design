@@ -4,6 +4,12 @@
     <el-form-item label="付费金额大于（元）：">
       <el-input-number v-model="formInline.money" :min="0" :max="1000000" />
     </el-form-item>
+    <el-form-item label="是否永久更新版：">
+      <el-select v-model="formInline.forever" placeholder="请选择">
+        <el-option label="是" value="true" />
+        <el-option label="否" value="false" />
+      </el-select>
+    </el-form-item>
     <el-form-item>
       <el-button type="primary" @click="onSubmit">查询</el-button>
       <el-button @click="resetForm">重置</el-button>
@@ -72,6 +78,62 @@
     @handle-current-change="handleCurrentChange"
     @handle-size-change="handleSizeChange"
   ></Pagination>
+
+  <!-- 永久用户卡片列表 -->
+  <el-card class="forever-card-list" shadow="hover">
+    <template #header>
+      <div class="card-header flex items-center justify-between">
+        <div class="flex items-center gap-2">
+          <span class="text-base font-medium"
+            >永久版用户列表（共{{ foreverEmailList.length }}个）</span
+          >
+          <el-tag type="success" effect="dark" class="ml-2 rounded-md">
+            <el-icon class="mr-1"><StarFilled /></el-icon>VIP
+          </el-tag>
+        </div>
+        <el-button
+          class="copy-btn"
+          type="primary"
+          :icon="DocumentCopy"
+          size="small"
+          style="margin-top: 10px"
+          @click="copyEmails"
+        >
+          一键复制
+        </el-button>
+      </div>
+    </template>
+
+    <div class="card-container px-2">
+      <el-row :gutter="8" class="!mx-0">
+        <el-col
+          v-for="(item, index) in foreverEmailList"
+          :key="index"
+          :xs="24"
+          :sm="12"
+          :md="8"
+          :lg="6"
+          :xl="4"
+          class="py-2!"
+        >
+          <el-card
+            class="email-card transition-all duration-300 hover:-translate-y-1.5"
+            shadow="hover"
+            :body-style="{ padding: '10px 14px' }"
+          >
+            <div class="email-content flex items-center gap-3">
+              <el-icon class="user-icon text-blue-500"><User /></el-icon>
+              <el-tooltip :content="item.email" placement="top" effect="light">
+                <el-text class="email-text text-sm font-medium text-gray-800" truncated>
+                  {{ item.email }}
+                </el-text>
+              </el-tooltip>
+            </div>
+          </el-card>
+        </el-col>
+      </el-row>
+    </div>
+  </el-card>
 </template>
 <script lang="ts" setup>
   import PayDialog from './components/PayDialog.vue';
@@ -80,6 +142,8 @@
   import { getPaystatsListAsync, paystatsDeleteAsync } from '@/http/api/pay';
   import 'element-plus/es/components/message-box/style/index';
   import { usePayTypeList } from '@/hooks/usePayTypeList';
+  import { ElMessage } from 'element-plus';
+  import { DocumentCopy } from '@element-plus/icons-vue';
 
   const dialogPayVisible = ref<boolean>(false);
   const row = ref<any>(null);
@@ -88,7 +152,8 @@
 
   // 表单查询
   const formInline = reactive({
-    money: 0
+    money: 0,
+    forever: ''
   });
 
   // 付费类型映射
@@ -142,7 +207,8 @@
     let params = {
       page: page.value,
       limit: limit.value,
-      money: formInline.money
+      money: formInline.money,
+      forever: formInline.forever
     };
     const data = await getPaystatsListAsync(params);
     if (data.data.status === 200) {
@@ -156,6 +222,19 @@
   };
   getPaystatsList();
 
+  // 查询所有的永久版付费用户列表
+  const foreverEmailList = ref<any>([]);
+  const getForeverEmailList = async () => {
+    const data = await getPaystatsListAsync({ forever: true, page: 1, limit: 10000, money: 0 });
+    if (data.data.status === 200) {
+      foreverEmailList.value = data.data.data.list;
+      console.log('foreverEmailList', foreverEmailList);
+    } else {
+      ElMessage.error(data.data.message);
+    }
+  };
+  getForeverEmailList();
+
   // 点击查询
   const onSubmit = () => {
     page.value = 1;
@@ -166,6 +245,7 @@
   // 重置
   const resetForm = () => {
     formInline.money = 0;
+    formInline.forever = '';
     page.value = 1;
     currentPage.value = 1;
     getPaystatsList();
@@ -196,5 +276,16 @@
         }
       })
       .catch(() => {});
+  };
+
+  // 复制邮箱列表
+  const copyEmails = async () => {
+    try {
+      const emails = foreverEmailList.value.map((item: any) => item.email).join('; ');
+      await navigator.clipboard.writeText(emails);
+      ElMessage.success(`已复制${foreverEmailList.value.length}个邮箱到剪贴板`);
+    } catch (error) {
+      ElMessage.error('复制失败，请检查浏览器权限设置');
+    }
   };
 </script>

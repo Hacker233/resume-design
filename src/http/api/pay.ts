@@ -61,12 +61,21 @@ export const wxtradeQueryAsync: any = (params: any) => {
   });
 };
 
-// 管理员分页查询当面付订单
+// 管理员分页查询易支付订单
 export const yipayTradeQueryListAsync: any = (params: any) => {
   return http.request({
     url: '/huajian/yiPay/yipayTradeQueryList',
     method: 'get',
     params: params
+  });
+};
+
+// 管理员发起支付宝当面付退款
+export const aliPayRefundAsync: any = (data: any) => {
+  return http.request({
+    url: '/huajian/aliPay/aliPayRefund',
+    method: 'post',
+    data: data
   });
 };
 
@@ -83,6 +92,15 @@ export const yipayTradeQueryByAdminAsync: any = (params: any) => {
 export const yipayGetPayURLAsync: any = (data: any) => {
   return http.request({
     url: '/huajian/yiPay/getPayPageURL',
+    method: 'post',
+    data: data
+  });
+};
+
+// 管理员发起易支付退款
+export const yipayRefundAsync: any = (data: any) => {
+  return http.request({
+    url: '/huajian/yiPay/refundByAdmin',
     method: 'post',
     data: data
   });

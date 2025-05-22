@@ -59,8 +59,11 @@
       </el-table-column>
 
       <!-- 操作区域 -->
-      <el-table-column label="操作" width="100">
+      <el-table-column label="操作" width="120">
         <template #default="scope">
+          <el-button link type="primary" size="small" @click="refundTrade(scope.row)"
+            >退款</el-button
+          >
           <el-button link type="primary" size="small" @click="updateAliPayTrade(scope.row)"
             >同步订单</el-button
           >
@@ -80,7 +83,9 @@
 </template>
 <script lang="ts" setup>
   import { tradeQueryByAdminAsync, tradeQueryListAsync } from '@/http/api/integral';
+  import { aliPayRefundAsync } from '@/http/api/pay';
   import { formatListDate } from '@/utils/common';
+  import { ElMessageBox } from 'element-plus';
   import 'element-plus/es/components/message-box/style/index';
 
   // 订单状态对应tags
@@ -177,6 +182,32 @@
     } else {
       ElMessage.error(data.data.message);
     }
+  };
+
+  // 管理员发起退款
+  const refundTrade = async (row: any) => {
+    ElMessageBox.confirm('此操作将退款, 是否继续?', '提示', {
+      confirmButtonText: '确定',
+      cancelButtonText: '取消',
+      type: 'warning'
+    })
+      .then(async () => {
+        const params = {
+          tradeNo: row.tradeNo,
+          outTradeNo: row.outTradeNo,
+          refundAmount: row.receiptAmount,
+          orderType: row.orderType,
+          email: row.email
+        };
+        const data = await aliPayRefundAsync(params);
+        if (data.data.status === 200) {
+          ElMessage.success('退款成功');
+          updateAliPayTrade(row);
+        } else {
+          ElMessage.error(data.data.message);
+        }
+      })
+      .catch(() => {});
   };
 </script>
 <style lang="scss" scoped></style>

@@ -97,9 +97,9 @@
   };
 
   onMounted(() => {
-    // 初始化默认查询最近7天数据
-    const end = moment().format('YYYY-MM-DD');
-    const start = moment().subtract(7, 'days').format('YYYY-MM-DD');
+    // 初始化默认查询当月数据
+    const start = moment().startOf('month').format('YYYY-MM-DD');
+    const end = moment().endOf('month').format('YYYY-MM-DD');
     // 问题可能是 dateRange 初始化为空数组，导致类型推断为 never[]，这里重新定义 dateRange 类型为 string[]
     dateRange.value = [start, end];
     fetchChartData();
