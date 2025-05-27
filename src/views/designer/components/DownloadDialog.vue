@@ -4,7 +4,7 @@
     class="download-resume-select"
     :model-value="dialogDownloadVisible"
     title="下载简历"
-    width="500px"
+    width="700px"
     append-to-body
     @close="handleClose"
   >
@@ -26,8 +26,13 @@
             <template v-if="!membershipInfo.hasMembership || membershipInfo.isExpired">
               <div class="how-much">
                 （价格：{{ Math.abs(exportImgPayIntegral) || 0 }}
-                <img width="20" src="@/assets/images/jianB.png" alt="简币" />）</div
-              >
+                <img width="20" src="@/assets/images/jianB.png" alt="简币" />）
+                <el-tooltip content="会员每日可无限次导出高清简历！" placement="top">
+                  <el-icon class="tip-icon">
+                    <QuestionFilled />
+                  </el-icon>
+                </el-tooltip>
+              </div>
             </template>
             <template v-else>
               <div class="how-much"> 免费下载 </div>
@@ -51,14 +56,62 @@
             <template v-if="!membershipInfo.hasMembership || membershipInfo.isExpired">
               <div class="how-much"
                 >（价格：{{ Math.abs(exportPdfPayIntegral) || 0
-                }}<img width="20" src="@/assets/images/jianB.png" alt="简币" />）</div
-              >
+                }}<img width="20" src="@/assets/images/jianB.png" alt="简币" />）
+                <el-tooltip content="会员每日可无限次导出高清简历！" placement="top">
+                  <el-icon class="tip-icon">
+                    <QuestionFilled />
+                  </el-icon>
+                </el-tooltip>
+              </div>
             </template>
             <template v-else>
               <div class="how-much"> 免费下载 </div>
             </template>
           </div>
           <p> 适合打印、在线投递等(<span>推荐</span>)</p>
+        </div>
+        <!-- 下载Markdown -->
+        <div class="download-pdf-box download-md">
+          <!-- 会员图标 -->
+          <img
+            class="vip-icon"
+            src="@/assets/images/membership.svg"
+            alt="会员"
+            title="会员"
+            width="30"
+          />
+          <el-tooltip
+            :disabled="!(!membershipInfo.hasMembership || membershipInfo.isExpired)"
+            content="该功能仅限会员使用！"
+          >
+            <div
+              :class="[
+                'download-com-box pdf-box',
+                { 'download-disabled': !membershipInfo.hasMembership || membershipInfo.isExpired }
+              ]"
+              @click="downloadMD"
+            >
+              <svg-icon icon-name="icon-markdown-line" color="#fff" size="26px"></svg-icon>
+              <span>下载Markdown</span>
+            </div>
+          </el-tooltip>
+          <div class="price">
+            <!-- 先判断是否是会员 -->
+            <template v-if="!membershipInfo.hasMembership || membershipInfo.isExpired">
+              <div class="how-much"
+                >（会员专享）
+                <el-tooltip content="会员每日可无限次导出高清简历！" placement="top">
+                  <el-icon class="tip-icon">
+                    <QuestionFilled />
+                  </el-icon>
+                </el-tooltip>
+              </div>
+            </template>
+            <template v-else>
+              <div class="how-much"> 免费下载 </div>
+            </template>
+          </div>
+          <p> 适合本地修改、提取简历内容等</p>
         </div>
       </div>
       <div class="get-bi-method" @click="openGetDialog">获取简币</div>
@@ -84,7 +137,7 @@
   // 获取用户会员信息
   const { membershipInfo } = storeToRefs(appStore.useMembershipStore);
 
-  const emit = defineEmits(['closeDownloadDialog', 'downloadFile']);
+  const emit = defineEmits(['closeDownloadDialog', 'downloadFile', 'downloadMarkdown']);
   interface TDialog {
     dialogDownloadVisible: boolean;
     exportPdfPayIntegral: number;
@@ -149,6 +202,16 @@
     title.value = '如何获取简币';
     dialogGetIntegralVisible.value = true;
   };
+
+  // 跳转至会员充值
+  const downloadMD = () => {
+    // 会员且未过期直接下载
+    if (membershipInfo.value.hasMembership && !membershipInfo.value.isExpired) {
+      emit('downloadMarkdown');
+      return;
+    }
+    window.open('/membership', '_blank');
+  };
 </script>
 <style lang="scss" scoped>
   .dialog-footer button:first-child {
@@ -156,6 +219,7 @@
   }
   .download-resume-select {
     .content-box {
+      padding: 20px 0;
       .content-down-btn {
         display: flex;
         justify-content: center;
@@ -166,6 +230,7 @@
           align-items: center;
           cursor: pointer;
           margin: 0 20px;
+          width: 170px;
           .price {
             display: flex;
             align-items: center;
@@ -181,7 +246,7 @@
             }
           }
           .download-com-box {
-            width: 100px;
+            width: 110px;
             height: 110px;
             border-radius: 5px;
             transition: all 0.3s;
@@ -202,7 +267,7 @@
           .download-disabled {
             user-select: none;
             cursor: not-allowed;
-            opacity: 0.4;
+            opacity: 0.6;
           }
           .img-box {
             background: linear-gradient(90deg, #a986ff 0, #9861ff 100%);
@@ -215,6 +280,14 @@
             &:hover {
               background: linear-gradient(149deg, #ffa98f 0, #ff6464 50%);
             }
+          }
+        }
+        .download-md {
+          position: relative;
+          .vip-icon {
+            position: absolute;
+            top: -16px;
+            right: 24px;
           }
         }
       }

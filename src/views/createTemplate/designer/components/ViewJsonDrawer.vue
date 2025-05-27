@@ -11,7 +11,7 @@
   >
     <json-editor v-model="code" class="json-editor"></json-editor>
     <div v-if="!json" class="view-json-footer">
-      <el-button type="primary" size="normal" @click="changeJSON">确认修改</el-button>
+      <el-button type="primary" size="default" @click="changeJSON">确认修改</el-button>
     </div>
   </el-drawer>
 </template>

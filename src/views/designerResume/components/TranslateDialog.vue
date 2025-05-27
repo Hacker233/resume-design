@@ -17,7 +17,7 @@
         ><b>注意：</b
         >此操作AI会将您的简历内容翻译为对应语种，无法确保完全正确，请你最好留有数据备份！</p
       >
-      <el-form size="normal">
+      <el-form size="default">
         <el-form-item label="选择目标语种:">
           <el-select v-model="language" placeholder="请选择语种" size="default" style="width: 100%">
             <el-option
@@ -32,8 +32,8 @@
     </div>
     <template #footer>
       <span class="dialog-footer">
-        <el-button size="normal" @click="cancle">取消</el-button>
-        <el-button size="normal" type="primary" :loading="aiLoading" @click="submit">{{
+        <el-button size="default" @click="cancle">取消</el-button>
+        <el-button size="default" type="primary" :loading="aiLoading" @click="submit">{{
           aiLoading ? '翻译中' : '开始翻译'
         }}</el-button>
       </span>

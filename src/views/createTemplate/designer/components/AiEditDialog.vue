@@ -6,7 +6,7 @@
     :show-close="false"
     :close-on-click-modal="false"
     append-to-body
-    custom-class="custom-dialog"
+    class="custom-dialog"
     @open="handleOpen"
   >
     <div class="ai-content-edit-page-select-warpper">
@@ -120,8 +120,8 @@
     </div>
     <template #footer>
       <span class="dialog-footer">
-        <el-button size="normal" @click="cancle">取消</el-button>
-        <el-button size="normal" type="primary" @click="submit">写入简历</el-button>
+        <el-button size="default" @click="cancle">取消</el-button>
+        <el-button size="default" type="primary" @click="submit">写入简历</el-button>
       </span>
     </template>
   </el-dialog>

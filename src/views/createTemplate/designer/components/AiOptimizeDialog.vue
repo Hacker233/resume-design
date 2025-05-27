@@ -4,7 +4,7 @@
     title="AI简历诊断"
     width="800px"
     append-to-body
-    custom-class="custom-dialog"
+    class="custom-dialog"
     @open="handleOpen"
     @close="cancle"
   >
@@ -69,8 +69,8 @@
 
     <template #footer>
       <span class="dialog-footer">
-        <el-button size="normal" @click="cancle">取消</el-button>
-        <el-button size="normal" type="primary" :loading="isSubmitting" @click="submit">
+        <el-button size="default" @click="cancle">取消</el-button>
+        <el-button size="default" type="primary" :loading="isSubmitting" @click="submit">
           开始诊断
         </el-button>
       </span>

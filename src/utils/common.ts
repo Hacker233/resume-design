@@ -440,11 +440,15 @@ const processItem = (item: any) => {
 };
 
 // 将简历中的JSON数据提取出来
-export const extractResumeData = (resumeData: any) => {
+export const extractResumeData = (resumeData: any, filterNotShowModule?: boolean) => {
   const extractedData: any = {};
 
   // 遍历每个模块
   resumeData.componentsTree.forEach((module: any) => {
+    // 如果filterNotShowModule为true且模块不显示，则跳过
+    if (filterNotShowModule && module.customProps?.showModule === false) {
+      return;
+    }
     // 截取 id 的最后十位
     const shortId = module.id.slice(-10);
     extractedData[shortId] = {};

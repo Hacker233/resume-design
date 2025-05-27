@@ -1,7 +1,7 @@
 <template>
   <div class="design-resume-box">
     <!-- 导航栏 -->
-    <nav-bar @reset="reset" @generate-report="generateReport"></nav-bar>
+    <nav-bar @reset="reset" @generate-report="generateReport" @download-m-d="downloadMD"></nav-bar>
     <!-- 底部区域 -->
     <div :key="resetKey" class="bottom-box">
       <!-- 数据配置 -->
@@ -33,6 +33,12 @@
       @cancle="cancleProgress"
     ></process-bar-dialog>
   </div>
+
+  <!-- AI JSON转md -->
+  <ai-json-to-md-drawer
+    :drawer="aiToMdDrawer"
+    @close-ai-optimize-drawer="closeAiDrawer"
+  ></ai-json-to-md-drawer>
 </template>
 
 <script lang="ts" setup>
@@ -52,6 +58,7 @@
   import GlobalThemeSettingBar from '../createTemplate/designer/components/GlobalThemeSettingBar.vue';
   import { title } from '@/config/seo';
   import NoDataVue from '@/components/NoData/NoData.vue';
+  import AiJsonToMdDrawer from './components/AiJsonToMdDrawer.vue';
 
   const isLoading = ref(true);
   const { HJNewJsonStore, selectedPageName, fromAiGenerate } = storeToRefs(
@@ -171,6 +178,17 @@
     // 查询用简币信息
     const { getUserIntegralTotal } = appStore.useUserInfoStore;
     getUserIntegralTotal();
+  };
+
+  // 导出为Markdown
+  const aiToMdDrawer = ref(false); // ai json to md drawer
+  const downloadMD = () => {
+    aiToMdDrawer.value = true;
+  };
+
+  // 关闭AI转md抽屉
+  const closeAiDrawer = () => {
+    aiToMdDrawer.value = false;
   };
 
   // 关闭进度弹窗

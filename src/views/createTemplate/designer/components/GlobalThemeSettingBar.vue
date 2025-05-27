@@ -5,7 +5,7 @@
       v-model="defaultFamily"
       :teleported="true"
       placeholder="请选择字体"
-      size="normal"
+      size="default"
       style="width: 130px"
       @change="secondFontFamilyChange"
     >
@@ -21,7 +21,7 @@
     <el-select
       v-model="fontSize"
       :teleported="true"
-      size="normal"
+      size="default"
       placeholder="请选择字号"
       style="width: 90px; margin: 0 0 0 10px"
       @change="secondFontSizeChange"
@@ -60,7 +60,7 @@
               v-model="lineHeight"
               :max="1000"
               :step="0.1"
-              size="normal"
+              size="default"
               style="width: 100%"
               @change="handleChangeLineHeight"
             />

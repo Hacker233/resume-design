@@ -2,7 +2,7 @@
   <el-dialog
     :model-value="dialogGenerateVisible"
     title="AI智能生成简历"
-    width="700px"
+    width="800px"
     :show-close="false"
     :close-on-click-modal="false"
     append-to-body

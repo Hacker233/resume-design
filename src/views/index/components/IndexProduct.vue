@@ -17,7 +17,7 @@
           <div class="see-more-box">
             <hj-button-1 text="免费制作专业简历" @click="freeMakeResume"></hj-button-1>
             <hj-button-1 text="AI智能生成简历" @click="generateAiResume"></hj-button-1>
-            <hj-button-1 v-config:open_jobzx text="AI面试助手" @click="toJobzx"></hj-button-1>
+            <!-- <hj-button-1 v-config:open_jobzx text="AI面试助手" @click="toJobzx"></hj-button-1> -->
             <hj-button-1 text="简历服务" @click="resumeContact"></hj-button-1>
           </div>
           <!-- 核心功能介绍 -->
@@ -75,7 +75,7 @@
 <script lang="ts" setup>
   import { closeGlobalLoading } from '@/utils/common';
   import HjButton1 from '@/components/HjButton/HjButton1/index.vue';
-  import { useToJobzxAi } from '@/hooks/useToJobzxAi';
+  // import { useToJobzxAi } from '@/hooks/useToJobzxAi';
 
   const emit = defineEmits(['freeMake', 'seeMore']);
 
@@ -99,9 +99,9 @@
   };
 
   // 前往使用
-  const toJobzx = () => {
-    useToJobzxAi();
-  };
+  // const toJobzx = () => {
+  //   useToJobzxAi();
+  // };
 
   const seeMore = () => {
     emit('seeMore');

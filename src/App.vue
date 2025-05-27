@@ -1,5 +1,5 @@
 <template>
-  <el-config-provider size="small" :locale="zhCn">
+  <el-config-provider size="default" :locale="zhCn">
     <!-- 导航栏 -->
     <nav-bar
       v-if="route.meta.isShowComNav"

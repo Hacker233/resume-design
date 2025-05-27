@@ -4,7 +4,7 @@
     title="AI简历诊断记录"
     width="800px"
     append-to-body
-    custom-class="custom-dialog"
+    class="custom-dialog"
     @open="handleOpen"
     @close="cancle"
   >

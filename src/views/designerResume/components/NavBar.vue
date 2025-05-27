@@ -88,6 +88,7 @@
     :export-img-pay-integral="exportImgPayIntegral"
     @close-download-dialog="closeDownloadDialog"
     @download-file="downloadResumeFile"
+    @download-markdown="downloadMDNav"
   ></download-dialog>
 
   <!-- 预览窗口 -->
@@ -138,7 +139,8 @@
     'generateReportNew',
     'reset',
     'saveDataToLocal',
-    'publishComment'
+    'publishComment',
+    'downloadMD'
   ]);
   const route = useRoute();
   const id = route.params.id;
@@ -275,6 +277,15 @@
     if (data) {
       emit('generateReport', type);
       closeDownloadDialog();
+    }
+  };
+
+  // 导出为md
+  const downloadMDNav = async () => {
+    const data = await saveDataToLocal();
+    if (data) {
+      closeDownloadDialog();
+      emit('downloadMD');
     }
   };
 

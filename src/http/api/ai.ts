@@ -223,3 +223,25 @@ export const generateResumeStreamAsync: any = (
 export const cancelGenerateResumeStreamAsync: any = (controller: AbortController) => {
   controller.abort(); // 取消请求
 };
+
+// AI json转md
+// AI生成简历（流式传输）
+export const jsonToMarkdownStreamByAiAsync: any = (
+  data: any, // 生成简历的参数
+  onMessage: (chunk: string) => void, // 流式数据回调
+  onError: (error: any) => void, // 错误回调
+  onComplete?: () => void // 完成回调
+) => {
+  return http.streamRequest(
+    '/huajian/ai/jsonToMarkdownStreamByAi', // 后端接口路径
+    data, // 请求参数
+    onMessage, // 流式数据回调
+    onError, // 错误回调
+    onComplete // 完成回调
+  );
+};
+
+// 取消流式传输AI转markdown
+export const cancelToMarkdownStreamAsync: any = (controller: AbortController) => {
+  controller.abort(); // 取消请求
+};

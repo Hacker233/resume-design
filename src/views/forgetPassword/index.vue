@@ -16,7 +16,7 @@
         label-width="160px"
         class="demo-ruleForm"
         status-icon
-        size="normal"
+        size="default"
         label-position="top"
       >
         <el-form-item label="请填写您的邮箱地址" prop="email">

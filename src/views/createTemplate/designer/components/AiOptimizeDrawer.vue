@@ -105,7 +105,7 @@
     // 获取简历数据
     const { HJNewJsonStore } = storeToRefs(appStore.useCreateTemplateStore);
     // 提取 dataSource 数据
-    const dataSource = extractResumeData(HJNewJsonStore.value);
+    const dataSource = extractResumeData(HJNewJsonStore.value, true);
     console.log('dataSource', JSON.stringify(dataSource));
     const params = {
       model: props.modelInfoObj.selectedModel,
