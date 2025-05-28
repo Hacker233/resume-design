@@ -106,7 +106,7 @@
   });
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
   .sign-users-container {
     padding: 20px;
     background: #fff;

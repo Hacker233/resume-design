@@ -1,6 +1,9 @@
 <template>
   <!-- 查询表单 -->
   <el-form :inline="true" :model="formInline" class="demo-form-inline" size="default">
+    <el-form-item label="用户名：">
+      <el-input v-model="formInline.name" placeholder="用户名" />
+    </el-form-item>
     <el-form-item label="用户邮箱：">
       <el-input v-model="formInline.queryEmail" placeholder="用户邮箱" />
     </el-form-item>
@@ -184,7 +187,8 @@
     queryEmail: '',
     integral_sort: '',
     register_sort: '',
-    accountStatus: ''
+    accountStatus: '',
+    name: ''
   });
 
   // 查询
@@ -200,6 +204,7 @@
     formInline.integral_sort = '';
     formInline.register_sort = '';
     formInline.accountStatus = '';
+    formInline.name = '';
     page.value = 1;
     currentPage.value = 1;
     getUserList();
@@ -225,6 +230,7 @@
   const currentPage = ref<number>(1);
   const getUserList = async () => {
     let params = {
+      name: formInline.name,
       email: formInline.queryEmail,
       integral_sort: formInline.integral_sort,
       createDate: formInline.register_sort,
