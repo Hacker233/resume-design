@@ -167,6 +167,7 @@
         padding-bottom: 10px;
         letter-spacing: 1px;
         font-weight: 500;
+        margin: 0;
       }
       .contact-me {
         display: flex;
@@ -177,6 +178,7 @@
         h5 {
           font-size: 14px;
           color: #fff;
+          margin: 0;
           margin-top: 10px;
         }
         .add-wechat {
@@ -205,6 +207,7 @@
           color: #fff;
           display: flex;
           justify-content: flex-start;
+          margin: 0;
           margin-bottom: 10px;
           font-size: 14px;
           a {

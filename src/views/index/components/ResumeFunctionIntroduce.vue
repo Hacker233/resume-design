@@ -16,7 +16,7 @@
             title="数据存储至云端，实时同步，永不丢失"
             loading="lazy"
           />
-          <h3>云端存储</h3>
+          <h5>云端存储</h5>
           <p>数据存储至云端，实时同步，永不丢失</p>
         </div>
         <div class="card">
@@ -26,7 +26,7 @@
             title="所有简历模块皆可自由调整、隐藏或显示"
             loading="lazy"
           />
-          <h3>模块定制</h3>
+          <h5>模块定制</h5>
           <p>所有简历模块皆可自由调整、隐藏或显示</p>
         </div>
         <div class="card">
@@ -36,7 +36,7 @@
             title="海量皮肤随心定制，做出独一无二的简历"
             loading="lazy"
           />
-          <h3>皮肤色彩定制</h3>
+          <h5>皮肤色彩定制</h5>
           <p>海量皮肤随心定制，做出独一无二的简历</p>
         </div>
       </div>
@@ -48,7 +48,7 @@
             title="AI智能帮写简历，快速完成简历"
             loading="lazy"
           />
-          <h3>AI帮写</h3>
+          <h5>AI帮写</h5>
           <p>AI智能帮写简历，快速完成简历</p>
         </div>
         <div class="card">
@@ -58,7 +58,7 @@
             title="AI帮改简历、提高专业性"
             loading="lazy"
           />
-          <h3>AI润色</h3>
+          <h5>AI润色</h5>
           <p>AI帮改简历、提高专业性</p>
         </div>
         <div class="card">
@@ -68,7 +68,7 @@
             title="AI多语言翻译简历、快速生成"
             loading="lazy"
           />
-          <h3>AI翻译</h3>
+          <h5>AI翻译</h5>
           <p>AI多语言翻译简历、快速生成</p>
         </div>
       </div>
@@ -80,7 +80,7 @@
             title="多端一键下载简历，打印、投递更方便"
             loading="lazy"
           />
-          <h3>多端下载</h3>
+          <h5>多端下载</h5>
           <p>多端一键下载简历，打印、投递更方便</p>
         </div>
         <div class="card">
@@ -90,7 +90,7 @@
             title="专注于简历数据填写，排除其他干扰"
             loading="lazy"
           />
-          <h3>专注数据</h3>
+          <h5>专注数据</h5>
           <p>专注于简历数据填写，排除其他干扰</p>
         </div>
         <div class="card">
@@ -100,7 +100,7 @@
             title="源码级别JSON数据导出，本地编辑"
             loading="lazy"
           />
-          <h3>导出JSON</h3>
+          <h5>导出JSON</h5>
           <p>源码级别JSON数据导出，本地编辑</p>
         </div>
       </div>
@@ -149,7 +149,7 @@
           max-width: 60%;
           height: auto;
         }
-        h3 {
+        h5 {
           font-size: 20px;
           color: #383737;
           margin: 10px;

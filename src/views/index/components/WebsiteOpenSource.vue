@@ -16,7 +16,7 @@
             title="访问 GitHub 查看前端源码"
             loading="lazy"
           />
-          <h3>前端源码</h3>
+          <h5>前端源码</h5>
           <p>github开源</p>
         </div>
         <div class="card" @click="toGitee">
@@ -26,7 +26,7 @@
             title="访问 Gitee 查看前端源码"
             loading="lazy"
           />
-          <h3>前端源码</h3>
+          <h5>前端源码</h5>
           <p>gitee开源</p>
         </div>
         <div v-config:open_get_source_code class="card" @click="toNestjs">
@@ -36,7 +36,7 @@
             title="查看 NestJS 后端源码"
             loading="lazy"
           />
-          <h3>后端源码</h3>
+          <h5>后端源码</h5>
           <p>nestjs框架</p>
         </div>
         <el-popover :width="200" trigger="hover" placement="right" teleported>
@@ -48,14 +48,14 @@
                 title="了解开源作者信息"
                 loading="lazy"
               />
-              <h3>开源作者</h3>
+              <h5>开源作者</h5>
               <p>独立开发者</p>
             </div>
           </template>
           <!-- 内容区域 -->
           <div class="vx-box">
             <div class="vx-title">
-              <h3>添加微信</h3>
+              <h5>添加微信</h5>
               <p>进入交流群，迅速解答疑问！</p>
             </div>
             <div class="vx-img">
@@ -131,7 +131,7 @@
           width: 60px;
           height: auto;
         }
-        h3 {
+        h5 {
           font-size: 18px;
           color: #383737;
           margin: 10px;
@@ -151,7 +151,7 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      h3 {
+      h5 {
         font-size: 14px;
       }
       p {
