@@ -12,7 +12,7 @@
       <div class="service-card-box">
         <div v-for="(service, index) in services" :key="index" class="card">
           <img :src="images[service.imageSrc]" :alt="service.alt" loading="lazy" />
-          <h3>{{ service.title }}</h3>
+          <h4>{{ service.title }}</h4>
           <p class="card-content">{{ service.content }}</p>
         </div>
       </div>
@@ -113,7 +113,7 @@
             margin-bottom: 10px;
           }
 
-          h3 {
+          h4 {
             font-size: 20px;
             color: #383737;
             margin: 10px;

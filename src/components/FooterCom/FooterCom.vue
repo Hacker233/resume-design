@@ -11,49 +11,47 @@
             :title="`扫描二维码添加 ${item.name}`"
             loading="lazy"
           />
-          <h3>{{ item.name }}</h3>
+          <h5>{{ item.name }}</h5>
         </div>
       </div>
       <!-- 关于我 -->
       <div class="about-me">
-        <h2>社交平台</h2>
-        <h3>
+        <h4>社交平台</h4>
+        <h5>
           <a
             href="https://space.bilibili.com/493520625?spm_id_from=333.1007.0.0"
             target="_blank"
             rel="noopener noreferrer"
             >哔哩哔哩</a
           >
-        </h3>
-        <h3>
+        </h5>
+        <h5>
           <a
             href="https://juejin.cn/user/3034307822112798"
             target="_blank"
             rel="noopener noreferrer"
             >稀土掘金</a
           >
-        </h3>
-        <h3>
+        </h5>
+        <h5>
           <a
             href="https://www.zhihu.com/people/luhongquan"
             target="_blank"
             rel="noopener noreferrer"
             >个人知乎</a
           >
-        </h3>
+        </h5>
       </div>
       <!-- 友情链接 -->
       <div class="links">
         <div class="links-box">
-          <h2>友情链接</h2>
-          <h2 class="apply-links" @click="applyLinks">申请友链</h2>
+          <h4>友情链接</h4>
+          <h4 class="apply-links" @click="applyLinks">申请友链</h4>
         </div>
         <div class="links-box">
           <template v-for="(item, index) in linksList" :key="index">
             <p>
-              <a :href="appendRefParam(item.link)" target="_blank" rel="noopener noreferrer">{{
-                item.name
-              }}</a>
+              <a :href="item.link" target="_blank" rel="noopener noreferrer">{{ item.name }}</a>
             </p>
           </template>
         </div>
@@ -140,10 +138,10 @@
     dialogApplyLinksVisible.value = false;
   };
 
-  const appendRefParam = (url: string) => {
-    // 如果 URL 已经有查询参数，用 & 连接；否则用 ? 开头
-    return url.includes('?') ? `${url}&ref=maobucv.com` : `${url}?ref=maobucv.com`;
-  };
+  // const appendRefParam = (url: string) => {
+  //   // 如果 URL 已经有查询参数，用 & 连接；否则用 ? 开头
+  //   return url.includes('?') ? `${url}&ref=maobucv.com` : `${url}?ref=maobucv.com`;
+  // };
 
   defineExpose({
     vxQunList
@@ -166,7 +164,7 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      h2 {
+      h4 {
         color: #a3a5a7;
         font-size: 16px;
         padding-bottom: 10px;
@@ -179,7 +177,7 @@
           width: 105px;
           height: 105px;
         }
-        h3 {
+        h5 {
           font-size: 14px;
           color: #fff;
           margin-top: 10px;
@@ -206,7 +204,7 @@
         flex-direction: column;
         padding-top: 30px;
         margin-right: 40px;
-        h3 {
+        h5 {
           color: #fff;
           display: flex;
           justify-content: flex-start;
@@ -232,7 +230,7 @@
           display: flex;
           flex-wrap: wrap;
           max-width: 200px;
-          h2 {
+          h4 {
             margin-right: 38px;
           }
           p {
