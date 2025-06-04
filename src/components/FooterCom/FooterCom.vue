@@ -18,10 +18,7 @@
       <div class="about-me">
         <h4>社交平台</h4>
         <h5>
-          <a
-            href="https://space.bilibili.com/493520625?spm_id_from=333.1007.0.0"
-            target="_blank"
-            rel="noopener noreferrer"
+          <a href="https://space.bilibili.com/493520625" target="_blank" rel="noopener noreferrer"
             >哔哩哔哩</a
           >
         </h5>
@@ -67,7 +64,7 @@
     <div class="icp-record-number">
       <p>
         <a href="https://beian.miit.gov.cn" target="_blank" rel="noopener noreferrer"
-          >蜀ICP备2020034752号-4</a
+          >蜀ICP备2020034752号</a
         >
       </p>
       <!-- <p>

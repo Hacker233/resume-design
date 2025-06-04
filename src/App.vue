@@ -21,6 +21,7 @@
   // import { openAndCloseLoadingByTime } from './utils/common';
   import zhCn from 'element-plus/es/locale/lang/zh-cn';
   import { addWebsiteViewsAsync } from './http/api/panel';
+  import { createWebHashHistory } from 'vue-router';
 
   const { isLoading } = storeToRefs(appStore.useLoadingStore);
   // openAndCloseLoadingByTime(1500); // 等待动画层
@@ -49,6 +50,27 @@
   // 查询网站配置
   const { getWebsiteConfig } = appStore.useWebsiteConfigStore;
   getWebsiteConfig();
+
+  // 动态更新 canonical
+  const router = useRouter();
+  watchEffect(() => {
+    const canonical: any = document.querySelector('link[rel="canonical"]');
+    const url = `https://maobucv.com${route.path}`;
+
+    if (canonical) {
+      canonical.href = url;
+    } else {
+      const link = document.createElement('link');
+      link.rel = 'canonical';
+      link.href = url;
+      document.head.appendChild(link);
+    }
+
+    // 修复哈希路由问题
+    if (router.options.history instanceof createWebHashHistory().constructor) {
+      window.history.replaceState(null, '', route.path);
+    }
+  });
 </script>
 <style>
   /* 设置了打印会出现问题 */
