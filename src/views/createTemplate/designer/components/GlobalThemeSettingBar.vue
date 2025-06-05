@@ -435,7 +435,7 @@
         height: 12px;
       }
       .el-input-number {
-        width: 90px;
+        width: 120px;
       }
     }
   }

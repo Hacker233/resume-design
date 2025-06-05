@@ -96,6 +96,39 @@ export const getResumePdfAsync: any = (params: any) => {
   });
 };
 
+// 获取预览PDF
+export const getPreviewPdfAsync = async (params: any) => {
+  const response = await http.request({
+    url: '/huajian/pdf/resumePreview',
+    method: 'post',
+    responseType: 'text', // 改为text类型
+    data: params
+  });
+
+  const separator = '|||PDF_SEPARATOR|||';
+  const separatorIndex = response.indexOf(separator);
+
+  if (separatorIndex === -1) {
+    throw new Error('Invalid response format');
+  }
+
+  const metadataStr = response.substring(0, separatorIndex);
+  const pdfBase64 = response.substring(separatorIndex + separator.length);
+
+  try {
+    const metadata = JSON.parse(metadataStr);
+    const pdfData = Uint8Array.from(atob(pdfBase64), (c) => c.charCodeAt(0));
+
+    return {
+      blob: new Blob([pdfData], { type: 'application/pdf' }),
+      pageCount: metadata.pageCount
+    };
+  } catch (e) {
+    console.error('Parsing error:', e);
+    throw new Error('Failed to parse response data');
+  }
+};
+
 // 导出为PNG
 export const getPNGAsync: any = (params: any) => {
   return http.request({

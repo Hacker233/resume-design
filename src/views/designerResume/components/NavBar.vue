@@ -92,9 +92,9 @@
   ></download-dialog>
 
   <!-- 预览窗口 -->
-  <PreviewImage v-if="dialogPreviewVisible" @close="closePreview">
+  <!-- <PreviewImage v-if="dialogPreviewVisible" @close="closePreview">
     <resume-preview :show-line="true"></resume-preview>
-  </PreviewImage>
+  </PreviewImage> -->
 
   <!-- 语种切换弹窗 -->
   <translate-dialog
@@ -126,7 +126,7 @@
   import { debounce } from 'lodash';
   import { saveDraftAsync } from '@/http/api/createTemplate';
   import { formatListDate } from '@/utils/common';
-  import ResumePreview from '@/views/createTemplate/previewer/index.vue';
+  // import ResumePreview from '@/views/createTemplate/previewer/index.vue';
   import TranslateDialog from './TranslateDialog.vue';
   import LoginDialog from '@/components/LoginDialog/LoginDialog';
   import AiOptimizeDrawer from '@/views/createTemplate/designer/components/AiOptimizeDrawer.vue';
@@ -140,7 +140,8 @@
     'reset',
     'saveDataToLocal',
     'publishComment',
-    'downloadMD'
+    'downloadMD',
+    'previewResume'
   ]);
   const route = useRoute();
   const id = route.params.id;
@@ -201,9 +202,10 @@
   };
 
   // 预览简历
-  const dialogPreviewVisible = ref<boolean>(false);
+  // const dialogPreviewVisible = ref<boolean>(false);
   const previewResume = () => {
-    dialogPreviewVisible.value = true;
+    // dialogPreviewVisible.value = true;
+    emit('previewResume');
     // router.push({
     //   path: '/resumePreview',
     //   query: {
@@ -214,9 +216,9 @@
   };
 
   // 关闭预览弹窗
-  const closePreview = () => {
-    dialogPreviewVisible.value = false;
-  };
+  // const closePreview = () => {
+  //   dialogPreviewVisible.value = false;
+  // };
 
   // 保存草稿
   const saveDraft = () => {

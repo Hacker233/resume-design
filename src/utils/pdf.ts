@@ -1,4 +1,4 @@
-import { getPNGAsync, getResumePdfAsync } from '@/http/api/resume';
+import { getPNGAsync, getPreviewPdfAsync, getResumePdfAsync } from '@/http/api/resume';
 import appStore from '@/store';
 
 import { saveAs } from 'file-saver'; // 引入 file-saver 库
@@ -97,4 +97,29 @@ export const exportPNGNew = async (id?: string) => {
     const blob = new Blob([pngData], { type: 'image/png' });
     triggerDownload(blob, `${fileName}.png`);
   }
+};
+
+// 返回预览PDF
+export const exportPdfPreview = (id?: string) => {
+  return new Promise(async (resolve) => {
+    const params = {
+      url: `${location.origin}/resumePreview?type=page&id=${id}`,
+      printBackground: true,
+      timezone: '',
+      margin: '',
+      filename: '',
+      format: 'A4',
+      integralPayGoodsId: id
+    };
+
+    const { blob, pageCount } = await getPreviewPdfAsync(params);
+    if (!blob) {
+      ElMessage.error('网络过慢，请求超时，请重新尝试导出');
+      resolve(null);
+      return;
+    } else {
+      resolve({ blob, pageCount });
+      return { blob, pageCount };
+    }
+  });
 };

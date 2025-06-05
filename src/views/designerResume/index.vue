@@ -1,7 +1,12 @@
 <template>
   <div class="design-resume-box">
     <!-- 导航栏 -->
-    <nav-bar @reset="reset" @generate-report="generateReport" @download-m-d="downloadMD"></nav-bar>
+    <nav-bar
+      @reset="reset"
+      @generate-report="generateReport"
+      @download-m-d="downloadMD"
+      @preview-resume="handlePreviewResume"
+    ></nav-bar>
     <!-- 底部区域 -->
     <div :key="resetKey" class="bottom-box">
       <!-- 数据配置 -->
@@ -39,6 +44,12 @@
     :drawer="aiToMdDrawer"
     @close-ai-optimize-drawer="closeAiDrawer"
   ></ai-json-to-md-drawer>
+
+  <!-- 预览弹窗 -->
+  <preview-resume-dialog
+    :dialog-preview-resume-visible="dialogPreviewResumeVisible"
+    @cancle="canclePreviewResume"
+  ></preview-resume-dialog>
 </template>
 
 <script lang="ts" setup>
@@ -59,6 +70,7 @@
   import { title } from '@/config/seo';
   import NoDataVue from '@/components/NoData/NoData.vue';
   import AiJsonToMdDrawer from './components/AiJsonToMdDrawer.vue';
+  import PreviewResumeDialog from './components/PreviewResumeDialog.vue';
 
   const isLoading = ref(true);
   const { HJNewJsonStore, selectedPageName, fromAiGenerate } = storeToRefs(
@@ -195,6 +207,18 @@
   const cancleProgress = () => {
     dialogVisible.value = false;
     percentage.value = 10;
+  };
+
+  // 打开预览弹窗
+  const dialogPreviewResumeVisible = ref<boolean>(false);
+  const handlePreviewResume = () => {
+    console.log('打开预览弹窗');
+    dialogPreviewResumeVisible.value = true;
+  };
+
+  // 关闭预览弹窗
+  const canclePreviewResume = () => {
+    dialogPreviewResumeVisible.value = false;
   };
 </script>
 

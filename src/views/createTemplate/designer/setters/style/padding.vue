@@ -46,7 +46,7 @@
         .center {
           width: 30px;
           .el-input-number {
-            width: 65px;
+            width: 95px;
           }
         }
         .center {

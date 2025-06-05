@@ -119,6 +119,9 @@ importers:
       vue-json-viewer:
         specifier: ^3.0.4
         version: 3.0.4(vue@3.2.33)
+      vue-pdf-embed:
+        specifier: ^1.1.6
+        version: 1.2.1(vue@3.2.33)
       vue-router:
         specifier: ^4.0.15
         version: 4.0.15(vue@3.2.33)
@@ -131,6 +134,9 @@ importers:
       vue3-count-to:
         specifier: ^1.1.2
         version: 1.1.2(vue@3.2.33)
+      vue3-pdfjs:
+        specifier: ^0.1.6
+        version: 0.1.6
       vuedraggable:
         specifier: ^4.1.0
         version: 4.1.0(vue@3.2.33)
@@ -1776,6 +1782,10 @@ packages:
     resolution: {integrity: sha512-GrwoxYN+uWlzO8uhUXRl0P+kHE4GtVPfYzVLcUxPL7KNdHKj66vvlhiweIHqYYXWlw+T8iLMp42Lm67ghw4WMQ==}
     engines: {node: '>= 4'}
 
+  dommatrix@1.0.3:
+    resolution: {integrity: sha512-l32Xp/TLgWb8ReqbVJAFIvXmY7go4nTxxlWiAFyhoQw9RKEOHBZNnyGvJWqDVSPmq3Y9HlM4npqF/T6VMOXhww==}
+    deprecated: dommatrix is no longer maintained. Please use @thednp/dommatrix.
+
   dompurify@2.4.0:
     resolution: {integrity: sha512-Be9tbQMZds4a3C6xTmz68NlMfeONA//4dOavl/1rNw50E+/QO0KVpbcU0PcaW0nsQxurXls9ZocqFxk8R2mWEA==}
 
@@ -3309,6 +3319,14 @@ packages:
   pathe@0.3.2:
     resolution: {integrity: sha512-qhnmX0TOqlCvdWWTkoM83wh5J8fZ2yhbDEc9MlsnAEtEc+JCwxUKEwmd6pkY9hRe6JR1Uecbc14VcAKX2yFSTA==}
 
+  pdfjs-dist@2.16.105:
+    resolution: {integrity: sha512-J4dn41spsAwUxCpEoVf6GVoz908IAA3mYiLmNxg8J9kfRXc2jxpbUepcP0ocp0alVNLFthTAM8DZ1RaHh8sU0A==}
+    peerDependencies:
+      worker-loader: ^3.0.8
+    peerDependenciesMeta:
+      worker-loader:
+        optional: true
+
   performance-now@2.1.0:
     resolution: {integrity: sha512-7EAHlyLHI56VEIdK57uwHdHKIaAGbnXPiw0yWbarQZOKaKpvUIgW0jWRVLiatnM+XXlSwsanIBH/hzGMJulMow==}
 
@@ -4386,6 +4404,11 @@ packages:
     peerDependencies:
       vue: ^3.2.2
 
+  vue-pdf-embed@1.2.1:
+    resolution: {integrity: sha512-4uUm4wxaEGT9cS1cyuagAmMJjBxfQXWG1MvdGPesD3CiXhhSp4i0VMUCYwhFXtZ5+QqWv4mXbfLJ29Wpt+Qcuw==}
+    peerDependencies:
+      vue: ^2.x || ^3.x
+
   vue-router@4.0.15:
     resolution: {integrity: sha512-xa+pIN9ZqORdIW1MkN2+d9Ui2pCM1b/UMgwYUCZOiFYHAvz/slKKBDha8DLrh5aCG/RibtrpyhKjKOZ85tYyWg==}
     peerDependencies:
@@ -4438,6 +4461,10 @@ packages:
       '@vue/compiler-sfc': ^3.2.6
       vue: ^3.2.6
 
+  vue3-pdfjs@0.1.6:
+    resolution: {integrity: sha512-7UaWbsp8wNqB0y/rRlyo5yRb0S+XOkkSpmdUuS267Dhi07Pt4RFEetQ8inrpf/aTFJwGnW0Uc/UE4p376s+Zmw==}
+    engines: {node: '>=10.0.0'}
+
   vue@3.2.33:
     resolution: {integrity: sha512-si1ExAlDUrLSIg/V7D/GgA4twJwfsfgG+t9w10z38HhL/HA07132pUQ2KuwAo8qbCyMJ9e6OqrmWrOCr+jW7ZQ==}
 
@@ -4448,6 +4475,10 @@ packages:
 
   w3c-keyname@2.2.5:
     resolution: {integrity: sha512-WJrK7i6w+ULuZsGscCezbCH4Aev5U3xY87vnSimzzEgPQhb0Sa0a1rE3c2jtEwrFtSfi61Jefw3jI5/DD/3jbQ==}
+
+  web-streams-polyfill@3.3.3:
+    resolution: {integrity: sha512-d2JWLCivmZYTSIoge9MsgFCZrt571BikcWGYkjC1khllbTeDlGqZ2D8vD8E/lJa8WGWbb7Plm8/XJYV7IJHZZw==}
+    engines: {node: '>= 8'}
 
   webidl-conversions@3.0.1:
     resolution: {integrity: sha512-2JAn3z8AR6rjK8Sm8orRC0h/bcl/DqL7tRPdGZ4I1CjdF+EaMLmYxBHyXuKL849eucPFhvBoxMsflfOb8kxaeQ==}
@@ -6255,6 +6286,8 @@ snapshots:
     dependencies:
       domelementtype: 2.3.0
 
+  dommatrix@1.0.3: {}
+
   dompurify@2.4.0: {}
 
   domutils@1.7.0:
@@ -7814,6 +7847,11 @@ snapshots:
 
   pathe@0.3.2: {}
 
+  pdfjs-dist@2.16.105:
+    dependencies:
+      dommatrix: 1.0.3
+      web-streams-polyfill: 3.3.3
+
   performance-now@2.1.0: {}
 
   picocolors@1.0.0: {}
@@ -8978,6 +9016,10 @@ snapshots:
       clipboard: 2.0.11
       vue: 3.2.33
 
+  vue-pdf-embed@1.2.1(vue@3.2.33):
+    dependencies:
+      vue: 3.2.33
+
   vue-router@4.0.15(vue@3.2.33):
     dependencies:
       '@vue/devtools-api': 6.1.4
@@ -9031,6 +9073,13 @@ snapshots:
       vue: 3.2.33
       vue-types: 4.2.1(vue@3.2.33)
 
+  vue3-pdfjs@0.1.6:
+    dependencies:
+      pdfjs-dist: 2.16.105
+      vue: 3.2.33
+    transitivePeerDependencies:
+      - worker-loader
+
   vue@3.2.33:
     dependencies:
       '@vue/compiler-dom': 3.2.33
@@ -9045,6 +9094,8 @@ snapshots:
       vue: 3.2.33
 
   w3c-keyname@2.2.5: {}
+
+  web-streams-polyfill@3.3.3: {}
 
   webidl-conversions@3.0.1: {}
 
