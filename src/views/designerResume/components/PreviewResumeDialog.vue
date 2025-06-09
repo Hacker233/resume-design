@@ -2,7 +2,7 @@
   <el-dialog
     :model-value="dialogPreviewResumeVisible"
     title="导出PDF预览（如和设计页面有差异，请调整各模块边距后再导出）"
-    width="820px"
+    width="860px"
     :show-close="true"
     :close-on-click-modal="false"
     append-to-body
@@ -167,6 +167,7 @@
         display: flex;
         flex-direction: column;
         gap: 16px;
+        width: 820px;
 
         .vue-pdf-embed {
           border-radius: 6px;

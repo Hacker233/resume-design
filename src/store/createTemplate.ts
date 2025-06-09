@@ -13,6 +13,7 @@ export const useCreateTemplateStore = defineStore('createTemplate', () => {
   const HJNewJsonStore = ref<IHJNewSchema>(resume_json);
   const resetKey = ref<number>(0);
   const fromAiGenerate = ref<boolean>(false); // 是否来源于AI生成的简历
+  const pageCount = ref<number>(0); // 简历页数
   function changeResumeJsonData(obj: IHJNewSchema) {
     HJNewJsonStore.value = cloneDeep(obj);
   }
@@ -45,6 +46,7 @@ export const useCreateTemplateStore = defineStore('createTemplate', () => {
     changeResumeJsonData,
     pushComponent,
     resetResumeJson,
-    fromAiGenerate
+    fromAiGenerate,
+    pageCount
   };
 });

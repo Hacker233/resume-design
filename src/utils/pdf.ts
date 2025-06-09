@@ -58,7 +58,7 @@ export const exportPNG = async (id?: string, height?: string) => {
 
 // 改版后生成pdf方法
 export const exportPdfNew = async (id?: string) => {
-  const { HJNewJsonStore } = appStore.useCreateTemplateStore;
+  const { HJNewJsonStore, pageCount } = appStore.useCreateTemplateStore;
   const fileName = HJNewJsonStore.config.title;
   const params = {
     url: `${location.origin}/resumePreview?type=page&id=${id}`,
@@ -67,7 +67,8 @@ export const exportPdfNew = async (id?: string) => {
     margin: '',
     filename: '',
     format: 'A4',
-    integralPayGoodsId: id
+    integralPayGoodsId: id,
+    pageCount: pageCount
   };
 
   const pdfData = await getResumePdfAsync(params);
@@ -101,6 +102,7 @@ export const exportPNGNew = async (id?: string) => {
 
 // 返回预览PDF
 export const exportPdfPreview = (id?: string) => {
+  const { pageCount } = appStore.useCreateTemplateStore;
   return new Promise(async (resolve) => {
     const params = {
       url: `${location.origin}/resumePreview?type=page&id=${id}`,
@@ -109,10 +111,11 @@ export const exportPdfPreview = (id?: string) => {
       margin: '',
       filename: '',
       format: 'A4',
-      integralPayGoodsId: id
+      integralPayGoodsId: id,
+      pageCount: pageCount
     };
 
-    const { blob, pageCount } = await getPreviewPdfAsync(params);
+    const { blob } = await getPreviewPdfAsync(params);
     if (!blob) {
       ElMessage.error('网络过慢，请求超时，请重新尝试导出');
       resolve(null);

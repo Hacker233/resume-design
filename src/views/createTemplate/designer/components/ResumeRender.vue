@@ -28,7 +28,7 @@
   const route = useRoute();
 
   // 初始化JSON数据
-  const { HJNewJsonStore, selectedModuleId, fromAiGenerate } = storeToRefs(
+  const { HJNewJsonStore, selectedModuleId, fromAiGenerate, pageCount } = storeToRefs(
     appStore.useCreateTemplateStore
   );
   if (!fromAiGenerate.value) {
@@ -102,6 +102,7 @@
         newHeight = Math.ceil(newHeight / minHeight) * minHeight;
       }
       lineNumber.value = Math.ceil(newHeight / minHeight);
+      pageCount.value = lineNumber.value;
       // console.log('调整 pageWrapperRef 高度为:', newHeight, lineNumber.value);
       // 设置新的高度
       pageWrapperRef.value.style.height = `${newHeight}px`;
