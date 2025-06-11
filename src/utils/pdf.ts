@@ -12,6 +12,7 @@ const triggerDownload = (blob: any, fileName: any) => {
 // 生成pdf方法
 export const exportPdf = async (id?: string, height?: string) => {
   const { resumeJsonNewStore } = appStore.useResumeJsonNewStore;
+  const { pageCount } = appStore.useCreateTemplateStore;
   const fileName = resumeJsonNewStore.TITLE;
   const params = {
     url: `${location.origin}/pdfPreview?id=${id}&&height=${height}`,
@@ -20,7 +21,8 @@ export const exportPdf = async (id?: string, height?: string) => {
     margin: '',
     filename: '',
     format: 'A4',
-    integralPayGoodsId: id
+    integralPayGoodsId: id,
+    pageCount: pageCount
   };
 
   ElMessage.info('正在生成PDF，请稍等...'); // 提示用户生成中

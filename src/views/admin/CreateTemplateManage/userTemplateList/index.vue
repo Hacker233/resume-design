@@ -43,8 +43,9 @@
         </div>
       </template>
     </el-table-column>
-    <el-table-column label="操作" width="100">
+    <el-table-column label="操作" width="150">
       <template #default="scope">
+        <el-button link size="small" @click="openJsonDrawer(scope.row)">JSON</el-button>
         <el-button link size="small" @click="previewResume(scope.row)">预览</el-button>
       </template>
     </el-table-column>
@@ -64,6 +65,10 @@
   <PreviewImage v-if="dialogPreviewVisible" @close="closePreview">
     <resume-preview :show-line="true"></resume-preview>
   </PreviewImage>
+
+  <!-- 查看JSON抽屉 -->
+  <view-json-drawer :json="json" :drawer="jsonDrawer" @close-json-drawer="closeJsonDrawer">
+  </view-json-drawer>
 </template>
 
 <script lang="ts" setup>
@@ -74,6 +79,7 @@
   import ResumePreview from '@/views/createTemplate/previewer/index.vue';
   import { storeToRefs } from 'pinia';
   import appStore from '@/store';
+  import ViewJsonDrawer from './components/ViewJsonDrawer.vue';
 
   // 表单查询
   const formInline = reactive({
@@ -135,6 +141,20 @@
   const previewResume = (row: any) => {
     HJNewJsonStore.value = row.template_json;
     dialogPreviewVisible.value = true;
+  };
+
+  // 查看JSON数据
+  const jsonDrawer = ref<boolean>(false);
+  const json = ref<any>(null);
+  const openJsonDrawer = (row: any) => {
+    jsonDrawer.value = true;
+    json.value = row.template_json;
+  };
+
+  // 关闭JSON抽屉
+  const closeJsonDrawer = () => {
+    jsonDrawer.value = false;
+    json.value = null;
   };
 
   // 关闭预览弹窗

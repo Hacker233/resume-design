@@ -265,11 +265,13 @@
   let observer: ResizeObserver | null = null;
   let height = 0;
   let linesNumber = ref<number>(0);
+  const { pageCount } = storeToRefs(appStore.useCreateTemplateStore);
   const resizeDOM = () => {
     observer = new ResizeObserver(async (entries: ResizeObserverEntry[]) => {
       for (let entry of entries) {
         height = (entry.target as HTMLElement).offsetHeight;
         linesNumber.value = Math.ceil(height / 1160); // 有几条分割线
+        pageCount.value = linesNumber.value;
         html2Pdf.value.$el.style.height = 1160 * linesNumber.value + 'px'; // 整个简历的高度
         htmlContentPdf.value.style.height = html2Pdf.value.$el.style.height;
       }

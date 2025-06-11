@@ -51,24 +51,32 @@
   const { getWebsiteConfig } = appStore.useWebsiteConfigStore;
   getWebsiteConfig();
 
-  // 动态更新 canonical
+  // 动态更新 canonical 和修复哈希路由
   const router = useRouter();
+  const isFirstLoad = ref(true);
+
   watchEffect(() => {
-    const canonical: any = document.querySelector('link[rel="canonical"]');
-    const url = `https://maobucv.com${route.path}`;
+    // 只在第一次加载时执行
+    if (isFirstLoad.value) {
+      // 更新 canonical 链接
+      const canonical: any = document.querySelector('link[rel="canonical"]');
+      const url = `https://maobucv.com${route.fullPath}`;
 
-    if (canonical) {
-      canonical.href = url;
-    } else {
-      const link = document.createElement('link');
-      link.rel = 'canonical';
-      link.href = url;
-      document.head.appendChild(link);
-    }
+      if (canonical) {
+        canonical.href = url;
+      } else {
+        const link = document.createElement('link');
+        link.rel = 'canonical';
+        link.href = url;
+        document.head.appendChild(link);
+      }
 
-    // 修复哈希路由问题
-    if (router.options.history instanceof createWebHashHistory().constructor) {
-      window.history.replaceState(null, '', route.path);
+      // 修复哈希路由问题（仅第一次加载时执行）
+      if (router.options.history instanceof createWebHashHistory().constructor) {
+        window.history.replaceState(null, '', route.fullPath);
+      }
+
+      isFirstLoad.value = false;
     }
   });
 </script>
