@@ -273,12 +273,43 @@
     LoginDialog(true);
   };
 
+  // 添加一个下载状态标志
+  const isDownloading = ref(false);
   // 点击下载
   const downloadResumeFile = async (type: string) => {
-    const data = await saveDataToLocal();
-    if (data) {
-      emit('generateReport', type);
-      closeDownloadDialog();
+    // 如果正在下载中，直接返回
+    if (isDownloading.value) {
+      ElNotification({
+        title: '提示',
+        message: '正在处理下载请求，请稍候...',
+        type: 'warning',
+        duration: 2000
+      });
+      return;
+    }
+
+    isDownloading.value = true;
+    ElNotification({
+      title: '提示',
+      message: '正在准备下载，请稍候...',
+      type: 'info',
+      duration: 2000
+    });
+
+    try {
+      const data = await saveDataToLocal();
+      if (data) {
+        emit('generateReport', type);
+        closeDownloadDialog();
+      }
+    } catch (error) {
+      ElNotification({
+        title: '下载失败',
+        message: '下载过程中发生错误',
+        type: 'error'
+      });
+    } finally {
+      isDownloading.value = false;
     }
   };
 

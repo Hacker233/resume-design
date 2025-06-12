@@ -30,7 +30,7 @@
         <div class="content">
           <p class="jb-num"
             >{{ formatNumberWithCommas(appStore.useUserInfoStore.userIntegralInfo.integralTotal) }}
-            <img width="22" src="@/assets/images/jianB.png" alt="简币"
+            <img width="24" src="@/assets/images/jianB.png" alt="简币"
           /></p>
         </div>
         <!-- <div class="get-bi-method" @click="openGetDialog">获取简币</div> -->
@@ -91,7 +91,7 @@
                 </div>
                 <div class="bottom">
                   <p class="content-desc"
-                    >给猫步简历项目点Star，添加小编微信，凭点赞截图获取+20（入口在首页开源信息栏目）</p
+                    >给猫步简历项目点Star，添加小编微信，凭点赞截图和注册邮箱获取+20简币（入口在首页开源信息栏目）</p
                   >
                   <div class="attendance-box" @click="toGithub">
                     <div class="button"> 去点Star </div>
@@ -121,35 +121,39 @@
       <div class="content-box">
         <h1 class="title">网站所有内容无限制下载方式（强烈推荐！）</h1>
         <div class="content-member-box">
-          <div class="card" @click="toMembership">
+          <div class="card premium-card" @click="toMembership">
             <div class="card-text">
               <div class="portada">
-                <p>无限制下载</p>
+                <p>🔥 无限制下载</p>
               </div>
               <div class="title-total">
                 <h2>开通会员（9.9￥）</h2>
-
                 <div class="desc"
-                  >无论开通哪一种会员，你都将无限制的下载网站内的任意内容，包括软件、简历、模板、导出PDF等所有资源！</div
+                  >开通会员即可无限制下载全站所有资源！免费使用AI智能诊断、生成简历等</div
                 >
-                <div class="actions"> 立即前往>> </div></div
-              >
+                <div class="actions">
+                  <el-button type="primary" size="small" round>立即开通</el-button>
+                  <span class="arrow">→</span>
+                </div>
+              </div>
             </div>
+            <div class="badge">最受欢迎</div>
           </div>
-          <div class="card" @click="toWebCode">
+          <div class="card code-card" @click="toWebCode">
             <div class="card-text">
               <div class="portada">
-                <p>私有化部署</p>
+                <p>💻 私有化部署</p>
               </div>
               <div class="title-total">
                 <h2>购买源码</h2>
-
-                <div class="desc"
-                  >购买源码后，你可以将猫步简历官网部署为个人网站，同时你将拥有猫步简历网站内的所有资源，以及开源作者的贴心指导！</div
-                >
-                <div class="actions"> 立即前往>> </div></div
-              >
+                <div class="desc">购买源码即可私有化部署，拥有全部资源+作者技术支持！</div>
+                <div class="actions">
+                  <el-button type="success" size="small" round>了解详情</el-button>
+                  <span class="arrow">→</span>
+                </div>
+              </div>
             </div>
+            <div class="badge">开发者首选</div>
           </div>
         </div>
       </div>
@@ -289,7 +293,6 @@
       padding: 0 20px;
     }
     .get-integral-content-box {
-      padding: 20px 0;
       .content-box {
         font-size: 12px;
         color: #777777;
@@ -297,7 +300,8 @@
         flex-direction: column;
         align-items: flex-start;
         border-bottom: none;
-        p {
+        margin-bottom: 10px;
+        .content-desc {
           height: 40px;
           font-size: 14px;
           display: flex;
@@ -308,13 +312,18 @@
           }
         }
         .jb-num {
-          font-size: 20px;
+          font-size: 24px;
           font-weight: 600;
           background: -webkit-linear-gradient(top, #ff0000, #00ff00); /*设置线性渐变*/
           /*为了支持更多的浏览器*/
           background-clip: text; /*背景被裁剪到文字*/
           -webkit-text-fill-color: transparent; /*设置文字的填充颜色*/
           letter-spacing: 1px;
+          display: flex;
+          align-items: center;
+          img {
+            margin-left: 5px;
+          }
         }
       }
       .title {
@@ -489,106 +498,137 @@
         }
       }
       .content-member-box {
-        width: 100%;
         display: flex;
-        align-items: center;
-        justify-content: center;
-        margin-top: 15px;
+        justify-content: space-between;
+        gap: 20px;
+        margin-top: 20px;
+
         .card {
-          height: 135px;
-          background: #fff;
-          border-radius: 4px;
-          box-shadow: 0px 2px 8px rgba(34, 35, 58, 0.3);
-          flex: 1;
-          margin: 10px;
-          display: flex;
-          flex-direction: row;
-          border-radius: 25px;
           position: relative;
-          user-select: none;
+          width: 48%;
+          height: 220px;
+          background: linear-gradient(135deg, #f5f7fa 0%, #ffffff 100%);
+          border-radius: 12px;
+          box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
           cursor: pointer;
-          transition: all 0.3s;
+          transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+          overflow: hidden;
+
           &:hover {
-            opacity: 0.9;
+            transform: translateY(-8px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+
+            .portada {
+              background-size: 110%;
+            }
+
+            .arrow {
+              transform: translateX(5px);
+            }
           }
-        }
-        .card h2 {
-          margin: 0;
-          margin-bottom: 5px;
-        }
-        .card .desc {
-          font-size: 12px;
-          line-height: 18px;
-          text-align: justify;
-        }
-        .card .actions {
-          display: flex;
-          align-items: center;
-          justify-content: flex-end;
-          color: #8bc34a;
-          cursor: pointer;
-          transition: 0.5s;
-          &:hover {
-            color: #4caf50;
-          }
-        }
 
-        .card-text {
-          display: grid;
-          grid-template-columns: 1fr 2fr;
-        }
-
-        .title-total {
-          padding: 15px 20px 10px 20px;
-          box-sizing: border-box;
-          display: flex;
-          flex-direction: column;
-          justify-content: space-between;
-        }
-
-        path {
-          fill: white;
-        }
-
-        .img-portada {
-          width: 100%;
-        }
-
-        .portada {
-          width: 100%;
-          height: 135px;
-          border-top-left-radius: 20px;
-          border-bottom-left-radius: 20px;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          background-image: url(../../assets//images/private_bgc.jpg);
-          p {
-            font-size: 20px;
-            font-weight: bold;
-            color: #fff;
-            letter-spacing: 3px;
-            writing-mode: vertical-rl;
-            text-orientation: upright;
-            width: 100%;
+          .card-text {
+            padding: 15px;
             height: 100%;
-            backdrop-filter: blur(1px);
             display: flex;
-            align-items: center;
-            justify-content: center;
+            flex-direction: column;
+
+            .portada {
+              font-size: 18px;
+              font-weight: bold;
+              color: #fff;
+              margin-bottom: 15px;
+              padding: 8px 12px;
+              background: linear-gradient(90deg, #409eff, #36b5ff);
+              border-radius: 20px;
+              display: inline-block;
+              transition: all 0.3s;
+            }
+
+            .title-total {
+              flex: 1;
+
+              h2 {
+                font-size: 20px;
+                margin-bottom: 12px;
+                color: #333;
+                font-weight: 600;
+              }
+
+              .desc {
+                font-size: 14px;
+                color: #666;
+                line-height: 1.5;
+                margin-bottom: 20px;
+                height: 40px;
+                display: flex;
+                align-items: center;
+                text-align: justify;
+                text-justify: inter-character;
+              }
+
+              .actions {
+                display: flex;
+                align-items: center;
+                gap: 8px;
+
+                .arrow {
+                  font-size: 18px;
+                  color: #409eff;
+                  transition: all 0.3s;
+                }
+              }
+            }
+          }
+
+          .badge {
+            position: absolute;
+            top: 15px;
+            right: -30px;
+            background: #ff4d4f;
+            color: white;
+            padding: 3px 30px;
+            font-size: 12px;
+            transform: rotate(45deg);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
           }
         }
 
-        button {
-          border: none;
-          background: none;
-          font-size: 24px;
-          color: #8bc34a;
-          cursor: pointer;
-          transition: 0.5s;
-          &:hover {
-            color: #4caf50;
-            transform: rotate(22deg);
+        .premium-card {
+          .portada {
+            background: linear-gradient(90deg, #ff7bab, #ff6b81) !important;
+            color: #fff;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+            font-weight: 600;
+            letter-spacing: 0.5px;
+          }
+
+          .badge {
+            background: #ff4d4f;
+          }
+
+          .title-total {
+            h2 {
+              color: #d4237a;
+            }
+          }
+        }
+
+        .code-card {
+          .portada {
+            background: linear-gradient(90deg, #36cfc9, #13c2c2) !important;
+            color: #fff;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+          }
+
+          .badge {
+            background: #13c2c2;
+          }
+
+          .title-total {
+            h2 {
+              color: #0b7d78;
+            }
           }
         }
       }

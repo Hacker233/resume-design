@@ -188,6 +188,9 @@
   // 确定警告弹窗
   const handleConfirmDialog = () => {
     dialogGetIntegralVisible.value = false;
+    if (title.value === '如何获取简币') {
+      return;
+    }
     emit('downloadFile', downloadType.value);
   };
 
