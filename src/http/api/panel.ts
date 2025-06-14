@@ -59,3 +59,12 @@ export const getAliIncomeByDateAsync: any = (params: any) => {
     params: params
   });
 };
+
+// 查询区间范围的易支付收入情况
+export const getAttendanceNumberAsync: any = (params: any) => {
+  return http.request({
+    url: '/huajian/panel/getAttendanceNumber',
+    method: 'get',
+    params: params
+  });
+};

@@ -2,6 +2,8 @@
   <div class="panel-box">
     <!-- 注册人数统计 -->
     <sign-users-vue></sign-users-vue>
+    <!-- 每日签到人数统计 -->
+    <attendance-number></attendance-number>
     <!-- 总收入占比统计 -->
     <percentage-revenue></percentage-revenue>
     <!-- 日收入统计 -->
@@ -21,6 +23,7 @@
   import IncomeStatistics from './components/IncomeStatistics.vue';
   import WxIncome from './components/WxIncome.vue';
   import AlipayIncome from './components/AlipayIncome.vue';
+  import AttendanceNumber from './components/AttendanceNumber.vue';
 </script>
 <style lang="scss" scoped>
   .panel-box {
