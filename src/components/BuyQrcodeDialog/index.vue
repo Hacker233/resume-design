@@ -37,6 +37,7 @@
 <script lang="ts" setup>
   import { aliPayAsync, tradeCloseAsync, tradeQueryAsync } from '@/http/api/integral';
   import appStore from '@/store';
+  import { ElNotification } from 'element-plus';
   import QrcodeVue from 'qrcode.vue';
 
   const emit = defineEmits(['update:modelValue', 'paySuccess', 'cancel']);
@@ -175,7 +176,7 @@
   };
 
   // 轮询查询订单信息
-  const { getUserIntegralTotal } = appStore.useUserInfoStore;
+  const { getUserIntegralTotal, getAndUpdateUserInfo } = appStore.useUserInfoStore;
   const getOrderInfo = async () => {
     const params = {
       outTradeNo: outTradeNo.value,
@@ -215,6 +216,13 @@
           emit('paySuccess');
           // 查询用简币信息
           getUserIntegralTotal();
+          // 查询用户信息
+          getAndUpdateUserInfo();
+          ElNotification({
+            title: '支付成功',
+            message: '您的支付已成功',
+            type: 'success'
+          });
         }
       }
     } else {

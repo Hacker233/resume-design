@@ -36,6 +36,31 @@
         </div>
       </template>
     </el-table-column>
+    <el-table-column prop="tradeNo" label="订单号">
+      <template #default="scope">
+        <span v-if="scope.row.tradeNo">
+          {{ scope.row.tradeNo }}
+        </span>
+        <span v-else>-</span>
+      </template>
+    </el-table-column>
+    <el-table-column prop="outTradeNo" label="商户订单号">
+      <template #default="scope">
+        <span v-if="scope.row.outTradeNo">
+          {{ scope.row.outTradeNo }}
+        </span>
+        <span v-else>-</span>
+      </template>
+    </el-table-column>
+    <el-table-column prop="channelType" label="开通渠道">
+      <template #default="scope">
+        <div class="membership-type-box">
+          <el-tag v-if="scope.row.channelType" type="success" size="default">{{channelTypeDic[scope.row.channelType as keyof typeof channelTypeDic]
+          }}</el-tag>
+          <span v-else>-</span>
+        </div>
+      </template>
+    </el-table-column>
     <el-table-column prop="startDate" label="开通日期" sortable>
       <template #default="scope">
         <div>
@@ -159,6 +184,9 @@
           endDate: item.endDate,
           isExpired: item.isExpired,
           daysRemaining: item.daysRemaining, // 剩余天数
+          channelType: item.channelType, // 开通渠道
+          outTradeNo: item.outTradeNo, // 商户订单号
+          tradeNo: item.tradeNo, // 订单号
           serialNumber: limit.value * (page.value - 1) + index + 1 // 序号
         };
       });
@@ -232,6 +260,12 @@
         }
       })
       .catch(() => {});
+  };
+
+  const channelTypeDic = {
+    '1': '支付宝',
+    '2': '微信',
+    '3': '管理员'
   };
 
   // 获取会员类型列表

@@ -107,7 +107,8 @@
         // 添加
         let params = {
           email: ruleForm.email, // 会员邮箱
-          type: ruleForm.type // 会员类型
+          type: ruleForm.type, // 会员类型
+          channelType: '3'
         };
         if (props.row) {
           const data = await updateMembershipAsync(props.row._id, params);
