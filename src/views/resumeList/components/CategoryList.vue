@@ -194,8 +194,11 @@
 </script>
 <style lang="scss" scoped>
   .category-list-box {
-    margin: 20px 0 0 0;
-    margin: 20px 0 0 0;
+    margin: 20px 0;
+    padding: 15px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.08);
     position: -webkit-sticky;
     position: sticky;
     top: 65px;
@@ -205,41 +208,59 @@
     padding: 10px;
     margin: 20px -5px 10px -5px;
     .list-item-box {
+      margin-bottom: 15px;
+      padding-bottom: 15px;
+      border-bottom: 1px solid #f0f0f0;
       display: flex;
       align-items: flex-start;
+
+      &:last-child {
+        margin-bottom: 0;
+        padding-bottom: 0;
+        border-bottom: none;
+      }
+
       .all-label {
         display: flex;
         align-items: center;
         flex-shrink: 0;
-        width: 60px;
+        width: 80px;
+        font-weight: bold;
+        font-size: 15px;
+        color: #303133;
       }
 
       ul {
         display: flex;
         flex-wrap: wrap;
+        gap: 8px;
       }
       .li {
         list-style: none;
-        padding: 5px 10px;
-        border-radius: 20px;
+        padding: 0 15px;
+        height: 32px;
+        line-height: 32px;
         font-size: 14px;
         display: flex;
         align-items: center;
         justify-content: center;
         cursor: pointer;
-        letter-spacing: 4px;
-        margin-right: 5px;
-        margin-bottom: 15px;
+        border-radius: 16px;
         transition: all 0.3s;
-        border: 1px solid transparent;
+        background: #f5f7fa;
         user-select: none;
+        margin-right: 0;
+        margin-bottom: 0;
         &:hover {
-          color: #009a74;
+          color: #409eff;
+          background: #ecf5ff;
         }
       }
       .active {
-        color: #009a74;
-        border: 1px solid #2ddd9d;
+        color: #fff;
+        background: linear-gradient(135deg, #409eff, #337ecc);
+        box-shadow: 0 2px 6px rgba(64, 158, 255, 0.3);
+        border: none;
       }
     }
   }

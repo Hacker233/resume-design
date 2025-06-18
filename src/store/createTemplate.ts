@@ -12,6 +12,7 @@ export const useCreateTemplateStore = defineStore('createTemplate', () => {
   const moduleDataConfigRefList = ref<any>({}); // 存储数据配置页面每个组件的ref
   const HJNewJsonStore = ref<IHJNewSchema>(resume_json);
   const resetKey = ref<number>(0);
+  const dataConfigKey = ref<number>(0);
   const fromAiGenerate = ref<boolean>(false); // 是否来源于AI生成的简历
   const pageCount = ref<number>(0); // 简历页数
   function changeResumeJsonData(obj: IHJNewSchema) {
@@ -42,6 +43,7 @@ export const useCreateTemplateStore = defineStore('createTemplate', () => {
     HJNewJsonStore,
     moduleDataConfigRefList,
     resetKey,
+    dataConfigKey,
     dataConfigScrollToView,
     changeResumeJsonData,
     pushComponent,

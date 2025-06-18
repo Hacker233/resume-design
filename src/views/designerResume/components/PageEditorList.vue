@@ -31,6 +31,11 @@
           <svg-icon icon-name="icon-fuwuqi" color="#2cbd99" size="20px"></svg-icon>
         </li>
       </el-tooltip>
+      <el-tooltip effect="light" content="导入已有简历数据" placement="right">
+        <li @click="openImportOtherData">
+          <svg-icon icon-name="icon-daoru1" color="#2cbd99" size="23px"></svg-icon>
+        </li>
+      </el-tooltip>
       <el-tooltip
         effect="light"
         content="如有内容位于分割线处，请通过调整模块边距或上下文中内容处回车来解决"
@@ -73,6 +78,12 @@
       :show-module-title-name="false"
       @cancle="handleCancleModuleTitle"
     ></select-module-title-dialog>
+
+    <!-- 导入已有简历数据弹窗 -->
+    <import-other-resume-data-dialog
+      :dialog-import-other-data-visible="dialogImportOtherDataVisible"
+      @cancle="handleCancleImportOtherData"
+    ></import-other-resume-data-dialog>
   </div>
 </template>
 <script lang="ts" setup>
@@ -83,6 +94,7 @@
   import { useGetSelectedModule } from '@/views/createTemplate/designer/hooks/useGetSelectedModule';
   import AddAnyModuleDrawer from './AddAnyModuleDrawer.vue';
   import SelectModuleTitleDialog from '@/views/createTemplate/designer/components/SelectModuleTitleDialog.vue';
+  import ImportOtherResumeDataDialog from './ImportOtherResumeDataDialog.vue';
 
   const { selectedModuleId } = storeToRefs(appStore.useCreateTemplateStore);
 
@@ -149,6 +161,17 @@
   // 关闭切换模块标题弹窗
   const handleCancleModuleTitle = () => {
     dialogModuleTitleVisible.value = false;
+  };
+
+  // 打开导入已有简历数据弹窗
+  const dialogImportOtherDataVisible = ref<boolean>(false);
+  const openImportOtherData = () => {
+    dialogImportOtherDataVisible.value = true;
+  };
+
+  // 关闭导入已有简历数据弹窗
+  const handleCancleImportOtherData = () => {
+    dialogImportOtherDataVisible.value = false;
   };
 </script>
 <style lang="scss" scoped>

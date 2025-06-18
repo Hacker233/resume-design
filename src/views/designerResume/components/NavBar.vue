@@ -180,6 +180,14 @@
   // 保存草稿
   let draftTips = ref<string>('');
   const saveDataToLocal = () => {
+    if (!HJNewJsonStore.value.componentsTree.length) {
+      ElNotification({
+        title: '保存草稿失败',
+        message: '简历内容不能为空',
+        type: 'error'
+      });
+      return;
+    }
     return new Promise(async (resolve) => {
       const data = {
         templateId: id,
