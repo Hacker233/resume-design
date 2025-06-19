@@ -53,6 +53,12 @@
           </template>
         </div>
       </div>
+      <!-- 友情链接 -->
+      <div class="links">
+        <div class="links-box">
+          <a class="apply-links site-map" href="https://maobucv.com/sitemap.xml">站点地图</a>
+        </div>
+      </div>
     </div>
     <!-- 分割线 -->
     <div class="line"></div>
@@ -230,6 +236,11 @@
           display: flex;
           flex-wrap: wrap;
           max-width: 200px;
+          .site-map {
+            text-decoration: none; /* 去除下划线 */
+            cursor: pointer; /* 保持鼠标指针为手形 */
+            color: #a3a5a7;
+          }
           h4 {
             margin-right: 38px;
           }

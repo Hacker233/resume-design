@@ -15,8 +15,6 @@
   import { cloneDeep } from 'lodash';
   import { ElNotification } from 'element-plus';
 
-  const emit = defineEmits(['importSuccess']);
-
   const props = defineProps<{
     cardData: any;
     type: string;
@@ -85,9 +83,9 @@
       // 6. 更新存储
       HJNewJsonStore.value = templateJson;
       console.log('数据导入成功');
-      const { dataConfigKey } = storeToRefs(appStore.useCreateTemplateStore);
-      dataConfigKey.value++;
-      emit('importSuccess');
+      // 强制刷新
+      const { resetKey } = storeToRefs(appStore.useCreateTemplateStore);
+      resetKey.value++;
     } catch (error) {
       console.error('导入数据时发生错误:', error);
       ElNotification({

@@ -28,12 +28,9 @@
   const route = useRoute();
 
   // 初始化JSON数据
-  const { HJNewJsonStore, selectedModuleId, fromAiGenerate, pageCount } = storeToRefs(
+  const { HJNewJsonStore, selectedModuleId, pageCount } = storeToRefs(
     appStore.useCreateTemplateStore
   );
-  if (!fromAiGenerate.value) {
-    HJNewJsonStore.value.componentsTree = [];
-  }
 
   const props = defineProps({
     isLoading: {

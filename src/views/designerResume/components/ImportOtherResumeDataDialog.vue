@@ -19,7 +19,7 @@
       <template v-if="!loading">
         <div v-if="legoCreateList.length" class="create-list-box">
           <template v-for="(item, index) in legoCreateList" :key="index">
-            <resume-card :card-data="item" type="new" @import-success="importSuccess" />
+            <resume-card :card-data="item" type="new" />
           </template>
         </div>
 
@@ -48,7 +48,7 @@
   import { getMyResumeListAsync } from '@/http/api/createTemplate';
   import ResumeCard from './ResumeCard.vue';
 
-  const emit = defineEmits(['cancle', 'updateSuccess']);
+  const emit = defineEmits(['cancle']);
   interface TDialog {
     dialogImportOtherDataVisible: boolean;
   }
@@ -59,12 +59,6 @@
   // 取消
   const cancle = () => {
     emit('cancle');
-  };
-
-  // 简历数据导入成功
-  const importSuccess = async () => {
-    cancle();
-    ElMessage.success('简历数据导入成功');
   };
 
   // 改变页码时

@@ -11,7 +11,7 @@
     <div :key="resetKey" class="bottom-box">
       <!-- 数据配置 -->
       <div v-loading="isLoading" class="left">
-        <data-config v-if="HJNewJsonStore.componentsTree.length" :key="dataConfigKey"></data-config>
+        <data-config v-if="HJNewJsonStore.componentsTree.length"></data-config>
         <!-- 暂无数据 -->
         <div v-else class="no-data-box">
           <no-data-vue></no-data-vue>
@@ -110,9 +110,6 @@
       defaultTemplate();
     }
   };
-
-  // 数据面板key
-  const { dataConfigKey } = storeToRefs(appStore.useCreateTemplateStore);
 
   // 重置
   const { resetKey } = storeToRefs(appStore.useCreateTemplateStore);
