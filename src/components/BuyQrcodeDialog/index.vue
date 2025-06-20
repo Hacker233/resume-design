@@ -48,6 +48,7 @@
     subject: string;
     orderType: number;
     options: any;
+    membershipType?: string; // 购买的会员类型
   }
 
   const props = withDefaults(defineProps<TDialog>(), {
@@ -55,7 +56,8 @@
     totalAmount: 0,
     subject: '购买简币',
     orderType: 1, // 订单类型： 1-充值简币 2-充值会员
-    options: {}
+    options: {},
+    membershipType: '' // 购买的会员类型
   });
 
   // 双向绑定 modelValue
@@ -83,7 +85,8 @@
     const params = {
       totalAmount: props.totalAmount,
       subject: props.subject,
-      orderType: props.orderType
+      orderType: props.orderType,
+      membershipType: props.membershipType || '' // 购买的会员类型
     };
     const data = await aliPayAsync(params);
     if (data.data.status === 200) {

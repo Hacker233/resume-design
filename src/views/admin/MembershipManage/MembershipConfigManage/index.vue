@@ -22,6 +22,21 @@
         </div>
       </template>
     </el-table-column>
+    <el-table-column prop="durationDays" label="会员天数">
+      <template #default="scope">
+        <span>{{ scope.row.durationDays }}天</span>
+      </template>
+    </el-table-column>
+    <el-table-column prop="price" label="会员当前价格">
+      <template #default="scope">
+        <span>{{ scope.row.price }}￥</span>
+      </template>
+    </el-table-column>
+    <el-table-column prop="originalPrice" label="会员原价">
+      <template #default="scope">
+        <span>{{ scope.row.originalPrice }}￥</span>
+      </template>
+    </el-table-column>
     <el-table-column prop="createDate" label="创建日期" sortable>
       <template #default="scope">
         <div>
@@ -34,16 +49,6 @@
         <div>
           {{ formatListDate(scope.row.updateDate) }}
         </div>
-      </template>
-    </el-table-column>
-    <el-table-column prop="price" label="会员当前价格">
-      <template #default="scope">
-        <span>{{ scope.row.price }}￥</span>
-      </template>
-    </el-table-column>
-    <el-table-column prop="originalPrice" label="会员原价">
-      <template #default="scope">
-        <span>{{ scope.row.originalPrice }}￥</span>
       </template>
     </el-table-column>
     <el-table-column label="操作" width="140">

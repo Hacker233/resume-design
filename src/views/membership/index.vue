@@ -182,6 +182,7 @@
       :total-amount="selectedPrice"
       :order-type="2"
       :options="membershipOptions"
+      :membership-type="selectedMembership"
       subject="购买猫步简历会员"
       @pay-success="handlePaySuccess"
       @cancel="handleCancel"

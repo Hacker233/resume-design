@@ -13,7 +13,7 @@
   import appStore from '@/store';
   import { storeToRefs } from 'pinia';
   import { cloneDeep } from 'lodash';
-  import { ElNotification } from 'element-plus';
+  import { ElMessageBox, ElNotification } from 'element-plus';
 
   const props = defineProps<{
     cardData: any;
