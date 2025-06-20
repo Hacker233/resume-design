@@ -173,7 +173,8 @@
     let params = {
       email: row.email,
       outTradeNo: row.outTradeNo,
-      orderType: row.orderType
+      orderType: row.orderType,
+      membershipType: row.body.membershipType ?? ''
     };
     const data = await tradeQueryByAdminAsync(params);
     if (data.data.status === 200) {

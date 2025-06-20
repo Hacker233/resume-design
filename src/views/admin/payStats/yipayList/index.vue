@@ -172,7 +172,8 @@
       outTradeNo: row.out_trade_no,
       orderType: row.orderType,
       subject: row.subject,
-      type: row.type
+      type: row.type,
+      membershipType: row.param.membershipType ?? ''
     };
     const data = await yipayTradeQueryByAdminAsync(params);
     if (data.data.status === 200) {
