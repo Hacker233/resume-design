@@ -42,7 +42,11 @@
 </template>
 
 <script lang="ts" setup>
-  import { cancleAiTranslateTextAsync, translateTextAsync } from '@/http/api/ai';
+  import {
+    cancleAiTranslateTextAsync,
+    getSerialNumberAsync,
+    translateTextAsync
+  } from '@/http/api/ai';
   import { ElNotification } from 'element-plus';
   import { extractValues, parseJSON, restoreValues } from '@/utils/jsonUtils';
   import { useGetSelectedModule } from '../hooks/useGetSelectedModule';
@@ -100,7 +104,16 @@
   // 点击开始润色
   const aiLoading = ref<boolean>(false);
   const aiEditContent = ref<any>('');
+  const serialNumber = ref<string>('');
   const submit = async () => {
+    // 先获取流水号
+    const serialNumberResult = await getSerialNumberAsync();
+    if (serialNumberResult.data.status == 200) {
+      serialNumber.value = serialNumberResult.data.data;
+    } else {
+      ElMessage.error('流水号生成失败');
+      return;
+    }
     if (aiLoading.value) return;
     let message: any = {
       title: {}
@@ -119,7 +132,8 @@
     let params = {
       model: '',
       text: JSON.stringify(extractValue),
-      languages: language.value
+      languages: language.value,
+      serialNumber: serialNumber.value
     };
     if (!params.languages) {
       ElMessage.warning('请先选择目标语种');

@@ -123,7 +123,8 @@
     :title="title"
     :dialog-get-integral-visible="dialogGetIntegralVisible"
     :pay-number="-Math.abs(exportPdfPayIntegral) || 0"
-    :confirm-disabled="downloadType === 'img' ? !isCanDownloadImg : !isCanDownloadPDF"
+    :confirm-disabled="confirmDisabled"
+    :confirm-tip="confirmTip"
     placeholder="下载该创作"
     @cancle="handleCancleDialog"
     @confirm="handleConfirmDialog"
@@ -149,19 +150,37 @@
     exportImgPayIntegral: 0
   });
 
+  const confirmTip = computed(() => {
+    if (!downloadType.value) return '';
+    return downloadType.value === 'img'
+      ? isCanDownloadImg.value
+        ? '下载图片'
+        : '简币数量不足'
+      : isCanDownloadPDF.value
+      ? '下载PDF'
+      : '简币数量不足';
+  });
+
+  const confirmDisabled = computed(() => {
+    if (!downloadType.value) return false;
+    return downloadType.value === 'img' ? !isCanDownloadImg.value : !isCanDownloadPDF.value;
+  });
+
   const userIntegralTotal = storeToRefs(appStore.useUserInfoStore);
   // 简币是否足够导出图片，会员直接返回true
   const isCanDownloadImg = computed(() => {
     return (
       Number(userIntegralTotal.userIntegralInfo.value.integralTotal) >=
-        Math.abs(props.exportImgPayIntegral) || membershipInfo.value.hasMembership
+        Math.abs(props.exportImgPayIntegral) ||
+      (membershipInfo.value.hasMembership && !membershipInfo.value.isExpired)
     );
   });
   // 简币是否足够导出PDF
   const isCanDownloadPDF = computed(() => {
     return (
       Number(userIntegralTotal.userIntegralInfo.value.integralTotal) >=
-        Math.abs(props.exportPdfPayIntegral) || membershipInfo.value.hasMembership
+        Math.abs(props.exportPdfPayIntegral) ||
+      (membershipInfo.value.hasMembership && !membershipInfo.value.isExpired)
     );
   });
 
@@ -203,6 +222,7 @@
   const title = ref<string>('');
   const openGetDialog = () => {
     title.value = '如何获取简币';
+    downloadType.value = '';
     dialogGetIntegralVisible.value = true;
   };
 

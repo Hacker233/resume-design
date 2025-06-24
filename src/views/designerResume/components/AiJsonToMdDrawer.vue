@@ -49,7 +49,11 @@
 </template>
 
 <script lang="ts" setup>
-  import { cancelToMarkdownStreamAsync, jsonToMarkdownStreamByAiAsync } from '@/http/api/ai';
+  import {
+    cancelToMarkdownStreamAsync,
+    getSerialNumberAsync,
+    jsonToMarkdownStreamByAiAsync
+  } from '@/http/api/ai';
   import appStore from '@/store';
   import { extractResumeData } from '@/utils/common';
   import { ElNotification, ElMessage } from 'element-plus';
@@ -156,11 +160,21 @@
   };
 
   // 打开抽屉
-  const handleOpen = () => {
+  const serialNumber = ref('');
+  const handleOpen = async () => {
     if (props.content) {
       aiContent.value = props.content;
       isLoading.value = false;
       streamingActive.value = false;
+      return;
+    }
+
+    // 先获取流水号
+    const serialNumberResult = await getSerialNumberAsync();
+    if (serialNumberResult.data.status == 200) {
+      serialNumber.value = serialNumberResult.data.data;
+    } else {
+      ElMessage.error('流水号生成失败');
       return;
     }
 
@@ -172,7 +186,8 @@
     const dataSource = extractResumeData(HJNewJsonStore.value, true);
 
     const params = {
-      template: JSON.stringify(dataSource)
+      template: JSON.stringify(dataSource),
+      serialNumber: serialNumber.value
     };
 
     const controller = jsonToMarkdownStreamByAiAsync(

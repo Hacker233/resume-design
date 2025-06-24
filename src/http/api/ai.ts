@@ -245,3 +245,29 @@ export const jsonToMarkdownStreamByAiAsync: any = (
 export const cancelToMarkdownStreamAsync: any = (controller: AbortController) => {
   controller.abort(); // 取消请求
 };
+
+// 获取流水号
+export const getSerialNumberAsync: any = () => {
+  return http.request({
+    url: '/huajian/ai/getSerialNumber',
+    method: 'get'
+  });
+};
+
+// AI模型调用失败回调
+export const aiFailAsync: any = (data: any) => {
+  return http.request({
+    url: '/huajian/ai/aiFail',
+    method: 'post',
+    data: data
+  });
+};
+
+// 管理员扉页查询AI日志调用列表
+export const getAiLogsByAdminAsync: any = (params: any) => {
+  return http.request({
+    url: '/huajian/ai/getAiLogsByAdmin',
+    method: 'get',
+    params: params
+  });
+};

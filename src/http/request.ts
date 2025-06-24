@@ -48,11 +48,38 @@ const http: any = new Request({
         504: '网络超时(504)',
         505: 'HTTP版本不受支持(505)'
       };
+
+      let errorMessage = '';
       if (status) {
-        const message = errorMessages[status as number] || `连接出错(${status || '服务端错误'})!`;
-        console.log('error111', error);
-        ElMessage.error(message);
+        errorMessage = errorMessages[status as number] || `连接出错(${status || '服务端错误'})!`;
+
+        // 添加具体错误信息
+        const serverMessage = error.response?.data?.message;
+        if (serverMessage) {
+          errorMessage += `: ${serverMessage}`;
+        }
+
+        // 网络错误特殊处理
+        if (error.message === 'Network Error') {
+          errorMessage = '网络连接异常，请检查网络设置';
+        }
+
+        console.error('请求错误:', error);
+        ElMessage.error({
+          message: errorMessage,
+          duration: 5000,
+          showClose: true
+        });
+      } else {
+        // 非HTTP状态错误
+        errorMessage = error.message || '请求发生未知错误';
+        ElMessage.error({
+          message: errorMessage,
+          duration: 5000,
+          showClose: true
+        });
       }
+
       return Promise.reject(error);
     }
   }

@@ -146,7 +146,9 @@
     getPolishIntegralAsync,
     getPolishModelListAsync,
     getCreateIntegralAsync,
-    getCreateModelListAsync
+    getCreateModelListAsync,
+    getSerialNumberAsync,
+    aiFailAsync
   } from '@/http/api/ai';
   import { ElMessage, ElNotification, ElMessageBox } from 'element-plus'; // 引入 ElMessageBox
   import { ref, watch, computed } from 'vue';
@@ -312,9 +314,18 @@
   };
 
   // 点击开始润色或创作
-
+  const serialNumber = ref<string>('');
   const aiEdit = async () => {
     if (aiLoading.value) return;
+
+    // 先获取流水号
+    const serialNumberResult = await getSerialNumberAsync();
+    if (serialNumberResult.data.status == 200) {
+      serialNumber.value = serialNumberResult.data.data;
+    } else {
+      ElMessage.error('流水号生成失败');
+      return;
+    }
 
     // 如果选择了付费模型，弹出确认框
     if (defaultModel.value) {
@@ -343,7 +354,8 @@
     const params = {
       model: defaultModel.value,
       text: props.type === 'edit' ? props.content : aiPropmt.value,
-      moduleTitle: props.module.title
+      moduleTitle: props.module.title,
+      serialNumber: serialNumber.value
     };
 
     const streamMethod = props.type === 'edit' ? polishTextStreamAsync : createTextStreamAsync;
@@ -353,6 +365,10 @@
       (error: any) => {
         ElMessage.error(error.message || `${props.type === 'edit' ? '润色' : '创作'}失败`);
         aiLoading.value = false;
+        aiFailAsync({
+          serialNumber: serialNumber.value,
+          errorMsg: error.message || `${props.type === 'edit' ? '润色' : '创作'}失败`
+        });
       },
       () => {
         aiLoading.value = false;

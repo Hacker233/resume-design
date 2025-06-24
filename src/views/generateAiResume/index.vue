@@ -113,7 +113,12 @@
   } from '@/utils/common';
   import appStore from '@/store';
   import { storeToRefs } from 'pinia';
-  import { cancelGenerateResumeStreamAsync, generateResumeStreamAsync } from '@/http/api/ai';
+  import {
+    aiFailAsync,
+    cancelGenerateResumeStreamAsync,
+    generateResumeStreamAsync,
+    getSerialNumberAsync
+  } from '@/http/api/ai';
   import { cloneDeep } from 'lodash';
   import AiLoading from './components/AiLoading.vue';
   import ResumePreview from './components/ResumePreview.vue';
@@ -266,9 +271,20 @@
   // 生成简历
   let str = ref('');
   const streamController = ref<AbortController | null>(null); // 流式请求控制器
-  const getResume = () => {
+  const serialNumber = ref('');
+  const getResume = async () => {
+    // 先获取流水号
+    const serialNumberResult = await getSerialNumberAsync();
+    if (serialNumberResult.data.status == 200) {
+      serialNumber.value = serialNumberResult.data.data;
+    } else {
+      ElMessage.error('流水号生成失败');
+      return;
+    }
+
     isAiLoading.value = true;
     generateResumeSuccess.value = false;
+
     // 提取 dataSource 数据
     const dataSource = extractResumeData(cloneDeep(HJNewJsonStore.value));
     console.log('dataSource', JSON.stringify(dataSource));
@@ -276,7 +292,8 @@
     const params = {
       model: generateParams.value.model, // 使用的AI模型
       keywords: generateParams.value.keyWords,
-      template: dataSource
+      template: dataSource,
+      serialNumber: serialNumber.value
     };
     str.value = '';
 
@@ -286,24 +303,36 @@
       (error: any) => {
         ElMessage.error(error.message || 'AI智能简历生成失败');
         isAiLoading.value = false;
+        aiFailAsync({
+          serialNumber: serialNumber.value,
+          error: error.message || 'AI智能简历生成失败'
+        });
       },
       () => {
-        const result = str.value.replace(/```json/g, '');
-        const resule2 = result.replace(/```/g, '');
-        console.log('转义结果', resule2);
-        console.log('JSON.parse后的数据', JSON.parse(resule2));
-        // 还原label
-        const resetLabel = restoreData(JSON.parse(resule2));
-        console.log('还原label后的数据', resetLabel);
-        // 彻底还原数据
-        const resetData = restoreDataId(cloneDeep(HJNewJsonStore.value), resetLabel);
-        console.log('彻底还原后的数据', resetData);
-        HJNewJsonStore.value = resetData;
-        ElMessage.success('AI简历生成成功');
-        isAiLoading.value = false;
-        generateResumeSuccess.value = true;
-        if (generateParams.value.model) {
-          getUserIntegralTotal();
+        try {
+          const result = str.value.replace(/```json/g, '');
+          const resule2 = result.replace(/```/g, '');
+          console.log('转义结果', resule2);
+          console.log('JSON.parse后的数据', JSON.parse(resule2));
+          // 还原label
+          const resetLabel = restoreData(JSON.parse(resule2));
+          console.log('还原label后的数据', resetLabel);
+          // 彻底还原数据
+          const resetData = restoreDataId(cloneDeep(HJNewJsonStore.value), resetLabel);
+          console.log('彻底还原后的数据', resetData);
+          HJNewJsonStore.value = resetData;
+          ElMessage.success('AI简历生成成功');
+          isAiLoading.value = false;
+          generateResumeSuccess.value = true;
+          if (generateParams.value.model) {
+            getUserIntegralTotal();
+          }
+        } catch (e) {
+          console.log('JSON 转换失败');
+          aiFailAsync({
+            serialNumber: serialNumber.value,
+            errorMsg: 'JSON返回，但处理失败'
+          });
         }
       }
     );
@@ -326,6 +355,10 @@
           ElNotification({ title: '提示', message: trimmedLine, type: 'error' });
           isAiLoading.value = false;
           generateResumeSuccess.value = false;
+          aiFailAsync({
+            serialNumber: serialNumber.value,
+            errorMsg: '处理流式数据出现错误'
+          });
         }
       }
     });

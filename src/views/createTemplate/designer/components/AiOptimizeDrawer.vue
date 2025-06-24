@@ -34,7 +34,12 @@
 </template>
 
 <script lang="ts" setup>
-  import { cancelOptimizeResumeStreamAsync, optimizeResumeStreamAsync } from '@/http/api/ai';
+  import {
+    aiFailAsync,
+    cancelOptimizeResumeStreamAsync,
+    getSerialNumberAsync,
+    optimizeResumeStreamAsync
+  } from '@/http/api/ai';
   import appStore from '@/store';
   import { extractResumeData, formatNumberWithCommas } from '@/utils/common';
   import { ElNotification, ElMessage } from 'element-plus';
@@ -94,12 +99,22 @@
   });
 
   // 打开抽屉
-  const handleOpen = () => {
+  const serialNumber = ref('');
+  const handleOpen = async () => {
     if (props.content) {
       aiContent.value = props.content;
       isLoading.value = false;
       return;
     }
+    // 先获取流水号
+    const serialNumberResult = await getSerialNumberAsync();
+    if (serialNumberResult.data.status == 200) {
+      serialNumber.value = serialNumberResult.data.data;
+    } else {
+      ElMessage.error('流水号生成失败');
+      return;
+    }
+
     aiContent.value = '';
     isLoading.value = true;
     // 获取简历数据
@@ -111,7 +126,8 @@
       model: props.modelInfoObj.selectedModel,
       text: JSON.stringify(dataSource),
       resumeId: route.params.id,
-      resumeName: HJNewJsonStore.value.config.title
+      resumeName: HJNewJsonStore.value.config.title,
+      serialNumber: serialNumber.value
     };
     const controller = optimizeResumeStreamAsync(
       params,
@@ -120,6 +136,10 @@
         ElMessage.error(error.message || 'AI诊断失败');
         isLoading.value = false;
         console.log('AI诊断失败', error);
+        aiFailAsync({
+          serialNumber: serialNumber.value,
+          errorMsg: 'error.message || AI诊断失败'
+        });
       },
       () => {
         getAndUpdateUserInfo();
@@ -152,6 +172,10 @@
         } catch (e) {
           isLoading.value = false;
           ElNotification({ title: '提示', message: trimmedLine, type: 'error' });
+          aiFailAsync({
+            serialNumber: serialNumber.value,
+            errorMsg: 'e.message || AI诊断失败'
+          });
         }
       }
     });

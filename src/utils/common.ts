@@ -575,6 +575,7 @@ export const restoreData = (data: any) => {
     } catch (error) {
       // 捕获并记录恢复内容时的异常
       console.error(`Error restoring content for module with key: ${key}`, error);
+      throw error; // 重新抛出，调用方可以捕获并处理
     }
   }
 
