@@ -210,7 +210,11 @@
   // 判断是否是会员
   const { membershipInfo } = storeToRefs(appStore.useMembershipStore);
   const isMember = computed(() => {
-    if (membershipInfo.value.hasMembership && membershipInfo.value.daysRemaining > 0) {
+    if (
+      membershipInfo.value.hasMembership &&
+      membershipInfo.value.daysRemaining > 0 &&
+      !membershipInfo.value.isExpired
+    ) {
       return true;
     } else {
       return false;
@@ -221,6 +225,7 @@
   const isAiLoading = ref(false); // AI是否正在返回
   const generateResumeSuccess = ref(false); // 生成简历是否成功
   const { getUserIntegralTotal } = appStore.useUserInfoStore;
+  const { userIntegralInfo } = storeToRefs(appStore.useUserInfoStore);
   const { HJNewJsonStore, fromAiGenerate } = storeToRefs(appStore.useCreateTemplateStore);
   const generateResume = async () => {
     console.log(generateParams.value);
@@ -229,6 +234,14 @@
     if (!isMember.value && !generateParams.value.model) {
       ElMessage.warning('请选择模型');
       return;
+    }
+    // 不是会员，选择了付费模型
+    if (!isMember.value && generateParams.value.model) {
+      // 判断简币数量
+      if (userIntegralInfo.value.integralTotal < Math.abs(aiModelSelectRef.value.payValue)) {
+        ElMessage.warning('简币不足');
+        return;
+      }
     }
     if (!generateParams.value.keyWords) {
       ElMessage.warning('请填写关键词');
