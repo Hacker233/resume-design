@@ -9,6 +9,9 @@
 
     <!-- 右侧路由区域 -->
     <right-content-vue></right-content-vue>
+
+    <!-- 客服组件 -->
+    <customer-service></customer-service>
   </div>
 </template>
 <script lang="ts" setup>

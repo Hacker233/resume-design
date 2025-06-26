@@ -54,6 +54,9 @@
     :dialog-attendance-visible="dialogAttendanceVisible"
     @close="closeAttendanceDialog"
   ></attendance-dialog>
+
+  <!-- 客服组件 -->
+  <customer-service></customer-service>
 </template>
 <script setup lang="ts">
   import NavBar from '@/components/NavBar/NavBar.vue';

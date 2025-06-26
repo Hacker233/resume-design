@@ -200,6 +200,9 @@
       @pay-success="handleWXPaySuccess"
       @cancel="handleWXCancel"
     ></w-x-buy-qr-code-dialog>
+
+    <!-- 客服组件 -->
+    <customer-service></customer-service>
   </div>
 </template>
 <script setup lang="ts">

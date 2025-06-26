@@ -342,6 +342,11 @@
           }
         } catch (e) {
           console.log('JSON 转换失败');
+          isAiLoading.value = false;
+          ElNotification.error({
+            title: '错误',
+            message: '简历结果已返回，但JSON处理失败'
+          });
           aiFailAsync({
             serialNumber: serialNumber.value,
             errorMsg: 'JSON返回，但处理失败'
