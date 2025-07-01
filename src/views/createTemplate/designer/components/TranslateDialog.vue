@@ -130,7 +130,7 @@
     // debugger;
     // 点击AI
     let params = {
-      model: '',
+      model: 'glm-4-flash',
       text: JSON.stringify(extractValue),
       languages: language.value,
       serialNumber: serialNumber.value
@@ -164,7 +164,7 @@
         cancle();
       }
     } else {
-      ElMessage.warning('AI使用人数太多，请重试~~');
+      ElMessage.warning(data.data.message || 'AI使用人数太多，请重试~~');
       cancleAiTranslateTextAsync();
     }
     aiLoading.value = false;

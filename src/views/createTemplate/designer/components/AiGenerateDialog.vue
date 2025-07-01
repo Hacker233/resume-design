@@ -2,7 +2,7 @@
   <el-dialog
     :model-value="dialogGenerateVisible"
     title="AI智能生成简历"
-    width="800px"
+    width="830px"
     :show-close="false"
     :close-on-click-modal="false"
     append-to-body
@@ -109,6 +109,7 @@
   // 点击下一步
   const keyWordsRef = ref<any>(null);
   const aiModelSelectRef = ref<any>(null);
+  const modelObj = ref<any>(null);
   const nextStep = async () => {
     if (active.value === 0) {
       if (keyWordsRef.value) {
@@ -125,6 +126,7 @@
       }
     } else if (active.value === 1) {
       generateParams.value.model = aiModelSelectRef.value.selectedModel;
+      modelObj.value = aiModelSelectRef.value.aiModelObj;
       if (!generateParams.value.keyWords) {
         ElMessage.warning('请填写关键词');
         return;
@@ -132,8 +134,13 @@
         ElMessage.warning('简历内容不能为空');
         return;
       }
+      // 参数校验
+      if (!generateParams.value.model) {
+        ElMessage.error('请先选择AI模型');
+        return;
+      }
       // 如果选择了付费模型，弹出确认框
-      if (generateParams.value.model) {
+      if (!modelObj.value.model_is_free) {
         try {
           await ElMessageBox.confirm(
             `<div style="display: flex; align-items: center;">本次操作将消耗 ${formatNumberWithCommas(
@@ -206,7 +213,7 @@
           ElMessage.success('AI简历生成成功');
           emit('updateSuccess');
           isAiLoading.value = false;
-          if (generateParams.value.model) {
+          if (!modelObj.value.model_is_free) {
             getUserIntegralTotal();
           }
         } catch (e) {
@@ -266,6 +273,7 @@
     }
     .aimodel-select {
       width: 100%;
+      padding: 30px 15px;
     }
   }
 </style>

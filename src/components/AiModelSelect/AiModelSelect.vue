@@ -16,35 +16,44 @@
 
     <!-- 模型选择器 -->
     <div class="model-selector">
-      <h1 class="title"> 请选择AI模型1 </h1>
+      <h1 class="title"> 请选择AI模型 </h1>
       <el-radio-group v-model="selectedModel" @change="handleModelChange">
-        <el-tooltip effect="dark" content="限会员使用" placement="top">
-          <el-radio label="" size="large" border :disabled="!isMember">
-            免费模型
-            <span class="free-tag">免费</span>
-            <!-- 皇冠 -->
-            <img
-              class="vip-icon"
-              src="@/assets/images/membership.svg"
-              alt="会员"
-              title="会员"
-              width="20"
-            />
-          </el-radio>
-        </el-tooltip>
         <template v-if="modelList.length > 0">
           <el-tooltip
             v-for="(item, index) in modelList"
             :key="index"
             effect="dark"
-            :content="`每次消耗 ${Math.abs(payValue)} 简币`"
+            :content="item.model_is_free ? '限会员使用' : `每次消耗 ${Math.abs(payValue)} 简币`"
             placement="top"
           >
-            <el-radio :label="item" size="large" border>
-              {{ item }}
+            <el-radio
+              v-if="item.model_is_free"
+              :label="item.model_name"
+              size="large"
+              border
+              :disabled="!isMember"
+            >
+              免费模型
+              <span class="free-tag">免费</span>
+              <!-- 皇冠 -->
+              <img
+                class="vip-icon"
+                src="@/assets/images/membership.svg"
+                alt="会员"
+                title="会员"
+                width="20"
+              />
+            </el-radio>
+            <el-radio v-else :label="item.model_name" size="large" border>
+              {{ item.model_name }}
               <span class="tips">
                 {{ Math.abs(payValue) }}
-                <img width="22" src="@/assets/images/jianB.png" alt="简币" title="简币" />
+                <img
+                  width="22"
+                  src="@/assets/images/jianB.png"
+                  alt="简币"
+                  title="简币 - 您的专属虚拟货币"
+                />
               </span>
             </el-radio>
           </el-tooltip>
@@ -100,18 +109,21 @@
 
   // 响应式数据
   const selectedModel = ref<string>('');
-  const modelList = ref<string[]>([]);
+  const modelList = ref<any>([]);
   const payValue = ref<number>(0);
   const dialogGetIntegralVisible = ref<boolean>(false);
   const title = ref<string>('');
+  const modelObj = ref<any>({});
 
   // 模型切换
   const handleModelChange = (value: string) => {
     console.log('value:', value); // 打印 value 的值
     selectedModel.value = value;
+    modelObj.value = modelList.value.find((item: any) => item.model_name === value);
     emit('handleModelChange', {
       value: value,
-      payValue: payValue.value
+      payValue: payValue.value,
+      modelObj: modelObj.value
     });
   };
 
@@ -157,10 +169,6 @@
       const response = await getOptimizeResumeModelListAsync();
       if (response.data.status === 200) {
         modelList.value = response.data.data;
-        if (modelList.value.length > 0) {
-          selectedModel.value = modelList.value[0];
-          handleModelChange(selectedModel.value);
-        }
       } else {
         ElMessage.error(response.data.message);
       }
@@ -175,10 +183,6 @@
       const response = await getGenerateResumeModelListAsync();
       if (response.data.status === 200) {
         modelList.value = response.data.data;
-        if (modelList.value.length > 0) {
-          selectedModel.value = modelList.value[0];
-          handleModelChange(selectedModel.value);
-        }
       } else {
         ElMessage.error(response.data.message);
       }
@@ -324,6 +328,8 @@
       transition: all 0.3s ease; // 过渡效果
       border: 1px solid #dcdfe6; // 默认边框颜色
       position: relative;
+      min-width: 160px;
+      margin-right: 10px;
 
       &:hover {
         background-color: #f5f7fa; // 鼠标悬停背景色
@@ -376,6 +382,9 @@
         top: -12px;
         right: -6px;
       }
+    }
+    .is-disabled {
+      opacity: 0.7;
     }
   }
 </style>

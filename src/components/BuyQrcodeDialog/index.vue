@@ -20,7 +20,7 @@
       </div>
       <div class="countdown-box">
         <span v-if="!orderIsFail">
-          （请使用支付宝在3分钟内完成支付：<span v-if="m < 10">0</span>{{ m }}:<span v-if="s < 10"
+          （请使用支付宝在5分钟内完成支付：<span v-if="m < 10">0</span>{{ m }}:<span v-if="s < 10"
             >0</span
           >{{ s }}）
         </span>
@@ -153,11 +153,11 @@
   };
 
   // 倒计时
-  const m = ref<number>(2); // 设置分
+  const m = ref<number>(4); // 设置分
   const s = ref<number>(59); // 设置秒
   let settime: any = '';
   const countdown = () => {
-    m.value = 2;
+    m.value = 4;
     s.value = 59;
     settime = setInterval(() => {
       s.value = s.value - 1;
@@ -239,10 +239,6 @@
   onBeforeUnmount(() => {
     if (settime) {
       clearInterval(settime);
-    }
-    // 关闭交易
-    if (outTradeNo.value) {
-      tradeClose();
     }
   });
 </script>

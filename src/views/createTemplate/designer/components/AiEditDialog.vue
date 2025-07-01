@@ -2,7 +2,7 @@
   <el-dialog
     :model-value="dialogAiVisible"
     :title="dialogTitle"
-    width="800px"
+    width="820px"
     :show-close="false"
     :close-on-click-modal="false"
     append-to-body
@@ -27,30 +27,34 @@
       <!-- 新增模型选择器 -->
       <div class="model-selector">
         <el-radio-group v-model="selectedModel">
-          <el-tooltip effect="dark" content="限会员使用" placement="top">
-            <el-radio label="" size="large" border :disabled="!isMember">
-              免费模型
-              <span class="free-tag">免费</span>
-              <!-- 皇冠 -->
-              <img
-                class="vip-icon"
-                src="@/assets/images/membership.svg"
-                alt="会员"
-                title="会员"
-                width="20"
-              />
-            </el-radio>
-          </el-tooltip>
           <template v-if="modelList.length > 0">
             <el-tooltip
               v-for="(item, index) in modelList"
               :key="index"
               effect="dark"
-              :content="`每次消耗 ${Math.abs(payValue)} 简币`"
+              :content="item.model_is_free ? '限会员使用' : `每次消耗 ${Math.abs(payValue)} 简币`"
               placement="top"
             >
-              <el-radio :label="item" size="large" border>
-                {{ item }}
+              <el-radio
+                v-if="item.model_is_free"
+                :label="item.model_name"
+                size="large"
+                border
+                :disabled="!isMember"
+              >
+                免费模型
+                <span class="free-tag">免费</span>
+                <!-- 皇冠 -->
+                <img
+                  class="vip-icon"
+                  src="@/assets/images/membership.svg"
+                  alt="会员"
+                  title="会员"
+                  width="20"
+                />
+              </el-radio>
+              <el-radio v-else :label="item.model_name" size="large" border>
+                {{ item.model_name }}
                 <span class="tips">
                   {{ Math.abs(payValue) }}
                   <img
@@ -179,7 +183,7 @@
   const aiEditContent = ref<string>('');
   const selectedModel = ref<string>(''); // 选中的模型
   const streamController = ref<AbortController | null>(null); // 流式请求控制器
-  const modelList = ref<string[]>([]); // 模型列表
+  const modelList = ref<any>([]); // 模型列表
   const payValue = ref<number>(0); // 消费简币数量
   const { getAndUpdateUserInfo } = appStore.useUserInfoStore;
 
@@ -239,9 +243,6 @@
       const response = await getPolishModelListAsync();
       if (response.data.status === 200) {
         modelList.value = response.data.data;
-        if (modelList.value.length > 0) {
-          selectedModel.value = modelList.value[0];
-        }
       } else {
         ElMessage.error(response.data.message);
       }
@@ -256,9 +257,6 @@
       const response = await getCreateModelListAsync();
       if (response.data.status === 200) {
         modelList.value = response.data.data;
-        if (modelList.value.length > 0) {
-          selectedModel.value = modelList.value[0];
-        }
       } else {
         ElMessage.error(response.data.message);
       }
@@ -327,8 +325,16 @@
       return;
     }
 
+    // 如果没有选中模型，给出提示
+    if (!defaultModel.value) {
+      ElMessage.error('请先选择AI模型');
+      return;
+    }
+
+    const modelObj = modelList.value.find((item: any) => item.model_name === defaultModel.value);
+
     // 如果选择了付费模型，弹出确认框
-    if (defaultModel.value) {
+    if (!modelObj.model_is_free) {
       try {
         await ElMessageBox.confirm(
           `<div style="display: flex; align-items: center;">本次操作将消耗 ${formatNumberWithCommas(
@@ -373,7 +379,7 @@
       () => {
         aiLoading.value = false;
         getAndUpdateUserInfo();
-        if (defaultModel.value) {
+        if (!modelObj.model_is_free) {
           // 手动更新用户简币数量
           appStore.useUserInfoStore.userIntegralInfo.integralTotal =
             appStore.useUserInfoStore.userIntegralInfo.integralTotal + payValue.value;
@@ -620,9 +626,11 @@
       align-items: center;
       margin-bottom: 10px; // 增加间距
       border-radius: 8px; // 圆角
-      padding: 10px; // 内边距
+      padding: 10px 6px; // 内边距
       transition: all 0.3s ease; // 过渡效果
       border: 1px solid #dcdfe6; // 默认边框颜色
+      min-width: 180px;
+      margin-right: 12px;
 
       &:hover {
         background-color: #f5f7fa; // 鼠标悬停背景色

@@ -223,6 +223,7 @@
 
   // 生成简历
   const isAiLoading = ref(false); // AI是否正在返回
+  const modelObj = ref<any>(null);
   const generateResumeSuccess = ref(false); // 生成简历是否成功
   const { getUserIntegralTotal } = appStore.useUserInfoStore;
   const { userIntegralInfo } = storeToRefs(appStore.useUserInfoStore);
@@ -230,13 +231,14 @@
   const generateResume = async () => {
     console.log(generateParams.value);
     generateParams.value.model = aiModelSelectRef.value.selectedModel;
-    // 不是会员，并且没有选择模型，弹出提示框
-    if (!isMember.value && !generateParams.value.model) {
-      ElMessage.warning('请选择模型');
+    modelObj.value = aiModelSelectRef.value.aiModelObj;
+    // 没有选择模型
+    if (!generateParams.value.model) {
+      ElMessage.warning('请先选择AI模型');
       return;
     }
     // 不是会员，选择了付费模型
-    if (!isMember.value && generateParams.value.model) {
+    if (!isMember.value && !modelObj.value.model_is_free) {
       // 判断简币数量
       if (userIntegralInfo.value.integralTotal < Math.abs(aiModelSelectRef.value.payValue)) {
         ElMessage.warning('简币不足');
@@ -252,7 +254,7 @@
     }
     HJNewJsonStore.value = generateParams.value.template;
     // 如果选择了付费模型，弹出确认框
-    if (generateParams.value.model) {
+    if (!modelObj.value.model_is_free) {
       try {
         await ElMessageBox.confirm(
           `<div style="display: flex; align-items: center;">本次操作将消耗 ${formatNumberWithCommas(
@@ -337,7 +339,7 @@
           ElMessage.success('AI简历生成成功');
           isAiLoading.value = false;
           generateResumeSuccess.value = true;
-          if (generateParams.value.model) {
+          if (!modelObj.value.model_is_free) {
             getUserIntegralTotal();
           }
         } catch (e) {

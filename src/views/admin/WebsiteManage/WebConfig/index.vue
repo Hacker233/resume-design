@@ -19,6 +19,10 @@
       <el-form-item label="是否开启注册:" prop="open_sign">
         <el-switch v-model="ruleForm.open_sign" />
       </el-form-item>
+      <el-form-item label="开启网站纯净模式:" prop="all_free">
+        <el-switch v-model="ruleForm.all_free" />
+        <span style="color: red">（该模式开启后，将关闭网站所有付费功能，谨慎操作！）</span>
+      </el-form-item>
       <el-form-item label="是否开启评论:" prop="open_comment">
         <el-switch v-model="ruleForm.open_comment" />
       </el-form-item>
@@ -78,6 +82,7 @@
   // 表单填写数据
   interface IWebConfig {
     open_sign: boolean;
+    all_free: boolean;
     open_comment: boolean;
     open_person_in: boolean;
     open_get_source_code: boolean;
@@ -94,6 +99,7 @@
   }
   const ruleForm = reactive<IWebConfig>({
     open_sign: true,
+    all_free: false,
     open_comment: true,
     open_person_in: true,
     open_get_source_code: true,
@@ -154,6 +160,7 @@
   const setFormValue = (data: any) => {
     ruleForm.open_comment = data.open_comment;
     ruleForm.open_sign = data.open_sign;
+    ruleForm.all_free = data.all_free;
     ruleForm.open_person_in = data.open_person_in;
     ruleForm.open_get_source_code = data.open_get_source_code;
     ruleForm.open_sign_in = data.open_sign_in;

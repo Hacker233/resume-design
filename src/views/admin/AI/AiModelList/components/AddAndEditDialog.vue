@@ -18,18 +18,21 @@
       <el-form-item label="模型名称:" prop="model_name">
         <el-input v-model="ruleForm.model_name" placeholder="请输入模型名称" />
       </el-form-item>
-      <el-form-item label="模型价格:" prop="model_price">
-        <el-input-number v-model="ruleForm.model_price" :min="0" :max="1000000" />
-      </el-form-item>
-      <el-form-item label="是否免费:" prop="model_is_free">
-        <el-switch v-model="ruleForm.model_is_free" />
-      </el-form-item>
       <el-form-item label="模型描述:" prop="model_description">
         <el-input
           v-model="ruleForm.model_description"
           type="textarea"
           placeholder="请输入模型描述"
         />
+      </el-form-item>
+      <el-form-item label="模型接口:" prop="model_api">
+        <el-input v-model="ruleForm.model_api" type="textarea" placeholder="请输入模型接口" />
+      </el-form-item>
+      <el-form-item label="模型key:" prop="model_key">
+        <el-input v-model="ruleForm.model_key" type="textarea" placeholder="请输入模型key" />
+      </el-form-item>
+      <el-form-item label="是否免费:" prop="model_is_free">
+        <el-switch v-model="ruleForm.model_is_free" />
       </el-form-item>
     </el-form>
     <template #footer>
@@ -67,16 +70,18 @@
   // 表单数据
   interface IModel {
     model_name: string;
-    model_price: number;
     model_is_free: boolean;
     model_description: string;
+    model_api: string;
+    model_key: string;
   }
 
   const initialForm: IModel = {
     model_name: '',
-    model_price: 0,
     model_is_free: false,
-    model_description: ''
+    model_description: '',
+    model_api: '',
+    model_key: ''
   };
 
   const ruleForm = reactive<IModel>({ ...initialForm });
@@ -84,8 +89,9 @@
   // 表单校验规则
   const rules = reactive<FormRules>({
     model_name: [{ required: true, message: '请输入模型名称', trigger: 'blur' }],
-    model_price: [{ required: true, message: '请输入模型价格', trigger: 'blur' }],
-    model_description: [{ required: true, message: '请输入模型描述', trigger: 'blur' }]
+    model_description: [{ required: true, message: '请输入模型描述', trigger: 'blur' }],
+    model_api: [{ required: true, message: '请输入模型接口', trigger: 'blur' }],
+    model_key: [{ required: true, message: '请输入模型key', trigger: 'blur' }]
   });
 
   // 监听传入的 row 数据，用于回显表单
@@ -94,9 +100,10 @@
     (newVal) => {
       if (newVal) {
         ruleForm.model_name = props.row.model_name;
-        ruleForm.model_price = props.row.model_price;
         ruleForm.model_is_free = props.row.model_is_free;
         ruleForm.model_description = props.row.model_description;
+        ruleForm.model_api = props.row.model_api;
+        ruleForm.model_key = props.row.model_key;
       } else {
         // 如果 row 为 null，重置表单数据
         Object.assign(ruleForm, initialForm);

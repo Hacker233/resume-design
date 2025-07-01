@@ -138,12 +138,12 @@
         console.log('AI诊断失败', error);
         aiFailAsync({
           serialNumber: serialNumber.value,
-          errorMsg: 'error.message || AI诊断失败'
+          errorMsg: `${error.message}` || 'AI诊断失败'
         });
       },
       () => {
         getAndUpdateUserInfo();
-        if (props.modelInfoObj.selectedModel) {
+        if (!props.modelInfoObj.modelObj.model_is_free) {
           // 手动更新用户简币数量
           appStore.useUserInfoStore.userIntegralInfo.integralTotal =
             appStore.useUserInfoStore.userIntegralInfo.integralTotal + props.modelInfoObj.payValue;
@@ -169,12 +169,12 @@
             aiContent.value += content;
             isLoading.value = false;
           }
-        } catch (e) {
+        } catch (e: any) {
           isLoading.value = false;
           ElNotification({ title: '提示', message: trimmedLine, type: 'error' });
           aiFailAsync({
             serialNumber: serialNumber.value,
-            errorMsg: 'e.message || AI诊断失败'
+            errorMsg: `${e.message}` || 'AI诊断失败'
           });
         }
       }

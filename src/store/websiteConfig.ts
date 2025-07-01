@@ -5,6 +5,7 @@ import { title } from '@/config/seo';
 export const useWebsiteConfigStore = defineStore('websiteConfig', () => {
   const websiteConfig = reactive<{
     open_sign: boolean;
+    all_free: boolean;
     open_comment: boolean;
     open_person_in: boolean;
     open_get_source_code: boolean;
@@ -20,6 +21,7 @@ export const useWebsiteConfigStore = defineStore('websiteConfig', () => {
     service_agreement: string;
   }>({
     open_sign: true,
+    all_free: false,
     open_comment: true,
     open_person_in: true,
     open_get_source_code: true,
@@ -38,6 +40,7 @@ export const useWebsiteConfigStore = defineStore('websiteConfig', () => {
   function saveWebsiteConfig(websiteConfigData: any) {
     websiteConfig.open_comment = websiteConfigData.open_comment;
     websiteConfig.open_sign = websiteConfigData.open_sign;
+    websiteConfig.all_free = websiteConfigData.all_free;
     websiteConfig.open_person_in = websiteConfigData.open_person_in;
     websiteConfig.open_get_source_code = websiteConfigData.open_get_source_code;
     websiteConfig.open_sign_in = websiteConfigData.open_sign_in;

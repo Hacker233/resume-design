@@ -7,7 +7,7 @@
           <!-- 动态标题 -->
           <h1 class="dynamic-title">一款开源、免费、专业的AI简历生成制作神器</h1>
           <h2
-            >全面接入Deepseek，AI智能简历生成、智能润色、修改、智能诊断等，交付源码级JSON，提供海量模版。</h2
+            >全面接入Deepseek，AI智能简历生成、智能润色、修改、智能诊断等，交付源码级JSON；支持导出超高清PDF、Markdown、图片格式。</h2
           >
 
           <!-- DeepSeek 提示 -->
@@ -156,7 +156,7 @@
           h2 {
             font-size: min(1.7vh, 20px);
             letter-spacing: 2px;
-            line-height: 1.5;
+            line-height: 2;
             background: linear-gradient(45deg, #827999, #7f6dbb);
             background-clip: text;
             color: transparent;

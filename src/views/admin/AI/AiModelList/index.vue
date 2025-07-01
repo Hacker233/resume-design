@@ -25,19 +25,8 @@
         <el-tag v-else type="warning" size="default">收费</el-tag>
       </template>
     </el-table-column>
-    <el-table-column prop="model_price" label="收费价格">
-      <template #default="scope">
-        <div class="model-price">
-          {{ scope.row.model_price
-          }}<img
-            width="24"
-            src="@/assets/images/jianB.png"
-            alt="简币"
-            title="简币 - 您的专属虚拟货币"
-          />
-        </div>
-      </template>
-    </el-table-column>
+    <el-table-column prop="model_api" label="模型API" />
+    <el-table-column prop="model_key" label="模型KEY" />
     <el-table-column prop="createDate" label="创建日期">
       <template #default="scope">
         <div>
@@ -215,14 +204,5 @@
 <style lang="scss" scoped>
   .demo-form-inline {
     margin-bottom: 20px;
-  }
-  .model-list-table {
-    .model-price {
-      display: flex;
-      align-items: center;
-      img {
-        margin-left: 5px;
-      }
-    }
   }
 </style>

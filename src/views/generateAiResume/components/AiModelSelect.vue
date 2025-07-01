@@ -13,16 +13,19 @@
 
   const selectedModel = ref(''); // 选中的模型
   const payValue = ref(0); // 需要的简币
+  const aiModelObj = ref<any>({}); // 选中的模型对象
 
   // 监听选中的模型
   const handleModelChange = (item: any) => {
     selectedModel.value = item.value;
     payValue.value = item.payValue;
+    aiModelObj.value = item.modelObj;
   };
 
   defineExpose({
     selectedModel,
-    payValue
+    payValue,
+    aiModelObj
   });
 </script>
 <style lang="scss" scoped>
