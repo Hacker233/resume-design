@@ -11,11 +11,12 @@ declare module 'marked' {
     highlight?: (code: string, language: string) => string;
   }
 }
-declare module 'jspdf';
-declare module 'colorpicker-v3';
-declare module 'vue3-pdfjs/esm';
-declare module 'vue3-print-nb';
-declare module 'v-contextmenu';
-declare module 'vue-json-viewer';
-declare module 'json-editor-vue3';
+// 第三方库类型声明已迁移到types目录下的对应文件中
+
+import type { DefineComponent } from 'vue';
+
+declare global {
+  const defineOptions: typeof DefineComponent;
+}
+
 declare module 'unplugin-vue-define-options';

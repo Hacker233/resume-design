@@ -2,7 +2,8 @@
   "compilerOptions": {
     "typeRoots": [
       "node_modules/@types", // 默认值
-      "src/interface"
+      "src/interface",
+      "types"
     ],
     "target": "esnext",
     "useDefineForClassFields": true,
@@ -20,9 +21,9 @@
       "@/*": ["src/*"]
     },
     "skipLibCheck": true,
-    "types": ["unplugin-vue-define-options"]
+    "types": ["json-editor-vue3", "jspdf", "colorpicker-v3", "vue3-pdfjs/esm", "vue3-print-nb", "v-contextmenu", "vue-json-viewer"]
   },
-  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue"],
+  "include": ["src/env.d.ts", "src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue", "types/**/*.d.ts"],
   "references": [
     {
       "path": "./tsconfig.node.json"

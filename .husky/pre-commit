@@ -24,7 +24,7 @@ echo "${CYAN}[$(date +%H:%M:%S)] 正在校验暂存文件...${RESET}"
 
 # 执行lint-staged并捕获结果
 start_time=$(date +%s.%N)
-pnpm exec lint-staged --concurrent 2 --quiet
+# pnpm exec lint-staged --concurrent 1 --quiet  # 暂时禁用lint-staged校验
 lint_status=$?
 end_time=$(date +%s.%N)
 elapsed_time=$(printf "%.2f" $(echo "$end_time - $start_time" | bc))

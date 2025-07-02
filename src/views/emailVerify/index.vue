@@ -100,9 +100,6 @@
     case 'sina.com':
       emailUrl.value = 'https://mail.sina.com.cn';
       break;
-    case 'tom.com':
-      emailUrl.value = 'https://mail.tom.com';
-      break;
     case 'yahoo.com.cn':
     case 'yahoo.cn':
       emailUrl.value = 'https://mail.cn.yahoo.com';
@@ -127,9 +124,6 @@
       break;
     case '189.cn':
       emailUrl.value = 'https://webmail15.189.cn/webmail';
-      break;
-    case 'wo.com.cn':
-      emailUrl.value = 'https://mail.wo.com.cn/smsmail';
       break;
     case 'wo.com.cn':
       emailUrl.value = 'https://mail.wo.com.cn/smsmail';
