@@ -8,6 +8,7 @@ import { createProxy } from './build/vite/proxy';
 import { createVitePlugins } from './build/vite/plugin';
 import autoprefixer from 'autoprefixer';
 import compression from 'vite-plugin-compression';
+import { ViteImageOptimizer } from 'vite-plugin-image-optimizer';
 
 export default defineConfig(async ({ command, mode }: ConfigEnv): Promise<UserConfig> => {
   const root = process.cwd(); // 当前工作目录
@@ -62,7 +63,24 @@ export default defineConfig(async ({ command, mode }: ConfigEnv): Promise<UserCo
         ]
       }
     },
-    plugins: [...(await createVitePlugins(viteEnv, isBuild)), compression()],
+    plugins: [
+      ...(await createVitePlugins(viteEnv, isBuild)),
+      ViteImageOptimizer({
+        png: {
+          quality: 80
+        },
+        jpeg: {
+          quality: 80
+        },
+        webp: {
+          quality: 80
+        },
+        avif: {
+          quality: 80
+        }
+      }),
+      compression()
+    ],
     esbuild: {
       logOverride: { 'this-is-undefined-in-esm': 'silent' }
     },
