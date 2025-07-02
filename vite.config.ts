@@ -1,13 +1,15 @@
 import { fileURLToPath } from 'url';
 import { ConfigEnv, defineConfig, loadEnv } from 'vite';
+import type { UserConfig } from 'vite';
 
 import { createBuild } from './build/vite/build';
 import { wrapperEnv } from './build/utils';
 import { createProxy } from './build/vite/proxy';
 import { createVitePlugins } from './build/vite/plugin';
 import autoprefixer from 'autoprefixer';
+import compression from 'vite-plugin-compression';
 
-export default defineConfig(async ({ command, mode }: ConfigEnv) => {
+export default defineConfig(async ({ command, mode }: ConfigEnv): Promise<UserConfig> => {
   const root = process.cwd(); // 当前工作目录
   const isBuild = command === 'build'; // 是否是构建 serve
   const env = loadEnv(mode, root); // 加载 env 环境
@@ -21,7 +23,20 @@ export default defineConfig(async ({ command, mode }: ConfigEnv) => {
         '@': fileURLToPath(new URL('./src', import.meta.url))
       }
     },
-    build: createBuild(viteEnv),
+    build: {
+      ...createBuild(viteEnv),
+      rollupOptions: {
+        output: {
+          manualChunks: {
+            vendor: ['vue', 'vue-router', 'pinia'],
+            element: ['element-plus'],
+            codemirror: ['codemirror', '@codemirror/lang-javascript', '@codemirror/lang-json'],
+            echarts: ['echarts'],
+            wangeditor: ['@wangeditor/editor', '@wangeditor/editor-for-vue']
+          }
+        }
+      }
+    },
     css: {
       preprocessorOptions: {
         scss: {
@@ -47,7 +62,7 @@ export default defineConfig(async ({ command, mode }: ConfigEnv) => {
         ]
       }
     },
-    plugins: [...(await createVitePlugins(viteEnv, isBuild))],
+    plugins: [...(await createVitePlugins(viteEnv, isBuild)), compression()],
     esbuild: {
       logOverride: { 'this-is-undefined-in-esm': 'silent' }
     },
