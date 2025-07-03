@@ -50,6 +50,7 @@
 
 <script lang="ts" setup>
   import {
+    aiFailAsync,
     cancelToMarkdownStreamAsync,
     getSerialNumberAsync,
     jsonToMarkdownStreamByAiAsync
@@ -199,6 +200,10 @@
         isLoading.value = false;
         streamingActive.value = false;
         console.error('转换Markdown失败', error);
+        aiFailAsync({
+          serialNumber: serialNumber.value,
+          errorMsg: error
+        });
       },
       () => {
         isLoading.value = false;
@@ -227,6 +232,10 @@
         } catch (e) {
           isLoading.value = false;
           ElNotification({ title: '提示', message: trimmedLine, type: 'error' });
+          aiFailAsync({
+            serialNumber: serialNumber.value,
+            errorMsg: trimmedLine
+          });
         }
       }
     });
