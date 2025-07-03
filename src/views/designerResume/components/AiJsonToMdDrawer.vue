@@ -187,7 +187,8 @@
 
     const params = {
       template: JSON.stringify(dataSource),
-      serialNumber: serialNumber.value
+      serialNumber: serialNumber.value,
+      model: 'glm-4-flash'
     };
 
     const controller = jsonToMarkdownStreamByAiAsync(

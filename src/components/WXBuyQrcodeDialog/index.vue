@@ -39,7 +39,7 @@
 <script lang="ts" setup>
   import { getPayURLAsync, wxtradeQueryAsync } from '@/http/api/pay';
   import appStore from '@/store';
-  import { ElNotification } from 'element-plus';
+  import { ElMessageBox, ElNotification } from 'element-plus';
   import QrcodeVue from 'qrcode.vue';
 
   const emit = defineEmits(['update:modelValue', 'paySuccess', 'cancel']);
@@ -206,6 +206,15 @@
             title: '支付成功',
             message: '您的支付已成功',
             type: 'success'
+          });
+          // 支付成功，是否立即刷新页面
+          ElMessageBox.confirm('支付成功，是否立即刷新页面？', '刷新页面', {
+            confirmButtonText: '刷新',
+            cancelButtonText: '取消',
+            type: 'warning'
+          }).then(() => {
+            // 强制刷新页面
+            location.reload();
           });
         }
       }
