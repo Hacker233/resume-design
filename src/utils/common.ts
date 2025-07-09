@@ -295,8 +295,16 @@ export const buildTree = (items: any) => {
 };
 
 // 获取assets目录下的images目录下的静态资源
-export const getAssetsImagesFile = (url: string) => {
-  return new URL(`../assets/images/${url}`, import.meta.url).href;
+export const getAssetsImagesFile = (url: string): string => {
+  // 更新后的 import.meta.glob 用法
+  const modules = import.meta.glob('/src/assets/images/**/*', {
+    query: '?url',
+    import: 'default',
+    eager: true
+  });
+
+  const imagePath = `/src/assets/images/${url}`;
+  return typeof modules[imagePath] === 'string' ? modules[imagePath] : '';
 };
 
 // 将数字转换为带有千分位逗号的字符串

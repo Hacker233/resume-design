@@ -27,6 +27,27 @@
         />
       </el-select>
     </el-form-item>
+    <el-form-item label="组织:" prop="organization">
+      <el-select v-model="formInline.organizationId" placeholder="请选择组织">
+        <el-option
+          v-for="(item, index) in organizationList"
+          :key="index"
+          :label="item.label"
+          :value="item.value"
+        />
+      </el-select>
+    </el-form-item>
+    <!-- 是否全站免费 -->
+    <el-form-item label="是否全站免费:" prop="isAllFree">
+      <el-select v-model="formInline.isAllFree" placeholder="请选择是否全站免费">
+        <el-option
+          v-for="(item, index) in isAllFreeList"
+          :key="index"
+          :label="item.label"
+          :value="item.value"
+        />
+      </el-select>
+    </el-form-item>
     <el-form-item label="注册时间排序:" prop="register_sort">
       <el-select v-model="formInline.register_sort" placeholder="请选择注册时间顺序">
         <el-option
@@ -76,7 +97,7 @@
         </div>
       </template>
     </el-table-column>
-    <el-table-column prop="valid" label="是否验证邮箱">
+    <el-table-column prop="valid" label="邮箱验证">
       <template #default="scope">
         <el-tag v-if="scope.row.valid === '已验证'" type="success" size="default">{{
           scope.row.valid
@@ -90,6 +111,19 @@
         <el-tag v-else-if="scope.row.accountStatus === 2" type="danger" size="default"
           >永久封禁</el-tag
         >
+      </template>
+    </el-table-column>
+    <el-table-column prop="organization" label="所属组织">
+      <template #default="scope">
+        <div>
+          {{ scope.row.organization || '-' }}
+        </div>
+      </template>
+    </el-table-column>
+    <el-table-column prop="isAllFree" label="全站免费">
+      <template #default="scope">
+        <el-tag v-if="scope.row.isAllFree" type="success" size="default">是</el-tag>
+        <el-tag v-else type="danger" size="default">否</el-tag>
       </template>
     </el-table-column>
     <el-table-column prop="profilePic" label="头像">
@@ -133,6 +167,7 @@
   <edit-dialog
     :dialog-visible="dialogVisible"
     :row="row"
+    :organization-list="organizationList"
     @cancle="cancle"
     @update-success="updateSuccess"
   ></edit-dialog>
@@ -144,6 +179,7 @@
   import { ElMessageBox } from 'element-plus';
   import 'element-plus/es/components/message-box/style/index';
   import EditDialog from './components/EditDialog.vue';
+  import { getOrgListAsync } from '@/http/api/organization';
   let tableData = ref<any>([]);
 
   // 简币排序规则下拉
@@ -182,13 +218,27 @@
     }
   ]);
 
+  // 是否全站免费
+  const isAllFreeList = reactive([
+    {
+      label: '是',
+      value: true
+    },
+    {
+      label: '否',
+      value: false
+    }
+  ]);
+
   // 表单查询
   const formInline = reactive({
     queryEmail: '',
     integral_sort: '',
     register_sort: '',
     accountStatus: '',
-    name: ''
+    name: '',
+    organizationId: '',
+    isAllFree: null
   });
 
   // 查询
@@ -198,6 +248,28 @@
     getUserList();
   };
 
+  // 弹窗打开时
+  const organizationList = ref<Array<{ label: string; value: string }>>([]);
+  const getOrgList = async () => {
+    // 查询组织列表
+    const params = {
+      limit: 1000,
+      page: 1
+    };
+    const data = await getOrgListAsync(params);
+    if (data.data.status === 200) {
+      organizationList.value = data.data.data.list.map((item: any) => {
+        return {
+          label: item.name,
+          value: item._id
+        };
+      });
+    } else {
+      ElMessage.error(data.data.message);
+    }
+  };
+  getOrgList();
+
   // 重置
   const resetForm = () => {
     formInline.queryEmail = '';
@@ -205,6 +277,8 @@
     formInline.register_sort = '';
     formInline.accountStatus = '';
     formInline.name = '';
+    formInline.organizationId = '';
+    formInline.isAllFree = null;
     page.value = 1;
     currentPage.value = 1;
     getUserList();
@@ -235,6 +309,8 @@
       integral_sort: formInline.integral_sort,
       createDate: formInline.register_sort,
       accountStatus: formInline.accountStatus,
+      organizationId: formInline.organizationId,
+      isAllFree: formInline.isAllFree,
       page: page.value,
       limit: limit.value
     };
@@ -255,7 +331,10 @@
           roles: item.roles,
           integral: item.integral,
           accountStatus: item.auth.accountStatus,
-          serialNumber: limit.value * (page.value - 1) + index + 1 // 序号
+          serialNumber: limit.value * (page.value - 1) + index + 1, // 序号
+          organization: item.organization?.name || '-',
+          organizationId: item.organizationId,
+          isAllFree: item.isAllFree
         };
       });
       console.log('tableData', tableData);
@@ -269,9 +348,9 @@
   const row = ref<any>(null);
   const dialogVisible = ref<boolean>(false);
   const edit = (rowData: any) => {
+    dialogVisible.value = true;
     console.log(rowData);
     row.value = rowData;
-    dialogVisible.value = true;
   };
   // 关闭弹窗
   const cancle = () => {

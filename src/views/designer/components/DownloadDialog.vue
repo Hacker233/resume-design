@@ -12,109 +12,137 @@
       <div class="content-down-btn">
         <!-- 下载为图片 -->
         <div class="download-img-box">
-          <el-tooltip :disabled="isCanDownloadImg" content="简币数量不足！">
-            <div
-              :class="['download-com-box img-box', { 'download-disabled': !isCanDownloadImg }]"
-              @click="downloadDialog('img')"
-            >
+          <!-- 判断是否全站开启纯净模式 -->
+          <template v-if="userInfo.isAllFree">
+            <div :class="['download-com-box img-box']" @click="downloadDialog('img')">
               <svg-icon icon-name="icon-tupian" color="#fff" size="26px"></svg-icon>
               <span>下载图片</span>
             </div>
-          </el-tooltip>
-          <div class="price">
-            <!-- 先判断是否是会员 -->
-            <template v-if="!membershipInfo.hasMembership || membershipInfo.isExpired">
-              <div class="how-much">
-                （价格：{{ Math.abs(exportImgPayIntegral) || 0 }}
-                <img width="20" src="@/assets/images/jianB.png" alt="简币" />）
-                <el-tooltip content="会员每日可无限次导出高清简历！" placement="top">
-                  <el-icon class="tip-icon">
-                    <QuestionFilled />
-                  </el-icon>
-                </el-tooltip>
+          </template>
+          <template v-else>
+            <el-tooltip :disabled="isCanDownloadImg" content="简币数量不足！">
+              <div
+                :class="['download-com-box img-box', { 'download-disabled': !isCanDownloadImg }]"
+                @click="downloadDialog('img')"
+              >
+                <svg-icon icon-name="icon-tupian" color="#fff" size="26px"></svg-icon>
+                <span>下载图片</span>
               </div>
-            </template>
-            <template v-else>
-              <div class="how-much"> 免费下载 </div>
-            </template>
-          </div>
+            </el-tooltip>
+            <div class="price">
+              <!-- 先判断是否是会员 -->
+              <template v-if="!membershipInfo.hasMembership || membershipInfo.isExpired">
+                <div class="how-much">
+                  （价格：{{ Math.abs(exportImgPayIntegral) || 0 }}
+                  <img width="20" src="@/assets/images/jianB.png" alt="简币" />）
+                  <el-tooltip content="会员每日可无限次导出高清简历！" placement="top">
+                    <el-icon class="tip-icon">
+                      <QuestionFilled />
+                    </el-icon>
+                  </el-tooltip>
+                </div>
+              </template>
+              <template v-else>
+                <div class="how-much"> 免费下载 </div>
+              </template>
+            </div>
+          </template>
           <p>适合微信、QQ发送</p>
         </div>
         <!-- 下载PDF -->
         <div class="download-pdf-box">
-          <el-tooltip :disabled="isCanDownloadPDF" content="简币数量不足！">
-            <div
-              :class="['download-com-box pdf-box', { 'download-disabled': !isCanDownloadPDF }]"
-              @click="downloadDialog('pdf')"
-            >
+          <!-- 判断是否全站开启纯净模式 -->
+          <template v-if="userInfo.isAllFree">
+            <div :class="['download-com-box pdf-box']" @click="downloadDialog('pdf')">
               <svg-icon icon-name="icon-pdf" color="#fff" size="26px"></svg-icon>
               <span>下载PDF</span>
             </div>
-          </el-tooltip>
-          <div class="price">
-            <!-- 先判断是否是会员 -->
-            <template v-if="!membershipInfo.hasMembership || membershipInfo.isExpired">
-              <div class="how-much"
-                >（价格：{{ Math.abs(exportPdfPayIntegral) || 0
-                }}<img width="20" src="@/assets/images/jianB.png" alt="简币" />）
-                <el-tooltip content="会员每日可无限次导出高清简历！" placement="top">
-                  <el-icon class="tip-icon">
-                    <QuestionFilled />
-                  </el-icon>
-                </el-tooltip>
+          </template>
+          <template v-else>
+            <el-tooltip :disabled="isCanDownloadPDF" content="简币数量不足！">
+              <div
+                :class="['download-com-box pdf-box', { 'download-disabled': !isCanDownloadPDF }]"
+                @click="downloadDialog('pdf')"
+              >
+                <svg-icon icon-name="icon-pdf" color="#fff" size="26px"></svg-icon>
+                <span>下载PDF</span>
               </div>
-            </template>
-            <template v-else>
-              <div class="how-much"> 免费下载 </div>
-            </template>
-          </div>
+            </el-tooltip>
+            <div class="price">
+              <!-- 先判断是否是会员 -->
+              <template v-if="!membershipInfo.hasMembership || membershipInfo.isExpired">
+                <div class="how-much"
+                  >（价格：{{ Math.abs(exportPdfPayIntegral) || 0
+                  }}<img width="20" src="@/assets/images/jianB.png" alt="简币" />）
+                  <el-tooltip content="会员每日可无限次导出高清简历！" placement="top">
+                    <el-icon class="tip-icon">
+                      <QuestionFilled />
+                    </el-icon>
+                  </el-tooltip>
+                </div>
+              </template>
+              <template v-else>
+                <div class="how-much"> 免费下载 </div>
+              </template>
+            </div>
+          </template>
+
           <p> 适合打印、在线投递等(<span>推荐</span>)</p>
         </div>
         <!-- 下载Markdown -->
         <div class="download-pdf-box download-md">
-          <!-- 会员图标 -->
-          <img
-            class="vip-icon"
-            src="@/assets/images/membership.svg"
-            alt="会员"
-            title="会员"
-            width="30"
-          />
-          <el-tooltip
-            :disabled="!(!membershipInfo.hasMembership || membershipInfo.isExpired)"
-            content="该功能仅限会员使用！"
-          >
-            <div
-              :class="[
-                'download-com-box pdf-box',
-                { 'download-disabled': !membershipInfo.hasMembership || membershipInfo.isExpired }
-              ]"
-              @click="downloadMD"
-            >
+          <!-- 是否全站开启纯净模式 -->
+          <template v-if="userInfo.isAllFree">
+            <div :class="['download-com-box pdf-box']" @click="downloadMD">
               <svg-icon icon-name="icon-markdown-line" color="#fff" size="26px"></svg-icon>
               <span>下载Markdown</span>
             </div>
-          </el-tooltip>
-          <div class="price">
-            <!-- 先判断是否是会员 -->
-            <template v-if="!membershipInfo.hasMembership || membershipInfo.isExpired">
-              <div class="how-much"
-                >（会员专享）
-                <el-tooltip content="会员每日可无限次导出高清简历！" placement="top">
-                  <el-icon class="tip-icon">
-                    <QuestionFilled />
-                  </el-icon>
-                </el-tooltip>
+          </template>
+          <template v-else>
+            <!-- 会员图标 -->
+            <img
+              class="vip-icon"
+              src="@/assets/images/membership.svg"
+              alt="会员"
+              title="会员"
+              width="30"
+            />
+            <el-tooltip
+              :disabled="!(!membershipInfo.hasMembership || membershipInfo.isExpired)"
+              content="该功能仅限会员使用！"
+            >
+              <div
+                :class="[
+                  'download-com-box pdf-box',
+                  { 'download-disabled': !membershipInfo.hasMembership || membershipInfo.isExpired }
+                ]"
+                @click="downloadMD"
+              >
+                <svg-icon icon-name="icon-markdown-line" color="#fff" size="26px"></svg-icon>
+                <span>下载Markdown</span>
               </div>
-            </template>
-            <template v-else>
-              <div class="how-much"> 免费下载 </div>
-            </template>
-          </div>
+            </el-tooltip>
+            <div class="price">
+              <!-- 先判断是否是会员 -->
+              <template v-if="!membershipInfo.hasMembership || membershipInfo.isExpired">
+                <div class="how-much"
+                  >（会员专享）
+                  <el-tooltip content="会员每日可无限次导出高清简历！" placement="top">
+                    <el-icon class="tip-icon">
+                      <QuestionFilled />
+                    </el-icon>
+                  </el-tooltip>
+                </div>
+              </template>
+              <template v-else>
+                <div class="how-much"> 免费下载 </div>
+              </template>
+            </div>
+          </template>
           <p> 适合本地修改、提取简历内容等</p>
         </div>
       </div>
-      <div class="get-bi-method" @click="openGetDialog">获取简币</div>
+      <div v-if="!userInfo.isAllFree" class="get-bi-method" @click="openGetDialog">获取简币</div>
     </div>
   </el-dialog>
 
@@ -137,6 +165,10 @@
 
   // 获取用户会员信息
   const { membershipInfo } = storeToRefs(appStore.useMembershipStore);
+
+  // 获取用户是否免费信息
+  const { userInfo } = storeToRefs(appStore.useUserInfoStore);
+  console.log('userInfo', userInfo.value);
 
   const emit = defineEmits(['closeDownloadDialog', 'downloadFile', 'downloadMarkdown']);
   interface TDialog {
@@ -189,6 +221,11 @@
   const dialogGetIntegralVisible = ref<boolean>(false);
   const downloadDialog = async (type: string) => {
     downloadType.value = type;
+    // 纯净模式
+    if (userInfo.value.isAllFree) {
+      handleConfirmDialog();
+      return;
+    }
     // 会员且未过期直接下载
     if (membershipInfo.value.hasMembership && !membershipInfo.value.isExpired) {
       emit('downloadFile', downloadType.value);
@@ -228,6 +265,11 @@
 
   // 跳转至会员充值
   const downloadMD = () => {
+    // 全站开启纯净模式
+    if (userInfo.value.isAllFree) {
+      emit('downloadMarkdown');
+      return;
+    }
     // 会员且未过期直接下载
     if (membershipInfo.value.hasMembership && !membershipInfo.value.isExpired) {
       emit('downloadMarkdown');

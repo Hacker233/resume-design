@@ -117,6 +117,8 @@ const UserTemplateList = () =>
   import('@/views/admin/CreateTemplateManage/userTemplateList/index.vue');
 const AiModelList = () => import('@/views/admin/AI/AiModelList/index.vue');
 const AiLogs = () => import('@/views/admin/AI/AILogs/index.vue');
+// 组织管理
+const OrganizationManage = () => import('@/views/admin/userManage/organizationList/index.vue');
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -841,6 +843,19 @@ const routes: Array<RouteRecordRaw> = [
           requireAdmin: true
         },
         component: AiLogs
+      },
+      // 组织管理
+      {
+        path: 'organizationManage',
+        name: 'OrganizationManage',
+        meta: {
+          title: '组织管理',
+          keepAlive: true,
+          isShowComNav: false,
+          requireLogin: true,
+          requireAdmin: true
+        },
+        component: OrganizationManage
       },
       {
         path: 'TobeAudit',

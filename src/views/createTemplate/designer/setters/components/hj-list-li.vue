@@ -98,8 +98,6 @@
     id: string;
   }>();
 
-  console.log('嵌套列表', props.modelValue, props.keyValue);
-
   // 添加一个可响应的 dataObj，并监听 modelValue 的变化
   const dataObj = ref<any>(props.modelValue);
 

@@ -12,11 +12,14 @@
     <div class="ai-content-edit-page-select-warpper">
       <!-- 当前简币数量 -->
       <div class="content-box">
-        <h1 class="title"
-          >您当前简币数量
-          <div class="get-bi-method" @click="openGetDialog">获取简币</div>
+        <h1 class="title">
+          <span v-if="!userInfo.isAllFree">您当前简币数量</span>
+          <span v-else>请选择AI模型</span>
+          <div v-if="!userInfo.isAllFree" class="get-bi-method" @click="openGetDialog"
+            >获取简币</div
+          >
         </h1>
-        <div class="content">
+        <div v-if="!userInfo.isAllFree" class="content">
           <p class="jb-num"
             >{{ formatNumberWithCommas(appStore.useUserInfoStore.userIntegralInfo.integralTotal) }}
             <img width="22" src="@/assets/images/jianB.png" alt="简币"
@@ -28,44 +31,58 @@
       <div class="model-selector">
         <el-radio-group v-model="selectedModel">
           <template v-if="modelList.length > 0">
-            <el-tooltip
-              v-for="(item, index) in modelList"
-              :key="index"
-              effect="dark"
-              :content="item.model_is_free ? '限会员使用' : `每次消耗 ${Math.abs(payValue)} 简币`"
-              placement="top"
-            >
+            <!-- 该用户是否全站免费 -->
+            <template v-if="userInfo.isAllFree">
               <el-radio
-                v-if="item.model_is_free"
+                v-for="(item, index) in modelList"
+                :key="index"
                 :label="item.model_name"
                 size="large"
                 border
-                :disabled="!isMember"
               >
-                免费模型
-                <span class="free-tag">免费</span>
-                <!-- 皇冠 -->
-                <img
-                  class="vip-icon"
-                  src="@/assets/images/membership.svg"
-                  alt="会员"
-                  title="会员"
-                  width="20"
-                />
-              </el-radio>
-              <el-radio v-else :label="item.model_name" size="large" border>
                 {{ item.model_name }}
-                <span class="tips">
-                  {{ Math.abs(payValue) }}
-                  <img
-                    width="22"
-                    src="@/assets/images/jianB.png"
-                    alt="简币"
-                    title="简币 - 您的专属虚拟货币"
-                  />
-                </span>
               </el-radio>
-            </el-tooltip>
+            </template>
+            <template v-else>
+              <el-tooltip
+                v-for="(item, index) in modelList"
+                :key="index"
+                effect="dark"
+                :content="item.model_is_free ? '限会员使用' : `每次消耗 ${Math.abs(payValue)} 简币`"
+                placement="top"
+              >
+                <el-radio
+                  v-if="item.model_is_free"
+                  :label="item.model_name"
+                  size="large"
+                  border
+                  :disabled="!isMember"
+                >
+                  免费模型
+                  <span class="free-tag">免费</span>
+                  <!-- 皇冠 -->
+                  <img
+                    class="vip-icon"
+                    src="@/assets/images/membership.svg"
+                    alt="会员"
+                    title="会员"
+                    width="20"
+                  />
+                </el-radio>
+                <el-radio v-else :label="item.model_name" size="large" border>
+                  {{ item.model_name }}
+                  <span class="tips">
+                    {{ Math.abs(payValue) }}
+                    <img
+                      width="22"
+                      src="@/assets/images/jianB.png"
+                      alt="简币"
+                      title="简币 - 您的专属虚拟货币"
+                    />
+                  </span>
+                </el-radio>
+              </el-tooltip>
+            </template>
           </template>
         </el-radio-group>
       </div>
@@ -190,6 +207,8 @@
   // 默认模型
   const defaultModel = computed(() => (selectedModel.value ? selectedModel.value : ''));
 
+  const { userInfo } = storeToRefs(appStore.useUserInfoStore);
+
   // 弹窗打开
   const handleOpen = () => {
     console.log('selectedModel:', selectedModel.value); // 确保初始值为空字符串
@@ -313,8 +332,10 @@
 
   // 点击开始润色或创作
   const serialNumber = ref<string>('');
+  const { userIntegralInfo } = storeToRefs(appStore.useUserInfoStore);
   const aiEdit = async () => {
     if (aiLoading.value) return;
+    aiLoading.value = true;
 
     // 先获取流水号
     const serialNumberResult = await getSerialNumberAsync();
@@ -322,39 +343,54 @@
       serialNumber.value = serialNumberResult.data.data;
     } else {
       ElMessage.error('流水号生成失败');
+      aiLoading.value = false;
       return;
     }
 
     // 如果没有选中模型，给出提示
     if (!defaultModel.value) {
       ElMessage.error('请先选择AI模型');
+      aiLoading.value = false;
       return;
     }
 
     const modelObj = modelList.value.find((item: any) => item.model_name === defaultModel.value);
 
-    // 如果选择了付费模型，弹出确认框
-    if (!modelObj.model_is_free) {
-      try {
-        await ElMessageBox.confirm(
-          `<div style="display: flex; align-items: center;">本次操作将消耗 ${formatNumberWithCommas(
-            payValue.value
-          )} <img style="margin-left: 5px;" width="22" src="${jianBImage}" alt="简币" />，是否继续？</div>`,
-          '提示',
-          {
-            confirmButtonText: '确定',
-            cancelButtonText: '取消',
-            type: 'warning',
-            dangerouslyUseHTMLString: true
-          }
-        );
-      } catch (error) {
-        // 用户点击了取消
-        return;
+    // 如果不是全站免费用户
+    if (!userInfo.value.isAllFree) {
+      // 不是会员，选择了付费模型
+      if (!isMember.value && !modelObj.model_is_free) {
+        // 判断简币数量
+        if (userIntegralInfo.value.integralTotal < Math.abs(payValue.value)) {
+          ElMessage.warning('简币不足');
+          aiLoading.value = false;
+          return;
+        }
+      }
+
+      // 如果选择了付费模型，弹出确认框
+      if (!modelObj.model_is_free) {
+        try {
+          await ElMessageBox.confirm(
+            `<div style="display: flex; align-items: center;">本次操作将消耗 ${formatNumberWithCommas(
+              payValue.value
+            )} <img style="margin-left: 5px;" width="22" src="${jianBImage}" alt="简币" />，是否继续？</div>`,
+            '提示',
+            {
+              confirmButtonText: '确定',
+              cancelButtonText: '取消',
+              type: 'warning',
+              dangerouslyUseHTMLString: true
+            }
+          );
+        } catch (error) {
+          // 用户点击了取消
+          aiLoading.value = false;
+          return;
+        }
       }
     }
 
-    aiLoading.value = true;
     aiEditContent.value = '';
 
     const params = {

@@ -1,62 +1,65 @@
 <template>
   <div class="person-menu-box">
     <el-menu :default-active="route.name" class="el-menu-vertical-demo">
-      <el-menu-item
-        v-for="(item, index) in menuList"
-        :key="index"
-        :index="item.index"
-        @click="toDetail(item.path, item.index)"
-      >
-        <svg-icon
-          :icon-name="item.iconfont"
-          class="iconfont"
-          :color="getIconColor(item.index)"
-          size="22px"
-        ></svg-icon>
-        <span>{{ item.title }}</span>
-      </el-menu-item>
+      <template v-for="(item, index) in menuListComputed" :key="index">
+        <el-menu-item :index="item.index" @click="toDetail(item.path, item.index)">
+          <svg-icon
+            :icon-name="item.iconfont"
+            class="iconfont"
+            :color="getIconColor(item.index)"
+            size="22px"
+          ></svg-icon>
+          <span>{{ item.title }}</span>
+        </el-menu-item>
+      </template>
     </el-menu>
   </div>
 </template>
 <script lang="ts" setup>
+  import appStore from '@/store';
+
   // 菜单列表
   const menuList = reactive<Array<any>>([
     {
       index: 'PersonDetail',
       iconfont: 'icon-jibenziliao',
       title: '个人信息',
-      path: '/person/personDetail'
+      path: '/person/personDetail',
+      freeUserNotShow: false // 全站免费用户是否不展示
     },
     {
       index: 'PersonIntegral',
       iconfont: 'icon-jifen',
       title: '我的资产',
-      path: '/person/personIntegral'
+      path: '/person/personIntegral',
+      freeUserNotShow: true // 全站免费用户是否不展示
     },
     {
       index: 'AccountSetting',
       iconfont: 'icon-shezhi',
       title: '账号设置',
-      path: '/person/accountSetting'
+      path: '/person/accountSetting',
+      freeUserNotShow: false // 全站免费用户是否不展示
     },
     {
       index: 'MyResume',
       iconfont: 'icon-xiangmujingli-04',
       title: '我的简历',
-      path: '/person/myResume'
-    },
-    {
-      index: 'LegoCreate',
-      iconfont: 'icon-jimu',
-      title: '积木创作',
-      path: '/person/legoCreate'
-    },
-    {
-      index: 'MyOnlineResume',
-      iconfont: 'icon-zaixianyonghu',
-      title: '在线简历',
-      path: '/person/myOnlineResume'
+      path: '/person/myResume',
+      freeUserNotShow: false // 全站免费用户是否不展示
     }
+    // {
+    //   index: 'LegoCreate',
+    //   iconfont: 'icon-jimu',
+    //   title: '积木创作',
+    //   path: '/person/legoCreate'
+    // },
+    // {
+    //   index: 'MyOnlineResume',
+    //   iconfont: 'icon-zaixianyonghu',
+    //   title: '在线简历',
+    //   path: '/person/myOnlineResume'
+    // }
     // {
     //   index: 'MyComment',
     //   iconfont: 'icon-pinglun1',
@@ -70,6 +73,18 @@
     //   path: '/person/myContribute'
     // }
   ]);
+
+  // 是否是免费用户
+  const menuListComputed = computed(() => {
+    const isAllFree = appStore.useUserInfoStore.userInfo.isAllFree;
+    return menuList.filter((item) => {
+      if (!isAllFree) {
+        return item;
+      } else {
+        return !item.freeUserNotShow;
+      }
+    });
+  });
 
   const route = useRoute();
   const router = useRouter();

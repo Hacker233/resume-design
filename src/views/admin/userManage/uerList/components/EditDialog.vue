@@ -1,6 +1,5 @@
 <template>
   <el-dialog
-    ref="ruleFormRef"
     :model-value="dialogVisible"
     width="600px"
     :show-close="false"
@@ -34,7 +33,12 @@
         <el-input v-model="ruleForm.email" type="email" />
       </el-form-item>
       <el-form-item label="是否验证:" prop="valid">
-        <el-select v-model="ruleForm.valid" class="m-2" placeholder="请选择状态">
+        <el-select
+          v-model="ruleForm.valid"
+          style="width: 100%"
+          class="m-2"
+          placeholder="请选择状态"
+        >
           <el-option
             v-for="item in validList"
             :key="item.value"
@@ -44,7 +48,12 @@
         </el-select>
       </el-form-item>
       <el-form-item label="用户状态:" prop="valid">
-        <el-select v-model="ruleForm.accountStatus" class="m-2" placeholder="请选择状态">
+        <el-select
+          v-model="ruleForm.accountStatus"
+          style="width: 100%"
+          class="m-2"
+          placeholder="请选择状态"
+        >
           <el-option
             v-for="item in accountStatusList"
             :key="item.value"
@@ -61,6 +70,25 @@
           style="width: 100%"
           multiple
         />
+      </el-form-item>
+      <el-form-item label="组织:" prop="organizationId">
+        <el-select
+          v-model="ruleForm.organizationId"
+          clearable
+          style="width: 100%"
+          class="m-2"
+          placeholder="请选择组织"
+        >
+          <el-option
+            v-for="item in organizationList"
+            :key="item.value"
+            :label="item.label"
+            :value="item.value"
+          />
+        </el-select>
+      </el-form-item>
+      <el-form-item label="是否免费:" prop="isAllFree">
+        <el-switch v-model="ruleForm.isAllFree" :active-value="true" :inactive-value="false" />
       </el-form-item>
       <el-form-item label="头像:">
         <el-upload
@@ -97,10 +125,12 @@
   interface TDialog {
     dialogVisible: boolean;
     row: any;
+    organizationList: any;
   }
   const props = withDefaults(defineProps<TDialog>(), {
     dialogVisible: false,
-    row: null
+    row: null,
+    organizationList: []
   });
   watch(
     () => props.row,
@@ -112,6 +142,9 @@
         ruleForm.roles = newVal.roles;
         ruleForm.profilePic = newVal.profilePic;
         ruleForm.accountStatus = newVal.accountStatus || 1;
+        ruleForm.organization = newVal.organization || '';
+        ruleForm.organizationId = newVal.organizationId || '';
+        ruleForm.isAllFree = newVal.isAllFree || false;
       }
     },
     {
@@ -161,7 +194,10 @@
     valid: false,
     profilePic: '',
     roles: '',
-    accountStatus: 1
+    accountStatus: 1,
+    organization: '',
+    organizationId: '',
+    isAllFree: false
   });
 
   // 上传文件地址
@@ -190,6 +226,9 @@
     if (!formEl) return;
     await formEl.validate(async (valid, fields) => {
       if (valid) {
+        ruleForm.organization = props.organizationList.find(
+          (item: any) => item.value === ruleForm.organizationId
+        )?.label;
         const data = await updateUserInfoByAdminAsync(ruleForm);
         if (data.data.status === 200) {
           ElMessage.success('更新成功');

@@ -39,99 +39,107 @@
           <div class="button" @click="toAttendance">已签到</div>
         </el-tooltip>
       </div>
-      <!-- 开通会员 -->
-      <div v-config:open_membership class="membership-box" @click="toMembership">
-        <template v-if="!membershipInfo.hasMembership">
-          <el-popover popper-class="create-membership-popper">
-            <template #reference>
-              <div class="content-box not-membership">
-                <img src="@/assets/images/membership.svg" alt="猫步会员" title="会员" width="20" />
-                <span>开通会员</span>
-              </div>
-            </template>
-            <div class="create-membership-pop-content">
-              <div
-                v-for="(item, index) in membershipCardList"
-                :key="index"
-                :class="[
-                  'member-goods-item',
-                  ['monthly', 'yearly', 'lifetime'].indexOf(item.value) > -1
-                    ? item.value
-                    : 'monthly'
-                ]"
-              >
-                <template v-if="['monthly', 'yearly', 'lifetime'].indexOf(item.value) > -1">
-                  <img :src="getAssetsImagesFile(`membership/${item.value}.gif`)" />
-                </template>
-                <template v-else>
-                  <div>
-                    <img :src="getAssetsImagesFile(`membership/monthly.gif`)" />
-                  </div>
-                </template>
-                <div class="info-container">
-                  <div :class="['goods-name', `name-${item.value}`]">
-                    <img
-                      src="@/assets/images/membership.svg"
-                      alt="猫步会员"
-                      title="会员"
-                      width="20"
-                    />
-                    开通{{ item.label }}
-                  </div>
-                  <!-- 权益 -->
-                  <div v-if="item.value === 'monthly'" class="goods-tips">
-                    <p>31天会员权益</p>
-                    <p>4份简历存储</p>
-                    <p>无限制导出</p>
-                    <p>无限制使用AI</p>
-                  </div>
-                  <div v-else-if="item.value === 'yearly'" class="goods-tips">
-                    <p>365天会员权益</p>
-                    <p>8份简历存储</p>
-                    <p>无限制导出</p>
-                    <p>无限制使用AI</p>
-                  </div>
-                  <div v-else-if="item.value === 'lifetime'" class="goods-tips">
-                    <p>永久会员权益</p>
-                    <p>无限制简历存储</p>
-                    <p>无限制导出</p>
-                    <p>无限制使用AI</p>
-                  </div>
-                  <div :class="['price-desc', `desc-${item.value}`]" @click="toMembership">
-                    立即开通
+      <!-- 全站免费用户则不显示 -->
+      <template v-if="!userInfo.isAllFree">
+        <!-- 开通会员 -->
+        <div v-config:open_membership class="membership-box" @click="toMembership">
+          <template v-if="!membershipInfo.hasMembership">
+            <el-popover popper-class="create-membership-popper">
+              <template #reference>
+                <div class="content-box not-membership">
+                  <img
+                    src="@/assets/images/membership.svg"
+                    alt="猫步会员"
+                    title="会员"
+                    width="20"
+                  />
+                  <span>开通会员</span>
+                </div>
+              </template>
+              <div class="create-membership-pop-content">
+                <div
+                  v-for="(item, index) in membershipCardList"
+                  :key="index"
+                  :class="[
+                    'member-goods-item',
+                    ['monthly', 'yearly', 'lifetime'].indexOf(item.value) > -1
+                      ? item.value
+                      : 'monthly'
+                  ]"
+                >
+                  <template v-if="['monthly', 'yearly', 'lifetime'].indexOf(item.value) > -1">
+                    <img :src="getAssetsImagesFile(`membership/${item.value}.gif`)" />
+                  </template>
+                  <template v-else>
+                    <div>
+                      <img :src="getAssetsImagesFile(`membership/monthly.gif`)" />
+                    </div>
+                  </template>
+                  <div class="info-container">
+                    <div :class="['goods-name', `name-${item.value}`]">
+                      <img
+                        src="@/assets/images/membership.svg"
+                        alt="猫步会员"
+                        title="会员"
+                        width="20"
+                      />
+                      开通{{ item.label }}
+                    </div>
+                    <!-- 权益 -->
+                    <div v-if="item.value === 'monthly'" class="goods-tips">
+                      <p>31天会员权益</p>
+                      <p>4份简历存储</p>
+                      <p>无限制导出</p>
+                      <p>无限制使用AI</p>
+                    </div>
+                    <div v-else-if="item.value === 'yearly'" class="goods-tips">
+                      <p>365天会员权益</p>
+                      <p>8份简历存储</p>
+                      <p>无限制导出</p>
+                      <p>无限制使用AI</p>
+                    </div>
+                    <div v-else-if="item.value === 'lifetime'" class="goods-tips">
+                      <p>永久会员权益</p>
+                      <p>无限制简历存储</p>
+                      <p>无限制导出</p>
+                      <p>无限制使用AI</p>
+                    </div>
+                    <div :class="['price-desc', `desc-${item.value}`]" @click="toMembership">
+                      立即开通
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-          </el-popover>
-        </template>
+            </el-popover>
+          </template>
 
-        <div
-          v-else-if="membershipInfo.hasMembership && membershipInfo.daysRemaining > 0"
-          class="content-box is-membership"
-        >
-          <!-- <svg-icon icon-name="icon-VIP" size="20px" color="#789e45"></svg-icon> -->
-          <img src="@/assets/images/membership.svg" alt="会员" title="会员" width="20" />
-          <span v-if="membershipInfo.type === 'lifetime'">永久会员</span>
-          <span v-else>剩余{{ membershipInfo.daysRemaining }}天</span>
+          <div
+            v-else-if="membershipInfo.hasMembership && membershipInfo.daysRemaining > 0"
+            class="content-box is-membership"
+          >
+            <!-- <svg-icon icon-name="icon-VIP" size="20px" color="#789e45"></svg-icon> -->
+            <img src="@/assets/images/membership.svg" alt="会员" title="会员" width="20" />
+            <span v-if="membershipInfo.type === 'lifetime'">永久会员</span>
+            <span v-else>剩余{{ membershipInfo.daysRemaining }}天</span>
+          </div>
+          <!-- 已过期 -->
+          <div v-else class="content-box expiredDays">
+            <span>已过期{{ membershipInfo.expiredDays }}天</span>
+          </div>
         </div>
-        <!-- 已过期 -->
-        <div v-else class="content-box expiredDays">
-          <span>已过期{{ membershipInfo.expiredDays }}天</span>
+        <!-- 简币 -->
+        <div v-config:open_get_source_code class="jb-num-box" @click="toMyIntegral">
+          <div class="content">
+            <img
+              width="18"
+              src="@/assets/images/jianB.png"
+              alt="简币"
+              title="简币 - 您的专属虚拟货币"
+            />
+            <span>{{ appStore.useUserInfoStore.userIntegralInfo.integralTotal || 0 }}</span>
+          </div>
         </div>
-      </div>
-      <!-- 简币 -->
-      <div v-config:open_get_source_code class="jb-num-box" @click="toMyIntegral">
-        <div class="content">
-          <img
-            width="18"
-            src="@/assets/images/jianB.png"
-            alt="简币"
-            title="简币 - 您的专属虚拟货币"
-          />
-          <span>{{ appStore.useUserInfoStore.userIntegralInfo.integralTotal || 0 }}</span>
-        </div>
-      </div>
+      </template>
       <!-- 登录注册以及用户展示区域 -->
       <div class="user-box">
         <div v-if="!appStore.useUserInfoStore.userInfo" class="logon-register-box">
@@ -167,7 +175,9 @@
             <template #dropdown>
               <el-dropdown-menu>
                 <el-dropdown-item @click="toPerson">个人中心</el-dropdown-item>
-                <el-dropdown-item @click="toMyIntegral"> 我的资产 </el-dropdown-item>
+                <el-dropdown-item v-if="!userInfo.isAllFree" @click="toMyIntegral">
+                  我的资产
+                </el-dropdown-item>
                 <!-- 管理员入口 -->
                 <el-dropdown-item
                   v-if="
@@ -215,6 +225,8 @@
     iconColor: '#fff',
     position: 'fixed'
   });
+
+  const { userInfo } = storeToRefs(appStore.useUserInfoStore);
 
   // 查询首页导航菜单
   const { getIndexMenuList } = appStore.useIndexMenuStore;

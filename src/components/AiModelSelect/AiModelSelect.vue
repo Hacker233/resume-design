@@ -1,7 +1,7 @@
 <template>
   <div class="ai-model-select-cpt">
     <!-- 当前简币数量 -->
-    <div class="content-box">
+    <div v-if="!userInfo.isAllFree" class="content-box">
       <h1 class="title">
         您当前简币数量
         <div class="get-bi-method" @click="openGetDialog">获取简币</div>
@@ -19,44 +19,58 @@
       <h1 class="title"> 请选择AI模型 </h1>
       <el-radio-group v-model="selectedModel" @change="handleModelChange">
         <template v-if="modelList.length > 0">
-          <el-tooltip
-            v-for="(item, index) in modelList"
-            :key="index"
-            effect="dark"
-            :content="item.model_is_free ? '限会员使用' : `每次消耗 ${Math.abs(payValue)} 简币`"
-            placement="top"
-          >
+          <!-- 全站免费用户 -->
+          <template v-if="userInfo.isAllFree">
             <el-radio
-              v-if="item.model_is_free"
+              v-for="(item, index) in modelList"
+              :key="index"
               :label="item.model_name"
               size="large"
               border
-              :disabled="!isMember"
             >
-              免费模型
-              <span class="free-tag">免费</span>
-              <!-- 皇冠 -->
-              <img
-                class="vip-icon"
-                src="@/assets/images/membership.svg"
-                alt="会员"
-                title="会员"
-                width="20"
-              />
-            </el-radio>
-            <el-radio v-else :label="item.model_name" size="large" border>
               {{ item.model_name }}
-              <span class="tips">
-                {{ Math.abs(payValue) }}
-                <img
-                  width="22"
-                  src="@/assets/images/jianB.png"
-                  alt="简币"
-                  title="简币 - 您的专属虚拟货币"
-                />
-              </span>
             </el-radio>
-          </el-tooltip>
+          </template>
+          <template v-else>
+            <el-tooltip
+              v-for="(item, index) in modelList"
+              :key="index"
+              effect="dark"
+              :content="item.model_is_free ? '限会员使用' : `每次消耗 ${Math.abs(payValue)} 简币`"
+              placement="top"
+            >
+              <el-radio
+                v-if="item.model_is_free"
+                :label="item.model_name"
+                size="large"
+                border
+                :disabled="!isMember"
+              >
+                免费模型
+                <span class="free-tag">免费</span>
+                <!-- 皇冠 -->
+                <img
+                  class="vip-icon"
+                  src="@/assets/images/membership.svg"
+                  alt="会员"
+                  title="会员"
+                  width="20"
+                />
+              </el-radio>
+              <el-radio v-else :label="item.model_name" size="large" border>
+                {{ item.model_name }}
+                <span class="tips">
+                  {{ Math.abs(payValue) }}
+                  <img
+                    width="22"
+                    src="@/assets/images/jianB.png"
+                    alt="简币"
+                    title="简币 - 您的专属虚拟货币"
+                  />
+                </span>
+              </el-radio>
+            </el-tooltip>
+          </template>
         </template>
       </el-radio-group>
     </div>
@@ -86,6 +100,8 @@
   import { storeToRefs } from 'pinia';
 
   const emit = defineEmits(['handleModelChange']);
+
+  const { userInfo } = storeToRefs(appStore.useUserInfoStore);
 
   interface TDialog {
     dialogAiOptimizeVisible: boolean;

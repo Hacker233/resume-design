@@ -8,22 +8,26 @@
       size="default"
       label-position="right"
     >
-      <el-form-item label="会员:">
-        <div @click="toMembershipReach">
-          <div v-if="!membershipInfo.hasMembership" class="not-membership-img"></div>
-          <div
-            v-else-if="membershipInfo.hasMembership && membershipInfo.daysRemaining > 0"
-            class="content-box"
-          >
-            <span v-if="membershipInfo.type === 'lifetime'">永久会员</span>
-            <span v-else>还剩{{ membershipInfo.daysRemaining }}天到期</span>
+      <!-- 全站免费用户不显示 -->
+      <template v-if="!userInfo.isAllFree">
+        <el-form-item label="会员:">
+          <div @click="toMembershipReach">
+            <div v-if="!membershipInfo.hasMembership" class="not-membership-img"></div>
+            <div
+              v-else-if="membershipInfo.hasMembership && membershipInfo.daysRemaining > 0"
+              class="content-box"
+            >
+              <span v-if="membershipInfo.type === 'lifetime'">永久会员</span>
+              <span v-else>还剩{{ membershipInfo.daysRemaining }}天到期</span>
+            </div>
+            <!-- 已过期 -->
+            <div v-else class="content-box expiredDays">
+              <span>已过期{{ membershipInfo.expiredDays }}天</span>
+            </div>
           </div>
-          <!-- 已过期 -->
-          <div v-else class="content-box expiredDays">
-            <span>已过期{{ membershipInfo.expiredDays }}天</span>
-          </div>
-        </div>
-      </el-form-item>
+        </el-form-item>
+      </template>
+
       <el-form-item label="昵称:" prop="name">
         <el-input v-if="isEdit" v-model="ruleForm.name" />
         <p v-else>{{ appStore.useUserInfoStore.userInfo.name }}</p>
@@ -89,7 +93,9 @@
   const { membershipInfo } = storeToRefs(appStore.useMembershipStore);
   console.log('用户会员信息', membershipInfo.value);
 
-  // 点击编辑
+  // 用户信息
+  const { userInfo } = storeToRefs(appStore.useUserInfoStore);
+
   const isEdit = ref<boolean>(false);
   const edit = () => {
     ruleForm.name = appStore.useUserInfoStore.userInfo.name;

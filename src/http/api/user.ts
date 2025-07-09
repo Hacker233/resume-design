@@ -149,3 +149,12 @@ export const getUserPermissionAsync: any = () => {
     method: 'get'
   });
 };
+
+// 管理员模糊搜索用户
+export const searchUsersAsync: any = (params: any) => {
+  return http.request({
+    url: '/huajian/users/searchUsers',
+    method: 'get',
+    params: params
+  });
+};

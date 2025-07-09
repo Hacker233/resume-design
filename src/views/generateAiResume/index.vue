@@ -129,6 +129,7 @@
 
   const active = ref(0);
   const isEditing = ref(false); // 是否正在处理编辑
+  const { userInfo } = storeToRefs(appStore.useUserInfoStore);
 
   const generateParams = ref({
     model: '',
@@ -237,14 +238,7 @@
       ElMessage.warning('请先选择AI模型');
       return;
     }
-    // 不是会员，选择了付费模型
-    if (!isMember.value && !modelObj.value.model_is_free) {
-      // 判断简币数量
-      if (userIntegralInfo.value.integralTotal < Math.abs(aiModelSelectRef.value.payValue)) {
-        ElMessage.warning('简币不足');
-        return;
-      }
-    }
+    // 模版关键词校验
     if (!generateParams.value.keyWords) {
       ElMessage.warning('请填写关键词');
       return;
@@ -252,27 +246,39 @@
       ElMessage.warning('请选择模版');
       return;
     }
-    HJNewJsonStore.value = generateParams.value.template;
-    // 如果选择了付费模型，弹出确认框
-    if (!modelObj.value.model_is_free) {
-      try {
-        await ElMessageBox.confirm(
-          `<div style="display: flex; align-items: center;">本次操作将消耗 ${formatNumberWithCommas(
-            aiModelSelectRef.value.payValue
-          )} <img style="margin-left: 5px;" width="22" src="${jianBImage}" alt="简币" />，是否继续？</div>`,
-          '提示',
-          {
-            confirmButtonText: '确定',
-            cancelButtonText: '取消',
-            type: 'warning',
-            dangerouslyUseHTMLString: true
-          }
-        );
-      } catch (error) {
-        // 用户点击了取消
-        return;
+
+    // 如果不会全站免费用户
+    if (!userInfo.value.isAllFree) {
+      // 不是会员，选择了付费模型
+      if (!isMember.value && !modelObj.value.model_is_free) {
+        // 判断简币数量
+        if (userIntegralInfo.value.integralTotal < Math.abs(aiModelSelectRef.value.payValue)) {
+          ElMessage.warning('简币不足');
+          return;
+        }
+      }
+      // 如果选择了付费模型，弹出确认框
+      if (!modelObj.value.model_is_free) {
+        try {
+          await ElMessageBox.confirm(
+            `<div style="display: flex; align-items: center;">本次操作将消耗 ${formatNumberWithCommas(
+              aiModelSelectRef.value.payValue
+            )} <img style="margin-left: 5px;" width="22" src="${jianBImage}" alt="简币" />，是否继续？</div>`,
+            '提示',
+            {
+              confirmButtonText: '确定',
+              cancelButtonText: '取消',
+              type: 'warning',
+              dangerouslyUseHTMLString: true
+            }
+          );
+        } catch (error) {
+          // 用户点击了取消
+          return;
+        }
       }
     }
+    HJNewJsonStore.value = generateParams.value.template;
     getResume();
   };
   // 取消生成简历

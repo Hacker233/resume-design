@@ -29,6 +29,13 @@
         <img v-viewer class="preview-img" :src="scope.row.template_cover" alt="" srcset="" />
       </template>
     </el-table-column>
+    <!-- 所属组织 -->
+    <el-table-column prop="organization" label="所属组织">
+      <template #default="scope">
+        <el-tag v-if="scope.row.organization" type="info">{{ scope.row.organization }}</el-tag>
+        <span v-else>-</span>
+      </template>
+    </el-table-column>
     <el-table-column prop="createDate" label="创建日期">
       <template #default="scope">
         <div>

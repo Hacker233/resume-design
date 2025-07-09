@@ -31,12 +31,15 @@
           <h1>{{ wordInfo.name }}</h1>
           <div class="download-btn">
             <div class="button" @click="download">
-              <!-- 先判断是否是会员 -->
-              <template v-if="!membershipInfo.hasMembership || membershipInfo.isExpired">
-                <div v-if="!isPay" class="how-much"
-                  >{{ Math.abs(wordInfo.payValue) || ''
-                  }}<img width="20" src="@/assets/images/jianB.png" alt="简币"
-                /></div>
+              <!-- 判断该用户是否全站免费 -->
+              <template v-if="!userInfo.isAllFree">
+                <!-- 先判断是否是会员 -->
+                <template v-if="!membershipInfo.hasMembership || membershipInfo.isExpired">
+                  <div v-if="!isPay" class="how-much"
+                    >{{ Math.abs(wordInfo.payValue) || ''
+                    }}<img width="20" src="@/assets/images/jianB.png" alt="简币"
+                  /></div>
+                </template>
               </template>
               <span>立即下载</span>
             </div>
@@ -125,6 +128,9 @@
   // 获取用户会员信息
   const { membershipInfo } = storeToRefs(appStore.useMembershipStore);
 
+  // 获取用户信息
+  const { userInfo } = storeToRefs(appStore.useUserInfoStore);
+
   // 获取word模板id
   const route = useRoute();
   const id = route.params.id;
@@ -197,6 +203,11 @@
         isPay.value = await useUserIsPayGoods(id);
       });
     } else {
+      // 全站免费直接下载
+      if (userInfo.value.isAllFree) {
+        downloadTemplate();
+        return;
+      }
       // 会员直接下载
       if (membershipInfo.value.hasMembership && !membershipInfo.value.isExpired) {
         downloadTemplate();

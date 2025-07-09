@@ -363,7 +363,6 @@
     HJNewJsonStore.value.componentsTree.forEach((item: any) => {
       existenceList.value.push(item.category);
     });
-    console.log('已添加模块', existenceList.value);
     return existenceList.value;
   });
 
