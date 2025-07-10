@@ -158,3 +158,21 @@ export const searchUsersAsync: any = (params: any) => {
     params: params
   });
 };
+
+// 管理员新增用户
+export const addUserByAdminAsync: any = (data: any) => {
+  return http.request({
+    url: '/huajian/users/adminAddUser',
+    method: 'post',
+    data: data
+  });
+};
+
+// 管理员批量新增用户
+export const batchAddUserByAdminAsync: any = async (data: any) => {
+  return http.request({
+    url: '/huajian/users/adminBatchAddUser',
+    method: 'post',
+    data: data
+  });
+};

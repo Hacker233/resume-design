@@ -21,7 +21,7 @@
       "@/*": ["src/*"]
     },
     "skipLibCheck": true,
-    "types": ["json-editor-vue3", "jspdf", "colorpicker-v3", "vue3-pdfjs/esm", "vue3-print-nb", "v-contextmenu", "vue-json-viewer"]
+    "types": ["json-editor-vue3", "colorpicker-v3", "vue3-pdfjs/esm", "vue3-print-nb", "v-contextmenu", "vue-json-viewer"]
   },
   "include": ["src/env.d.ts", "src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue", "types/**/*.d.ts"],
   "references": [

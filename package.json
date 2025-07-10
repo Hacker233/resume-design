@@ -45,7 +45,6 @@
     "image-conversion": "^2.1.1",
     "increase-memory-limit": "^1.0.7",
     "json-editor-vue3": "^1.0.9",
-    "jspdf": "^1.4.1",
     "lodash": "^4.17.21",
     "markdown-it": "^14.1.0",
     "moment": "^2.29.3",
@@ -66,14 +65,14 @@
     "vue3-colorpicker": "^2.1.2",
     "vue3-count-to": "^1.1.2",
     "vue3-pdfjs": "^0.1.6",
-    "vuedraggable": "^4.1.0"
+    "vuedraggable": "^4.1.0",
+    "xlsx": "^0.18.5"
   },
   "devDependencies": {
     "@commitlint/cli": "^16.2.4",
     "@commitlint/config-conventional": "^16.2.4",
     "@originjs/vite-plugin-commonjs": "^1.0.3",
     "@types/file-saver": "^2.0.5",
-    "@types/jspdf": "^2.0.0",
     "@types/lodash": "^4.14.182",
     "@types/markdown-it": "^14.1.2",
     "@typescript-eslint/eslint-plugin": "^5.22.0",

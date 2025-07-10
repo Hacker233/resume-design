@@ -62,8 +62,12 @@
           <div>{{ formatListDate(scope.row.createDate) }}</div>
         </template>
       </el-table-column>
-      <el-table-column label="操作" width="200">
+      <el-table-column label="操作" width="250">
         <template #default="scope">
+          <!-- 导入成员 -->
+          <el-button type="primary" size="small" @click="handleImportMember(scope.row)"
+            >导入成员</el-button
+          >
           <el-button type="primary" size="small" @click="handleEdit(scope.row)">编辑</el-button>
           <el-button type="danger" size="small" @click="handleDelete(scope.row)">删除</el-button>
         </template>
@@ -89,6 +93,14 @@
       @cancle="cancle"
       @update-success="updateSuccess"
     ></edit-and-add-dialog>
+
+    <!-- 导入成员弹窗 -->
+    <import-member-dialog
+      :dialog-import-visible="dialogImportVisible"
+      :row="row"
+      @cancle="handleImportCancle"
+      @update-success="handleImportSuccess"
+    ></import-member-dialog>
   </div>
 </template>
 
@@ -97,6 +109,7 @@
   import { formatListDate } from '@/utils/common';
   import { deleteOrgAsync, getOrgListAsync } from '@/http/api/organization';
   import EditAndAddDialog from './components/EditAndAddDialog.vue';
+  import ImportMemberDialog from './components/ImportMemberDialog.vue';
 
   interface Organization {
     _id: string;
@@ -214,6 +227,25 @@
   const updateSuccess = () => {
     getList();
     dialogOrgVisible.value = false;
+  };
+
+  // 导入成员
+  const dialogImportVisible = ref<boolean>(false);
+  const handleImportMember = (rowData: Organization) => {
+    dialogImportVisible.value = true;
+    row.value = rowData;
+    console.log('导入成员', row.value);
+  };
+
+  // 导入成功
+  const handleImportSuccess = () => {
+    dialogImportVisible.value = false;
+    getList();
+  };
+
+  // 导入取消
+  const handleImportCancle = () => {
+    dialogImportVisible.value = false;
   };
 
   onMounted(() => {

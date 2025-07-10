@@ -1,74 +1,78 @@
 <template>
   <!-- 查询表单 -->
-  <el-form :inline="true" :model="formInline" class="demo-form-inline" size="default">
-    <el-form-item label="用户名：">
-      <el-input v-model="formInline.name" placeholder="用户名" />
-    </el-form-item>
-    <el-form-item label="用户邮箱：">
-      <el-input v-model="formInline.queryEmail" placeholder="用户邮箱" />
-    </el-form-item>
-    <el-form-item label="简币排序:" prop="integral_sort">
-      <el-select v-model="formInline.integral_sort" placeholder="请选择简币排序规则">
-        <el-option
-          v-for="(item, index) in integralSortList"
-          :key="index"
-          :label="item.label"
-          :value="item.value"
-        />
-      </el-select>
-    </el-form-item>
-    <el-form-item label="账号状态:" prop="acc">
-      <el-select v-model="formInline.accountStatus" placeholder="请选择账号状态">
-        <el-option
-          v-for="(item, index) in accountStatusList"
-          :key="index"
-          :label="item.label"
-          :value="item.value"
-        />
-      </el-select>
-    </el-form-item>
-    <el-form-item label="组织:" prop="organization">
-      <el-select v-model="formInline.organizationId" placeholder="请选择组织">
-        <el-option
-          v-for="(item, index) in organizationList"
-          :key="index"
-          :label="item.label"
-          :value="item.value"
-        />
-      </el-select>
-    </el-form-item>
-    <!-- 是否全站免费 -->
-    <el-form-item label="是否全站免费:" prop="isAllFree">
-      <el-select v-model="formInline.isAllFree" placeholder="请选择是否全站免费">
-        <el-option
-          v-for="(item, index) in isAllFreeList"
-          :key="index"
-          :label="item.label"
-          :value="item.value"
-        />
-      </el-select>
-    </el-form-item>
-    <el-form-item label="注册时间排序:" prop="register_sort">
-      <el-select v-model="formInline.register_sort" placeholder="请选择注册时间顺序">
-        <el-option
-          v-for="(item, index) in registerSortList"
-          :key="index"
-          :label="item.label"
-          :value="item.value"
-        />
-      </el-select>
-    </el-form-item>
-    <el-form-item>
-      <el-button type="primary" @click="onSubmit">查询</el-button>
-      <el-button @click="resetForm">重置</el-button>
-      <!-- <el-tooltip :disabled="multipleSelection.length > 0" effect="light" content="请先选择用户">
-        <el-button :disabled="multipleSelection.length <= 0" @click="sendEmailToSelectedUsers"
-          >发送邮件</el-button
-        >
-      </el-tooltip>
-      <el-button @click="sendEmailToAllUsers">发送全体邮件</el-button> -->
-    </el-form-item>
-  </el-form>
+  <div class="filter-container">
+    <el-form
+      label-width="100px"
+      :inline="true"
+      :model="formInline"
+      size="default"
+      class="filter-form"
+    >
+      <div class="filter-grid">
+        <el-form-item label="用户名：" class="filter-item">
+          <el-input v-model="formInline.name" placeholder="请输入" />
+        </el-form-item>
+        <el-form-item label="邮箱/账号：" class="filter-item">
+          <el-input v-model="formInline.queryEmail" placeholder="请输入" />
+        </el-form-item>
+        <el-form-item label="简币排序：" class="filter-item">
+          <el-select v-model="formInline.integral_sort" placeholder="请选择">
+            <el-option
+              v-for="(item, index) in integralSortList"
+              :key="index"
+              :label="item.label"
+              :value="item.value"
+            />
+          </el-select>
+        </el-form-item>
+        <el-form-item label="账号状态：" class="filter-item">
+          <el-select v-model="formInline.accountStatus" placeholder="请选择">
+            <el-option
+              v-for="(item, index) in accountStatusList"
+              :key="index"
+              :label="item.label"
+              :value="item.value"
+            />
+          </el-select>
+        </el-form-item>
+        <el-form-item label="组织：" class="filter-item">
+          <el-select v-model="formInline.organizationId" placeholder="请选择">
+            <el-option
+              v-for="(item, index) in organizationList"
+              :key="index"
+              :label="item.label"
+              :value="item.value"
+            />
+          </el-select>
+        </el-form-item>
+        <el-form-item label="全站免费：" class="filter-item">
+          <el-select v-model="formInline.isAllFree" placeholder="请选择">
+            <el-option
+              v-for="(item, index) in isAllFreeList"
+              :key="index"
+              :label="item.label"
+              :value="item.value"
+            />
+          </el-select>
+        </el-form-item>
+        <el-form-item label="注册时间：" class="filter-item">
+          <el-select v-model="formInline.register_sort" placeholder="请选择">
+            <el-option
+              v-for="(item, index) in registerSortList"
+              :key="index"
+              :label="item.label"
+              :value="item.value"
+            />
+          </el-select>
+        </el-form-item>
+        <div class="filter-actions">
+          <el-button type="primary" @click="onSubmit">查询</el-button>
+          <el-button @click="resetForm">重置</el-button>
+          <el-button type="primary" @click="handleAddUser">新增用户</el-button>
+        </div>
+      </div>
+    </el-form>
+  </div>
 
   <el-table
     class="template-list-table"
@@ -171,6 +175,14 @@
     @cancle="cancle"
     @update-success="updateSuccess"
   ></edit-dialog>
+
+  <!-- 新增用户弹窗 -->
+  <add-user-dialog
+    :dialog-visible="dialogAddVisible"
+    :organization-list="organizationList"
+    @cancle="closeAddDialog"
+    @update-success="updateAddSuccess"
+  ></add-user-dialog>
 </template>
 <script lang="ts" setup>
   import { formatListDate } from '@/utils/common';
@@ -180,6 +192,7 @@
   import 'element-plus/es/components/message-box/style/index';
   import EditDialog from './components/EditDialog.vue';
   import { getOrgListAsync } from '@/http/api/organization';
+  import AddUserDialog from './components/AddUserDialog.vue';
   let tableData = ref<any>([]);
 
   // 简币排序规则下拉
@@ -332,7 +345,7 @@
           integral: item.integral,
           accountStatus: item.auth.accountStatus,
           serialNumber: limit.value * (page.value - 1) + index + 1, // 序号
-          organization: item.organization?.name || '-',
+          organization: item.organization || '-',
           organizationId: item.organizationId,
           isAllFree: item.isAllFree
         };
@@ -399,8 +412,70 @@
       })
       .catch(() => {});
   };
+
+  // 新增用户
+  const dialogAddVisible = ref<boolean>(false);
+  const handleAddUser = () => {
+    dialogAddVisible.value = true;
+    row.value = null;
+  };
+  // 新增用户弹窗关闭
+  const closeAddDialog = () => {
+    dialogAddVisible.value = false;
+  };
+  // 新增用户成功
+  const updateAddSuccess = () => {
+    getUserList();
+    closeAddDialog();
+  };
 </script>
 <style lang="scss" scoped>
+  .filter-container {
+    padding: 16px;
+    margin-bottom: 20px;
+    background: #f8fafc;
+    border-radius: 4px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+  }
+
+  .filter-form {
+    width: 100%;
+
+    .filter-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(280px, 1fr)); /* 替换auto-fill为固定3列 */
+      gap: 16px;
+    }
+    .filter-grid > * {
+      align-self: flex-end; /* 将align-items改为子元素上的align-self */
+    }
+
+    .filter-item {
+      margin: 0;
+
+      :deep(.el-form-item__label) {
+        width: 80px;
+        text-align: right;
+        padding-right: 12px;
+        color: #606266;
+        font-weight: normal;
+      }
+
+      :deep(.el-input),
+      :deep(.el-select) {
+        width: 100%;
+      }
+    }
+
+    .filter-actions {
+      display: flex;
+      gap: 12px;
+      grid-column: 1 / -1;
+      justify-content: flex-end;
+      padding-top: 8px;
+    }
+  }
+
   :deep(.integral-value-box) {
     display: flex;
     align-items: center;

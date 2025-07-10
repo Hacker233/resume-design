@@ -104,7 +104,7 @@
   import { storeToRefs } from 'pinia';
   import ModelBox from './ModelBox.vue';
   import draggable from 'vuedraggable';
-  import downloadPDF from '@/utils/html2pdf';
+  // import downloadPDF from '@/utils/html2pdf';
   import ModeSwitch from './ModeSwitch.vue';
   import { IMATERIALITEM } from '@/interface/material';
   import { getUuid } from '@/utils/common';
@@ -228,13 +228,13 @@
 
   // 生成pdf方法
   const generateReport = async () => {
-    let temp = linesNumber.value;
-    linesNumber.value = 0;
-    resetSelectModel(); // 重置选中模块
-    await nextTick();
-    downloadPDF(html2Pdf.value.$el, resumeJsonNewStore.value.TITLE, false, () => {
-      linesNumber.value = temp;
-    });
+    // let temp = linesNumber.value;
+    // linesNumber.value = 0;
+    // resetSelectModel(); // 重置选中模块
+    // await nextTick();
+    // downloadPDF(html2Pdf.value.$el, resumeJsonNewStore.value.TITLE, false, () => {
+    //   linesNumber.value = temp;
+    // });
   };
 
   /**
