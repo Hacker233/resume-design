@@ -16,7 +16,7 @@ export function createBuild(viteEnv: { VITE_ENV: string; VITE_OUTPUT_DIR: string
     outDir: VITE_OUTPUT_DIR,
 
     // 启用 CSS 代码拆分
-    cssCodeSplit: true,
+    cssCodeSplit: false,
 
     // 关闭报告压缩后文件的大小
     reportCompressedSize: false,

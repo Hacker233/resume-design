@@ -228,7 +228,7 @@
   });
 </script>
 <style lang="scss" scoped>
-  @import '../../style/options.scss';
+  @use '../../style/options';
   .content-box {
     // position: relative;
     .dragArea {

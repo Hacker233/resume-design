@@ -367,7 +367,7 @@
   });
 </script>
 <style lang="scss">
-  @import '../../style/options.scss';
+  @use '../../style/options';
 </style>
 <style lang="scss" scoped>
   .design-box {

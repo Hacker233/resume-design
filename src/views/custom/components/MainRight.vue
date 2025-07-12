@@ -20,7 +20,7 @@
   import optionsComponents from '@/utils/registerMaterialOptionsCom';
 </script>
 <style lang="scss">
-  @import '../../../style/options.scss';
+  @use '../../../style/options';
   .main-right-box {
     width: 355px;
     background-color: #fff;

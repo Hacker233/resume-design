@@ -343,7 +343,7 @@ export const getModuleTitleImagesFile = (url: string) => {
  * @param {Object} resumeData - 原始简历数据
  * @returns {Object} - 处理后的简历数据
  */
-export const processResumeData = (resumeData: any, useId?: boolean) => {
+export const processResumeData = (resumeData: any, useIdBool?: boolean) => {
   const processedData: { [key: string]: any } = {};
 
   // 遍历每个模块
@@ -354,7 +354,7 @@ export const processResumeData = (resumeData: any, useId?: boolean) => {
     }
 
     // 自定义较短的键名，例如 module_1, module_2
-    const moduleKey = useId ? module.id : `module_${index + 1}`;
+    const moduleKey = useIdBool ? module.id : `module_${index + 1}`;
 
     // 处理模块的 props，过滤 show 为 false 的属性
     const moduleData: any = { _title: module.title }; // 将 title 存放在 _title 字段中

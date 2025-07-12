@@ -29,14 +29,15 @@ export default defineConfig(async ({ command, mode }: ConfigEnv): Promise<UserCo
       rollupOptions: {
         output: {
           manualChunks: {
-            vendor: ['vue', 'vue-router', 'pinia'],
-            element: ['element-plus'],
-            codemirror: ['codemirror', '@codemirror/lang-javascript', '@codemirror/lang-json'],
+            // 将大依赖拆分成更小的chunks
             echarts: ['echarts'],
-            wangeditor: ['@wangeditor/editor', '@wangeditor/editor-for-vue']
+            wangeditor: ['@wangeditor/editor', '@wangeditor/editor-for-vue'],
+            element: ['element-plus'],
+            codemirror: ['codemirror', '@codemirror/lang-javascript', '@codemirror/lang-json']
           }
         }
-      }
+      },
+      chunkSizeWarningLimit: 500 // 降低警告阈值
     },
     css: {
       preprocessorOptions: {
@@ -48,7 +49,6 @@ export default defineConfig(async ({ command, mode }: ConfigEnv): Promise<UserCo
         // ⚠️ 关键代码
         plugins: [
           autoprefixer({
-            // 自动添加前缀
             overrideBrowserslist: [
               'Android 4.1',
               'iOS 7.1',
@@ -67,16 +67,16 @@ export default defineConfig(async ({ command, mode }: ConfigEnv): Promise<UserCo
       ...(await createVitePlugins(viteEnv, isBuild)),
       ViteImageOptimizer({
         png: {
-          quality: 80
+          quality: 70
         },
         jpeg: {
-          quality: 80
+          quality: 70
         },
         webp: {
-          quality: 80
+          quality: 70
         },
         avif: {
-          quality: 80
+          quality: 70
         }
       }),
       compression()
