@@ -129,13 +129,6 @@
         margin: 0 5px;
         font-weight: 600;
       }
-      :deep(.el-date-editor) {
-        flex: 1;
-        height: 48px;
-        .el-input__wrapper {
-          height: 48px;
-        }
-      }
       .el-radio {
         margin-left: 10px;
       }

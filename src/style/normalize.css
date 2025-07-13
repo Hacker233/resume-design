@@ -461,6 +461,10 @@ template {
   margin: 0;
 }
 
+.el-select {
+  min-width: 150px;
+}
+
 h3 {
   padding: 0;
   margin: 0;
