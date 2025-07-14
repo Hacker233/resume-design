@@ -4,6 +4,21 @@
     <el-form-item label="用户邮箱：">
       <el-input v-model="formInline.queryEmail" placeholder="用户邮箱" />
     </el-form-item>
+    <el-form-item label="所属组织：">
+      <el-select
+        v-model="formInline.organizationId"
+        placeholder="请选择组织"
+        size="default"
+        clearable
+      >
+        <el-option
+          v-for="item in organizationList"
+          :key="item.id"
+          :label="item.label"
+          :value="item.value"
+        />
+      </el-select>
+    </el-form-item>
     <el-form-item>
       <el-button type="primary" @click="onCreate">新增会员</el-button>
       <el-button type="primary" @click="onSubmit">查询</el-button>
@@ -55,7 +70,8 @@
     <el-table-column prop="channelType" label="开通渠道">
       <template #default="scope">
         <div class="membership-type-box">
-          <el-tag v-if="scope.row.channelType" type="success" size="default">{{channelTypeDic[scope.row.channelType as keyof typeof channelTypeDic]
+          <el-tag v-if="scope.row.channelType" type="success" size="default">{{
+            channelTypeDic[scope.row.channelType as keyof typeof channelTypeDic]
           }}</el-tag>
           <span v-else>-</span>
         </div>
@@ -84,6 +100,13 @@
     <el-table-column prop="daysRemaining" label="剩余天数">
       <template #default="scope">
         <span>{{ scope.row.daysRemaining }}天</span>
+      </template>
+    </el-table-column>
+    <el-table-column prop="organization" label="所属组织" sortable>
+      <template #default="scope">
+        <div>
+          {{ scope.row.organization || '-' }}
+        </div>
       </template>
     </el-table-column>
     <el-table-column label="操作" width="140">
@@ -127,11 +150,13 @@
     getMembershipConfigsAsync,
     getMembershipListAsync
   } from '@/http/api/membership';
+  import { getOrgListAsync } from '@/http/api/organization';
   let tableData = ref<any>([]);
 
   // 表单查询
   const formInline = reactive({
-    queryEmail: ''
+    queryEmail: '',
+    organizationId: ''
   });
 
   // 查询
@@ -144,6 +169,7 @@
   // 重置
   const resetForm = () => {
     formInline.queryEmail = '';
+    formInline.organizationId = '';
     page.value = 1;
     currentPage.value = 1;
     getMembershipList();
@@ -156,6 +182,28 @@
     console.log('当前选中项', multipleSelection.value, val.updateDate);
   };
 
+  // 查询组织列表
+  const organizationList = ref<any>([]);
+  const getOrgList = async () => {
+    // 查询组织列表
+    const params = {
+      limit: 1000,
+      page: 1
+    };
+    const data = await getOrgListAsync(params);
+    if (data.data.status === 200) {
+      organizationList.value = data.data.data.list.map((item: any) => {
+        return {
+          label: item.name,
+          value: item._id
+        };
+      });
+    } else {
+      ElMessage.error(data.data.message);
+    }
+  };
+  getOrgList();
+
   // 获取会员用户列表
   const page = ref<number>(1);
   const limit = ref<number>(15);
@@ -164,6 +212,7 @@
   const getMembershipList = async () => {
     let params = {
       email: formInline.queryEmail,
+      organizationId: formInline.organizationId,
       page: page.value,
       limit: limit.value
     };
@@ -187,7 +236,8 @@
           channelType: item.channelType, // 开通渠道
           outTradeNo: item.outTradeNo, // 商户订单号
           tradeNo: item.tradeNo, // 订单号
-          serialNumber: limit.value * (page.value - 1) + index + 1 // 序号
+          serialNumber: limit.value * (page.value - 1) + index + 1, // 序号
+          organization: item.organization // 所属组织
         };
       });
       console.log('tableData', tableData);
