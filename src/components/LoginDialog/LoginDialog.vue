@@ -121,47 +121,99 @@
         </div>
         <!-- 登录界面 -->
         <div class="form-container sign-in-container">
-          <h1>登录</h1>
-          <div class="social-container"> </div>
-          <el-form
-            ref="loginRuleFormRef"
-            class="forms_form"
-            size="small"
-            :model="loginForm"
-            :rules="loginRules"
-          >
-            <el-form-item prop="email">
-              <el-input
-                v-model="loginForm.email"
-                type="email"
-                class="forms_field-input"
-                maxlength="40"
-                placeholder="电子邮箱"
-                @keyup.enter="login(loginRuleFormRef)"
-              />
-            </el-form-item>
-            <el-form-item prop="password">
-              <el-input
-                v-model="loginForm.password"
-                type="password"
-                class="forms_field-input"
-                placeholder="密码"
-                @keyup.enter="login(loginRuleFormRef)"
-              />
-            </el-form-item>
-          </el-form>
-          <a href="#" @click.prevent="forgetPassword">忘记密码？</a>
-          <el-button
-            class="ghost-button forms_buttons-action"
-            :loading="isLoginLoading"
-            @click="login(loginRuleFormRef)"
-            >登 录</el-button
-          >
+          <!-- 普通用户登录 -->
+          <template v-if="loginMode === 'regular'">
+            <h1>登录</h1>
+            <div class="social-container"> </div>
+            <el-form
+              ref="loginRuleFormRef"
+              class="forms_form"
+              size="small"
+              :model="loginForm"
+              :rules="loginRules"
+            >
+              <el-form-item prop="email">
+                <el-input
+                  v-model="loginForm.email"
+                  type="email"
+                  class="forms_field-input"
+                  maxlength="40"
+                  placeholder="电子邮箱"
+                  @keyup.enter="login(loginRuleFormRef)"
+                />
+              </el-form-item>
+              <el-form-item prop="password">
+                <el-input
+                  v-model="loginForm.password"
+                  type="password"
+                  class="forms_field-input"
+                  placeholder="密码"
+                  @keyup.enter="login(loginRuleFormRef)"
+                />
+              </el-form-item>
+            </el-form>
+            <a href="#" @click.prevent="forgetPassword">忘记密码？</a>
+            <el-button
+              class="ghost-button forms_buttons-action"
+              :loading="isLoginLoading"
+              @click="login(loginRuleFormRef)"
+              >登 录</el-button
+            >
+          </template>
+          <!-- 企业、组织、学校用户登录 -->
+          <template v-if="loginMode === 'company'">
+            <h1>组织用户登录</h1>
+            <div class="social-container"> </div>
+            <el-form
+              ref="companyLoginFormRef"
+              class="forms_form"
+              size="small"
+              :model="companyLoginForm"
+              :rules="companyLoginRules"
+            >
+              <el-form-item prop="email">
+                <el-input
+                  v-model="companyLoginForm.email"
+                  type="email"
+                  class="forms_field-input"
+                  maxlength="40"
+                  placeholder="账号"
+                  @keyup.enter="companyLogin(companyLoginFormRef)"
+                />
+              </el-form-item>
+              <el-form-item prop="password">
+                <el-input
+                  v-model="companyLoginForm.password"
+                  type="password"
+                  class="forms_field-input"
+                  placeholder="密码"
+                  @keyup.enter="companyLogin(companyLoginFormRef)"
+                />
+              </el-form-item>
+            </el-form>
+            <el-button
+              class="ghost-button forms_buttons-action"
+              :loading="isLoginLoading"
+              @click="companyLogin(companyLoginFormRef)"
+              >登 录</el-button
+            >
+          </template>
           <!-- 其它登录方式 -->
-          <!-- <div class="other-login-box">
-            <el-divider> 其它方式 </el-divider>
-            <img @click="toQQLogin" src="@/assets/images/qq.png" alt="QQ登录" title="QQ登录" />
-          </div> -->
+          <div class="other-login-box">
+            <el-divider> 其它登录方式 </el-divider>
+            <div class="other-login-icon-box">
+              <el-tooltip
+                :content="loginMode === 'regular' ? '企业/组织/学校用户登录' : '普通用户登录'"
+              >
+                <div v-if="loginMode === 'regular'" class="icon-box" @click="loginByCompany">
+                  <svg-icon icon-name="icon-qiye" color="#a3abb1" size="30px"></svg-icon>
+                </div>
+                <div v-if="loginMode === 'company'" class="icon-box" @click="loginByRegular">
+                  <svg-icon icon-name="icon-renwu-ren" color="#a3abb1" size="20px"></svg-icon>
+                </div>
+              </el-tooltip>
+            </div>
+          </div>
         </div>
         <!-- 注册登录浮窗切换 -->
         <div class="overlay-container">
@@ -188,7 +240,7 @@
 </template>
 <script lang="ts" setup>
   import { ElMessage, FormInstance, FormRules } from 'element-plus';
-  import { loginAsync, registerAsync, sendCodeAsync } from '@/http/api/user';
+  import { companyLoginAsync, loginAsync, registerAsync, sendCodeAsync } from '@/http/api/user';
   import appStore from '@/store';
   import PrivateServiceDialog from './components/PrivateServiceDialog.vue';
   const props = defineProps({
@@ -269,6 +321,27 @@
   });
   const loginRules = reactive<FormRules>({
     email: [{ required: true, validator: emailValidator, trigger: 'change' }],
+    password: [
+      {
+        required: true,
+        message: '请输入密码',
+        trigger: 'change'
+      }
+    ]
+  });
+
+  // 组织登录表单数据
+  interface ICompanyLoginForm {
+    email: string;
+    password: string;
+  }
+  const companyLoginForm = reactive<ICompanyLoginForm>({
+    email: '', // 注册邮箱
+    password: '' // 密码
+  });
+
+  const companyLoginRules = reactive<FormRules>({
+    email: [{ required: true, message: '请输入账号', trigger: 'change' }],
     password: [
       {
         required: true,
@@ -468,6 +541,55 @@
   onUnmounted(() => {
     if (timer) clearInterval(timer);
   });
+
+  // 登录模式
+  const loginMode = ref<string>('regular');
+
+  // 切换企业登录
+  const loginByCompany = () => {
+    loginMode.value = 'company';
+  };
+
+  // 切换普通用户登录
+  const loginByRegular = () => {
+    loginMode.value = 'regular';
+  };
+
+  // 企业用户登录
+  const companyLoginFormRef = ref<FormInstance>();
+  const companyLogin = async (formEl: FormInstance | undefined) => {
+    if (!formEl) return;
+    await formEl.validate(async (valid, fields) => {
+      if (valid) {
+        isLoginLoading.value = true;
+        const data = await companyLoginAsync(companyLoginForm);
+        if (data.status === 200) {
+          isLoginLoading.value = false;
+          setUuid(); // 无感刷新页面
+          saveToken('Bearer ' + data.data.token.access_token); // 存储token到本地
+          saveUserInfo(data.data.user); // 存储用户信息
+          getUserIntegralTotal(); // 查询简币信息
+          ElMessage({
+            message: '登录成功',
+            type: 'success'
+          });
+          show.value = false;
+          // 查询和更新用户信息
+          const { getAndUpdateUserInfo } = appStore.useUserInfoStore;
+          getAndUpdateUserInfo();
+          props.confirm();
+        } else {
+          isLoginLoading.value = false;
+          ElMessage({
+            message: data.message,
+            type: 'error'
+          });
+        }
+      } else {
+        console.log('error submit!', fields);
+      }
+    });
+  };
 </script>
 <style lang="scss" scoped>
   .login-dialog-form-box {
@@ -724,11 +846,29 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      img {
-        cursor: pointer;
-        transition: all 0.3s;
-        &:hover {
-          opacity: 0.8;
+      margin-top: 30px;
+      :deep(.el-divider__text) {
+        color: #333;
+        font-size: 12px;
+      }
+      .other-login-icon-box {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        .icon-box {
+          width: 40px;
+          height: 40px;
+          border-radius: 50%;
+          cursor: pointer;
+          padding: 5px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          transition: all 0.3s;
+          border: 1px solid #dedcdc;
+          &:hover {
+            background-color: rgba(#eceeeca5, 0.7);
+          }
         }
       }
     }

@@ -265,6 +265,7 @@
     border-radius: 15px;
     box-shadow: 0 5px 15px 0 #ddd;
     overflow: hidden;
+    padding-top: 30px;
 
     .qrcode-wrapper {
       position: relative;

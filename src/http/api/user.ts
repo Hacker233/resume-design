@@ -16,6 +16,22 @@ export const loginAsync: any = (data: ILogin) => {
   });
 };
 
+// 企业/学校/组织登录
+interface ICompanyLogin {
+  email: string;
+  password: string;
+}
+export const companyLoginAsync: any = (data: ICompanyLogin) => {
+  return http.request({
+    url: '/huajian/auth/email/loginOrg',
+    method: 'post',
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded'
+    },
+    data: data
+  });
+};
+
 // 注册
 interface IRegister {
   name: string;

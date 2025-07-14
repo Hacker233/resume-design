@@ -6,13 +6,28 @@
       <el-form-item label="用户邮箱：">
         <el-input v-model="formInline.queryEmail" placeholder="用户邮箱" />
       </el-form-item>
-      <el-form-item>
+      <el-form-item label="订单日期：">
         <el-date-picker
           v-model="formInline.createDate"
           type="date"
           placeholder="请选择日期"
           size="default"
         />
+      </el-form-item>
+      <el-form-item label="所属组织：">
+        <el-select
+          v-model="formInline.organizationId"
+          placeholder="请选择组织"
+          size="default"
+          clearable
+        >
+          <el-option
+            v-for="item in organizationList"
+            :key="item.id"
+            :label="item.label"
+            :value="item.value"
+          />
+        </el-select>
       </el-form-item>
       <el-form-item>
         <el-button type="primary" @click="onSubmit">查询</el-button>
@@ -29,6 +44,11 @@
       border
     >
       <el-table-column prop="email" label="用户邮箱" />
+      <el-table-column prop="organization" label="所属组织">
+        <template #default="scope">
+          {{ scope.row.organization || '-' }}
+        </template>
+      </el-table-column>
       <el-table-column prop="status" label="订单状态">
         <template #default="scope">
           <el-tag v-if="scope.row.status == '0'" type="danger" size="default">未支付</el-tag>
@@ -36,7 +56,7 @@
           <el-tag v-else-if="scope.row.status == '1'" type="success" size="default"
             >支付成功</el-tag
           >
-          <el-tag v-else type="error" size="default">未知状态</el-tag>
+          <el-tag v-else type="danger" size="default">未知状态</el-tag>
         </template>
       </el-table-column>
       <el-table-column prop="name" label="商品名称" />
@@ -96,6 +116,7 @@
   </div>
 </template>
 <script lang="ts" setup>
+  import { getOrgListAsync } from '@/http/api/organization';
   import {
     yipayRefundAsync,
     yipayTradeQueryByAdminAsync,
@@ -108,8 +129,31 @@
   // 表单查询
   const formInline = reactive({
     queryEmail: '',
-    createDate: ''
+    createDate: '',
+    organizationId: ''
   });
+
+  // 查询组织列表
+  const organizationList = ref<any>([]);
+  const getOrgList = async () => {
+    // 查询组织列表
+    const params = {
+      limit: 1000,
+      page: 1
+    };
+    const data = await getOrgListAsync(params);
+    if (data.data.status === 200) {
+      organizationList.value = data.data.data.list.map((item: any) => {
+        return {
+          label: item.name,
+          value: item._id
+        };
+      });
+    } else {
+      ElMessage.error(data.data.message);
+    }
+  };
+  getOrgList();
 
   // 查询订单列表
   const page = ref<number>(1);
@@ -121,6 +165,7 @@
     let params = {
       email: formInline.queryEmail,
       createDate: formInline.createDate,
+      organizationId: formInline.organizationId,
       page: page.value,
       limit: limit.value
     };
@@ -147,6 +192,7 @@
   const resetForm = () => {
     formInline.queryEmail = '';
     formInline.createDate = '';
+    formInline.organizationId = '';
     page.value = 1;
     currentPage.value = 1;
     tradeQueryList();
@@ -210,4 +256,3 @@
       .catch(() => {});
   };
 </script>
-<style lang="scss" scoped></style>

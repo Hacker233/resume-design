@@ -21,6 +21,11 @@
       border
     >
       <el-table-column prop="name" label="组织名称" />
+      <el-table-column prop="domain" label="组织域名"
+        ><template #default="scope">
+          <div>{{ scope.row.domain || '-' }}</div>
+        </template></el-table-column
+      >
       <el-table-column prop="description" label="组织描述" />
       <el-table-column prop="admin" label="负责人" />
       <el-table-column prop="memberCount" label="成员数量" width="120" />

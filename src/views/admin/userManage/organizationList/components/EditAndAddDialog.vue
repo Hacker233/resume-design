@@ -21,6 +21,9 @@
       <el-form-item label="组织描述" prop="description">
         <el-input v-model="ruleForm.description" autocomplete="off" placeholder="请输入组织描述" />
       </el-form-item>
+      <el-form-item label="组织域名" prop="domain">
+        <el-input v-model="ruleForm.domain" autocomplete="off" placeholder="请输入组织域名" />
+      </el-form-item>
       <el-form-item label="组织管理员" prop="adminIds">
         <el-select
           v-model="ruleForm.adminIds"
@@ -49,7 +52,7 @@
           style="width: 100%"
           value-format="YYYY-MM-DD HH:mm:ss"
           placeholder="选择日期时间"
-          :default-time="defaultTime"
+          :default-time="defaultTime[0]"
         />
       </el-form-item>
       <el-form-item label="组织过期时间" prop="endDate">
@@ -59,7 +62,7 @@
           style="width: 100%"
           value-format="YYYY-MM-DD HH:mm:ss"
           placeholder="选择日期时间"
-          :default-time="defaultTime"
+          :default-time="defaultTime[1]"
           :disabled-date="disabledEndDate"
         />
       </el-form-item>
@@ -101,6 +104,7 @@
     _id?: string;
     name: string;
     description: string;
+    domain: string;
     adminIds: string[];
     adminDetails: User[];
     startDate: string;
@@ -132,6 +136,7 @@
   const ruleForm = reactive<Organization>({
     name: '',
     description: '',
+    domain: '',
     adminIds: [],
     adminDetails: [],
     startDate: moment().format('YYYY-MM-DD HH:mm:ss'),
@@ -143,6 +148,7 @@
   const rules = reactive<FormRules<Organization>>({
     name: [{ required: true, message: '组织名称不能为空！', trigger: 'blur' }],
     description: [{ required: true, message: '组织描述不能为空！', trigger: 'blur' }],
+    domain: [{ required: true, message: '组织域名不能为空！', trigger: 'blur' }],
     adminIds: [{ required: true, message: '请选择组织管理员', trigger: 'change' }],
     startDate: [{ required: true, message: '请选择组织创建时间', trigger: 'change' }],
     endDate: [
@@ -212,6 +218,7 @@
     Object.assign(ruleForm, {
       name: '',
       description: '',
+      domain: '',
       adminIds: [],
       adminDetails: [],
       startDate: moment().format('YYYY-MM-DD HH:mm:ss'),
@@ -278,6 +285,7 @@
       let params: any = {
         name: ruleForm.name,
         description: ruleForm.description,
+        domain: ruleForm.domain,
         admin: ruleForm.adminIds,
         startDate: ruleForm.startDate,
         endDate: ruleForm.endDate,

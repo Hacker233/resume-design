@@ -251,7 +251,7 @@
     accountStatus: '',
     name: '',
     organizationId: '',
-    isAllFree: null
+    isAllFree: ''
   });
 
   // 查询
@@ -291,7 +291,7 @@
     formInline.accountStatus = '';
     formInline.name = '';
     formInline.organizationId = '';
-    formInline.isAllFree = null;
+    formInline.isAllFree = '';
     page.value = 1;
     currentPage.value = 1;
     getUserList();
