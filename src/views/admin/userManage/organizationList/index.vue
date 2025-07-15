@@ -29,11 +29,6 @@
       <el-table-column prop="description" label="组织描述" />
       <el-table-column prop="admin" label="负责人" />
       <el-table-column prop="memberCount" label="成员数量" width="120" />
-      <el-table-column prop="startDate" label="开通时间">
-        <template #default="scope">
-          <div>{{ formatListDate(scope.row.startDate) }}</div>
-        </template>
-      </el-table-column>
       <el-table-column prop="endDate" label="到期时间">
         <template #default="scope">
           <div>{{ formatListDate(scope.row.endDate) }}</div>
@@ -53,13 +48,32 @@
       </el-table-column>
       <el-table-column prop="isAllFree" label="全站免费">
         <template #default="scope">
-          <el-switch v-model="scope.row.isAllFree" disabled />
+          <el-tag v-if="scope.row.isAllFree" type="success" size="default">是</el-tag>
+          <el-tag v-else type="danger" size="default">否</el-tag>
         </template>
       </el-table-column>
       <el-table-column label="状态" width="100">
         <template #default="scope">
           <el-tag v-if="scope.row.remainingDays > 0" type="success" size="default">正常</el-tag>
           <el-tag v-else type="danger" size="default">已到期</el-tag>
+        </template>
+      </el-table-column>
+      <el-table-column prop="entryType" label="入驻方式">
+        <template #default="scope">
+          <el-tag type="success" effect="light">
+            {{ entryTypeList.find((item) => item.value === scope.row.entryType)?.label || '-' }}
+          </el-tag>
+        </template>
+      </el-table-column>
+      <el-table-column prop="isRegisterGiftMember" label="注册赠送会员">
+        <template #default="scope">
+          <el-tag v-if="scope.row.isRegisterGiftMember" type="success" size="default">是</el-tag>
+          <el-tag v-else type="danger" size="default">否</el-tag>
+        </template>
+      </el-table-column>
+      <el-table-column prop="giftMemberDays" label="赠送会员天数">
+        <template #default="scope">
+          <div>{{ scope.row.giftMemberDays || 0 }}</div>
         </template>
       </el-table-column>
       <el-table-column prop="createDate" label="创建日期">
@@ -122,7 +136,6 @@
     description: string;
     admin: string;
     memberCount: number;
-    startDate: string;
     endDate: string;
     remainingDays: number;
     totalPayment: number;
@@ -135,6 +148,17 @@
   });
 
   const tableData = ref<Organization[]>([]);
+
+  const entryTypeList = ref([
+    {
+      value: 1,
+      label: 'sass'
+    },
+    {
+      value: 2,
+      label: '独立域名'
+    }
+  ]);
 
   // 查询组织列表
   const page = ref<number>(1);

@@ -21,7 +21,7 @@
       <el-form-item label="组织描述" prop="description">
         <el-input v-model="ruleForm.description" autocomplete="off" placeholder="请输入组织描述" />
       </el-form-item>
-      <el-form-item label="组织域名" prop="domain">
+      <el-form-item label="组织域名">
         <el-input v-model="ruleForm.domain" autocomplete="off" placeholder="请输入组织域名" />
       </el-form-item>
       <el-form-item label="组织管理员" prop="adminIds">
@@ -45,16 +45,6 @@
           <div v-if="adminLoading && userList.length > 0" class="loading-more">加载中...</div>
         </el-select>
       </el-form-item>
-      <el-form-item label="组织创建时间" prop="startDate">
-        <el-date-picker
-          v-model="ruleForm.startDate"
-          type="datetime"
-          style="width: 100%"
-          value-format="YYYY-MM-DD HH:mm:ss"
-          placeholder="选择日期时间"
-          :default-time="defaultTime[0]"
-        />
-      </el-form-item>
       <el-form-item label="组织过期时间" prop="endDate">
         <el-date-picker
           v-model="ruleForm.endDate"
@@ -63,7 +53,6 @@
           value-format="YYYY-MM-DD HH:mm:ss"
           placeholder="选择日期时间"
           :default-time="defaultTime[1]"
-          :disabled-date="disabledEndDate"
         />
       </el-form-item>
       <el-form-item label="组织总支付金额" prop="totalPayment">
@@ -71,6 +60,26 @@
       </el-form-item>
       <el-form-item label="是否全部免费" prop="isAllFree">
         <el-switch v-model="ruleForm.isAllFree" :active-value="true" :inactive-value="false" />
+      </el-form-item>
+      <el-form-item label="入驻方式" prop="entryType">
+        <el-select v-model="ruleForm.entryType" placeholder="请选择入驻方式">
+          <el-option
+            v-for="item in entryTypeList"
+            :key="item.value"
+            :label="item.label"
+            :value="item.value"
+          />
+        </el-select>
+      </el-form-item>
+      <el-form-item label="是否注册赠送会员" prop="isRegisterGiftMember">
+        <el-switch
+          v-model="ruleForm.isRegisterGiftMember"
+          :active-value="true"
+          :inactive-value="false"
+        />
+      </el-form-item>
+      <el-form-item v-if="ruleForm.isRegisterGiftMember" label="赠送会员天数" prop="giftMemberDays">
+        <el-input-number v-model="ruleForm.giftMemberDays" :min="0" style="width: 100%" />
       </el-form-item>
     </el-form>
     <template #footer>
@@ -89,7 +98,6 @@
   import { addOrgAsync, updateOrgAsync } from '@/http/api/organization';
   import { FormInstance, FormRules } from 'element-plus';
   import { ElMessage } from 'element-plus';
-  import moment from 'moment';
 
   const emit = defineEmits(['cancle', 'updateSuccess']);
   const ruleFormRef = ref<FormInstance>();
@@ -107,10 +115,12 @@
     domain: string;
     adminIds: string[];
     adminDetails: User[];
-    startDate: string;
     endDate: string;
     totalPayment: number;
     isAllFree: boolean;
+    entryType: number;
+    isRegisterGiftMember: boolean;
+    giftMemberDays: number;
   }
 
   interface TDialog {
@@ -127,6 +137,18 @@
     title: '新增组织'
   });
 
+  // 入驻方式列表
+  const entryTypeList = [
+    {
+      label: 'sass',
+      value: 1
+    },
+    {
+      label: '独立域名',
+      value: 2
+    }
+  ];
+
   // 默认时间设置为当前时间
   const defaultTime = [
     new Date(2000, 1, 1, new Date().getHours(), new Date().getMinutes(), new Date().getSeconds())
@@ -139,46 +161,28 @@
     domain: '',
     adminIds: [],
     adminDetails: [],
-    startDate: moment().format('YYYY-MM-DD HH:mm:ss'),
     endDate: '',
     totalPayment: 0,
-    isAllFree: false
+    isAllFree: false,
+    entryType: 1,
+    isRegisterGiftMember: false,
+    giftMemberDays: 0
   });
 
   const rules = reactive<FormRules<Organization>>({
     name: [{ required: true, message: '组织名称不能为空！', trigger: 'blur' }],
     description: [{ required: true, message: '组织描述不能为空！', trigger: 'blur' }],
-    domain: [{ required: true, message: '组织域名不能为空！', trigger: 'blur' }],
     adminIds: [{ required: true, message: '请选择组织管理员', trigger: 'change' }],
-    startDate: [{ required: true, message: '请选择组织创建时间', trigger: 'change' }],
-    endDate: [
-      { required: true, message: '请选择组织过期时间', trigger: 'change' },
-      {
-        validator: (_, value, callback) => {
-          if (!value) {
-            callback(new Error('请选择组织过期时间'));
-          } else if (moment(value).isBefore(moment(ruleForm.startDate))) {
-            callback(new Error('结束时间不能早于开始时间'));
-          } else {
-            callback();
-          }
-        },
-        trigger: 'change'
-      }
-    ],
+    endDate: [{ required: true, message: '请选择组织过期时间', trigger: 'change' }],
     totalPayment: [{ required: true, message: '请输入组织总支付金额', trigger: 'blur' }],
-    isAllFree: [{ required: true, message: '请选择是否全部免费', trigger: 'change' }]
+    isAllFree: [{ required: true, message: '请选择是否全部免费', trigger: 'change' }],
+    entryType: [{ required: true, message: '请选择入驻方式', trigger: 'change' }]
   });
 
   // 用户搜索相关
   const userList = ref<User[]>([]);
   const adminLoading = ref(false);
   const searchQuery = ref('');
-
-  // 禁用结束日期早于开始日期的选项
-  const disabledEndDate = (time: Date) => {
-    return ruleForm.startDate && time < new Date(ruleForm.startDate);
-  };
 
   // 加载管理员详情
   const loadAdminDetails = async (ids: string[]) => {
@@ -201,8 +205,7 @@
       Object.assign(ruleForm, {
         ...props.row,
         adminIds: props.row.admin || [],
-        adminDetails: [],
-        startDate: props.row.startDate || moment().format('YYYY-MM-DD HH:mm:ss')
+        adminDetails: []
       });
       loadAdminDetails(props.row.admin || []);
     } else {
@@ -221,10 +224,12 @@
       domain: '',
       adminIds: [],
       adminDetails: [],
-      startDate: moment().format('YYYY-MM-DD HH:mm:ss'),
       endDate: '',
       totalPayment: 0,
-      isAllFree: false
+      isAllFree: false,
+      entryType: 1,
+      isRegisterGiftMember: false,
+      giftMemberDays: 0
     });
   };
 
@@ -287,10 +292,12 @@
         description: ruleForm.description,
         domain: ruleForm.domain,
         admin: ruleForm.adminIds,
-        startDate: ruleForm.startDate,
         endDate: ruleForm.endDate,
         totalPayment: ruleForm.totalPayment,
-        isAllFree: ruleForm.isAllFree
+        isAllFree: ruleForm.isAllFree,
+        entryType: ruleForm.entryType,
+        isRegisterGiftMember: ruleForm.isRegisterGiftMember,
+        giftMemberDays: ruleForm.giftMemberDays
       };
 
       let data;
@@ -322,7 +329,7 @@
   }
 
   .loading-more {
-    text-align: center;
+    text-align: centry;
     padding: 8px 0;
     color: var(--el-text-color-secondary);
     font-size: 12px;
