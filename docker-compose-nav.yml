@@ -12,6 +12,8 @@ services:
       - ./certs:/etc/nginx/ssl
       - ./nginx-nav.conf:/etc/nginx/nginx.conf
       - ./nav/certs:/etc/nginx/nav/ssl
+      - ./tools/dist:/usr/share/nginx/html/tools  # 新增 tools 静态文件目录（可选）
+      - ./tools/certs:/etc/nginx/tools/ssl
 
   twonav:
     image: tznb/twonav:latest
