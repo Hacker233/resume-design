@@ -76,6 +76,14 @@
           <div>{{ scope.row.giftMemberDays || 0 }}</div>
         </template>
       </el-table-column>
+      <el-table-column prop="logo" label="组织logo">
+        <template #default="scope">
+          <div v-if="scope.row.logo">
+            <img :src="scope.row.logo" alt="" style="width: 50px; height: 50px" />
+          </div>
+          <div v-else> - </div>
+        </template>
+      </el-table-column>
       <el-table-column prop="createDate" label="创建日期">
         <template #default="scope">
           <div>{{ formatListDate(scope.row.createDate) }}</div>
@@ -141,6 +149,7 @@
     totalPayment: number;
     isAllFree: boolean;
     createDate: string;
+    logo: string;
   }
 
   const formInline = ref({

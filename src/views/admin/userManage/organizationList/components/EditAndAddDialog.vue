@@ -15,6 +15,19 @@
       label-width="150px"
       label-position="left"
     >
+      <el-form-item label="组织logo" prop="logo">
+        <el-upload
+          class="avatar-uploader"
+          :action="uploadAddress()"
+          :headers="{ Authorization: appStore.useTokenStore.token }"
+          :show-file-list="false"
+          :on-success="handleAvatarSuccess"
+          :before-upload="beforeAvatarUpload"
+        >
+          <img v-if="ruleForm.logo" :src="ruleForm.logo" class="avatar" />
+          <el-icon v-else class="avatar-uploader-icon"><Plus /></el-icon>
+        </el-upload>
+      </el-form-item>
       <el-form-item label="组织名称" prop="name">
         <el-input v-model="ruleForm.name" autocomplete="off" placeholder="请输入组织名称" />
       </el-form-item>
@@ -96,8 +109,10 @@
 <script lang="ts" setup>
   import { searchUsersAsync } from '@/http/api/user';
   import { addOrgAsync, updateOrgAsync } from '@/http/api/organization';
-  import { FormInstance, FormRules } from 'element-plus';
+  import { FormInstance, FormRules, UploadProps } from 'element-plus';
   import { ElMessage } from 'element-plus';
+  import CONFIG from '@/config';
+  import appStore from '@/store';
 
   const emit = defineEmits(['cancle', 'updateSuccess']);
   const ruleFormRef = ref<FormInstance>();
@@ -121,6 +136,7 @@
     entryType: number;
     isRegisterGiftMember: boolean;
     giftMemberDays: number;
+    logo: string;
   }
 
   interface TDialog {
@@ -166,7 +182,8 @@
     isAllFree: false,
     entryType: 1,
     isRegisterGiftMember: false,
-    giftMemberDays: 0
+    giftMemberDays: 0,
+    logo: ''
   });
 
   const rules = reactive<FormRules<Organization>>({
@@ -229,7 +246,8 @@
       isAllFree: false,
       entryType: 1,
       isRegisterGiftMember: false,
-      giftMemberDays: 0
+      giftMemberDays: 0,
+      logo: ''
     });
   };
 
@@ -297,7 +315,8 @@
         isAllFree: ruleForm.isAllFree,
         entryType: ruleForm.entryType,
         isRegisterGiftMember: ruleForm.isRegisterGiftMember,
-        giftMemberDays: ruleForm.giftMemberDays
+        giftMemberDays: ruleForm.giftMemberDays,
+        logo: ruleForm.logo
       };
 
       let data;
@@ -320,6 +339,22 @@
     } finally {
       sureLoading.value = false;
     }
+  };
+
+  // 上传文件地址
+  const uploadAddress = () => {
+    return CONFIG.serverAddress + '/huajian/upload/file/logo';
+  };
+  const handleAvatarSuccess: UploadProps['onSuccess'] = (response) => {
+    ruleForm.logo = response.data.data.fileUrl;
+  };
+
+  const beforeAvatarUpload: UploadProps['beforeUpload'] = (rawFile) => {
+    if (rawFile.size / 1024 / 1024 > 10) {
+      ElMessage.error('预览图不能大于10M');
+      return false;
+    }
+    return true;
   };
 </script>
 
@@ -347,5 +382,33 @@
     background-color: var(--el-color-primary-light-9);
     border-radius: 4px;
     font-size: 12px;
+  }
+</style>
+<style lang="scss">
+  .organization-dialog {
+    .avatar-uploader .avatar {
+      width: 100px;
+      height: 100px;
+      display: block;
+    }
+    .avatar-uploader .el-upload {
+      border: 1px dashed var(--el-border-color);
+      border-radius: 6px;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+      transition: var(--el-transition-duration-fast);
+    }
+    .avatar-uploader .el-upload:hover {
+      border-color: var(--el-color-primary);
+    }
+    .avatar-uploader-icon {
+      font-size: 28px;
+      color: #8c939d;
+      width: 100px;
+      height: 100px;
+      text-align: center;
+      line-height: 100px;
+    }
   }
 </style>

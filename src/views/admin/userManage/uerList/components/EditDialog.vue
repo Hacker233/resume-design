@@ -41,7 +41,7 @@
         >
           <el-option
             v-for="item in validList"
-            :key="item.value"
+            :key="item.label"
             :label="item.label"
             :value="item.value"
           />
