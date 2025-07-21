@@ -37,6 +37,13 @@ declare global {
 declare module '*.vue' {
   import { DefineComponent } from 'vue';
   // eslint-disable-next-line
-	const component: DefineComponent<{}, {}, any>
+  const component: DefineComponent<{}, {}, any>;
   export default component;
+}
+
+declare module 'element-plus' {
+  interface InputProps {
+    modelValue?: any;
+    'onUpdate:modelValue'?: (value: any) => void;
+  }
 }

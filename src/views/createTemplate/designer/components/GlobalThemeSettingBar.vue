@@ -295,7 +295,7 @@
   const lineHeight = ref<number>(2);
 
   // 行高变化
-  const handleChangeLineHeight = (value: number) => {
+  const handleChangeLineHeight = (value: any) => {
     HJNewJsonStore.value.componentsTree.forEach((item: any) => {
       item.customCss.forEach((customCssItem: any) => {
         if (moduleTitleCustomProp.indexOf(customCssItem.prop) < 0) {
@@ -325,7 +325,7 @@
   });
 
   // 标题外边距发生变化
-  const handleChangeModuleTitleMargin = ($event: number, key: string) => {
+  const handleChangeModuleTitleMargin = ($event: any, key: string) => {
     console.log('标题外边距发生变化', $event, key);
     HJNewJsonStore.value.componentsTree.forEach((item: any) => {
       if (item.customProps.hasOwnProperty('ModuleTitleCpt')) {
@@ -347,7 +347,7 @@
   });
 
   // 标题外边距发生变化
-  const handleChangeModuleTitlePadding = ($event: number, key: string) => {
+  const handleChangeModuleTitlePadding = ($event: any, key: string) => {
     console.log('标题外边距发生变化', $event, key);
     HJNewJsonStore.value.componentsTree.forEach((item: any) => {
       if (item.customProps.hasOwnProperty('ModuleTitleCpt')) {
@@ -381,9 +381,12 @@
     position: sticky;
     top: 0;
     z-index: 2;
+    overflow-y: hidden;
+    flex-shrink: 0;
     .theme-color {
       .color-picker-box {
         margin: 0 8px 0 15px;
+        flex-wrap: nowrap;
         :deep(.item-box) {
           height: 28px;
           width: 28px;

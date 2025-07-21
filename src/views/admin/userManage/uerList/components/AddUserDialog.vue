@@ -171,6 +171,10 @@
     {
       label: '管理员',
       value: 'Admin'
+    },
+    {
+      label: '组织管理员',
+      value: 'OrgAdmin'
     }
   ]);
   const rules = reactive<FormRules>({

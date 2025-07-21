@@ -188,6 +188,16 @@
                 >
                   管理端
                 </el-dropdown-item>
+                <!-- 组织管理员入口 -->
+                <el-dropdown-item
+                  v-if="
+                    appStore.useUserInfoStore.userInfo &&
+                    appStore.useUserInfoStore.userInfo.roles.indexOf('OrgAdmin') !== -1
+                  "
+                  @click="toOrgAdmin"
+                >
+                  组织管理
+                </el-dropdown-item>
                 <el-dropdown-item @click="loginout">退出登录</el-dropdown-item>
               </el-dropdown-menu>
             </template>
@@ -268,6 +278,11 @@
   // 跳转至管理员界面
   const toAdmin = () => {
     router.push('/admin');
+  };
+
+  // 跳转至组织管理员界面
+  const toOrgAdmin = () => {
+    router.push('/orgAdmin');
   };
 
   // 跳转至开通会员

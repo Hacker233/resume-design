@@ -35,16 +35,6 @@
             />
           </el-select>
         </el-form-item>
-        <el-form-item label="组织：" class="filter-item">
-          <el-select v-model="formInline.organizationId" placeholder="请选择">
-            <el-option
-              v-for="(item, index) in organizationList"
-              :key="index"
-              :label="item.label"
-              :value="item.value"
-            />
-          </el-select>
-        </el-form-item>
         <el-form-item label="全站免费：" class="filter-item">
           <el-select v-model="formInline.isAllFree" placeholder="请选择">
             <el-option
@@ -68,7 +58,6 @@
         <div class="filter-actions">
           <el-button type="primary" @click="onSubmit">查询</el-button>
           <el-button @click="resetForm">重置</el-button>
-          <el-button type="primary" @click="handleAddUser">新增用户</el-button>
         </div>
       </div>
     </el-form>
@@ -153,12 +142,6 @@
         </div>
       </template>
     </el-table-column>
-    <el-table-column label="操作" width="140">
-      <template #default="scope">
-        <el-button link size="small" @click="edit(scope.row)">编辑</el-button>
-        <el-button link type="primary" size="small" @click="deleteUser(scope.row)">删除</el-button>
-      </template>
-    </el-table-column>
   </el-table>
 
   <!-- 分页组件 -->
@@ -170,33 +153,12 @@
     @handle-current-change="handleCurrentChange"
     @handle-size-change="handleSizeChange"
   ></Pagination>
-
-  <!-- 编辑弹窗 -->
-  <edit-dialog
-    :dialog-visible="dialogVisible"
-    :row="row"
-    :organization-list="organizationList"
-    @cancle="cancle"
-    @update-success="updateSuccess"
-  ></edit-dialog>
-
-  <!-- 新增用户弹窗 -->
-  <add-user-dialog
-    :dialog-visible="dialogAddVisible"
-    :organization-list="organizationList"
-    @cancle="closeAddDialog"
-    @update-success="updateAddSuccess"
-  ></add-user-dialog>
 </template>
 <script lang="ts" setup>
   import { formatListDate } from '@/utils/common';
   import Pagination from '@/components/Pagination/pagination.vue';
-  import { deleteUserAsync, getAllUserListAsync } from '@/http/api/user';
-  import { ElMessageBox } from 'element-plus';
+  import { getAllUserByOrgAdminAsync } from '@/http/api/user';
   import 'element-plus/es/components/message-box/style/index';
-  import EditDialog from './components/EditDialog.vue';
-  import { getOrgListAsync } from '@/http/api/organization';
-  import AddUserDialog from './components/AddUserDialog.vue';
   let tableData = ref<any>([]);
 
   // 简币排序规则下拉
@@ -265,28 +227,6 @@
     getUserList();
   };
 
-  // 弹窗打开时
-  const organizationList = ref<Array<{ label: string; value: string }>>([]);
-  const getOrgList = async () => {
-    // 查询组织列表
-    const params = {
-      limit: 1000,
-      page: 1
-    };
-    const data = await getOrgListAsync(params);
-    if (data.data.status === 200) {
-      organizationList.value = data.data.data.list.map((item: any) => {
-        return {
-          label: item.name,
-          value: item._id
-        };
-      });
-    } else {
-      ElMessage.error(data.data.message);
-    }
-  };
-  getOrgList();
-
   // 重置
   const resetForm = () => {
     formInline.queryEmail = '';
@@ -331,7 +271,7 @@
       page: page.value,
       limit: limit.value
     };
-    const data = await getAllUserListAsync(params);
+    const data = await getAllUserByOrgAdminAsync(params);
     if (data.data.status === 200) {
       tableData.value = data.data.data.list;
       total.value = data.data.data.page.count;
@@ -361,26 +301,6 @@
   };
   getUserList();
 
-  // 打开修改弹窗
-  const row = ref<any>(null);
-  const dialogVisible = ref<boolean>(false);
-  const edit = (rowData: any) => {
-    dialogVisible.value = true;
-    console.log(rowData);
-    row.value = rowData;
-  };
-  // 关闭弹窗
-  const cancle = () => {
-    row.value = null;
-    dialogVisible.value = false;
-  };
-
-  // 更新成功
-  const updateSuccess = () => {
-    getUserList();
-    dialogVisible.value = false;
-  };
-
   // 改变页码时
   const handleCurrentChange = (currentPage: number) => {
     page.value = currentPage;
@@ -393,44 +313,6 @@
     limit.value = pageSize;
     console.log('改变每页数量', pageSize);
     getUserList();
-  };
-
-  // 点击删除
-  const deleteUser = (row: any) => {
-    ElMessageBox.confirm('删除该用户后将无法登录，确定继续？', '警告', {
-      confirmButtonText: '确定',
-      cancelButtonText: '取消',
-      type: 'warning'
-    })
-      .then(async () => {
-        const data = await deleteUserAsync(row.email);
-        if (data.data.status === 200) {
-          ElMessage({
-            type: 'success',
-            message: '删除成功'
-          });
-          getUserList();
-        } else {
-          ElMessage.error(data.data.message);
-        }
-      })
-      .catch(() => {});
-  };
-
-  // 新增用户
-  const dialogAddVisible = ref<boolean>(false);
-  const handleAddUser = () => {
-    dialogAddVisible.value = true;
-    row.value = null;
-  };
-  // 新增用户弹窗关闭
-  const closeAddDialog = () => {
-    dialogAddVisible.value = false;
-  };
-  // 新增用户成功
-  const updateAddSuccess = () => {
-    getUserList();
-    closeAddDialog();
   };
 </script>
 <style lang="scss" scoped>
