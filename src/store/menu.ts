@@ -19,8 +19,35 @@ export const useIndexMenuStore = defineStore('indexMenuStore', () => {
     const data = await getIndexMenuListAsync();
     if (data.status === 200) {
       const treeData = buildTree(data.data);
-      console.log('首页导航菜单', treeData);
-      saveIndexMenu(treeData);
+
+      // 需要排除的菜单项中文名（title）
+      const excludedMenuTitles = [
+        '简历修改', // 主菜单
+        '简历模板', // 子菜单
+        '私有部署', // 主菜单
+        'AI面试助手' // 子菜单
+      ];
+
+      // 过滤函数
+      const filterMenu = (menu: any) => {
+        // 如果当前菜单的title在排除列表中，直接过滤掉
+        if (excludedMenuTitles.includes(menu.title)) {
+          return false;
+        }
+
+        // 如果有子菜单，递归过滤子菜单
+        if (menu.children && menu.children.length > 0) {
+          menu.children = menu.children.filter(filterMenu);
+        }
+
+        return true;
+      };
+
+      // 过滤菜单数据
+      const filteredTreeData = treeData.filter(filterMenu);
+
+      console.log('过滤后的首页导航菜单', filteredTreeData, JSON.stringify(filteredTreeData));
+      saveIndexMenu(filteredTreeData);
     } else {
       ElMessage({
         message: data.message,

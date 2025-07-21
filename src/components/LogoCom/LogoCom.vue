@@ -30,7 +30,7 @@
     cursor: pointer;
     user-select: none;
     img {
-      height: 100%;
+      height: 100px;
     }
     span {
       letter-spacing: 2px;

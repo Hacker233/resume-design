@@ -24,7 +24,7 @@
     <!-- GitHub -->
     <div class="right">
       <!-- 今日签到总人数 -->
-      <span v-config:open_sign_in class="attendance-total">今日已签到{{ attendanceTotal }}人~</span>
+      <span v-config:open_sign_in class="attendance-total">今日已签到999+人~</span>
       <!-- 签到按钮 -->
       <div v-config:open_sign_in class="attendance-box">
         <div
@@ -40,7 +40,7 @@
         </el-tooltip>
       </div>
       <!-- 全站免费用户则不显示 -->
-      <template v-if="!userInfo.isAllFree">
+      <template v-if="false">
         <!-- 开通会员 -->
         <div v-config:open_membership class="membership-box" @click="toMembership">
           <template v-if="!membershipInfo.hasMembership">

@@ -3,7 +3,7 @@
     <!-- 相关推荐 -->
     <div class="recommend">
       <!-- 联系我 -->
-      <div v-viewer class="contact-me">
+      <!-- <div v-viewer class="contact-me">
         <div v-for="(item, index) in vxQunList" :key="index" class="add-wechat">
           <img
             :src="item.qr_code"
@@ -13,7 +13,7 @@
           />
           <h5>{{ item.name }}</h5>
         </div>
-      </div>
+      </div> -->
       <!-- 关于我 -->
       <div class="about-me">
         <h4>社交平台</h4>
@@ -43,7 +43,7 @@
       <div class="links">
         <div class="links-box">
           <h4>友情链接</h4>
-          <h4 class="apply-links" @click="applyLinks">申请友链</h4>
+          <!-- <h4 class="apply-links" @click="applyLinks">申请友链</h4> -->
         </div>
         <div class="links-box">
           <template v-for="(item, index) in linksList" :key="index">
@@ -113,6 +113,7 @@
   const total = ref<number>(0);
   const currentPage = ref<number>(1);
   let linksList = ref<any>([]);
+  // 查询友链列表
   const getLinksList = async () => {
     let params = {
       page: page.value,
@@ -120,7 +121,9 @@
     };
     const data = await getLinksListAsync(params);
     if (data.status === 200) {
-      linksList.value = data.data.list.filter((item: any) => item.audit === 1);
+      linksList.value = data.data.list.filter(
+        (item: any) => item.audit === 1 && item.name.includes('猫步')
+      );
       total.value = data.data.page.count;
       currentPage.value = data.data.page.currentPage;
     } else {
