@@ -67,3 +67,37 @@ export const deleteAdminMenuAsync: any = (id: string) => {
     method: 'delete'
   });
 };
+
+// 查询组织管理员页菜单列表
+export const getOrgAdminMenuListAsync: any = () => {
+  return http.request({
+    url: '/huajian/menu/getOrgAdminMenuList',
+    method: 'get'
+  });
+};
+
+// 新增一个组织管理员页菜单
+export const addOrgAdminMenuAsync: any = (data: any) => {
+  return http.request({
+    url: '/huajian/menu/addOrgAdminMenu',
+    method: 'post',
+    data: data
+  });
+};
+
+// 更新组织管理员页菜单
+export const updateOrgAdminMenuAsync: any = (data: any) => {
+  return http.request({
+    url: '/huajian/menu/updateOrgAdminMenu',
+    method: 'put',
+    data: data
+  });
+};
+
+// 删除组织管理员页菜单
+export const deleteOrgAdminMenuAsync: any = (id: string) => {
+  return http.request({
+    url: `/huajian/menu/deleteOrgAdminMenu/${id}`,
+    method: 'delete'
+  });
+};

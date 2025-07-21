@@ -9,7 +9,7 @@
     "useDefineForClassFields": true,
     "module": "esnext",
     "moduleResolution": "node",
-    "strict": true,
+    "strict": false,
     "jsx": "preserve",
     "sourceMap": true,
     "resolveJsonModule": true,
@@ -21,6 +21,7 @@
       "@/*": ["src/*"]
     },
     "skipLibCheck": true,
+    "strictNullChecks": false, // 关闭 null/undefined 严格检查
     "types": ["json-editor-vue3", "colorpicker-v3", "vue3-pdfjs/esm", "vue3-print-nb", "v-contextmenu", "vue-json-viewer"]
   },
   "include": ["src/env.d.ts", "src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue", "types/**/*.d.ts"],

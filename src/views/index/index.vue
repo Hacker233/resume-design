@@ -152,11 +152,12 @@
 
   // 签到弹窗
   const dialogAttendanceVisible = ref<boolean>(false);
+  const { token } = appStore.useTokenStore;
 
   // 每日弹窗控制
   const lastPopupDate = localStorage.getItem('lastPopupDate');
   const currentDate = new Date().toLocaleDateString();
-  if (lastPopupDate !== currentDate) {
+  if (lastPopupDate !== currentDate && token) {
     dialogAttendanceVisible.value = true;
     localStorage.setItem('lastPopupDate', currentDate);
   }

@@ -70,6 +70,15 @@ export const yipayTradeQueryListAsync: any = (params: any) => {
   });
 };
 
+// 组织管理员分页查询易支付订单
+export const yipayTradeQueryListByOrgAsync: any = (params: any) => {
+  return http.request({
+    url: '/huajian/yiPay/yipayTradeQueryListByOrg',
+    method: 'get',
+    params: params
+  });
+};
+
 // 管理员发起支付宝当面付退款
 export const aliPayRefundAsync: any = (data: any) => {
   return http.request({

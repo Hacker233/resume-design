@@ -148,6 +148,15 @@ export const tradeQueryListAsync: any = (params: any) => {
   });
 };
 
+// 组织管理员分页查询当面付订单
+export const orgTradeQueryListAsync: any = (params: any) => {
+  return http.request({
+    url: '/huajian/aliPay/orgTradeQueryList',
+    method: 'get',
+    params: params
+  });
+};
+
 // 管理员同步支付宝订单信息
 export const tradeQueryByAdminAsync: any = (params: any) => {
   return http.request({

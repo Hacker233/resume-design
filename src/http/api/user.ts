@@ -103,6 +103,15 @@ export const getAllUserListAsync: any = (params: any) => {
   });
 };
 
+// 组织管理员查询用户列表
+export const getAllUserByOrgAdminAsync: any = (params: any) => {
+  return http.request({
+    url: '/huajian/users/getAllUserByOrgAdmin',
+    method: 'get',
+    params: params
+  });
+};
+
 // 管理员更新用户信息
 export const updateUserInfoByAdminAsync: any = (data: any) => {
   return http.request({
@@ -162,6 +171,14 @@ export const qqLoginASync: any = (params: any) => {
 export const getUserPermissionAsync: any = () => {
   return http.request({
     url: '/huajian/users/getUserPermission',
+    method: 'get'
+  });
+};
+
+// 判断用户是否有组织管理员权限
+export const getOrgAdminPermissionAsync: any = () => {
+  return http.request({
+    url: '/huajian/users/getOrgAdminPermission',
     method: 'get'
   });
 };

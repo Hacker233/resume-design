@@ -2,7 +2,7 @@ import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
 import LoginDialog from '@/components/LoginDialog/LoginDialog';
 import { closeGlobalLoading } from '@/utils/common';
 import CONFIG from '@/config';
-import { getUserPermissionAsync } from '@/http/api/user';
+import { getOrgAdminPermissionAsync, getUserPermissionAsync } from '@/http/api/user';
 import { title, description, keywords } from '@/config/seo';
 import { useHead } from '@vueuse/head';
 
@@ -105,6 +105,7 @@ const PanShareCategoryManage = () => import('@/views/admin/SourceShare/panCatego
 const PanShareManage = () => import('@/views/admin/SourceShare/panShare/index.vue');
 const IndexMenuManage = () => import('@/views/admin/MenuManage/IndexMenuManage/index.vue');
 const AdminMenuManage = () => import('@/views/admin/MenuManage/AdminMenuManage/index.vue');
+const OrgAdminMenuManage = () => import('@/views/admin/MenuManage/OrgAdminMenuManage/index.vue');
 const WebConfig = () => import('@/views/admin/WebsiteManage/WebConfig/index.vue');
 const MembershipList = () => import('@/views/admin/userManage/membershipList/index.vue');
 const MembershipConfigManage = () =>
@@ -119,6 +120,13 @@ const AiModelList = () => import('@/views/admin/AI/AiModelList/index.vue');
 const AiLogs = () => import('@/views/admin/AI/AILogs/index.vue');
 // 组织管理
 const OrganizationManage = () => import('@/views/admin/userManage/organizationList/index.vue');
+
+// 组织管理员界面
+const OrgAdminIndex = () => import('@/views/orgAdmin/index.vue');
+const OrgUserTemplateList = () => import('@/views/orgAdmin/CreateTemplateManage/index.vue');
+const OrgYipayList = () => import('@/views/orgAdmin/yipayList/index.vue');
+const OrgPayList = () => import('@/views/orgAdmin/AliPayTradeList/index.vue');
+const OrgUserList = () => import('@/views/orgAdmin/uerList/index.vue');
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -1240,6 +1248,87 @@ const routes: Array<RouteRecordRaw> = [
           requireAdmin: true
         },
         component: AdminMenuManage
+      },
+      {
+        path: 'orgAdminMenuManage',
+        name: 'OrgAdminMenuManage',
+        meta: {
+          title: '组织管理员导航菜单管理',
+          keepAlive: true,
+          isShowComNav: false,
+          requireLogin: true,
+          requireAdmin: true
+        },
+        component: OrgAdminMenuManage
+      }
+    ]
+  },
+  // 组织管理员界面
+  {
+    path: '/orgAdmin',
+    name: 'OrgAdmin',
+    meta: {
+      title: '组织管理员界面',
+      keepAlive: true,
+      isShowComNav: false,
+      requireLogin: true,
+      requireAdmin: false,
+      requireOrgAdmin: true
+    },
+    component: OrgAdminIndex,
+    redirect: '/orgAdmin/orgUserList',
+    children: [
+      {
+        path: 'orgUserTemplateList',
+        name: 'OrgUserTemplateList',
+        meta: {
+          title: '组织用户简历列表',
+          keepAlive: true,
+          isShowComNav: false,
+          requireLogin: true,
+          requireAdmin: false,
+          requireOrgAdmin: true
+        },
+        component: OrgUserTemplateList
+      },
+      {
+        path: 'orgYipayList',
+        name: 'OrgYipayList',
+        meta: {
+          title: '组织用户易支付列表',
+          keepAlive: true,
+          isShowComNav: false,
+          requireLogin: true,
+          requireAdmin: false,
+          requireOrgAdmin: true
+        },
+        component: OrgYipayList
+      },
+      {
+        path: 'orgPayList',
+        name: 'OrgPayList',
+        meta: {
+          title: '组织用户当面付列表',
+          keepAlive: true,
+          isShowComNav: false,
+          requireLogin: true,
+          requireAdmin: false,
+          requireOrgAdmin: true
+        },
+        component: OrgPayList
+      },
+      {
+        path: 'orgUserList',
+        name: 'OrgUserList',
+        meta: {
+          title: '组织用户列表',
+          keepAlive: true,
+          isShowComNav: false,
+          requireLogin: true,
+          requireAdmin: false,
+          requireOrgAdmin: true
+        },
+        component: OrgUserList
       }
     ]
   },
@@ -1291,12 +1380,38 @@ router.beforeEach(async (to, from, next) => {
     // 需要权限且已经登录
     if (userInfo) {
       // 判断该页面是否是管理员才能进入
-      const requireAdmin = to.meta.requireAdmin;
-      if (requireAdmin) {
-        const data = await getUserPermissionAsync();
-        const isAdmin = data.data.data;
-        if (!isAdmin) {
-          next('/noPermission');
+      const requireAdmin = to.meta.requireAdmin ?? false;
+      const requireOrgAdmin = to.meta.requireOrgAdmin ?? false;
+      console.log('requireAdmin', requireAdmin);
+      console.log('requireOrgAdmin', requireOrgAdmin);
+      // 是否需要组织管理员权限
+      if (requireOrgAdmin || requireAdmin) {
+        if (requireOrgAdmin && requireAdmin) {
+          // 需要同时满足组织管理员和系统管理员
+          const [orgAdminRes, adminRes] = await Promise.all([
+            getOrgAdminPermissionAsync(),
+            getUserPermissionAsync()
+          ]);
+          const isOrgAdmin = orgAdminRes.data.data;
+          const isAdmin = adminRes.data.data;
+          if (!isOrgAdmin || !isAdmin) {
+            next('/noPermission');
+            return;
+          }
+        } else if (requireOrgAdmin) {
+          // 只需要组织管理员权限
+          const orgAdminRes = await getOrgAdminPermissionAsync();
+          if (!orgAdminRes.data.data) {
+            next('/noPermission');
+            return;
+          }
+        } else if (requireAdmin) {
+          // 只需要系统管理员权限
+          const adminRes = await getUserPermissionAsync();
+          if (!adminRes.data.data) {
+            next('/noPermission');
+            return;
+          }
         }
       }
 

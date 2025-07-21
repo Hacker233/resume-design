@@ -119,3 +119,12 @@ export const getUserResumeListAsync: any = (params: any) => {
     params: params
   });
 };
+
+// 组织管理员分页查询用户简历列表
+export const getOrgUserResumeListAsync: any = (params: any) => {
+  return http.request({
+    url: '/huajian/createUserTemplate/getOrgUserResumeList',
+    method: 'get',
+    params: params
+  });
+};
