@@ -34,6 +34,7 @@ const OnlinePreview = () => import('@/views/onlinePreview/index.vue');
 const MyOnlineResume = () => import('@/views/person/onlineResume/index.vue');
 const LegoCreate = () => import('@/views/person/legoCreate/index.vue');
 const WebCode = () => import('@/views/webCode/index.vue');
+const OrgSettled = () => import('@/views/orgSettled/index.vue');
 const LegoDesigner = () => import('@/views/LegoDesigner/index.vue');
 const PostWorkSuccess = () => import('@/views/LegoDesigner/postWordSuccess/index.vue');
 const LegoTemplateList = () => import('@/views/legoTemplateList/index.vue');
@@ -513,6 +514,18 @@ const routes: Array<RouteRecordRaw> = [
       requireAdmin: false
     },
     component: WebCode
+  },
+  {
+    path: '/orgSettled',
+    name: 'OrgSettled',
+    meta: {
+      title: '组织入驻',
+      keepAlive: true,
+      isShowComNav: true,
+      requireLogin: false,
+      requireAdmin: false
+    },
+    component: OrgSettled
   },
   {
     path: '/deployDoc',

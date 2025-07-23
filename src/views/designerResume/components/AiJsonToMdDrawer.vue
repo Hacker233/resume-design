@@ -74,7 +74,13 @@
     content: ''
   });
 
-  const md = new MarkdownIt();
+  const md = new MarkdownIt({
+    html: true, // 启用HTML解析
+    breaks: true, // 自动转换换行
+    linkify: true, // 自动识别链接
+    typographer: true, // 启用排版优化
+    xhtmlOut: true // XHTML兼容输出
+  });
   const isLoading = ref(false);
   const downloadLoading = ref(false);
   const streamingActive = ref(false); // 新增流式传输状态
@@ -185,7 +191,6 @@
 
     const { HJNewJsonStore } = storeToRefs(appStore.useCreateTemplateStore);
     const dataSource = extractResumeData(HJNewJsonStore.value, true);
-
     const params = {
       template: JSON.stringify(dataSource),
       serialNumber: serialNumber.value,
@@ -208,6 +213,7 @@
       () => {
         isLoading.value = false;
         streamingActive.value = false; // 传输完成
+        ElMessage.success('转换Markdown完成');
         console.log('转换Markdown完成', aiContent.value);
       }
     );
