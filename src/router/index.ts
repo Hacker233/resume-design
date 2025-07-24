@@ -128,6 +128,7 @@ const OrgUserTemplateList = () => import('@/views/orgAdmin/CreateTemplateManage/
 const OrgYipayList = () => import('@/views/orgAdmin/yipayList/index.vue');
 const OrgPayList = () => import('@/views/orgAdmin/AliPayTradeList/index.vue');
 const OrgUserList = () => import('@/views/orgAdmin/uerList/index.vue');
+const OrgPanel = () => import('@/views/orgAdmin/panel/index.vue');
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -1289,7 +1290,7 @@ const routes: Array<RouteRecordRaw> = [
       requireOrgAdmin: true
     },
     component: OrgAdminIndex,
-    redirect: '/orgAdmin/orgUserList',
+    redirect: '/orgAdmin/orgPanel',
     children: [
       {
         path: 'orgUserTemplateList',
@@ -1342,6 +1343,19 @@ const routes: Array<RouteRecordRaw> = [
           requireOrgAdmin: true
         },
         component: OrgUserList
+      },
+      {
+        path: 'orgPanel',
+        name: 'OrgPanel',
+        meta: {
+          title: '组织面板',
+          keepAlive: true,
+          isShowComNav: false,
+          requireLogin: true,
+          requireAdmin: false,
+          requireOrgAdmin: true
+        },
+        component: OrgPanel
       }
     ]
   },

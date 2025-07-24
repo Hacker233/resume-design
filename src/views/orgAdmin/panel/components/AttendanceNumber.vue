@@ -5,7 +5,12 @@
       <echarts-title title="每日签到人数统计"></echarts-title>
       <div class="echart-filter-box">
         <div class="statistics-box">
-          <el-statistic class="ml-4" title="当前范围总签到次数" :value="currentRangeUsers + '次'" />
+          <el-statistic
+            class="ml-4"
+            title="当前范围总签到次数"
+            :value="currentRangeUsers"
+            :formatter="(value) => `${value}次`"
+          />
         </div>
         <div class="date-box">
           <el-date-picker
@@ -29,7 +34,7 @@
 
 <script lang="ts" setup>
   import ECharts from './ECharts.vue';
-  import { getAttendanceNumberAsync } from '@/http/api/panel';
+  import { getOrgAttendanceNumberAsync } from '@/http/api/panel';
   import moment from 'moment';
   import EchartsTitle from './EchartsTitle.vue';
   import { DATE_SHORTCUTS } from './utils/dateShortcuts';
@@ -73,7 +78,7 @@
       startDate: dateRange.value[0],
       endDate: dateRange.value[1]
     };
-    const data = await getAttendanceNumberAsync(params);
+    const data = await getOrgAttendanceNumberAsync(params);
     if (data.data.status === 200) {
       currentRangeUsers.value = data.data.data.total;
       chartOptions.value = {

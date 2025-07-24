@@ -5,8 +5,17 @@
       <echarts-title title="注册用户数"></echarts-title>
       <div class="echart-filter-box">
         <div class="statistics-box">
-          <el-statistic title="总注册人数" :value="totalUsers" />
-          <el-statistic class="ml-4" title="当前范围注册人数" :value="currentRangeUsers" />
+          <el-statistic
+            title="总注册人数"
+            :value="totalUsers"
+            :formatter="(value) => `${value}人`"
+          />
+          <el-statistic
+            class="ml-4"
+            title="当前范围注册人数"
+            :value="currentRangeUsers"
+            :formatter="(value) => `${value}人`"
+          />
         </div>
         <div class="date-box">
           <el-date-picker

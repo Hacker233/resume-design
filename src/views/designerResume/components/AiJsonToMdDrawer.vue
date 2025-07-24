@@ -62,6 +62,7 @@
   import MarkdownIt from 'markdown-it';
   import { Download, Loading } from '@element-plus/icons-vue';
   import { nextTick, ref, computed, watch } from 'vue';
+  import { resumeJsonToMarkdown } from '@/utils/jsonToMd';
 
   const emit = defineEmits(['closeAiOptimizeDrawer']);
 
@@ -96,7 +97,7 @@
   watch(aiContent, () => {
     nextTick(() => {
       if (contentRef.value && !props.content) {
-        contentRef.value.scrollTop = contentRef.value.scrollHeight;
+        contentRef.value.scrollTop = 0; // 修改为滚动到顶部
       }
     });
   });
@@ -190,7 +191,18 @@
     streamingActive.value = true; // 开始流式传输
 
     const { HJNewJsonStore } = storeToRefs(appStore.useCreateTemplateStore);
-    const dataSource = extractResumeData(HJNewJsonStore.value, true);
+    try {
+      aiContent.value = resumeJsonToMarkdown(HJNewJsonStore.value);
+      isLoading.value = false;
+      streamingActive.value = false;
+    } catch (error) {
+      ElMessage.error('转换markdown失败', error);
+      isLoading.value = false;
+      streamingActive.value = false;
+      return;
+    }
+    return;
+    const dataSource = extractResumeData(HJNewJsonStore.value);
     const params = {
       template: JSON.stringify(dataSource),
       serialNumber: serialNumber.value,

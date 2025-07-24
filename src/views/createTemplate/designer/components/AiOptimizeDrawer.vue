@@ -41,10 +41,11 @@
     optimizeResumeStreamAsync
   } from '@/http/api/ai';
   import appStore from '@/store';
-  import { extractResumeData, formatNumberWithCommas } from '@/utils/common';
+  import { formatNumberWithCommas } from '@/utils/common';
   import { ElNotification, ElMessage } from 'element-plus';
   import { storeToRefs } from 'pinia';
   import MarkdownIt from 'markdown-it';
+  import { resumeJsonToMarkdown } from '@/utils/jsonToMd';
 
   const emit = defineEmits(['closeAiOptimizeDrawer']);
 
@@ -120,11 +121,13 @@
     // 获取简历数据
     const { HJNewJsonStore } = storeToRefs(appStore.useCreateTemplateStore);
     // 提取 dataSource 数据
-    const dataSource = extractResumeData(HJNewJsonStore.value, true);
-    console.log('dataSource', JSON.stringify(dataSource));
+    // const dataSource = extractResumeData(HJNewJsonStore.value, true);
+    // console.log('dataSource', JSON.stringify(dataSource));
+    // 诊断使用markdown数据
+    const dataSource = resumeJsonToMarkdown(HJNewJsonStore.value);
     const params = {
       model: props.modelInfoObj.selectedModel,
-      text: JSON.stringify(dataSource),
+      text: dataSource,
       resumeId: route.params.id,
       resumeName: HJNewJsonStore.value.config.title,
       serialNumber: serialNumber.value

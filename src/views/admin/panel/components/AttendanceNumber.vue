@@ -5,7 +5,12 @@
       <echarts-title title="每日签到人数统计"></echarts-title>
       <div class="echart-filter-box">
         <div class="statistics-box">
-          <el-statistic class="ml-4" title="当前范围总签到次数" :value="currentRangeUsers + '次'" />
+          <el-statistic
+            class="ml-4"
+            title="当前范围总签到次数"
+            :value="currentRangeUsers"
+            :formatter="(value) => `${value}次`"
+          />
         </div>
         <div class="date-box">
           <el-date-picker

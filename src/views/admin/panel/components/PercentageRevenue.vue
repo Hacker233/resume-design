@@ -4,7 +4,7 @@
       <echarts-title title="总收入占比"></echarts-title>
       <div class="echart-filter-box">
         <div class="statistics-box">
-          <el-statistic title="总收入" :value="`${total}元`" />
+          <el-statistic title="总收入" :value="total" :formatter="(value) => `${value}元`" />
         </div>
       </div>
     </div>
