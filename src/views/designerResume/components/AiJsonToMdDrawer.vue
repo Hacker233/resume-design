@@ -62,6 +62,7 @@
   import MarkdownIt from 'markdown-it';
   import { Download, Loading } from '@element-plus/icons-vue';
   import { nextTick, ref, computed, watch } from 'vue';
+  import { resumeJsonToMarkdown } from '@/utils/jsonToMd';
 
   const emit = defineEmits(['closeAiOptimizeDrawer']);
 
@@ -74,7 +75,13 @@
     content: ''
   });
 
-  const md = new MarkdownIt();
+  const md = new MarkdownIt({
+    html: true, // 启用HTML解析
+    breaks: true, // 自动转换换行
+    linkify: true, // 自动识别链接
+    typographer: true, // 启用排版优化
+    xhtmlOut: true // XHTML兼容输出
+  });
   const isLoading = ref(false);
   const downloadLoading = ref(false);
   const streamingActive = ref(false); // 新增流式传输状态
@@ -90,7 +97,7 @@
   watch(aiContent, () => {
     nextTick(() => {
       if (contentRef.value && !props.content) {
-        contentRef.value.scrollTop = contentRef.value.scrollHeight;
+        contentRef.value.scrollTop = 0; // 修改为滚动到顶部
       }
     });
   });
@@ -184,8 +191,18 @@
     streamingActive.value = true; // 开始流式传输
 
     const { HJNewJsonStore } = storeToRefs(appStore.useCreateTemplateStore);
-    const dataSource = extractResumeData(HJNewJsonStore.value, true);
-
+    try {
+      aiContent.value = resumeJsonToMarkdown(HJNewJsonStore.value);
+      isLoading.value = false;
+      streamingActive.value = false;
+    } catch (error) {
+      ElMessage.error('转换markdown失败', error);
+      isLoading.value = false;
+      streamingActive.value = false;
+      return;
+    }
+    return;
+    const dataSource = extractResumeData(HJNewJsonStore.value);
     const params = {
       template: JSON.stringify(dataSource),
       serialNumber: serialNumber.value,
@@ -208,6 +225,7 @@
       () => {
         isLoading.value = false;
         streamingActive.value = false; // 传输完成
+        ElMessage.success('转换Markdown完成');
         console.log('转换Markdown完成', aiContent.value);
       }
     );

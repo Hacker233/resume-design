@@ -34,6 +34,7 @@ const OnlinePreview = () => import('@/views/onlinePreview/index.vue');
 const MyOnlineResume = () => import('@/views/person/onlineResume/index.vue');
 const LegoCreate = () => import('@/views/person/legoCreate/index.vue');
 const WebCode = () => import('@/views/webCode/index.vue');
+const OrgSettled = () => import('@/views/orgSettled/index.vue');
 const LegoDesigner = () => import('@/views/LegoDesigner/index.vue');
 const PostWorkSuccess = () => import('@/views/LegoDesigner/postWordSuccess/index.vue');
 const LegoTemplateList = () => import('@/views/legoTemplateList/index.vue');
@@ -127,6 +128,7 @@ const OrgUserTemplateList = () => import('@/views/orgAdmin/CreateTemplateManage/
 const OrgYipayList = () => import('@/views/orgAdmin/yipayList/index.vue');
 const OrgPayList = () => import('@/views/orgAdmin/AliPayTradeList/index.vue');
 const OrgUserList = () => import('@/views/orgAdmin/uerList/index.vue');
+const OrgPanel = () => import('@/views/orgAdmin/panel/index.vue');
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -513,6 +515,18 @@ const routes: Array<RouteRecordRaw> = [
       requireAdmin: false
     },
     component: WebCode
+  },
+  {
+    path: '/orgSettled',
+    name: 'OrgSettled',
+    meta: {
+      title: '组织入驻',
+      keepAlive: true,
+      isShowComNav: true,
+      requireLogin: false,
+      requireAdmin: false
+    },
+    component: OrgSettled
   },
   {
     path: '/deployDoc',
@@ -1276,7 +1290,7 @@ const routes: Array<RouteRecordRaw> = [
       requireOrgAdmin: true
     },
     component: OrgAdminIndex,
-    redirect: '/orgAdmin/orgUserList',
+    redirect: '/orgAdmin/orgPanel',
     children: [
       {
         path: 'orgUserTemplateList',
@@ -1329,6 +1343,19 @@ const routes: Array<RouteRecordRaw> = [
           requireOrgAdmin: true
         },
         component: OrgUserList
+      },
+      {
+        path: 'orgPanel',
+        name: 'OrgPanel',
+        meta: {
+          title: '组织面板',
+          keepAlive: true,
+          isShowComNav: false,
+          requireLogin: true,
+          requireAdmin: false,
+          requireOrgAdmin: true
+        },
+        component: OrgPanel
       }
     ]
   },

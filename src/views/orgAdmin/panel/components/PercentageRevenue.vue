@@ -4,7 +4,7 @@
       <echarts-title title="总收入占比"></echarts-title>
       <div class="echart-filter-box">
         <div class="statistics-box">
-          <el-statistic title="总收入" :value="`${total}元`" />
+          <el-statistic title="总收入" :value="total" :formatter="(value) => `${value}元`" />
         </div>
       </div>
     </div>
@@ -14,7 +14,7 @@
 
 <script lang="ts" setup>
   import ECharts from './ECharts.vue';
-  import { getPercentageRevenueAsync } from '@/http/api/panel';
+  import { getOrgPercentageRevenueAsync } from '@/http/api/panel';
   import moment from 'moment';
   import EchartsTitle from './EchartsTitle.vue';
 
@@ -63,7 +63,7 @@
 
   const fetchChartData = async () => {
     try {
-      const { data } = await getPercentageRevenueAsync();
+      const { data } = await getOrgPercentageRevenueAsync();
       if (data.status === 200) {
         total.value = data.data.total;
         chartOptions.value = {

@@ -5,7 +5,12 @@
       <echarts-title title="每日收入统计"></echarts-title>
       <div class="echart-filter-box">
         <div class="statistics-box">
-          <el-statistic class="ml-4" title="当前范围收入" :value="currentIncome + '元'" />
+          <el-statistic
+            class="ml-4"
+            title="当前范围收入"
+            :value="currentIncome"
+            :formatter="(value) => `${value}元`"
+          />
         </div>
         <div class="date-box">
           <el-date-picker

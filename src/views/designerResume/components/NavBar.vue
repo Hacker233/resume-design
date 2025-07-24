@@ -323,10 +323,26 @@
 
   // 导出为md
   const downloadMDNav = async () => {
-    const data = await saveDataToLocal();
-    if (data) {
-      closeDownloadDialog();
-      emit('downloadMD');
+    // 显示正在保存草稿提示
+    const loadingMessage = ElMessage({
+      message: '正在保存草稿...',
+      type: 'info',
+      duration: 0, // 不自动关闭
+      showClose: false
+    });
+
+    try {
+      const data = await saveDataToLocal();
+      if (data) {
+        closeDownloadDialog();
+        emit('downloadMD');
+        ElMessage.success('草稿保存成功');
+      }
+    } catch (error) {
+      ElMessage.error('草稿保存失败，请重试');
+    } finally {
+      // 无论成功失败都关闭加载提示
+      loadingMessage.close();
     }
   };
 

@@ -5,7 +5,12 @@
       <echarts-title title="每日收入统计"></echarts-title>
       <div class="echart-filter-box">
         <div class="statistics-box">
-          <el-statistic class="ml-4" title="当前范围收入" :value="currentIncome + '元'" />
+          <el-statistic
+            class="ml-4"
+            title="当前范围收入"
+            :value="currentIncome"
+            :formatter="(value) => `${value}元`"
+          />
         </div>
         <div class="date-box">
           <el-date-picker
@@ -29,7 +34,7 @@
 
 <script lang="ts" setup>
   import ECharts from './ECharts.vue';
-  import { getIncomeByDateAsync } from '@/http/api/panel';
+  import { getOrgIncomeByDateAsync } from '@/http/api/panel';
   import moment from 'moment';
   import EchartsTitle from './EchartsTitle.vue';
   import { DATE_SHORTCUTS } from './utils/dateShortcuts';
@@ -78,7 +83,7 @@
       startDate: dateRange.value[0],
       endDate: dateRange.value[1]
     };
-    const data = await getIncomeByDateAsync(params);
+    const data = await getOrgIncomeByDateAsync(params);
     if (data.data.status === 200) {
       totalAllIncome.value = data.data.data.totalAll;
       currentIncome.value = data.data.data.total;

@@ -5,8 +5,17 @@
       <echarts-title title="注册用户数"></echarts-title>
       <div class="echart-filter-box">
         <div class="statistics-box">
-          <el-statistic title="总注册人数" :value="totalUsers" />
-          <el-statistic class="ml-4" title="当前范围注册人数" :value="currentRangeUsers" />
+          <el-statistic
+            title="总注册人数"
+            :value="totalUsers"
+            :formatter="(value) => `${value}人`"
+          />
+          <el-statistic
+            class="ml-4"
+            title="当前范围注册人数"
+            :value="currentRangeUsers"
+            :formatter="(value) => `${value}人`"
+          />
         </div>
         <div class="date-box">
           <el-date-picker
@@ -30,7 +39,7 @@
 
 <script lang="ts" setup>
   import ECharts from './ECharts.vue';
-  import { getSignUsersByDateAsync } from '@/http/api/panel';
+  import { getOrgSignUsersByDateAsync } from '@/http/api/panel';
   import moment from 'moment';
   import EchartsTitle from './EchartsTitle.vue';
   import { DATE_SHORTCUTS } from './utils/dateShortcuts';
@@ -75,7 +84,7 @@
       startDate: dateRange.value[0],
       endDate: dateRange.value[1]
     };
-    const data = await getSignUsersByDateAsync(params);
+    const data = await getOrgSignUsersByDateAsync(params);
     if (data.data.status === 200) {
       totalUsers.value = data.data.data.totalAllUsers;
       currentRangeUsers.value = data.data.data.total;

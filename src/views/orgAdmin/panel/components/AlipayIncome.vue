@@ -5,7 +5,12 @@
       <echarts-title title="支付宝收入统计"></echarts-title>
       <div class="echart-filter-box">
         <div class="statistics-box">
-          <el-statistic class="ml-4" title="当前范围收入" :value="currentRangeUsers + '元'" />
+          <el-statistic
+            class="ml-4"
+            title="当前范围收入"
+            :value="currentRangeUsers"
+            :formatter="(value) => `${value}元`"
+          />
         </div>
         <div class="date-box">
           <el-date-picker
@@ -29,7 +34,7 @@
 
 <script lang="ts" setup>
   import ECharts from './ECharts.vue';
-  import { getAliIncomeByDateAsync } from '@/http/api/panel';
+  import { getOrgAliIncomeByDateAsync } from '@/http/api/panel';
   import moment from 'moment';
   import EchartsTitle from './EchartsTitle.vue';
   import { DATE_SHORTCUTS } from './utils/dateShortcuts';
@@ -74,7 +79,7 @@
       startDate: dateRange.value[0],
       endDate: dateRange.value[1]
     };
-    const data = await getAliIncomeByDateAsync(params);
+    const data = await getOrgAliIncomeByDateAsync(params);
     if (data.data.status === 200) {
       currentRangeUsers.value = data.data.data.total;
       chartOptions.value = {
