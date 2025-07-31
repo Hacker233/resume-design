@@ -123,7 +123,11 @@
 <script lang="ts" setup>
   import { ref, computed } from 'vue';
   import { ElMessage, ElMessageBox } from 'element-plus';
-  import { getOptimizeResumeIntegralAsync, getOptimizeResumeModelListAsync } from '@/http/api/ai';
+  import {
+    getOptimizeResumeIntegralAsync,
+    getOptimizeResumeModelListAsync,
+    getOptimizeResumeUploadIntegralAsync
+  } from '@/http/api/ai';
   import { formatNumberWithCommas } from '@/utils/common';
   import appStore from '@/store';
   import jianBImage from '@/assets/images/jianB.png';
@@ -136,10 +140,12 @@
 
   interface TDialog {
     dialogAiOptimizeVisible: boolean;
+    type?: string;
   }
 
-  withDefaults(defineProps<TDialog>(), {
-    dialogAiOptimizeVisible: false
+  const props = withDefaults(defineProps<TDialog>(), {
+    dialogAiOptimizeVisible: false,
+    type: ''
   });
 
   // 响应式数据
@@ -167,7 +173,10 @@
   const handleOpen = async () => {
     try {
       // 查询简币数量和模型列表
-      await Promise.all([getOptimizeResumeCoin(), getOptimizeResumeModelList()]);
+      await Promise.all([
+        props.type === 'offline' ? getOptimizeResumeUploadIntegralAsync() : getOptimizeResumeCoin(),
+        getOptimizeResumeModelList()
+      ]);
     } catch (error) {
       errorMessage.value = '加载失败，请稍后重试';
     } finally {

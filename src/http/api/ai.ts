@@ -149,6 +149,14 @@ export const getOptimizeResumeIntegralAsync: any = () => {
   });
 };
 
+// 查询AI简历诊断上传文件需要的简币数量
+export const getOptimizeResumeUploadIntegralAsync: any = () => {
+  return http.request({
+    url: '/huajian/ai/getDiagnoseResumeIntegral',
+    method: 'get'
+  });
+};
+
 // 查询AI简历智能生成需要的简币数量
 export const getGenerateResumeIntegralAsync: any = () => {
   return http.request({

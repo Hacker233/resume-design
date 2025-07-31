@@ -154,6 +154,7 @@
   <!-- AI诊断确认弹窗 -->
   <ai-optimize-dialog
     :dialog-ai-optimize-visible="dialogAiOptimizeVisible"
+    type="offline"
     @cancle="aiDialogCancle"
     @update-success="updateSuccess"
   ></ai-optimize-dialog>
