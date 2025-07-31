@@ -362,9 +362,8 @@
       } else {
         throw new Error('流水号生成失败');
       }
-
       const params = {
-        model: modelInfoObj.value.model,
+        model: modelInfoObj.value.selectedModel,
         serialNumber: serialNumber.value,
         pdfText: pdfText.value
       };
