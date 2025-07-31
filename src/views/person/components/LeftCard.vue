@@ -71,9 +71,10 @@
     min-height: 400px;
     border-radius: 5px;
     box-shadow: 0 5px 21px 0 rgb(78 78 78 / 25%);
-    background-color: rgba(#fff, 0.5);
+    background-color: rgba(#fff, 0.7);
     z-index: 2;
     margin-top: 90px;
+    flex-shrink: 0;
     .avatar-box {
       display: flex;
       align-items: center;

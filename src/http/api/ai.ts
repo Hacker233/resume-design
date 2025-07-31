@@ -271,3 +271,19 @@ export const getAiLogsByAdminAsync: any = (params: any) => {
     params: params
   });
 };
+
+// 传入文本简历进行AI诊断
+export const aiOptimizeResumeByPdfTextStreamAsync: any = (
+  data: any, // 生成简历的参数
+  onMessage: (chunk: string) => void, // 流式数据回调
+  onError: (error: any) => void, // 错误回调
+  onComplete?: () => void // 完成回调
+) => {
+  return http.streamRequest(
+    '/huajian/ai/aiOptimizeResumeByPdfTextStream', // 后端接口路径
+    data, // 请求参数
+    onMessage, // 流式数据回调
+    onError, // 错误回调
+    onComplete // 完成回调
+  );
+};

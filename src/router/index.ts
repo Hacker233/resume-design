@@ -19,6 +19,7 @@ const PersonDetail = () => import('@/views/person/personDetial/index.vue');
 const AccountSetting = () => import('@/views/person/accountSetting/index.vue');
 const MyComment = () => import('@/views/person/myComment/index.vue');
 const MyResume = () => import('@/views/person/myResume/index.vue');
+const AiOptimizeLogs = () => import('@/views/person/aiOptimizeLogs/index.vue');
 const PdfPreview = () => import('@/views/PdfPreview/index.vue'); // 老版本简历预览界面
 const ResumePreview = () => import('@/views/createTemplate/previewer/index.vue');
 const Template = () => import('@/views/template/index.vue');
@@ -63,6 +64,8 @@ const NoPermission = () => import('@/views/noPermission/index.vue');
 const GenerateAiResume = () => import('@/views/generateAiResume/index.vue');
 // 简历定制服务页面
 const ResumeService = () => import('@/views/resumeServices/index.vue');
+// AI智能诊断页面
+const AiDiagnosticCV = () => import('@/views/AiDiagnosticCV/index.vue');
 
 // 管理员界面
 const AdminIndex = () => import('@/views/admin/index.vue');
@@ -505,6 +508,18 @@ const routes: Array<RouteRecordRaw> = [
     component: ResumeService
   },
   {
+    path: '/aiDiagnosticCV',
+    name: 'AiDiagnosticCV',
+    meta: {
+      title: 'AI智能诊断',
+      keepAlive: true,
+      isShowComNav: true,
+      requireLogin: false,
+      requireAdmin: false
+    },
+    component: AiDiagnosticCV
+  },
+  {
     path: '/webCode',
     name: 'WebCode',
     meta: {
@@ -654,6 +669,19 @@ const routes: Array<RouteRecordRaw> = [
           requireAdmin: false
         },
         component: MyResume
+      },
+      {
+        path: 'aiOptimizeLogs',
+        name: 'AiOptimizeLogs',
+        meta: {
+          title: 'AI诊断记录',
+          keepAlive: true,
+          isShowComNav: true,
+          requireLogin: true,
+          showTitle: true,
+          requireAdmin: false
+        },
+        component: AiOptimizeLogs
       },
       {
         path: 'myOnlineResume',

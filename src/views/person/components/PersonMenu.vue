@@ -1,6 +1,6 @@
 <template>
   <div class="person-menu-box">
-    <el-menu :default-active="route.name" class="el-menu-vertical-demo">
+    <el-menu :default-active="route.name?.toString()" class="el-menu-vertical-demo">
       <template v-for="(item, index) in menuListComputed" :key="index">
         <el-menu-item :index="item.index" @click="toDetail(item.path, item.index)">
           <svg-icon
@@ -46,6 +46,13 @@
       iconfont: 'icon-xiangmujingli-04',
       title: '我的简历',
       path: '/person/myResume',
+      freeUserNotShow: false // 全站免费用户是否不展示
+    },
+    {
+      index: 'AiOptimizeLogs',
+      iconfont: 'icon-zhinengyouhua',
+      title: 'AI诊断记录',
+      path: '/person/aiOptimizeLogs',
       freeUserNotShow: false // 全站免费用户是否不展示
     }
     // {

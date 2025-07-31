@@ -104,6 +104,7 @@ declare module 'vue' {
     InternshipExperienceCom: typeof import('./components/ModelComs/InternshipExperienceCom.vue')['default']
     InvitationDialog: typeof import('./components/InvitationDialog/InvitationDialog.vue')['default']
     JobIntentionCom: typeof import('./components/ModelComs/JobIntentionCom.vue')['default']
+    Loading: typeof import('./components/Loading/index.vue')['default']
     LoadingCom: typeof import('./components/Loading/LoadingCom.vue')['default']
     LoginDialog: typeof import('./components/LoginDialog/LoginDialog.vue')['default']
     LogoCom: typeof import('./components/LogoCom/LogoCom.vue')['default']

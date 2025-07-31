@@ -23,6 +23,8 @@
     min-height: 300px;
     margin: 270px 0 0px 30px;
     box-sizing: border-box;
+    flex-shrink: 0;
+    overflow: auto;
     .router-box {
       padding: 0 0 20px 0;
     }

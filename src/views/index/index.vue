@@ -11,6 +11,8 @@
         @webcode="webcode"
       ></project-introduce>
     </div>
+    <!-- 更多功能 -->
+    <more-function></more-function>
     <!-- 模板选择 -->
     <template-select ref="templeTef"></template-select>
     <!-- 根据用途挑选简历 -->
@@ -81,6 +83,7 @@
   import { storeToRefs } from 'pinia';
   import appStore from '@/store';
   import { title } from '@/config/seo';
+  import MoreFunction from './components/MoreFunction.vue';
 
   const { websiteConfig } = storeToRefs(appStore.useWebsiteConfigStore);
 

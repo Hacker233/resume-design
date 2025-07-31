@@ -7,7 +7,7 @@
           <!-- 动态标题 -->
           <h1 class="dynamic-title">一款开源、免费、专业的AI简历生成制作神器</h1>
           <h2
-            >全面接入Deepseek，AI智能简历生成、智能润色、修改、智能诊断等，交付源码级JSON；支持导出超高清PDF、Markdown、图片格式。</h2
+            >全面接入Deepseek，AI智能简历生成、AI智能简历诊断、智能润色、修改等，交付源码级JSON；支持导出超高清PDF、Markdown、图片格式。</h2
           >
 
           <!-- DeepSeek 提示 -->
@@ -16,9 +16,10 @@
           <!-- 查看更多按钮 -->
           <div class="see-more-box">
             <hj-button-1 text="免费制作专业简历" @click="freeMakeResume"></hj-button-1>
-            <hj-button-1 text="AI智能生成简历" @click="generateAiResume"></hj-button-1>
+            <hj-button-1 text="专业简历服务" @click="resumeContact"></hj-button-1>
+            <!-- <hj-button-1 text="AI智能生成简历" @click="generateAiResume"></hj-button-1> -->
             <!-- <hj-button-1 v-config:open_jobzx text="AI面试助手" @click="toJobzx"></hj-button-1> -->
-            <hj-button-1 text="私有部署" @click="resumeContact"></hj-button-1>
+            <!-- <hj-button-1 text="私有部署" @click="resumeContact"></hj-button-1> -->
           </div>
           <!-- 核心功能介绍 -->
           <div class="card-box">
@@ -85,18 +86,24 @@
 
   // 跳转AI生成简历
   const router = useRouter();
-  const generateAiResume = () => {
+  // const generateAiResume = () => {
+  //   router.push({
+  //     path: '/generateAiResume'
+  //   });
+  // };
+
+  const resumeContact = () => {
     router.push({
-      path: '/generateAiResume'
+      path: '/resumeService'
     });
   };
 
   // 跳转至简历服务页面
-  const resumeContact = () => {
-    router.push({
-      path: '/webCode'
-    });
-  };
+  // const resumeContact = () => {
+  //   router.push({
+  //     path: '/webCode'
+  //   });
+  // };
 
   // 前往使用
   // const toJobzx = () => {

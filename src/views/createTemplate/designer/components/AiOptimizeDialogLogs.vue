@@ -27,6 +27,16 @@
             </div>
           </template>
         </el-table-column>
+        <el-table-column label="诊断类型">
+          <template #default="scope">
+            <el-tag
+              :type="scope.row?.resume_type === 'offline' ? 'success' : 'info'"
+              size="default"
+            >
+              {{ scope.row?.resume_type === 'offline' ? '离线简历诊断' : '在线简历诊断' }}
+            </el-tag>
+          </template>
+        </el-table-column>
         <el-table-column prop="createDate" label="诊断日期">
           <template #default="scope">
             <div>

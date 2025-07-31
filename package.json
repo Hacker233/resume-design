@@ -36,6 +36,7 @@
     "c-scrollbar": "^1.0.2",
     "colorpicker-v3": "^2.10.2",
     "default-passive-events": "^2.0.0",
+    "dompurify": "^3.2.6",
     "echarts": "^5.6.0",
     "element-plus": "2.10.3",
     "fast-glob": "^3.3.3",

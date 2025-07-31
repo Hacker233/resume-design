@@ -22,9 +22,24 @@
     },
     "skipLibCheck": true,
     "strictNullChecks": false, // 关闭 null/undefined 严格检查
-    "types": ["json-editor-vue3", "colorpicker-v3", "vue3-pdfjs/esm", "vue3-print-nb", "v-contextmenu", "vue-json-viewer"]
+    "types": [
+      "json-editor-vue3",
+      "colorpicker-v3",
+      "vue3-pdfjs/esm",
+      "vue3-print-nb",
+      "v-contextmenu",
+      "vue-json-viewer",
+      "@vueuse/head"
+    ]
   },
-  "include": ["src/env.d.ts", "src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue", "types/**/*.d.ts"],
+  "include": [
+    "src/env.d.ts",
+    "src/**/*.ts",
+    "src/**/*.d.ts",
+    "src/**/*.tsx",
+    "src/**/*.vue",
+    "types/**/*.d.ts"
+  ],
   "references": [
     {
       "path": "./tsconfig.node.json"

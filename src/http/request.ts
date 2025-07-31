@@ -103,13 +103,24 @@ http.streamRequest = (
   const controller = new AbortController();
   const signal = controller.signal;
 
+  // 动态设置请求头
+  const headers: Record<string, string> = {
+    Authorization: `${appStore.useTokenStore.token}`
+  };
+
+  // 判断数据类型，FormData不需要设置Content-Type（浏览器会自动添加）
+  let body: BodyInit;
+  if (data instanceof FormData) {
+    body = data;
+  } else {
+    headers['Content-Type'] = 'application/json';
+    body = JSON.stringify(data);
+  }
+
   fetch(`${CONFIG.serverAddress}${url}`, {
     method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      Authorization: `${appStore.useTokenStore.token}`
-    },
-    body: JSON.stringify(data),
+    headers,
+    body,
     signal
   })
     .then(async (response) => {

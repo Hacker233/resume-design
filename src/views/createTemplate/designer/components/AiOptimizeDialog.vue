@@ -57,7 +57,7 @@
                   border
                   :disabled="!isMember"
                 >
-                  免费模型
+                  {{ item.model_name }}
                   <span class="free-tag">免费</span>
                   <!-- 皇冠 -->
                   <img
