@@ -174,7 +174,7 @@
     try {
       // 查询简币数量和模型列表
       await Promise.all([
-        props.type === 'offline' ? getOptimizeResumeUploadIntegralAsync() : getOptimizeResumeCoin(),
+        props.type === 'offline' ? getOptimizeResumeUploadIntegral() : getOptimizeResumeCoin(),
         getOptimizeResumeModelList()
       ]);
     } catch (error) {
@@ -193,6 +193,16 @@
       return false;
     }
   });
+
+  // 查询上传文件进行AI优化需要的简币数量
+  const getOptimizeResumeUploadIntegral = async () => {
+    const response = await getOptimizeResumeUploadIntegralAsync();
+    if (response.data.status === 200) {
+      payValue.value = response.data.data;
+    } else {
+      ElMessage.error(response.data.message);
+    }
+  };
 
   // 查询AI简历优化需要的简币数量
   const getOptimizeResumeCoin = async () => {
