@@ -363,7 +363,7 @@
       }
 
       const params = {
-        model: 'glm-4-flash',
+        model: modelInfoObj.value.model,
         serialNumber: serialNumber.value,
         pdfText: pdfText.value
       };
