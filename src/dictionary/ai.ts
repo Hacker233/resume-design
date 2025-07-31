@@ -5,5 +5,6 @@ export const aiPurposeDic: any = {
   create: 'AI创作',
   optimizeResume: 'AI简历诊断',
   generateResume: 'AI生成简历',
-  jsonToMarkdown: '简历转MD'
+  jsonToMarkdown: '简历转MD',
+  aiOptimizeResumeByPdfText: 'AI根据PDF文本优化简历'
 };
