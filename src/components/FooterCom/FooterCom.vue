@@ -1,5 +1,5 @@
 <template>
-  <div class="footer-box">
+  <div class="global-footer-box">
     <!-- 相关推荐 -->
     <div class="recommend">
       <!-- 联系我 -->
@@ -150,8 +150,8 @@
     vxQunList
   });
 </script>
-<style lang="scss" scoped>
-  .footer-box {
+<style lang="scss">
+  .global-footer-box {
     width: 100%;
     background-color: #333333;
     display: flex;

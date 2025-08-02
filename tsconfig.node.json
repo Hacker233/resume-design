@@ -1,13 +1,20 @@
 {
   "compilerOptions": {
     "composite": true,
-    "module": "esnext",
+    "module": "CommonJS", // Node 通常用 CommonJS，esnext 会导致 __dirname 不可用
+    "target": "ES2020", // 适当升级目标版本
     "moduleResolution": "node",
-    "allowSyntheticDefaultImports": true
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true, // 兼容 CommonJS 模块导入
+    "strict": false,
+    "skipLibCheck": true,
+    "types": ["node"] // 关键：引入 node 类型声明
   },
   "include": [
     "vite.config.ts",
     "build/**/*.ts",
     "types/*.d.ts",
+    "src",
+    "generate-prerender-data.ts" // 确保你 prerender 相关文件也被包含
   ]
 }

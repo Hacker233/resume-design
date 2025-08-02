@@ -5,5 +5,4 @@ const CONFIG = {
   smallpigAddress: 'https://maobucv.com', // 另一个后台地址，如果没有多个后台，无需填写此字段
   yiPayWay: 'qrcode' // 易支付的支付方式：page：跳转页面支付，qrcode：二维码支付
 };
-
 export default CONFIG;

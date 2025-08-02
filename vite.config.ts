@@ -1,4 +1,3 @@
-import { fileURLToPath } from 'url';
 import { ConfigEnv, defineConfig, loadEnv } from 'vite';
 import type { UserConfig } from 'vite';
 
@@ -7,6 +6,10 @@ import { wrapperEnv } from './build/utils';
 import autoprefixer from 'autoprefixer';
 import compression from 'vite-plugin-compression';
 import { ViteImageOptimizer } from 'vite-plugin-image-optimizer';
+
+import prerender from 'vite-plugin-prerender';
+import path from 'path';
+import fs from 'fs';
 
 const isProduction = process.env.VITE_ENV === 'production';
 const isDev = !isProduction;
@@ -24,7 +27,7 @@ export default defineConfig(async ({ command, mode }: ConfigEnv): Promise<UserCo
   return {
     resolve: {
       alias: {
-        '@': fileURLToPath(new URL('./src', import.meta.url))
+        '@': path.resolve(__dirname, './src') // ✅ 使用 __dirname 替代 import.meta.url
       }
     },
     build: {
@@ -120,7 +123,45 @@ export default defineConfig(async ({ command, mode }: ConfigEnv): Promise<UserCo
           lossless: false
         }
       }),
-      compression()
+      compression(),
+      // ✅ prerender 插件
+      prerender({
+        staticDir: path.resolve(__dirname, VITE_OUTPUT_DIR),
+        routes: ['/'],
+        postProcess: (context) => {
+          const dataPath = path.resolve(__dirname, '.temp/prerender-data.json');
+
+          if (!context || !context.html) {
+            console.warn('⚠️ context.html 不存在，可能未正确渲染');
+            return context;
+          }
+
+          if (fs.existsSync(dataPath)) {
+            try {
+              const data = JSON.parse(fs.readFileSync(dataPath, 'utf-8'));
+              console.log('prerender-data.json', data);
+
+              const original = context.html;
+              console.log('context.html', context.html);
+              context.html = context.html.replace(
+                '<div id="footer"></div>',
+                `<div id="footer">${data.FOOTER_HTML}</div>`
+              );
+
+              console.log('📦 替换前 HTML:', original);
+              console.log('✅ 替换后 HTML:', context.html);
+
+              return context;
+            } catch (err) {
+              console.error('❌ 解析 prerender-data.json 失败:', err);
+              return context;
+            }
+          } else {
+            console.warn('⚠️ prerender-data.json 不存在于 .temp/，请检查是否成功生成');
+            return context;
+          }
+        }
+      })
     ],
     esbuild: {
       logOverride: { 'this-is-undefined-in-esm': 'silent' }

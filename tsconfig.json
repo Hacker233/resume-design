@@ -1,10 +1,8 @@
 {
   "compilerOptions": {
-    "typeRoots": [
-      "node_modules/@types", // 默认值
-      "src/interface",
-      "types"
-    ],
+    "typeRoots": ["node_modules/@types", "src/interface", "types"],
+    "noEmit": true,
+    "allowImportingTsExtensions": true,
     "target": "esnext",
     "useDefineForClassFields": true,
     "module": "esnext",
@@ -21,8 +19,9 @@
       "@/*": ["src/*"]
     },
     "skipLibCheck": true,
-    "strictNullChecks": false, // 关闭 null/undefined 严格检查
+    "strictNullChecks": false,
     "types": [
+      "node",
       "json-editor-vue3",
       "colorpicker-v3",
       "vue3-pdfjs/esm",

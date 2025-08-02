@@ -13,14 +13,15 @@
 
     <meta
       name="viewport"
-      content="width=device-width, initial-scale=0, user-scalable=yes,shrink-to-fit=no"
-    />
+      content="width=device-width, initial-scale=0, user-scalable=yes,shrink-to-fit=no" />
     <meta name="description" content="<%= SEO_DESCRIPTION %>" />
     <meta name="baidu-site-verification" content="code-HxiWyWK6Aq" />
     <meta name="baidu-site-verification" content="codeva-moxPA9UX28" />
-    <meta name="google-site-verification" content="9U-4cWCWw-D99mVKE-SHcBjU5YEH_ztGAURrW1rDU7U" />
+    <meta name="google-site-verification"
+      content="9U-4cWCWw-D99mVKE-SHcBjU5YEH_ztGAURrW1rDU7U" />
     <meta name="sogou_site_verification" content="w7zdK0JX3H" />
-    <meta name="360-site-verification" content="232da2ea347565b5b380e8b85f921f16" />
+    <meta name="360-site-verification"
+      content="232da2ea347565b5b380e8b85f921f16" />
     <meta name="keywords" content="<%= SEO_KEYWORDS %>" />
     <meta name="msvalidate.01" content="F024AF253277E33350D8157626C9480D" />
     <title><%= SEO_TITLE %></title>
@@ -60,7 +61,10 @@
   </head>
 
   <body>
-    <div id="app"></div>
+    <div id="app">
+      <!-- 预渲染footer -->
+      <div id="footer"></div>
+    </div>
     <script type="module" src="/src/main.ts"></script>
 
     <!-- 友情链接SEO关联性增强 -->
