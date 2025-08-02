@@ -139,18 +139,10 @@ export default defineConfig(async ({ command, mode }: ConfigEnv): Promise<UserCo
           if (fs.existsSync(dataPath)) {
             try {
               const data = JSON.parse(fs.readFileSync(dataPath, 'utf-8'));
-              console.log('prerender-data.json', data);
-
-              const original = context.html;
-              console.log('context.html', context.html);
               context.html = context.html.replace(
                 '<div id="footer"></div>',
                 `<div id="footer">${data.FOOTER_HTML}</div>`
               );
-
-              console.log('📦 替换前 HTML:', original);
-              console.log('✅ 替换后 HTML:', context.html);
-
               return context;
             } catch (err) {
               console.error('❌ 解析 prerender-data.json 失败:', err);
