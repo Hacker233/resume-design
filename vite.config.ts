@@ -136,22 +136,28 @@ export default defineConfig(async ({ command, mode }: ConfigEnv): Promise<UserCo
             return context;
           }
 
-          if (fs.existsSync(dataPath)) {
-            try {
-              const data = JSON.parse(fs.readFileSync(dataPath, 'utf-8'));
-              context.html = context.html.replace(
-                '<div id="footer"></div>',
-                `<div id="footer">${data.FOOTER_HTML}</div>`
-              );
-              return context;
-            } catch (err) {
-              console.error('❌ 解析 prerender-data.json 失败:', err);
+          // 只对根路由 / 进行替换
+          if (context.route === '/') {
+            if (fs.existsSync(dataPath)) {
+              try {
+                const data = JSON.parse(fs.readFileSync(dataPath, 'utf-8'));
+                context.html = context.html.replace(
+                  '<div id="footer"></div>',
+                  `<div id="footer">${data.FOOTER_HTML}</div>`
+                );
+                return context;
+              } catch (err) {
+                console.error('❌ 解析 prerender-data.json 失败:', err);
+                return context;
+              }
+            } else {
+              console.warn('⚠️ prerender-data.json 不存在于 .temp/，请检查是否成功生成');
               return context;
             }
-          } else {
-            console.warn('⚠️ prerender-data.json 不存在于 .temp/，请检查是否成功生成');
-            return context;
           }
+
+          // 非根路由，原样返回不做处理
+          return context;
         }
       })
     ],
