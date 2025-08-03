@@ -44,183 +44,152 @@ const writeDataToFile = (data: any) => {
 };
 
 // generate-prerender-data.ts
-
-const generateFooterHtml = (vxquns: any[], links: any[]) => {
+const generateFooterHtml = (vxquns = [], links = []) => {
   // 关键 CSS - 添加作用域限定
   const criticalCSS = `
     <style>
-      /* 所有样式都限定在 .global-footer-box 内部 */
       .global-footer-box {
+        background-color: #2a2a2a;
+        color: #e0e0e0;
+        padding: 40px 0 10px 0;
+        font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif;
         width: 100%;
-        background-color: #333333;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        padding: 15px 0;
       }
       
-      .global-footer-box .recommend {
-        display: flex;
-        padding: 20px 0;
-        width: 100%;
-        height: 250px;
-        justify-content: center;
-        align-items: center;
-      }
-      
-      .global-footer-box h4 {
-        color: #a3a5a7;
-        font-size: 16px;
-        padding-bottom: 10px;
-        letter-spacing: 1px;
-        font-weight: 500;
-        margin: 0;
-      }
-      
-      .global-footer-box .contact-me {
-        display: flex;
-      }
-      
-      .global-footer-box .contact-me img {
-        width: 105px;
-        height: 105px;
-      }
-      
-      .global-footer-box h5 {
-        font-size: 14px;
-        color: #fff;
-        margin: 0;
-        margin-top: 10px;
-      }
-      
-      .global-footer-box .add-wechat {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        margin-right: 40px;
-        cursor: pointer;
-        user-select: none;
-      }
-      
-      .global-footer-box .about-me {
-        height: 100%;
-        display: flex;
-        flex-direction: column;
-        padding-top: 30px;
-        margin-right: 40px;
-      }
-      
-      .global-footer-box .about-me h5 {
-        color: #fff;
-        display: flex;
-        justify-content: flex-start;
-        margin: 0;
-        margin-bottom: 10px;
-        font-size: 14px;
-      }
-      
-      .global-footer-box .about-me a {
-        color: inherit;
-        text-decoration: none;
-        letter-spacing: 2px;
-        transition: all 0.3s;
-      }
-      
-      .global-footer-box .about-me a:hover {
-        color: rgb(123, 238, 123);
-      }
-      
-      .global-footer-box .links {
-        display: flex;
-        flex-direction: column;
-        height: 100%;
-        padding-top: 30px;
-      }
-      
-      .global-footer-box .links-box {
+      .recommend {
         display: flex;
         flex-wrap: wrap;
-        max-width: 200px;
+        justify-content: space-between;
+        gap: 15px;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 15px 15px;
       }
       
-      .global-footer-box .links-box .site-map {
-        text-decoration: none;
-        cursor: pointer;
-        color: #a3a5a7;
+      .contact-me {
+        min-width: 150px;
+        margin-bottom: 0;
+        padding: 0 5px;
       }
       
-      .global-footer-box .links-box h4 {
-        margin-right: 38px;
+      .about-me, .links {
+        min-width: 150px;
+        margin-bottom: 0;
+        padding: 0 5px;
       }
       
-      .global-footer-box .links-box p {
-        color: #fff;
-        display: flex;
-        justify-content: flex-start;
+      h4 {
+        color: #ffffff;
+        font-size: 16px;
+        font-weight: 600;
+        margin-bottom: 10px;
+        position: relative;
+        padding-bottom: 5px;
+      }
+      
+      h4::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 30px;
+        height: 2px;
+        background: linear-gradient(90deg, #4caf50, #8bc34a);
+      }
+      
+      .add-wechat {
+        text-align: center;
+        margin-right: 10px;
+      }
+      
+      .add-wechat img {
+        width: 100px;
+        height: 100px;
+        border-radius: 5px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+      }
+      
+      h5 {
+        margin-top: 5px;
         font-size: 14px;
-        box-sizing: border-box;
-        flex-shrink: 0;
+        color: #b0b0b0;
+        margin: 0;
+        margin-bottom: 8px;
       }
       
-      .global-footer-box .links-box a {
-        color: inherit;
-        text-decoration: none;
-        letter-spacing: 2px;
-        transition: all 0.3s;
-        flex-shrink: 0;
-        margin: 0 20px 10px 0;
-      }
-      
-      .global-footer-box .links-box a:hover {
-        color: rgb(123, 238, 123);
-      }
-      
-      .global-footer-box .apply-links {
-        cursor: pointer;
-        transition: all 0.3s;
-        margin-right: 0;
-      }
-      
-      .global-footer-box .apply-links:hover {
-        color: rgb(123, 238, 123);
-      }
-      
-      .global-footer-box .line {
-        height: 1px;
-        width: 650px;
-        background-color: #5b5b5b;
-      }
-      
-      .global-footer-box .copyright-notice {
-        margin: 15px 0;
-      }
-      
-      .global-footer-box .copyright-notice p {
-        color: #757c88;
-        font-size: 12px;
-      }
-      
-      .global-footer-box .icp-record-number {
+      .links-box {
         display: flex;
-      }
-      
-      .global-footer-box .icp-record-number p {
-        color: #757c88;
-        font-size: 12px;
-        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
         align-items: center;
-        margin: 0 10px;
       }
       
-      .global-footer-box .icp-record-number a {
-        color: inherit;
+      .links-box p {
+        margin: 0;
+      }
+      
+      .links-box a {
+        color: #8d8d8d;
+        font-size: 13px;
         text-decoration: none;
-        letter-spacing: 2px;
-        transition: all 0.3s;
       }
       
-      .global-footer-box .icp-record-number a:hover {
-        color: rgb(123, 238, 123);
+      .apply-links {
+        background: rgba(76, 175, 80, 0.1);
+        border: 1px solid rgba(76, 175, 80, 0.3);
+        color: #4caf50;
+        padding: 4px 10px;
+        border-radius: 14px;
+        font-size: 12px;
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+      }
+      
+      .site-map {
+        color: #b0b0b0;
+        font-size: 14px;
+        text-decoration: none;
+      }
+      
+      .line {
+        height: 1px;
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+        margin-bottom: 10px;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+      
+      .copyright-notice p, .icp-record-number a {
+        color: #757575;
+        font-size: 12px;
+        text-decoration: none;
+      }
+      
+      .copyright-notice, .icp-record-number {
+        text-align: center;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 15px;
+      }
+      
+      @media (max-width: 900px) {
+        .contact-me, .about-me, .links {
+          flex: 0 0 calc(50% - 15px);
+        }
+      }
+      
+      @media (max-width: 600px) {
+        .recommend {
+          flex-direction: column;
+          gap: 15px;
+        }
+        
+        .contact-me, .about-me, .links {
+          flex: 0 0 100%;
+          min-width: 100%;
+        }
       }
     </style>
   `;
@@ -231,7 +200,7 @@ const generateFooterHtml = (vxquns: any[], links: any[]) => {
       <div class="add-wechat">
         <img src="${item.qr_code || item.qrcode || ''}" alt="${
         item.name || ''
-      } 二维码" title="扫描二维码添加 ${item.name}" loading="lazy" />
+      } 二维码" title="扫描二维码添加 ${item.name || ''}" loading="lazy" />
         <h5>${item.name || ''}</h5>
       </div>
     `
@@ -254,6 +223,7 @@ const generateFooterHtml = (vxquns: any[], links: any[]) => {
     <div class="global-footer-box">
       <div class="recommend">
         <div class="contact-me" v-viewer>
+          <h4>联系我们</h4>
           ${vxQunHtml}
         </div>
         <div class="about-me">
@@ -265,16 +235,15 @@ const generateFooterHtml = (vxquns: any[], links: any[]) => {
         <div class="links">
           <div class="links-box">
             <h4>友情链接</h4>
-            <h4 class="apply-links" onclick="applyLinks()">申请友链</h4>
+            <button class="apply-links" onclick="applyLinks()">+ 申请友链</button>
           </div>
           <div class="links-box">
             ${linksHtml}
           </div>
         </div>
         <div class="links">
-          <div class="links-box">
-            <a class="apply-links site-map" href="https://maobucv.com/sitemap.xml">站点地图</a>
-          </div>
+          <h4>网站地图</h4>
+          <a class="site-map" href="https://maobucv.com/sitemap.xml">🗺️ 站点地图</a>
         </div>
       </div>
       <div class="line"></div>

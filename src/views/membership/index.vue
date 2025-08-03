@@ -320,6 +320,7 @@
   const benefits = [
     { name: 'AI智能生成简历', special: false },
     { name: 'AI简历诊断', special: false },
+    { name: 'AI诊断PDF/Word简历', special: false },
     { name: 'AI简历翻译', special: false },
     { name: 'AI简历润色', special: false },
     { name: 'AI简历创作', special: false },
@@ -339,6 +340,10 @@
       benefits: [
         {
           content: '消耗简币生成<img width="22" src="' + jianBImage + '" alt="简币"/>',
+          special: false
+        },
+        {
+          content: '消耗简币诊断<img width="22" src="' + jianBImage + '" alt="简币"/>',
           special: false
         },
         {
@@ -387,6 +392,7 @@
         { content: '无限制使用', special: false },
         { content: '无限制使用', special: false },
         { content: '无限制使用', special: false },
+        { content: '无限制使用', special: false },
         { content: '无限制导出', special: false },
         { content: '无限制导出', special: false },
         { content: '无限制下载', special: false },
@@ -405,6 +411,7 @@
         { content: '无限制使用', special: false },
         { content: '无限制使用', special: false },
         { content: '无限制使用', special: false },
+        { content: '无限制使用', special: false },
         { content: '无限制导出', special: false },
         { content: '无限制导出', special: false },
         { content: '无限制下载', special: false },
@@ -418,6 +425,7 @@
       class: 'ssvip',
       isActive: true,
       benefits: [
+        { content: '无限制使用', special: false },
         { content: '无限制使用', special: false },
         { content: '无限制使用', special: false },
         { content: '无限制使用', special: false },
