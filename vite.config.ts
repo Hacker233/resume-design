@@ -1,15 +1,15 @@
 import { ConfigEnv, defineConfig, loadEnv } from 'vite';
 import type { UserConfig } from 'vite';
-
 import { createVitePlugins } from './build/vite/plugin';
 import { wrapperEnv } from './build/utils';
 import autoprefixer from 'autoprefixer';
 import compression from 'vite-plugin-compression';
 import { ViteImageOptimizer } from 'vite-plugin-image-optimizer';
-
-import prerender from 'vite-plugin-prerender';
 import path from 'path';
-import fs from 'fs';
+import chrome from 'puppeteer';
+import express from 'express';
+import serveStatic from 'serve-static';
+const fs = require('fs');
 
 const isProduction = process.env.VITE_ENV === 'production';
 const isDev = !isProduction;
@@ -27,7 +27,7 @@ export default defineConfig(async ({ command, mode }: ConfigEnv): Promise<UserCo
   return {
     resolve: {
       alias: {
-        '@': path.resolve(__dirname, './src') // ✅ 使用 __dirname 替代 import.meta.url
+        '@': path.resolve(__dirname, './src')
       }
     },
     build: {
@@ -124,42 +124,47 @@ export default defineConfig(async ({ command, mode }: ConfigEnv): Promise<UserCo
         }
       }),
       compression(),
-      // ✅ prerender 插件
-      prerender({
-        staticDir: path.resolve(__dirname, VITE_OUTPUT_DIR),
-        routes: ['/'],
-        postProcess: (context) => {
-          const dataPath = path.resolve(__dirname, '.temp/prerender-data.json');
+      {
+        name: 'puppeteer-prerender',
+        closeBundle: async () => {
+          if (!isBuild) return;
 
-          if (!context || !context.html) {
-            console.warn('⚠️ context.html 不存在，可能未正确渲染');
-            return context;
-          }
+          // 在插件中
+          const app = express();
+          app.use(serveStatic(path.resolve(__dirname, VITE_OUTPUT_DIR)));
+          app.listen(5137);
 
-          // 只对根路由 / 进行替换
-          if (context.route === '/') {
-            if (fs.existsSync(dataPath)) {
-              try {
-                const data = JSON.parse(fs.readFileSync(dataPath, 'utf-8'));
-                context.html = context.html.replace(
-                  '<div id="footer"></div>',
-                  `<div id="footer">${data.FOOTER_HTML}</div>`
-                );
-                return context;
-              } catch (err) {
-                console.error('❌ 解析 prerender-data.json 失败:', err);
-                return context;
-              }
-            } else {
-              console.warn('⚠️ prerender-data.json 不存在于 .temp/，请检查是否成功生成');
-              return context;
-            }
-          }
+          console.log('Starting Puppeteer prerender...');
+          const browser = await chrome.launch({
+            headless: false,
+            args: ['--no-sandbox', '--disable-setuid-sandbox']
+          });
+          const outputPath = path.resolve(__dirname, VITE_OUTPUT_DIR);
+          const page = await browser.newPage();
+          await page.goto('http://localhost:5137', {
+            waitUntil: 'networkidle2'
+          });
 
-          // 非根路由，原样返回不做处理
-          return context;
+          // 等待关键内容加载
+          await page.waitForSelector('#app', { timeout: 5000 });
+
+          // 获取最终HTML
+          const html = await page.content();
+
+          console.log('html', html);
+
+          // 保存回文件
+          fs.writeFileSync(
+            path.join(outputPath, 'index.html'),
+            html,
+            { flag: 'w' } // 强制覆盖
+          );
+
+          console.log('HTML saved to:', path.join(outputPath, 'index.html'));
+          await browser.close();
+          console.log('Prerender completed successfully');
         }
-      })
+      }
     ],
     esbuild: {
       logOverride: { 'this-is-undefined-in-esm': 'silent' }
@@ -171,7 +176,7 @@ export default defineConfig(async ({ command, mode }: ConfigEnv): Promise<UserCo
       hmr: true,
       proxy: {
         '/api': {
-          target: 'your https address', // 请替换为实际API地址
+          target: 'your https address',
           changeOrigin: true,
           rewrite: (path: string) => path.replace(/^\/api/, '')
         }
