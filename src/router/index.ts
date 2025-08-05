@@ -1412,7 +1412,7 @@ router.beforeEach(async (to, from, next) => {
   // 设置标题、描述、关键词
   console.log('路由跳转 to:', to);
   useHead({
-    title: '猫步简历 - ' + (to.meta.title as string) || title,
+    title: '猫步简历 - ' + ((to.meta.title as string) || title),
     meta: [
       {
         name: 'description',
