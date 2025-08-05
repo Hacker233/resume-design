@@ -129,40 +129,76 @@ export default defineConfig(async ({ command, mode }: ConfigEnv): Promise<UserCo
         closeBundle: async () => {
           if (!isBuild) return;
 
-          // 在插件中
           const app = express();
           app.use(serveStatic(path.resolve(__dirname, VITE_OUTPUT_DIR)));
-          app.listen(5137);
+          const server = app.listen(5137);
 
           console.log('Starting Puppeteer prerender...');
           const browser = await chrome.launch({
             headless: false,
             args: ['--no-sandbox', '--disable-setuid-sandbox']
           });
-          const outputPath = path.resolve(__dirname, VITE_OUTPUT_DIR);
-          const page = await browser.newPage();
-          await page.goto('http://localhost:5137', {
-            waitUntil: 'networkidle2'
-          });
 
-          // 等待关键内容加载
-          await page.waitForSelector('#app', { timeout: 5000 });
+          try {
+            const outputPath = path.resolve(__dirname, VITE_OUTPUT_DIR);
+            const page = await browser.newPage();
 
-          // 获取最终HTML
-          const html = await page.content();
+            // 设置拦截规则，阻止iconfont.js加载
+            await page.setRequestInterception(true);
+            page.on('request', (request) => {
+              if (request.url().includes('iconfont.js')) {
+                request.abort();
+              } else {
+                request.continue();
+              }
+            });
 
-          console.log('html', html);
+            // 注入预渲染标记
+            await page.evaluateOnNewDocument(() => {
+              (window as any).__PRERENDER_INJECTED = true;
+            });
 
-          // 保存回文件
-          fs.writeFileSync(
-            path.join(outputPath, 'index.html'),
-            html,
-            { flag: 'w' } // 强制覆盖
-          );
+            // 设置视口为常见的桌面端尺寸（推荐）
+            await page.setViewport({
+              width: 1920,
+              height: 1080,
+              deviceScaleFactor: 1,
+              isMobile: false,
+              hasTouch: false,
+              isLandscape: false
+            });
 
-          console.log('HTML saved to:', path.join(outputPath, 'index.html'));
-          await browser.close();
-          console.log('Prerender completed successfully');
+            await page.goto('http://localhost:5137', {
+              waitUntil: 'networkidle0',
+              timeout: 30000
+            });
+
+            // 等待Vue应用完全加载
+            await page.waitForFunction(
+              () => {
+                return (document.querySelector('#app') as any)?.__vue_app__ !== undefined;
+              },
+              { timeout: 10000 }
+            );
+
+            // 获取处理后的HTML
+            const html = await page.evaluate(() => {
+              // 移除可能存在的空图标容器
+              document.querySelectorAll('[class*="icon"]').forEach((el) => {
+                if (!el.innerHTML.trim()) el.remove();
+              });
+              return document.documentElement.outerHTML;
+            });
+
+            // 保存HTML（不再包含图标JS）
+            fs.writeFileSync(path.join(outputPath, 'index.html'), html, { flag: 'w' });
+
+            console.log('Prerendered HTML saved without iconfont.js');
+          } finally {
+            await browser.close();
+            server.close();
+            console.log('Prerender completed successfully');
+          }
         }
       }
     ],

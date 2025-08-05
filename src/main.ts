@@ -1,6 +1,5 @@
 import { createApp } from 'vue';
 import App from './App.vue';
-// import store from './store';
 import router from './router';
 import '@/style/normalize.css';
 import component from '@/utils/registerCom';
@@ -9,10 +8,8 @@ import 'element-plus/es/components/message-box/style/index';
 import SvgIcon from '@/components/SvgIcon/SvgIcon.vue';
 import elementIcons from '@/components/SvgIcon/svgicon';
 // 颜色选择控件
-import ColorPicker from 'colorpicker-v3'; // 注册组件
-import 'colorpicker-v3/style.css'; // 引入样式文件
-// 图标
-import '@/assets/iconfont/iconfont.js';
+import ColorPicker from 'colorpicker-v3';
+import 'colorpicker-v3/style.css';
 // 字体文件
 import '@/assets/font/font.css';
 import '@/views/LegoDesigner/assets/font/legoFont.css';
@@ -38,7 +35,7 @@ import UndrawUi from './components/packages/index';
 
 import { userAgent } from '@/utils/userAgent';
 
-import '@/style/article/github-markdown-light.css'; // 文章样式
+import '@/style/article/github-markdown-light.css';
 
 import contextmenu from 'v-contextmenu';
 import 'v-contextmenu/dist/themes/default.css';
@@ -50,11 +47,21 @@ import { createHead } from '@vueuse/head';
 
 userAgent();
 
+// 动态加载图标库
+const loadIconfont = () => {
+  // 只在非预渲染环境加载图标
+  if (!('__PRERENDER_INJECTED' in window) || !window.__PRERENDER_INJECTED) {
+    const script = document.createElement('script');
+    script.src = '/static/iconfont/iconfont.js';
+    script.onload = () => console.log('Iconfont loaded successfully');
+    script.onerror = () => console.error('Iconfont failed to load');
+    document.body.appendChild(script);
+  }
+};
+
 // 创建vue实例
 const app = createApp(App);
-// app.use(store);
 app.use(createPinia());
-// 注册pinia状态管理库
 registerStore();
 
 app.use(router);
@@ -67,9 +74,7 @@ app.use(VueDOMPurifyHTML, {
 });
 app.use(ColorPicker);
 app.use(CScrollbar);
-
-app.use(configDirectives); // 全局指令注册
-
+app.use(configDirectives);
 app.use(VueViewer, {
   defaultOptions: {
     // 自定义默认配置
@@ -78,7 +83,17 @@ app.use(VueViewer, {
 app.use(contextmenu);
 app.component('SvgIcon', SvgIcon);
 app.use(UndrawUi);
+
 const head = createHead();
 app.use(head);
+
+// 在mounted生命周期加载图标
+app.config.globalProperties.$loadIcons = loadIconfont;
+
 // 挂载实例
 app.mount('#app');
+
+// 确保DOM加载完成后执行
+if (!('__PRERENDER_INJECTED' in window) || !window.__PRERENDER_INJECTED) {
+  loadIconfont();
+}

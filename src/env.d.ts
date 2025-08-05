@@ -20,3 +20,7 @@ declare global {
 }
 
 declare module 'unplugin-vue-define-options';
+
+declare interface Window {
+  __PRERENDER_INJECTED?: boolean;
+}

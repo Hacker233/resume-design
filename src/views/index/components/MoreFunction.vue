@@ -206,7 +206,7 @@
     display: flex;
     justify-content: center;
     gap: 32px;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     z-index: 1;
   }
 
