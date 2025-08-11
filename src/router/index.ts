@@ -68,6 +68,8 @@ const ResumeService = () => import('@/views/resumeServices/index.vue');
 const AiDiagnosticCV = () => import('@/views/AiDiagnosticCV/index.vue');
 // 友链申请
 const LinksApply = () => import('@/views/linksApply/index.vue');
+// 站点地图
+const Sitemap = () => import('@/views/sitemap/index.vue');
 
 // 管理员界面
 const AdminIndex = () => import('@/views/admin/index.vue');
@@ -533,6 +535,18 @@ const routes: Array<RouteRecordRaw> = [
       requireAdmin: false
     },
     component: LinksApply
+  },
+  {
+    path: '/sitemap',
+    name: 'Sitemap',
+    meta: {
+      title: '全站地图',
+      keepAlive: true,
+      isShowComNav: false,
+      requireLogin: false,
+      requireAdmin: false
+    },
+    component: Sitemap
   },
   {
     path: '/webCode',

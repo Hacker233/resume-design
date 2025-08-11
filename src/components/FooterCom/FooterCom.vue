@@ -75,9 +75,18 @@
       <!-- 站点地图 -->
       <div class="footer-section sitemap-section">
         <h3 class="section-title">网站地图</h3>
-        <a href="https://maobucv.com/sitemap.xml" class="sitemap-link">
-          <i class="icon-sitemap"></i> 站点地图
-        </a>
+        <ul class="sitemap-links">
+          <li>
+            <a href="https://maobucv.com/sitemap.xml" class="sitemap-link">
+              <i class="icon-sitemap"></i> 站点地图
+            </a>
+          </li>
+          <li>
+            <a href="https://maobucv.com/sitemap.html" class="sitemap-link">
+              <i class="icon-sitemap"></i> 全站导航
+            </a>
+          </li>
+        </ul>
       </div>
     </div>
 
@@ -331,6 +340,15 @@
 
   /* 站点地图部分 - 紧凑布局 */
   .sitemap-section {
+    .sitemap-links {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      li {
+        margin-bottom: 8px;
+      }
+    }
+
     .sitemap-link {
       display: inline-flex;
       align-items: center;

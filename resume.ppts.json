@@ -1,0 +1,1194 @@
+[
+  {
+    "_id": {
+      "$oid": "6347cf8e7b425a6485c45b53"
+    },
+    "name": "动态毕业设计答辩PPT模板",
+    "profile": "动态毕业设计答辩PPT模板，深色系列。",
+    "category": [
+      "6347c2d79e02620e72925bd7"
+    ],
+    "previewUrl": "[{\"name\":\"幻灯片1.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片1-1665725711033.PNG\",\"size\":39424,\"uid\":1665725722974,\"status\":\"success\"},{\"name\":\"幻灯片2.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片2-1665725711036.PNG\",\"size\":23981,\"uid\":1665725722975,\"status\":\"success\"},{\"name\":\"幻灯片5.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片5-1665725711042.PNG\",\"size\":54827,\"uid\":1665725722976,\"status\":\"success\"},{\"name\":\"幻灯片3.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片3-1665725711037.PNG\",\"size\":13002,\"uid\":1665725722977,\"status\":\"success\"},{\"name\":\"幻灯片7.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片7-1665725711051.PNG\",\"size\":56267,\"uid\":1665725722978,\"status\":\"success\"},{\"name\":\"幻灯片8.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片8-1665725711053.PNG\",\"size\":64584,\"uid\":1665725722979,\"status\":\"success\"},{\"name\":\"幻灯片6.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片6-1665725711048.PNG\",\"size\":56646,\"uid\":1665725722980,\"status\":\"success\"},{\"name\":\"幻灯片9.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片9-1665725711057.PNG\",\"size\":13331,\"uid\":1665725722981,\"status\":\"success\"},{\"name\":\"幻灯片11.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片11-1665725711061.PNG\",\"size\":52137,\"uid\":1665725722982,\"status\":\"success\"},{\"name\":\"幻灯片10.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片10-1665725711058.PNG\",\"size\":40901,\"uid\":1665725722983,\"status\":\"success\"},{\"name\":\"幻灯片12.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片12-1665725711064.PNG\",\"size\":63060,\"uid\":1665725722984,\"status\":\"success\"},{\"name\":\"幻灯片14.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片14-1665725711067.PNG\",\"size\":12965,\"uid\":1665725722985,\"status\":\"success\"},{\"name\":\"幻灯片15.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片15-1665725711069.PNG\",\"size\":64150,\"uid\":1665725722986,\"status\":\"success\"},{\"name\":\"幻灯片18.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片18-1665725711077.PNG\",\"size\":12892,\"uid\":1665725722987,\"status\":\"success\"},{\"name\":\"幻灯片17.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片17-1665725711073.PNG\",\"size\":33628,\"uid\":1665725722988,\"status\":\"success\"},{\"name\":\"幻灯片21.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片21-1665725711083.PNG\",\"size\":46132,\"uid\":1665725722989,\"status\":\"success\"},{\"name\":\"幻灯片22.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片22-1665725711086.PNG\",\"size\":13832,\"uid\":1665725722990,\"status\":\"success\"},{\"name\":\"幻灯片23.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片23-1665725711087.PNG\",\"size\":53811,\"uid\":1665725722991,\"status\":\"success\"},{\"name\":\"幻灯片24.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片24-1665725711089.PNG\",\"size\":39282,\"uid\":1665725722993,\"status\":\"success\"},{\"name\":\"幻灯片20.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片20-1665725711082.PNG\",\"size\":47583,\"uid\":1665725722994,\"status\":\"success\"},{\"name\":\"幻灯片25.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片25-1665725711093.PNG\",\"size\":48463,\"uid\":1665725722995,\"status\":\"success\"},{\"name\":\"幻灯片27.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片27-1665725711098.PNG\",\"size\":42017,\"uid\":1665725722996,\"status\":\"success\"},{\"name\":\"幻灯片28.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片28-1665725711099.PNG\",\"size\":33618,\"uid\":1665725722997,\"status\":\"success\"},{\"name\":\"幻灯片13.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片13-1665725711066.PNG\",\"size\":71115,\"uid\":1665725722999,\"status\":\"success\"},{\"name\":\"幻灯片4.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片4-1665725711040.PNG\",\"size\":102327,\"uid\":1665725723000,\"status\":\"success\"},{\"name\":\"幻灯片26.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片26-1665725711096.PNG\",\"size\":72927,\"uid\":1665725723001,\"status\":\"success\"},{\"name\":\"幻灯片16.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片16-1665725711071.PNG\",\"size\":101005,\"uid\":1665725723002,\"status\":\"success\"},{\"name\":\"幻灯片19.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片19-1665725711079.PNG\",\"size\":175011,\"uid\":1665725723003,\"status\":\"success\"}]",
+    "tags": [
+      "动态",
+      "论文答辩",
+      "毕业"
+    ],
+    "effect": "动态",
+    "proportion": "16：9",
+    "pages": 28,
+    "likes": 0,
+    "views": 384,
+    "collections": 0,
+    "downloads": 26,
+    "likes_users": [],
+    "views_users": [],
+    "collections_users": [],
+    "downloads_users": [
+      "1584775297@qq.com",
+      "1183495997@qq.com",
+      "living1985@qq.com",
+      "1357125515@qq.com",
+      "2497259958@qq.com",
+      "2401928412@qq.com",
+      "2706625446@qq.com",
+      "1404939185@qq.com",
+      "760515805@qq.com",
+      "1454176872@qq.com",
+      "840710263@qq.com",
+      "2094024318@qq.com",
+      "105768640@qq.com"
+    ],
+    "pay_users": [],
+    "createDate": {
+      "$date": "2022-10-13T08:42:54.756Z"
+    },
+    "updateDate": {
+      "$date": "2025-07-01T07:55:54.628Z"
+    },
+    "__v": 0,
+    "fileUrl": "",
+    "cover": "[{\"name\":\"幻灯片1-1665732555415.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片1-1665732555415-1667134794549.PNG\",\"size\":21790,\"uid\":1667134794896,\"status\":\"success\"}]"
+  },
+  {
+    "_id": {
+      "$oid": "6349099c044b853dd1b128d5"
+    },
+    "name": "简约动感莫兰迪配色工作总结计划PPT模板",
+    "profile": "简约动感莫兰迪配色工作总结计划PPT模板，极具创意。",
+    "category": [
+      "6347b2dd9e02620e72925b38",
+      "634904255f542a3c5b5aaa8f"
+    ],
+    "previewUrl": "[{\"name\":\"幻灯片1.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片1-1665730968824.PNG\",\"size\":59917,\"uid\":1665730973523,\"status\":\"success\"},{\"name\":\"幻灯片20.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片20-1665730969479.PNG\",\"size\":49710,\"uid\":1665730973524,\"status\":\"success\"},{\"name\":\"幻灯片8.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片8-1665730968838.PNG\",\"size\":58049,\"uid\":1665730973525,\"status\":\"success\"},{\"name\":\"幻灯片13.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片13-1665730969044.PNG\",\"size\":57329,\"uid\":1665730973526,\"status\":\"success\"},{\"name\":\"幻灯片11.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片11-1665730968841.PNG\",\"size\":60678,\"uid\":1665730973527,\"status\":\"success\"},{\"name\":\"幻灯片4.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片4-1665730968826.PNG\",\"size\":55872,\"uid\":1665730973528,\"status\":\"success\"},{\"name\":\"幻灯片6.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片6-1665730968831.PNG\",\"size\":62102,\"uid\":1665730973529,\"status\":\"success\"},{\"name\":\"幻灯片3.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片3-1665730968826.PNG\",\"size\":57602,\"uid\":1665730973530,\"status\":\"success\"},{\"name\":\"幻灯片21.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片21-1665730969692.PNG\",\"size\":59662,\"uid\":1665730973531,\"status\":\"success\"},{\"name\":\"幻灯片15.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片15-1665730969046.PNG\",\"size\":63686,\"uid\":1665730973532,\"status\":\"success\"},{\"name\":\"幻灯片5.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片5-1665730968828.PNG\",\"size\":164916,\"uid\":1665730973533,\"status\":\"success\"},{\"name\":\"幻灯片22.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片22-1665730969693.PNG\",\"size\":64070,\"uid\":1665730973534,\"status\":\"success\"},{\"name\":\"幻灯片17.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片17-1665730969476.PNG\",\"size\":60245,\"uid\":1665730973535,\"status\":\"success\"},{\"name\":\"幻灯片23.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片23-1665730969694.PNG\",\"size\":54578,\"uid\":1665730973536,\"status\":\"success\"},{\"name\":\"幻灯片24.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片24-1665730969695.PNG\",\"size\":53011,\"uid\":1665730973537,\"status\":\"success\"},{\"name\":\"幻灯片14.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片14-1665730969045.PNG\",\"size\":61205,\"uid\":1665730973538,\"status\":\"success\"},{\"name\":\"幻灯片25.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片25-1665730969909.PNG\",\"size\":50142,\"uid\":1665730973539,\"status\":\"success\"},{\"name\":\"幻灯片12.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片12-1665730968842.PNG\",\"size\":64620,\"uid\":1665730973540,\"status\":\"success\"},{\"name\":\"幻灯片18.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片18-1665730969478.PNG\",\"size\":72412,\"uid\":1665730973541,\"status\":\"success\"},{\"name\":\"幻灯片7.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片7-1665730968832.PNG\",\"size\":71075,\"uid\":1665730973542,\"status\":\"success\"},{\"name\":\"幻灯片9.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片9-1665730968839.PNG\",\"size\":62348,\"uid\":1665730973543,\"status\":\"success\"},{\"name\":\"幻灯片19.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片19-1665730969478.PNG\",\"size\":58544,\"uid\":1665730973544,\"status\":\"success\"},{\"name\":\"幻灯片10.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片10-1665730968840.PNG\",\"size\":261461,\"uid\":1665730973545,\"status\":\"success\"},{\"name\":\"幻灯片2.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片2-1665730968825.PNG\",\"size\":73456,\"uid\":1665730973546,\"status\":\"success\"},{\"name\":\"幻灯片16.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片16-1665730969046.PNG\",\"size\":238518,\"uid\":1665730973548,\"status\":\"success\"}]",
+    "fileUrl": "",
+    "tags": [
+      "简约",
+      "精美",
+      "配色",
+      "工作总结",
+      "静态"
+    ],
+    "effect": "静态",
+    "proportion": "16：9",
+    "pages": 25,
+    "likes": 0,
+    "views": 102,
+    "collections": 0,
+    "downloads": 18,
+    "likes_users": [],
+    "views_users": [],
+    "collections_users": [],
+    "downloads_users": [
+      "787221511@qq.com",
+      "569055059@qq.com",
+      "1403639079@qq.com",
+      "cxmqwh52608@chacuo.net",
+      "1120017497@qq.com",
+      "1006565582@qq.com",
+      "1357125515@qq.com",
+      "2401928412@qq.com",
+      "pugao666@163.com",
+      "3448598552@qq.com",
+      "2397096061@qq.com",
+      "3089395316@qq.com",
+      "528932704@qq.com",
+      "275032921@qq.com",
+      "vivid333@163.com",
+      "1062709607@qq.com"
+    ],
+    "pay_users": [],
+    "createDate": {
+      "$date": "2022-10-14T07:02:52.953Z"
+    },
+    "updateDate": {
+      "$date": "2025-07-24T11:27:55.872Z"
+    },
+    "__v": 0,
+    "cover": "[{\"name\":\"幻灯片1.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片1-1665732538277.PNG\"}]"
+  },
+  {
+    "_id": {
+      "$oid": "63490be2044b853dd1b12923"
+    },
+    "name": "炫彩抽象图案背景时尚商务汇报PPT模板",
+    "profile": "炫彩抽象图案背景时尚商务汇报PPT模板，高端背景。",
+    "category": [
+      "634904195f542a3c5b5aaa8b",
+      "634904255f542a3c5b5aaa8f",
+      "6347b2dd9e02620e72925b38"
+    ],
+    "previewUrl": "[{\"name\":\"幻灯片16.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片16-1665731516205.PNG\",\"size\":255927,\"uid\":1665731554661,\"status\":\"success\"},{\"name\":\"幻灯片12.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片12-1665731513349.PNG\",\"size\":224429,\"uid\":1665731554662,\"status\":\"success\"},{\"name\":\"幻灯片18.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片18-1665731517069.PNG\",\"size\":273627,\"uid\":1665731554664,\"status\":\"success\"},{\"name\":\"幻灯片24.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片24-1665731520791.PNG\",\"size\":347306,\"uid\":1665731554665,\"status\":\"success\"},{\"name\":\"幻灯片14.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片14-1665731513782.PNG\",\"size\":375988,\"uid\":1665731554666,\"status\":\"success\"},{\"name\":\"幻灯片7.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片7-1665731509682.PNG\",\"size\":388320,\"uid\":1665731554667,\"status\":\"success\"},{\"name\":\"幻灯片11.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片11-1665731512918.PNG\",\"size\":321424,\"uid\":1665731554668,\"status\":\"success\"},{\"name\":\"幻灯片13.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片13-1665731513565.PNG\",\"size\":368150,\"uid\":1665731554669,\"status\":\"success\"},{\"name\":\"幻灯片22.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片22-1665731519774.PNG\",\"size\":583067,\"uid\":1665731554670,\"status\":\"success\"},{\"name\":\"幻灯片5.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片5-1665731509453.PNG\",\"size\":267711,\"uid\":1665731554671,\"status\":\"success\"},{\"name\":\"幻灯片21.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片21-1665731519557.PNG\",\"size\":301477,\"uid\":1665731554672,\"status\":\"success\"},{\"name\":\"幻灯片8.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片8-1665731510110.PNG\",\"size\":374199,\"uid\":1665731554673,\"status\":\"success\"},{\"name\":\"幻灯片20.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片20-1665731517558.PNG\",\"size\":1949808,\"uid\":1665731554674,\"status\":\"success\"},{\"name\":\"幻灯片23.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片23-1665731520350.PNG\",\"size\":377988,\"uid\":1665731554675,\"status\":\"success\"},{\"name\":\"幻灯片17.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片17-1665731516422.PNG\",\"size\":532718,\"uid\":1665731554676,\"status\":\"success\"},{\"name\":\"幻灯片19.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片19-1665731517340.PNG\",\"size\":350166,\"uid\":1665731554677,\"status\":\"success\"},{\"name\":\"幻灯片2.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片2-1665731505718.PNG\",\"size\":994073,\"uid\":1665731554678,\"status\":\"success\"},{\"name\":\"幻灯片10.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片10-1665731512487.PNG\",\"size\":506887,\"uid\":1665731554679,\"status\":\"success\"},{\"name\":\"幻灯片1.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片1-1665731504644.PNG\",\"size\":2024202,\"uid\":1665731554680,\"status\":\"success\"},{\"name\":\"幻灯片15.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片15-1665731514261.PNG\",\"size\":1950345,\"uid\":1665731554681,\"status\":\"success\"},{\"name\":\"幻灯片25.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片25-1665731521285.PNG\",\"size\":1893279,\"uid\":1665731554682,\"status\":\"success\"},{\"name\":\"幻灯片9.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片9-1665731510542.PNG\",\"size\":1950033,\"uid\":1665731554683,\"status\":\"success\"},{\"name\":\"幻灯片4.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片4-1665731508740.PNG\",\"size\":687119,\"uid\":1665731554684,\"status\":\"success\"},{\"name\":\"幻灯片6.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片6-1665731509677.PNG\",\"size\":153384,\"uid\":1665731554685,\"status\":\"success\"},{\"name\":\"幻灯片3.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片3-1665731506797.PNG\",\"size\":1949432,\"uid\":1665731554686,\"status\":\"success\"},{\"name\":\"幻灯片1.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片1-1665731648726.PNG\",\"size\":2024202,\"uid\":1665731653375,\"status\":\"success\"}]",
+    "fileUrl": "",
+    "tags": [
+      "动态",
+      "彩色",
+      "时尚",
+      "图案背景"
+    ],
+    "effect": "动态",
+    "proportion": "16：9",
+    "pages": 25,
+    "likes": 0,
+    "views": 126,
+    "collections": 0,
+    "downloads": 16,
+    "likes_users": [],
+    "views_users": [],
+    "collections_users": [],
+    "downloads_users": [
+      "1522399180@qq.com",
+      "183909450@qq.com",
+      "ican128@hotmail.com",
+      "nick@qq.com",
+      "1271473459@qq.com",
+      "2497259958@qq.com",
+      "2401928412@qq.com",
+      "760515805@qq.com",
+      "1584775297@qq.com"
+    ],
+    "pay_users": [],
+    "createDate": {
+      "$date": "2022-10-14T07:12:34.018Z"
+    },
+    "updateDate": {
+      "$date": "2025-08-02T16:08:05.031Z"
+    },
+    "__v": 0,
+    "cover": "[{\"name\":\"幻灯片1.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片1-1665734981210.PNG\"}]"
+  },
+  {
+    "_id": {
+      "$oid": "63491507a6d8d129f58faf89"
+    },
+    "name": "卡通开学季主题班会PPT模板",
+    "profile": "卡通开学季主题班会PPT模板，适合小学开学。",
+    "category": [
+      "634913e7a6d8d129f58faf6b"
+    ],
+    "cover": "[{\"name\":\"幻灯片1.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片1-1665733832084.PNG\"}]",
+    "previewUrl": "[{\"name\":\"幻灯片12.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片12-1665733880716.PNG\",\"size\":340316,\"uid\":1665733894528,\"status\":\"success\"},{\"name\":\"幻灯片16.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片16-1665733881997.PNG\",\"size\":328244,\"uid\":1665733894529,\"status\":\"success\"},{\"name\":\"幻灯片5.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片5-1665733878035.PNG\",\"size\":370453,\"uid\":1665733894530,\"status\":\"success\"},{\"name\":\"幻灯片22.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片22-1665733884021.PNG\",\"size\":365851,\"uid\":1665733894531,\"status\":\"success\"},{\"name\":\"幻灯片20.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片20-1665733883333.PNG\",\"size\":316854,\"uid\":1665733894532,\"status\":\"success\"},{\"name\":\"幻灯片18.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片18-1665733882653.PNG\",\"size\":351026,\"uid\":1665733894533,\"status\":\"success\"},{\"name\":\"幻灯片23.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片23-1665733884476.PNG\",\"size\":347335,\"uid\":1665733894534,\"status\":\"success\"},{\"name\":\"幻灯片24.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片24-1665733884701.PNG\",\"size\":335236,\"uid\":1665733894535,\"status\":\"success\"},{\"name\":\"幻灯片4.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片4-1665733877772.PNG\",\"size\":392761,\"uid\":1665733894536,\"status\":\"success\"},{\"name\":\"幻灯片21.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片21-1665733883582.PNG\",\"size\":356711,\"uid\":1665733894537,\"status\":\"success\"},{\"name\":\"幻灯片3.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片3-1665733877342.PNG\",\"size\":316141,\"uid\":1665733894538,\"status\":\"success\"},{\"name\":\"幻灯片15.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片15-1665733881558.PNG\",\"size\":308843,\"uid\":1665733894539,\"status\":\"success\"},{\"name\":\"幻灯片14.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片14-1665733881325.PNG\",\"size\":316222,\"uid\":1665733894540,\"status\":\"success\"},{\"name\":\"幻灯片9.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片9-1665733879502.PNG\",\"size\":348435,\"uid\":1665733894541,\"status\":\"success\"},{\"name\":\"幻灯片8.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片8-1665733879222.PNG\",\"size\":316203,\"uid\":1665733894542,\"status\":\"success\"},{\"name\":\"幻灯片10.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片10-1665733879820.PNG\",\"size\":372786,\"uid\":1665733894543,\"status\":\"success\"},{\"name\":\"幻灯片11.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片11-1665733880269.PNG\",\"size\":330776,\"uid\":1665733894544,\"status\":\"success\"},{\"name\":\"幻灯片7.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片7-1665733878773.PNG\",\"size\":466837,\"uid\":1665733894545,\"status\":\"success\"},{\"name\":\"幻灯片19.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片19-1665733883108.PNG\",\"size\":348353,\"uid\":1665733894546,\"status\":\"success\"},{\"name\":\"幻灯片17.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片17-1665733882214.PNG\",\"size\":390536,\"uid\":1665733894547,\"status\":\"success\"},{\"name\":\"幻灯片6.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片6-1665733878540.PNG\",\"size\":354518,\"uid\":1665733894548,\"status\":\"success\"},{\"name\":\"幻灯片2.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片2-1665733876712.PNG\",\"size\":623785,\"uid\":1665733894549,\"status\":\"success\"},{\"name\":\"幻灯片1.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片1-1665733876254.PNG\",\"size\":1402716,\"uid\":1665733894550,\"status\":\"success\"},{\"name\":\"幻灯片25.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片25-1665733884992.PNG\",\"size\":1454262,\"uid\":1665733894551,\"status\":\"success\"},{\"name\":\"幻灯片13.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片13-1665733880989.PNG\",\"size\":371658,\"uid\":1665733894552,\"status\":\"success\"}]",
+    "fileUrl": "",
+    "tags": [
+      "卡通",
+      "酷炫",
+      "开学季",
+      "创意"
+    ],
+    "effect": "动态",
+    "proportion": "16：9",
+    "pages": 26,
+    "likes": 0,
+    "views": 12,
+    "collections": 0,
+    "downloads": 3,
+    "likes_users": [],
+    "views_users": [],
+    "collections_users": [],
+    "downloads_users": [
+      "105768640@qq.com"
+    ],
+    "pay_users": [],
+    "createDate": {
+      "$date": "2022-10-14T07:51:35.510Z"
+    },
+    "updateDate": {
+      "$date": "2025-06-09T13:18:59.928Z"
+    },
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "63491de5a6d8d129f58fb1d5"
+    },
+    "name": "卡通太空风神舟十四号载人航天飞船PPT模板",
+    "profile": "卡通太空风神舟十四号载人航天飞船PPT模板",
+    "category": [
+      "634913e7a6d8d129f58faf6b",
+      "634904255f542a3c5b5aaa8f"
+    ],
+    "cover": "[{\"name\":\"幻灯片1.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片1-1665736102487.PNG\"}]",
+    "previewUrl": "[{\"name\":\"幻灯片13.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片13-1665738434205.PNG\",\"size\":364268,\"uid\":1665738450713,\"status\":\"success\"},{\"name\":\"幻灯片21.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片21-1665738434268.PNG\",\"size\":390797,\"uid\":1665738450714,\"status\":\"success\"},{\"name\":\"幻灯片20.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片20-1665738434263.PNG\",\"size\":389702,\"uid\":1665738450715,\"status\":\"success\"},{\"name\":\"幻灯片23.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片23-1665738434280.PNG\",\"size\":390600,\"uid\":1665738450716,\"status\":\"success\"},{\"name\":\"幻灯片5.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片5-1665738434154.PNG\",\"size\":425385,\"uid\":1665738450717,\"status\":\"success\"},{\"name\":\"幻灯片8.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片8-1665738434169.PNG\",\"size\":421265,\"uid\":1665738450718,\"status\":\"success\"},{\"name\":\"幻灯片6.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片6-1665738434158.PNG\",\"size\":410183,\"uid\":1665738450719,\"status\":\"success\"},{\"name\":\"幻灯片10.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片10-1665738434186.PNG\",\"size\":446147,\"uid\":1665738450720,\"status\":\"success\"},{\"name\":\"幻灯片7.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片7-1665738434164.PNG\",\"size\":413632,\"uid\":1665738450721,\"status\":\"success\"},{\"name\":\"幻灯片12.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片12-1665738434200.PNG\",\"size\":411307,\"uid\":1665738450722,\"status\":\"success\"},{\"name\":\"幻灯片17.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片17-1665738434236.PNG\",\"size\":447249,\"uid\":1665738450723,\"status\":\"success\"},{\"name\":\"幻灯片22.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片22-1665738434275.PNG\",\"size\":459144,\"uid\":1665738450724,\"status\":\"success\"},{\"name\":\"幻灯片4.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片4-1665738434145.PNG\",\"size\":461720,\"uid\":1665738450725,\"status\":\"success\"},{\"name\":\"幻灯片15.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片15-1665738434222.PNG\",\"size\":462354,\"uid\":1665738450726,\"status\":\"success\"},{\"name\":\"幻灯片18.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片18-1665738434245.PNG\",\"size\":532519,\"uid\":1665738450727,\"status\":\"success\"},{\"name\":\"幻灯片11.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片11-1665738434192.PNG\",\"size\":590402,\"uid\":1665738450728,\"status\":\"success\"},{\"name\":\"幻灯片16.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片16-1665738434228.PNG\",\"size\":731799,\"uid\":1665738450729,\"status\":\"success\"},{\"name\":\"幻灯片2.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片2-1665738434125.PNG\",\"size\":777870,\"uid\":1665738450730,\"status\":\"success\"},{\"name\":\"幻灯片9.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片9-1665738434175.PNG\",\"size\":1283194,\"uid\":1665738450731,\"status\":\"success\"},{\"name\":\"幻灯片14.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片14-1665738434210.PNG\",\"size\":1285198,\"uid\":1665738450732,\"status\":\"success\"},{\"name\":\"幻灯片1.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片1-1665738434101.PNG\",\"size\":1834823,\"uid\":1665738450733,\"status\":\"success\"},{\"name\":\"幻灯片3.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片3-1665738434136.PNG\",\"size\":1283693,\"uid\":1665738450734,\"status\":\"success\"},{\"name\":\"幻灯片19.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片19-1665738434253.PNG\",\"size\":1285414,\"uid\":1665738450735,\"status\":\"success\"},{\"name\":\"幻灯片24.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片24-1665738434286.PNG\",\"size\":1834786,\"uid\":1665738450736,\"status\":\"success\"}]",
+    "tags": [
+      "飞船",
+      "动态",
+      "卡通",
+      "航天",
+      "精美"
+    ],
+    "effect": "动态",
+    "proportion": "16：9",
+    "pages": 25,
+    "likes": 0,
+    "views": 17,
+    "collections": 0,
+    "downloads": 3,
+    "likes_users": [],
+    "views_users": [],
+    "collections_users": [],
+    "downloads_users": [
+      "1664234934@qq.com",
+      "guo528437607@qq.com"
+    ],
+    "pay_users": [],
+    "createDate": {
+      "$date": "2022-10-14T08:29:25.265Z"
+    },
+    "updateDate": {
+      "$date": "2025-04-12T03:25:32.022Z"
+    },
+    "__v": 0,
+    "fileUrl": ""
+  },
+  {
+    "_id": {
+      "$oid": "634cf83aa6d8d129f58fe826"
+    },
+    "name": "实用创业商业计划书PPT模板",
+    "profile": "实用创业商业计划书PPT模板",
+    "category": [
+      "6347b2dd9e02620e72925b38",
+      "634904195f542a3c5b5aaa8b"
+    ],
+    "cover": "[{\"name\":\"幻灯片1.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片1-1665988623452.PNG\"}]",
+    "previewUrl": "[{\"name\":\"幻灯片31.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片31-1665988661724.PNG\",\"size\":99734,\"uid\":1665988666434,\"status\":\"success\"},{\"name\":\"幻灯片26.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片26-1665988661006.PNG\",\"size\":84862,\"uid\":1665988666435,\"status\":\"success\"},{\"name\":\"幻灯片19.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片19-1665988659860.PNG\",\"size\":112826,\"uid\":1665988666436,\"status\":\"success\"},{\"name\":\"幻灯片25.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片25-1665988661004.PNG\",\"size\":106842,\"uid\":1665988666437,\"status\":\"success\"},{\"name\":\"幻灯片29.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片29-1665988661444.PNG\",\"size\":112946,\"uid\":1665988666438,\"status\":\"success\"},{\"name\":\"幻灯片24.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片24-1665988660789.PNG\",\"size\":110408,\"uid\":1665988666439,\"status\":\"success\"},{\"name\":\"幻灯片1.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片1-1665988657402.PNG\",\"size\":356398,\"uid\":1665988666440,\"status\":\"success\"},{\"name\":\"幻灯片14.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片14-1665988658917.PNG\",\"size\":198302,\"uid\":1665988666441,\"status\":\"success\"},{\"name\":\"幻灯片11.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片11-1665988658700.PNG\",\"size\":85802,\"uid\":1665988666442,\"status\":\"success\"},{\"name\":\"幻灯片18.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片18-1665988659626.PNG\",\"size\":91842,\"uid\":1665988666443,\"status\":\"success\"},{\"name\":\"幻灯片9.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片9-1665988658484.PNG\",\"size\":86051,\"uid\":1665988666444,\"status\":\"success\"},{\"name\":\"幻灯片6.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片6-1665988657837.PNG\",\"size\":93747,\"uid\":1665988666445,\"status\":\"success\"},{\"name\":\"幻灯片28.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片28-1665988661221.PNG\",\"size\":92500,\"uid\":1665988666446,\"status\":\"success\"},{\"name\":\"幻灯片12.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片12-1665988658702.PNG\",\"size\":108495,\"uid\":1665988666447,\"status\":\"success\"},{\"name\":\"幻灯片10.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片10-1665988658486.PNG\",\"size\":103764,\"uid\":1665988666448,\"status\":\"success\"},{\"name\":\"幻灯片13.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片13-1665988658702.PNG\",\"size\":133595,\"uid\":1665988666449,\"status\":\"success\"},{\"name\":\"幻灯片16.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片16-1665988659572.PNG\",\"size\":88647,\"uid\":1665988666450,\"status\":\"success\"},{\"name\":\"幻灯片17.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片17-1665988659573.PNG\",\"size\":135762,\"uid\":1665988666451,\"status\":\"success\"},{\"name\":\"幻灯片8.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片8-1665988658054.PNG\",\"size\":301427,\"uid\":1665988666452,\"status\":\"success\"},{\"name\":\"幻灯片20.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片20-1665988659862.PNG\",\"size\":134872,\"uid\":1665988666453,\"status\":\"success\"},{\"name\":\"幻灯片27.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片27-1665988661220.PNG\",\"size\":198364,\"uid\":1665988666454,\"status\":\"success\"},{\"name\":\"幻灯片4.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片4-1665988657408.PNG\",\"size\":247081,\"uid\":1665988666455,\"status\":\"success\"},{\"name\":\"幻灯片30.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片30-1665988661445.PNG\",\"size\":99208,\"uid\":1665988666456,\"status\":\"success\"},{\"name\":\"幻灯片33.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片33-1665988662172.PNG\",\"size\":461191,\"uid\":1665988666457,\"status\":\"success\"},{\"name\":\"幻灯片23.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片23-1665988660575.PNG\",\"size\":217414,\"uid\":1665988666458,\"status\":\"success\"},{\"name\":\"幻灯片34.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片34-1665988662620.PNG\",\"size\":152061,\"uid\":1665988666459,\"status\":\"success\"},{\"name\":\"幻灯片5.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片5-1665988657409.PNG\",\"size\":307920,\"uid\":1665988666460,\"status\":\"success\"},{\"name\":\"幻灯片2.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片2-1665988657404.PNG\",\"size\":219338,\"uid\":1665988666461,\"status\":\"success\"},{\"name\":\"幻灯片21.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片21-1665988660076.PNG\",\"size\":200763,\"uid\":1665988666462,\"status\":\"success\"},{\"name\":\"幻灯片15.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片15-1665988659133.PNG\",\"size\":350097,\"uid\":1665988666463,\"status\":\"success\"},{\"name\":\"幻灯片7.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片7-1665988657838.PNG\",\"size\":199263,\"uid\":1665988666464,\"status\":\"success\"},{\"name\":\"幻灯片3.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片3-1665988657406.PNG\",\"size\":195895,\"uid\":1665988666466,\"status\":\"success\"},{\"name\":\"幻灯片32.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片32-1665988661725.PNG\",\"size\":349911,\"uid\":1665988666467,\"status\":\"success\"},{\"name\":\"幻灯片22.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片22-1665988660301.PNG\",\"size\":357861,\"uid\":1665988666468,\"status\":\"success\"}]",
+    "fileUrl": "",
+    "tags": [
+      "动态",
+      "创业",
+      "计划书",
+      "总结"
+    ],
+    "effect": "动态",
+    "proportion": "16：9",
+    "pages": 32,
+    "likes": 0,
+    "views": 46,
+    "collections": 0,
+    "downloads": 5,
+    "likes_users": [],
+    "views_users": [],
+    "collections_users": [],
+    "downloads_users": [
+      "1361025916@qq.com",
+      "vipyhd@126.com",
+      "77083432@qq.com",
+      "zhuzhengtao72@163.com",
+      "2841994237@qq.com"
+    ],
+    "pay_users": [],
+    "createDate": {
+      "$date": "2022-10-17T06:37:46.580Z"
+    },
+    "updateDate": {
+      "$date": "2025-07-28T02:54:27.551Z"
+    },
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "634cf9dda6d8d129f58fe884"
+    },
+    "name": "素雅杂志风家具促销活动策划PPT模板",
+    "profile": "素雅杂志风家具促销活动策划PPT模板",
+    "category": [
+      "634cf8d0a6d8d129f58fe879",
+      "634904255f542a3c5b5aaa8f"
+    ],
+    "cover": "[{\"name\":\"幻灯片1.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片1-1665989030884.PNG\"}]",
+    "previewUrl": "[{\"name\":\"幻灯片1.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片1-1666168892172.PNG\",\"uid\":1666170398039,\"status\":\"success\"},{\"name\":\"幻灯片2.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片2-1666169089619.PNG\",\"uid\":1666170398040,\"status\":\"success\"},{\"name\":\"幻灯片13.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片13-1666170530625.PNG\",\"size\":38390,\"uid\":1666170549977,\"status\":\"success\"},{\"name\":\"幻灯片7.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片7-1666170530581.PNG\",\"size\":35305,\"uid\":1666170549978,\"status\":\"success\"},{\"name\":\"幻灯片17.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片17-1666170530658.PNG\",\"size\":21734,\"uid\":1666170549979,\"status\":\"success\"},{\"name\":\"幻灯片19.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片19-1666170530672.PNG\",\"size\":22419,\"uid\":1666170549980,\"status\":\"success\"},{\"name\":\"幻灯片24.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片24-1666170530704.PNG\",\"size\":16578,\"uid\":1666170549981,\"status\":\"success\"},{\"name\":\"幻灯片14.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片14-1666170530630.PNG\",\"size\":189708,\"uid\":1666170549982,\"status\":\"success\"},{\"name\":\"幻灯片20.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片20-1666170530674.PNG\",\"size\":192040,\"uid\":1666170549983,\"status\":\"success\"},{\"name\":\"幻灯片18.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片18-1666170530662.PNG\",\"size\":164446,\"uid\":1666170549984,\"status\":\"success\"},{\"name\":\"幻灯片22.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片22-1666170530690.PNG\",\"size\":155082,\"uid\":1666170549985,\"status\":\"success\"},{\"name\":\"幻灯片16.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片16-1666170530647.PNG\",\"size\":226116,\"uid\":1666170549986,\"status\":\"success\"},{\"name\":\"幻灯片6.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片6-1666170530575.PNG\",\"size\":303721,\"uid\":1666170549987,\"status\":\"success\"},{\"name\":\"幻灯片12.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片12-1666170530622.PNG\",\"size\":286900,\"uid\":1666170549988,\"status\":\"success\"},{\"name\":\"幻灯片3.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片3-1666170530553.PNG\",\"size\":374453,\"uid\":1666170549989,\"status\":\"success\"},{\"name\":\"幻灯片23.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片23-1666170530694.PNG\",\"size\":458523,\"uid\":1666170549990,\"status\":\"success\"},{\"name\":\"幻灯片5.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片5-1666170530567.PNG\",\"size\":470530,\"uid\":1666170549991,\"status\":\"success\"},{\"name\":\"幻灯片11.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片11-1666170530613.PNG\",\"size\":493254,\"uid\":1666170549992,\"status\":\"success\"},{\"name\":\"幻灯片8.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片8-1666170530584.PNG\",\"size\":488678,\"uid\":1666170549993,\"status\":\"success\"},{\"name\":\"幻灯片4.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片4-1666170530559.PNG\",\"size\":629867,\"uid\":1666170549994,\"status\":\"success\"},{\"name\":\"幻灯片10.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片10-1666170530601.PNG\",\"size\":762349,\"uid\":1666170549995,\"status\":\"success\"},{\"name\":\"幻灯片15.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片15-1666170530638.PNG\",\"size\":630255,\"uid\":1666170549996,\"status\":\"success\"},{\"name\":\"幻灯片25.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片25-1666170530707.PNG\",\"size\":733670,\"uid\":1666170549997,\"status\":\"success\"},{\"name\":\"幻灯片21.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片21-1666170530681.PNG\",\"size\":761441,\"uid\":1666170549998,\"status\":\"success\"},{\"name\":\"幻灯片9.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片9-1666170530592.PNG\",\"size\":850223,\"uid\":1666170549999,\"status\":\"success\"}]",
+    "fileUrl": "",
+    "tags": [
+      "动态",
+      "家具装修",
+      "设计",
+      "精美",
+      "简约"
+    ],
+    "effect": "动态",
+    "proportion": "16：9",
+    "pages": 26,
+    "likes": 0,
+    "views": 13,
+    "collections": 0,
+    "downloads": 1,
+    "likes_users": [],
+    "views_users": [],
+    "collections_users": [],
+    "downloads_users": [
+      "1464768713@qq.com"
+    ],
+    "pay_users": [],
+    "createDate": {
+      "$date": "2022-10-17T06:44:45.235Z"
+    },
+    "updateDate": {
+      "$date": "2025-02-14T09:27:21.542Z"
+    },
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "634cfaf8a6d8d129f58fe8a2"
+    },
+    "name": "中式室内设计装修效果展示PPT模板",
+    "profile": "中式室内设计装修效果展示PPT模板",
+    "category": [
+      "6349045e5f542a3c5b5aaaa7",
+      "634cf8d0a6d8d129f58fe879"
+    ],
+    "cover": "[{\"name\":\"幻灯片1.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片1-1665989317671.PNG\"}]",
+    "previewUrl": "[{\"name\":\"幻灯片12.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片12-1665989351676.PNG\",\"size\":159310,\"uid\":1665989368687,\"status\":\"success\"},{\"name\":\"幻灯片3.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片3-1665989347549.PNG\",\"size\":143067,\"uid\":1665989368688,\"status\":\"success\"},{\"name\":\"幻灯片20.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片20-1665989355357.PNG\",\"size\":144241,\"uid\":1665989368689,\"status\":\"success\"},{\"name\":\"幻灯片14.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片14-1665989353052.PNG\",\"size\":209551,\"uid\":1665989368690,\"status\":\"success\"},{\"name\":\"幻灯片19.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片19-1665989355142.PNG\",\"size\":142127,\"uid\":1665989368691,\"status\":\"success\"},{\"name\":\"幻灯片24.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片24-1665989357493.PNG\",\"size\":368034,\"uid\":1665989368692,\"status\":\"success\"},{\"name\":\"幻灯片23.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片23-1665989357204.PNG\",\"size\":296409,\"uid\":1665989368693,\"status\":\"success\"},{\"name\":\"幻灯片2.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片2-1665989347118.PNG\",\"size\":312487,\"uid\":1665989368694,\"status\":\"success\"},{\"name\":\"幻灯片6.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片6-1665989348846.PNG\",\"size\":301357,\"uid\":1665989368695,\"status\":\"success\"},{\"name\":\"幻灯片16.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片16-1665989353396.PNG\",\"size\":542143,\"uid\":1665989368696,\"status\":\"success\"},{\"name\":\"幻灯片5.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片5-1665989348630.PNG\",\"size\":252641,\"uid\":1665989368697,\"status\":\"success\"},{\"name\":\"幻灯片22.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片22-1665989356039.PNG\",\"size\":1016472,\"uid\":1665989368698,\"status\":\"success\"},{\"name\":\"幻灯片21.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片21-1665989355580.PNG\",\"size\":629226,\"uid\":1665989368699,\"status\":\"success\"},{\"name\":\"幻灯片4.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片4-1665989347551.PNG\",\"size\":1024583,\"uid\":1665989368700,\"status\":\"success\"},{\"name\":\"幻灯片17.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片17-1665989353964.PNG\",\"size\":377061,\"uid\":1665989368701,\"status\":\"success\"},{\"name\":\"幻灯片9.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片9-1665989349776.PNG\",\"size\":145037,\"uid\":1665989368702,\"status\":\"success\"},{\"name\":\"幻灯片15.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片15-1665989353155.PNG\",\"size\":144359,\"uid\":1665989368703,\"status\":\"success\"},{\"name\":\"幻灯片7.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片7-1665989349276.PNG\",\"size\":204792,\"uid\":1665989368704,\"status\":\"success\"},{\"name\":\"幻灯片8.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片8-1665989349500.PNG\",\"size\":439740,\"uid\":1665989368705,\"status\":\"success\"},{\"name\":\"幻灯片11.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片11-1665989351180.PNG\",\"size\":514822,\"uid\":1665989368706,\"status\":\"success\"},{\"name\":\"幻灯片18.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片18-1665989354241.PNG\",\"size\":987574,\"uid\":1665989368707,\"status\":\"success\"},{\"name\":\"幻灯片13.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片13-1665989351678.PNG\",\"size\":1193172,\"uid\":1665989368708,\"status\":\"success\"},{\"name\":\"幻灯片10.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片10-1665989350005.PNG\",\"size\":1107314,\"uid\":1665989368709,\"status\":\"success\"},{\"name\":\"幻灯片1.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片1-1665989346251.PNG\",\"size\":1849195,\"uid\":1665989368710,\"status\":\"success\"},{\"name\":\"幻灯片25.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片25-1665989357771.PNG\",\"size\":1840890,\"uid\":1665989368711,\"status\":\"success\"}]",
+    "fileUrl": "",
+    "tags": [
+      "中国风",
+      "家具设计",
+      "室内设计",
+      "精美"
+    ],
+    "effect": "动态",
+    "proportion": "16：9",
+    "pages": 26,
+    "likes": 0,
+    "views": 16,
+    "collections": 0,
+    "downloads": 1,
+    "likes_users": [],
+    "views_users": [],
+    "collections_users": [],
+    "downloads_users": [
+      "zhuzhengtao72@163.com"
+    ],
+    "pay_users": [],
+    "createDate": {
+      "$date": "2022-10-17T06:49:28.820Z"
+    },
+    "updateDate": {
+      "$date": "2025-03-09T12:32:13.413Z"
+    },
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "634d1103a6d8d129f58febee"
+    },
+    "name": "蓝色简约互联网大数据主题PPT模板下载",
+    "profile": "蓝色简约互联网大数据主题PPT模板下载",
+    "category": [
+      "634904195f542a3c5b5aaa8b",
+      "634904565f542a3c5b5aaaa3"
+    ],
+    "cover": "[{\"name\":\"幻灯片1.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片1-1665994953858.PNG\"}]",
+    "previewUrl": "[{\"name\":\"幻灯片10.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片10-1665994996071.PNG\",\"size\":398955,\"uid\":1665995010910,\"status\":\"success\"},{\"name\":\"幻灯片19.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片19-1665994998446.PNG\",\"size\":219626,\"uid\":1665995010911,\"status\":\"success\"},{\"name\":\"幻灯片25.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片25-1665995000261.PNG\",\"size\":297765,\"uid\":1665995010912,\"status\":\"success\"},{\"name\":\"幻灯片20.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片20-1665994998717.PNG\",\"size\":268174,\"uid\":1665995010913,\"status\":\"success\"},{\"name\":\"幻灯片18.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片18-1665994998221.PNG\",\"size\":264000,\"uid\":1665995010914,\"status\":\"success\"},{\"name\":\"幻灯片4.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片4-1665994994719.PNG\",\"size\":255998,\"uid\":1665995010915,\"status\":\"success\"},{\"name\":\"幻灯片11.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片11-1665994996494.PNG\",\"size\":269454,\"uid\":1665995010916,\"status\":\"success\"},{\"name\":\"幻灯片24.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片24-1665994999805.PNG\",\"size\":289525,\"uid\":1665995010917,\"status\":\"success\"},{\"name\":\"幻灯片17.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片17-1665994998007.PNG\",\"size\":266224,\"uid\":1665995010918,\"status\":\"success\"},{\"name\":\"幻灯片2.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片2-1665994994715.PNG\",\"size\":230341,\"uid\":1665995010919,\"status\":\"success\"},{\"name\":\"幻灯片12.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片12-1665994996924.PNG\",\"size\":196457,\"uid\":1665995010920,\"status\":\"success\"},{\"name\":\"幻灯片21.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片21-1665994998941.PNG\",\"size\":224401,\"uid\":1665995010921,\"status\":\"success\"},{\"name\":\"幻灯片23.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片23-1665994999588.PNG\",\"size\":256967,\"uid\":1665995010922,\"status\":\"success\"},{\"name\":\"幻灯片9.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片9-1665994995855.PNG\",\"size\":224959,\"uid\":1665995010923,\"status\":\"success\"},{\"name\":\"幻灯片26.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片26-1665995000264.PNG\",\"size\":272649,\"uid\":1665995010924,\"status\":\"success\"},{\"name\":\"幻灯片1.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片1-1665994994712.PNG\",\"size\":393478,\"uid\":1665995010925,\"status\":\"success\"},{\"name\":\"幻灯片16.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片16-1665994997788.PNG\",\"size\":255015,\"uid\":1665995010926,\"status\":\"success\"},{\"name\":\"幻灯片8.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片8-1665994995582.PNG\",\"size\":255266,\"uid\":1665995010927,\"status\":\"success\"},{\"name\":\"幻灯片27.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片27-1665995000700.PNG\",\"size\":391072,\"uid\":1665995010928,\"status\":\"success\"},{\"name\":\"幻灯片7.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片7-1665994995366.PNG\",\"size\":254361,\"uid\":1665995010929,\"status\":\"success\"},{\"name\":\"幻灯片13.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片13-1665994996927.PNG\",\"size\":226889,\"uid\":1665995010930,\"status\":\"success\"},{\"name\":\"幻灯片5.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片5-1665994994933.PNG\",\"size\":291269,\"uid\":1665995010931,\"status\":\"success\"},{\"name\":\"幻灯片3.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片3-1665994994717.PNG\",\"size\":224089,\"uid\":1665995010932,\"status\":\"success\"},{\"name\":\"幻灯片6.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片6-1665994995150.PNG\",\"size\":245546,\"uid\":1665995010933,\"status\":\"success\"},{\"name\":\"幻灯片22.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片22-1665994999158.PNG\",\"size\":295128,\"uid\":1665995010934,\"status\":\"success\"},{\"name\":\"幻灯片15.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片15-1665994997572.PNG\",\"size\":225329,\"uid\":1665995010935,\"status\":\"success\"},{\"name\":\"幻灯片14.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片14-1665994997149.PNG\",\"size\":240374,\"uid\":1665995010936,\"status\":\"success\"}]",
+    "fileUrl": "",
+    "tags": [
+      "动态",
+      "蓝色",
+      "科技",
+      "创意"
+    ],
+    "effect": "动态",
+    "proportion": "16：9",
+    "pages": 28,
+    "likes": 0,
+    "views": 56,
+    "collections": 0,
+    "downloads": 9,
+    "likes_users": [],
+    "views_users": [],
+    "collections_users": [],
+    "downloads_users": [
+      "1313121@qq.com",
+      "505604653@qq.com",
+      "2401928412@qq.com",
+      "807650492@qq.com",
+      "2457482283@qq.com",
+      "871933363@qq.com"
+    ],
+    "pay_users": [],
+    "createDate": {
+      "$date": "2022-10-17T08:23:31.048Z"
+    },
+    "updateDate": {
+      "$date": "2025-07-25T00:16:25.864Z"
+    },
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "634fadf91a37edd374abc112"
+    },
+    "name": "橙色圆点圆圈背景的年度工作总结PPT模板",
+    "profile": "橙色圆点圆圈背景的年度工作总结PPT模板",
+    "category": [
+      "6347b2dd9e02620e72925b38",
+      "634904255f542a3c5b5aaa8f"
+    ],
+    "cover": "[{\"name\":\"幻灯片1.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片1-1666166208102.PNG\"}]",
+    "previewUrl": "[{\"name\":\"幻灯片13.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片13-1666166244496.PNG\",\"size\":128806,\"uid\":1666166265460,\"status\":\"success\"},{\"name\":\"幻灯片11.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片11-1666166244279.PNG\",\"size\":130179,\"uid\":1666166265461,\"status\":\"success\"},{\"name\":\"幻灯片5.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片5-1666166242071.PNG\",\"size\":95158,\"uid\":1666166265462,\"status\":\"success\"},{\"name\":\"幻灯片12.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片12-1666166244495.PNG\",\"size\":72806,\"uid\":1666166265463,\"status\":\"success\"},{\"name\":\"幻灯片22.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片22-1666166248506.PNG\",\"size\":87284,\"uid\":1666166265464,\"status\":\"success\"},{\"name\":\"幻灯片23.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片23-1666166248725.PNG\",\"size\":377882,\"uid\":1666166265465,\"status\":\"success\"},{\"name\":\"幻灯片4.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片4-1666166241856.PNG\",\"size\":100923,\"uid\":1666166265466,\"status\":\"success\"},{\"name\":\"幻灯片6.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片6-1666166242287.PNG\",\"size\":167517,\"uid\":1666166265467,\"status\":\"success\"},{\"name\":\"幻灯片15.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片15-1666166245577.PNG\",\"size\":92264,\"uid\":1666166265468,\"status\":\"success\"},{\"name\":\"幻灯片21.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片21-1666166248289.PNG\",\"size\":165958,\"uid\":1666166265469,\"status\":\"success\"},{\"name\":\"幻灯片18.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片18-1666166246748.PNG\",\"size\":78612,\"uid\":1666166265470,\"status\":\"success\"},{\"name\":\"幻灯片3.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片3-1666166241428.PNG\",\"size\":256145,\"uid\":1666166265471,\"status\":\"success\"},{\"name\":\"幻灯片9.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片9-1666166243419.PNG\",\"size\":256604,\"uid\":1666166265472,\"status\":\"success\"},{\"name\":\"幻灯片7.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片7-1666166242559.PNG\",\"size\":321273,\"uid\":1666166265473,\"status\":\"success\"},{\"name\":\"幻灯片10.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片10-1666166243849.PNG\",\"size\":114298,\"uid\":1666166265474,\"status\":\"success\"},{\"name\":\"幻灯片8.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片8-1666166243415.PNG\",\"size\":83898,\"uid\":1666166265475,\"status\":\"success\"},{\"name\":\"幻灯片20.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片20-1666166247636.PNG\",\"size\":386135,\"uid\":1666166265476,\"status\":\"success\"},{\"name\":\"幻灯片19.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片19-1666166246978.PNG\",\"size\":255809,\"uid\":1666166265477,\"status\":\"success\"},{\"name\":\"幻灯片2.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片2-1666166241213.PNG\",\"size\":199030,\"uid\":1666166265478,\"status\":\"success\"},{\"name\":\"幻灯片24.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片24-1666166249603.PNG\",\"size\":345905,\"uid\":1666166265479,\"status\":\"success\"},{\"name\":\"幻灯片14.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片14-1666166244933.PNG\",\"size\":257194,\"uid\":1666166265480,\"status\":\"success\"},{\"name\":\"幻灯片17.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片17-1666166246531.PNG\",\"size\":74847,\"uid\":1666166265481,\"status\":\"success\"},{\"name\":\"幻灯片1.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片1-1666166241208.PNG\",\"size\":346985,\"uid\":1666166265482,\"status\":\"success\"},{\"name\":\"幻灯片16.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片16-1666166245861.PNG\",\"size\":127777,\"uid\":1666166265483,\"status\":\"success\"}]",
+    "fileUrl": "",
+    "tags": [
+      "橙色",
+      "工作总结",
+      "动态",
+      "圆圈",
+      "圆点"
+    ],
+    "effect": "动态",
+    "proportion": "16：9",
+    "pages": 25,
+    "likes": 0,
+    "views": 91,
+    "collections": 0,
+    "downloads": 9,
+    "likes_users": [],
+    "views_users": [],
+    "collections_users": [],
+    "downloads_users": [
+      "787221511@qq.com",
+      "183909450@qq.com",
+      "pugao666@163.com",
+      "376151654@qq.com",
+      "guo528437607@qq.com",
+      "1901367216@qq.com",
+      "1062709607@qq.com"
+    ],
+    "pay_users": [],
+    "createDate": {
+      "$date": "2022-10-19T07:57:45.547Z"
+    },
+    "updateDate": {
+      "$date": "2025-07-21T08:42:15.493Z"
+    },
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "634faf511a37edd374abc1da"
+    },
+    "name": "简约清新蓝粉配色个人简历PPT模板",
+    "profile": "简约清新蓝粉配色个人简历PPT模板",
+    "category": [
+      "6349043d5f542a3c5b5aaa9b"
+    ],
+    "cover": "[{\"name\":\"幻灯片1.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片1-1666166560319.PNG\"}]",
+    "previewUrl": "[{\"name\":\"幻灯片12.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片12-1666166598152.PNG\",\"size\":71015,\"uid\":1666166609305,\"status\":\"success\"},{\"name\":\"幻灯片2.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片2-1666166596562.PNG\",\"size\":84360,\"uid\":1666166609306,\"status\":\"success\"},{\"name\":\"幻灯片9.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片9-1666166597211.PNG\",\"size\":75004,\"uid\":1666166609307,\"status\":\"success\"},{\"name\":\"幻灯片3.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片3-1666166596563.PNG\",\"size\":73740,\"uid\":1666166609308,\"status\":\"success\"},{\"name\":\"幻灯片7.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片7-1666166597209.PNG\",\"size\":59128,\"uid\":1666166609309,\"status\":\"success\"},{\"name\":\"幻灯片18.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片18-1666166599662.PNG\",\"size\":73860,\"uid\":1666166609310,\"status\":\"success\"},{\"name\":\"幻灯片17.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片17-1666166599450.PNG\",\"size\":76094,\"uid\":1666166609311,\"status\":\"success\"},{\"name\":\"幻灯片5.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片5-1666166596781.PNG\",\"size\":71081,\"uid\":1666166609312,\"status\":\"success\"},{\"name\":\"幻灯片1.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片1-1666166596562.PNG\",\"size\":81102,\"uid\":1666166609313,\"status\":\"success\"},{\"name\":\"幻灯片13.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片13-1666166598372.PNG\",\"size\":72072,\"uid\":1666166609314,\"status\":\"success\"},{\"name\":\"幻灯片8.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片8-1666166597210.PNG\",\"size\":72555,\"uid\":1666166609315,\"status\":\"success\"},{\"name\":\"幻灯片6.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片6-1666166596793.PNG\",\"size\":161802,\"uid\":1666166609316,\"status\":\"success\"},{\"name\":\"幻灯片24.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片24-1666166601775.PNG\",\"size\":79181,\"uid\":1666166609317,\"status\":\"success\"},{\"name\":\"幻灯片22.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片22-1666166601134.PNG\",\"size\":254622,\"uid\":1666166609318,\"status\":\"success\"},{\"name\":\"幻灯片11.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片11-1666166597915.PNG\",\"size\":295801,\"uid\":1666166609319,\"status\":\"success\"},{\"name\":\"幻灯片16.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片16-1666166599235.PNG\",\"size\":210912,\"uid\":1666166609320,\"status\":\"success\"},{\"name\":\"幻灯片15.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片15-1666166598806.PNG\",\"size\":254258,\"uid\":1666166609321,\"status\":\"success\"},{\"name\":\"幻灯片4.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片4-1666166596565.PNG\",\"size\":232542,\"uid\":1666166609322,\"status\":\"success\"},{\"name\":\"幻灯片21.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片21-1666166600711.PNG\",\"size\":281453,\"uid\":1666166609323,\"status\":\"success\"},{\"name\":\"幻灯片14.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片14-1666166598373.PNG\",\"size\":321952,\"uid\":1666166609324,\"status\":\"success\"},{\"name\":\"幻灯片20.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片20-1666166600279.PNG\",\"size\":337673,\"uid\":1666166609325,\"status\":\"success\"},{\"name\":\"幻灯片10.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片10-1666166597484.PNG\",\"size\":312994,\"uid\":1666166609326,\"status\":\"success\"},{\"name\":\"幻灯片19.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片19-1666166599663.PNG\",\"size\":392916,\"uid\":1666166609327,\"status\":\"success\"},{\"name\":\"幻灯片23.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片23-1666166601561.PNG\",\"size\":240308,\"uid\":1666166609328,\"status\":\"success\"}]",
+    "fileUrl": "",
+    "tags": [
+      "简历",
+      "简约",
+      "蓝粉",
+      "动态"
+    ],
+    "effect": "动态",
+    "proportion": "16：9",
+    "pages": 25,
+    "likes": 0,
+    "views": 306,
+    "collections": 0,
+    "downloads": 25,
+    "likes_users": [],
+    "views_users": [],
+    "collections_users": [],
+    "downloads_users": [
+      "1403639079@qq.com",
+      "luminous@88.com",
+      "1357125515@qq.com",
+      "2567541288@qq.com",
+      "2401928412@qq.com",
+      "pugao666@163.com",
+      "dj7188901@163.com",
+      "512161647@qq.com",
+      "3089395316@qq.com",
+      "569131180@qq.com",
+      "460590689@qq.com",
+      "286384199@qq.com",
+      "3205749471@qq.com",
+      "1875387501@qq.com",
+      "840710263@qq.com",
+      "1513687897@qq.com",
+      "maobucv@test.com",
+      "1928998631@qq.com"
+    ],
+    "pay_users": [],
+    "createDate": {
+      "$date": "2022-10-19T08:03:29.395Z"
+    },
+    "updateDate": {
+      "$date": "2025-08-10T07:37:58.650Z"
+    },
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "634fb06e1a37edd374abc296"
+    },
+    "name": "深蓝色女生个人简历PPT模板",
+    "profile": "深蓝色女生个人简历PPT模板",
+    "category": [
+      "6349043d5f542a3c5b5aaa9b"
+    ],
+    "cover": "[{\"name\":\"幻灯片1.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片1-1666166851187.PNG\"}]",
+    "previewUrl": "[{\"name\":\"幻灯片1.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片1-1666168175383.PNG\",\"size\":63759,\"uid\":1666168189948,\"status\":\"success\"},{\"name\":\"幻灯片3.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片3-1666168175384.PNG\",\"size\":43956,\"uid\":1666168189949,\"status\":\"success\"},{\"name\":\"幻灯片2.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片2-1666168175383.PNG\",\"size\":38840,\"uid\":1666168189950,\"status\":\"success\"},{\"name\":\"幻灯片6.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片6-1666168175395.PNG\",\"size\":43269,\"uid\":1666168189951,\"status\":\"success\"},{\"name\":\"幻灯片13.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片13-1666168176500.PNG\",\"size\":72940,\"uid\":1666168189952,\"status\":\"success\"},{\"name\":\"幻灯片10.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片10-1666168175827.PNG\",\"size\":42811,\"uid\":1666168189953,\"status\":\"success\"},{\"name\":\"幻灯片14.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片14-1666168176713.PNG\",\"size\":41928,\"uid\":1666168189954,\"status\":\"success\"},{\"name\":\"幻灯片9.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片9-1666168175825.PNG\",\"size\":58152,\"uid\":1666168189955,\"status\":\"success\"},{\"name\":\"幻灯片8.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片8-1666168175398.PNG\",\"size\":214239,\"uid\":1666168189956,\"status\":\"success\"},{\"name\":\"幻灯片19.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片19-1666168180450.PNG\",\"size\":78941,\"uid\":1666168189957,\"status\":\"success\"},{\"name\":\"幻灯片17.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片17-1666168178895.PNG\",\"size\":313267,\"uid\":1666168189958,\"status\":\"success\"},{\"name\":\"幻灯片5.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片5-1666168175391.PNG\",\"size\":95821,\"uid\":1666168189959,\"status\":\"success\"},{\"name\":\"幻灯片7.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片7-1666168175396.PNG\",\"size\":68576,\"uid\":1666168189960,\"status\":\"success\"},{\"name\":\"幻灯片11.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片11-1666168175828.PNG\",\"size\":77369,\"uid\":1666168189961,\"status\":\"success\"},{\"name\":\"幻灯片12.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片12-1666168176041.PNG\",\"size\":264383,\"uid\":1666168189962,\"status\":\"success\"},{\"name\":\"幻灯片15.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片15-1666168176714.PNG\",\"size\":509238,\"uid\":1666168189963,\"status\":\"success\"},{\"name\":\"幻灯片16.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片16-1666168177819.PNG\",\"size\":935315,\"uid\":1666168189964,\"status\":\"success\"},{\"name\":\"幻灯片18.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片18-1666168179323.PNG\",\"size\":748587,\"uid\":1666168189965,\"status\":\"success\"},{\"name\":\"幻灯片20.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片20-1666168180451.PNG\",\"size\":61662,\"uid\":1666168189966,\"status\":\"success\"},{\"name\":\"幻灯片4.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片4-1666168175385.PNG\",\"size\":250327,\"uid\":1666168189967,\"status\":\"success\"}]",
+    "fileUrl": "",
+    "tags": [
+      "简历",
+      "深蓝色",
+      "女生"
+    ],
+    "effect": "动态",
+    "proportion": "16：9",
+    "pages": 21,
+    "likes": 0,
+    "views": 69,
+    "collections": 0,
+    "downloads": 7,
+    "likes_users": [],
+    "views_users": [],
+    "collections_users": [],
+    "downloads_users": [
+      "1403639079@qq.com",
+      "zealfire@foxmail.com",
+      "1410837981@qq.com",
+      "2401928412@qq.com",
+      "512161647@qq.com",
+      "985429783@qq.com",
+      "2961823134@qq.com"
+    ],
+    "pay_users": [],
+    "createDate": {
+      "$date": "2022-10-19T08:08:14.211Z"
+    },
+    "updateDate": {
+      "$date": "2025-08-09T16:58:55.493Z"
+    },
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "634fb16f1a37edd374abc2f2"
+    },
+    "name": "彩色扁平化电脑桌背景个人简历PPT模板",
+    "profile": "彩色扁平化电脑桌背景个人简历PPT模板",
+    "category": [
+      "6349043d5f542a3c5b5aaa9b"
+    ],
+    "cover": "[{\"name\":\"幻灯片1.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片1-1666167119866.PNG\"}]",
+    "previewUrl": "[{\"name\":\"幻灯片12.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片12-1666167147039.PNG\",\"size\":55061,\"uid\":1666167151088,\"status\":\"success\"},{\"name\":\"幻灯片14.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片14-1666167147253.PNG\",\"size\":44496,\"uid\":1666167151089,\"status\":\"success\"},{\"name\":\"幻灯片8.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片8-1666167146821.PNG\",\"size\":54601,\"uid\":1666167151090,\"status\":\"success\"},{\"name\":\"幻灯片3.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片3-1666167146604.PNG\",\"size\":54397,\"uid\":1666167151091,\"status\":\"success\"},{\"name\":\"幻灯片2.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片2-1666167146600.PNG\",\"size\":58957,\"uid\":1666167151092,\"status\":\"success\"},{\"name\":\"幻灯片7.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片7-1666167146608.PNG\",\"size\":33256,\"uid\":1666167151093,\"status\":\"success\"},{\"name\":\"幻灯片1.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片1-1666167146600.PNG\",\"size\":53521,\"uid\":1666167151094,\"status\":\"success\"},{\"name\":\"幻灯片9.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片9-1666167146823.PNG\",\"size\":30420,\"uid\":1666167151095,\"status\":\"success\"},{\"name\":\"幻灯片6.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片6-1666167146607.PNG\",\"size\":33058,\"uid\":1666167151096,\"status\":\"success\"},{\"name\":\"幻灯片15.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片15-1666167147254.PNG\",\"size\":55751,\"uid\":1666167151097,\"status\":\"success\"},{\"name\":\"幻灯片13.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片13-1666167147040.PNG\",\"size\":40597,\"uid\":1666167151098,\"status\":\"success\"},{\"name\":\"幻灯片5.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片5-1666167146607.PNG\",\"size\":38519,\"uid\":1666167151099,\"status\":\"success\"},{\"name\":\"幻灯片11.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片11-1666167147038.PNG\",\"size\":50667,\"uid\":1666167151100,\"status\":\"success\"},{\"name\":\"幻灯片17.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片17-1666167147266.PNG\",\"size\":53033,\"uid\":1666167151101,\"status\":\"success\"},{\"name\":\"幻灯片22.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片22-1666167147689.PNG\",\"size\":46533,\"uid\":1666167151102,\"status\":\"success\"},{\"name\":\"幻灯片16.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片16-1666167147255.PNG\",\"size\":55020,\"uid\":1666167151103,\"status\":\"success\"},{\"name\":\"幻灯片20.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片20-1666167147472.PNG\",\"size\":87262,\"uid\":1666167151104,\"status\":\"success\"},{\"name\":\"幻灯片4.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片4-1666167146604.PNG\",\"size\":161412,\"uid\":1666167151105,\"status\":\"success\"},{\"name\":\"幻灯片21.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片21-1666167147688.PNG\",\"size\":34322,\"uid\":1666167151106,\"status\":\"success\"},{\"name\":\"幻灯片18.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片18-1666167147471.PNG\",\"size\":44736,\"uid\":1666167151107,\"status\":\"success\"},{\"name\":\"幻灯片10.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片10-1666167146825.PNG\",\"size\":81527,\"uid\":1666167151108,\"status\":\"success\"},{\"name\":\"幻灯片19.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片19-1666167147471.PNG\",\"size\":55683,\"uid\":1666167151109,\"status\":\"success\"},{\"name\":\"幻灯片23.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片23-1666167147901.PNG\",\"size\":49481,\"uid\":1666167151110,\"status\":\"success\"},{\"name\":\"幻灯片24.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片24-1666167147904.PNG\",\"size\":53317,\"uid\":1666167151111,\"status\":\"success\"}]",
+    "fileUrl": "",
+    "tags": [
+      "简历",
+      "扁平化",
+      "彩色",
+      "电脑桌"
+    ],
+    "effect": "动态",
+    "proportion": "16：9",
+    "pages": 24,
+    "likes": 0,
+    "views": 59,
+    "collections": 0,
+    "downloads": 11,
+    "likes_users": [],
+    "views_users": [],
+    "collections_users": [],
+    "downloads_users": [
+      "1403639079@qq.com",
+      "512161647@qq.com",
+      "fred.tian@qq.com",
+      "460590689@qq.com",
+      "1584775297@qq.com",
+      "1262044533@qq.com",
+      "1513687897@qq.com",
+      "vivid333@163.com",
+      "626509106@qq.com",
+      "1062709607@qq.com"
+    ],
+    "pay_users": [],
+    "createDate": {
+      "$date": "2022-10-19T08:12:31.318Z"
+    },
+    "updateDate": {
+      "$date": "2025-08-10T07:26:24.327Z"
+    },
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "6350faa67594a9a5c6076073"
+    },
+    "name": "玫红色国潮戏曲主题PPT模板",
+    "profile": "玫红色国潮戏曲主题PPT模板",
+    "category": [
+      "6349045e5f542a3c5b5aaaa7",
+      "634904255f542a3c5b5aaa8f"
+    ],
+    "cover": "[{\"name\":\"幻灯片1.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片1-1666251272890.PNG\"}]",
+    "previewUrl": "[{\"name\":\"幻灯片22.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片22-1666251403225.PNG\",\"size\":221857,\"uid\":1666251429973,\"status\":\"success\"},{\"name\":\"幻灯片23.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片23-1666251403440.PNG\",\"size\":239552,\"uid\":1666251429974,\"status\":\"success\"},{\"name\":\"幻灯片7.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片7-1666251390740.PNG\",\"size\":185424,\"uid\":1666251429975,\"status\":\"success\"},{\"name\":\"幻灯片13.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片13-1666251395240.PNG\",\"size\":385464,\"uid\":1666251429976,\"status\":\"success\"},{\"name\":\"幻灯片12.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片12-1666251395238.PNG\",\"size\":128123,\"uid\":1666251429977,\"status\":\"success\"},{\"name\":\"幻灯片2.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片2-1666251386206.PNG\",\"size\":451152,\"uid\":1666251429978,\"status\":\"success\"},{\"name\":\"幻灯片24.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片24-1666251403655.PNG\",\"size\":828998,\"uid\":1666251429979,\"status\":\"success\"},{\"name\":\"幻灯片20.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片20-1666251401717.PNG\",\"size\":340879,\"uid\":1666251429980,\"status\":\"success\"},{\"name\":\"幻灯片3.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片3-1666251386851.PNG\",\"size\":879342,\"uid\":1666251429981,\"status\":\"success\"},{\"name\":\"幻灯片8.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片8-1666251391190.PNG\",\"size\":267789,\"uid\":1666251429982,\"status\":\"success\"},{\"name\":\"幻灯片14.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片14-1666251397193.PNG\",\"size\":883449,\"uid\":1666251429984,\"status\":\"success\"},{\"name\":\"幻灯片10.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片10-1666251393293.PNG\",\"size\":616753,\"uid\":1666251429985,\"status\":\"success\"},{\"name\":\"幻灯片5.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片5-1666251389663.PNG\",\"size\":686975,\"uid\":1666251429986,\"status\":\"success\"},{\"name\":\"幻灯片6.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片6-1666251390312.PNG\",\"size\":334088,\"uid\":1666251429987,\"status\":\"success\"},{\"name\":\"幻灯片21.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片21-1666251402148.PNG\",\"size\":709811,\"uid\":1666251429988,\"status\":\"success\"},{\"name\":\"幻灯片11.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片11-1666251394391.PNG\",\"size\":666619,\"uid\":1666251429989,\"status\":\"success\"},{\"name\":\"幻灯片17.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片17-1666251398917.PNG\",\"size\":566676,\"uid\":1666251429990,\"status\":\"success\"},{\"name\":\"幻灯片4.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片4-1666251387930.PNG\",\"size\":911991,\"uid\":1666251429991,\"status\":\"success\"},{\"name\":\"幻灯片15.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片15-1666251397961.PNG\",\"size\":372778,\"uid\":1666251429992,\"status\":\"success\"},{\"name\":\"幻灯片9.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片9-1666251392222.PNG\",\"size\":880751,\"uid\":1666251429993,\"status\":\"success\"},{\"name\":\"幻灯片16.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片16-1666251398479.PNG\",\"size\":302591,\"uid\":1666251429994,\"status\":\"success\"},{\"name\":\"幻灯片18.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片18-1666251399567.PNG\",\"size\":645068,\"uid\":1666251429995,\"status\":\"success\"},{\"name\":\"幻灯片19.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片19-1666251400432.PNG\",\"size\":879682,\"uid\":1666251429996,\"status\":\"success\"},{\"name\":\"幻灯片1.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片1-1666251385559.PNG\",\"size\":829221,\"uid\":1666251429997,\"status\":\"success\"}]",
+    "fileUrl": "",
+    "tags": [
+      "国潮",
+      "中国风",
+      "戏曲",
+      "玫瑰红",
+      "动态"
+    ],
+    "effect": "动态",
+    "proportion": "16：9",
+    "pages": 25,
+    "likes": 0,
+    "views": 9,
+    "collections": 0,
+    "downloads": 3,
+    "likes_users": [],
+    "views_users": [],
+    "collections_users": [],
+    "downloads_users": [
+      "1584775297@qq.com",
+      "105768640@qq.com"
+    ],
+    "pay_users": [],
+    "createDate": {
+      "$date": "2022-10-20T07:37:10.322Z"
+    },
+    "updateDate": {
+      "$date": "2025-06-09T13:19:10.849Z"
+    },
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "63510a037594a9a5c60763e4"
+    },
+    "name": "不忘初心牢记使命爱国主义教育PPT模板",
+    "profile": "不忘初心牢记使命爱国主义教育PPT模板",
+    "category": [
+      "6351097a7594a9a5c60763cf"
+    ],
+    "cover": "[{\"name\":\"幻灯片1.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片1-1666255898639.PNG\"}]",
+    "previewUrl": "[{\"name\":\"幻灯片2.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片2-1666255910283.PNG\",\"size\":33468,\"uid\":1666255911813,\"status\":\"success\"},{\"name\":\"幻灯片1.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片1-1666255910281.PNG\",\"size\":33565,\"uid\":1666255911814,\"status\":\"success\"},{\"name\":\"幻灯片4.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片4-1666256061195.PNG\",\"size\":48100,\"uid\":1666256069437,\"status\":\"success\"},{\"name\":\"幻灯片3.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片3-1666256061194.PNG\",\"size\":27981,\"uid\":1666256069438,\"status\":\"success\"},{\"name\":\"幻灯片6.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片6-1666256061199.PNG\",\"size\":50626,\"uid\":1666256069439,\"status\":\"success\"},{\"name\":\"幻灯片5.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片5-1666256061197.PNG\",\"size\":35235,\"uid\":1666256069440,\"status\":\"success\"},{\"name\":\"幻灯片8.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片8-1666256061204.PNG\",\"size\":34402,\"uid\":1666256069441,\"status\":\"success\"},{\"name\":\"幻灯片7.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片7-1666256061200.PNG\",\"size\":37008,\"uid\":1666256069442,\"status\":\"success\"},{\"name\":\"幻灯片10.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片10-1666256061207.PNG\",\"size\":34446,\"uid\":1666256069443,\"status\":\"success\"},{\"name\":\"幻灯片9.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片9-1666256061205.PNG\",\"size\":27696,\"uid\":1666256069444,\"status\":\"success\"},{\"name\":\"幻灯片12.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片12-1666256061210.PNG\",\"size\":33592,\"uid\":1666256069445,\"status\":\"success\"},{\"name\":\"幻灯片13.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片13-1666256061211.PNG\",\"size\":50719,\"uid\":1666256069446,\"status\":\"success\"},{\"name\":\"幻灯片11.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片11-1666256061208.PNG\",\"size\":51663,\"uid\":1666256069447,\"status\":\"success\"},{\"name\":\"幻灯片15.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片15-1666256061216.PNG\",\"size\":36769,\"uid\":1666256069448,\"status\":\"success\"},{\"name\":\"幻灯片14.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片14-1666256061214.PNG\",\"size\":28242,\"uid\":1666256069449,\"status\":\"success\"},{\"name\":\"幻灯片16.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片16-1666256061217.PNG\",\"size\":52040,\"uid\":1666256069450,\"status\":\"success\"},{\"name\":\"幻灯片17.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片17-1666256061220.PNG\",\"size\":44052,\"uid\":1666256069451,\"status\":\"success\"},{\"name\":\"幻灯片20.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片20-1666256061225.PNG\",\"size\":32837,\"uid\":1666256069452,\"status\":\"success\"},{\"name\":\"幻灯片19.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片19-1666256061223.PNG\",\"size\":27635,\"uid\":1666256069453,\"status\":\"success\"},{\"name\":\"幻灯片21.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片21-1666256061226.PNG\",\"size\":61069,\"uid\":1666256069454,\"status\":\"success\"},{\"name\":\"幻灯片18.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片18-1666256061222.PNG\",\"size\":47126,\"uid\":1666256069455,\"status\":\"success\"},{\"name\":\"幻灯片23.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片23-1666256061230.PNG\",\"size\":54888,\"uid\":1666256069456,\"status\":\"success\"},{\"name\":\"幻灯片22.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片22-1666256061228.PNG\",\"size\":44388,\"uid\":1666256069457,\"status\":\"success\"},{\"name\":\"幻灯片25.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片25-1666256061234.PNG\",\"size\":34833,\"uid\":1666256069458,\"status\":\"success\"},{\"name\":\"幻灯片24.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片24-1666256061232.PNG\",\"size\":59198,\"uid\":1666256069459,\"status\":\"success\"}]",
+    "fileUrl": "",
+    "tags": [
+      "党建",
+      "爱国",
+      "红色"
+    ],
+    "effect": "动态",
+    "proportion": "16：9",
+    "pages": 26,
+    "likes": 0,
+    "views": 15,
+    "collections": 0,
+    "downloads": 3,
+    "likes_users": [],
+    "views_users": [],
+    "collections_users": [],
+    "downloads_users": [
+      "183909450@qq.com",
+      "105768640@qq.com"
+    ],
+    "pay_users": [],
+    "createDate": {
+      "$date": "2022-10-20T08:42:43.432Z"
+    },
+    "updateDate": {
+      "$date": "2025-06-09T13:18:43.718Z"
+    },
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "6351100b7594a9a5c607653a"
+    },
+    "name": "大气雪山背景商务PPT模板",
+    "profile": "大气雪山背景商务PPT模板",
+    "category": [
+      "634904195f542a3c5b5aaa8b"
+    ],
+    "cover": "[{\"name\":\"幻灯片1.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片1-1666256877696.PNG\"}]",
+    "previewUrl": "[{\"name\":\"幻灯片2.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片2-1666256903720.PNG\",\"size\":26724,\"uid\":1666256906766,\"status\":\"success\"},{\"name\":\"幻灯片1.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片1-1666256903719.PNG\",\"size\":27173,\"uid\":1666256906767,\"status\":\"success\"},{\"name\":\"幻灯片10.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片10-1666256903725.PNG\",\"size\":38109,\"uid\":1666256906768,\"status\":\"success\"},{\"name\":\"幻灯片9.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片9-1666256903724.PNG\",\"size\":30259,\"uid\":1666256906769,\"status\":\"success\"},{\"name\":\"幻灯片12.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片12-1666256903727.PNG\",\"size\":38432,\"uid\":1666256906771,\"status\":\"success\"},{\"name\":\"幻灯片15.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片15-1666256903941.PNG\",\"size\":30259,\"uid\":1666256906772,\"status\":\"success\"},{\"name\":\"幻灯片14.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片14-1666256903940.PNG\",\"size\":38130,\"uid\":1666256906773,\"status\":\"success\"},{\"name\":\"幻灯片11.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片11-1666256903726.PNG\",\"size\":32769,\"uid\":1666256906774,\"status\":\"success\"},{\"name\":\"幻灯片18.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片18-1666256904156.PNG\",\"size\":31103,\"uid\":1666256906775,\"status\":\"success\"},{\"name\":\"幻灯片19.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片19-1666256904157.PNG\",\"size\":42848,\"uid\":1666256906776,\"status\":\"success\"},{\"name\":\"幻灯片3.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片3-1666256903720.PNG\",\"size\":30259,\"uid\":1666256906777,\"status\":\"success\"},{\"name\":\"幻灯片8.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片8-1666256903724.PNG\",\"size\":29481,\"uid\":1666256906778,\"status\":\"success\"},{\"name\":\"幻灯片6.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片6-1666256903722.PNG\",\"size\":48942,\"uid\":1666256906779,\"status\":\"success\"},{\"name\":\"幻灯片22.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片22-1666256904159.PNG\",\"size\":31291,\"uid\":1666256906780,\"status\":\"success\"},{\"name\":\"幻灯片23.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片23-1666256904371.PNG\",\"size\":33659,\"uid\":1666256906781,\"status\":\"success\"},{\"name\":\"幻灯片7.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片7-1666256903723.PNG\",\"size\":34953,\"uid\":1666256906782,\"status\":\"success\"},{\"name\":\"幻灯片5.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片5-1666256903721.PNG\",\"size\":37862,\"uid\":1666256906783,\"status\":\"success\"},{\"name\":\"幻灯片25.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片25-1666256904373.PNG\",\"size\":26262,\"uid\":1666256906784,\"status\":\"success\"},{\"name\":\"幻灯片4.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片4-1666256903720.PNG\",\"size\":43244,\"uid\":1666256906785,\"status\":\"success\"},{\"name\":\"幻灯片21.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片21-1666256904158.PNG\",\"size\":49409,\"uid\":1666256906786,\"status\":\"success\"},{\"name\":\"幻灯片24.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片24-1666256904373.PNG\",\"size\":34388,\"uid\":1666256906787,\"status\":\"success\"},{\"name\":\"幻灯片16.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片16-1666256903941.PNG\",\"size\":35599,\"uid\":1666256906788,\"status\":\"success\"},{\"name\":\"幻灯片13.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片13-1666256903728.PNG\",\"size\":37230,\"uid\":1666256906789,\"status\":\"success\"},{\"name\":\"幻灯片20.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片20-1666256904158.PNG\",\"size\":30259,\"uid\":1666256906790,\"status\":\"success\"},{\"name\":\"幻灯片17.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片17-1666256903942.PNG\",\"size\":44054,\"uid\":1666256906791,\"status\":\"success\"}]",
+    "fileUrl": "",
+    "tags": [
+      "冬天",
+      "雪山",
+      "商务"
+    ],
+    "effect": "动态",
+    "proportion": "16：9",
+    "pages": 26,
+    "likes": 0,
+    "views": 14,
+    "collections": 0,
+    "downloads": 3,
+    "likes_users": [],
+    "views_users": [],
+    "collections_users": [],
+    "downloads_users": [
+      "zhuzhengtao72@163.com",
+      "1062709607@qq.com"
+    ],
+    "pay_users": [],
+    "createDate": {
+      "$date": "2022-10-20T09:08:27.094Z"
+    },
+    "updateDate": {
+      "$date": "2025-07-01T07:58:11.155Z"
+    },
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "635259c97594a9a5c6077c0d"
+    },
+    "name": "橙色简约时尚企业介绍PPT模板",
+    "profile": "橙色简约时尚企业介绍PPT模板",
+    "category": [
+      "634904195f542a3c5b5aaa8b"
+    ],
+    "cover": "[{\"name\":\"幻灯片1.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片1-1666341294073.PNG\"}]",
+    "previewUrl": "[{\"name\":\"幻灯片2.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片2-1666341318630.PNG\",\"size\":31585,\"uid\":1666341321719,\"status\":\"success\"},{\"name\":\"幻灯片5.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片5-1666341318633.PNG\",\"size\":37926,\"uid\":1666341321720,\"status\":\"success\"},{\"name\":\"幻灯片4.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片4-1666341318632.PNG\",\"size\":41958,\"uid\":1666341321721,\"status\":\"success\"},{\"name\":\"幻灯片13.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片13-1666341318641.PNG\",\"size\":39750,\"uid\":1666341321722,\"status\":\"success\"},{\"name\":\"幻灯片10.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片10-1666341318638.PNG\",\"size\":36931,\"uid\":1666341321723,\"status\":\"success\"},{\"name\":\"幻灯片18.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片18-1666341318856.PNG\",\"size\":32326,\"uid\":1666341321724,\"status\":\"success\"},{\"name\":\"幻灯片15.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片15-1666341318643.PNG\",\"size\":37023,\"uid\":1666341321725,\"status\":\"success\"},{\"name\":\"幻灯片16.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片16-1666341318644.PNG\",\"size\":34621,\"uid\":1666341321726,\"status\":\"success\"},{\"name\":\"幻灯片6.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片6-1666341318634.PNG\",\"size\":39496,\"uid\":1666341321727,\"status\":\"success\"},{\"name\":\"幻灯片7.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片7-1666341318635.PNG\",\"size\":40997,\"uid\":1666341321728,\"status\":\"success\"},{\"name\":\"幻灯片3.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片3-1666341318630.PNG\",\"size\":33707,\"uid\":1666341321729,\"status\":\"success\"},{\"name\":\"幻灯片11.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片11-1666341318639.PNG\",\"size\":34548,\"uid\":1666341321730,\"status\":\"success\"},{\"name\":\"幻灯片9.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片9-1666341318638.PNG\",\"size\":33680,\"uid\":1666341321731,\"status\":\"success\"},{\"name\":\"幻灯片1.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片1-1666341318629.PNG\",\"size\":47240,\"uid\":1666341321732,\"status\":\"success\"},{\"name\":\"幻灯片8.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片8-1666341318636.PNG\",\"size\":38979,\"uid\":1666341321733,\"status\":\"success\"},{\"name\":\"幻灯片12.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片12-1666341318640.PNG\",\"size\":42047,\"uid\":1666341321734,\"status\":\"success\"},{\"name\":\"幻灯片21.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片21-1666341318859.PNG\",\"size\":45362,\"uid\":1666341321735,\"status\":\"success\"},{\"name\":\"幻灯片20.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片20-1666341318858.PNG\",\"size\":33570,\"uid\":1666341321736,\"status\":\"success\"},{\"name\":\"幻灯片19.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片19-1666341318856.PNG\",\"size\":35462,\"uid\":1666341321737,\"status\":\"success\"},{\"name\":\"幻灯片24.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片24-1666341319073.PNG\",\"size\":44648,\"uid\":1666341321738,\"status\":\"success\"},{\"name\":\"幻灯片17.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片17-1666341318856.PNG\",\"size\":26514,\"uid\":1666341321739,\"status\":\"success\"},{\"name\":\"幻灯片22.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片22-1666341319072.PNG\",\"size\":30298,\"uid\":1666341321740,\"status\":\"success\"},{\"name\":\"幻灯片14.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片14-1666341318642.PNG\",\"size\":33682,\"uid\":1666341321741,\"status\":\"success\"},{\"name\":\"幻灯片23.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片23-1666341319072.PNG\",\"size\":34025,\"uid\":1666341321742,\"status\":\"success\"},{\"name\":\"幻灯片25.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片25-1666341319074.PNG\",\"size\":47826,\"uid\":1666341321743,\"status\":\"success\"}]",
+    "fileUrl": "",
+    "tags": [
+      "橙色",
+      "商务"
+    ],
+    "effect": "动态",
+    "proportion": "16：9",
+    "pages": 25,
+    "likes": 0,
+    "views": 17,
+    "collections": 0,
+    "downloads": 2,
+    "likes_users": [],
+    "views_users": [],
+    "collections_users": [],
+    "downloads_users": [
+      "528932704@qq.com",
+      "512161647@qq.com"
+    ],
+    "pay_users": [],
+    "createDate": {
+      "$date": "2022-10-21T08:35:21.675Z"
+    },
+    "updateDate": {
+      "$date": "2025-07-29T06:31:04.737Z"
+    },
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "63525aa17594a9a5c6077c58"
+    },
+    "name": "不忘初心勇担当党建",
+    "profile": "不忘初心勇担当党建",
+    "category": [
+      "6351097a7594a9a5c60763cf"
+    ],
+    "cover": "[{\"name\":\"幻灯片1.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片1-1666341511052.PNG\"}]",
+    "previewUrl": "[{\"name\":\"幻灯片5.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片5-1666341534121.PNG\",\"size\":49073,\"uid\":1666341537788,\"status\":\"success\"},{\"name\":\"幻灯片8.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片8-1666341534123.PNG\",\"size\":45426,\"uid\":1666341537789,\"status\":\"success\"},{\"name\":\"幻灯片13.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片13-1666341534129.PNG\",\"size\":48273,\"uid\":1666341537790,\"status\":\"success\"},{\"name\":\"幻灯片11.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片11-1666341534127.PNG\",\"size\":52174,\"uid\":1666341537791,\"status\":\"success\"},{\"name\":\"幻灯片9.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片9-1666341534124.PNG\",\"size\":44432,\"uid\":1666341537792,\"status\":\"success\"},{\"name\":\"幻灯片12.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片12-1666341534128.PNG\",\"size\":46741,\"uid\":1666341537793,\"status\":\"success\"},{\"name\":\"幻灯片2.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片2-1666341534118.PNG\",\"size\":37567,\"uid\":1666341537794,\"status\":\"success\"},{\"name\":\"幻灯片7.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片7-1666341534122.PNG\",\"size\":44322,\"uid\":1666341537795,\"status\":\"success\"},{\"name\":\"幻灯片1.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片1-1666341534118.PNG\",\"size\":46767,\"uid\":1666341537796,\"status\":\"success\"},{\"name\":\"幻灯片3.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片3-1666341534118.PNG\",\"size\":31249,\"uid\":1666341537797,\"status\":\"success\"},{\"name\":\"幻灯片17.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片17-1666341534345.PNG\",\"size\":45184,\"uid\":1666341537798,\"status\":\"success\"},{\"name\":\"幻灯片6.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片6-1666341534121.PNG\",\"size\":52772,\"uid\":1666341537799,\"status\":\"success\"},{\"name\":\"幻灯片16.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片16-1666341534344.PNG\",\"size\":62289,\"uid\":1666341537801,\"status\":\"success\"},{\"name\":\"幻灯片4.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片4-1666341534120.PNG\",\"size\":44228,\"uid\":1666341537802,\"status\":\"success\"},{\"name\":\"幻灯片14.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片14-1666341534130.PNG\",\"size\":45026,\"uid\":1666341537803,\"status\":\"success\"},{\"name\":\"幻灯片18.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片18-1666341534559.PNG\",\"size\":52926,\"uid\":1666341537804,\"status\":\"success\"},{\"name\":\"幻灯片20.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片20-1666341534561.PNG\",\"size\":48074,\"uid\":1666341537805,\"status\":\"success\"},{\"name\":\"幻灯片15.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片15-1666341534131.PNG\",\"size\":76925,\"uid\":1666341537806,\"status\":\"success\"},{\"name\":\"幻灯片10.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片10-1666341534125.PNG\",\"size\":66525,\"uid\":1666341537807,\"status\":\"success\"},{\"name\":\"幻灯片19.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片19-1666341534560.PNG\",\"size\":65539,\"uid\":1666341537808,\"status\":\"success\"}]",
+    "fileUrl": "",
+    "tags": [
+      "党建",
+      "不忘初心"
+    ],
+    "effect": "动态",
+    "proportion": "16：9",
+    "pages": 25,
+    "likes": 0,
+    "views": 12,
+    "collections": 0,
+    "downloads": 3,
+    "likes_users": [],
+    "views_users": [],
+    "collections_users": [],
+    "downloads_users": [
+      "2567541288@qq.com"
+    ],
+    "pay_users": [],
+    "createDate": {
+      "$date": "2022-10-21T08:38:57.509Z"
+    },
+    "updateDate": {
+      "$date": "2025-04-12T02:35:10.380Z"
+    },
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "63562ef47594a9a5c607b09e"
+    },
+    "name": "橙色矢量扁平化公司管理制度培训PPT模板",
+    "profile": "橙色矢量扁平化公司管理制度培训PPT模板",
+    "category": [
+      "63562de87594a9a5c607b092"
+    ],
+    "cover": "[{\"name\":\"幻灯片1.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片1-1666592459508.PNG\"}]",
+    "previewUrl": "[{\"name\":\"幻灯片2.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片2-1666593696841.PNG\",\"size\":27658,\"uid\":1666593698111,\"status\":\"success\"},{\"name\":\"幻灯片3.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片3-1666593696842.PNG\",\"size\":27584,\"uid\":1666593698112,\"status\":\"success\"},{\"name\":\"幻灯片6.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片6-1666593696846.PNG\",\"size\":59329,\"uid\":1666593698113,\"status\":\"success\"},{\"name\":\"幻灯片11.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片11-1666593696852.PNG\",\"size\":52177,\"uid\":1666593698114,\"status\":\"success\"},{\"name\":\"幻灯片21.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片21-1666593697501.PNG\",\"size\":39737,\"uid\":1666593698115,\"status\":\"success\"},{\"name\":\"幻灯片8.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片8-1666593696848.PNG\",\"size\":53462,\"uid\":1666593698116,\"status\":\"success\"},{\"name\":\"幻灯片14.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片14-1666593697067.PNG\",\"size\":41756,\"uid\":1666593698117,\"status\":\"success\"},{\"name\":\"幻灯片9.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片9-1666593696850.PNG\",\"size\":39925,\"uid\":1666593698118,\"status\":\"success\"},{\"name\":\"幻灯片4.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片4-1666593696842.PNG\",\"size\":43792,\"uid\":1666593698119,\"status\":\"success\"},{\"name\":\"幻灯片13.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片13-1666593697067.PNG\",\"size\":31712,\"uid\":1666593698120,\"status\":\"success\"},{\"name\":\"幻灯片1.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片1-1666593696841.PNG\",\"size\":33247,\"uid\":1666593698121,\"status\":\"success\"},{\"name\":\"幻灯片7.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片7-1666593696847.PNG\",\"size\":45271,\"uid\":1666593698122,\"status\":\"success\"},{\"name\":\"幻灯片20.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片20-1666593697499.PNG\",\"size\":46333,\"uid\":1666593698123,\"status\":\"success\"},{\"name\":\"幻灯片10.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片10-1666593696851.PNG\",\"size\":29449,\"uid\":1666593698124,\"status\":\"success\"},{\"name\":\"幻灯片18.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片18-1666593697284.PNG\",\"size\":32292,\"uid\":1666593698125,\"status\":\"success\"},{\"name\":\"幻灯片25.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片25-1666593697717.PNG\",\"size\":34609,\"uid\":1666593698126,\"status\":\"success\"},{\"name\":\"幻灯片17.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片17-1666593697283.PNG\",\"size\":32018,\"uid\":1666593698127,\"status\":\"success\"},{\"name\":\"幻灯片15.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片15-1666593697068.PNG\",\"size\":37070,\"uid\":1666593698128,\"status\":\"success\"},{\"name\":\"幻灯片5.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片5-1666593696844.PNG\",\"size\":39461,\"uid\":1666593698129,\"status\":\"success\"},{\"name\":\"幻灯片12.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片12-1666593697067.PNG\",\"size\":52131,\"uid\":1666593698130,\"status\":\"success\"},{\"name\":\"幻灯片23.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片23-1666593697503.PNG\",\"size\":41308,\"uid\":1666593698131,\"status\":\"success\"},{\"name\":\"幻灯片22.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片22-1666593697502.PNG\",\"size\":38066,\"uid\":1666593698132,\"status\":\"success\"},{\"name\":\"幻灯片16.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片16-1666593697280.PNG\",\"size\":36565,\"uid\":1666593698133,\"status\":\"success\"},{\"name\":\"幻灯片19.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片19-1666593697284.PNG\",\"size\":39461,\"uid\":1666593698134,\"status\":\"success\"},{\"name\":\"幻灯片24.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片24-1666593697716.PNG\",\"size\":45082,\"uid\":1666593698135,\"status\":\"success\"}]",
+    "fileUrl": "",
+    "tags": [
+      "橙色",
+      "培训",
+      "扁平化"
+    ],
+    "effect": "动态",
+    "proportion": "16：9",
+    "pages": 25,
+    "likes": 0,
+    "views": 15,
+    "collections": 0,
+    "downloads": 3,
+    "likes_users": [],
+    "views_users": [],
+    "collections_users": [],
+    "downloads_users": [
+      "1403639079@qq.com",
+      "3129548308@qq.com",
+      "2401928412@qq.com"
+    ],
+    "pay_users": [],
+    "createDate": {
+      "$date": "2022-10-24T06:21:40.574Z"
+    },
+    "updateDate": {
+      "$date": "2025-07-01T07:58:17.109Z"
+    },
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "63562feb7594a9a5c607b0e9"
+    },
+    "name": "情商管理与沟通技巧培训PPT模板",
+    "profile": "情商管理与沟通技巧培训PPT模板",
+    "category": [
+      "63562de87594a9a5c607b092"
+    ],
+    "cover": "[{\"name\":\"幻灯片1.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片1-1666592717433.PNG\"}]",
+    "previewUrl": "[{\"name\":\"幻灯片9.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片9-1666592741595.PNG\",\"size\":37642,\"uid\":1666592743839,\"status\":\"success\"},{\"name\":\"幻灯片4.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片4-1666592741590.PNG\",\"size\":24320,\"uid\":1666592743840,\"status\":\"success\"},{\"name\":\"幻灯片5.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片5-1666592741590.PNG\",\"size\":33375,\"uid\":1666592743841,\"status\":\"success\"},{\"name\":\"幻灯片3.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片3-1666592741589.PNG\",\"size\":34648,\"uid\":1666592743842,\"status\":\"success\"},{\"name\":\"幻灯片12.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片12-1666592741597.PNG\",\"size\":40946,\"uid\":1666592743843,\"status\":\"success\"},{\"name\":\"幻灯片15.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片15-1666592741812.PNG\",\"size\":41635,\"uid\":1666592743844,\"status\":\"success\"},{\"name\":\"幻灯片2.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片2-1666592741589.PNG\",\"size\":39083,\"uid\":1666592743845,\"status\":\"success\"},{\"name\":\"幻灯片6.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片6-1666592741591.PNG\",\"size\":39204,\"uid\":1666592743846,\"status\":\"success\"},{\"name\":\"幻灯片13.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片13-1666592741811.PNG\",\"size\":25254,\"uid\":1666592743847,\"status\":\"success\"},{\"name\":\"幻灯片10.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片10-1666592741596.PNG\",\"size\":33621,\"uid\":1666592743848,\"status\":\"success\"},{\"name\":\"幻灯片14.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片14-1666592741811.PNG\",\"size\":28184,\"uid\":1666592743849,\"status\":\"success\"},{\"name\":\"幻灯片17.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片17-1666592742028.PNG\",\"size\":49542,\"uid\":1666592743850,\"status\":\"success\"},{\"name\":\"幻灯片7.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片7-1666592741593.PNG\",\"size\":42228,\"uid\":1666592743851,\"status\":\"success\"},{\"name\":\"幻灯片1.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片1-1666592741588.PNG\",\"size\":45079,\"uid\":1666592743852,\"status\":\"success\"},{\"name\":\"幻灯片8.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片8-1666592741594.PNG\",\"size\":40702,\"uid\":1666592743853,\"status\":\"success\"},{\"name\":\"幻灯片29.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片29-1666592742681.PNG\",\"size\":42934,\"uid\":1666592743854,\"status\":\"success\"},{\"name\":\"幻灯片30.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片30-1666592742682.PNG\",\"size\":49593,\"uid\":1666592743855,\"status\":\"success\"},{\"name\":\"幻灯片33.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片33-1666592742900.PNG\",\"size\":52311,\"uid\":1666592743856,\"status\":\"success\"},{\"name\":\"幻灯片34.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片34-1666592742902.PNG\",\"size\":45079,\"uid\":1666592743857,\"status\":\"success\"},{\"name\":\"幻灯片16.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片16-1666592741813.PNG\",\"size\":55942,\"uid\":1666592743858,\"status\":\"success\"},{\"name\":\"幻灯片22.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片22-1666592742249.PNG\",\"size\":46010,\"uid\":1666592743859,\"status\":\"success\"},{\"name\":\"幻灯片28.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片28-1666592742469.PNG\",\"size\":56518,\"uid\":1666592743860,\"status\":\"success\"},{\"name\":\"幻灯片21.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片21-1666592742248.PNG\",\"size\":23190,\"uid\":1666592743861,\"status\":\"success\"},{\"name\":\"幻灯片18.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片18-1666592742029.PNG\",\"size\":32031,\"uid\":1666592743862,\"status\":\"success\"},{\"name\":\"幻灯片23.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片23-1666592742251.PNG\",\"size\":33585,\"uid\":1666592743863,\"status\":\"success\"},{\"name\":\"幻灯片27.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片27-1666592742468.PNG\",\"size\":25785,\"uid\":1666592743864,\"status\":\"success\"},{\"name\":\"幻灯片25.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片25-1666592742467.PNG\",\"size\":35892,\"uid\":1666592743865,\"status\":\"success\"},{\"name\":\"幻灯片32.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片32-1666592742684.PNG\",\"size\":56574,\"uid\":1666592743866,\"status\":\"success\"},{\"name\":\"幻灯片24.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片24-1666592742466.PNG\",\"size\":29824,\"uid\":1666592743867,\"status\":\"success\"},{\"name\":\"幻灯片19.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片19-1666592742031.PNG\",\"size\":43314,\"uid\":1666592743868,\"status\":\"success\"},{\"name\":\"幻灯片20.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片20-1666592742032.PNG\",\"size\":72774,\"uid\":1666592743869,\"status\":\"success\"},{\"name\":\"幻灯片31.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片31-1666592742683.PNG\",\"size\":39909,\"uid\":1666592743870,\"status\":\"success\"},{\"name\":\"幻灯片11.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片11-1666592741597.PNG\",\"size\":33252,\"uid\":1666592743871,\"status\":\"success\"},{\"name\":\"幻灯片26.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片26-1666592742468.PNG\",\"size\":25719,\"uid\":1666592743872,\"status\":\"success\"}]",
+    "fileUrl": "",
+    "tags": [
+      "培训",
+      "沟通",
+      "动态"
+    ],
+    "effect": "动态",
+    "proportion": "16：9",
+    "pages": 35,
+    "likes": 0,
+    "views": 13,
+    "collections": 0,
+    "downloads": 2,
+    "likes_users": [],
+    "views_users": [],
+    "collections_users": [],
+    "downloads_users": [
+      "1097677783@qq.com",
+      "512161647@qq.com"
+    ],
+    "pay_users": [],
+    "createDate": {
+      "$date": "2022-10-24T06:25:47.222Z"
+    },
+    "updateDate": {
+      "$date": "2025-01-15T01:08:49.974Z"
+    },
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "6356310e7594a9a5c607b0f8"
+    },
+    "name": "蓝色极简企业管理培训PPT模板",
+    "profile": "蓝色极简企业管理培训PPT模板",
+    "category": [
+      "63562de87594a9a5c607b092"
+    ],
+    "cover": "[{\"name\":\"幻灯片1.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片1-1666593005676.PNG\"}]",
+    "previewUrl": "[{\"name\":\"幻灯片10.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片10-1666593033619.PNG\",\"size\":29015,\"uid\":1666593035071,\"status\":\"success\"},{\"name\":\"幻灯片15.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片15-1666593033836.PNG\",\"size\":26114,\"uid\":1666593035072,\"status\":\"success\"},{\"name\":\"幻灯片3.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片3-1666593033614.PNG\",\"size\":25583,\"uid\":1666593035073,\"status\":\"success\"},{\"name\":\"幻灯片25.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片25-1666593034481.PNG\",\"size\":32638,\"uid\":1666593035074,\"status\":\"success\"},{\"name\":\"幻灯片1.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片1-1666593033613.PNG\",\"size\":30802,\"uid\":1666593035075,\"status\":\"success\"},{\"name\":\"幻灯片14.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片14-1666593033834.PNG\",\"size\":47081,\"uid\":1666593035076,\"status\":\"success\"},{\"name\":\"幻灯片9.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片9-1666593033618.PNG\",\"size\":47761,\"uid\":1666593035077,\"status\":\"success\"},{\"name\":\"幻灯片12.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片12-1666593033622.PNG\",\"size\":47306,\"uid\":1666593035078,\"status\":\"success\"},{\"name\":\"幻灯片7.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片7-1666593033617.PNG\",\"size\":44698,\"uid\":1666593035079,\"status\":\"success\"},{\"name\":\"幻灯片5.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片5-1666593033615.PNG\",\"size\":31696,\"uid\":1666593035080,\"status\":\"success\"},{\"name\":\"幻灯片20.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片20-1666593034052.PNG\",\"size\":38749,\"uid\":1666593035081,\"status\":\"success\"},{\"name\":\"幻灯片11.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片11-1666593033621.PNG\",\"size\":26102,\"uid\":1666593035082,\"status\":\"success\"},{\"name\":\"幻灯片8.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片8-1666593033617.PNG\",\"size\":42605,\"uid\":1666593035083,\"status\":\"success\"},{\"name\":\"幻灯片4.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片4-1666593033614.PNG\",\"size\":36681,\"uid\":1666593035084,\"status\":\"success\"},{\"name\":\"幻灯片13.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片13-1666593033834.PNG\",\"size\":38306,\"uid\":1666593035085,\"status\":\"success\"},{\"name\":\"幻灯片17.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片17-1666593033847.PNG\",\"size\":46009,\"uid\":1666593035086,\"status\":\"success\"},{\"name\":\"幻灯片23.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片23-1666593034266.PNG\",\"size\":58286,\"uid\":1666593035087,\"status\":\"success\"},{\"name\":\"幻灯片18.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片18-1666593034051.PNG\",\"size\":36649,\"uid\":1666593035088,\"status\":\"success\"},{\"name\":\"幻灯片16.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片16-1666593033836.PNG\",\"size\":37396,\"uid\":1666593035089,\"status\":\"success\"},{\"name\":\"幻灯片19.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片19-1666593034052.PNG\",\"size\":38858,\"uid\":1666593035090,\"status\":\"success\"},{\"name\":\"幻灯片22.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片22-1666593034265.PNG\",\"size\":35028,\"uid\":1666593035091,\"status\":\"success\"},{\"name\":\"幻灯片2.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片2-1666593033614.PNG\",\"size\":32216,\"uid\":1666593035092,\"status\":\"success\"},{\"name\":\"幻灯片6.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片6-1666593033616.PNG\",\"size\":44064,\"uid\":1666593035093,\"status\":\"success\"},{\"name\":\"幻灯片24.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片24-1666593034267.PNG\",\"size\":57181,\"uid\":1666593035094,\"status\":\"success\"},{\"name\":\"幻灯片21.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片21-1666593034063.PNG\",\"size\":25385,\"uid\":1666593035095,\"status\":\"success\"}]",
+    "fileUrl": "",
+    "tags": [
+      "企业培训",
+      "极简"
+    ],
+    "effect": "动态",
+    "proportion": "16：9",
+    "pages": 25,
+    "likes": 0,
+    "views": 26,
+    "collections": 0,
+    "downloads": 6,
+    "likes_users": [],
+    "views_users": [],
+    "collections_users": [],
+    "downloads_users": [
+      "2401928412@qq.com",
+      "512161647@qq.com",
+      "3448598552@qq.com",
+      "807650492@qq.com",
+      "zhuzhengtao72@163.com"
+    ],
+    "pay_users": [],
+    "createDate": {
+      "$date": "2022-10-24T06:30:38.255Z"
+    },
+    "updateDate": {
+      "$date": "2025-01-01T08:32:25.384Z"
+    },
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "635632b57594a9a5c607b13b"
+    },
+    "name": "卡通“开学啦”小学开学第一课PPT模板",
+    "profile": "PPT模板封面，使用了卡通风格绘制的蓝天白云、校园、热气球、开心舞蹈的小朋友背景图片。中间放置开学啦PPT艺术字，下方填写小学生开学第一课PPT标题。",
+    "category": [
+      "634913e7a6d8d129f58faf6b"
+    ],
+    "cover": "[{\"name\":\"幻灯片1.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片1-1666593427461.PNG\"}]",
+    "previewUrl": "[{\"name\":\"幻灯片5.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片5-1666593627528.PNG\",\"size\":54968,\"uid\":1666593630533,\"status\":\"success\"},{\"name\":\"幻灯片4.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片4-1666593627527.PNG\",\"size\":48017,\"uid\":1666593630534,\"status\":\"success\"},{\"name\":\"幻灯片8.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片8-1666593627532.PNG\",\"size\":53536,\"uid\":1666593630535,\"status\":\"success\"},{\"name\":\"幻灯片3.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片3-1666593627526.PNG\",\"size\":47847,\"uid\":1666593630536,\"status\":\"success\"},{\"name\":\"幻灯片9.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片9-1666593627533.PNG\",\"size\":56097,\"uid\":1666593630537,\"status\":\"success\"},{\"name\":\"幻灯片2.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片2-1666593627525.PNG\",\"size\":51639,\"uid\":1666593630538,\"status\":\"success\"},{\"name\":\"幻灯片10.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片10-1666593627534.PNG\",\"size\":41728,\"uid\":1666593630539,\"status\":\"success\"},{\"name\":\"幻灯片11.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片11-1666593627535.PNG\",\"size\":48624,\"uid\":1666593630540,\"status\":\"success\"},{\"name\":\"幻灯片25.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片25-1666593628410.PNG\",\"size\":47895,\"uid\":1666593630541,\"status\":\"success\"},{\"name\":\"幻灯片7.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片7-1666593627531.PNG\",\"size\":49390,\"uid\":1666593630542,\"status\":\"success\"},{\"name\":\"幻灯片14.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片14-1666593627750.PNG\",\"size\":55590,\"uid\":1666593630543,\"status\":\"success\"},{\"name\":\"幻灯片12.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片12-1666593627536.PNG\",\"size\":49649,\"uid\":1666593630544,\"status\":\"success\"},{\"name\":\"幻灯片23.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片23-1666593628407.PNG\",\"size\":64037,\"uid\":1666593630545,\"status\":\"success\"},{\"name\":\"幻灯片27.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片27-1666593628625.PNG\",\"size\":50717,\"uid\":1666593630546,\"status\":\"success\"},{\"name\":\"幻灯片15.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片15-1666593627751.PNG\",\"size\":58857,\"uid\":1666593630547,\"status\":\"success\"},{\"name\":\"幻灯片13.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片13-1666593627537.PNG\",\"size\":49593,\"uid\":1666593630548,\"status\":\"success\"},{\"name\":\"幻灯片24.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片24-1666593628409.PNG\",\"size\":52160,\"uid\":1666593630549,\"status\":\"success\"},{\"name\":\"幻灯片16.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片16-1666593627752.PNG\",\"size\":52410,\"uid\":1666593630550,\"status\":\"success\"},{\"name\":\"幻灯片26.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片26-1666593628624.PNG\",\"size\":53180,\"uid\":1666593630551,\"status\":\"success\"},{\"name\":\"幻灯片18.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片18-1666593627967.PNG\",\"size\":49338,\"uid\":1666593630552,\"status\":\"success\"},{\"name\":\"幻灯片22.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片22-1666593628194.PNG\",\"size\":56856,\"uid\":1666593630553,\"status\":\"success\"},{\"name\":\"幻灯片1.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片1-1666593627524.PNG\",\"size\":65581,\"uid\":1666593630554,\"status\":\"success\"},{\"name\":\"幻灯片28.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片28-1666593628626.PNG\",\"size\":45490,\"uid\":1666593630555,\"status\":\"success\"},{\"name\":\"幻灯片20.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片20-1666593628191.PNG\",\"size\":37016,\"uid\":1666593630556,\"status\":\"success\"},{\"name\":\"幻灯片32.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片32-1666593629060.PNG\",\"size\":44924,\"uid\":1666593630557,\"status\":\"success\"},{\"name\":\"幻灯片31.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片31-1666593628845.PNG\",\"size\":67801,\"uid\":1666593630558,\"status\":\"success\"},{\"name\":\"幻灯片17.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片17-1666593627966.PNG\",\"size\":49043,\"uid\":1666593630559,\"status\":\"success\"},{\"name\":\"幻灯片6.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片6-1666593627529.PNG\",\"size\":67909,\"uid\":1666593630560,\"status\":\"success\"},{\"name\":\"幻灯片34.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片34-1666593629062.PNG\",\"size\":63983,\"uid\":1666593630561,\"status\":\"success\"},{\"name\":\"幻灯片33.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片33-1666593629061.PNG\",\"size\":45617,\"uid\":1666593630562,\"status\":\"success\"},{\"name\":\"幻灯片29.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片29-1666593628840.PNG\",\"size\":63263,\"uid\":1666593630563,\"status\":\"success\"},{\"name\":\"幻灯片30.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片30-1666593628842.PNG\",\"size\":64643,\"uid\":1666593630564,\"status\":\"success\"},{\"name\":\"幻灯片21.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片21-1666593628192.PNG\",\"size\":72337,\"uid\":1666593630565,\"status\":\"success\"},{\"name\":\"幻灯片19.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片19-1666593627967.PNG\",\"size\":44604,\"uid\":1666593630566,\"status\":\"success\"}]",
+    "fileUrl": "",
+    "tags": [
+      "开学",
+      "小学生",
+      "卡通",
+      "动态"
+    ],
+    "effect": "动态",
+    "proportion": "16：9",
+    "pages": 35,
+    "likes": 0,
+    "views": 19,
+    "collections": 0,
+    "downloads": 7,
+    "likes_users": [],
+    "views_users": [],
+    "collections_users": [],
+    "downloads_users": [
+      "726784436@qq.com",
+      "484029024@qq.com",
+      "105768640@qq.com"
+    ],
+    "pay_users": [],
+    "createDate": {
+      "$date": "2022-10-24T06:37:41.220Z"
+    },
+    "updateDate": {
+      "$date": "2025-06-20T06:42:21.161Z"
+    },
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "635778550d28f6f5a99e1dc4"
+    },
+    "name": "学术大答辩毕业答辩PPT模板",
+    "profile": "学术大答辩毕业答辩PPT模板",
+    "category": [
+      "6347c2d79e02620e72925bd7",
+      "6349042d5f542a3c5b5aaa93"
+    ],
+    "cover": "[{\"name\":\"幻灯片1.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片1-1666676603780.PNG\"}]",
+    "previewUrl": "[{\"name\":\"幻灯片2.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片2-1666676805330.PNG\",\"size\":14177,\"uid\":1666676821719,\"status\":\"success\"},{\"name\":\"幻灯片4.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片4-1666676805336.PNG\",\"size\":28246,\"uid\":1666676821720,\"status\":\"success\"},{\"name\":\"幻灯片1.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片1-1666676805327.PNG\",\"size\":25243,\"uid\":1666676821721,\"status\":\"success\"},{\"name\":\"幻灯片3.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片3-1666676805332.PNG\",\"size\":12445,\"uid\":1666676821722,\"status\":\"success\"},{\"name\":\"幻灯片5.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片5-1666676805338.PNG\",\"size\":20515,\"uid\":1666676821723,\"status\":\"success\"},{\"name\":\"幻灯片6.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片6-1666676805340.PNG\",\"size\":26384,\"uid\":1666676821724,\"status\":\"success\"},{\"name\":\"幻灯片8.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片8-1666676805345.PNG\",\"size\":17092,\"uid\":1666676821725,\"status\":\"success\"},{\"name\":\"幻灯片9.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片9-1666676805346.PNG\",\"size\":12726,\"uid\":1666676821726,\"status\":\"success\"},{\"name\":\"幻灯片7.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片7-1666676805342.PNG\",\"size\":21217,\"uid\":1666676821727,\"status\":\"success\"},{\"name\":\"幻灯片10.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片10-1666676805348.PNG\",\"size\":24035,\"uid\":1666676821728,\"status\":\"success\"},{\"name\":\"幻灯片11.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片11-1666676805353.PNG\",\"size\":21071,\"uid\":1666676821729,\"status\":\"success\"},{\"name\":\"幻灯片14.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片14-1666676805359.PNG\",\"size\":12855,\"uid\":1666676821730,\"status\":\"success\"},{\"name\":\"幻灯片12.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片12-1666676805355.PNG\",\"size\":27128,\"uid\":1666676821731,\"status\":\"success\"},{\"name\":\"幻灯片16.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片16-1666676805362.PNG\",\"size\":24552,\"uid\":1666676821732,\"status\":\"success\"},{\"name\":\"幻灯片13.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片13-1666676805357.PNG\",\"size\":21591,\"uid\":1666676821733,\"status\":\"success\"},{\"name\":\"幻灯片15.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片15-1666676805360.PNG\",\"size\":22188,\"uid\":1666676821734,\"status\":\"success\"},{\"name\":\"幻灯片18.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片18-1666676805367.PNG\",\"size\":24375,\"uid\":1666676821735,\"status\":\"success\"},{\"name\":\"幻灯片17.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片17-1666676805365.PNG\",\"size\":29470,\"uid\":1666676821736,\"status\":\"success\"},{\"name\":\"幻灯片20.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片20-1666676805374.PNG\",\"size\":24285,\"uid\":1666676821737,\"status\":\"success\"},{\"name\":\"幻灯片19.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片19-1666676805369.PNG\",\"size\":12511,\"uid\":1666676821738,\"status\":\"success\"},{\"name\":\"幻灯片22.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片22-1666676805382.PNG\",\"size\":30092,\"uid\":1666676821739,\"status\":\"success\"},{\"name\":\"幻灯片24.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片24-1666676805387.PNG\",\"size\":12702,\"uid\":1666676821740,\"status\":\"success\"},{\"name\":\"幻灯片21.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片21-1666676805376.PNG\",\"size\":30451,\"uid\":1666676821741,\"status\":\"success\"},{\"name\":\"幻灯片26.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片26-1666676805393.PNG\",\"size\":20296,\"uid\":1666676821743,\"status\":\"success\"},{\"name\":\"幻灯片23.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片23-1666676805386.PNG\",\"size\":22254,\"uid\":1666676821744,\"status\":\"success\"},{\"name\":\"幻灯片27.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片27-1666676805396.PNG\",\"size\":22501,\"uid\":1666676821745,\"status\":\"success\"},{\"name\":\"幻灯片25.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片25-1666676805391.PNG\",\"size\":27201,\"uid\":1666676821746,\"status\":\"success\"},{\"name\":\"幻灯片29.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片29-1666676805400.PNG\",\"size\":25169,\"uid\":1666676821747,\"status\":\"success\"},{\"name\":\"幻灯片28.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片28-1666676805398.PNG\",\"size\":34238,\"uid\":1666676821748,\"status\":\"success\"}]",
+    "fileUrl": "",
+    "tags": [
+      "答辩",
+      "毕业",
+      "动态"
+    ],
+    "effect": "动态",
+    "proportion": "16：9",
+    "pages": 30,
+    "likes": 0,
+    "views": 82,
+    "collections": 0,
+    "downloads": 7,
+    "likes_users": [],
+    "views_users": [],
+    "collections_users": [],
+    "downloads_users": [
+      "1006565582@qq.com",
+      "512161647@qq.com",
+      "guo528437607@qq.com",
+      "895601287@qq.com",
+      "2353664897@qq.com",
+      "forhao@126.com"
+    ],
+    "pay_users": [],
+    "createDate": {
+      "$date": "2022-10-25T05:47:02.002Z"
+    },
+    "updateDate": {
+      "$date": "2025-08-11T06:50:40.698Z"
+    },
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "635779f90d28f6f5a99e1e0b"
+    },
+    "name": "精美实用微立体论文答辩PPT模板",
+    "profile": "精美实用微立体论文答辩PPT模板",
+    "category": [
+      "6347c2d79e02620e72925bd7",
+      "634904255f542a3c5b5aaa8f"
+    ],
+    "cover": "[{\"name\":\"幻灯片1.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片1-1666677191319.PNG\"}]",
+    "previewUrl": "[{\"name\":\"幻灯片2.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片2-1666677228432.PNG\",\"size\":20379,\"uid\":1666677240932,\"status\":\"success\"},{\"name\":\"幻灯片4.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片4-1666677228445.PNG\",\"size\":29964,\"uid\":1666677240933,\"status\":\"success\"},{\"name\":\"幻灯片1.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片1-1666677228429.PNG\",\"size\":20985,\"uid\":1666677240934,\"status\":\"success\"},{\"name\":\"幻灯片5.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片5-1666677228449.PNG\",\"size\":23779,\"uid\":1666677240935,\"status\":\"success\"},{\"name\":\"幻灯片3.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片3-1666677228436.PNG\",\"size\":18459,\"uid\":1666677240936,\"status\":\"success\"},{\"name\":\"幻灯片6.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片6-1666677228453.PNG\",\"size\":33507,\"uid\":1666677240937,\"status\":\"success\"},{\"name\":\"幻灯片7.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片7-1666677228457.PNG\",\"size\":25977,\"uid\":1666677240938,\"status\":\"success\"},{\"name\":\"幻灯片8.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片8-1666677228460.PNG\",\"size\":23789,\"uid\":1666677240939,\"status\":\"success\"},{\"name\":\"幻灯片9.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片9-1666677228470.PNG\",\"size\":22595,\"uid\":1666677240940,\"status\":\"success\"},{\"name\":\"幻灯片10.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片10-1666677228473.PNG\",\"size\":18213,\"uid\":1666677240941,\"status\":\"success\"},{\"name\":\"幻灯片12.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片12-1666677228479.PNG\",\"size\":21383,\"uid\":1666677240942,\"status\":\"success\"},{\"name\":\"幻灯片11.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片11-1666677228476.PNG\",\"size\":21006,\"uid\":1666677240943,\"status\":\"success\"},{\"name\":\"幻灯片14.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片14-1666677228486.PNG\",\"size\":19867,\"uid\":1666677240944,\"status\":\"success\"},{\"name\":\"幻灯片16.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片16-1666677228492.PNG\",\"size\":17966,\"uid\":1666677240945,\"status\":\"success\"},{\"name\":\"幻灯片13.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片13-1666677228483.PNG\",\"size\":23749,\"uid\":1666677240946,\"status\":\"success\"},{\"name\":\"幻灯片15.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片15-1666677228488.PNG\",\"size\":16150,\"uid\":1666677240947,\"status\":\"success\"},{\"name\":\"幻灯片18.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片18-1666677228497.PNG\",\"size\":24629,\"uid\":1666677240948,\"status\":\"success\"},{\"name\":\"幻灯片20.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片20-1666677228502.PNG\",\"size\":30964,\"uid\":1666677240949,\"status\":\"success\"},{\"name\":\"幻灯片17.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片17-1666677228494.PNG\",\"size\":23519,\"uid\":1666677240950,\"status\":\"success\"},{\"name\":\"幻灯片19.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片19-1666677228499.PNG\",\"size\":30579,\"uid\":1666677240951,\"status\":\"success\"},{\"name\":\"幻灯片22.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片22-1666677228508.PNG\",\"size\":22391,\"uid\":1666677240952,\"status\":\"success\"},{\"name\":\"幻灯片21.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片21-1666677228504.PNG\",\"size\":17058,\"uid\":1666677240953,\"status\":\"success\"},{\"name\":\"幻灯片24.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片24-1666677228512.PNG\",\"size\":19384,\"uid\":1666677240954,\"status\":\"success\"},{\"name\":\"幻灯片25.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片25-1666677228515.PNG\",\"size\":25409,\"uid\":1666677240955,\"status\":\"success\"},{\"name\":\"幻灯片23.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片23-1666677228510.PNG\",\"size\":21529,\"uid\":1666677240956,\"status\":\"success\"},{\"name\":\"幻灯片26.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片26-1666677228516.PNG\",\"size\":16033,\"uid\":1666677240957,\"status\":\"success\"},{\"name\":\"幻灯片28.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片28-1666677228521.PNG\",\"size\":24978,\"uid\":1666677240958,\"status\":\"success\"},{\"name\":\"幻灯片30.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片30-1666677228526.PNG\",\"size\":15681,\"uid\":1666677240959,\"status\":\"success\"},{\"name\":\"幻灯片27.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片27-1666677228520.PNG\",\"size\":34695,\"uid\":1666677240960,\"status\":\"success\"},{\"name\":\"幻灯片29.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片29-1666677228523.PNG\",\"size\":25403,\"uid\":1666677240961,\"status\":\"success\"},{\"name\":\"幻灯片31.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片31-1666677228527.PNG\",\"size\":29342,\"uid\":1666677240962,\"status\":\"success\"},{\"name\":\"幻灯片32.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片32-1666677228529.PNG\",\"size\":31353,\"uid\":1666677240963,\"status\":\"success\"},{\"name\":\"幻灯片33.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片33-1666677228530.PNG\",\"size\":24974,\"uid\":1666677240964,\"status\":\"success\"},{\"name\":\"幻灯片35.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片35-1666677228536.PNG\",\"size\":20528,\"uid\":1666677240965,\"status\":\"success\"},{\"name\":\"幻灯片34.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片34-1666677228532.PNG\",\"size\":31043,\"uid\":1666677240966,\"status\":\"success\"}]",
+    "fileUrl": "",
+    "tags": [
+      "精美",
+      "论文答辩",
+      "动态"
+    ],
+    "effect": "动态",
+    "proportion": "16：9",
+    "pages": 36,
+    "likes": 0,
+    "views": 21,
+    "collections": 0,
+    "downloads": 2,
+    "likes_users": [],
+    "views_users": [],
+    "collections_users": [],
+    "downloads_users": [
+      "2401928412@qq.com",
+      "2094024318@qq.com"
+    ],
+    "pay_users": [],
+    "createDate": {
+      "$date": "2022-10-25T05:54:01.243Z"
+    },
+    "updateDate": {
+      "$date": "2025-05-30T14:26:23.367Z"
+    },
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "63577b660d28f6f5a99e1e1d"
+    },
+    "name": "苹果IOS风论文答辩PPT模板",
+    "profile": "苹果IOS风论文答辩PPT模板",
+    "category": [
+      "634904255f542a3c5b5aaa8f",
+      "6349042d5f542a3c5b5aaa93"
+    ],
+    "cover": "[{\"name\":\"幻灯片1.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片1-1666677577289.PNG\"}]",
+    "previewUrl": "[{\"name\":\"幻灯片2.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片2-1666677595377.PNG\",\"size\":12938,\"uid\":1666677605885,\"status\":\"success\"},{\"name\":\"幻灯片1.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片1-1666677595372.PNG\",\"size\":17298,\"uid\":1666677605886,\"status\":\"success\"},{\"name\":\"幻灯片3.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片3-1666677595380.PNG\",\"size\":9180,\"uid\":1666677605887,\"status\":\"success\"},{\"name\":\"幻灯片4.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片4-1666677595384.PNG\",\"size\":30647,\"uid\":1666677605888,\"status\":\"success\"},{\"name\":\"幻灯片6.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片6-1666677595393.PNG\",\"size\":28367,\"uid\":1666677605889,\"status\":\"success\"},{\"name\":\"幻灯片5.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片5-1666677595389.PNG\",\"size\":26794,\"uid\":1666677605890,\"status\":\"success\"},{\"name\":\"幻灯片8.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片8-1666677595401.PNG\",\"size\":26651,\"uid\":1666677605891,\"status\":\"success\"},{\"name\":\"幻灯片7.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片7-1666677595397.PNG\",\"size\":26658,\"uid\":1666677605892,\"status\":\"success\"},{\"name\":\"幻灯片9.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片9-1666677595404.PNG\",\"size\":11976,\"uid\":1666677605893,\"status\":\"success\"},{\"name\":\"幻灯片10.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片10-1666677595407.PNG\",\"size\":15517,\"uid\":1666677605894,\"status\":\"success\"},{\"name\":\"幻灯片11.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片11-1666677595410.PNG\",\"size\":23994,\"uid\":1666677605895,\"status\":\"success\"},{\"name\":\"幻灯片12.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片12-1666677595412.PNG\",\"size\":30052,\"uid\":1666677605896,\"status\":\"success\"},{\"name\":\"幻灯片13.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片13-1666677595415.PNG\",\"size\":11723,\"uid\":1666677605897,\"status\":\"success\"},{\"name\":\"幻灯片14.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片14-1666677595418.PNG\",\"size\":24147,\"uid\":1666677605898,\"status\":\"success\"},{\"name\":\"幻灯片15.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片15-1666677595420.PNG\",\"size\":23539,\"uid\":1666677605899,\"status\":\"success\"},{\"name\":\"幻灯片16.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片16-1666677595422.PNG\",\"size\":26667,\"uid\":1666677605900,\"status\":\"success\"},{\"name\":\"幻灯片17.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片17-1666677595424.PNG\",\"size\":12151,\"uid\":1666677605901,\"status\":\"success\"},{\"name\":\"幻灯片18.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片18-1666677595425.PNG\",\"size\":22632,\"uid\":1666677605902,\"status\":\"success\"},{\"name\":\"幻灯片20.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片20-1666677595429.PNG\",\"size\":27445,\"uid\":1666677605903,\"status\":\"success\"},{\"name\":\"幻灯片19.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片19-1666677595427.PNG\",\"size\":21330,\"uid\":1666677605904,\"status\":\"success\"},{\"name\":\"幻灯片21.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片21-1666677595430.PNG\",\"size\":9693,\"uid\":1666677605905,\"status\":\"success\"},{\"name\":\"幻灯片22.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片22-1666677595431.PNG\",\"size\":28595,\"uid\":1666677605906,\"status\":\"success\"},{\"name\":\"幻灯片23.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片23-1666677595433.PNG\",\"size\":28897,\"uid\":1666677605907,\"status\":\"success\"},{\"name\":\"幻灯片24.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片24-1666677595435.PNG\",\"size\":22512,\"uid\":1666677605908,\"status\":\"success\"},{\"name\":\"幻灯片26.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片26-1666677595438.PNG\",\"size\":22011,\"uid\":1666677605909,\"status\":\"success\"},{\"name\":\"幻灯片25.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片25-1666677595436.PNG\",\"size\":21650,\"uid\":1666677605910,\"status\":\"success\"},{\"name\":\"幻灯片28.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片28-1666677595442.PNG\",\"size\":30872,\"uid\":1666677605911,\"status\":\"success\"},{\"name\":\"幻灯片27.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片27-1666677595440.PNG\",\"size\":29235,\"uid\":1666677605912,\"status\":\"success\"}]",
+    "fileUrl": "",
+    "tags": [
+      "ios风格",
+      "极简",
+      "动态"
+    ],
+    "effect": "动态",
+    "proportion": "16：9",
+    "pages": 29,
+    "likes": 0,
+    "views": 59,
+    "collections": 0,
+    "downloads": 8,
+    "likes_users": [],
+    "views_users": [],
+    "collections_users": [],
+    "downloads_users": [
+      "1522399180@qq.com",
+      "ysyx1@163.com",
+      "2401928412@qq.com",
+      "2308252856@qq.com",
+      "985429783@qq.com",
+      "guo528437607@qq.com",
+      "871933363@qq.com"
+    ],
+    "pay_users": [],
+    "createDate": {
+      "$date": "2022-10-25T06:00:06.142Z"
+    },
+    "updateDate": {
+      "$date": "2025-07-01T07:56:19.106Z"
+    },
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "63577cfc0d28f6f5a99e1e5f"
+    },
+    "name": "精美实用动态论文答辩PPT模板",
+    "profile": "精美实用动态论文答辩PPT模板",
+    "category": [
+      "6347c2d79e02620e72925bd7"
+    ],
+    "cover": "[{\"name\":\"幻灯片1.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片1-1666677971753.PNG\"}]",
+    "previewUrl": "[{\"name\":\"幻灯片2.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片2-1666678000402.PNG\",\"size\":20637,\"uid\":1666678012388,\"status\":\"success\"},{\"name\":\"幻灯片1.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片1-1666678000400.PNG\",\"size\":35627,\"uid\":1666678012389,\"status\":\"success\"},{\"name\":\"幻灯片3.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片3-1666678000405.PNG\",\"size\":29526,\"uid\":1666678012390,\"status\":\"success\"},{\"name\":\"幻灯片4.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片4-1666678000407.PNG\",\"size\":51953,\"uid\":1666678012391,\"status\":\"success\"},{\"name\":\"幻灯片6.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片6-1666678000413.PNG\",\"size\":41860,\"uid\":1666678012392,\"status\":\"success\"},{\"name\":\"幻灯片5.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片5-1666678000409.PNG\",\"size\":46559,\"uid\":1666678012393,\"status\":\"success\"},{\"name\":\"幻灯片9.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片9-1666678000421.PNG\",\"size\":40421,\"uid\":1666678012394,\"status\":\"success\"},{\"name\":\"幻灯片8.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片8-1666678000417.PNG\",\"size\":54887,\"uid\":1666678012395,\"status\":\"success\"},{\"name\":\"幻灯片10.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片10-1666678000423.PNG\",\"size\":32484,\"uid\":1666678012396,\"status\":\"success\"},{\"name\":\"幻灯片7.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片7-1666678000415.PNG\",\"size\":57273,\"uid\":1666678012397,\"status\":\"success\"},{\"name\":\"幻灯片12.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片12-1666678000425.PNG\",\"size\":40943,\"uid\":1666678012398,\"status\":\"success\"},{\"name\":\"幻灯片11.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片11-1666678000424.PNG\",\"size\":43144,\"uid\":1666678012399,\"status\":\"success\"},{\"name\":\"幻灯片14.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片14-1666678000428.PNG\",\"size\":35354,\"uid\":1666678012400,\"status\":\"success\"},{\"name\":\"幻灯片13.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片13-1666678000427.PNG\",\"size\":28269,\"uid\":1666678012401,\"status\":\"success\"},{\"name\":\"幻灯片16.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片16-1666678000431.PNG\",\"size\":34322,\"uid\":1666678012402,\"status\":\"success\"},{\"name\":\"幻灯片15.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片15-1666678000430.PNG\",\"size\":40014,\"uid\":1666678012403,\"status\":\"success\"},{\"name\":\"幻灯片17.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片17-1666678000432.PNG\",\"size\":46376,\"uid\":1666678012404,\"status\":\"success\"},{\"name\":\"幻灯片18.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片18-1666678000434.PNG\",\"size\":42989,\"uid\":1666678012405,\"status\":\"success\"},{\"name\":\"幻灯片19.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片19-1666678000437.PNG\",\"size\":41371,\"uid\":1666678012406,\"status\":\"success\"},{\"name\":\"幻灯片20.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片20-1666678000439.PNG\",\"size\":41455,\"uid\":1666678012407,\"status\":\"success\"},{\"name\":\"幻灯片22.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片22-1666678000443.PNG\",\"size\":31570,\"uid\":1666678012408,\"status\":\"success\"},{\"name\":\"幻灯片21.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片21-1666678000440.PNG\",\"size\":45714,\"uid\":1666678012409,\"status\":\"success\"},{\"name\":\"幻灯片23.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片23-1666678000444.PNG\",\"size\":38563,\"uid\":1666678012410,\"status\":\"success\"},{\"name\":\"幻灯片24.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片24-1666678000445.PNG\",\"size\":39034,\"uid\":1666678012411,\"status\":\"success\"},{\"name\":\"幻灯片27.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片27-1666678000450.PNG\",\"size\":28718,\"uid\":1666678012412,\"status\":\"success\"},{\"name\":\"幻灯片26.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片26-1666678000448.PNG\",\"size\":47662,\"uid\":1666678012413,\"status\":\"success\"},{\"name\":\"幻灯片29.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片29-1666678000452.PNG\",\"size\":37553,\"uid\":1666678012414,\"status\":\"success\"},{\"name\":\"幻灯片25.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片25-1666678000446.PNG\",\"size\":42290,\"uid\":1666678012415,\"status\":\"success\"},{\"name\":\"幻灯片28.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片28-1666678000451.PNG\",\"size\":46415,\"uid\":1666678012416,\"status\":\"success\"},{\"name\":\"幻灯片34.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片34-1666678000459.PNG\",\"size\":48569,\"uid\":1666678012417,\"status\":\"success\"},{\"name\":\"幻灯片31.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片31-1666678000456.PNG\",\"size\":39355,\"uid\":1666678012418,\"status\":\"success\"},{\"name\":\"幻灯片32.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片32-1666678000457.PNG\",\"size\":29580,\"uid\":1666678012419,\"status\":\"success\"},{\"name\":\"幻灯片30.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片30-1666678000453.PNG\",\"size\":50927,\"uid\":1666678012420,\"status\":\"success\"},{\"name\":\"幻灯片35.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片35-1666678000462.PNG\",\"size\":40610,\"uid\":1666678012421,\"status\":\"success\"},{\"name\":\"幻灯片33.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片33-1666678000458.PNG\",\"size\":47929,\"uid\":1666678012422,\"status\":\"success\"},{\"name\":\"幻灯片37.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片37-1666678000465.PNG\",\"size\":34321,\"uid\":1666678012423,\"status\":\"success\"},{\"name\":\"幻灯片36.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片36-1666678000463.PNG\",\"size\":46122,\"uid\":1666678012424,\"status\":\"success\"}]",
+    "fileUrl": "",
+    "tags": [
+      "论文答辩",
+      "精美",
+      "动态"
+    ],
+    "effect": "动态",
+    "proportion": "16：9",
+    "pages": 38,
+    "likes": 0,
+    "views": 22,
+    "collections": 0,
+    "downloads": 3,
+    "likes_users": [],
+    "views_users": [],
+    "collections_users": [],
+    "downloads_users": [
+      "1075236587@qq.com",
+      "895601287@qq.com",
+      "zhuzhengtao72@163.com"
+    ],
+    "pay_users": [],
+    "createDate": {
+      "$date": "2022-10-25T06:06:52.618Z"
+    },
+    "updateDate": {
+      "$date": "2025-05-12T14:01:04.486Z"
+    },
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "6357a4725c66399fa5a2a164"
+    },
+    "name": "中国风商务汇报PPT模板",
+    "profile": "水墨夜色背景的中国风商务汇报PPT模板",
+    "category": [
+      "6347b2dd9e02620e72925b38",
+      "6349045e5f542a3c5b5aaaa7"
+    ],
+    "cover": "[{\"name\":\"幻灯片1.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片1-1666688060839.PNG\"}]",
+    "previewUrl": "[{\"name\":\"幻灯片8.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片8-1666688361688.PNG\",\"size\":41785,\"uid\":1666688367284,\"status\":\"success\"},{\"name\":\"幻灯片4.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片4-1666688361683.PNG\",\"size\":46230,\"uid\":1666688367285,\"status\":\"success\"},{\"name\":\"幻灯片2.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片2-1666688361681.PNG\",\"size\":43781,\"uid\":1666688367286,\"status\":\"success\"},{\"name\":\"幻灯片5.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片5-1666688361684.PNG\",\"size\":52508,\"uid\":1666688367287,\"status\":\"success\"},{\"name\":\"幻灯片3.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片3-1666688361682.PNG\",\"size\":42166,\"uid\":1666688367288,\"status\":\"success\"},{\"name\":\"幻灯片7.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片7-1666688361686.PNG\",\"size\":56289,\"uid\":1666688367289,\"status\":\"success\"},{\"name\":\"幻灯片17.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片17-1666688361912.PNG\",\"size\":52232,\"uid\":1666688367290,\"status\":\"success\"},{\"name\":\"幻灯片1.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片1-1666688361680.PNG\",\"size\":56070,\"uid\":1666688367291,\"status\":\"success\"},{\"name\":\"幻灯片18.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片18-1666688362126.PNG\",\"size\":42720,\"uid\":1666688367292,\"status\":\"success\"},{\"name\":\"幻灯片13.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片13-1666688361696.PNG\",\"size\":41646,\"uid\":1666688367293,\"status\":\"success\"},{\"name\":\"幻灯片21.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片21-1666688362341.PNG\",\"size\":49666,\"uid\":1666688367294,\"status\":\"success\"},{\"name\":\"幻灯片20.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片20-1666688362128.PNG\",\"size\":55032,\"uid\":1666688367295,\"status\":\"success\"},{\"name\":\"幻灯片24.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片24-1666688362557.PNG\",\"size\":57496,\"uid\":1666688367296,\"status\":\"success\"},{\"name\":\"幻灯片10.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片10-1666688361691.PNG\",\"size\":43023,\"uid\":1666688367297,\"status\":\"success\"},{\"name\":\"幻灯片15.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片15-1666688361910.PNG\",\"size\":51699,\"uid\":1666688367298,\"status\":\"success\"},{\"name\":\"幻灯片14.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片14-1666688361909.PNG\",\"size\":42940,\"uid\":1666688367299,\"status\":\"success\"},{\"name\":\"幻灯片6.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片6-1666688361685.PNG\",\"size\":44540,\"uid\":1666688367300,\"status\":\"success\"},{\"name\":\"幻灯片16.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片16-1666688361911.PNG\",\"size\":51230,\"uid\":1666688367301,\"status\":\"success\"},{\"name\":\"幻灯片9.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片9-1666688361690.PNG\",\"size\":49988,\"uid\":1666688367302,\"status\":\"success\"},{\"name\":\"幻灯片12.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片12-1666688361694.PNG\",\"size\":44713,\"uid\":1666688367303,\"status\":\"success\"},{\"name\":\"幻灯片11.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片11-1666688361693.PNG\",\"size\":51888,\"uid\":1666688367304,\"status\":\"success\"},{\"name\":\"幻灯片22.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片22-1666688362342.PNG\",\"size\":50592,\"uid\":1666688367305,\"status\":\"success\"},{\"name\":\"幻灯片23.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片23-1666688362344.PNG\",\"size\":53086,\"uid\":1666688367306,\"status\":\"success\"},{\"name\":\"幻灯片25.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片25-1666688362558.PNG\",\"size\":50621,\"uid\":1666688367307,\"status\":\"success\"},{\"name\":\"幻灯片19.PNG\",\"url\":\"https://maobucv.com:9000/resume/pptTemplate/幻灯片19-1666688362127.PNG\",\"size\":48115,\"uid\":1666688367308,\"status\":\"success\"}]",
+    "fileUrl": "",
+    "tags": [
+      "中国风",
+      "商务",
+      "动态"
+    ],
+    "effect": "动态",
+    "proportion": "16：9",
+    "pages": 26,
+    "likes": 0,
+    "views": 41,
+    "collections": 0,
+    "downloads": 1,
+    "likes_users": [],
+    "views_users": [],
+    "collections_users": [],
+    "downloads_users": [
+      "1785636886@qq.com"
+    ],
+    "pay_users": [],
+    "createDate": {
+      "$date": "2022-10-25T08:55:14.145Z"
+    },
+    "updateDate": {
+      "$date": "2025-07-01T07:57:40.354Z"
+    },
+    "__v": 0
+  }
+]

@@ -269,7 +269,7 @@
         font-size: 0.9rem;
       }
     }
-    .el-form-item__content {
+    :deep(.el-form-item__content) {
       flex-wrap: wrap !important;
     }
   }

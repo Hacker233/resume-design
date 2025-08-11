@@ -164,7 +164,56 @@ export default defineConfig(async ({ command, mode }: ConfigEnv): Promise<UserCo
               fs.mkdirSync(templateDir, { recursive: true });
             }
 
-            // 你的ID列表 - 替换成实际需要的id数组
+            // ============= 新增的sitemap预渲染部分 =============
+            console.log('Prerendering sitemap page...');
+            const sitemapPage = await browser.newPage();
+
+            // 设置拦截规则（与现有逻辑一致）
+            await sitemapPage.setRequestInterception(true);
+            sitemapPage.on('request', (request) => {
+              if (request.url().includes('iconfont.js')) {
+                request.abort();
+              } else {
+                request.continue();
+              }
+            });
+
+            // 设置视口（与现有逻辑一致）
+            await sitemapPage.setViewport({
+              width: 1920,
+              height: 1080,
+              deviceScaleFactor: 1,
+              isMobile: false,
+              hasTouch: false,
+              isLandscape: false
+            });
+
+            try {
+              // 访问sitemap路由
+              await sitemapPage.goto('http://localhost:5137/sitemap', {
+                waitUntil: 'networkidle0',
+                timeout: 60000
+              });
+
+              // 获取处理后的HTML
+              const sitemapHtml = await sitemapPage.evaluate(
+                () => document.documentElement.outerHTML
+              );
+
+              // 保存到dist根目录
+              fs.writeFileSync(path.join(outputPath, 'sitemap.html'), sitemapHtml, {
+                encoding: 'utf-8'
+              });
+
+              console.log('Sitemap prerendered successfully');
+            } catch (err) {
+              console.error('Error prerendering sitemap:', err);
+            } finally {
+              await sitemapPage.close();
+            }
+            // ============= 新增部分结束 =============
+
+            // 在线制作模版预渲染
             const idList = templates;
             console.log('idList', idList);
 
