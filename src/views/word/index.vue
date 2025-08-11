@@ -44,18 +44,7 @@
   import TemplateListVue from './components/TemplateList.vue';
   import NoDataVue from '@/components/NoData/NoData.vue';
   import CommonLoading from '@/components/CommonLoading/CommonLoading.vue';
-  import { useHead } from '@vueuse/head';
   import FooterCom from '@/components/FooterCom/FooterCom.vue';
-
-  useHead({
-    title: 'Word简历模版下载',
-    meta: [
-      {
-        name: 'description',
-        content: '提供海量、精美的Word简历模版'
-      }
-    ]
-  });
 
   // 是否显示骨架
   const isShowSkeleton = ref<boolean>(true);

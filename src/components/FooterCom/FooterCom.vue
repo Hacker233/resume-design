@@ -86,7 +86,7 @@
       <div class="friend-links-container">
         <div class="friend-links-header">
           <span class="friend-links-title">友情链接</span>
-          <button class="apply-btn" @click="applyLinks">
+          <button id="apply-links-btn" class="apply-btn" @click="applyLinks">
             <i class="icon-apply"></i> 申请友链
           </button>
         </div>
@@ -155,9 +155,13 @@
   getLinksList();
 
   // 申请友链弹窗
+  const router = useRouter();
   const dialogApplyLinksVisible = ref(false);
   const applyLinks = () => {
-    dialogApplyLinksVisible.value = true;
+    // dialogApplyLinksVisible.value = true;
+    router.push({
+      path: '/linksApply'
+    });
   };
   const cancleApplyLinks = () => {
     dialogApplyLinksVisible.value = false;

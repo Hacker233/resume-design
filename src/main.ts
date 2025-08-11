@@ -90,8 +90,17 @@ app.use(head);
 // 在mounted生命周期加载图标
 app.config.globalProperties.$loadIcons = loadIconfont;
 
-// 挂载实例
-app.mount('#app');
+// 挂载实例，如果访问的是静态html，则不挂载
+
+const isTemplatePage =
+  location.pathname.startsWith('/template/template-') && location.pathname.endsWith('.html');
+
+if (!isTemplatePage) {
+  app.mount('#app');
+  document.getElementById('app').classList.add('vue-mounted'); // 挂载完成后添加类名
+} else {
+  console.log('Template static page detected, skipping Vue mount');
+}
 
 // 确保DOM加载完成后执行
 if (!('__PRERENDER_INJECTED' in window) || !window.__PRERENDER_INJECTED) {

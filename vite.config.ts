@@ -8,7 +8,10 @@ import { ViteImageOptimizer } from 'vite-plugin-image-optimizer';
 import path from 'path';
 import chrome from 'puppeteer';
 import express from 'express';
-import serveStatic from 'serve-static';
+// import serveStatic from 'serve-static';
+import prerender from 'vite-plugin-prerender';
+import templates from './public/static/templates.json';
+
 const fs = require('fs');
 
 const isProduction = process.env.VITE_ENV === 'production';
@@ -128,79 +131,146 @@ export default defineConfig(async ({ command, mode }: ConfigEnv): Promise<UserCo
         name: 'puppeteer-prerender',
         closeBundle: async () => {
           if (!isBuild) return;
+          console.log('process.env.VITE_BUILD_MODE', process.env.VITE_BUILD_MODE);
+          const buildMode = process.env.VITE_BUILD_MODE;
+          if (buildMode !== 'ssr') return;
 
           const app = express();
-          app.use(serveStatic(path.resolve(__dirname, VITE_OUTPUT_DIR)));
-          const server = app.listen(5137);
+          const staticDir = path.resolve(__dirname, VITE_OUTPUT_DIR);
 
-          console.log('Starting Puppeteer prerender...');
+          // 先设置静态文件服务
+          app.use(express.static(staticDir));
+
+          // 然后设置SPA回退路由（修正后的写法）
+          app.get(/^\/(?!api).*/, (req, res) => {
+            res.sendFile(path.join(staticDir, 'index.html'));
+          });
+
+          const server = app.listen(5137, '0.0.0.0', () => {
+            console.log('Prerender server running at http://localhost:5137');
+          });
+
+          console.log('Starting Puppeteer prerender for templates...');
           const browser = await chrome.launch({
-            headless: false,
+            headless: true,
             args: ['--no-sandbox', '--disable-setuid-sandbox']
           });
 
           try {
             const outputPath = path.resolve(__dirname, VITE_OUTPUT_DIR);
-            const page = await browser.newPage();
+            const templateDir = path.join(outputPath, 'template');
 
-            // 设置拦截规则，阻止iconfont.js加载
-            await page.setRequestInterception(true);
-            page.on('request', (request) => {
-              if (request.url().includes('iconfont.js')) {
-                request.abort();
-              } else {
-                request.continue();
-              }
-            });
+            if (!fs.existsSync(templateDir)) {
+              fs.mkdirSync(templateDir, { recursive: true });
+            }
 
-            // 注入预渲染标记
-            await page.evaluateOnNewDocument(() => {
-              (window as any).__PRERENDER_INJECTED = true;
-            });
+            // 你的ID列表 - 替换成实际需要的id数组
+            const idList = templates;
+            console.log('idList', idList);
 
-            // 设置视口为常见的桌面端尺寸（推荐）
-            await page.setViewport({
-              width: 1920,
-              height: 1080,
-              deviceScaleFactor: 1,
-              isMobile: false,
-              hasTouch: false,
-              isLandscape: false
-            });
+            for (let i = 0; i < idList.length; i++) {
+              const id = idList[i].id;
+              const pageName = idList[i].page;
 
-            await page.goto('http://localhost:5137', {
-              waitUntil: 'networkidle0',
-              timeout: 30000
-            });
+              const page = await browser.newPage();
 
-            // 等待Vue应用完全加载
-            await page.waitForFunction(
-              () => {
-                return (document.querySelector('#app') as any)?.__vue_app__ !== undefined;
-              },
-              { timeout: 10000 }
-            );
-
-            // 获取处理后的HTML
-            const html = await page.evaluate(() => {
-              // 移除可能存在的空图标容器
-              document.querySelectorAll('[class*="icon"]').forEach((el) => {
-                if (!el.innerHTML.trim()) el.remove();
+              // 设置拦截规则
+              await page.setRequestInterception(true);
+              page.on('request', (request) => {
+                if (request.url().includes('iconfont.js')) {
+                  request.abort();
+                } else {
+                  request.continue();
+                }
               });
-              return document.documentElement.outerHTML;
-            });
 
-            // 保存HTML（不再包含图标JS）
-            fs.writeFileSync(path.join(outputPath, 'index.html'), html, { flag: 'w' });
+              console.log(`Prerendering template for id: ${id}`);
 
-            console.log('Prerendered HTML saved without iconfont.js');
+              // 设置视口为常见的桌面端尺寸（推荐）
+              await page.setViewport({
+                width: 1920,
+                height: 1080,
+                deviceScaleFactor: 1,
+                isMobile: false,
+                hasTouch: false,
+                isLandscape: false
+              });
+
+              try {
+                // 方法1：直接访问动态路由
+                await page.goto(`http://localhost:5137/resumedetail/${id}`, {
+                  waitUntil: 'networkidle0',
+                  timeout: 60000
+                });
+
+                // 获取处理后的HTML
+                const html = await page.evaluate(() => document.documentElement.outerHTML);
+
+                // 插入 native-events.js 脚本
+                const injectedScriptTag = '<script src="/static/native-events.js"></script>';
+                const title = `猫步简历 - ${idList[i].title}`;
+                const modifiedHtml = html
+                  .replace(/<title>.*<\/title>/, `<title>${title}</title>`)
+                  .replace('</body>', `${injectedScriptTag}</body>`);
+
+                // 保存文件
+                fs.writeFileSync(path.join(templateDir, pageName), modifiedHtml, {
+                  encoding: 'utf-8'
+                });
+
+                console.log(`Template ${i + 1} prerendered successfully`);
+              } catch (err) {
+                console.error(`Error prerendering id ${id}:`, err);
+              } finally {
+                await page.close();
+              }
+            }
+          } catch (err) {
+            console.error('Prerender failed:', err);
           } finally {
             await browser.close();
-            server.close();
-            console.log('Prerender completed successfully');
+            server.close(() => {
+              console.log('Prerender server closed');
+            });
           }
         }
-      }
+      },
+      // ✅ prerender 插件
+      prerender({
+        staticDir: path.resolve(__dirname, VITE_OUTPUT_DIR),
+        routes: ['/'],
+        postProcess: (context) => {
+          const dataPath = path.resolve(__dirname, '.temp/prerender-data.json');
+
+          if (!context || !context.html) {
+            console.warn('⚠️ context.html 不存在，可能未正确渲染');
+            return context;
+          }
+
+          // 只对根路由 / 进行替换
+          if (context.route === '/') {
+            if (fs.existsSync(dataPath)) {
+              try {
+                const data = JSON.parse(fs.readFileSync(dataPath, 'utf-8'));
+                context.html = context.html.replace(
+                  '<div id="footer"></div>',
+                  `${data.FOOTER_HTML}`
+                );
+                return context;
+              } catch (err) {
+                console.error('❌ 解析 prerender-data.json 失败:', err);
+                return context;
+              }
+            } else {
+              console.warn('⚠️ prerender-data.json 不存在于 .temp/，请检查是否成功生成');
+              return context;
+            }
+          }
+
+          // 非根路由，原样返回不做处理
+          return context;
+        }
+      })
     ],
     esbuild: {
       logOverride: { 'this-is-undefined-in-esm': 'silent' }

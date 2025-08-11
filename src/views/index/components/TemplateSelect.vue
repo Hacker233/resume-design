@@ -34,15 +34,38 @@
   import SkeletonCard from '@/components/SkeletonCard/SkeletonCard.vue';
   import { templateListAsync } from '@/http/api/createTemplate';
   import { storeToRefs } from 'pinia';
+  import templates from '@/static/templates';
 
   // 跳转至设计页面
   const { selectedModuleId } = storeToRefs(appStore.useCreateTemplateStore);
   const router = useRouter();
   const toDesign = (item: any) => {
+    console.log('import.meta.env.', import.meta.env);
+
     selectedModuleId.value = ''; // 重置选中模块
-    router.push({
-      path: `/resumedetail/${item._id}`
-    });
+    const pageName = templates.find((template: any) => template.id === item._id).page;
+    console.log('pageName', pageName);
+
+    if (import.meta.env.MODE === 'development') {
+      router.push({
+        path: `/resumedetail/${item._id}`
+      });
+    } else {
+      if (pageName) {
+        const mode = ref(import.meta.env.VITE_BUILD_MODE || 'spa');
+        if (mode.value === 'spa') {
+          router.push({
+            path: `/resumedetail/${item._id}`
+          });
+        } else {
+          window.open(`/template/${pageName}`, '_blank');
+        }
+      } else {
+        router.push({
+          path: `/resumedetail/${item._id}`
+        });
+      }
+    }
   };
 
   // 出现在可视区

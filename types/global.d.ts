@@ -47,3 +47,8 @@ declare module 'element-plus' {
     'onUpdate:modelValue'?: (value: any) => void;
   }
 }
+
+declare module '*.json' {
+  const value: any;
+  export default value;
+}

@@ -8,6 +8,7 @@
     "esModuleInterop": true, // 兼容 CommonJS 模块导入
     "strict": false,
     "skipLibCheck": true,
+    "resolveJsonModule": true,
     "types": ["node"] // 关键：引入 node 类型声明
   },
   "include": [

@@ -66,6 +66,8 @@ const GenerateAiResume = () => import('@/views/generateAiResume/index.vue');
 const ResumeService = () => import('@/views/resumeServices/index.vue');
 // AI智能诊断页面
 const AiDiagnosticCV = () => import('@/views/AiDiagnosticCV/index.vue');
+// 友链申请
+const LinksApply = () => import('@/views/linksApply/index.vue');
 
 // 管理员界面
 const AdminIndex = () => import('@/views/admin/index.vue');
@@ -333,7 +335,7 @@ const routes: Array<RouteRecordRaw> = [
     meta: {
       title: '简历模版详情',
       keepAlive: true,
-      isShowComNav: true,
+      isShowComNav: false,
       requireLogin: false,
       requireAdmin: false
     },
@@ -343,7 +345,8 @@ const routes: Array<RouteRecordRaw> = [
     path: '/word',
     name: 'Word',
     meta: {
-      title: '简历模板',
+      title: 'Word简历模版下载',
+      description: '提供海量、精美的Word简历模版',
       keepAlive: true,
       isShowComNav: true,
       requireLogin: false,
@@ -518,6 +521,18 @@ const routes: Array<RouteRecordRaw> = [
       requireAdmin: false
     },
     component: AiDiagnosticCV
+  },
+  {
+    path: '/linksApply',
+    name: 'LinksApply',
+    meta: {
+      title: '友链申请',
+      keepAlive: true,
+      isShowComNav: true,
+      requireLogin: false,
+      requireAdmin: false
+    },
+    component: LinksApply
   },
   {
     path: '/webCode',
@@ -1409,21 +1424,25 @@ const router = createRouter({
 
 // 全局守卫：登录拦截 本地没有存token,请重新登录
 router.beforeEach(async (to, from, next) => {
+  const isTemplatePage =
+    location.pathname.startsWith('/template/template-') && location.pathname.endsWith('.html'); // 是否直接访问的html
   // 设置标题、描述、关键词
   console.log('路由跳转 to:', to);
-  useHead({
-    title: '猫步简历 - ' + ((to.meta.title as string) || title),
-    meta: [
-      {
-        name: 'description',
-        content: description
-      },
-      {
-        name: 'keywords',
-        content: keywords
-      }
-    ]
-  });
+  if (!isTemplatePage) {
+    useHead({
+      title: '猫步简历 - ' + ((to.meta.title as string) || title),
+      meta: [
+        {
+          name: 'description',
+          content: to.meta?.description || description
+        },
+        {
+          name: 'keywords',
+          content: to.meta?.keywords || keywords
+        }
+      ]
+    });
+  }
 
   const token = localStorage.getItem('token');
   const userInfo = localStorage.getItem('userInfo');

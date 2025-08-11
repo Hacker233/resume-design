@@ -10,6 +10,7 @@
   import { ITempList } from '@/template/type';
   import TemplateCardNew from '@/components/TemplateCardNew/TemplateCardNew.vue';
   import { storeToRefs } from 'pinia';
+  import templates from '@/static/templates';
 
   defineProps<{
     templateList: Array<ITempList>;
@@ -17,11 +18,34 @@
 
   const router = useRouter();
   const { selectedModuleId } = storeToRefs(appStore.useCreateTemplateStore);
-  const toDesign = (item: ITempList) => {
+
+  const toDesign = (item: any) => {
+    console.log('import.meta.env.', import.meta.env);
+
     selectedModuleId.value = ''; // 重置选中模块
-    router.push({
-      path: `/resumedetail/${item._id}`
-    });
+    const pageName = templates.find((template: any) => template.id === item._id).page;
+    console.log('pageName', pageName);
+
+    if (import.meta.env.MODE === 'development') {
+      router.push({
+        path: `/resumedetail/${item._id}`
+      });
+    } else {
+      if (pageName) {
+        const mode = ref(import.meta.env.VITE_BUILD_MODE || 'spa');
+        if (mode.value === 'spa') {
+          router.push({
+            path: `/resumedetail/${item._id}`
+          });
+        } else {
+          window.open(`/template/${pageName}`, '_blank');
+        }
+      } else {
+        router.push({
+          path: `/resumedetail/${item._id}`
+        });
+      }
+    }
   };
 </script>
 <style lang="scss" scoped>

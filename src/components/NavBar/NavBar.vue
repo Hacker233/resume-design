@@ -1,10 +1,7 @@
 <!-- 首页标题栏 -->
 <template>
   <div :class="['nav-bar-box', { 'background-nav': props.bgColor ? true : false }]">
-    <logo-com
-      :icon-color="iconColor ? iconColor : '#fff'"
-      :font-color="fontColor ? fontColor : '#fff'"
-    ></logo-com>
+    <logo-com></logo-com>
     <div v-config:open_homne_menu class="center">
       <el-menu
         :default-active="route.path"

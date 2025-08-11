@@ -58,6 +58,18 @@
         s.parentNode.insertBefore(hm, s);
       })();
     </script>
+
+    <style>
+      /* 解决预渲染footer闪现问题 */
+      #global-footer-box {
+        opacity: 0;
+        transition: opacity 0.3s ease;
+      }
+
+      .vue-mounted #global-footer-box {
+        opacity: 1 !important;
+      }
+    </style>
   </head>
 
   <body>

@@ -220,7 +220,7 @@ const generateFooterHtml = (vxquns = [], links = []) => {
 
   return `
     ${criticalCSS}
-    <div class="global-footer-box">
+    <div class="global-footer-box" id="global-footer-box">
       <div class="recommend">
         <div class="contact-me" v-viewer>
           <h4>联系我们</h4>

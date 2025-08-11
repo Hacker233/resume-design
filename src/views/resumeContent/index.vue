@@ -1,5 +1,7 @@
 <template>
-  <div class="resume-content-box">
+  <resume-detail-nav-bar v-if="isPrerender"></resume-detail-nav-bar>
+  <nav-bar v-else bg-color="#fff" font-color="green" position="sticky" icon-color="green"></nav-bar>
+  <div class="resume-content-box" :data-template-id="templateData?._id || ''">
     <div v-loading="!templateData" class="left-resume-preview">
       <resume-preview v-if="templateData" :show-line="true"></resume-preview>
     </div>
@@ -15,54 +17,80 @@
           <!-- 分类标签 -->
           <div class="template-tags">
             <template v-for="(key, value) in templateCategoryList" :key="key">
-              <el-tag v-if="key" size="large" type="success" @click="handleClickTag(key, value)">{{
-                key
-              }}</el-tag>
+              <el-tag
+                v-if="key"
+                :data-action="'clickTag'"
+                :data-key="key"
+                :data-value="value"
+                size="large"
+                type="success"
+                @click="handleClickTag(key, value)"
+              >
+                {{ key }}
+              </el-tag>
             </template>
           </div>
           <!-- 使用人数 -->
-          <p class="use-views"
-            >使用人数：<span>{{ templateData.template_views }}</span
-            >人</p
-          >
+          <p class="use-views">
+            使用人数：<span>{{ templateData.template_views }}</span
+            >人
+          </p>
           <div class="use-template-box">
             <!-- 使用此模版 -->
-            <el-button class="use-template-btn" type="primary" size="large" @click="handleToUse"
-              >使用此模版</el-button
+            <el-button
+              class="use-template-btn"
+              data-action="useTemplate"
+              type="primary"
+              size="large"
+              @click="handleToUse"
             >
+              使用此模版
+            </el-button>
             <!-- AI智能生成 -->
             <el-button
               class="use-template-btn ai-generate-btn"
+              data-action="aiGenerate"
               type="primary"
               size="large"
               @click="toAiGenerateResume"
-              >AI智能生成</el-button
             >
+              AI智能生成
+            </el-button>
           </div>
           <!-- 特别说明 -->
           <div class="template-tips">
             <p class="tips">特此说明：</p>
-            <p class="tips-content"
-              >目前在线编辑仅支持PDF格式的简历下载，需要word文档的用户请移步<span
-                @click="toWordTemplate"
-                >模版商城</span
-              >进行下载。</p
-            >
+            <p class="tips-content">
+              目前在线编辑仅支持PDF格式的简历下载，需要word文档的用户请移步
+              <span data-action="goWordTemplate" style="cursor: pointer" @click="toWordTemplate">
+                模版商城
+              </span>
+              进行下载。
+            </p>
           </div>
         </div>
         <div class="right-box-bottom">
           <!-- 标题 -->
           <div class="right-bottom-title">
             <span class="title">热门模版</span>
-            <span class="more" @click="toMore"
-              >更多<svg-icon icon-name="icon-chakangengduo" color="#00C091" size="14px"></svg-icon
-            ></span>
+            <span
+              class="more"
+              data-action="toMore"
+              style="cursor: pointer; color: #00c091"
+              @click="toMore"
+            >
+              更多
+              <svg-icon icon-name="icon-chakangengduo" color="#00C091" size="14px"></svg-icon>
+            </span>
           </div>
           <!-- 热门模版列表 -->
           <div class="template-list-box">
             <div
               v-for="(item, index) in templateList"
               :key="index"
+              :data-action="'toResumeDetail'"
+              :data-id="item._id"
+              style="cursor: pointer"
               class="template-card"
               @click="toResumeDetail(item)"
             >
@@ -75,6 +103,7 @@
   </div>
   <footer-com></footer-com>
 </template>
+
 <script setup lang="ts">
   import { getTemplateByIdAsync, templateListAsync } from '@/http/api/createTemplate';
   import appStore from '@/store';
@@ -83,10 +112,25 @@
   import { openGlobalLoading } from '@/utils/common';
   import { useHead } from '@vueuse/head';
   import { title } from '@/config/seo';
+  import ResumeDetailNavBar from '@/components/NavBar/ResumeDetailNavBar.vue';
 
   const { resetResumeJson } = appStore.useCreateTemplateStore;
   const { HJNewJsonStore, selectedModuleId } = storeToRefs(appStore.useCreateTemplateStore);
   const route = useRoute();
+
+  // 是否预渲染
+  const isPrerender = computed(() => {
+    if (import.meta.env.MODE === 'development') {
+      return false;
+    } else {
+      const mode = ref(import.meta.env.VITE_BUILD_MODE || 'spa');
+      if (mode.value === 'spa') {
+        return false;
+      } else {
+        return true;
+      }
+    }
+  });
 
   // 查询模版数据
   const templateData = ref<any>(null); // 模板数据
@@ -103,7 +147,7 @@
       HJNewJsonStore.value = data.data.template_json;
       HJNewJsonStore.value.props.title = data.data.template_title;
       useHead({
-        title: templateData.value.template_title || title
+        title: '猫步简历 - ' + (templateData.value.template_title || title)
       });
     }
   };
@@ -112,7 +156,6 @@
   // 点击标签
   const router = useRouter();
   const handleClickTag = (key: string, value: any) => {
-    console.log(key, value);
     let query: any = {};
     query[value] = key;
     router.push({
@@ -185,6 +228,7 @@
     window.open(newpage.href, '_blank');
   };
 </script>
+
 <style lang="scss" scoped>
   .resume-content-box {
     width: 1240px;
@@ -315,7 +359,6 @@
             }
           }
         }
-
         .template-tips {
           display: flex;
           flex-direction: column;

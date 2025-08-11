@@ -122,6 +122,7 @@ declare module 'vue' {
     QrCode: typeof import('./components/QrCode/QrCode.vue')['default']
     ReplyBox: typeof import('./components/packages/components/comment/src/reply-box.vue')['default']
     ResumeBackgroundPopover: typeof import('./components/ResumeBackgroundPopover/ResumeBackgroundPopover.vue')['default']
+    ResumeDetailNavBar: typeof import('./components/NavBar/ResumeDetailNavBar.vue')['default']
     ResumePreview: typeof import('./components/ResumePreview/ResumePreview.vue')['default']
     ResumePreviewCom: typeof import('./components/ResumePreview/components/ResumePreviewCom.vue')['default']
     ResumeUseCard: typeof import('./components/ResumeUseCard/ResumeUseCard.vue')['default']
