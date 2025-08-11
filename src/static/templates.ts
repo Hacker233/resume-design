@@ -529,6 +529,11 @@ const templates = [
     "id": "6888cef104c9309feaf7f1d0",
     "page": "template-106.html",
     "title": "校招银行客户经理岗位简历模板"
+  },
+  {
+    "id": "6899e05175085b2655e5696e",
+    "page": "template-107.html",
+    "title": "电商运营岗位简历模板"
   }
 ];
 

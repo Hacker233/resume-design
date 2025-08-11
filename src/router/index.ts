@@ -1438,8 +1438,7 @@ const router = createRouter({
 
 // 全局守卫：登录拦截 本地没有存token,请重新登录
 router.beforeEach(async (to, from, next) => {
-  const isTemplatePage =
-    location.pathname.startsWith('/template/template-') && location.pathname.endsWith('.html'); // 是否直接访问的html
+  const isTemplatePage = location.pathname.endsWith('.html'); // 是否直接访问的html
   // 设置标题、描述、关键词
   console.log('路由跳转 to:', to);
   if (!isTemplatePage) {
