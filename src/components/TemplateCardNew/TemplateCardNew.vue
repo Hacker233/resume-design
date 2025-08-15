@@ -3,7 +3,7 @@
     <div class="template-card-box">
       <img
         :src="cardData.template_cover"
-        :alt="cardData.template_title"
+        :alt="cardData.template_title || '模版预览'"
         :title="cardData.template_title"
       />
       <!-- 遮罩层 -->

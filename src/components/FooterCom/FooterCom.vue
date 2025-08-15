@@ -457,7 +457,7 @@
     .icp {
       a {
         color: #757575;
-        font-size: 12px;
+        font-size: 14px;
         text-decoration: none;
       }
     }

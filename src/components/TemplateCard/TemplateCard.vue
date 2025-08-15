@@ -1,7 +1,8 @@
 <template>
   <div class="card-wraper" @mouseover="mouseover" @mouseleave="mouseleave">
     <div class="template-card-box">
-      <img :src="cardData.previewUrl" alt="" srcset="" />
+      <img :src="cardData.previewUrl" alt="模板预览" srcset="" />
+
       <!-- 遮罩层 -->
       <div ref="maskLayerRef" class="mask-layer">
         <div

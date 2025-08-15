@@ -53,6 +53,7 @@
               <img
                 v-show="selectedMembership === item.value"
                 :src="getAssetsImagesFile(`membership/${item.value}.gif`)"
+                alt="会员预览"
               />
             </template>
             <template v-else>
@@ -60,6 +61,7 @@
                 <img
                   v-show="selectedMembership === item.value"
                   :src="getAssetsImagesFile(`membership/monthly.gif`)"
+                  alt="会员预览"
                 />
               </div>
             </template>
@@ -111,7 +113,7 @@
           <div class="pay-btn" @click="getOrderQrcode">
             <div class="pay-btn-text">立即购买</div>
             <div class="pay-btn-light">
-              <img src="@/assets/images/membership/line.png" />
+              <img src="@/assets/images/membership/line.png" alt="购买按钮" />
             </div>
           </div>
         </div>

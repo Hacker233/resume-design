@@ -202,11 +202,11 @@ export default defineConfig(async ({ command, mode }: ConfigEnv): Promise<UserCo
 
               // 插入 native-events.js 脚本
               const sitemapInjectedScriptTag = '<script src="/static/native-events.js"></script>';
-              const modifiedHtml = html
+              const sitemapModifiedHtml = sitemapHtml
                 .replace('</body>', `${sitemapInjectedScriptTag}</body>`);
 
               // 保存到dist根目录
-              fs.writeFileSync(path.join(outputPath, 'sitemap.html'), sitemapHtml, {
+              fs.writeFileSync(path.join(outputPath, 'sitemap.html'), sitemapModifiedHtml, {
                 encoding: 'utf-8'
               });
 
