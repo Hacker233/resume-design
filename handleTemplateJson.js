@@ -1,14 +1,18 @@
 const fs = require('fs');
 const path = require('path');
+const csv = require('csv-parser');
+
+// 设置文件路径
+const dataDir = path.join(__dirname, 'ssr-data');
 
 // 读取原始JSON文件
-const originalData = require('./resume.templates.json');
+const originalData = require(path.join(dataDir, 'resume.templates.json'));
 
 // 读取words.json文件
-const wordsData = require('./resume.words.json');
+const wordsData = require(path.join(dataDir, 'resume.words.json'));
 
 // 读取ppt.json文件
-const pptData = require('./resume.ppts.json');
+const pptData = require(path.join(dataDir, 'resume.ppts.json'));
 
 // 转换数据（使用索引+1作为递增编号）
 const transformedData = originalData.map((item, index) => ({
@@ -66,7 +70,7 @@ const jsOutputPath = path.join(outputDirs.js, 'templates.ts');
 // 生成JS文件（src/static/words.ts）
 const wordsJsOutputPath = path.join(outputDirs.js, 'words.ts');
 
-// 生成JS文件（src/static/ppt.ts）
+// 生成JS文件（src/static/ppt.ts')
 const pptJsOutputPath = path.join(outputDirs.js, 'ppt.ts');
 
 // 生成JS文件（src/static/words.ts）
@@ -101,7 +105,89 @@ fs.writeFileSync(
   { encoding: 'utf-8' }
 );
 
-console.log(`
+// 生成sitemap.xml
+const sitemapPath = path.join(__dirname, 'public', 'sitemap.xml');
+const today = new Date().toISOString().split('T')[0]; // 获取当前日期，格式为YYYY-MM-DD
+
+// 额外的静态页面链接
+const additionalPages = [
+  { title: '首页', url: 'https://maobucv.com/' },
+  { title: '简历定制服务', url: 'https://maobucv.com/resumeService' },
+  { title: '在线制作模版列表', url: 'https://maobucv.com/resume' },
+  { title: 'AI简历智能生成', url: 'https://maobucv.com/generateAiResume' },
+  { title: 'AI简历智能诊断', url: 'https://maobucv.com/aiDiagnosticCV' },
+  { title: 'word简历模版列表', url: 'https://maobucv.com/word' },
+  { title: 'ppt模版列表', url: 'https://maobucv.com/ppt' },
+  { title: '整站部署方案', url: 'https://maobucv.com/webcode' },
+  { title: '组织入驻', url: 'https://maobucv.com/orgSettled' },
+  { title: '项目文档', url: 'https://maobucv.com/deployDoc' },
+  { title: '会员开通', url: 'https://maobucv.com/membership' },
+  { title: '友链申请', url: 'https://maobucv.com/linksApply' }
+];
+
+// 读取CSV文件中的URL
+const csvUrls = [];
+fs.createReadStream(path.join(dataDir, 'export-all-urls-.csv'))
+  .pipe(csv())
+  .on('data', (row) => {
+    if (row.URL) {
+      csvUrls.push({
+        title: row.Title,
+        url: row.URL
+      });
+    }
+  })
+  .on('end', () => {
+    // 生成sitemap内容
+    const sitemapContent = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset
+    xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd"
+>
+    <!-- 静态页面 -->
+    ${additionalPages
+      .map(
+        (page) => `
+    <url>
+        <loc>${page.url}</loc>
+        <lastmod>${today}</lastmod>
+        <priority>${page.url === 'https://maobucv.com/' ? '1.0' : '0.8'}</priority>
+    </url>
+    `
+      )
+      .join('')}
+    
+    <!-- 文章页面 -->
+    ${csvUrls
+      .map(
+        (item) => `
+    <url>
+        <loc>${item.url}</loc>
+        <lastmod>${today}</lastmod>
+        <priority>0.7</priority>
+    </url>
+    `
+      )
+      .join('')}
+    
+    <!-- 所有模板详情页 -->
+    ${transformedData
+      .map(
+        (item) => `
+    <url>
+        <loc>https://maobucv.com/template/${item.page}</loc>
+        <lastmod>${today}</lastmod>
+        <priority>0.5</priority>
+    </url>
+    `
+      )
+      .join('')}
+</urlset>`;
+
+    fs.writeFileSync(sitemapPath, sitemapContent, { encoding: 'utf-8' });
+
+    console.log(`
 ✅ 生成在线制作模版、在线制作word和在线制作ppt结果：
   模版JSON文件: ${jsonOutputPath}
   模版JS模块: ${jsOutputPath}
@@ -109,4 +195,9 @@ console.log(`
   wordJS模块: ${wordsJsOutputPath}
   pptJSON文件: ${pptJsonOutputPath}
   pptJS模块: ${pptJsOutputPath}
+  sitemap.xml: ${sitemapPath}
 `);
+  })
+  .on('error', (error) => {
+    console.error('读取CSV文件时出错:', error);
+  });
