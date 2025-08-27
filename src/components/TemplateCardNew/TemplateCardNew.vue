@@ -28,7 +28,7 @@
           size="19px"
         ></svg-icon>
         <svg-icon icon-name="icon-jibenziliao" color="#a3abb1" size="19px"></svg-icon>
-        <span class="number">{{ cardData.template_views }}</span>
+        <span class="number">{{ formatViews(cardData.template_views) }}</span>
       </div>
     </div>
   </div>
@@ -46,6 +46,24 @@
 
   const emit = defineEmits(['toDesign']);
   const maskLayerRef = ref<any>(null);
+
+  // 格式化使用人数显示
+  function formatViews(views) {
+    if (views >= 100000000) {
+      return (views / 100000000).toFixed(1) + '亿+';
+    } else if (views >= 10000000) {
+      return (views / 10000000).toFixed(1) + '千+';
+    } else if (views >= 10000) {
+      return (views / 10000).toFixed(1) + '万+';
+    } else if (views >= 1000) {
+      return (views / 1000).toFixed(1) + '千+';
+    } else if (views > 0) {
+      return views + '人使用';
+    } else {
+      return '暂无使用数据';
+    }
+  }
+
   // 鼠标移入显示遮罩层
   const mouseover = () => {
     maskLayerRef.value.style.opacity = 1;

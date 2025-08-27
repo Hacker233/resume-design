@@ -1,0 +1,2 @@
+google.com, pub-5263267825941479, DIRECT, f08c47fec0942fa0
+subdomain=nav.maobucv.com
