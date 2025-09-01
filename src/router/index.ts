@@ -22,6 +22,7 @@ const MyResume = () => import('@/views/person/myResume/index.vue');
 const AiOptimizeLogs = () => import('@/views/person/aiOptimizeLogs/index.vue');
 const PdfPreview = () => import('@/views/PdfPreview/index.vue'); // 老版本简历预览界面
 const ResumePreview = () => import('@/views/createTemplate/previewer/index.vue');
+const OutResumePreview = () => import('@/views/createTemplate/outPreviewer/index.vue');
 const Template = () => import('@/views/template/index.vue');
 const Resume = () => import('@/views/resumeList/index.vue');
 const ResumeContent = () => import('@/views/resumeContent/index.vue');
@@ -270,6 +271,18 @@ const routes: Array<RouteRecordRaw> = [
       requireAdmin: false
     },
     component: ResumePreview
+  },
+  {
+    path: '/outResumePreview',
+    name: 'OutResumePreview',
+    meta: {
+      title: '简历预览页',
+      keepAlive: false,
+      isShowComNav: false,
+      requireLogin: false,
+      requireAdmin: false
+    },
+    component: OutResumePreview
   },
   {
     path: '/emailVerify',

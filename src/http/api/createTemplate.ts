@@ -128,3 +128,12 @@ export const getOrgUserResumeListAsync: any = (params: any) => {
     params: params
   });
 };
+
+// 根据流水号id查询简历数据
+export const getResumeDataBySerialNumberAsync: any = (params: any) => {
+  return http.request({
+    url: '/huajian/common/getResumeDataBySerialNumber',
+    method: 'get',
+    params: params
+  });
+};
