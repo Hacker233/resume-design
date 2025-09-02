@@ -1,6 +1,6 @@
 <template>
   <nav class="nav-box">
-    <div class="nav-left">
+    <div class="design-nav-left">
       <div class="return-icon" @click="returnPage">
         <el-icon><ArrowLeftBold /></el-icon>
       </div>
@@ -404,11 +404,11 @@
     display: flex;
     box-shadow: 0 5px 21px 0 rgb(78 78 78 / 5%);
     z-index: 20;
-    .nav-left {
+    .design-nav-left {
       display: flex;
       align-items: center;
       user-select: none;
-      padding: 0 0 0 40px;
+      padding: 0 0 0 20px;
       .return-icon {
         width: 30px;
         height: 30px;
@@ -416,7 +416,7 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        margin-right: 20px;
+        margin-right: 10px;
         transition: all 0.3s;
         &:hover {
           opacity: 0.8;
