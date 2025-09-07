@@ -23,9 +23,12 @@
     const data = await getResumeDataBySerialNumberAsync({
       serialNumber: route.query.serialNumber
     });
-    if (data.data.status === 200) {
+    if (data.status === 200) {
       HJNewJsonStore.value = data.data.resume;
-      HJNewJsonStore.value.props.title = data.data.data.template_title;
+      HJNewJsonStore.value.props.title = data.data.resume.config.title;
+      console.log('HJNewJsonStore.value', HJNewJsonStore.value);
+    } else {
+      ElMessage.error(data.message);
     }
   };
   getUserTemplate();
