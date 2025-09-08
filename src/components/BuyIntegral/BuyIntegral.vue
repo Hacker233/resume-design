@@ -159,6 +159,10 @@
   const dialogWXQrcodeVisible = ref<boolean>(false); // 微信
   const getOrderQrcode = async () => {
     if (payType.value === 'zfb') {
+      if (totalAmount.value > 200) {
+        ElMessage.error('单次充值金额不能超过200元哦~');
+        return;
+      }
       dialogQrcodeVisible.value = true;
     } else if (payType.value === 'wxpay') {
       console.log('微信支付');
