@@ -178,6 +178,11 @@
   const updateApplyLinksSuccess = () => {
     dialogApplyLinksVisible.value = false;
   };
+
+  defineExpose({
+    vxQunList,
+    linksList
+  });
 </script>
 
 <style lang="scss" scoped>
