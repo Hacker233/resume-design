@@ -823,7 +823,8 @@
   /* 报告卡片 */
   .detailed-report {
     margin-top: 22px;
-    width: 100%;
+    min-width: 820px;
+    max-width: 1200px;
 
     :deep(.el-card__body) {
       padding: 20px;
