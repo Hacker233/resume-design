@@ -43,10 +43,10 @@
           <el-option
             v-for="(item, index) in 20"
             :key="index"
-            :label="item + '年经验'"
-            :value="item"
+            :label="index + '年经验'"
+            :value="index"
           >
-            <span class="cyber-label">{{ item }}年</span>
+            <span class="cyber-label">{{ index }}年</span>
           </el-option>
         </el-select>
       </el-form-item>

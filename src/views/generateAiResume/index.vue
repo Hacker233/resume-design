@@ -16,7 +16,7 @@
             </div>
           </template>
         </el-step>
-        <el-step v-if="!templateId" :title="templateId ? '' : '第二步'" description="简历模版选择">
+        <el-step v-if="!templateId" :title="templateId ? '' : '第二步'" description="选择生成方式">
           <template #icon>
             <div class="step-icon">
               <div class="progress-bar"></div>
@@ -46,10 +46,10 @@
           v-if="active === lastActive && !isAiLoading && !generateResumeSuccess"
           ref="aiModelSelectRef"
         ></ai-model-select>
-        <AiLoading v-if="active === lastActive && isAiLoading" />
+        <AiLoading v-if="active === lastActive && isAiLoading && !mdResume" />
         <!-- 生成的简历预览 -->
         <div
-          v-show="active === lastActive && !isAiLoading && generateResumeSuccess"
+          v-if="active === lastActive && !isAiLoading && generateResumeSuccess && !mdResume"
           class="resume-preview-container"
         >
           <ResumePreview />
@@ -59,6 +59,26 @@
             <h3 class="cyber-title">全部内容查看请前往编辑页面</h3>
           </div>
         </div>
+        <!-- Markdown简历生成结果 -->
+        <transition v-if="mdResume" name="fade">
+          <el-card class="detailed-report" shadow="hover">
+            <!-- 等待效果 -->
+            <div v-if="isAiLoading" class="report-loading">
+              <el-skeleton :rows="6" animated />
+              <div class="loading-tip">
+                <el-icon class="is-loading"><Loading /></el-icon>
+                正在生成Markdown简历，请稍候...
+              </div>
+            </div>
+
+            <!-- 诊断内容滚动区域 -->
+            <div
+              ref="reportContentRef"
+              v-dompurify-html="renderedContent"
+              class="ai-optimize-content markdown-body scrollable-content"
+            ></div>
+          </el-card>
+        </transition>
       </div>
       <template v-if="!generateResumeSuccess">
         <!-- 下一步 -->
@@ -89,14 +109,29 @@
             <el-button class="custom-button" @click="prevStep">上一步</el-button>
           </div>
           <div class="next-step">
-            <el-button class="custom-button" :loading="isEditing" @click="goEdit">
+            <el-button v-if="!mdResume" class="custom-button" :loading="isEditing" @click="goEdit">
               {{ isEditing ? '处理中...' : '前往编辑' }}
+            </el-button>
+            <el-button
+              v-else
+              class="custom-button"
+              :loading="mdResumeLoading"
+              @click="downloadReport"
+            >
+              {{ mdResumeLoading ? '正在生成中...' : '立即下载' }}
             </el-button>
           </div>
         </div>
       </template>
     </div>
   </div>
+
+  <!-- 选择简历模版，或者直接生成Markdown -->
+  <select-way-dialog
+    :dialog-select-way-visible="dialogSelectWayVisible"
+    @cancle="handleWayCancle"
+    @update-success="handleWayUpdateSuccess"
+  ></select-way-dialog>
   <footer-com />
 </template>
 
@@ -105,6 +140,7 @@
   import AiTemplateSelect from './components/AiTemplateSelect.vue';
   import { getTemplateByIdAsync, getUsertemplateAsync } from '@/http/api/createTemplate';
   import AiModelSelect from './components/AiModelSelect.vue';
+  import SelectWayDialog from './components/SelectWayDialog.vue';
   import {
     extractResumeData,
     formatNumberWithCommas,
@@ -116,6 +152,7 @@
   import {
     aiFailAsync,
     cancelGenerateResumeStreamAsync,
+    generateMarkdownResumeStreamAsync,
     generateResumeStreamAsync,
     getSerialNumberAsync
   } from '@/http/api/ai';
@@ -126,6 +163,8 @@
   import jianBImage from '@/assets/images/jianB.png';
   import LoginDialog from '@/components/LoginDialog/LoginDialog';
   import FooterCom from '@/components/FooterCom/FooterCom.vue';
+  import { Loading } from '@element-plus/icons-vue';
+  import MarkdownIt from 'markdown-it';
 
   const active = ref(0);
   const isEditing = ref(false); // 是否正在处理编辑
@@ -142,6 +181,7 @@
   const aiModelSelectRef = ref<any>(null);
   const aiTemplateSelectRef = ref<any>(null);
   const selectTemplateId = ref(''); // 选中的模版id
+  const dialogSelectWayVisible = ref(false); // 选择生成方式弹窗
 
   const nextStep = () => {
     // 判断是否登录
@@ -155,7 +195,12 @@
         keyWordsRef.value.ruleFormRef.validate((valid: any) => {
           if (valid) {
             generateParams.value.keyWords = keyWordsRef.value.ruleForm;
-            active.value++;
+            // 弹出弹窗：模版生成、直接生成Markdown
+            if (!templateId) {
+              dialogSelectWayVisible.value = true;
+            } else {
+              active.value++;
+            }
           } else {
             ElMessage.warning('有必填项未填哦');
             return;
@@ -174,6 +219,48 @@
       // 查询简历模版JSON
       getTemplateData();
     }
+  };
+
+  // Markdown 渲染
+  const md = new MarkdownIt({
+    html: true,
+    breaks: true,
+    linkify: true,
+    typographer: true
+  });
+  const renderedContent = computed(() => {
+    // 去除开头和结尾的 ```markdown 或 ```
+    const cleanedStr = str.value.replace(/^```markdown|```$/gm, '');
+    return md.render(cleanedStr);
+  });
+
+  // 选择生成方式弹窗取消
+  const handleWayCancle = () => {
+    dialogSelectWayVisible.value = false;
+  };
+
+  // 选择生成方式弹窗更新成功
+  const selectedOption = ref('template');
+  const handleWayUpdateSuccess = (value: string) => {
+    selectedOption.value = value;
+    if (selectedOption.value === 'template') {
+      dialogSelectWayVisible.value = false;
+      active.value++;
+    } else if (selectedOption.value === 'markdown') {
+      dialogSelectWayVisible.value = false;
+      active.value = 2;
+    }
+  };
+
+  // 下载Markdown简历
+  const downloadReport = () => {
+    const blob = new Blob([str.value], { type: 'text/markdown;charset=utf-8;' });
+    const link = document.createElement('a');
+    link.href = URL.createObjectURL(blob);
+    link.download = `简历_${new Date().toISOString().slice(0, 10)}.md`;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
   };
 
   // 查询模版数据
@@ -199,6 +286,19 @@
 
   // 上一步
   const prevStep = () => {
+    // 如果是生成MD简历, 直接回到第一步
+    if (mdResume.value || selectedOption.value === 'markdown') {
+      mdResume.value = false;
+      isAiLoading.value = false;
+      mdResumeLoading.value = false;
+      generateResumeSuccess.value = false;
+      active.value = 0;
+      selectedOption.value = 'template';
+      // 取消流式传输
+      if (streamController.value) {
+        cancelGenerateResumeStreamAsync(streamController.value);
+      }
+    }
     if (active.value === 0) {
       return;
     } else {
@@ -229,6 +329,8 @@
   const { getUserIntegralTotal } = appStore.useUserInfoStore;
   const { userIntegralInfo } = storeToRefs(appStore.useUserInfoStore);
   const { HJNewJsonStore, fromAiGenerate } = storeToRefs(appStore.useCreateTemplateStore);
+  const mdResume = ref(false); // 是否生成的是md简历
+  const mdResumeLoading = ref(false); // md简历是否正在生成
   const generateResume = async () => {
     console.log(generateParams.value);
     generateParams.value.model = aiModelSelectRef.value.selectedModel;
@@ -242,7 +344,7 @@
     if (!generateParams.value.keyWords) {
       ElMessage.warning('请填写关键词');
       return;
-    } else if (!generateParams.value.template) {
+    } else if (!generateParams.value.template && selectedOption.value === 'template') {
       ElMessage.warning('请选择模版');
       return;
     }
@@ -306,63 +408,106 @@
     isAiLoading.value = true;
     generateResumeSuccess.value = false;
 
-    // 提取 dataSource 数据
-    const dataSource = extractResumeData(cloneDeep(HJNewJsonStore.value));
-    console.log('dataSource', JSON.stringify(dataSource));
-
     const params = {
       model: generateParams.value.model, // 使用的AI模型
       keywords: generateParams.value.keyWords,
-      template: dataSource,
+      template: '',
       serialNumber: serialNumber.value
     };
     str.value = '';
 
-    const controller = generateResumeStreamAsync(
-      params,
-      handleStreamData,
-      (error: any) => {
-        ElMessage.error(error.message || 'AI智能简历生成失败');
-        isAiLoading.value = false;
-        aiFailAsync({
-          serialNumber: serialNumber.value,
-          error: error.message || 'AI智能简历生成失败'
-        });
-      },
-      () => {
-        try {
-          const result = str.value.replace(/```json/g, '');
-          const resule2 = result.replace(/```/g, '');
-          console.log('转义结果', resule2);
-          console.log('JSON.parse后的数据', JSON.parse(resule2));
-          // 还原label
-          const resetLabel = restoreData(JSON.parse(resule2));
-          console.log('还原label后的数据', resetLabel);
-          // 彻底还原数据
-          const resetData = restoreDataId(cloneDeep(HJNewJsonStore.value), resetLabel);
-          console.log('彻底还原后的数据', resetData);
-          HJNewJsonStore.value = resetData;
-          ElMessage.success('AI简历生成成功');
+    // 基于模版生成简历
+    if (selectedOption.value === 'template') {
+      // 提取 dataSource 数据
+      const dataSource = extractResumeData(cloneDeep(HJNewJsonStore.value));
+      console.log('dataSource', JSON.stringify(dataSource));
+      params.template = dataSource;
+      const controller = generateResumeStreamAsync(
+        params,
+        handleStreamData,
+        (error: any) => {
+          ElMessage.error(error.message || 'AI智能简历生成失败');
           isAiLoading.value = false;
-          generateResumeSuccess.value = true;
-          if (!modelObj.value.model_is_free) {
-            getUserIntegralTotal();
-          }
-        } catch (e) {
-          console.log('JSON 转换失败');
-          isAiLoading.value = false;
-          ElNotification.error({
-            title: '错误',
-            message: '简历结果已返回，但JSON处理失败'
-          });
           aiFailAsync({
             serialNumber: serialNumber.value,
-            errorMsg: 'JSON返回，但处理失败'
+            error: error.message || 'AI智能简历生成失败'
           });
+        },
+        () => {
+          try {
+            const result = str.value.replace(/```json/g, '');
+            const resule2 = result.replace(/```/g, '');
+            console.log('转义结果', resule2);
+            console.log('JSON.parse后的数据', JSON.parse(resule2));
+            // 还原label
+            const resetLabel = restoreData(JSON.parse(resule2));
+            console.log('还原label后的数据', resetLabel);
+            // 彻底还原数据
+            const resetData = restoreDataId(cloneDeep(HJNewJsonStore.value), resetLabel);
+            console.log('彻底还原后的数据', resetData);
+            HJNewJsonStore.value = resetData;
+            ElMessage.success('AI简历生成成功');
+            isAiLoading.value = false;
+            generateResumeSuccess.value = true;
+            if (!modelObj.value.model_is_free) {
+              getUserIntegralTotal();
+            }
+          } catch (e) {
+            console.log('JSON 转换失败');
+            isAiLoading.value = false;
+            ElNotification.error({
+              title: '错误',
+              message: '简历结果已返回，但JSON处理失败'
+            });
+            aiFailAsync({
+              serialNumber: serialNumber.value,
+              errorMsg: 'JSON返回，但处理失败'
+            });
+          }
         }
-      }
-    );
-    streamController.value = controller;
+      );
+      streamController.value = controller;
+    } else {
+      mdResume.value = true;
+      mdResumeLoading.value = true;
+      // 直接生成Markdown
+      const controller = generateMarkdownResumeStreamAsync(
+        params,
+        handleMDStreamData,
+        (error: any) => {
+          ElMessage.error(error.message || 'AI智能Markdown简历生成失败');
+          isAiLoading.value = false;
+          aiFailAsync({
+            serialNumber: serialNumber.value,
+            error: error.message || 'AI智能Markdown简历生成失败'
+          });
+        },
+        () => {
+          try {
+            console.log('Markdown 转换成功', str.value);
+            isAiLoading.value = false;
+            mdResumeLoading.value = false;
+            generateResumeSuccess.value = true;
+            if (!modelObj.value.model_is_free) {
+              getUserIntegralTotal();
+            }
+          } catch (e) {
+            console.log('Markdown 转换失败', e);
+            isAiLoading.value = false;
+            mdResumeLoading.value = false;
+            ElNotification.error({
+              title: '错误',
+              message: '简历结果已返回，但Markdown处理失败'
+            });
+            aiFailAsync({
+              serialNumber: serialNumber.value,
+              errorMsg: 'Markdown返回，但处理失败'
+            });
+          }
+        }
+      );
+      streamController.value = controller;
+    }
   };
   // 处理流式数据
   const handleStreamData = (chunk: string) => {
@@ -384,6 +529,35 @@
           aiFailAsync({
             serialNumber: serialNumber.value,
             errorMsg: '处理流式数据出现错误'
+          });
+        }
+      }
+    });
+  };
+
+  // 处理markdown简历流式数据
+  const handleMDStreamData = (chunk: string) => {
+    const lines = chunk.split('\n');
+    lines.forEach((line) => {
+      const trimmedLine = line.trim();
+      if (trimmedLine.startsWith('data:')) {
+        const dataPart = trimmedLine.slice(5).trim();
+        try {
+          const parsedData = JSON.parse(dataPart);
+          const content = parsedData.data;
+          if (content) {
+            str.value += content;
+            isAiLoading.value = false;
+            generateResumeSuccess.value = true;
+          }
+        } catch (e) {
+          ElNotification({ title: '提示', message: trimmedLine, type: 'error' });
+          isAiLoading.value = false;
+          mdResumeLoading.value = false;
+          generateResumeSuccess.value = false;
+          aiFailAsync({
+            serialNumber: serialNumber.value,
+            errorMsg: '处理Markdown流式数据出现错误'
           });
         }
       }
@@ -436,12 +610,11 @@
     }
   };
 </script>
-
+<style src="../../style/markdown.css"></style>
 <style lang="scss" scoped>
   .generate-ai-resume-box {
     width: 100vw;
-    height: calc(100vh - 65px);
-    overflow: auto;
+    min-height: calc(100vh - 65px);
     background: linear-gradient(180deg, #efe5fd 0%, #fbf9fe 100%);
     display: flex;
     align-items: flex-start;
@@ -645,5 +818,103 @@
       padding: 0;
       z-index: 11;
     }
+  }
+
+  /* 报告卡片 */
+  .detailed-report {
+    margin-top: 22px;
+    width: 100%;
+
+    :deep(.el-card__body) {
+      padding: 20px;
+    }
+
+    h3 {
+      font-size: 1.2rem;
+      margin-bottom: 30px;
+      color: #333;
+    }
+    .report-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 30px;
+
+      h3 {
+        font-size: 1.2rem;
+        color: #333;
+        margin: 0;
+      }
+
+      .download-btn {
+        font-size: 0.85rem;
+        padding: 6px 12px;
+        height: auto;
+        background-color: #4096ff;
+        border-color: #4096ff;
+
+        &:hover {
+          background-color: #337ecc;
+          border-color: #337ecc;
+        }
+      }
+    }
+
+    .report-loading {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      .loading-tip {
+        margin-top: 16px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        color: #888;
+        font-size: 0.95rem;
+      }
+    }
+  }
+
+  /* 过渡 */
+  .fade-enter-active,
+  .fade-leave-active {
+    transition: opacity 0.2s;
+  }
+  .fade-enter-from,
+  .fade-leave-to {
+    opacity: 0;
+  }
+
+  /* 响应式 */
+  @media (max-width: 768px) {
+    .page-header .title {
+      font-size: 1.9rem;
+    }
+    .action-buttons {
+      flex-direction: column;
+    }
+    .upload-btn,
+    .diagnose-btn {
+      width: 100%;
+    }
+    .report-header {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 12px;
+    }
+  }
+  .scrollable-content {
+    padding: 20px;
+    border: 1px solid #ebeef5;
+    border-radius: 6px;
+    background-color: #fff;
+  }
+
+  .scroll-to-bottom-btn {
+    position: fixed;
+    bottom: 80px; /* 距离底部，可调整 */
+    right: 40px; /* 距离右侧 */
+    z-index: 1000;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
   }
 </style>
