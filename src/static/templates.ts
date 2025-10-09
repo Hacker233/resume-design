@@ -534,6 +534,11 @@ const templates = [
     "id": "6899e05175085b2655e5696e",
     "page": "template-107.html",
     "title": "电商运营岗位简历模板"
+  },
+  {
+    "id": "68c173149284d8c0c01b80f8",
+    "page": "template-108.html",
+    "title": "校招游戏运营岗位简历模板"
   }
 ];
 

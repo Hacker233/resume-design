@@ -26,6 +26,10 @@
     if (data.status === 200) {
       HJNewJsonStore.value = data.data.resume;
       HJNewJsonStore.value.props.title = data.data.resume.config.title;
+      await nextTick();
+      if (route.query.theme && route.query.theme !== 'undefined') {
+        HJNewJsonStore.value.css.themeColor = `#${route.query.theme}`; // 更改主题色
+      }
       console.log('HJNewJsonStore.value', HJNewJsonStore.value);
     } else {
       ElMessage.error(data.message);

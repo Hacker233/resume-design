@@ -30,6 +30,7 @@ export const useGetBoxStyle = (props: { module: IModule }) => {
     () => props.module.css.themeColor,
     (newVal) => {
       if (newVal) {
+        console.log('模块主题色发生变化', newVal);
         const setCssObject = themeColorProps[props.module.componentName];
         if (setCssObject) {
           // 设置主题样式跟随主题色
