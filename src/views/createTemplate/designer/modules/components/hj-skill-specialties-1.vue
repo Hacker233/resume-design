@@ -6,6 +6,7 @@
         v-dompurify-html="item.introduce.value"
         :style="skillSpecialtiesLi"
         :class="[{ 'odd-li': isOddLi(index + 1) }]"
+        class="mb-li"
       >
       </li>
     </template>
@@ -43,6 +44,11 @@
   ul {
     .odd-li {
       padding-right: 20px;
+    }
+    .mb-li {
+      :deep(ul li) {
+        list-style: disc;
+      }
     }
   }
 </style>

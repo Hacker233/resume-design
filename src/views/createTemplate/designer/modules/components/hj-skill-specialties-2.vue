@@ -1,7 +1,7 @@
 <template>
   <ul :style="skillSpecialtiesBox">
     <template v-for="(item, index) in module.dataSource.list.value" :key="index">
-      <li :style="skillSpecialtiesLi" :class="[{ 'odd-li': isOddLi(index + 1) }]">
+      <li :style="skillSpecialtiesLi" :class="[{ 'odd-li': isOddLi(index + 1) }]" class="mb-li">
         <p v-show="module.props.skillName.show">{{ item.skillName.value }}</p>
         <el-slider
           v-show="module.props.proficiency.show"
@@ -58,6 +58,11 @@
 </script>
 <style lang="scss" scoped>
   ul {
+    .mb-li {
+      :deep(ul li) {
+        list-style: disc;
+      }
+    }
     .odd-li {
       padding-right: 20px;
     }

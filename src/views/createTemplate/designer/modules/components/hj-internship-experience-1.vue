@@ -30,6 +30,7 @@
           v-dompurify-html="contentItem.content.value"
           :class="[{ 'odd-li': isOddLi(index + 1) }]"
           :style="internshipExperienceLi"
+          class="mb-li"
         ></li>
       </ul>
     </div>
@@ -96,6 +97,11 @@
   .job-content-ul {
     .odd-li {
       padding-right: 25px;
+    }
+    .mb-li {
+      :deep(ul li) {
+        list-style: disc;
+      }
     }
   }
 </style>

@@ -40,9 +40,9 @@
     display: flex;
     align-items: center;
     flex-shrink: 0;
+    opacity: 0.9;
   }
   .li-border {
     border-right: 2px solid v-bind('borderColor');
-    opacity: 0.8;
   }
 </style>

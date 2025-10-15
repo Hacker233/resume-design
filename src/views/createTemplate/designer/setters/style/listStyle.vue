@@ -3,11 +3,17 @@
     <el-form-item size="default" label="标记样式">
       <el-radio-group v-model="module.css.listStyle">
         <el-radio label="none">无</el-radio>
-        <el-radio label="disc"><li :style="{ listStyle: 'disc' }"></li></el-radio>
-        <el-radio label="auto"><li :style="{ listStyle: 'auto' }"></li> </el-radio>
-        <el-radio label="circle"><li :style="{ listStyle: 'circle' }"></li></el-radio>
+        <el-radio label="disc"
+          ><li :style="{ listStyle: 'disc', marginLeft: '20px' }"></li
+        ></el-radio>
+        <el-radio label="auto"
+          ><li :style="{ listStyle: 'auto', marginLeft: '20px' }"></li>
+        </el-radio>
+        <el-radio label="circle"
+          ><li :style="{ listStyle: 'circle', marginLeft: '20px' }"></li
+        ></el-radio>
         <el-radio label="cjk-ideographic"
-          ><li :style="{ listStyle: 'cjk-ideographic' }"></li>
+          ><li :style="{ listStyle: 'cjk-ideographic', marginLeft: '30px' }"></li>
         </el-radio>
       </el-radio-group>
     </el-form-item>
