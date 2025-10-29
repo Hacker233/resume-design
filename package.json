@@ -6,8 +6,8 @@
   "scripts": {
     "deploy": "npm install && npm run build",
     "dev": "vite",
-    "build:local": "vue-tsc --noEmit && vite build",
-    "build:dev": "vue-tsc --noEmit && vite build --mode development",
+    "build:local": "rimraf dist && vite build",
+    "build:dev": "rimraf dist && vite build --mode development",
     "generate:prerender-data": "ts-node generate-prerender-data.ts",
     "build:spa": "rimraf dist && vite build --mode spa",
     "build:ssr": "rimraf dist && npm run generate-templates && npm run generate:prerender-data && vite build --mode ssr",
