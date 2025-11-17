@@ -27,6 +27,13 @@ const http: any = new Request({
         }
         return status >= 200 && status < 400;
       };
+      // 重要：如果是 FormData，不要设置 Content-Type
+      if (config.data instanceof FormData) {
+        // 删除可能存在的 Content-Type，让浏览器自动设置
+        if (config.headers) {
+          delete config.headers['Content-Type'];
+        }
+      }
       return config;
     },
     responseInterceptors: (response: AxiosResponse) => {
