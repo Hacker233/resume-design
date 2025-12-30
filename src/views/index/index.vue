@@ -20,7 +20,7 @@
     <!-- 职行AI产品介绍栏 -->
     <jobzx-product ref="jobzxRef" v-config:open_jobzx></jobzx-product>
     <!-- 简历优化服务 -->
-    <resume-service></resume-service>
+    <resume-service v-if="!websiteConfig.all_free"></resume-service>
     <!-- 简历功能介绍 -->
     <resume-function-introduce></resume-function-introduce>
     <!-- 网站开源信息 -->

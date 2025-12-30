@@ -140,7 +140,10 @@
       <!-- 登录注册以及用户展示区域 -->
       <div class="user-box">
         <div v-if="!appStore.useUserInfoStore.userInfo" class="logon-register-box">
-          <el-button class="login-btn" type="primary" @click="openLoginDialog">注册/登录</el-button>
+          <el-button class="login-btn" type="primary" @click="openLoginDialog">
+            <span v-config:open_sign> 注册/ </span>
+            登录
+          </el-button>
         </div>
         <div
           v-else

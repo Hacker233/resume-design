@@ -16,7 +16,11 @@
           <!-- 查看更多按钮 -->
           <div class="see-more-box">
             <hj-button-1 text="免费制作专业简历" @click="freeMakeResume"></hj-button-1>
-            <hj-button-1 text="专业简历服务" @click="resumeContact"></hj-button-1>
+            <hj-button-1
+              v-if="!websiteConfig.all_free"
+              text="专业简历服务"
+              @click="resumeContact"
+            ></hj-button-1>
             <!-- <hj-button-1 text="AI智能生成简历" @click="generateAiResume"></hj-button-1> -->
             <!-- <hj-button-1 v-config:open_jobzx text="AI面试助手" @click="toJobzx"></hj-button-1> -->
             <!-- <hj-button-1 text="私有部署" @click="resumeContact"></hj-button-1> -->
@@ -76,9 +80,13 @@
 <script lang="ts" setup>
   import { closeGlobalLoading } from '@/utils/common';
   import HjButton1 from '@/components/HjButton/HjButton1/index.vue';
+  import appStore from '@/store';
+  import { storeToRefs } from 'pinia';
   // import { useToJobzxAi } from '@/hooks/useToJobzxAi';
 
   const emit = defineEmits(['freeMake', 'seeMore']);
+
+  const { websiteConfig } = storeToRefs(appStore.useWebsiteConfigStore);
 
   const freeMakeResume = () => {
     emit('freeMake');
