@@ -248,7 +248,7 @@ const generateFooterHtml = (vxquns = [], links = []) => {
       </div>
       <div class="line"></div>
       <div class="copyright-notice">
-        <p>Copyright © 2025 猫步简历 All Rights Reserved.</p>
+        <p>Copyright © 2026 猫步简历 All Rights Reserved.</p>
       </div>
       <div class="icp-record-number">
         <p><a href="https://beian.miit.gov.cn" target="_blank" rel="noopener noreferrer">蜀ICP备2020034752号</a></p>

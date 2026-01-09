@@ -12,7 +12,7 @@
       ></project-introduce>
     </div>
     <!-- 更多功能 -->
-    <more-function></more-function>
+    <more-function v-if="!websiteConfig.all_free"></more-function>
     <!-- 模板选择 -->
     <template-select ref="templeTef"></template-select>
     <!-- 根据用途挑选简历 -->

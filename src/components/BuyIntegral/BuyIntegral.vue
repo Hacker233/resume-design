@@ -165,6 +165,10 @@
       }
       dialogQrcodeVisible.value = true;
     } else if (payType.value === 'wxpay') {
+      if (totalAmount.value > 150) {
+        ElMessage.error('单次充值金额不能超过150元哦~');
+        return;
+      }
       console.log('微信支付');
       dialogWXQrcodeVisible.value = true;
     }

@@ -114,7 +114,7 @@
     <div class="footer-bottom">
       <div class="divider"></div>
       <div class="copyright">
-        <p>Copyright © 2025 猫步简历 All Rights Reserved.</p>
+        <p>Copyright © 2026 猫步简历 All Rights Reserved.</p>
       </div>
       <div class="icp">
         <a href="https://beian.miit.gov.cn" target="_blank" rel="noopener noreferrer">
