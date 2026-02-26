@@ -311,3 +311,21 @@ export const aiOptimizeResumeByPdfTextStreamAsync: any = (
     onComplete // 完成回调
   );
 };
+
+// 存储AI生成的简历数据
+export const saveAiResumeDataAsync: any = (data: any) => {
+  return http.request({
+    url: '/huajian/ai/saveGenerateResumeData',
+    method: 'post',
+    data: data
+  });
+};
+
+// 查询用户AI简历生成列表
+export const getGenerateResumeDataListAsync: any = (params: any) => {
+  return http.request({
+    url: '/huajian/ai/getGenerateResumeDataList',
+    method: 'get',
+    params: params
+  });
+};

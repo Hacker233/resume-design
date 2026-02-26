@@ -230,6 +230,12 @@
 
   // 保存草稿
   const saveDraft = () => {
+    setTimeout(() => {
+      ElMessage({
+        message: '保存草稿成功',
+        type: 'success'
+      });
+    }, 1000);
     saveDataToLocal();
   };
 

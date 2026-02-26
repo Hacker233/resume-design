@@ -69,6 +69,11 @@
               <i class="icon-product"></i> 猫步工具箱
             </a>
           </li>
+          <li>
+            <a href="https://joblife.cn" target="_blank" rel="noopener noreferrer">
+              <i class="icon-product"></i> 薪导航
+            </a>
+          </li>
         </ul>
       </div>
 

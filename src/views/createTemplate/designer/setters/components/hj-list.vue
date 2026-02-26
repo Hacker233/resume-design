@@ -142,7 +142,7 @@
 
   // 新增一项
   const addItem = () => {
-    const data = commonDataSource[module.category][props.keyValue];
+    const data = cloneDeep(commonDataSource[module.category][props.keyValue]);
     if (Array.isArray(data.value) && data.value.length) {
       const addData = cloneDeep(data.value[0]);
       module.dataSource[props.keyValue].value.push(addData);

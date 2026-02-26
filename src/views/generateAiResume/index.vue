@@ -154,7 +154,8 @@
     cancelGenerateResumeStreamAsync,
     generateMarkdownResumeStreamAsync,
     generateResumeStreamAsync,
-    getSerialNumberAsync
+    getSerialNumberAsync,
+    saveAiResumeDataAsync
   } from '@/http/api/ai';
   import { cloneDeep } from 'lodash';
   import AiLoading from './components/AiLoading.vue';
@@ -452,6 +453,15 @@
             if (!modelObj.value.model_is_free) {
               getUserIntegralTotal();
             }
+            // 存储AI生成的简历数据
+            const aiResumeDataParams = {
+              serial_number: serialNumber.value, // 流水号
+              ai_model: generateParams.value.model, // AI模型
+              ai_content: JSON.stringify(resetData), // AI生成的简历内容
+              resume_id: selectTemplateId.value, // 简历ID
+              resume_type: 'TEMPLATE' // 简历类型， MD，生成Markdown简历； TEMPLATE 根据模版生成
+            };
+            saveAiResumeDataAsync(aiResumeDataParams);
           } catch (e) {
             console.log('JSON 转换失败');
             isAiLoading.value = false;
@@ -491,6 +501,15 @@
             if (!modelObj.value.model_is_free) {
               getUserIntegralTotal();
             }
+            // 存储AI生成的简历数据
+            const aiResumeDataParams = {
+              serial_number: serialNumber.value, // 流水号
+              ai_model: generateParams.value.model, // AI模型
+              ai_content: str.value, // AI生成的简历内容
+              resume_id: '', // 简历ID
+              resume_type: 'MD' // 简历类型， MD，生成Markdown简历； TEMPLATE 根据模版生成
+            };
+            saveAiResumeDataAsync(aiResumeDataParams);
           } catch (e) {
             console.log('Markdown 转换失败', e);
             isAiLoading.value = false;

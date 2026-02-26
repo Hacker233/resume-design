@@ -54,6 +54,13 @@
       title: 'AI诊断记录',
       path: '/person/aiOptimizeLogs',
       freeUserNotShow: false // 全站免费用户是否不展示
+    },
+    {
+      index: 'AiGenerateLogs',
+      iconfont: 'icon-zujian',
+      title: 'AI生成记录',
+      path: '/person/aiGenerateLogs',
+      freeUserNotShow: false // 全站免费用户是否不展示
     }
     // {
     //   index: 'LegoCreate',

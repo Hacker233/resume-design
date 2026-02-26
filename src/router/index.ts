@@ -20,6 +20,7 @@ const AccountSetting = () => import('@/views/person/accountSetting/index.vue');
 const MyComment = () => import('@/views/person/myComment/index.vue');
 const MyResume = () => import('@/views/person/myResume/index.vue');
 const AiOptimizeLogs = () => import('@/views/person/aiOptimizeLogs/index.vue');
+const AiGenerateLogs = () => import('@/views/person/aiGenerateLogs/index.vue');
 const PdfPreview = () => import('@/views/PdfPreview/index.vue'); // 老版本简历预览界面
 const ResumePreview = () => import('@/views/createTemplate/previewer/index.vue');
 const OutResumePreview = () => import('@/views/createTemplate/outPreviewer/index.vue');
@@ -724,6 +725,19 @@ const routes: Array<RouteRecordRaw> = [
           requireAdmin: false
         },
         component: AiOptimizeLogs
+      },
+      {
+        path: 'aiGenerateLogs',
+        name: 'AiGenerateLogs',
+        meta: {
+          title: 'AI生成记录',
+          keepAlive: true,
+          isShowComNav: true,
+          requireLogin: true,
+          showTitle: true,
+          requireAdmin: false
+        },
+        component: AiGenerateLogs
       },
       {
         path: 'myOnlineResume',
