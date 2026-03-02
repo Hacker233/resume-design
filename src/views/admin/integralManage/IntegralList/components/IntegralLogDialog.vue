@@ -17,23 +17,16 @@
       label-position="left"
     >
       <el-form-item label="用户邮箱:" prop="email">
-        <el-input v-model="ruleForm.email" type="email" />
+        <el-input v-model="ruleForm.email" type="email" placeholder="请输入用户邮箱" />
       </el-form-item>
       <el-form-item label="记录原因:" prop="type">
-        <el-select
+        <el-autocomplete
           v-model="ruleForm.integralReason"
-          placeholder="请选择记录原因"
-          :allow-create="true"
-          filterable
+          :fetch-suggestions="querySearch"
+          placeholder="请选择或输入记录原因"
           style="width: 100%"
-        >
-          <el-option
-            v-for="(item, index) in reasonList"
-            :key="index"
-            :label="item.label"
-            :value="item.label"
-          />
-        </el-select>
+          clearable
+        />
       </el-form-item>
       <el-form-item label="简币数量:" prop="addValue">
         <el-input-number v-model="ruleForm.addValue" />
@@ -77,9 +70,22 @@
     },
     {
       value: 4,
-      label: '给开源项目GitHub点star获取20简币'
+      label: '给开源项目GitHub点star获取10简币'
+    },
+    {
+      value: 5,
+      label: '分享到朋友圈获取20简币'
     }
   ]);
+
+  const querySearch = (queryString: string, cb: (arg: any[]) => void) => {
+    const results = queryString
+      ? reasonList
+          .filter((item) => item.label.toLowerCase().includes(queryString.toLowerCase()))
+          .map((item) => ({ value: item.label }))
+      : reasonList.map((item) => ({ value: item.label }));
+    cb(results);
+  };
 
   interface IPay {
     email: string;

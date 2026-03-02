@@ -9,7 +9,7 @@
       ref="ruleFormRef"
       :model="ruleForm"
       :rules="rules"
-      label-width="160px"
+      label-width="200px"
       size="default"
       label-position="left"
     >
@@ -50,9 +50,12 @@
       <el-form-item label="是否开启邀请注册:" prop="open_invite_register">
         <el-switch v-model="ruleForm.open_invite_register" />
       </el-form-item>
-      <el-form-item label="是否开启职行AI推广:" prop="open_jobzx">
-        <el-switch v-model="ruleForm.open_jobzx" />
+      <el-form-item label="是否开启朋友圈分享得简币:" prop="open_friend_circle_share">
+        <el-switch v-model="ruleForm.open_friend_circle_share" />
       </el-form-item>
+      <!-- <el-form-item label="是否开启职行AI推广:" prop="open_jobzx">
+        <el-switch v-model="ruleForm.open_jobzx" />
+      </el-form-item> -->
       <el-form-item label="网站隐私协议:" prop="privacy_policy">
         <comm-editor v-model="ruleForm.privacy_policy" height="400px"></comm-editor>
       </el-form-item>
@@ -93,6 +96,7 @@
     open_membership: boolean;
     open_homne_menu: boolean;
     open_invite_register: boolean;
+    open_friend_circle_share: boolean;
     open_jobzx: boolean;
     privacy_policy: string;
     service_agreement: string;
@@ -110,6 +114,7 @@
     open_membership: true,
     open_homne_menu: true,
     open_invite_register: true,
+    open_friend_circle_share: true,
     open_jobzx: false,
     privacy_policy: '',
     service_agreement: ''
@@ -170,6 +175,7 @@
     ruleForm.open_membership = data.open_membership;
     ruleForm.open_homne_menu = data.open_homne_menu;
     ruleForm.open_invite_register = data.open_invite_register;
+    ruleForm.open_friend_circle_share = data.open_friend_circle_share;
     ruleForm.open_jobzx = data.open_jobzx;
     ruleForm.privacy_policy = data.privacy_policy;
     ruleForm.service_agreement = data.service_agreement;

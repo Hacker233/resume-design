@@ -2,7 +2,7 @@
   <el-dialog
     :model-value="dialogGetIntegralVisible"
     class="get-integral-dialog-box"
-    width="850px"
+    width="870px"
     :show-close="true"
     :close-on-click-modal="true"
     :before-close="handleBeforeClose"
@@ -64,7 +64,7 @@
                   </div>
                 </div>
               </li>
-
+              <!-- 邀请注册 -->
               <li v-config:open_invite_register>
                 <div class="top">
                   <h1>邀请注册</h1>
@@ -81,24 +81,51 @@
                   </div>
                 </div>
               </li>
-
+              <!-- github点star -->
               <li>
                 <div class="top">
                   <h1>点Star</h1>
+                  <div class="circle"
+                    >10 <img width="16" src="@/assets/images/jianB.png" alt="简币"
+                  /></div>
+                </div>
+                <div class="bottom">
+                  <p class="content-desc"
+                    ><span
+                      >给猫步简历项目点Star，添加小编微信，凭点赞截图和注册邮箱获取+10简币（入口在首页开源信息栏目）
+                      <span class="star-get-jb" @click="getGithubStarProcess"
+                        >详细流程>></span
+                      ></span
+                    >
+                  </p>
+                  <div class="attendance-box" @click="toGithub">
+                    <div class="button"> 去点Star </div>
+                  </div>
+                </div>
+              </li>
+              <!-- 朋友圈分享 -->
+              <li v-config:open_friend_circle_share>
+                <div class="top">
+                  <h1>朋友圈分享</h1>
                   <div class="circle"
                     >20 <img width="16" src="@/assets/images/jianB.png" alt="简币"
                   /></div>
                 </div>
                 <div class="bottom">
                   <p class="content-desc"
-                    >给猫步简历项目点Star，添加小编微信，凭点赞截图和注册邮箱获取+20简币（入口在首页开源信息栏目）</p
+                    ><span
+                      >朋友圈分享猫步简历，公开权限半小时以上，获得+20个简币。具体分享细节见<span
+                        class="star-get-jb"
+                        @click="getPyqShareProcess"
+                        >详细流程>></span
+                      ></span
+                    ></p
                   >
-                  <div class="attendance-box" @click="toGithub">
-                    <div class="button"> 去点Star </div>
+                  <div class="attendance-box">
+                    <div class="button" @click="getPyqShareProcess">操作流程</div>
                   </div>
                 </div>
               </li>
-
               <li>
                 <div class="top">
                   <h1>直接购买</h1>
@@ -182,11 +209,25 @@
     :dialog-invitation-visible="dialogInvitationVisible"
     @cancle="cancleInvitationDialog"
   ></invitation-dialog>
+
+  <!-- github star 获取简币操作流程弹窗 -->
+  <github-star-process-dialog
+    :dialog-github-star-process-visible="dialogGithubStarProcessVisible"
+    @cancle="cancleGithubStarProcessDialog"
+  ></github-star-process-dialog>
+
+  <!-- 朋友圈分享猫步简历获取简币操作流程弹窗 -->
+  <pyq-share-dialog
+    :dialog-pyq-share-visible="dialogPyqShareVisible"
+    @cancle="canclePyqShareDialog"
+  ></pyq-share-dialog>
 </template>
 <script lang="ts" setup>
   import { addIntegralLogAsync } from '@/http/api/integral';
   import appStore from '@/store';
   import { formatNumberWithCommas } from '@/utils/common';
+  import GithubStarProcessDialog from '@/components/GithubStarProcessDialog/GithubStarProcessDialog.vue';
+  import PyqShareDialog from '@/components/PyqShareDialog/PyqShareDialog.vue';
 
   const emit = defineEmits(['cancle', 'confirm']);
   interface TDialog {
@@ -276,6 +317,26 @@
   const cancleInvitationDialog = () => {
     dialogInvitationVisible.value = false;
   };
+
+  // 跳转至github star 获取简币操作流程弹窗
+  const dialogGithubStarProcessVisible = ref<boolean>(false);
+  const getGithubStarProcess = () => {
+    dialogGithubStarProcessVisible.value = true;
+  };
+  // 关闭github star 获取简币操作流程弹窗
+  const cancleGithubStarProcessDialog = () => {
+    dialogGithubStarProcessVisible.value = false;
+  };
+
+  // 跳转至朋友圈分享猫步简历获取简币操作流程弹窗
+  const dialogPyqShareVisible = ref<boolean>(false);
+  const getPyqShareProcess = () => {
+    dialogPyqShareVisible.value = true;
+  };
+  // 关闭朋友圈分享猫步简历获取简币操作流程弹窗
+  const canclePyqShareDialog = () => {
+    dialogPyqShareVisible.value = false;
+  };
 </script>
 <style lang="scss">
   .get-integral-dialog-box {
@@ -307,6 +368,16 @@
           display: flex;
           align-items: center;
           color: #fb8444;
+          .star-get-jb {
+            font-size: 12px;
+            color: #58b5e1;
+            cursor: pointer;
+            margin-left: 5px;
+            transition: all 0.3s ease-in-out;
+            &:hover {
+              opacity: 0.8;
+            }
+          }
           img {
             margin-left: 5px;
           }
@@ -431,7 +502,7 @@
           margin-top: 50px;
           padding: 0 15px;
           display: flex;
-          height: 150px;
+          height: 160px;
           flex-direction: column;
           justify-content: space-between;
           .content-desc {

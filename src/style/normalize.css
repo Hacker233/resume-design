@@ -469,3 +469,7 @@ h3 {
   padding: 0;
   margin: 0;
 }
+
+.viewer-container {
+  z-index: 99999 !important;
+}

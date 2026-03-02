@@ -16,6 +16,7 @@ export const useWebsiteConfigStore = defineStore('websiteConfig', () => {
     open_membership: boolean;
     open_homne_menu: boolean;
     open_invite_register: boolean;
+    open_friend_circle_share: boolean;
     open_jobzx: boolean;
     privacy_policy: string;
     service_agreement: string;
@@ -32,6 +33,7 @@ export const useWebsiteConfigStore = defineStore('websiteConfig', () => {
     open_membership: true,
     open_homne_menu: true,
     open_invite_register: true,
+    open_friend_circle_share: true,
     open_jobzx: false,
     privacy_policy: '',
     service_agreement: ''
@@ -50,6 +52,7 @@ export const useWebsiteConfigStore = defineStore('websiteConfig', () => {
     websiteConfig.open_membership = websiteConfigData.open_membership;
     websiteConfig.open_homne_menu = websiteConfigData.open_homne_menu;
     websiteConfig.open_invite_register = websiteConfigData.open_invite_register;
+    websiteConfig.open_friend_circle_share = websiteConfigData.open_friend_circle_share;
     websiteConfig.open_jobzx = websiteConfigData.open_jobzx;
     websiteConfig.privacy_policy = websiteConfigData.privacy_policy;
     websiteConfig.service_agreement = websiteConfigData.service_agreement;
