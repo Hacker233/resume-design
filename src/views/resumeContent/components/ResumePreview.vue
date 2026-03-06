@@ -11,6 +11,7 @@
 
   // 初始化JSON数据
   const { HJNewJsonStore } = storeToRefs(appStore.useCreateTemplateStore);
+  console.log('HJNewJsonStore-详情页', HJNewJsonStore);
 </script>
 <style lang="scss" scoped>
   .page-wrapper {

@@ -83,11 +83,18 @@
       list-style: none;
       display: flex;
       align-items: center;
-      justify-content: center;
-      flex-wrap: wrap;
-      flex: 1;
       &:first-child {
         justify-content: flex-start;
+        flex: 0 0 auto;
+        white-space: nowrap;
+      }
+      &:nth-child(2) {
+        justify-content: center;
+        flex: 1;
+        min-width: 0;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+        margin: 0 15px;
       }
       &:last-child {
         justify-content: flex-end;
