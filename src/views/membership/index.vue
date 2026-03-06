@@ -120,57 +120,62 @@
       </div>
       <!-- 权益对比 -->
       <div class="member-benefit">
-        <div class="title"> 权益对比 </div>
-        <div class="vip-yige">
-          <div class="welfareBg">
-            <div
-              v-for="(color, index) in colors"
+        <div class="title">
+          <span class="title-text">权益对比</span>
+          <div class="title-decoration"></div>
+        </div>
+        <div class="benefit-table">
+          <!-- 表头 -->
+          <div class="table-header">
+            <div class="header-cell feature-header">功能权益</div>
+            <div 
+              v-for="(membership, index) in memberships" 
               :key="index"
-              class="lineBg"
-              :class="'color' + (index % 2)"
-            ></div>
-          </div>
-          <div class="cotent-item-wrapper first">
-            <div class="cotent-item cotent-item-type">
-              <div class="item-card first-item-card">
-                <div class="handsel"></div>
-                <div class="price">
-                  <div class="free"></div>
-                </div>
+              class="header-cell membership-header"
+              :class="membership.class"
+            >
+              <div class="membership-name">
+                {{ membership.label }}
+                <span v-if="index > 0" class="info-icon" @mouseenter="showTooltip(index)" @mouseleave="hideTooltip">
+                  <el-icon :size="14"><QuestionFilled /></el-icon>
+                </span>
               </div>
-              <div class="welfare first-column">
-                <div
-                  v-for="(benefit, index) in benefits"
-                  :key="index"
-                  class="line"
-                  :class="{ firstLine: index === 0 }"
-                  >{{ benefit.name }}</div
-                >
-              </div>
+              <div class="membership-desc">{{ membership.description }}</div>
             </div>
           </div>
-          <div
-            v-for="(membership, index) in memberships"
-            :key="index"
-            class="cotent-item-wrapper"
-            :class="{ firstContent: index === 0, last: index === memberships.length - 1 }"
+          
+          <!-- Tooltip -->
+          <div 
+            v-if="tooltipVisible"
+            class="tooltip"
+            :style="{ top: tooltipPosition.top + 'px', left: tooltipPosition.left + 'px' }"
           >
-            <div class="cotent-item" :class="{ active: membership.isActive }">
-              <div class="item-card" :class="membership.class">
-                <h1>{{ membership.label }}</h1>
-                <p>{{ membership.description }}</p>
-              </div>
-              <div class="welfare">
-                <div
-                  v-for="(benefit, bIndex) in membership.benefits"
-                  :key="bIndex"
-                  v-dompurify-html="benefit.content"
-                  class="line"
-                  :class="{
-                    specialLine: benefits[bIndex].special && index !== 0,
-                    firstLine: bIndex === 0
-                  }"
-                ></div>
+            <div class="tooltip-content">会员可无限制使用免费AI模型</div>
+            <div class="tooltip-arrow"></div>
+          </div>
+          
+          <!-- 表格内容 -->
+          <div class="table-body">
+            <div 
+              v-for="(benefit, rowIndex) in benefits" 
+              :key="rowIndex"
+              class="table-row"
+              :class="{ 'odd-row': rowIndex % 2 === 0 }"
+            >
+              <div class="cell feature-cell">{{ benefit.name }}</div>
+              <div 
+                v-for="(membership, colIndex) in memberships" 
+                :key="colIndex"
+                class="cell benefit-cell"
+              >
+                <el-icon v-if="membership.benefits[rowIndex].isCheck" :size="20" color="#52c41a">
+                  <CircleCheckFilled />
+                </el-icon>
+                <div v-else-if="membership.benefits[rowIndex].isCoin" class="coin-content">
+                  <img width="18" :src="jianBImage" alt="简币"/>
+                  <span class="coin-text">需消耗</span>
+                </div>
+                <span v-else v-dompurify-html="membership.benefits[rowIndex].content"></span>
               </div>
             </div>
           </div>
@@ -206,6 +211,8 @@
     <!-- 客服组件 -->
     <customer-service></customer-service>
   </div>
+
+  <footer-com />
 </template>
 <script setup lang="ts">
   import appStore from '@/store';
@@ -216,6 +223,7 @@
   import WXBuyQrCodeDialog from '@/components/WXBuyQrcodeDialog/index.vue';
   import CONFIG from '@/config';
   import { yipayTradePagePayAsync } from '@/utils/pay';
+  import { QuestionFilled, CircleCheckFilled } from '@element-plus/icons-vue';
 
   const emit = defineEmits(['paySuccess', 'cancel']);
 
@@ -260,6 +268,39 @@
   // 选择会员卡片
   const selectedMembership = ref<string>('monthly');
   const selectedPrice = ref<number>(9.9);
+  
+  // Tooltip 相关
+  const tooltipVisible = ref<boolean>(false);
+  const tooltipPosition = ref<{ top: number; left: number }>({ top: 0, left: 0 });
+  let hideTooltipTimer: ReturnType<typeof setTimeout> | null = null;
+  
+  const showTooltip = (index: number) => {
+    if (hideTooltipTimer) {
+      clearTimeout(hideTooltipTimer);
+      hideTooltipTimer = null;
+    }
+    
+    const headerCells = document.querySelectorAll('.membership-header');
+    if (headerCells[index]) {
+      const rect = headerCells[index].getBoundingClientRect();
+      const tableRect = document.querySelector('.benefit-table')?.getBoundingClientRect();
+      
+      if (tableRect) {
+        const cellWidth = (tableRect.width - 200) / 4;
+        tooltipPosition.value = {
+          top: 108,
+          left: 200 + index * cellWidth + cellWidth / 2 - 80
+        };
+        tooltipVisible.value = true;
+      }
+    }
+  };
+  
+  const hideTooltip = () => {
+    hideTooltipTimer = setTimeout(() => {
+      tooltipVisible.value = false;
+    }, 100);
+  };
   // 充值会员配置
   const membershipOptions = reactive<any>({
     type: selectedMembership.value
@@ -341,46 +382,66 @@
       isActive: false,
       benefits: [
         {
-          content: '消耗简币生成<img width="22" src="' + jianBImage + '" alt="简币"/>',
+          content: '',
+          isCheck: false,
+          isCoin: true,
           special: false
         },
         {
-          content: '消耗简币诊断<img width="22" src="' + jianBImage + '" alt="简币"/>',
+          content: '',
+          isCheck: false,
+          isCoin: true,
           special: false
         },
         {
-          content: '消耗简币诊断<img width="22" src="' + jianBImage + '" alt="简币"/>',
+          content: '',
+          isCheck: false,
+          isCoin: true,
           special: false
         },
         {
-          content: '消耗简币翻译<img width="22" src="' + jianBImage + '" alt="简币"/>',
+          content: '',
+          isCheck: false,
+          isCoin: true,
           special: false
         },
         {
-          content: '消耗简币润色<img width="22" src="' + jianBImage + '" alt="简币"/>',
+          content: '',
+          isCheck: false,
+          isCoin: true,
           special: false
         },
         {
-          content: '消耗简币创作<img width="22" src="' + jianBImage + '" alt="简币"/>',
+          content: '',
+          isCheck: false,
+          isCoin: true,
           special: false
         },
         {
-          content: '消耗简币导出<img width="22" src="' + jianBImage + '" alt="简币"/>',
+          content: '',
+          isCheck: false,
+          isCoin: true,
           special: false
         },
         {
-          content: '消耗简币导出<img width="22" src="' + jianBImage + '" alt="简币"/>',
+          content: '',
+          isCheck: false,
+          isCoin: true,
           special: false
         },
         {
-          content: '消耗简币下载<img width="22" src="' + jianBImage + '" alt="简币"/>',
+          content: '',
+          isCheck: false,
+          isCoin: true,
           special: false
         },
         {
-          content: '消耗简币下载<img width="22" src="' + jianBImage + '" alt="简币"/>',
+          content: '',
+          isCheck: false,
+          isCoin: true,
           special: false
         },
-        { content: '2份简历', special: false }
+        { content: '2份', isCheck: false, isCoin: false, special: false }
       ]
     },
     {
@@ -389,17 +450,17 @@
       class: 'vip',
       isActive: false,
       benefits: [
-        { content: '无限制使用', special: false },
-        { content: '无限制使用', special: false },
-        { content: '无限制使用', special: false },
-        { content: '无限制使用', special: false },
-        { content: '无限制使用', special: false },
-        { content: '无限制使用', special: false },
-        { content: '无限制导出', special: false },
-        { content: '无限制导出', special: false },
-        { content: '无限制下载', special: false },
-        { content: '无限制下载', special: false },
-        { content: '4份简历', special: false }
+        { content: '', isCheck: true, isCoin: false, special: false },
+        { content: '', isCheck: true, isCoin: false, special: false },
+        { content: '', isCheck: true, isCoin: false, special: false },
+        { content: '', isCheck: true, isCoin: false, special: false },
+        { content: '', isCheck: true, isCoin: false, special: false },
+        { content: '', isCheck: true, isCoin: false, special: false },
+        { content: '', isCheck: true, isCoin: false, special: false },
+        { content: '', isCheck: true, isCoin: false, special: false },
+        { content: '', isCheck: true, isCoin: false, special: false },
+        { content: '', isCheck: true, isCoin: false, special: false },
+        { content: '4份', isCheck: false, isCoin: false, special: false }
       ]
     },
     {
@@ -408,17 +469,17 @@
       class: 'svip',
       isActive: false,
       benefits: [
-        { content: '无限制使用', special: false },
-        { content: '无限制使用', special: false },
-        { content: '无限制使用', special: false },
-        { content: '无限制使用', special: false },
-        { content: '无限制使用', special: false },
-        { content: '无限制使用', special: false },
-        { content: '无限制导出', special: false },
-        { content: '无限制导出', special: false },
-        { content: '无限制下载', special: false },
-        { content: '无限制下载', special: false },
-        { content: '8份简历', special: false }
+        { content: '', isCheck: true, isCoin: false, special: false },
+        { content: '', isCheck: true, isCoin: false, special: false },
+        { content: '', isCheck: true, isCoin: false, special: false },
+        { content: '', isCheck: true, isCoin: false, special: false },
+        { content: '', isCheck: true, isCoin: false, special: false },
+        { content: '', isCheck: true, isCoin: false, special: false },
+        { content: '', isCheck: true, isCoin: false, special: false },
+        { content: '', isCheck: true, isCoin: false, special: false },
+        { content: '', isCheck: true, isCoin: false, special: false },
+        { content: '', isCheck: true, isCoin: false, special: false },
+        { content: '8份', isCheck: false, isCoin: false, special: false }
       ]
     },
     {
@@ -427,17 +488,17 @@
       class: 'ssvip',
       isActive: true,
       benefits: [
-        { content: '无限制使用', special: false },
-        { content: '无限制使用', special: false },
-        { content: '无限制使用', special: false },
-        { content: '无限制使用', special: false },
-        { content: '无限制使用', special: false },
-        { content: '无限制使用', special: false },
-        { content: '无限制导出', special: false },
-        { content: '无限制导出', special: false },
-        { content: '无限制下载', special: false },
-        { content: '无限制下载', special: false },
-        { content: '无限制份数', special: false }
+        { content: '', isCheck: true, isCoin: false, special: false },
+        { content: '', isCheck: true, isCoin: false, special: false },
+        { content: '', isCheck: true, isCoin: false, special: false },
+        { content: '', isCheck: true, isCoin: false, special: false },
+        { content: '', isCheck: true, isCoin: false, special: false },
+        { content: '', isCheck: true, isCoin: false, special: false },
+        { content: '', isCheck: true, isCoin: false, special: false },
+        { content: '', isCheck: true, isCoin: false, special: false },
+        { content: '', isCheck: true, isCoin: false, special: false },
+        { content: '', isCheck: true, isCoin: false, special: false },
+        { content: '无限制', isCheck: false, isCoin: false, special: false }
       ]
     }
   ];
@@ -798,164 +859,276 @@
         align-items: center;
         margin-bottom: 60px;
         margin-top: 50px;
+        padding: 0 20px;
+        
         .title {
-          font-size: 30px;
-          font-weight: 500;
-          line-height: 30px;
+          font-size: 32px;
+          font-weight: 600;
+          line-height: 40px;
           letter-spacing: 0;
           color: #000;
-          margin-bottom: 40px;
-        }
-        .vip-yige {
+          margin-bottom: 50px;
           position: relative;
           display: flex;
-          background-size: contain;
-          background-repeat: no-repeat;
-          width: 100%;
-          border-radius: 15px;
-          overflow: hidden;
-          border: 1px solid #dae4f2;
-          .welfareBg {
-            position: absolute;
-            top: 83px;
-            left: 0;
-            right: 0;
-            box-shadow: 0 0 30px rgba(198, 207, 234, 0.44);
-            .lineBg {
-              height: 80px;
-              width: 100%;
-              background: #fff;
-            }
-            .color1 {
-              background: #f6f8fc;
+          align-items: center;
+          gap: 20px;
+          
+          .title-text {
+            background: linear-gradient(135deg, #2f80ed 0%, #56ccf2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 700;
+          }
+          
+          .title-decoration {
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, #2f80ed 0%, #56ccf2 100%);
+            border-radius: 2px;
+            position: relative;
+            
+            &::after {
+              content: '';
+              position: absolute;
+              right: 0;
+              top: 50%;
+              transform: translateY(-50%);
+              width: 10px;
+              height: 10px;
+              background: #2f80ed;
+              border-radius: 50%;
+              box-shadow: 0 0 15px rgba(47, 128, 237, 0.8);
             }
           }
-          .cotent-item-wrapper {
-            .cotent-item {
-              background: transparent;
-              cursor: pointer;
+        }
+        
+        .benefit-table {
+          width: 100%;
+          max-width: 1200px;
+          background: linear-gradient(135deg, #ffffff 0%, #f8fbff 100%);
+          border-radius: 20px;
+          overflow: hidden;
+          box-shadow: 0 10px 40px rgba(47, 128, 237, 0.12);
+          border: 1px solid rgba(47, 128, 237, 0.15);
+          position: relative;
+          
+          &::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border-radius: 20px;
+            padding: 2px;
+            background: linear-gradient(135deg, 
+              rgba(86, 204, 242, 0.4) 0%, 
+              rgba(47, 128, 237, 0.4) 100%);
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            pointer-events: none;
+          }
+          
+          .table-header {
+            display: grid;
+            grid-template-columns: 200px repeat(4, 1fr);
+            background: linear-gradient(135deg, #2f80ed 0%, #56ccf2 100%);
+            position: relative;
+            z-index: 1;
+            
+            .header-cell {
+              padding: 24px 16px;
+              text-align: center;
+              display: flex;
+              flex-direction: column;
+              align-items: center;
+              justify-content: center;
+              gap: 8px;
               position: relative;
-              width: 208.5px;
-              border-left: 1px solid #dae4f2;
-              .item-card {
-                margin: 0 auto;
-                width: 190px;
-                height: 83px;
-                background-size: cover;
-                background-color: #fff;
-                position: relative;
-                border-bottom: 1px solid #dae4f2;
+              
+              &:not(:last-child)::after {
+                content: '';
+                position: absolute;
+                right: 0;
+                top: 20%;
+                bottom: 20%;
+                width: 1px;
+                background: rgba(255, 255, 255, 0.3);
+              }
+              
+              &.feature-header {
+                background: rgba(255, 255, 255, 0.15);
+                backdrop-filter: blur(10px);
+                font-size: 16px;
+                font-weight: 600;
+                color: #fff;
+                border-radius: 20px 0 0 0;
+              }
+              
+              &.membership-header {
+                color: #fff;
+                
+                .membership-name {
+                  font-size: 18px;
+                  font-weight: 700;
+                  letter-spacing: 0.5px;
+                  display: flex;
+                  align-items: center;
+                  gap: 6px;
+                  
+                  .info-icon {
+                    display: inline-flex;
+                    align-items: center;
+                    justify-content: center;
+                    cursor: pointer;
+                    transition: all 0.3s ease;
+                    opacity: 0.8;
+                    color: #fff;
+                    
+                    &:hover {
+                      opacity: 1;
+                      transform: scale(1.1);
+                    }
+                  }
+                }
+                
+                .membership-desc {
+                  font-size: 13px;
+                  opacity: 0.9;
+                  font-weight: 400;
+                }
+              }
+            }
+          }
+          
+          .tooltip {
+            position: absolute;
+            z-index: 100;
+            animation: tooltipFadeIn 0.3s ease;
+            
+            .tooltip-content {
+              background: linear-gradient(135deg, #2f80ed 0%, #56ccf2 100%);
+              color: #fff;
+              padding: 12px 16px;
+              border-radius: 8px;
+              font-size: 13px;
+              font-weight: 500;
+              box-shadow: 0 4px 16px rgba(47, 128, 237, 0.3);
+              white-space: nowrap;
+              position: relative;
+            }
+            
+            .tooltip-arrow {
+              position: absolute;
+              top: -6px;
+              left: 50%;
+              transform: translateX(-50%);
+              width: 0;
+              height: 0;
+              border-left: 6px solid transparent;
+              border-right: 6px solid transparent;
+              border-bottom: 6px solid #56ccf2;
+            }
+          }
+          
+          @keyframes tooltipFadeIn {
+            from {
+              opacity: 0;
+              transform: translateY(-10px);
+            }
+            to {
+              opacity: 1;
+              transform: translateY(0);
+            }
+          }
+          
+          .table-body {
+            position: relative;
+            z-index: 1;
+            
+            .table-row {
+              display: grid;
+              grid-template-columns: 200px repeat(4, 1fr);
+              transition: all 0.3s ease;
+              border-bottom: 1px solid rgba(47, 128, 237, 0.08);
+              
+              &:last-child {
+                border-bottom: none;
+              }
+              
+              &:hover {
+                background: rgba(86, 204, 242, 0.05);
+              }
+              
+              &.odd-row {
+                background: rgba(86, 204, 242, 0.02);
+              }
+              
+              .cell {
+                padding: 20px 16px;
+                text-align: center;
                 display: flex;
                 align-items: center;
                 justify-content: center;
-                flex-direction: column;
-                h1 {
-                  font-size: 18px;
-                  font-weight: 600;
-                  margin-bottom: 2px;
-                }
-                p {
-                  font-size: 14px;
-                  opacity: 0.9;
-                  margin-top: 2px;
-                  letter-spacing: 1px;
-                  color: #475b79;
-                }
-                .price {
-                  padding: 0 0 0 12px;
+                font-size: 14px;
+                color: #4a5568;
+                line-height: 1.6;
+                position: relative;
+                
+                &:not(:last-child)::after {
+                  content: '';
                   position: absolute;
-                  left: 0;
-                  bottom: 4px;
-                  .free {
-                    line-height: 42px;
-                    color: #475b79;
+                  right: 0;
+                  top: 15%;
+                  bottom: 15%;
+                  width: 1px;
+                  background: rgba(47, 128, 237, 0.1);
+                }
+                
+                &.feature-cell {
+                  font-weight: 600;
+                  color: #2f80ed;
+                  font-size: 15px;
+                  background: rgba(47, 128, 237, 0.03);
+                  justify-content: flex-start;
+                  padding-left: 24px;
+                }
+                
+                &.benefit-cell {
+                  .coin-content {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    gap: 6px;
+                    
+                    .coin-text {
+                      font-size: 13px;
+                      font-weight: 600;
+                      color: #ff9500;
+                      background: linear-gradient(135deg, rgba(255, 149, 0, 0.1) 0%, rgba(255, 149, 0, 0.05) 100%);
+                      padding: 4px 10px;
+                      border-radius: 10px;
+                      border: 1px solid rgba(255, 149, 0, 0.2);
+                      transition: all 0.3s ease;
+                    }
+                  }
+                  
+                  &:hover {
+                    .coin-content .coin-text {
+                      background: linear-gradient(135deg, rgba(255, 149, 0, 0.15) 0%, rgba(255, 149, 0, 0.08) 100%);
+                      border-color: rgba(255, 149, 0, 0.3);
+                      transform: scale(1.05);
+                    }
+                  }
+                  
+                  img {
+                    vertical-align: middle;
+                    margin-left: 4px;
                   }
                 }
               }
-              .first-item-card {
-                background-color: #f5f8ff;
-              }
-              .non-vip {
-                width: 208.5px;
-                color: #475b79;
-                background: linear-gradient(
-                  45deg,
-                  #e0f3fa 0%,
-                  #d8f0fc 50%,
-                  #b8e2f6 51%,
-                  #b6dffd 100%
-                ); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-              }
-              .vip {
-                width: 208.5px;
-                color: #44516a;
-                background: linear-gradient(
-                  45deg,
-                  #fcfff4 0%,
-                  #e9e9ce 100%
-                ); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-              }
-              .svip {
-                width: 208.5px;
-                color: #475b79;
-                background: linear-gradient(
-                  45deg,
-                  #b4e391 0%,
-                  #61c419 50%,
-                  #b4e391 100%
-                ); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-              }
-              .ssvip {
-                width: 208.5px;
-                color: #475b79;
-                background: linear-gradient(
-                  45deg,
-                  #63b6db 0%,
-                  #309dcf 100%
-                ); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-              }
-              .welfare {
-                .line {
-                  color: #494949;
-                  font-size: 14px;
-                  text-align: center;
-                  height: 80px;
-                  line-height: 80px;
-                  display: flex;
-                  align-items: center;
-                  justify-content: center;
-                  &:nth-child(2n-1) {
-                    background-color: #f5f8ff;
-                  }
-                  &:nth-child(2n) {
-                    background-color: #edf2fb;
-                  }
-                  &:last-child {
-                    box-sizing: border-box;
-                    position: relative;
-                  }
-                }
-                .firstLine {
-                  display: flex;
-                  align-items: center;
-                  min-height: 70px;
-                  line-height: unset;
-                  justify-content: center;
-                }
-              }
-            }
-            .first-column {
-              .line {
-                font-weight: 600;
-              }
-            }
-            .cotent-item-type {
-              width: 188px;
-              pointer-events: none;
-              border: none;
-            }
-            p {
-              font-weight: 500 !important;
             }
           }
         }
