@@ -14,12 +14,12 @@
       </ul>
     </ul>
     <!-- 经历内容 -->
-    <p
+    <div
       v-if="module.props.campusContent.show"
       v-dompurify-html="dataSourceItem.campusContent.value"
       :style="campusContent"
     >
-    </p>
+    </div>
   </div>
 </template>
 <script lang="ts" setup>
