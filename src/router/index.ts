@@ -708,7 +708,7 @@ const routes: Array<RouteRecordRaw> = [
           keepAlive: true,
           isShowComNav: true,
           requireLogin: true,
-          showTitle: false,
+          showTitle: true,
           requireAdmin: false
         },
         component: MyResume

@@ -7,6 +7,7 @@
       :page-size="limit"
       :page-sizes="[10, 20, 30, 40, 50, 100, 150]"
       :current-page="currentPage"
+      :disabled="loading"
       @current-change="handleCurrentChange"
       @size-change="handleSizeChange"
     />
@@ -19,6 +20,7 @@
     limit: number;
     currentPage: number;
     isPageSizes?: boolean;
+    loading?: boolean;
   }>();
 
   // 设置是否有每页展示数量
@@ -31,12 +33,14 @@
 
   // 改变页时出发
   const handleCurrentChange = (currentPage: number) => {
+    if (props.loading) return;
     console.log('页码改变');
     emit('handleCurrentChange', currentPage);
   };
 
   // 改变每页数量时触发
   const handleSizeChange = (val: number) => {
+    if (props.loading) return;
     emit('handleSizeChange', val);
   };
 </script>

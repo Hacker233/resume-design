@@ -25,7 +25,7 @@
     }
   });
 </script>
-<style lang="scss" scpoed>
+<style lang="scss" scoped>
   .content-title-box {
     border-bottom: 1px solid #eee;
     margin-bottom: 20px;

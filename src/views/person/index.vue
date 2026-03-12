@@ -1,18 +1,27 @@
 <template>
-  <div class="person-box">
-    <!-- 简约科技感背景 -->
-    <div class="modern-tech-bg">
-      <div class="light-effect"></div>
-      <div class="circuit-lines"></div>
-      <div class="bg-text">{{ userInfo.name }}您好，欢迎来到猫步简历</div>
-      <!-- 新增文字 -->
+  <div class="person-container">
+    <!-- 顶部背景 -->
+    <div class="top-bg">
+      <div class="bg-gradient"></div>
+      <div class="bg-pattern"></div>
+      <div class="welcome-section">
+        <h1 class="welcome-title">
+          {{ userInfo.name }}，欢迎回来
+        </h1>
+        <p class="welcome-subtitle">
+          探索您的个人中心，管理您的简历和账户
+        </p>
+      </div>
     </div>
 
-    <!-- 个人菜单卡片 -->
-    <left-card-vue></left-card-vue>
-
-    <!-- 右侧路由区域 -->
-    <right-content-vue></right-content-vue>
+    <!-- 主内容区域 -->
+    <div class="main-content">
+      <!-- 左侧卡片 -->
+      <LeftCardVue />
+      
+      <!-- 右侧内容 -->
+      <RightContentVue />
+    </div>
 
     <!-- 客服组件 -->
     <customer-service></customer-service>
@@ -20,111 +29,150 @@
 </template>
 
 <script lang="ts" setup>
+  import { onMounted } from 'vue';
   import appStore from '@/store';
   import LeftCardVue from './components/LeftCard.vue';
   import RightContentVue from './components/RightContent.vue';
 
-  const { userInfo } = appStore.useUserInfoStore;
+  const { userInfo, getAndUpdateUserInfo } = appStore.useUserInfoStore;
+
+  // 只在组件挂载时获取用户信息，避免重复请求
+  onMounted(() => {
+    getAndUpdateUserInfo();
+  });
 </script>
 
 <style lang="scss" scoped>
-  .person-box {
-    width: 1250px;
-    min-height: 300px;
-    margin: 0 auto;
-    box-shadow: 0 5px 21px 0 rgba(78, 78, 78, 0.05);
-    background-color: #fff;
-    border-radius: 0 0 5px 5px;
-    position: relative;
-    z-index: 0;
-    padding: 50px 50px;
-    box-sizing: border-box;
-    display: flex;
-    overflow: hidden;
-    margin-top: 30px;
+  .person-container {
+    min-height: 100vh;
+    background-color: #f5f7fa;
+    padding-bottom: 60px;
+  }
 
-    .modern-tech-bg {
+  .top-bg {
+    position: relative;
+    height: 280px;
+    overflow: hidden;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding-top: 60px;
+
+    .bg-gradient {
       position: absolute;
       top: 0;
       left: 0;
-      width: 100%;
-      height: 280px;
-      background: linear-gradient(135deg, #1e2a47 0%, #13203a 100%); /* 深蓝渐变 */
-      z-index: -1;
-      overflow: hidden;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.05);
+    }
 
-      .light-effect {
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        background: radial-gradient(
-          circle at 70% 30%,
-          rgba(100, 149, 237, 0.3) 0%,
-          /* 光效颜色加深 */ transparent 70%
-        );
-        animation: lightFloat 12s ease-in-out infinite alternate;
+    .bg-pattern {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-image: 
+        linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+      background-size: 30px 30px;
+      animation: patternMove 20s ease-in-out infinite;
+    }
+
+    .welcome-section {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      color: white;
+      padding: 0 20px;
+
+      .welcome-title {
+        font-size: 2.4rem;
+        font-weight: 700;
+        margin-bottom: 16px;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        animation: fadeInUp 1s ease-out;
+        letter-spacing: 1.5px;
       }
 
-      .circuit-lines {
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        background-image: linear-gradient(to right, rgba(70, 130, 180, 0.15) 1px, transparent 1px),
-          linear-gradient(to bottom, rgba(70, 130, 180, 0.15) 1px, transparent 1px);
-        background-size: 30px 30px;
-
-        &::before {
-          content: '';
-          position: absolute;
-          top: 0;
-          left: 0;
-          width: 100%;
-          height: 100%;
-          background: linear-gradient(90deg, transparent, rgba(100, 149, 237, 0.3), transparent);
-          animation: scan 8s linear infinite;
-        }
-      }
-
-      .bg-text {
-        position: absolute;
-        top: 30%;
-        left: 50%;
-        width: 100%;
-        display: flex;
-        justify-content: center;
-        transform: translate(-50%, -50%);
-        color: rgba(255, 255, 255, 0.75);
-        font-size: 2.5rem;
-        font-weight: 600;
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        pointer-events: none;
-        user-select: none;
-        text-shadow: 0 0 6px rgba(0, 0, 0, 0.4);
+      .welcome-subtitle {
+        font-size: 1.3rem;
+        opacity: 0.95;
+        animation: fadeInUp 1s ease-out 0.3s both;
+        letter-spacing: 0.5px;
+        line-height: 1.4;
       }
     }
   }
 
-  @keyframes lightFloat {
+  @keyframes patternMove {
     0% {
-      transform: translate(0, 0) scale(1);
-      opacity: 0.8;
+      transform: translate(0, 0);
     }
     50% {
-      transform: translate(-10%, 5%) scale(1.05);
-      opacity: 1;
+      transform: translate(10px, 10px);
     }
     100% {
-      transform: translate(5%, -5%) scale(0.95);
-      opacity: 0.8;
+      transform: translate(0, 0);
     }
   }
 
-  @keyframes scan {
-    0% {
-      transform: translateX(-100%);
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
     }
-    100% {
-      transform: translateX(100%);
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .main-content {
+    width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    gap: 30px;
+    margin-top: -70px;
+    position: relative;
+    z-index: 2;
+    padding: 0 20px;
+
+    @media (max-width: 1240px) {
+      width: 100%;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    @media (max-width: 768px) {
+      gap: 20px;
+      margin-top: -60px;
+      padding: 0 15px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .top-bg {
+      height: 240px;
+      padding-top: 40px;
+
+      .welcome-section {
+        .welcome-title {
+          font-size: 1.6rem;
+        }
+
+        .welcome-subtitle {
+          font-size: 1rem;
+          line-height: 1.3;
+        }
+      }
+    }
+
+    .main-content {
+      margin-top: -50px;
     }
   }
 </style>

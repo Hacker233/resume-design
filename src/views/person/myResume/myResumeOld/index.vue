@@ -75,12 +75,9 @@
     display: flex;
     flex-direction: column;
     .resume-list {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      & :last-child:nth-child(3n - 1) {
-        margin-right: calc(260px + 15px);
-      }
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 30px;
     }
   }
 </style>

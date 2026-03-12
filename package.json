@@ -18,7 +18,7 @@
     "eslint": "eslint --ext .js,.vue --ignore-path .gitignore --fix src",
     "prettier": "prettier . --write",
     "commit": "git-cz",
-    "postinstall": "husky install",
+    "postinstall": "husky install && (npx puppeteer browsers install chrome || echo 'Puppeteer Chrome installation skipped due to network issues')",
     "fix-memory-limit": "cross-env LIMIT=4096 increase-memory-limit"
   },
   "config": {
