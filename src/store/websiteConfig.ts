@@ -32,7 +32,7 @@ export const useWebsiteConfigStore = defineStore('websiteConfig', () => {
     website_title: title,
     open_membership: true,
     open_homne_menu: true,
-    open_invite_register: true,
+    open_invite_register: false,
     open_friend_circle_share: true,
     open_jobzx: false,
     privacy_policy: '',

@@ -167,6 +167,14 @@
               position: relative;
               height: 80px;
               width: 80px;
+              :deep(.el-upload) {
+                cursor: pointer;
+                position: relative;
+                overflow: initial;
+                height: 80px;
+                width: 80px;
+                border: none;
+              }
 
               .avatar {
                 width: 80px;

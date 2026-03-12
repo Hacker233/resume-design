@@ -11,18 +11,32 @@
     <div class="ai-content-optimize-dialog">
       <!-- 当前简币数量 -->
       <div class="content-box">
-        <h1 class="title">
-          <span v-if="!userInfo.isAllFree">您当前简币数量</span>
-          <span v-else>请选择AI模型</span>
-          <div v-if="!userInfo.isAllFree" class="get-bi-method" @click="openGetDialog"
-            >获取简币</div
+        <div class="title-section">
+          <h1 class="title">
+            <span v-if="!userInfo.isAllFree">您当前简币数量</span>
+            <span v-else>请选择AI模型</span>
+          </h1>
+          <el-button 
+            v-if="!userInfo.isAllFree" 
+            size="small" 
+            type="info" 
+            plain 
+            @click="openGetDialog"
+            class="get-bi-btn"
           >
-        </h1>
+            获取简币
+          </el-button>
+        </div>
         <div v-if="!userInfo.isAllFree" class="content">
-          <p class="jb-num">
-            {{ formattedIntegral }}
-            <img width="22" src="@/assets/images/jianB.png" alt="简币" />
-          </p>
+          <div class="jb-card">
+            <div class="jb-icon">
+              <img width="32" src="@/assets/images/jianB.png" alt="简币" />
+            </div>
+            <div class="jb-info">
+              <div class="jb-label">当前余额</div>
+              <div class="jb-num">{{ formattedIntegral }}</div>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -363,76 +377,88 @@
   .ai-content-optimize-dialog {
     display: flex;
     flex-direction: column;
+    gap: 24px;
     position: relative; /* 为模型选择器定位 */
     .content-box {
-      font-size: 12px;
-      color: #777777;
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      border-bottom: none;
-      margin-bottom: 15px;
-      p {
-        height: 40px;
-        font-size: 14px;
+      width: 100%;
+      
+      .title-section {
         display: flex;
+        justify-content: space-between;
         align-items: center;
-        color: #fb8444;
-        img {
-          margin-left: 5px;
+        margin-bottom: 16px;
+        
+        .title {
+          font-size: 18px;
+          font-weight: 600;
+          color: #333;
+          margin: 0;
+          position: relative;
+          padding-left: 16px;
+          
+          &::before {
+            content: '';
+            position: absolute;
+            height: 12px;
+            width: 4px;
+            background-color: #4e97fb;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            border-radius: 2px;
+          }
         }
-      }
-      .jb-num {
-        font-size: 18px;
-        font-weight: 600;
-        background: -webkit-linear-gradient(top, #ff0000, #00ff00); /*设置线性渐变*/
-        /*为了支持更多的浏览器*/
-        background-clip: text; /*背景被裁剪到文字*/
-        -webkit-text-fill-color: transparent; /*设置文字的填充颜色*/
-        letter-spacing: 1px;
-      }
-      .title {
-        font-size: 16px;
-        color: #009a74;
-        position: relative;
-        height: 20px;
-        display: flex;
-        align-items: center;
-        margin-left: 10px;
-        letter-spacing: 1px;
-        &::before {
-          content: '';
-          position: absolute;
-          height: 10px;
-          width: 3px;
-          background-color: #009a74;
-          left: -10px;
-        }
-        .get-bi-method {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          padding: 6px 10px;
-          height: 25px;
-          background-color: #70f5c4;
-          border-radius: 15px;
-          font-size: 13px;
-          transition: all 0.3s;
-          margin: 0 auto;
-          margin-left: 15px;
-          cursor: pointer;
-          letter-spacing: 1px;
-          user-select: none;
+        
+        .get-bi-btn {
+          border-radius: 20px;
+          font-size: 14px;
+          padding: 6px 16px;
+          border-color: #4e97fb;
+          color: #4e97fb;
+          
           &:hover {
-            opacity: 0.8;
+            background-color: #4e97fb;
+            color: white;
           }
         }
       }
+      
       .content {
-        font-size: 14px;
-        color: #333333;
-        margin-top: 10px;
-        margin-left: 10px;
+        
+        .jb-card {
+          display: flex;
+          align-items: center;
+          background: linear-gradient(135deg, #f5f9ff 0%, #e6f0ff 100%);
+          border-radius: 12px;
+          padding: 20px;
+          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+          
+          .jb-icon {
+            margin-right: 16px;
+            
+            img {
+              animation: pulse 2s infinite;
+            }
+          }
+          
+          .jb-info {
+            
+            .jb-label {
+              font-size: 14px;
+              color: #666;
+              margin-bottom: 4px;
+            }
+            
+            .jb-num {
+              font-size: 28px;
+              font-weight: 700;
+              background: linear-gradient(135deg, #ff6b35 0%, #ff8e53 100%);
+              background-clip: text;
+              -webkit-text-fill-color: transparent;
+              letter-spacing: 1px;
+            }
+          }
+        }
       }
     }
     .model-selector {
@@ -532,13 +558,25 @@
     }
   }
 
-  /* 添加旋转动画 */
+  /* 添加动画效果 */
   @keyframes rotate {
     0% {
       transform: rotate(0deg);
     }
     100% {
       transform: rotate(360deg);
+    }
+  }
+  
+  @keyframes pulse {
+    0% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.05);
+    }
+    100% {
+      transform: scale(1);
     }
   }
 
