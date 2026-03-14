@@ -764,6 +764,19 @@ const routes: Array<RouteRecordRaw> = [
           requireAdmin: false
         },
         component: MyContribute
+      },
+      {
+        path: 'exportRecords',
+        name: 'MyExportRecords',
+        meta: {
+          title: '导出记录',
+          keepAlive: true,
+          isShowComNav: true,
+          requireLogin: true,
+          showTitle: true,
+          requireAdmin: false
+        },
+        component: () => import('@/views/person/exportRecords/index.vue')
       }
     ]
   },
@@ -1023,7 +1036,7 @@ const routes: Array<RouteRecordRaw> = [
         },
         component: SponsorList
       },
-      {
+      {  
         path: 'resumeList',
         name: 'ResumeList',
         meta: {
@@ -1034,6 +1047,18 @@ const routes: Array<RouteRecordRaw> = [
           requireAdmin: true
         },
         component: ResumeList
+      },
+      {  
+        path: 'exportrecords',
+        name: 'ExportRecords',
+        meta: {
+          title: '导出记录',
+          keepAlive: true,
+          isShowComNav: false,
+          requireLogin: true,
+          requireAdmin: true
+        },
+        component: () => import('@/views/admin/resumeManage/exportRecords/index.vue')
       },
       {
         path: 'wordTemplateList',

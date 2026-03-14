@@ -22,6 +22,8 @@
   </div>
 </template>
 <script lang="ts" setup>
+  import { reactive, computed, ref } from 'vue';
+  import { useRoute, useRouter } from 'vue-router';
   import appStore from '@/store';
 
   // 菜单列表
@@ -66,6 +68,13 @@
       iconfont: 'icon-zujian',
       title: 'AI生成记录',
       path: '/person/aiGenerateLogs',
+      freeUserNotShow: false // 全站免费用户是否不展示
+    },
+    {
+      index: 'MyExportRecords',
+      iconfont: 'icon-xiazai-wenjianxiazai-01',
+      title: '导出记录',
+      path: '/person/exportRecords',
       freeUserNotShow: false // 全站免费用户是否不展示
     }
   ]);

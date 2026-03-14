@@ -59,6 +59,7 @@
   import { storeToRefs } from 'pinia';
   import { getTemplateByIdAsync, getUsertemplateAsync } from '@/http/api/createTemplate';
   import { closeGlobalLoading, getUuid } from '@/utils/common';
+  import { nextTick } from 'vue';
   import pageSchemas from '../createTemplate/designer/schema/pageSchema';
   import { useRoute } from 'vue-router';
   import ResumeRender from '../createTemplate/designer/components/ResumeRender.vue';
@@ -170,6 +171,7 @@
   const dialogVisible = ref<boolean>(false);
   const percentage = ref<number>(10);
   let timer: any = null;
+  let currentExportUrl: string = '';
   const generateReport = async (type: string) => {
     dialogVisible.value = true;
     timer = setInterval(() => {
@@ -179,17 +181,27 @@
         clearInterval(timer);
       }
     }, 500);
-    if (type === 'pdf') {
-      await exportPdfNew(route.params.id as string);
-    } else {
-      await exportPNGNew(route.params.id as string);
+    try {
+      if (type === 'pdf') {
+        currentExportUrl = '/huajian/pdf/getPdf';
+        await exportPdfNew(route.params.id as string);
+      } else {
+        currentExportUrl = '/huajian/pdf/getPNG';
+        await exportPNGNew(route.params.id as string);
+      }
+      clearInterval(timer);
+      percentage.value = 100;
+      // 查询用简币信息
+      const { getUserIntegralTotal } = appStore.useUserInfoStore;
+      getUserIntegralTotal();
+    } catch (error) {
+      clearInterval(timer);
+      dialogVisible.value = false;
+      percentage.value = 10;
+      console.error('导出取消:', error);
+    } finally {
+      currentExportUrl = '';
     }
-
-    clearInterval(timer);
-    percentage.value = 100;
-    // 查询用简币信息
-    const { getUserIntegralTotal } = appStore.useUserInfoStore;
-    getUserIntegralTotal();
   };
 
   // 导出为Markdown
@@ -205,8 +217,26 @@
 
   // 关闭进度弹窗
   const cancleProgress = () => {
+    // 取消当前正在进行的导出请求
+    if (currentExportUrl) {
+      // 导入http模块（使用已缓存的实例）
+      import('@/http/request').then(({ default: http }) => {
+        // 取消所有请求，确保能取消当前的导出请求
+        http.cancelAllRequest();
+      });
+    }
+    // 清除定时器
+    if (timer) {
+      clearInterval(timer);
+      timer = null;
+    }
+    // 先关闭弹窗，再重置状态，避免状态闪烁
     dialogVisible.value = false;
-    percentage.value = 10;
+    // 使用nextTick确保DOM更新后再重置percentage，避免触发watch监听器
+    nextTick(() => {
+      percentage.value = 10;
+      currentExportUrl = '';
+    });
   };
 
   // 打开预览弹窗
