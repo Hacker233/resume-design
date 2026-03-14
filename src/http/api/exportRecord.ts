@@ -25,3 +25,12 @@ export const deleteExportRecordAsync = async (id: string) => {
     method: 'delete'
   });
 };
+
+// 检查文件是否存在
+export const checkFileExistsAsync = async (fileUrl: string) => {
+  return http.request({
+    url: `/huajian/export-record/check-file-exists`,
+    method: 'get',
+    params: { fileUrl }
+  });
+};

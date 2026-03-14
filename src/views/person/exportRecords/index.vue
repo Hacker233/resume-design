@@ -65,7 +65,7 @@
   import 'element-plus/es/components/message/style/index';
   import Pagination from '@/components/Pagination/pagination.vue';
   import { formatListDate } from '@/utils/common';
-  import { getMyExportRecordsAsync } from '@/http/api/exportRecord';
+  import { getMyExportRecordsAsync, checkFileExistsAsync } from '@/http/api/exportRecord';
 
   // 查询导出记录列表
   let tableData = ref<any>([]);
@@ -106,9 +106,23 @@
   };
 
   // 下载文件
-  const downloadFile = (item: any) => {
+  const downloadFile = async (item: any) => {
     if (item.fileUrl) {
-      window.open(item.fileUrl, '_blank');
+      try {
+        // 检查文件是否存在
+        const checkResult = await checkFileExistsAsync(item.fileUrl);
+        if (checkResult.data.status === 200 && checkResult.data.data.exists) {
+          window.open(item.fileUrl, '_blank');
+        } else {
+          ElMessage.error('文件已不存在');
+          // 刷新列表，以便更新状态
+          getExportRecords();
+        }
+      } catch (error) {
+        ElMessage.error('文件已不存在');
+        // 刷新列表，以便更新状态
+        getExportRecords();
+      }
     } else {
       ElMessage.error('文件URL不存在');
     }
