@@ -19,7 +19,7 @@
     <el-table-column prop="email" label="用户邮箱" />
     <el-table-column prop="type" label="导出类型">
       <template #default="scope">
-        <el-tag :type="scope.row.type === 'pdf' ? 'primary' : 'success'"> 
+        <el-tag :type="scope.row.type === 'pdf' ? 'primary' : 'success'">
           {{ scope.row.type === 'pdf' ? 'PDF' : '图片' }}
         </el-tag>
       </template>
@@ -67,7 +67,7 @@ import 'element-plus/es/components/message-box/style/index';
 import 'element-plus/es/components/message/style/index';
 import Pagination from '@/components/Pagination/pagination.vue';
 import { formatListDate } from '@/utils/common';
-import { getExportRecordsAsync, deleteExportRecordAsync } from '@/http/api/exportRecord';
+import { getExportRecordsAsync, deleteExportRecordAsync, checkFileExistsAsync } from '@/http/api/exportRecord';
 
 // 表单查询
 const formInline = reactive({
@@ -115,8 +115,26 @@ const getExportRecords = async () => {
 getExportRecords();
 
 // 下载文件
-const downloadFile = (row: any) => {
-  window.open(row.exportUrl, '_blank');
+const downloadFile = async (item: any) => {
+  if (item.fileUrl) {
+    try {
+      // 检查文件是否存在
+      const checkResult = await checkFileExistsAsync(item.fileUrl);
+      if (checkResult.data.status === 200 && checkResult.data.data.exists) {
+        window.open(item.fileUrl, '_blank');
+      } else {
+        ElMessage.error('文件已不存在');
+        // 刷新列表，以便更新状态
+        getExportRecords();
+      }
+    } catch (error) {
+      ElMessage.error('文件已不存在');
+      // 刷新列表，以便更新状态
+      getExportRecords();
+    }
+  } else {
+    ElMessage.error('文件URL不存在');
+  }
 };
 
 // 删除导出记录
@@ -135,7 +153,7 @@ const deleteExportRecord = (row: any) => {
         ElMessage.error(data.data.message);
       }
     })
-    .catch(() => {});
+    .catch(() => { });
 };
 
 // 改变页码时
