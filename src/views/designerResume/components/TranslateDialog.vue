@@ -2,41 +2,74 @@
 <template>
   <el-dialog
     :model-value="dialogTranslateVisible"
-    title="请选择需要转换成的语种"
-    width="420px"
+    title="语种转换"
+    width="480px"
     :show-close="false"
     :close-on-click-modal="false"
     append-to-body
+    :before-close="handleClose"
+    class="translate-dialog"
   >
     <div
       v-loading="aiLoading"
       class="ai-content-translate-select-warpper"
-      element-loading-text="AI拼命翻译中~"
+      element-loading-text="AI正在翻译..."
+      element-loading-spinner="el-icon-loading"
+      element-loading-background="rgba(255, 255, 255, 0.9)"
     >
-      <p class="tips"
-        ><b>注意：</b
-        >此操作AI会将您的简历内容翻译为对应语种，无法确保完全正确，请你最好留有数据备份！</p
-      >
-      <el-form size="default">
-        <el-form-item label="选择目标语种:">
-          <el-select v-model="language" placeholder="请选择语种" size="default" style="width: 100%">
-            <el-option
-              v-for="item in languageList"
-              :key="item.value"
-              :label="item.label"
-              :value="item.value"
-            />
-          </el-select>
-        </el-form-item>
-      </el-form>
+      <div class="tips-container">
+        <div class="tips-icon">
+          <el-icon class="warning-icon"><Warning /></el-icon>
+        </div>
+        <p class="tips-text">
+          此操作AI会将您的简历内容翻译为对应语种，无法确保完全正确，请最好留有数据备份！
+        </p>
+      </div>
+      
+      <div class="language-selector">
+        <h3 class="selector-title">选择目标语种</h3>
+        <el-select 
+          v-model="language" 
+          placeholder="请选择语种" 
+          size="large" 
+          style="width: 100%"
+          class="language-select"
+        >
+          <el-option
+            v-for="item in languageList"
+            :key="item.value"
+            :label="item.label"
+            :value="item.value"
+            class="language-option"
+          />
+        </el-select>
+      </div>
+      
+      <div class="language-info">
+        <div class="info-item" v-for="item in languageList" :key="item.value">
+          <span class="info-label">{{ item.label }}</span>
+        </div>
+      </div>
     </div>
     <template #footer>
-      <span class="dialog-footer">
-        <el-button size="default" @click="cancle">取消</el-button>
-        <el-button size="default" type="primary" :loading="aiLoading" @click="submit">{{
-          aiLoading ? '翻译中' : '开始翻译'
-        }}</el-button>
-      </span>
+      <div class="dialog-footer">
+        <el-button 
+          size="large" 
+          @click="cancle"
+          class="cancel-button"
+        >
+          取消
+        </el-button>
+        <el-button 
+          size="large" 
+          type="primary" 
+          :loading="aiLoading" 
+          @click="submit"
+          class="translate-button"
+        >
+          {{ aiLoading ? '翻译中...' : '开始翻译' }}
+        </el-button>
+      </div>
     </template>
   </el-dialog>
 </template>
@@ -48,8 +81,10 @@
     getSerialNumberAsync
   } from '@/http/api/ai';
   import appStore from '@/store';
-  import { ElNotification } from 'element-plus';
+  import { ElNotification, ElMessage, ElIcon } from 'element-plus';
+  import { Warning } from '@element-plus/icons-vue';
   import { cloneDeep } from 'lodash';
+  import { watch } from 'vue';
   import { storeToRefs } from 'pinia';
   import { extractValues, parseJSON, restoreValues } from '../../../utils/jsonUtils';
 
@@ -60,6 +95,11 @@
   const props = withDefaults(defineProps<TDialog>(), {
     dialogTranslateVisible: false
   });
+
+  // 关闭对话框处理函数
+  const handleClose = () => {
+    cancle();
+  };
 
   watch(
     () => props.dialogTranslateVisible,
@@ -182,13 +222,165 @@
     console.log(data);
   };
 </script>
-<style lang="scss">
+<style lang="scss" scoped>
+  .translate-dialog {
+    .el-dialog__header {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      padding: 24px;
+      border-radius: 8px 8px 0 0;
+      
+      .el-dialog__title {
+        color: white;
+        font-size: 18px;
+        font-weight: 600;
+      }
+    }
+    
+    .el-dialog__body {
+      padding: 30px 24px;
+    }
+    
+    .el-dialog__footer {
+      padding: 0 24px 24px;
+    }
+  }
+  
   .ai-content-translate-select-warpper {
-    .tips {
-      font-size: 12px;
-      color: #b3afaf;
+    padding: 10px 0;
+  }
+  
+  .tips-container {
+    display: flex;
+    align-items: flex-start;
+    background-color: #f8f9fa;
+    border: 1px solid #e9ecef;
+    border-radius: 8px;
+    padding: 16px;
+    margin-bottom: 24px;
+    animation: fadeIn 0.3s ease-in-out;
+    
+    .tips-icon {
+      margin-right: 12px;
+      padding-top: 2px;
+      
+      .warning-icon {
+        font-size: 20px;
+        color: #ffc107;
+      }
+    }
+    
+    .tips-text {
+      flex: 1;
+      font-size: 14px;
       line-height: 1.5;
-      margin-bottom: 15px;
+      color: #6c757d;
+      margin: 0;
+    }
+  }
+  
+  .language-selector {
+    margin-bottom: 24px;
+    
+    .selector-title {
+      font-size: 16px;
+      font-weight: 600;
+      color: #343a40;
+      margin-bottom: 12px;
+    }
+    
+    .language-select {
+      border-radius: 8px;
+      border: 2px solid #e9ecef;
+      transition: all 0.3s ease;
+      
+      &:hover {
+        border-color: #667eea;
+      }
+      
+      .el-select__input {
+        font-size: 15px;
+      }
+    }
+    
+    .language-option {
+      font-size: 14px;
+      padding: 10px 15px;
+      
+      &:hover {
+        background-color: #f8f9fa;
+      }
+    }
+  }
+  
+  .language-info {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 16px;
+    
+    .info-item {
+      background-color: #f8f9fa;
+      border: 1px solid #e9ecef;
+      border-radius: 16px;
+      padding: 6px 12px;
+      font-size: 12px;
+      color: #6c757d;
+      transition: all 0.2s ease;
+      
+      &:hover {
+        background-color: #e9ecef;
+        transform: translateY(-2px);
+      }
+    }
+  }
+  
+  .dialog-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    padding-top: 16px;
+    border-top: 1px solid #e9ecef;
+    
+    .cancel-button {
+      border-radius: 8px;
+      padding: 10px 24px;
+      font-size: 14px;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      
+      &:hover {
+        background-color: #f8f9fa;
+      }
+    }
+    
+    .translate-button {
+      border-radius: 8px;
+      padding: 10px 32px;
+      font-size: 14px;
+      font-weight: 600;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      border: none;
+      transition: all 0.3s ease;
+      
+      &:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+      }
+      
+      &:active {
+        transform: translateY(0);
+      }
+    }
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
     }
   }
 </style>

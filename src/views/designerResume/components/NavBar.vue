@@ -72,6 +72,44 @@
           <span class="icon-tips">预览</span>
         </div>
       </el-tooltip>
+      <el-tooltip effect="dark" content="历史版本" placement="bottom" :disabled="true">
+        <div class="icon-box">
+          <el-dropdown @command="handleVersionSelect" @click="refreshVersionHistory" :teleported="false">
+            <div>
+              <svg-icon icon-name="icon-lishixiao" color="#555" size="17px"></svg-icon>
+              <span class="icon-tips">历史</span>
+            </div>
+            <template #dropdown>
+              <el-dropdown-menu>
+                <div class="version-history-header">
+                  <span>版本历史</span>
+                  <el-button type="text" size="small" class="clear-history-btn" @click.stop="clearVersionHistory">
+                    <el-icon><Delete /></el-icon>
+                    <span>清空历史</span>
+                  </el-button>
+                </div>
+                <el-dropdown-item disabled class="version-history-tip">
+                  仅存储最近7次修改
+                </el-dropdown-item>
+                <el-dropdown-item
+                  v-for="version in versions"
+                  :key="version.version"
+                  :command="version"
+                  class="version-item"
+                >
+                  <div class="version-item-content">
+                    <span class="version-number">版本 {{ version.version }}</span>
+                    <span class="version-date">({{ formatDate(version.createDate) }})</span>
+                  </div>
+                </el-dropdown-item>
+                <el-dropdown-item v-if="versions.length === 0" disabled>
+                  暂无版本历史
+                </el-dropdown-item>
+              </el-dropdown-menu>
+            </template>
+          </el-dropdown>
+        </div>
+      </el-tooltip>
       <el-tooltip effect="dark" content="重置所有设置" placement="bottom">
         <div class="icon-box" @click="reset">
           <svg-icon icon-name="icon-zhongzhi" color="#555" size="17px"></svg-icon>
@@ -117,20 +155,25 @@
   ></ai-optimize-drawer>
 </template>
 <script lang="ts" setup>
+  import { ref, onMounted, watch } from 'vue';
   import appStore from '@/store';
-  import { ElMessageBox, ElNotification } from 'element-plus';
+  import { ElMessageBox, ElNotification, ElMessage } from 'element-plus';
+  import { Delete } from '@element-plus/icons-vue';
   import 'element-plus/es/components/message-box/style/index';
   import { storeToRefs } from 'pinia';
   import DownloadDialog from '../../designer/components/DownloadDialog.vue';
   import { getIntegralPayNumber } from '@/views/LegoDesigner/utils/common';
   import { debounce } from 'lodash';
-  import { saveDraftAsync } from '@/http/api/createTemplate';
+  import { saveDraftAsync, getVersionHistoryAsync, rollbackVersionAsync, clearVersionHistoryAsync } from '@/http/api/createTemplate';
   import { formatListDate } from '@/utils/common';
+  import moment from 'moment';
   // import ResumePreview from '@/views/createTemplate/previewer/index.vue';
   import TranslateDialog from './TranslateDialog.vue';
   import LoginDialog from '@/components/LoginDialog/LoginDialog';
   import AiOptimizeDrawer from '@/views/createTemplate/designer/components/AiOptimizeDrawer.vue';
   import AiOptimizeDialog from '@/views/createTemplate/designer/components/AiOptimizeDialog.vue';
+  import { useHead } from '@vueuse/head';
+  import { title } from '@/config/seo';
   // import { useToJobzxAi } from '@/hooks/useToJobzxAi';
 
   const { HJNewJsonStore } = storeToRefs(appStore.useCreateTemplateStore);
@@ -145,6 +188,88 @@
   ]);
   const route = useRoute();
   const id = route.params.id;
+
+  // 版本历史相关
+  const versions = ref<any[]>([]);
+
+  // 获取版本历史
+  const getVersionHistory = async () => {
+    if (!id) return;
+    try {
+      const data = await getVersionHistoryAsync({ templateId: id });
+      if (data.data.status === 200) {
+        versions.value = data.data.data;
+      }
+    } catch (error) {
+      console.error('获取版本历史失败:', error);
+    }
+  };
+
+  // 处理版本选择
+  const { resetKey } = storeToRefs(appStore.useCreateTemplateStore);
+  const handleVersionSelect = async (version: any) => {
+    ElMessageBox.confirm(`确定要回退到版本 ${version.version} 吗？`, '警告', {
+      confirmButtonText: '确定',
+      cancelButtonText: '取消',
+      type: 'warning'
+    })
+      .then(async () => {
+        try {
+          const data = await rollbackVersionAsync({ 
+            templateId: id, 
+            version: version.version 
+          });
+          if (data.data.status === 200) {
+            HJNewJsonStore.value = data.data.data.template_json;
+            HJNewJsonStore.value.props.title = data.data.template_title;
+            ElMessage.success('版本回退成功');
+            useHead({
+              title: HJNewJsonStore.value.props.title || title
+            });
+            resetKey.value++; // 增加key，强制重新渲染
+            // 重新获取版本历史
+            await getVersionHistory();
+          }
+        } catch (error) {
+          ElMessage.error('版本回退失败！');
+          console.error('版本回退失败:', error);
+        }
+      })
+      .catch(() => {});
+  };
+
+  // 刷新版本历史
+  const refreshVersionHistory = async () => {
+    await getVersionHistory();
+  };
+
+  // 清空版本历史
+  const clearVersionHistory = async () => {
+    ElMessageBox.confirm('确定要清空所有版本历史吗？此操作不可恢复。', '警告', {
+      confirmButtonText: '确定',
+      cancelButtonText: '取消',
+      type: 'warning'
+    })
+      .then(async () => {
+        try {
+          const data = await clearVersionHistoryAsync({ templateId: id });
+          if (data.data.status === 200) {
+            ElMessage.success('版本历史清空成功！');
+            // 重新获取版本历史
+            await getVersionHistory();
+          }
+        } catch (error) {
+          ElMessage.error('版本历史清空失败！');
+          console.error('版本历史清空失败:', error);
+        }
+      })
+      .catch(() => {});
+  };
+
+  // 格式化日期
+  const formatDate = (date: string) => {
+    return moment(date).format('YYYY-MM-DD HH:mm:ss');
+  };
 
   // 返回上一页
   const router = useRouter();
@@ -175,11 +300,13 @@
   onMounted(async () => {
     exportImgPayIntegral.value = Number(await getIntegralPayNumber('9'));
     exportPdfPayIntegral.value = Number(await getIntegralPayNumber('8'));
+    // 获取版本历史
+    await getVersionHistory();
   });
 
   // 保存草稿
   let draftTips = ref<string>('');
-  const saveDataToLocal = () => {
+  const saveDataToLocal = async (saveType = 'auto') => {
     if (!HJNewJsonStore.value.componentsTree.length) {
       ElNotification({
         title: '保存草稿失败',
@@ -188,14 +315,18 @@
       });
       return;
     }
+    
     return new Promise(async (resolve) => {
       const data = {
         templateId: id,
-        templateJson: HJNewJsonStore.value
+        templateJson: HJNewJsonStore.value,
+        saveType: saveType
       };
       const result = await saveDraftAsync(data);
       if (result.data.status === 200) {
         draftTips.value = `已保存：${formatListDate(result.data.data.updateDate)}`;
+        // 保存成功后刷新版本历史
+        await getVersionHistory();
         resolve('保存草稿成功');
       } else {
         // ElMessage.error(result.data.message);
@@ -236,7 +367,7 @@
         type: 'success'
       });
     }, 1000);
-    saveDataToLocal();
+    saveDataToLocal('manual');
   };
 
   // 自动保存草稿
@@ -400,7 +531,7 @@
     saveDataToLocal
   });
 </script>
-<style lang="scss" scopeds>
+<style lang="scss" scoped>
   .nav-box {
     height: 50px;
     width: 100%;
@@ -525,6 +656,20 @@
           font-size: 12px;
           margin-top: 8px;
         }
+        .el-dropdown {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          width: 100%;
+          height: 100%;
+        }
+        .el-dropdown > div {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+        }
       }
       .icon-AI-YH {
         border-radius: 50%;
@@ -586,6 +731,103 @@
           background-color: rgba($color: #74a274, $alpha: 0.9);
           color: #fff;
         }
+      }
+    }
+
+    // 版本历史提示样式
+    .version-history-tip {
+      color: #74a274;
+      font-size: 12px;
+      text-align: center;
+      padding: 8px 16px;
+      border-bottom: 1px solid #f0f0f0;
+    }
+
+    // 版本历史下拉菜单样式
+    :deep(.el-dropdown-menu) {
+      min-width: 320px;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      border: 1px solid #f0f0f0;
+      padding: 0;
+
+      .version-history-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 12px 16px;
+        border-bottom: 1px solid #f0f0f0;
+        background-color: #fafafa;
+        border-top-left-radius: 8px;
+        border-top-right-radius: 8px;
+      }
+
+      .version-history-header span {
+        font-size: 14px;
+        font-weight: 500;
+        color: #333;
+      }
+
+      .version-history-header .el-button {
+        font-size: 12px !important;
+        color: #ff4d4f !important;
+        padding: 4px 8px !important;
+        border-radius: 4px !important;
+        transition: all 0.3s ease !important;
+        display: flex !important;
+        align-items: center !important;
+        gap: 4px !important;
+        
+        &:hover {
+          background-color: rgba(255, 77, 79, 0.1) !important;
+          color: #ff4d4f !important;
+        }
+        
+        .el-icon {
+          font-size: 14px !important;
+        }
+      }
+
+      .version-history-tip {
+        color: #74a274;
+        font-size: 12px;
+        text-align: center;
+        padding: 8px 16px;
+        border-bottom: 1px solid #f0f0f0;
+        margin-bottom: 4px;
+      }
+
+      .version-item {
+        padding: 10px 16px;
+        transition: all 0.3s ease;
+        
+        &:hover {
+          background-color: rgba(116, 162, 116, 0.05);
+        }
+      }
+
+      .version-item-content {
+        display: flex;
+        align-items: center;
+      }
+
+      .version-number {
+        font-size: 14px !important;
+        font-weight: 500 !important;
+        color: #333 !important;
+        margin-right: 12px;
+      }
+
+      .version-date {
+        font-size: 12px !important;
+        color: #999 !important;
+      }
+
+      .el-dropdown-item.is-disabled {
+        color: #999;
+        font-size: 14px;
+        text-align: center;
+        padding: 16px 0;
       }
     }
   }

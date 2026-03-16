@@ -137,3 +137,30 @@ export const getResumeDataBySerialNumberAsync: any = (params: any) => {
     params: params
   });
 };
+
+// 获取版本历史
+export const getVersionHistoryAsync: any = (data: any) => {
+  return http.request({
+    url: '/huajian/createUserTemplate/getVersionHistory',
+    method: 'post',
+    data: data
+  });
+};
+
+// 回退版本
+export const rollbackVersionAsync: any = (data: any) => {
+  return http.request({
+    url: '/huajian/createUserTemplate/rollbackVersion',
+    method: 'post',
+    data: data
+  });
+};
+
+// 清空版本历史
+export const clearVersionHistoryAsync: any = (data: any) => {
+  return http.request({
+    url: '/huajian/createUserTemplate/clearVersionHistory',
+    method: 'post',
+    data: data
+  });
+};
