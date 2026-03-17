@@ -74,17 +74,36 @@
     module: IModule;
   }>();
 
+  // 格式化日期
+  const formattedDate = (dateString: any) => {
+    // 如果是字符串且符合日期格式，使用moment格式化确保月份为两位
+    if (typeof dateString === 'string' && /^\d{4}-\d{1,2}$/.test(dateString)) {
+      return moment(dateString).format('YYYY-MM');
+    }
+
+    // 如果不是日期格式的字符串（如"至今"），直接返回
+    if (typeof dateString === 'string') {
+      return dateString;
+    }
+
+    // 如果不是字符串，则进行格式化
+    return moment(dateString).format('YYYY-MM');
+  };
+
   // 开始日期
-  const startDate = ref(props.modelValue[0]);
+  const startDate = ref(formattedDate(props.modelValue[0]));
   // 结束日期
-  const endDate = ref(props.modelValue[1]);
+  const endDate = ref(formattedDate(props.modelValue[1]));
+
+  console.log("props.modelValue", props.modelValue);
 
   watch(
     () => props.modelValue,
     (newVal) => {
-      startDate.value = newVal[0];
-      endDate.value = newVal[1];
-      if (newVal[1] && !/^\d{4}-\d{2}$/.test(newVal[1])) {
+      startDate.value = formattedDate(newVal[0]);
+      endDate.value = formattedDate(newVal[1]);
+      console.log("dataPicker", newVal[1]);
+      if (newVal[1] && !/^\d{4}-\d{1,2}$/.test(newVal[1])) {
         customLabel.value = newVal[1];
       }
     }
@@ -110,7 +129,7 @@
   // 至今
   const radioValue = ref<any>(props.modelValue[1]);
   const customLabel = ref(
-    props.modelValue[1] && !/^\d{4}-\d{2}$/.test(props.modelValue[1]) ? props.modelValue[1] : '至今'
+    props.modelValue[1] && !/^\d{4}-\d{1,2}$/.test(props.modelValue[1]) ? props.modelValue[1] : '至今'
   );
   const isEditing = ref(false);
   const tempLabel = ref('');
@@ -138,17 +157,6 @@
       emit('update:modelValue', [startDate.value, customLabel.value]);
     }
     isEditing.value = false;
-  };
-
-  // 格式化日期
-  const formattedDate = (dateString: any) => {
-    // 使用正则表达式判断是否为 YYYY-MM 格式的字符串
-    if (typeof dateString === 'string' || /^\d{4}-\d{2}$/.test(dateString)) {
-      return dateString;
-    }
-
-    // 如果不是 YYYY-MM 格式，则进行格式化
-    return moment(dateString).format('YYYY-MM');
   };
 </script>
 <style lang="scss" scoped>

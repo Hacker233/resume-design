@@ -98,6 +98,7 @@
 
   // 查询模版数据
   const getTemplateData = async () => {
+    isLoading.value = true;
     const data = await getTemplateByIdAsync(route.params.id);
     if (data.status === 200) {
       HJNewJsonStore.value = data.data.template_json;
@@ -114,8 +115,8 @@
 
   // 重置
   const { resetKey } = storeToRefs(appStore.useCreateTemplateStore);
-  const reset = () => {
-    getTemplateData();
+  const reset = async () => {
+    await getTemplateData();
     resetKey.value++; // 增加key，强制重新渲染
   };
 

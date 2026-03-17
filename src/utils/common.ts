@@ -70,7 +70,7 @@ export const formatDate = (dataArray: Array<string> | string): string => {
   if (Array.isArray(dataArray)) {
     const startDate = moment(new Date(dataArray[0])).format('YYYY.MM').split('-').join('.');
     let endDate;
-    if (dataArray[1] && !/^\d{4}-\d{2}$/.test(dataArray[1])) {
+    if (dataArray[1] && !/^\d{4}-\d{1,2}$/.test(dataArray[1])) {
       endDate = dataArray[1];
     } else {
       endDate = moment(new Date(dataArray[1])).format('YYYY.MM').split('-').join('.');
