@@ -1,99 +1,123 @@
 <!-- word模板预览页 -->
 <template>
-  <div class="word-preview-box">
-    <div class="content-box">
-      <!-- 图片预览区域 -->
-      <div class="left">
-        <!-- 图片列表 -->
-        <div class="img-list-box">
-          <c-scrollbar trigger="hover" style="height: 600px">
-            <div
-              v-for="(item, index) in wordInfo.previewUrl"
-              :key="index"
-              :class="['img-item-box', { active: currentIndex === index }]"
-              @click="selectPreUrl(item, index)"
-            >
-              <el-image style="width: 150px; height: 200px" :src="item.url" fit />
-            </div>
-          </c-scrollbar>
-        </div>
-        <!-- 图片大图展示 -->
-        <div class="img-big-preview">
-          <div class="big-img-box">
-            <el-image style="width: 400px; height: 550px" :src="bigPreviewUrl" fit />
-          </div>
-        </div>
+  <div class="word-preview-container">
+    <!-- 页面头部 -->
+    <div class="preview-header">
+      <div class="container">
+        <h1 class="template-title">{{ wordInfo.name }}</h1>
       </div>
-      <!-- 模板信息介绍页 -->
-      <div class="right">
-        <!-- 操作区 -->
-        <div class="top">
-          <h1>{{ wordInfo.name }}</h1>
-          <div class="download-btn">
-            <div class="button" @click="download">
-              <!-- 判断该用户是否全站免费 -->
-              <template v-if="!userInfo.isAllFree">
-                <!-- 先判断是否是会员 -->
-                <template v-if="!membershipInfo.hasMembership || membershipInfo.isExpired">
-                  <div v-if="!isPay" class="how-much"
-                    >{{ Math.abs(wordInfo.payValue) || ''
-                    }}<img width="20" src="@/assets/images/jianB.png" alt="简币"
-                  /></div>
-                </template>
-              </template>
-              <span>立即下载</span>
-            </div>
-          </div>
-          <div class="views-downs-box">
-            <div class="icon-box">
-              <svg-icon icon-name="icon-xiazailiang" color="#a3abb1" size="22px"></svg-icon>
-              <span class="number downloads">{{ wordInfo.downloads }}</span>
-            </div>
-            <div class="icon-box">
-              <svg-icon icon-name="icon-liulanliang1" color="#a3abb1" size="22px"></svg-icon>
-              <span class="number">{{ wordInfo.views }}</span>
-            </div>
-            <div v-config:open_comment class="icon-box">
-              <svg-icon icon-name="icon-pinglun1" color="#a3abb1" size="22px"></svg-icon>
-              <span class="number">{{ wordInfo.commentCount }}</span>
-            </div>
-          </div>
-        </div>
-        <!-- 详细信息展示区 -->
-        <div class="info-box">
-          <h1>简历信息</h1>
-          <div class="profile-box">
-            <span class="label">简介</span>
-            <p>{{ wordInfo.profile }}</p>
-          </div>
-          <div class="profile-box">
-            <span class="label">分类</span>
-            <p v-for="(item, index) in wordInfo.category" :key="index" class="category">{{
-              getCategoryLabel(item)
-            }}</p>
-          </div>
-          <div class="profile-box">
-            <span class="label">标签</span>
-            <p v-for="(item, index) in wordInfo.tags" :key="index" class="category">{{ item }}</p>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="bottom-box">
-      <!-- 轮播图 -->
-      <word-carousel
-        v-if="wordInfo.previewUrl"
-        :preview-url-list="wordInfo.previewUrl"
-      ></word-carousel>
     </div>
 
-    <!-- 评论组件 -->
-    <comment-com
-      v-config:open_comment
-      width="1200px"
-      :comment-type-id="id"
-      comment-type="resumeTemplate"
-    ></comment-com>
+    <!-- 主要内容区 -->
+    <div class="container main-content">
+      <div class="content-grid">
+        <!-- 图片预览区域 -->
+        <div class="preview-section">
+          <div class="preview-wrapper">
+            <!-- 图片列表 -->
+            <div class="thumbnail-list">
+              <c-scrollbar trigger="hover" style="height: 600px">
+                <div
+                  v-for="(item, index) in wordInfo.previewUrl"
+                  :key="index"
+                  :class="['thumbnail-item', { active: currentIndex === index }]"
+                  @click="selectPreUrl(item, index)"
+                >
+                  <el-image class="thumbnail-img" :src="item.url" fit="cover" />
+                </div>
+              </c-scrollbar>
+            </div>
+            
+            <!-- 图片大图展示 -->
+            <div class="main-preview">
+              <div class="preview-card">
+                <el-image class="preview-img" :src="bigPreviewUrl" fit="contain" />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 模板信息介绍页 -->
+        <div class="info-section">
+          <!-- 操作区 -->
+          <div class="action-card">
+            <div class="stats-container">
+              <div class="stat-item">
+                <svg-icon icon-name="icon-xiazailiang" color="#6c63ff" size="20px"></svg-icon>
+                <span class="stat-value">{{ wordInfo.downloads }}</span>
+                <span class="stat-label">下载量</span>
+              </div>
+              <div class="stat-item">
+                <svg-icon icon-name="icon-liulanliang1" color="#6c63ff" size="20px"></svg-icon>
+                <span class="stat-value">{{ wordInfo.views }}</span>
+                <span class="stat-label">浏览量</span>
+              </div>
+              <div v-config:open_comment class="stat-item">
+                <svg-icon icon-name="icon-pinglun1" color="#6c63ff" size="20px"></svg-icon>
+                <span class="stat-value">{{ wordInfo.commentCount }}</span>
+                <span class="stat-label">评论</span>
+              </div>
+            </div>
+            
+            <div class="download-section">
+              <div class="price-info" v-if="!userInfo.isAllFree && (!membershipInfo.hasMembership || membershipInfo.isExpired) && !isPay">
+                <span class="price-value">{{ Math.abs(wordInfo.payValue) || '' }}</span>
+                <img class="coin-icon" width="20" src="@/assets/images/jianB.png" alt="简币" />
+              </div>
+              <button class="download-btn" @click="download">
+                <span>立即下载</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- 详细信息展示区 -->
+          <div class="info-card">
+            <h2 class="info-title">简历信息</h2>
+            <div class="info-item">
+              <span class="info-label">简介</span>
+              <p class="info-content">{{ wordInfo.profile }}</p>
+            </div>
+            <div class="info-item">
+              <span class="info-label">分类</span>
+              <div class="tag-list">
+                <span v-for="(item, index) in wordInfo.category" :key="index" class="tag-item">{{
+                  getCategoryLabel(item)
+                }}</span>
+              </div>
+            </div>
+            <div class="info-item">
+              <span class="info-label">标签</span>
+              <div class="tag-list">
+                <span v-for="(item, index) in wordInfo.tags" :key="index" class="tag-item">{{ item }}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 轮播图 -->
+      <div class="carousel-section">
+        <word-carousel
+          v-if="wordInfo.previewUrl"
+          :preview-url-list="wordInfo.previewUrl"
+        ></word-carousel>
+      </div>
+
+      <!-- 评论组件 -->
+      <div v-config:open_comment class="comment-section">
+        <div class="comment-header">
+          <h2 class="comment-title">
+            <svg-icon icon-name="icon-pinglun1" color="#6c63ff" size="20px"></svg-icon>
+            <span>用户评论</span>
+          </h2>
+        </div>
+        <comment-com
+          width="100%"
+          :comment-type-id="id"
+          comment-type="resumeTemplate"
+        ></comment-com>
+      </div>
+    </div>
 
     <!-- 下载警告弹窗 -->
     <pay-integral-dialog
@@ -109,6 +133,8 @@
     <!-- 回到顶部 -->
     <el-backtop :right="50" :bottom="80" />
   </div>
+
+  <FooterCom />
 </template>
 <script lang="ts" setup>
   import LoginDialog from '@/components/LoginDialog/LoginDialog';
@@ -257,174 +283,490 @@
   };
 </script>
 <style lang="scss" scoped>
-  .word-preview-box {
+  // 全局样式变量
+  $primary-color: #6c63ff;
+  $secondary-color: #f0f0f0;
+  $text-color: #333;
+  $text-light: #666;
+  $border-radius: 8px;
+  $box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  $transition: all 0.3s ease;
+
+  .word-preview-container {
     width: 100%;
-    font-family: '微软雅黑';
-    .content-box {
-      margin: 0 auto;
-      min-height: 500px;
-      padding: 20px 0;
-      width: 1200px;
+    font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif;
+    background-color: #f8f9fa;
+    min-height: 100vh;
+  }
+
+  // 容器宽度
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  // 页面头部
+  .preview-header {
+    background: linear-gradient(135deg, #6c63ff 0%, #8a2be2 100%);
+    color: white;
+    padding: 40px 0;
+    margin-bottom: 30px;
+    .template-title {
+      font-size: 28px;
+      font-weight: 600;
+      text-align: center;
+      margin: 0;
+    }
+  }
+
+  // 主要内容区
+  .main-content {
+    padding-bottom: 50px;
+  }
+
+  // 内容网格布局
+  .content-grid {
+    display: grid;
+    grid-template-columns: 1fr 400px;
+    gap: 30px;
+    margin-bottom: 40px;
+
+    @media (max-width: 1024px) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  // 预览区域
+  .preview-section {
+    .preview-wrapper {
       display: flex;
-      .left {
-        display: flex;
-        justify-content: space-between;
-        .img-list-box {
-          width: 160px;
-          max-height: 600px;
-          display: flex;
-          flex-direction: column;
-          justify-content: flex-start;
-          .img-item-box {
-            height: 202px;
-            width: 152px;
-            margin-bottom: 10px;
-            cursor: pointer;
-            transition: all 0.3s;
-            border: 1px solid transparent;
-            border-radius: 5px;
-            overflow: hidden;
-            &:hover {
-              border: 1px solid #5b3562;
-            }
-          }
-          .active {
-            border: 1px solid #5b3562;
-          }
-        }
-        .img-big-preview {
-          margin-left: 30px;
-          .big-img-box {
-            background: #e7e7e7;
-            padding: 24px 21px;
-            border-radius: 3px;
-          }
-        }
-      }
-      .right {
-        flex: 1;
-        margin-left: 30px;
-        display: flex;
+      gap: 20px;
+
+      @media (max-width: 768px) {
         flex-direction: column;
-        .top {
-          height: 220px;
-          width: 100%;
-          background-color: #fff;
-          margin-bottom: 20px;
-          padding: 20px 30px 0 20px;
-          display: flex;
-          flex-direction: column;
-          h1 {
-            font-size: 22px;
-            margin-bottom: 30px;
-            text-align: justify;
-            line-height: 1.5;
-          }
-          .download-btn {
-            .button {
-              width: 50%;
-              height: 38px;
-              margin-right: 20px;
-              line-height: 38px;
-              text-align: center;
-              letter-spacing: 2px;
-              color: #fff;
-              font-size: 14px;
-              background-image: -webkit-linear-gradient(to right, #2ddd9d, #1cc7cf);
-              background-image: -moz-linear-gradient(to right, #2ddd9d, #1cc7cf);
-              background-image: -ms-linear-gradient(to right, #2ddd9d, #1cc7cf);
-              background-image: linear-gradient(to right, #2ddd9d, #1cc7cf);
-              -webkit-border-radius: 50px;
-              -moz-border-radius: 50px;
-              border-radius: 50px;
-              background-color: #2ddd9d;
-              -webkit-transition: all 0.3s;
-              -moz-transition: all 0.3s;
-              -ms-transition: all 0.3s;
-              -o-transition: all 0.3s;
-              transition: all 0.3s;
-              cursor: pointer;
-              user-select: none;
-              display: flex;
-              align-items: center;
-              justify-content: center;
-              &:hover {
-                opacity: 0.8;
-              }
-              .how-much {
-                display: flex;
-                align-items: center;
-                margin-right: 5px;
-                img {
-                  margin: 0 5px;
-                }
-              }
-            }
-          }
-          .views-downs-box {
-            margin-top: 50px;
-            border-top: 1px solid #eee;
-            flex: 1;
-            color: #b2bcc3;
-            display: flex;
-            align-items: center;
-            .icon-box {
-              margin-right: 30px;
-              display: flex;
-              align-items: center;
-              .number {
-                padding-top: 1px;
-                font-size: 18px;
-                margin-left: 10px;
-              }
-              .downloads {
-                margin-left: 6px;
-                font-size: 18px;
-              }
-            }
-          }
+        align-items: center;
+      }
+    }
+
+    // 缩略图列表
+    .thumbnail-list {
+      width: 140px;
+      .thumbnail-item {
+        width: 100%;
+        height: 180px;
+        margin-bottom: 12px;
+        border-radius: $border-radius;
+        overflow: hidden;
+        cursor: pointer;
+        transition: $transition;
+        border: 2px solid transparent;
+        box-shadow: $box-shadow;
+
+        &:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
         }
-        .info-box {
+
+        &.active {
+          border-color: $primary-color;
+          box-shadow: 0 0 0 2px rgba(108, 99, 255, 0.2);
+        }
+
+        .thumbnail-img {
           width: 100%;
-          background-color: #fff;
-          padding: 20px 30px 20px 20px;
-          display: flex;
-          flex-direction: column;
-          h1 {
-            font-size: 16px;
-            color: #515151;
-            padding-bottom: 22px;
-            border-bottom: 1px solid #ebebeb;
-          }
-          .profile-box {
-            display: flex;
-            margin: 10px 0;
-            span {
-              font-size: 14px;
-              color: #555;
-              margin-right: 15px;
-            }
-            p {
-              font-size: 14px;
-              color: #999999;
-              padding: 0 15px;
-            }
-            .category {
-              border-right: 1px solid #eee;
-            }
-          }
+          height: 100%;
         }
       }
     }
 
-    .bottom-box {
-      margin: 30px auto;
-      min-height: 500px;
-      padding: 20px 0;
-      width: 1200px;
+    // 主预览图
+    .main-preview {
+      flex: 1;
+      .preview-card {
+        background: white;
+        border-radius: $border-radius;
+        padding: 30px;
+        box-shadow: $box-shadow;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 600px;
+      }
+
+      .preview-img {
+        max-width: 100%;
+        max-height: 540px;
+        border-radius: 4px;
+      }
+    }
+  }
+
+  // 信息区域
+  .info-section {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  // 操作卡片
+  .action-card {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: $border-radius;
+    padding: 30px;
+    box-shadow: $box-shadow;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(108, 99, 255, 0.1);
+    position: relative;
+    overflow: hidden;
+
+    // AI风格装饰元素
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, $primary-color, #00d4ff);
+    }
+
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: -50px;
+      right: -50px;
+      width: 200px;
+      height: 200px;
+      background: radial-gradient(circle, rgba(108, 99, 255, 0.1), transparent 70%);
+      border-radius: 50%;
+    }
+
+    // 统计信息
+    .stats-container {
       display: flex;
-      background-color: #fff;
+      justify-content: space-between;
+      margin-bottom: 30px;
+      position: relative;
+      z-index: 1;
+
+      .stat-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+        padding: 15px;
+        border-radius: 10px;
+        background: rgba(255, 255, 255, 0.7);
+        transition: $transition;
+
+        &:hover {
+          transform: translateY(-5px);
+          box-shadow: 0 8px 16px rgba(108, 99, 255, 0.2);
+        }
+
+        .stat-value {
+          font-size: 20px;
+          font-weight: 600;
+          color: $primary-color;
+          text-shadow: 0 2px 4px rgba(108, 99, 255, 0.3);
+        }
+
+        .stat-label {
+          font-size: 14px;
+          color: $text-light;
+          text-transform: uppercase;
+          letter-spacing: 0.5px;
+        }
+      }
+    }
+
+    // 下载区域
+    .download-section {
       display: flex;
+      flex-direction: column;
+      gap: 15px;
+      position: relative;
+      z-index: 1;
+
+      .price-info {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        padding: 15px;
+        border-radius: 10px;
+        background: linear-gradient(135deg, rgba(255, 107, 107, 0.1), rgba(255, 107, 107, 0.05));
+        border: 1px solid rgba(255, 107, 107, 0.2);
+
+        .price-value {
+          font-size: 24px;
+          font-weight: 600;
+          color: #ff6b6b;
+          text-shadow: 0 2px 4px rgba(255, 107, 107, 0.3);
+        }
+
+        .coin-icon {
+          vertical-align: middle;
+          animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+          0%, 20%, 50%, 80%, 100% {
+            transform: translateY(0);
+          }
+          40% {
+            transform: translateY(-5px);
+          }
+          60% {
+            transform: translateY(-3px);
+          }
+        }
+      }
+
+      .download-btn {
+        width: 100%;
+        height: 48px;
+        background: linear-gradient(135deg, $primary-color 0%, #00d4ff 100%);
+        color: white;
+        border: none;
+        border-radius: 24px;
+        font-size: 16px;
+        font-weight: 500;
+        cursor: pointer;
+        transition: $transition;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        overflow: hidden;
+
+        &::before {
+          content: '';
+          position: absolute;
+          top: -50%;
+          left: -50%;
+          width: 200%;
+          height: 200%;
+          background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+          transform: rotate(45deg);
+          animation: shine 3s infinite;
+        }
+
+        &:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 6px 20px rgba(108, 99, 255, 0.5);
+        }
+
+        &:active {
+          transform: translateY(0);
+        }
+
+        @keyframes shine {
+          0% {
+            transform: translateX(-100%) rotate(45deg);
+          }
+          100% {
+            transform: translateX(100%) rotate(45deg);
+          }
+        }
+      }
+    }
+  }
+
+  // 信息卡片
+  .info-card {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: $border-radius;
+    padding: 30px;
+    box-shadow: $box-shadow;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(108, 99, 255, 0.1);
+    position: relative;
+    overflow: hidden;
+
+    // AI风格装饰元素
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, $primary-color, #00d4ff);
+    }
+
+    &::after {
+      content: '';
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      width: 100px;
+      height: 100px;
+      background: radial-gradient(circle, rgba(108, 99, 255, 0.1), transparent 70%);
+      border-radius: 50%;
+    }
+
+    .info-title {
+      font-size: 18px;
+      font-weight: 600;
+      color: $text-color;
+      margin-bottom: 20px;
+      padding-bottom: 15px;
+      border-bottom: 1px solid rgba(108, 99, 255, 0.1);
+      position: relative;
+
+      &::after {
+        content: '';
+        position: absolute;
+        bottom: -1px;
+        left: 0;
+        width: 60px;
+        height: 3px;
+        background: linear-gradient(90deg, $primary-color, #00d4ff);
+      }
+    }
+
+    .info-item {
+      margin-bottom: 20px;
+      position: relative;
+      z-index: 1;
+
+      .info-label {
+        display: block;
+        font-size: 14px;
+        font-weight: 500;
+        color: $primary-color;
+        margin-bottom: 8px;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+
+      .info-content {
+        font-size: 14px;
+        line-height: 1.6;
+        color: $text-light;
+        margin: 0;
+      }
+
+      // 标签列表
+      .tag-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+
+        .tag-item {
+          display: inline-block;
+          padding: 6px 12px;
+          background-color: rgba(108, 99, 255, 0.05);
+          border-radius: 16px;
+          font-size: 12px;
+          color: $primary-color;
+          transition: $transition;
+          border: 1px solid rgba(108, 99, 255, 0.2);
+
+          &:hover {
+            background-color: $primary-color;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(108, 99, 255, 0.4);
+          }
+        }
+      }
+    }
+  }
+
+  // 轮播图区域
+  .carousel-section {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: $border-radius;
+    padding: 30px;
+    box-shadow: $box-shadow;
+    margin-bottom: 40px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(108, 99, 255, 0.1);
+    position: relative;
+    overflow: hidden;
+
+    // AI风格装饰元素
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, $primary-color, #00d4ff);
+    }
+
+    &::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 300px;
+      height: 300px;
+      background: radial-gradient(circle, rgba(108, 99, 255, 0.05), transparent 70%);
+      border-radius: 50%;
+      z-index: 0;
+    }
+  }
+
+  // 评论区域
+  .comment-section {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: $border-radius;
+    padding: 30px;
+    box-shadow: $box-shadow;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(108, 99, 255, 0.1);
+    position: relative;
+    overflow: hidden;
+
+    // AI风格装饰元素
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, $primary-color, #00d4ff);
+    }
+
+    .comment-header {
+      margin-bottom: 20px;
+      position: relative;
+
+      .comment-title {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 18px;
+        font-weight: 600;
+        color: $text-color;
+        margin: 0;
+
+        svg {
+          animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+          0% {
+            transform: scale(1);
+            opacity: 1;
+          }
+          50% {
+            transform: scale(1.1);
+            opacity: 0.8;
+          }
+          100% {
+            transform: scale(1);
+            opacity: 1;
+          }
+        }
+      }
     }
   }
 </style>
