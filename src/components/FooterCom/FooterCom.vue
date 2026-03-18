@@ -2,7 +2,7 @@
   <footer class="global-footer">
     <!-- 主要内容区域 -->
     <div class="footer-content">
-      <!-- 联系我 -->
+      <!-- 联系我们 -->
       <div class="footer-section contact-section">
         <h3 class="section-title">联系我们</h3>
         <div v-viewer class="qr-codes" style="display: flex">
@@ -20,6 +20,8 @@
           </div>
         </div>
       </div>
+
+
 
       <!-- 社交平台 -->
       <div class="footer-section social-section">
@@ -183,6 +185,8 @@
   const updateApplyLinksSuccess = () => {
     dialogApplyLinksVisible.value = false;
   };
+
+
 
   defineExpose({
     vxQunList,
@@ -381,6 +385,8 @@
       }
     }
   }
+
+
 
   /* 友情链接区域 - 紧凑布局 */
   .friend-links-section {

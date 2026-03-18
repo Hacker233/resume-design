@@ -94,3 +94,19 @@ export const getUserResumeByJobzxAsync: any = (params: any) => {
     params: params
   });
 };
+
+// 获取在线用户数量
+export const getOnlineUsersCountAsync: any = () => {
+  return http.request({
+    url: '/huajian/online-users/count',
+    method: 'get'
+  });
+};
+
+// 发送用户心跳
+export const sendHeartbeatAsync: any = (userId: string) => {
+  return http.request({
+    url: `/huajian/online-users/heartbeat/${userId}`,
+    method: 'post'
+  });
+};
