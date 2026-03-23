@@ -153,6 +153,7 @@
     :pay-number="-Math.abs(exportPdfPayIntegral) || 0"
     :confirm-disabled="confirmDisabled"
     :confirm-tip="confirmTip"
+    :btn-text="confirmTip"
     placeholder="下载该创作"
     @cancle="handleCancleDialog"
     @confirm="handleConfirmDialog"
@@ -186,10 +187,10 @@
     if (!downloadType.value) return '';
     return downloadType.value === 'img'
       ? isCanDownloadImg.value
-        ? '下载图片'
+        ? '导出图片'
         : '简币数量不足'
       : isCanDownloadPDF.value
-      ? '下载PDF'
+      ? '导出PDF'
       : '简币数量不足';
   });
 

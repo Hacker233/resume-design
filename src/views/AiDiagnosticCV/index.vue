@@ -446,15 +446,36 @@
 <style lang="scss" scoped>
   .ai-diagnostic-cv {
     min-height: calc(100vh - 65px);
-    background: linear-gradient(180deg, #efe5fd 0%, #fbf9fe 100%);
+    background: linear-gradient(135deg, #f5f7fa 0%, #e8ecf1 50%, #f0f4f8 100%);
+    background-size: 400% 400%;
+    animation: gradientShift 20s ease infinite;
     color: #333;
-    padding: 20px;
+    padding: 30px 20px;
     font-family: 'Helvetica Neue', Helvetica, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei',
       Arial, sans-serif;
+    position: relative;
+    overflow: hidden;
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="20" height="20" patternUnits="userSpaceOnUse"><circle cx="10" cy="10" r="0.5" fill="rgba(102, 126, 234, 0.08)"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+      pointer-events: none;
+    }
+
+    @keyframes gradientShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
 
     &.light-theme {
       .page-header .title {
-        background: linear-gradient(90deg, #4096ff, #6f7ad3);
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
         -webkit-background-clip: text;
         background-clip: text;
         color: transparent;
@@ -468,30 +489,44 @@
   /* 页面标题 */
   .page-header {
     text-align: center;
-    padding: 40px 0;
+    padding: 50px 0 40px;
+    position: relative;
+    z-index: 1;
 
     .title {
-      font-size: 2.2rem;
-      font-weight: 700;
-      margin-bottom: 10px;
+      font-size: 2.8rem;
+      font-weight: 800;
+      margin-bottom: 16px;
+      letter-spacing: -0.5px;
+      animation: titleFloat 3s ease-in-out infinite;
     }
+
+    @keyframes titleFloat {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-5px); }
+    }
+
     .subtitle {
-      font-size: 1.05rem;
-      max-width: 600px;
+      font-size: 1.15rem;
+      max-width: 650px;
       margin: 0 auto;
+      font-weight: 400;
+      line-height: 1.6;
     }
   }
 
   /* 主内容区 */
   .main-content {
-    max-width: 1000px;
+    max-width: 1100px;
     margin: 0 auto;
+    position: relative;
+    z-index: 1;
   }
 
   /* 上传区域 */
   .upload-container {
-    max-width: 760px;
-    margin: 0 auto 28px;
+    max-width: 800px;
+    margin: 0 auto 35px;
     text-align: center;
 
     :deep(.el-upload) {
@@ -500,117 +535,220 @@
 
     :deep(.el-upload-dragger) {
       width: 100%;
-      padding: 48px 20px;
-      border-radius: 16px;
-      background-color: #fff;
-      box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.06);
-      transition: all 0.3s ease;
-      border: 2px dashed #dcdfe6;
+      padding: 60px 24px;
+      border-radius: 20px;
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0.85) 100%);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1), 0 2px 8px rgba(0, 0, 0, 0.05);
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      border: 3px dashed rgba(102, 126, 234, 0.3);
+      backdrop-filter: blur(10px);
 
       &:hover {
-        border-color: #4096ff;
+        border-color: #667eea;
+        box-shadow: 0 12px 40px rgba(102, 126, 234, 0.2), 0 4px 12px rgba(0, 0, 0, 0.08);
+        transform: translateY(-4px);
+      }
+
+      &:active {
+        transform: translateY(-2px);
       }
     }
   }
 
   .upload-content {
     .upload-icon {
-      margin-bottom: 20px;
+      margin-bottom: 24px;
+      animation: iconBounce 2s ease-in-out infinite;
     }
+
+    @keyframes iconBounce {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.1); }
+    }
+
     .upload-title {
-      font-size: 1.3rem;
-      margin-bottom: 6px;
-      color: #333;
+      font-size: 1.4rem;
+      margin-bottom: 8px;
+      color: #2d3748;
+      font-weight: 600;
     }
     .browse-btn {
-      color: #4096ff;
+      color: #667eea;
       cursor: pointer;
       text-decoration: underline;
-      text-underline-offset: 2px;
+      text-underline-offset: 3px;
       margin-left: 4px;
+      font-weight: 600;
+      transition: color 0.3s ease;
+
+      &:hover {
+        color: #764ba2;
+      }
     }
     .upload-subtitle {
-      color: #666;
-      margin-bottom: 8px;
+      color: #718096;
+      margin-bottom: 12px;
+      font-size: 0.95rem;
     }
   }
 
   .selected-file {
-    margin-top: 16px;
+    margin-top: 20px;
+    animation: slideUp 0.4s ease-out;
+
+    @keyframes slideUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
 
     :deep(.el-card) {
-      border-radius: 10px;
-      background-color: #fff;
-      border: 1px solid #ebeef5;
+      border-radius: 14px;
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0.85) 100%);
+      border: 1px solid rgba(102, 126, 234, 0.2);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+      backdrop-filter: blur(10px);
+      transition: all 0.3s ease;
+
+      &:hover {
+        box-shadow: 0 8px 30px rgba(102, 126, 234, 0.15);
+        transform: translateY(-2px);
+      }
     }
 
     .file-info {
       display: flex;
       align-items: center;
-      padding: 12px 16px;
+      padding: 16px 20px;
     }
     .file-icon {
-      margin-right: 10px;
+      margin-right: 14px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      border-radius: 10px;
+      padding: 8px;
+      color: white;
+      box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
     }
     .file-name {
       flex: 1;
       text-align: left;
-      font-size: 0.95rem;
+      font-size: 1rem;
+      font-weight: 500;
+      color: #2d3748;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
     }
     .file-size {
-      color: #666;
+      color: #718096;
       font-size: 0.85rem;
-      margin-left: 8px;
+      margin-left: 10px;
+      background: rgba(102, 126, 234, 0.1);
+      padding: 2px 8px;
+      border-radius: 4px;
     }
     .remove-file {
-      margin-left: 12px;
+      margin-left: 16px;
+      transition: all 0.3s ease;
+
+      &:hover {
+        background: rgba(245, 101, 101, 0.1);
+        transform: scale(1.1);
+      }
     }
   }
 
   /* 自定义漂亮进度条 */
   .upload-status {
-    margin-top: 16px;
+    margin-top: 20px;
     width: 100%;
-    max-width: 520px;
+    max-width: 600px;
     margin-left: auto;
     margin-right: auto;
+    animation: slideUp 0.4s ease-out;
+
+    @keyframes slideUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
 
     .pretty-progress {
       position: relative;
       width: 100%;
-      height: 12px;
-      background: #eef2f7;
+      height: 16px;
+      background: rgba(255, 255, 255, 0.3);
       border-radius: 999px;
       overflow: hidden;
-      box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.05);
+      box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(255, 255, 255, 0.3);
+      backdrop-filter: blur(10px);
     }
+
     .pretty-progress__bar {
       height: 100%;
       width: 0%;
       border-radius: 999px;
-      background: linear-gradient(90deg, #69adff, #6f7ad3);
-      transition: width 0.25s ease;
+      background: linear-gradient(90deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+      background-size: 200% 100%;
+      animation: progressGradient 2s ease infinite;
+      transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: 0 0 20px rgba(102, 126, 234, 0.5);
+      position: relative;
+
+      &::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+        animation: progressShine 1.5s ease-in-out infinite;
+      }
     }
+
+    @keyframes progressGradient {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    @keyframes progressShine {
+      0% { transform: translateX(-100%); }
+      100% { transform: translateX(100%); }
+    }
+
     .pretty-progress__text {
-      margin-top: 6px;
-      font-size: 0.9rem;
-      font-weight: 600;
-      color: #4096ff;
+      margin-top: 10px;
+      font-size: 1rem;
+      font-weight: 700;
+      color: #fff;
+      text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
     }
 
     .status-message {
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 0.9rem;
-      color: #666;
-      margin-top: 6px;
+      font-size: 1.1rem;
+      color: #1f2937;
+      margin-top: 8px;
+      font-weight: 700;
+      text-shadow: 0 1px 2px rgba(255, 255, 255, 0.5);
 
       .status-icon {
-        margin-right: 6px;
+        margin-right: 8px;
+        font-size: 1.2rem;
       }
     }
   }
@@ -619,65 +757,152 @@
   .action-buttons {
     display: flex;
     justify-content: center;
-    gap: 16px;
-    margin-top: 16px;
+    gap: 20px;
+    margin-top: 24px;
 
     .upload-btn,
     .diagnose-btn {
-      width: 180px;
-      height: 44px;
-      font-size: 1rem;
-      font-weight: 600;
+      width: 200px;
+      height: 52px;
+      font-size: 1.05rem;
+      font-weight: 700;
+      border-radius: 12px;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      position: relative;
+      overflow: hidden;
+
+      &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+        transition: left 0.5s ease;
+      }
+
+      &:hover::before {
+        left: 100%;
+      }
+
+      &:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+      }
+
+      &:active {
+        transform: translateY(-1px);
+      }
 
       :deep(.el-icon) {
         margin-right: 8px;
+        font-size: 1.1rem;
       }
     }
-    .diagnose-btn {
-      background-color: #10b981;
-      border-color: #10b981;
+
+    .upload-btn {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      border: none;
+      color: white;
+
       &:hover {
-        background-color: #0ea371;
-        border-color: #0ea371;
+        background: linear-gradient(135deg, #5a6fd6 0%, #6a4190 100%);
+      }
+    }
+
+    .diagnose-btn {
+      background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+      border: none;
+      color: white;
+
+      &:hover {
+        background: linear-gradient(135deg, #0ea371 0%, #047857 100%);
       }
     }
   }
 
   /* 报告卡片 */
   .detailed-report {
-    margin-top: 22px;
+    margin-top: 30px;
+    animation: slideUp 0.5s ease-out;
+
+    @keyframes slideUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    :deep(.el-card) {
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0.85) 100%);
+      border-radius: 20px;
+      border: 1px solid rgba(102, 126, 234, 0.2);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+      backdrop-filter: blur(10px);
+      transition: all 0.3s ease;
+
+      &:hover {
+        box-shadow: 0 12px 48px rgba(102, 126, 234, 0.15);
+      }
+    }
 
     :deep(.el-card__body) {
-      padding: 20px;
+      padding: 28px;
     }
 
     h3 {
-      font-size: 1.2rem;
+      font-size: 1.3rem;
       margin-bottom: 30px;
-      color: #333;
+      color: #2d3748;
+      font-weight: 700;
     }
+
     .report-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
       margin-bottom: 30px;
+      padding-bottom: 20px;
+      border-bottom: 2px solid rgba(102, 126, 234, 0.1);
 
       h3 {
-        font-size: 1.2rem;
-        color: #333;
+        font-size: 1.4rem;
+        color: #2d3748;
         margin: 0;
+        font-weight: 700;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
       }
 
       .download-btn {
-        font-size: 0.85rem;
-        padding: 6px 12px;
+        font-size: 0.9rem;
+        padding: 10px 20px;
         height: auto;
-        background-color: #4096ff;
-        border-color: #4096ff;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        border: none;
+        border-radius: 10px;
+        font-weight: 600;
+        color: white;
+        box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+        transition: all 0.3s ease;
 
-        &:hover {
-          background-color: #337ecc;
-          border-color: #337ecc;
+        &:hover:not(:disabled) {
+          background: linear-gradient(135deg, #5a6fd6 0%, #6a4190 100%);
+          box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+          transform: translateY(-2px);
+        }
+
+        &:disabled {
+          opacity: 0.5;
+          cursor: not-allowed;
         }
       }
     }
@@ -686,13 +911,16 @@
       display: flex;
       flex-direction: column;
       align-items: center;
+      padding: 40px 20px;
+
       .loading-tip {
-        margin-top: 16px;
+        margin-top: 20px;
         display: flex;
         align-items: center;
-        gap: 8px;
-        color: #888;
-        font-size: 0.95rem;
+        gap: 10px;
+        color: #718096;
+        font-size: 1rem;
+        font-weight: 500;
       }
     }
   }
@@ -700,36 +928,437 @@
   /* 过渡 */
   .fade-enter-active,
   .fade-leave-active {
-    transition: opacity 0.2s;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   }
-  .fade-enter-from,
+  .fade-enter-from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.95);
+  }
   .fade-leave-to {
     opacity: 0;
+    transform: translateY(-20px) scale(0.95);
+  }
+
+  /* 滚动条美化 */
+  .scrollable-content {
+    &::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+
+    &::-webkit-scrollbar-track {
+      background: rgba(102, 126, 234, 0.05);
+      border-radius: 4px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      border-radius: 4px;
+      transition: all 0.3s ease;
+
+      &:hover {
+        background: linear-gradient(135deg, #764ba2 0%, #f093fb 100%);
+      }
+    }
+  }
+
+  /* 按钮点击波纹效果 */
+  .action-buttons {
+    .upload-btn,
+    .diagnose-btn {
+      &:active {
+        transform: translateY(-1px) scale(0.98);
+      }
+    }
+  }
+
+  /* 卡片悬停效果增强 */
+  .upload-container {
+    :deep(.el-upload-dragger) {
+      &:hover {
+        .upload-icon {
+          animation: iconPulse 0.6s ease-in-out;
+        }
+      }
+    }
+  }
+
+  @keyframes iconPulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.15); }
+  }
+
+  /* 加载状态优化 */
+  .el-icon.is-loading {
+    animation: rotate 1s linear infinite;
+  }
+
+  @keyframes rotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+
+  /* 成功/失败图标动画 */
+  .status-message {
+    .status-icon {
+      transition: all 0.3s ease;
+
+      &.el-icon-circle-check-filled {
+        animation: successPop 0.5s ease-out;
+      }
+
+      &.el-icon-circle-close-filled {
+        animation: errorShake 0.5s ease-out;
+      }
+    }
+  }
+
+  @keyframes successPop {
+    0% { transform: scale(0); opacity: 0; }
+    50% { transform: scale(1.2); }
+    100% { transform: scale(1); opacity: 1; }
+  }
+
+  @keyframes errorShake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    75% { transform: translateX(5px); }
   }
 
   /* 响应式 */
   @media (max-width: 768px) {
-    .page-header .title {
-      font-size: 1.9rem;
+    .ai-diagnostic-cv {
+      padding: 20px 16px;
     }
+
+    .page-header {
+      padding: 30px 0 25px;
+
+      .title {
+        font-size: 2rem;
+        letter-spacing: -0.3px;
+      }
+
+      .subtitle {
+        font-size: 1rem;
+        max-width: 100%;
+        padding: 0 10px;
+      }
+    }
+
+    .main-content {
+      max-width: 100%;
+    }
+
+    .upload-container {
+      max-width: 100%;
+      margin: 0 auto 25px;
+
+      :deep(.el-upload-dragger) {
+        padding: 40px 16px;
+        border-radius: 16px;
+      }
+    }
+
+    .upload-content {
+      .upload-icon {
+        margin-bottom: 16px;
+      }
+
+      .upload-title {
+        font-size: 1.2rem;
+      }
+
+      .upload-subtitle {
+        font-size: 0.85rem;
+      }
+    }
+
+    .selected-file {
+      :deep(.el-card) {
+        border-radius: 12px;
+      }
+
+      .file-info {
+        padding: 12px 16px;
+      }
+
+      .file-name {
+        font-size: 0.9rem;
+      }
+    }
+
+    .upload-status {
+      max-width: 100%;
+      margin-top: 16px;
+    }
+
     .action-buttons {
       flex-direction: column;
-    }
-    .upload-btn,
-    .diagnose-btn {
-      width: 100%;
-    }
-    .report-header {
-      flex-direction: column;
-      align-items: flex-start;
       gap: 12px;
+      margin-top: 20px;
+
+      .upload-btn,
+      .diagnose-btn {
+        width: 100%;
+        height: 48px;
+        font-size: 1rem;
+      }
+    }
+
+    .detailed-report {
+      margin-top: 24px;
+
+      :deep(.el-card) {
+        border-radius: 16px;
+      }
+
+      :deep(.el-card__body) {
+        padding: 20px 16px;
+      }
+
+      .report-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
+        padding-bottom: 16px;
+
+        h3 {
+          font-size: 1.2rem;
+        }
+
+        .download-btn {
+          width: 100%;
+          padding: 12px 20px;
+        }
+      }
+
+      .report-loading {
+        padding: 30px 16px;
+      }
+    }
+
+    .scrollable-content {
+      padding: 20px 16px;
+      font-size: 0.95rem;
+
+      :deep(h1) {
+        font-size: 1.5rem;
+      }
+
+      :deep(h2) {
+        font-size: 1.3rem;
+      }
+
+      :deep(h3) {
+        font-size: 1.1rem;
+      }
+    }
+  }
+
+  @media (max-width: 480px) {
+    .page-header {
+      padding: 25px 0 20px;
+
+      .title {
+        font-size: 1.7rem;
+      }
+
+      .subtitle {
+        font-size: 0.9rem;
+      }
+    }
+
+    .upload-container {
+      :deep(.el-upload-dragger) {
+        padding: 30px 12px;
+      }
+    }
+
+    .upload-content {
+      .upload-icon {
+        margin-bottom: 12px;
+      }
+
+      .upload-title {
+        font-size: 1.1rem;
+      }
+
+      .upload-subtitle {
+        font-size: 0.8rem;
+      }
+    }
+
+    .action-buttons {
+      .upload-btn,
+      .diagnose-btn {
+        height: 44px;
+        font-size: 0.95rem;
+      }
+    }
+
+    .detailed-report {
+      :deep(.el-card__body) {
+        padding: 16px 12px;
+      }
+
+      .report-header {
+        h3 {
+          font-size: 1.1rem;
+        }
+      }
+    }
+
+    .scrollable-content {
+      padding: 16px 12px;
+      font-size: 0.9rem;
+
+      :deep(h1) {
+        font-size: 1.3rem;
+      }
+
+      :deep(h2) {
+        font-size: 1.15rem;
+      }
+
+      :deep(h3) {
+        font-size: 1rem;
+      }
     }
   }
   .scrollable-content {
-    padding: 20px;
-    border: 1px solid #ebeef5;
-    border-radius: 6px;
-    background-color: #fff;
+    padding: 28px;
+    border: 1px solid rgba(102, 126, 234, 0.15);
+    border-radius: 14px;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.98) 0%, rgba(255, 255, 255, 0.95) 100%);
+    box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.03);
+    line-height: 1.8;
+    font-size: 1rem;
+
+    :deep(h1),
+    :deep(h2),
+    :deep(h3),
+    :deep(h4) {
+      color: #2d3748;
+      font-weight: 700;
+      margin-top: 24px;
+      margin-bottom: 16px;
+    }
+
+    :deep(h1) {
+      font-size: 1.8rem;
+      border-bottom: 3px solid rgba(102, 126, 234, 0.2);
+      padding-bottom: 12px;
+    }
+
+    :deep(h2) {
+      font-size: 1.5rem;
+      border-bottom: 2px solid rgba(102, 126, 234, 0.15);
+      padding-bottom: 8px;
+    }
+
+    :deep(h3) {
+      font-size: 1.3rem;
+    }
+
+    :deep(p) {
+      color: #4a5568;
+      margin-bottom: 16px;
+    }
+
+    :deep(ul),
+    :deep(ol) {
+      margin-bottom: 20px;
+      padding-left: 24px;
+    }
+
+    :deep(li) {
+      color: #4a5568;
+      margin-bottom: 8px;
+      line-height: 1.7;
+    }
+
+    :deep(code) {
+      background: rgba(102, 126, 234, 0.1);
+      color: #667eea;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-family: 'Courier New', monospace;
+      font-size: 0.9em;
+    }
+
+    :deep(pre) {
+      background: rgba(102, 126, 234, 0.05);
+      border: 1px solid rgba(102, 126, 234, 0.2);
+      border-radius: 8px;
+      padding: 16px;
+      overflow-x: auto;
+      margin-bottom: 20px;
+    }
+
+    :deep(pre code) {
+      background: none;
+      padding: 0;
+      color: #2d3748;
+    }
+
+    :deep(blockquote) {
+      border-left: 4px solid #667eea;
+      padding-left: 16px;
+      margin: 20px 0;
+      color: #718096;
+      font-style: italic;
+      background: rgba(102, 126, 234, 0.05);
+      padding: 12px 16px;
+      border-radius: 0 8px 8px 0;
+    }
+
+    :deep(table) {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    }
+
+    :deep(th),
+    :deep(td) {
+      border: 1px solid rgba(102, 126, 234, 0.2);
+      padding: 12px;
+      text-align: left;
+    }
+
+    :deep(th) {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      font-weight: 600;
+    }
+
+    :deep(tr:nth-child(even)) {
+      background: rgba(102, 126, 234, 0.03);
+    }
+
+    :deep(a) {
+      color: #667eea;
+      text-decoration: none;
+      border-bottom: 1px dashed #667eea;
+      transition: all 0.3s ease;
+
+      &:hover {
+        color: #764ba2;
+        border-bottom-style: solid;
+      }
+    }
+
+    :deep(strong) {
+      color: #667eea;
+      font-weight: 700;
+    }
+
+    :deep(hr) {
+      border: none;
+      border-top: 2px solid rgba(102, 126, 234, 0.2);
+      margin: 30px 0;
+    }
   }
 
   .scroll-to-bottom-btn {

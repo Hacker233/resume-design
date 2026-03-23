@@ -5,7 +5,7 @@
 </template>
 
 <script setup lang="ts">
-  import { computed } from 'vue';
+  import { computed, ref, watch } from 'vue';
   const props = defineProps({
     iconName: {
       type: String,
@@ -30,6 +30,10 @@
     isHover: {
       type: Boolean,
       default: false
+    },
+    parentHover: {
+      type: Boolean,
+      default: false
     }
   });
   const iconClassName = computed(() => {
@@ -47,6 +51,17 @@
     (newVal) => {
       if (newVal) {
         defaultColor.value = newVal;
+      }
+    }
+  );
+
+  watch(
+    () => props.parentHover,
+    (newVal) => {
+      if (newVal) {
+        defaultColor.value = props.hoverColor || '#2ddd9d';
+      } else {
+        defaultColor.value = props.color;
       }
     }
   );
@@ -71,7 +86,6 @@
     width: 1em;
     height: 1em;
     position: relative;
-    fill: currentColor;
     vertical-align: -2px;
     font-size: v-bind('props.size');
     outline: none;
