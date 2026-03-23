@@ -2,8 +2,8 @@
 <template>
   <el-dialog
     :model-value="dialogBuyIntegralVisible"
-    class="pay-integral-dialog-box"
-    width="880px"
+    class="get-integral-dialog-box"
+    width="620px"
     :show-close="true"
     :close-on-click-modal="false"
     :before-close="handleBeforeClose"
@@ -12,8 +12,9 @@
     <!-- 标题 -->
     <template #header>
       <div class="get-integral-header-box">
-        简币购买<img
-          width="24"
+        简币购买
+        <img
+          width="18"
           src="@/assets/images/jianB.png"
           alt="简币"
           title="简币 - 您的专属虚拟货币"
@@ -46,40 +47,64 @@
   };
 </script>
 <style lang="scss">
-  .pay-integral-dialog-box {
-    .get-integral-header-box {
-      display: flex;
-      align-items: center;
-      font-size: 18px;
-      letter-spacing: 2px;
-      font-weight: 600;
-      img {
-        margin: 0 5px;
-      }
-    }
-    .get-integral-content-box {
-      margin-bottom: 20px;
-      .current-total {
-        margin-bottom: 30px;
-        font-size: 12px;
-        color: #777777;
+  .get-integral-dialog-box {
+    width: 620px;
+
+    & .el-dialog__header {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      padding: 10px 16px;
+      padding-right: 40px;
+      border-bottom: none;
+
+      .el-dialog__headerbtn {
+        color: #ffffff;
+        font-size: 18px;
+        top: 10px;
+        right: 10px;
+        width: 28px;
+        height: 28px;
         display: flex;
         align-items: center;
-        padding-bottom: 10px;
-        border-bottom: none;
-        .get-bi-method {
-          font-size: 12px;
-          border: 1px solid burlywood;
-          padding: 2px 5px;
-          border-radius: 10px;
-          cursor: pointer;
-          color: burlywood;
-          margin-left: 5px;
-          margin-top: 2px;
-          transition: all 0.3s;
-          &:hover {
-            opacity: 0.7;
-          }
+        justify-content: center;
+        border-radius: 50%;
+        transition: all 0.2s ease;
+
+        &:hover {
+          color: #f0f0f0;
+          background: rgba(255, 255, 255, 0.2);
+        }
+      }
+    }
+
+    .get-integral-header-box {
+      font-size: 14px;
+      font-weight: 600;
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+
+      img {
+        width: 16px;
+        height: 16px;
+      }
+    }
+
+    .el-dialog__body {
+      padding: 12px;
+      background: #fafbfc;
+    }
+    
+    .get-integral-content-box {
+      .content-box {
+        background: #ffffff;
+        border-radius: 8px;
+        padding: 10px;
+        margin-bottom: 8px;
+        box-shadow: 0 1px 6px rgba(0, 0, 0, 0.04);
+
+        &:last-child {
+          margin-bottom: 0;
         }
       }
     }
