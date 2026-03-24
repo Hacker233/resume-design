@@ -81,7 +81,14 @@
       'justifyJustify', // 两端对齐
       'lineHeight', // 行间距
       'bulletedList', // 无序列表
-      'numberedList' // 有序列表
+      'numberedList', // 有序列表
+      'insertTable', // 插入表格
+      'deleteTable', // 删除表格
+      'insertTableRow', // 插入行
+      'deleteTableRow', // 删除行
+      'insertTableCol', // 插入列
+      'deleteTableCol', // 删除列
+      'tableHeader' // 设置表头
     ]
   };
 
@@ -155,6 +162,43 @@
     .editor-content {
       height: v-bind('props.height') !important;
       overflow-y: auto;
+
+      // 表格样式
+      :deep(table) {
+        border-collapse: collapse;
+        width: 100%;
+        margin: 16px 0;
+        font-size: 14px;
+
+        th,
+        td {
+          border: 1px solid #dcdfe6;
+          padding: 8px 12px;
+          text-align: left;
+          min-width: 50px;
+        }
+
+        th {
+          background-color: #f5f7fa;
+          font-weight: 600;
+          color: inherit;
+        }
+
+        td {
+          background-color: #ffffff;
+          color: inherit;
+        }
+
+        // 鼠标悬停效果
+        tr:hover td {
+          background-color: #f5f7fa;
+        }
+
+        // 选中单元格样式
+        .w-e-selected-cell {
+          background-color: #e6f7ff !important;
+        }
+      }
     }
   }
 </style>

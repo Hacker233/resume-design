@@ -80,4 +80,28 @@
     box-shadow: 0 10px 22px 2px #00253a3d;
     border: 1px dashed green;
   }
+  
+  // 表格样式
+  :deep(table) {
+    border-collapse: collapse;
+    width: 100%;
+    margin: 20px 0;
+    font-size: 14px;
+    line-height: 1.6;
+    font-family: inherit;
+    
+    th,
+    td {
+      border: 1px solid #e4e7ed;
+      padding: 12px 16px;
+      text-align: left;
+      min-width: 80px;
+    }
+    
+    th {
+      font-weight: 600;
+      border-bottom: 2px solid #dcdfe6;
+      background-color: #f8f9fa;
+    }
+  }
 </style>
