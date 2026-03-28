@@ -1,244 +1,275 @@
 <template>
   <div class="global-theme-setting-bar-box">
-    <!-- 字体选择 -->
-    <el-select
-      v-model="defaultFamily"
-      :teleported="true"
-      placeholder="请选择字体"
-      size="default"
-      style="width: 130px"
-      @change="secondFontFamilyChange"
-    >
-      <el-option
-        v-for="(item, index) in fontFamilyList"
-        :key="index"
-        :label="item"
-        :value="item"
-        :style="{ fontFamily: item }"
-      />
-    </el-select>
-    <!-- 字体大小 -->
-    <el-select
-      v-model="fontSize"
-      :teleported="true"
-      size="default"
-      placeholder="请选择字号"
-      style="width: 90px; margin: 0 0 0 10px"
-      @change="secondFontSizeChange"
-    >
-      <el-option
-        v-for="(item, index) in fontSizeList"
-        :key="index"
-        :label="item.label"
-        :value="item.value"
-      />
-    </el-select>
-    <!-- 主题色 -->
-    <div class="theme-color">
-      <el-tooltip effect="light" content="主题颜色" placement="bottom">
+    <!-- 文本基础设置区 -->
+    <div class="setting-group">
+      <!-- 字体选择 -->
+      <el-select
+        v-model="defaultFamily"
+        :teleported="true"
+        placeholder="请选择字体"
+        size="default"
+        style="width: 130px"
+        class="font-family-select"
+        popper-class="font-family-select-dropdown"
+        @change="secondFontFamilyChange"
+      >
+        <el-option
+          v-for="(item, index) in fontFamilyList"
+          :key="index"
+          :label="item"
+          :value="item"
+          :style="{ fontFamily: item }"
+        />
+      </el-select>
+      <!-- 字体大小 -->
+      <el-select
+        v-model="fontSize"
+        :teleported="true"
+        size="default"
+        placeholder="字号"
+        class="font-size-select"
+        popper-class="font-size-select-dropdown"
+        @change="secondFontSizeChange"
+      >
+        <el-option
+          v-for="(item, index) in fontSizeList"
+          :key="index"
+          :label="item.label"
+          :value="item.value"
+        />
+      </el-select>
+      <!-- 行高 -->
+      <div class="module-padding">
+        <el-popover placement="bottom" :width="250" trigger="click">
+          <template #reference>
+            <div>
+              <el-tooltip effect="light" content="行高" placement="bottom">
+                <svg-icon icon-name="icon-ziyuan" color="#606266" size="28px"></svg-icon>
+              </el-tooltip>
+            </div>
+          </template>
+          <!-- 快捷操作列表 -->
+          <div class="global-module-line-height-content-box">
+            <div class="padding-item">
+              <el-input-number
+                v-model="lineHeight"
+                :max="1000"
+                :step="0.1"
+                size="default"
+                style="width: 100%"
+                @change="handleChangeLineHeight"
+              />
+            </div>
+          </div>
+        </el-popover>
+      </div>
+    </div>
+    
+    <div class="setting-divider"></div>
+    
+    <!-- 颜色设置区 -->
+    <div class="setting-group color-settings">
+      <!-- 字体颜色 -->
+      <div class="color-setting-item">
+        <span class="setting-label">字体颜色</span>
+        <color-picker-custom
+          v-model="HJNewJsonStore.css.color"
+          :show-list="true"
+          :list-number="2"
+        ></color-picker-custom>
+      </div>
+      <!-- 主题色 -->
+      <div class="color-setting-item">
+        <span class="setting-label">主题颜色</span>
         <color-picker-custom
           v-model="HJNewJsonStore.css.themeColor"
           :show-list="true"
-          :list-number="5"
+          :list-number="2"
         ></color-picker-custom>
-      </el-tooltip>
+      </div>
     </div>
-    <!-- 行高 -->
-    <div class="module-padding">
-      <el-popover placement="bottom" :width="250" trigger="click">
-        <template #reference>
-          <div>
-            <el-tooltip effect="light" content="行高" placement="bottom">
-              <svg-icon icon-name="icon-ziyuan" color="#606266" size="27px"></svg-icon>
-            </el-tooltip>
-          </div>
-        </template>
-        <!-- 快捷操作列表 -->
-        <div class="global-module-line-height-content-box">
-          <div class="padding-item">
-            <el-input-number
-              v-model="lineHeight"
-              :max="1000"
-              :step="0.1"
-              size="default"
-              style="width: 100%"
-              @change="handleChangeLineHeight"
-            />
-          </div>
-        </div>
-      </el-popover>
-    </div>
-    <!-- 模块内间距 -->
-    <div class="module-padding">
-      <el-popover placement="bottom" :width="350" trigger="click">
-        <template #reference>
-          <div>
-            <el-tooltip effect="light" content="模块内边距" placement="bottom">
-              <svg-icon icon-name="icon-23waibianju" color="#606266" size="28px"></svg-icon>
-            </el-tooltip>
-          </div>
-        </template>
-        <!-- 快捷操作列表 -->
-        <div class="global-module-padding--popver-content-box">
-          <template v-if="HJNewJsonStore.css?.modulePadding">
-            <div class="padding-item">
-              <p>上内边距</p>
-              <el-slider v-model="HJNewJsonStore.css.modulePadding.top" show-input />
-            </div>
-            <div class="padding-item">
-              <p>右内边距</p>
-              <el-slider v-model="HJNewJsonStore.css.modulePadding.right" show-input />
-            </div>
-            <div class="padding-item">
-              <p>下内边距</p>
-              <el-slider v-model="HJNewJsonStore.css.modulePadding.bottom" show-input />
-            </div>
-            <div class="padding-item">
-              <p>左内边距</p>
-              <el-slider v-model="HJNewJsonStore.css.modulePadding.left" show-input />
+    
+    <div class="setting-divider"></div>
+    
+    <!-- 间距设置区 -->
+    <div class="setting-group">
+      <!-- 模块内间距 -->
+      <div class="module-padding">
+        <el-popover placement="bottom" :width="350" trigger="click">
+          <template #reference>
+            <div>
+              <el-tooltip effect="light" content="内边距" placement="bottom">
+                <svg-icon icon-name="icon-23waibianju" color="#606266" size="28px"></svg-icon>
+              </el-tooltip>
             </div>
           </template>
-        </div>
-      </el-popover>
-    </div>
-    <!-- 模块外边距 -->
-    <div class="module-padding">
-      <el-popover placement="bottom" :width="350" trigger="click">
-        <template #reference>
-          <div>
-            <el-tooltip effect="light" content="模块外边距" placement="bottom">
-              <svg-icon icon-name="icon-waibianju" color="#606266" size="30px"></svg-icon>
-            </el-tooltip>
+          <!-- 快捷操作列表 -->
+          <div class="global-module-padding--popver-content-box">
+            <template v-if="HJNewJsonStore.css?.modulePadding">
+              <div class="padding-item">
+                <p>上内边距</p>
+                <el-slider v-model="HJNewJsonStore.css.modulePadding.top" show-input />
+              </div>
+              <div class="padding-item">
+                <p>右内边距</p>
+                <el-slider v-model="HJNewJsonStore.css.modulePadding.right" show-input />
+              </div>
+              <div class="padding-item">
+                <p>下内边距</p>
+                <el-slider v-model="HJNewJsonStore.css.modulePadding.bottom" show-input />
+              </div>
+              <div class="padding-item">
+                <p>左内边距</p>
+                <el-slider v-model="HJNewJsonStore.css.modulePadding.left" show-input />
+              </div>
+            </template>
           </div>
-        </template>
-        <!-- 快捷操作列表 -->
-        <div class="global-module-padding--popver-content-box">
-          <template v-if="HJNewJsonStore.css?.moduleMargin">
+        </el-popover>
+      </div>
+      <!-- 模块外边距 -->
+      <div class="module-padding">
+        <el-popover placement="bottom" :width="350" trigger="click">
+          <template #reference>
+            <div>
+              <el-tooltip effect="light" content="外边距" placement="bottom">
+                <svg-icon icon-name="icon-waibianju" color="#606266" size="28px"></svg-icon>
+              </el-tooltip>
+            </div>
+          </template>
+          <!-- 快捷操作列表 -->
+          <div class="global-module-padding--popver-content-box">
+            <template v-if="HJNewJsonStore.css?.moduleMargin">
+              <div class="padding-item">
+                <p>上外边距</p>
+                <el-slider v-model="HJNewJsonStore.css.moduleMargin.top" show-input />
+              </div>
+              <div class="padding-item">
+                <p>右外边距</p>
+                <el-slider v-model="HJNewJsonStore.css.moduleMargin.right" show-input />
+              </div>
+              <div class="padding-item">
+                <p>下外边距</p>
+                <el-slider v-model="HJNewJsonStore.css.moduleMargin.bottom" show-input />
+              </div>
+              <div class="padding-item">
+                <p>左外边距</p>
+                <el-slider v-model="HJNewJsonStore.css.moduleMargin.left" show-input />
+              </div>
+            </template>
+          </div>
+        </el-popover>
+      </div>
+    </div>
+    
+    <div class="setting-divider"></div>
+    
+    <!-- 标题设置区 -->
+    <div class="setting-group">
+      <!-- 模块标题整体切换 -->
+      <div class="module-padding">
+        <el-tooltip effect="light" content="标题替换" placement="bottom">
+          <svg-icon
+            icon-name="icon-mokuaizhuanhua"
+            color="#606266"
+            size="28px"
+            @click="selectModuleTitle"
+          ></svg-icon>
+        </el-tooltip>
+      </div>
+      <!-- 标题整体外边距 -->
+      <div class="module-padding">
+        <el-popover placement="bottom" :width="350" trigger="click">
+          <template #reference>
+            <div>
+              <el-tooltip effect="light" content="标题外边距" placement="bottom">
+                <svg-icon icon-name="icon-icon3" color="#606266" size="28px"></svg-icon>
+              </el-tooltip>
+            </div>
+          </template>
+          <!-- 快捷操作列表 -->
+          <div class="global-module-padding--popver-content-box">
             <div class="padding-item">
               <p>上外边距</p>
-              <el-slider v-model="HJNewJsonStore.css.moduleMargin.top" show-input />
+              <el-slider
+                v-model="moduleTitleMargin.top"
+                show-input
+                @change="handleChangeModuleTitleMargin($event, 'top')"
+              />
             </div>
             <div class="padding-item">
               <p>右外边距</p>
-              <el-slider v-model="HJNewJsonStore.css.moduleMargin.right" show-input />
+              <el-slider
+                v-model="moduleTitleMargin.right"
+                show-input
+                @change="handleChangeModuleTitleMargin($event, 'right')"
+              />
             </div>
             <div class="padding-item">
               <p>下外边距</p>
-              <el-slider v-model="HJNewJsonStore.css.moduleMargin.bottom" show-input />
+              <el-slider
+                v-model="moduleTitleMargin.bottom"
+                show-input
+                @change="handleChangeModuleTitleMargin($event, 'bottom')"
+              />
             </div>
             <div class="padding-item">
               <p>左外边距</p>
-              <el-slider v-model="HJNewJsonStore.css.moduleMargin.left" show-input />
+              <el-slider
+                v-model="moduleTitleMargin.left"
+                show-input
+                @change="handleChangeModuleTitleMargin($event, 'left')"
+              />
+            </div>
+          </div>
+        </el-popover>
+      </div>
+      <!-- 标题整体内边距 -->
+      <div class="module-padding">
+        <el-popover placement="bottom" :width="350" trigger="click">
+          <template #reference>
+            <div>
+              <el-tooltip effect="light" content="标题内边距" placement="bottom">
+                <svg-icon icon-name="icon-beijingbianju" color="#606266" size="28px"></svg-icon>
+              </el-tooltip>
             </div>
           </template>
-        </div>
-      </el-popover>
-    </div>
-    <!-- 模块标题整体切换 -->
-    <div class="module-padding">
-      <el-tooltip effect="light" content="模块标题全量替换" placement="bottom">
-        <svg-icon
-          icon-name="icon-mokuaizhuanhua"
-          color="#606266"
-          size="32px"
-          @click="selectModuleTitle"
-        ></svg-icon>
-      </el-tooltip>
-    </div>
-    <!-- 标题整体外边距 -->
-    <div class="module-padding">
-      <el-popover placement="bottom" :width="350" trigger="click">
-        <template #reference>
-          <div>
-            <el-tooltip effect="light" content="标题外边距" placement="bottom">
-              <svg-icon icon-name="icon-icon3" color="#606266" size="30px"></svg-icon>
-            </el-tooltip>
+          <!-- 快捷操作列表 -->
+          <div class="global-module-padding--popver-content-box">
+            <div class="padding-item">
+              <p>上内边距</p>
+              <el-slider
+                v-model="moduleTitlePadding.top"
+                show-input
+                @change="handleChangeModuleTitlePadding($event, 'top')"
+              />
+            </div>
+            <div class="padding-item">
+              <p>右内边距</p>
+              <el-slider
+                v-model="moduleTitlePadding.right"
+                show-input
+                @change="handleChangeModuleTitlePadding($event, 'right')"
+              />
+            </div>
+            <div class="padding-item">
+              <p>下内边距</p>
+              <el-slider
+                v-model="moduleTitlePadding.bottom"
+                show-input
+                @change="handleChangeModuleTitlePadding($event, 'bottom')"
+              />
+            </div>
+            <div class="padding-item">
+              <p>左内边距</p>
+              <el-slider
+                v-model="moduleTitlePadding.left"
+                show-input
+                @change="handleChangeModuleTitlePadding($event, 'left')"
+              />
+            </div>
           </div>
-        </template>
-        <!-- 快捷操作列表 -->
-        <div class="global-module-padding--popver-content-box">
-          <div class="padding-item">
-            <p>上外边距</p>
-            <el-slider
-              v-model="moduleTitleMargin.top"
-              show-input
-              @change="handleChangeModuleTitleMargin($event, 'top')"
-            />
-          </div>
-          <div class="padding-item">
-            <p>右外边距</p>
-            <el-slider
-              v-model="moduleTitleMargin.right"
-              show-input
-              @change="handleChangeModuleTitleMargin($event, 'right')"
-            />
-          </div>
-          <div class="padding-item">
-            <p>下外边距</p>
-            <el-slider
-              v-model="moduleTitleMargin.bottom"
-              show-input
-              @change="handleChangeModuleTitleMargin($event, 'bottom')"
-            />
-          </div>
-          <div class="padding-item">
-            <p>左外边距</p>
-            <el-slider
-              v-model="moduleTitleMargin.left"
-              show-input
-              @change="handleChangeModuleTitleMargin($event, 'left')"
-            />
-          </div>
-        </div>
-      </el-popover>
-    </div>
-
-    <!-- 标题整体内边距 -->
-    <div class="module-padding">
-      <el-popover placement="bottom" :width="350" trigger="click">
-        <template #reference>
-          <div>
-            <el-tooltip effect="light" content="标题内边距" placement="bottom">
-              <svg-icon icon-name="icon-beijingbianju" color="#606266" size="32px"></svg-icon>
-            </el-tooltip>
-          </div>
-        </template>
-        <!-- 快捷操作列表 -->
-        <div class="global-module-padding--popver-content-box">
-          <div class="padding-item">
-            <p>上内边距</p>
-            <el-slider
-              v-model="moduleTitlePadding.top"
-              show-input
-              @change="handleChangeModuleTitlePadding($event, 'top')"
-            />
-          </div>
-          <div class="padding-item">
-            <p>右内边距</p>
-            <el-slider
-              v-model="moduleTitlePadding.right"
-              show-input
-              @change="handleChangeModuleTitlePadding($event, 'right')"
-            />
-          </div>
-          <div class="padding-item">
-            <p>下内边距</p>
-            <el-slider
-              v-model="moduleTitlePadding.bottom"
-              show-input
-              @change="handleChangeModuleTitlePadding($event, 'bottom')"
-            />
-          </div>
-          <div class="padding-item">
-            <p>左内边距</p>
-            <el-slider
-              v-model="moduleTitlePadding.left"
-              show-input
-              @change="handleChangeModuleTitlePadding($event, 'left')"
-            />
-          </div>
-        </div>
-      </el-popover>
+        </el-popover>
+      </div>
     </div>
 
     <!-- 切换模块标题弹窗 -->
@@ -263,6 +294,11 @@
     HJNewJsonStore.value.css.fontFamily = '微软雅黑';
   } else {
     defaultFamily.value = HJNewJsonStore.value.css.fontFamily;
+  }
+  
+  // 初始化字体颜色
+  if (!HJNewJsonStore.value.css?.color) {
+    HJNewJsonStore.value.css.color = '#000000';
   }
 
   // 字体列表
@@ -373,49 +409,96 @@
 <style lang="scss" scoped>
   .global-theme-setting-bar-box {
     width: 100%;
-    height: 50px;
     background-color: #fff;
-    padding: 10px 25px;
+    padding: 10px 15px;
     display: flex;
     align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
     position: sticky;
     top: 0;
     z-index: 2;
-    overflow-y: hidden;
-    flex-shrink: 0;
-    .theme-color {
-      .color-picker-box {
-        margin: 0 8px 0 15px;
-        flex-wrap: nowrap;
-        :deep(.item-box) {
-          height: 28px;
-          width: 28px;
-          transition: all 0.3s;
-          margin: 0 5px;
-          &:hover {
-            transform: scale(1.07);
-          }
-          .custom-color-btn {
-            width: 100%;
-            height: 100%;
-            border-radius: 50%;
-          }
-          .item {
-            width: 100%;
-            height: 100%;
-            border-radius: 50%;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    
+    .setting-group {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    
+    .setting-divider {
+      width: 1px;
+      height: 24px;
+      background-color: #e0e0e0;
+    }
+    
+    .module-padding {
+      margin-right: 2px;
+    }
+    
+    .color-settings {
+      .color-setting-item {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        
+        .setting-label {
+          font-size: 14px;
+          color: #606266;
+          white-space: nowrap;
+        }
+        
+        .color-picker-box {
+          margin: 0;
+          flex-wrap: nowrap;
+          display: flex;
+          align-items: center;
+          :deep(.item-box) {
+            height: 28px;
+            width: 28px;
+            transition: all 0.3s;
+            margin: 0 3px;
+            &:hover {
+              transform: scale(1.07);
+            }
+            .custom-color-btn {
+              width: 100%;
+              height: 100%;
+              border-radius: 50%;
+            }
+            .item {
+              width: 100%;
+              height: 100%;
+              border-radius: 50%;
+            }
           }
         }
       }
     }
+    
+    .font-size-select {
+      width: 70px !important;
+      
+      .el-select__input {
+        font-size: 14px;
+        padding: 0 8px;
+      }
+      
+      .el-select__caret {
+        font-size: 12px;
+      }
+    }
+    
+
+    
     .module-padding {
-      margin-right: 5px;
       .svg-icon {
         cursor: pointer;
         padding: 4px;
+        font-size: 28px !important;
         transition: all 0.3s;
         &:hover {
-          background-color: #eee;
+          background-color: #f0f0f0;
           border-radius: 4px;
         }
       }
@@ -447,5 +530,162 @@
       margin: 0;
       padding: 0;
     }
+  }
+  
+  /* 全局下拉选项样式优化 */
+  .el-select-dropdown.font-size-select-dropdown {
+    border-radius: 8px !important;
+    box-shadow: 0 4px 16px 0 rgba(0, 0, 0, 0.15) !important;
+    border: 1px solid #f0f0f0 !important;
+    background-color: #ffffff !important;
+    padding: 6px 0 !important;
+    min-width: 90px !important;
+  }
+  
+  .el-select-dropdown.font-size-select-dropdown .el-select-dropdown__item {
+    padding: 12px 16px !important;
+    font-size: 14px !important;
+    transition: all 0.2s ease !important;
+    color: #303133 !important;
+    border-radius: 4px !important;
+    margin: 0 8px !important;
+    text-align: center !important;
+    white-space: nowrap !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    min-height: 40px !important;
+  }
+  
+  .el-select-dropdown.font-size-select-dropdown .el-select-dropdown__item:hover {
+    background-color: #f0f9ff !important;
+    color: #409eff !important;
+  }
+  
+  .el-select-dropdown.font-size-select-dropdown .el-select-dropdown__item.el-select-dropdown__item--selected {
+    background-color: #ecf5ff !important;
+    color: #409eff !important;
+    font-weight: 500 !important;
+  }
+  
+  .el-select-dropdown.font-size-select-dropdown .el-select-dropdown__empty {
+    padding: 16px !important;
+    color: #909399 !important;
+    font-size: 14px !important;
+    text-align: center !important;
+  }
+  
+  /* 优化字体大小选择器 */
+  .el-select.font-size-select,
+  .el-select.el-select--default.font-size-select {
+    width: 90px !important;
+    max-width: 90px !important;
+    min-width: 90px !important;
+  }
+  
+  .font-size-select {
+    width: 90px !important;
+    max-width: 90px !important;
+    min-width: 90px !important;
+    
+    .el-select__input {
+      font-size: 14px !important;
+      padding: 0 12px !important;
+      text-align: center !important;
+      width: 100% !important;
+    }
+    
+    .el-select__caret {
+      font-size: 12px !important;
+    }
+    
+    .el-select__wrapper {
+      width: 100% !important;
+      max-width: 90px !important;
+      min-width: 90px !important;
+      border-radius: 4px !important;
+      border: 1px solid #dcdfe6 !important;
+      transition: all 0.3s !important;
+      
+      &:hover {
+        border-color: #c6e2ff !important;
+      }
+      
+      &.is-focus {
+        border-color: #409eff !important;
+        box-shadow: 0 0 0 2px rgba(64, 158, 255, 0.2) !important;
+      }
+    }
+  }
+  
+  /* 优化字体选择器 */
+  .font-family-select {
+    width: 130px !important;
+    
+    .el-select__input {
+      font-size: 14px !important;
+      padding: 0 12px !important;
+    }
+    
+    .el-select__caret {
+      font-size: 12px !important;
+    }
+    
+    .el-select__wrapper {
+      width: 100% !important;
+      border-radius: 4px !important;
+      border: 1px solid #dcdfe6 !important;
+      transition: all 0.3s !important;
+      
+      &:hover {
+        border-color: #c6e2ff !important;
+      }
+      
+      &.is-focus {
+        border-color: #409eff !important;
+        box-shadow: 0 0 0 2px rgba(64, 158, 255, 0.2) !important;
+      }
+    }
+  }
+  
+  /* 字体选择器下拉菜单样式 */
+  .el-select-dropdown.font-family-select-dropdown {
+    border-radius: 8px !important;
+    box-shadow: 0 4px 16px 0 rgba(0, 0, 0, 0.15) !important;
+    border: 1px solid #f0f0f0 !important;
+    background-color: #ffffff !important;
+    padding: 6px 0 !important;
+    min-width: 90px !important;
+  }
+  
+  .el-select-dropdown.font-family-select-dropdown .el-select-dropdown__item {
+    padding: 12px 20px !important;
+    font-size: 14px !important;
+    transition: all 0.2s ease !important;
+    color: #303133 !important;
+    border-radius: 4px !important;
+    margin: 0 8px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    min-height: 40px !important;
+  }
+  
+  .el-select-dropdown.font-family-select-dropdown .el-select-dropdown__item:hover {
+    background-color: #f0f9ff !important;
+    color: #409eff !important;
+  }
+  
+  .el-select-dropdown.font-family-select-dropdown .el-select-dropdown__item.el-select-dropdown__item--selected {
+    background-color: #ecf5ff !important;
+    color: #409eff !important;
+    font-weight: 500 !important;
+  }
+  
+  .el-select-dropdown.font-family-select-dropdown .el-select-dropdown__empty {
+    padding: 16px !important;
+    color: #909399 !important;
+    font-size: 14px !important;
+    text-align: center !important;
   }
 </style>

@@ -180,6 +180,33 @@ export const useGetPageStyle = () => {
     }
   );
 
+  // 全局字体颜色发生变化
+  watch(
+    () => HJNewJsonStore.value.css.color,
+    (newVal) => {
+      if (newVal) {
+        console.log('全局字体颜色变化', newVal);
+        HJNewJsonStore.value.componentsTree.forEach((module: IModule) => {
+          // 修改 module.css 中的 color 属性
+          if (module.css) {
+            module.css.color = newVal;
+          }
+          // 修改 module.customCss 中的所有 color 属性，排除 moduleTitle 和 moduleTitleFont
+          if (module.customCss && Array.isArray(module.customCss)) {
+            module.customCss.forEach((item: any) => {
+              if (item.css && item.css.color && item.prop !== 'moduleTitle' && item.prop !== 'moduleTitleFont') {
+                item.css.color = newVal;
+              }
+            });
+          }
+        });
+      }
+    },
+    {
+      deep: true
+    }
+  );
+
   const boxStyle = computed(() => {
     // 在这里加载背景图像
     const background: string = loadBackgroundImage(
