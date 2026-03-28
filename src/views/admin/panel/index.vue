@@ -4,6 +4,8 @@
     <sign-users-vue></sign-users-vue>
     <!-- 每日签到人数统计 -->
     <attendance-number></attendance-number>
+    <!-- 每日最高在线人数统计 -->
+    <daily-max-online></daily-max-online>
     <!-- 总收入占比统计 -->
     <percentage-revenue></percentage-revenue>
     <!-- 日收入统计 -->
@@ -24,6 +26,7 @@
   import WxIncome from './components/WxIncome.vue';
   import AlipayIncome from './components/AlipayIncome.vue';
   import AttendanceNumber from './components/AttendanceNumber.vue';
+  import DailyMaxOnline from './components/DailyMaxOnline.vue';
 </script>
 <style lang="scss" scoped>
   .panel-box {

@@ -121,3 +121,12 @@ export const getOrgAttendanceNumberAsync: any = (params: any) => {
     params: params
   });
 };
+
+// 查询区间范围的每日最高在线人数
+export const getDailyMaxOnlineUsersAsync: any = (params: any) => {
+  return http.request({
+    url: '/huajian/panel/getDailyMaxOnlineUsers',
+    method: 'get',
+    params: params
+  });
+};
