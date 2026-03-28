@@ -64,7 +64,7 @@
       <!-- 方式三 -->
       <div class="way way-1">
         <p class="way-tips"
-          >给项目点Star，添加小编微信，凭点赞截图获取+20<img
+          >给项目点Star，添加小编微信，凭点赞截图获取+5<img
             width="24"
             src="@/assets/images/jianB.png"
             alt="简币"
@@ -78,6 +78,20 @@
       <!-- 方式四 -->
       <div class="way way-1">
         <p class="way-tips"
+          >朋友圈分享，添加小编微信，凭分享截图获取+15<img
+            width="24"
+            src="@/assets/images/jianB.png"
+            alt="简币"
+        /></p>
+        <!-- 签到按钮 -->
+        <div class="attendance-box">
+          <div class="button" @click="toPyqShare"> 去分享 </div>
+        </div>
+      </div>
+
+      <!-- 方式五 -->
+      <div class="way way-1">
+        <p class="way-tips"
           >直接购买简币！9.9元得+99个简币<img width="24" src="@/assets/images/jianB.png" alt="简币"
         /></p>
         <!-- 签到按钮 -->
@@ -86,7 +100,7 @@
         </div>
       </div>
 
-      <!-- 方式五 -->
+      <!-- 方式六 -->
       <div class="way way-1">
         <p class="way-tips">可通过购买本网站源代码的方式获得简币，一举多得！</p>
         <!-- 签到按钮 -->
@@ -95,7 +109,7 @@
         </div>
       </div>
 
-      <!-- 方式六 -->
+      <!-- 方式七 -->
       <div class="way way-1">
         <p class="way-tips">开通网站会员，无限制下载网站所有资源！</p>
         <!-- 签到按钮 -->
@@ -164,6 +178,13 @@
   // 去github
   const toGithub = () => {
     window.open('https://github.com/Hacker233/resume-design', '_blank');
+  };
+
+  // 去朋友圈分享
+  const toPyqShare = () => {
+    // 这里需要打开朋友圈分享弹窗
+    // 假设使用事件通知父组件打开弹窗
+    // emit('openPyqShare');
   };
 
   // 开通会员

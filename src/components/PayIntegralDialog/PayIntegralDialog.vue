@@ -65,9 +65,9 @@
             <div class="method-info">
               <div class="method-header">
                 <div class="method-name">GitHub Star</div>
-                <div class="method-reward">+10 <img width="14" height="14" src="@/assets/images/jianB.png" alt="简币" /></div>
+                <div class="method-reward">+5 <img width="14" height="14" src="@/assets/images/jianB.png" alt="简币" /></div>
               </div>
-              <div class="method-desc">给猫步简历项目点Star，添加小编微信，凭点赞截图和注册邮箱获取+10简币</div>
+              <div class="method-desc">给猫步简历项目点Star，添加小编微信，凭点赞截图和注册邮箱获取+5简币</div>
             </div>
             <div class="method-action">
               <span class="action-btn secondary" @click.stop="getGithubStarProcess">详细流程</span>
@@ -80,9 +80,9 @@
             <div class="method-info">
               <div class="method-header">
                 <div class="method-name">朋友圈分享</div>
-                <div class="method-reward">+20 <img width="14" height="14" src="@/assets/images/jianB.png" alt="简币" /></div>
+                <div class="method-reward">+15 <img width="14" height="14" src="@/assets/images/jianB.png" alt="简币" /></div>
               </div>
-              <div class="method-desc">朋友圈分享猫步简历，公开权限半小时以上，获得+20个简币。具体分享细节见详细流程</div>
+              <div class="method-desc">朋友圈分享猫步简历，公开权限半小时以上，获得+15个简币。具体分享细节见详细流程</div>
             </div>
             <div class="method-action">
               <span class="action-btn" @click.stop="getPyqShareProcess">详细流程</span>

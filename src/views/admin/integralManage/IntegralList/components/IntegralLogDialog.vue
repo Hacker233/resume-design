@@ -70,11 +70,11 @@
     },
     {
       value: 4,
-      label: '给开源项目GitHub点star获取10简币'
+      label: '给开源项目GitHub点star获取5简币'
     },
     {
       value: 5,
-      label: '分享到朋友圈获取20简币'
+      label: '分享到朋友圈获取15简币'
     }
   ]);
 
