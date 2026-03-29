@@ -213,7 +213,12 @@ import { nextTick } from 'vue';
   };
 
   // 关闭进度弹窗
+  let isCanceling = false;
   const cancleProgress = () => {
+    // 防止重复执行
+    if (isCanceling) return;
+    isCanceling = true;
+    
     // 取消当前正在进行的导出请求
     if (currentExportUrl) {
       // 导入http模块（使用已缓存的实例）
@@ -221,6 +226,7 @@ import { nextTick } from 'vue';
         // 取消所有请求，确保能取消当前的导出请求
         http.cancelAllRequest();
       });
+      ElMessage({ message: '导出操作已取消', type: 'info' });
     }
     // 清除定时器
     if (timer) {
@@ -233,6 +239,7 @@ import { nextTick } from 'vue';
     nextTick(() => {
       percentage.value = 10;
       currentExportUrl = '';
+      isCanceling = false;
     });
   };
 

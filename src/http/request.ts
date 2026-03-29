@@ -41,6 +41,11 @@ const http: any = new Request({
     },
     responseInterceptorsCatch: (error: any) => {
       // 错误处理
+      // 跳过取消请求的错误提示
+      if (error.message === 'canceled') {
+        return Promise.reject(error);
+      }
+      
       const status = error.response?.status;
       const errorMessages: Record<number, string> = {
         400: '请求错误(400)',

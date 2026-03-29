@@ -1,6 +1,6 @@
 <template>
   <el-dialog :model-value="dialogVisible" width="600px" :close-on-click-modal="false" class="ai-process-dialog"
-    append-to-body destroy-on-close :custom-class="{ 'export-process-dialog': true }">
+    append-to-body destroy-on-close :custom-class="{ 'export-process-dialog': true }" @close="cancle">
 
     <!-- AI风格头部 -->
     <template #header>
@@ -10,7 +10,7 @@
             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <circle cx="12" cy="12" r="10" />
             <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3" />
-            <path d="M12 17h.01" />
+            <path d="M12 17h.01" /> 
           </svg>
         </div>
         <h1 class="ai-title">{{ statusText }}</h1>
