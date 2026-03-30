@@ -53,6 +53,48 @@
           :is-member-only="true"
           @click="handleDownloadMD"
         />
+
+        <!-- 下载JSON -->
+        <div class="download-option-wrapper">
+          <!-- 完全免费标识 -->
+          <div class="free-badge">
+            <el-icon><CircleCheckFilled /></el-icon>
+            <span>免费</span>
+          </div>
+          <DownloadOptionCard
+            type="json"
+            icon="icon-json"
+            title="下载JSON"
+            description="适合开发人员二次开发、数据备份等"
+            gradient="teal"
+            :is-free-mode="userInfo.isAllFree"
+            :is-member="membershipInfo.hasMembership && !membershipInfo.isExpired"
+            :can-download="true"
+            @click="handleDownloadJSON"
+          />
+        </div>
+      </div>
+
+      <!-- 用户信息区域 -->
+      <div v-if="!userInfo.isAllFree" class="user-info-bar">
+        <div class="user-integral">
+          <span class="integral-label">我的简币：</span>
+          <span class="integral-value">{{ appStore.useUserInfoStore.userIntegralInfo.integralTotal || 0 }}</span>
+          <img width="18" src="@/assets/images/jianB.png" alt="简币" />
+        </div>
+        <div class="user-membership" :class="{
+          'is-member': membershipInfo.hasMembership && !membershipInfo.isExpired,
+          'is-expired': membershipInfo.hasMembership && membershipInfo.isExpired
+        }">
+          <el-icon><StarFilled /></el-icon>
+          <span v-if="!membershipInfo.hasMembership">普通用户</span>
+          <span v-else-if="membershipInfo.type === 'lifetime' && !membershipInfo.isExpired">永久会员</span>
+          <span v-else-if="membershipInfo.hasMembership && !membershipInfo.isExpired">
+            {{ membershipInfo.type === 'yearly' ? '年度会员' : '月度会员' }}
+            <span class="days-remaining">({{ membershipInfo.daysRemaining }}天)</span>
+          </span>
+          <span v-else>已过期{{ membershipInfo.expiredDays }}天</span>
+        </div>
       </div>
 
       <!-- 获取简币按钮 -->
@@ -93,7 +135,7 @@
   // 获取用户是否免费信息
   const { userInfo } = storeToRefs(appStore.useUserInfoStore);
 
-  const emit = defineEmits(['closeDownloadDialog', 'downloadFile', 'downloadMarkdown']);
+  const emit = defineEmits(['closeDownloadDialog', 'downloadFile', 'downloadMarkdown', 'download-json']);
 
   interface TDialog {
     dialogDownloadVisible: boolean;
@@ -139,18 +181,18 @@
   // 是否可下载图片
   const isCanDownloadImg = computed(() => {
     return (
-      Number(userIntegralTotal.userIntegralInfo.value.integralTotal) >=
+      Number(userIntegralTotal.userIntegralInfo.value?.integralTotal) >=
         Math.abs(props.exportImgPayIntegral) ||
-      (membershipInfo.value.hasMembership && !membershipInfo.value.isExpired)
+      (membershipInfo.value?.hasMembership && !membershipInfo.value?.isExpired)
     );
   });
 
   // 是否可下载PDF
   const isCanDownloadPDF = computed(() => {
     return (
-      Number(userIntegralTotal.userIntegralInfo.value.integralTotal) >=
+      Number(userIntegralTotal.userIntegralInfo.value?.integralTotal) >=
         Math.abs(props.exportPdfPayIntegral) ||
-      (membershipInfo.value.hasMembership && !membershipInfo.value.isExpired)
+      (membershipInfo.value?.hasMembership && !membershipInfo.value?.isExpired)
     );
   });
 
@@ -180,7 +222,7 @@
         }
 
         // 会员且未过期直接下载
-        if (membershipInfo.value.hasMembership && !membershipInfo.value.isExpired) {
+        if (membershipInfo.value?.hasMembership && !membershipInfo.value?.isExpired) {
           emit('downloadFile', downloadType.value);
           return;
         }
@@ -222,13 +264,40 @@
         }
 
         // 会员且未过期直接下载
-        if (membershipInfo.value.hasMembership && !membershipInfo.value.isExpired) {
+        if (membershipInfo.value?.hasMembership && !membershipInfo.value?.isExpired) {
           emit('downloadMarkdown');
           return;
         }
 
         // 非会员跳转会员页面
         window.open('/membership', '_blank');
+      } finally {
+        // 延迟重置处理状态
+        setTimeout(() => {
+          isProcessing.value = false;
+        }, 500);
+      }
+    },
+    300,
+    { leading: true, trailing: false }
+  );
+
+  // 处理下载JSON（带防抖）
+  const handleDownloadJSON = debounce(
+    () => {
+      // 如果全局正在下载中，提示用户
+      if (props.isDownloading) {
+        ElMessage.warning('正在下载中，请稍候...');
+        return;
+      }
+
+      // 防止重复点击
+      if (isProcessing.value) return;
+      isProcessing.value = true;
+
+      try {
+        // 所有用户都可以免费下载JSON
+        emit('download-json');
       } finally {
         // 延迟重置处理状态
         setTimeout(() => {
@@ -274,20 +343,133 @@
     }
 
     .download-content {
-      padding: 30px 20px;
+      padding: 0 20px;
     }
 
     .download-options {
-      display: flex;
-      justify-content: center;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
       gap: 24px;
-      flex-wrap: wrap;
+      max-width: 480px;
+      margin: 0 auto;
+    }
+
+    .download-option-wrapper {
+      position: relative;
+      width: 100%;
+
+      // 完全免费标识
+      .free-badge {
+        position: absolute;
+        top: -10px;
+        right: 10px;
+        z-index: 10;
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        padding: 4px 10px;
+        background: linear-gradient(135deg, #4ade80 0%, #10b981 100%);
+        border-radius: 12px;
+        box-shadow: 0 2px 8px rgba(74, 222, 128, 0.3);
+
+        .el-icon {
+          font-size: 14px;
+          color: #fff;
+        }
+
+        span {
+          font-size: 12px;
+          font-weight: 600;
+          color: #fff;
+        }
+      }
+    }
+
+    .user-info-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 20px;
+      padding: 16px 20px;
+      background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+
+      .user-integral {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 14px;
+
+        .integral-label {
+          font-weight: 600;
+          color: #333;
+        }
+
+        .integral-value {
+          font-weight: 700;
+          color: #ffd700;
+          font-size: 16px;
+        }
+      }
+
+      .user-membership {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 14px;
+        font-weight: 600;
+        color: #666;
+
+        .el-icon {
+          color: #ccc;
+          font-size: 18px;
+        }
+
+        .days-remaining {
+          font-size: 12px;
+          font-weight: 400;
+          opacity: 0.8;
+        }
+
+        &.is-member {
+          color: #ffd700;
+
+          .el-icon {
+            color: #ffd700;
+            animation: pulse 2s infinite;
+          }
+        }
+
+        &.is-expired {
+          color: #ff4d4f;
+
+          .el-icon {
+            color: #ff4d4f;
+          }
+        }
+      }
+    }
+
+    @keyframes pulse {
+      0% {
+        transform: scale(1);
+        opacity: 1;
+      }
+      50% {
+        transform: scale(1.1);
+        opacity: 0.8;
+      }
+      100% {
+        transform: scale(1);
+        opacity: 1;
+      }
     }
 
     .action-bar {
       display: flex;
       justify-content: center;
-      margin-top: 28px;
+      margin-top: 20px;
 
       .get-coins-btn {
         display: flex;

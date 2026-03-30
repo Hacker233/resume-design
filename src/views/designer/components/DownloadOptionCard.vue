@@ -61,7 +61,7 @@
             <span class="status-price">
               <img src="@/assets/images/jianB.png" alt="简币" />
               {{ Math.abs(price) || 0 }}
-              <el-tooltip content="会员每日可无限次导出高清简历！" placement="top">
+              <el-tooltip :content="tooltipText" placement="top">
                 <el-icon class="tip-icon"><QuestionFilled /></el-icon>
               </el-tooltip>
             </span>
@@ -87,8 +87,8 @@
     title: string;
     // 描述
     description: string;
-    // 渐变主题色: purple | orange | blue
-    gradient: 'purple' | 'orange' | 'blue';
+    // 渐变主题色: purple | orange | blue | teal
+    gradient: 'purple' | 'orange' | 'blue' | 'teal';
     // 是否为纯净模式
     isFreeMode: boolean;
     // 是否为会员
@@ -139,6 +139,22 @@
       return '该功能仅限会员使用！';
     }
     return '简币数量不足！';
+  });
+
+  // 价格提示文本
+  const tooltipText = computed(() => {
+    switch (props.type) {
+      case 'img':
+        return '会员每日可无限次导出高清图片简历！';
+      case 'pdf':
+        return '会员每日可无限次导出高清PDF简历！';
+      case 'md':
+        return '会员可免费导出Markdown格式简历！';
+      case 'json':
+        return 'JSON格式完全免费，无需会员！';
+      default:
+        return '会员每日可无限次导出高清简历！';
+    }
   });
 
   // 点击处理（带防抖）
@@ -255,26 +271,34 @@
 
       // 渐变主题
       &.gradient-purple {
-        background: linear-gradient(135deg, #a986ff 0%, #7c4dff 100%);
+        background: linear-gradient(135deg, #b39ddb 0%, #8e24aa 100%);
 
         &:hover {
-          background: linear-gradient(135deg, #b79aff 0%, #8f6aff 100%);
+          background: linear-gradient(135deg, #ce93d8 0%, #ba68c8 100%);
         }
       }
 
       &.gradient-orange {
-        background: linear-gradient(135deg, #ffa98f 0%, #ff7b7b 100%);
+        background: linear-gradient(135deg, #ffb74d 0%, #ef6c00 100%);
 
         &:hover {
-          background: linear-gradient(135deg, #ffbba8 0%, #ff8f8f 100%);
+          background: linear-gradient(135deg, #ffcc80 0%, #f57c00 100%);
         }
       }
 
       &.gradient-blue {
-        background: linear-gradient(135deg, #64b5f6 0%, #42a5f5 100%);
+        background: linear-gradient(135deg, #64b5f6 0%, #1565c0 100%);
 
         &:hover {
-          background: linear-gradient(135deg, #7bc3f7 0%, #5cb3f6 100%);
+          background: linear-gradient(135deg, #90caf9 0%, #42a5f5 100%);
+        }
+      }
+
+      &.gradient-teal {
+        background: linear-gradient(135deg, #4db6ac 0%, #00796b 100%);
+
+        &:hover {
+          background: linear-gradient(135deg, #80cbc4 0%, #4db6ac 100%);
         }
       }
 
@@ -282,11 +306,31 @@
       &.is-disabled {
         cursor: not-allowed;
         opacity: 0.6;
-        filter: grayscale(30%);
+        filter: grayscale(50%);
+        position: relative;
+
+        &::before {
+          content: '';
+          position: absolute;
+          inset: 0;
+          background: rgba(0, 0, 0, 0.15);
+          border-radius: 16px;
+          z-index: 1;
+        }
 
         &:hover {
           transform: none;
           box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .card-status {
+          .status-price {
+            color: #ff6b6b;
+
+            img {
+              opacity: 0.7;
+            }
+          }
         }
       }
 
@@ -374,15 +418,16 @@
           align-items: center;
           gap: 4px;
           padding: 4px 12px;
-          background: rgba(255, 215, 0, 0.3);
+          background: rgba(255, 255, 255, 0.25);
           border-radius: 12px;
           font-size: 12px;
           font-weight: 500;
-          color: #ffd700;
+          color: #fff;
           backdrop-filter: blur(4px);
 
           .el-icon {
             font-size: 14px;
+            color: #ffd700;
           }
         }
 

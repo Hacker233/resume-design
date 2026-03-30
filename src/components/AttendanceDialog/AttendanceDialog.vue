@@ -154,7 +154,7 @@
             <div class="streak-value">{{ continuousStreak }} 天</div>
             <div class="streak-reward">
               <img width="16" src="@/assets/images/jianB.png" alt="简币" />
-              <span>+{{ continuousStreak }} 简币</span>
+              <span>+{{ calculateTotalStreakCoins }} 简币</span>
             </div>
             <div class="streak-next-reward" v-if="nextRewardInfo">
               <span class="next-reward-text">再签到 {{ nextRewardInfo.daysLeft }} 天获得</span>
@@ -227,6 +227,7 @@
 </template>
 
 <script lang="ts" setup>
+  import { computed, ref, watch } from 'vue';
   import { addIntegralLogAsync, getMonthAttendanceListAsync } from '@/http/api/integral';
   import { getVXQunListUnauthAsync } from '@/http/api/website';
   import appStore from '@/store';
@@ -366,6 +367,30 @@
     
     continuousStreak.value = streak;
   };
+  
+  // 计算连续签到总简币
+  const calculateTotalStreakCoins = computed(() => {
+    const streak = continuousStreak.value;
+    let totalCoins = 0;
+    
+    // 计算基础签到奖励（每天1简币）
+    totalCoins += streak;
+    
+    // 计算连续签到第7天的额外奖励（每7天额外4简币，因为第7天本身已经算在基础奖励里了）
+    const sevenDayBonus = Math.floor(streak / 7) * 4;
+    totalCoins += sevenDayBonus;
+    
+    // 计算累计签到特殊天数的额外奖励
+    if (streak >= 365) {
+      totalCoins += 50;
+    } else if (streak >= 100) {
+      totalCoins += 20;
+    } else if (streak >= 30) {
+      totalCoins += 10;
+    }
+    
+    return totalCoins;
+  });
   
   // 计算某一天的签到奖励
   const calculateSignReward = (date) => {

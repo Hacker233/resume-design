@@ -127,6 +127,7 @@
     @close-download-dialog="closeDownloadDialog"
     @download-file="downloadResumeFile"
     @download-markdown="downloadMDNav"
+    @download-json="downloadJSONNav"
   ></download-dialog>
 
   <!-- 预览窗口 -->
@@ -184,6 +185,7 @@
     'saveDataToLocal',
     'publishComment',
     'downloadMD',
+    'downloadJson',
     'previewResume'
   ]);
   const route = useRoute();
@@ -477,6 +479,31 @@
       }
     } catch (error) {
       ElMessage.error('草稿保存失败，请重试');
+    } finally {
+      // 无论成功失败都关闭加载提示
+      loadingMessage.close();
+    }
+  };
+
+  // 导出为JSON
+  const downloadJSONNav = async () => {
+    // 显示正在准备下载提示
+    const loadingMessage = ElMessage({
+      message: '正在准备下载...',
+      type: 'info',
+      duration: 0, // 不自动关闭
+      showClose: false
+    });
+
+    try {
+      // 尝试保存草稿，但即使失败也继续执行导出
+      await saveDataToLocal();
+      closeDownloadDialog();
+      emit('downloadJson');
+      ElMessage.success('JSON导出成功');
+    } catch (error) {
+      console.error('JSON导出失败:', error);
+      ElMessage.error('JSON导出失败，请重试');
     } finally {
       // 无论成功失败都关闭加载提示
       loadingMessage.close();

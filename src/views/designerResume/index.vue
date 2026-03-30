@@ -5,6 +5,7 @@
       @reset="reset"
       @generate-report="generateReport"
       @download-m-d="downloadMD"
+      @download-json="downloadJson"
       @preview-resume="handlePreviewResume"
     ></nav-bar>
     <!-- 底部区域 -->
@@ -72,6 +73,7 @@
   import NoDataVue from '@/components/NoData/NoData.vue';
   import AiJsonToMdDrawer from './components/AiJsonToMdDrawer.vue';
   import PreviewResumeDialog from './components/PreviewResumeDialog.vue';
+  import FileSaver from 'file-saver';
 
   const isLoading = ref(true);
   const { HJNewJsonStore, selectedPageName, fromAiGenerate } = storeToRefs(
@@ -209,6 +211,33 @@
   const aiToMdDrawer = ref(false); // ai json to md drawer
   const downloadMD = () => {
     aiToMdDrawer.value = true;
+  };
+
+  // 导出为JSON
+  const downloadJson = () => {
+    try {
+      console.log('开始导出JSON');
+      console.log('HJNewJsonStore.value:', HJNewJsonStore.value);
+      
+      // 确保数据存在
+      if (!HJNewJsonStore.value) {
+        ElMessage.error('简历数据不存在');
+        return;
+      }
+      
+      // 确保config和title存在
+      const title = HJNewJsonStore.value.config?.title || 'resume';
+      console.log('导出文件名:', title + '.json');
+      
+      const JSONData = JSON.stringify(HJNewJsonStore.value, null, 4);
+      const blob = new Blob([JSONData], { type: 'application/json' });
+      FileSaver.saveAs(blob, title + '.json');
+      
+      console.log('JSON导出成功');
+    } catch (error) {
+      console.error('JSON导出失败:', error);
+      ElMessage.error('JSON导出失败，请重试');
+    }
   };
 
   // 关闭AI转md抽屉
