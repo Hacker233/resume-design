@@ -173,6 +173,14 @@ export const getOptimizeResumeModelListAsync: any = () => {
   });
 };
 
+// 查询AI简历诊断支持的模型列表
+export const getDiagnoseResumeModelListAsync: any = () => {
+  return http.request({
+    url: '/huajian/ai/getDiagnoseResumeModelList',
+    method: 'get'
+  });
+};
+
 // 查询AI简历智能生成支持的模型列表
 export const getGenerateResumeModelListAsync: any = () => {
   return http.request({
@@ -310,6 +318,24 @@ export const aiOptimizeResumeByPdfTextStreamAsync: any = (
     onError, // 错误回调
     onComplete // 完成回调
   );
+};
+
+// AI简历诊断异步版本（后台运行，不依赖前端连接）
+export const aiOptimizeResumeByPdfTextAsync: any = (data: any) => {
+  return http.request({
+    url: '/huajian/ai/aiOptimizeResumeByPdfTextAsync',
+    method: 'post',
+    data: data
+  });
+};
+
+// 查询AI简历诊断结果
+export const getAiDiagnosisResultAsync: any = (params: any) => {
+  return http.request({
+    url: '/huajian/ai/getAiDiagnosisResult',
+    method: 'get',
+    params: params
+  });
 };
 
 // 存储AI生成的简历数据

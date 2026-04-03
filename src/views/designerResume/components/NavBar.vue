@@ -144,8 +144,11 @@
   <!-- AI诊断确认弹窗 -->
   <ai-optimize-dialog
     :dialog-ai-optimize-visible="dialogAiOptimizeVisible"
+    :resume-data="HJNewJsonStore"
+    :resume-name="HJNewJsonStore.config?.title || '在线简历'"
     @cancle="aiDialogCancle"
     @update-success="updateSuccess"
+    @diagnosis-complete="handleDiagnosisComplete"
   ></ai-optimize-dialog>
 
   <!-- AI诊断抽屉 -->
@@ -154,9 +157,24 @@
     :model-info-obj="modelInfoObj"
     @close-ai-optimize-drawer="closeAiDrawer"
   ></ai-optimize-drawer>
+
+  <!-- 等待提示弹窗 -->
+  <diagnosis-wait-dialog
+    v-model:visible="showWaitDialog"
+    :is-completed="isWaitDialogCompleted"
+    @close="handleWaitDialogClose"
+    @view-report="handleViewReport"
+  ></diagnosis-wait-dialog>
+
+  <!-- 诊断报告抽屉 -->
+  <diagnostic-report-drawer
+    v-model:visible="reportDrawerVisible"
+    :diagnostic-data="aiContent"
+    @close="closeReportDrawer"
+  ></diagnostic-report-drawer>
 </template>
 <script lang="ts" setup>
-  import { ref, onMounted, watch } from 'vue';
+  import { ref, onMounted, watch, computed } from 'vue';
   import appStore from '@/store';
   import { ElMessageBox, ElNotification, ElMessage } from 'element-plus';
   import { Delete } from '@element-plus/icons-vue';
@@ -173,8 +191,12 @@
   import LoginDialog from '@/components/LoginDialog/LoginDialog';
   import AiOptimizeDrawer from '@/views/createTemplate/designer/components/AiOptimizeDrawer.vue';
   import AiOptimizeDialog from '@/views/createTemplate/designer/components/AiOptimizeDialog.vue';
+  import DiagnosisWaitDialog from '@/components/DiagnosisWaitDialog.vue';
+  import DiagnosticReportDrawer from '@/components/DiagnosticReportDrawer.vue';
   import { useHead } from '@vueuse/head';
   import { title } from '@/config/seo';
+  import { aiOptimizeResumeByPdfTextAsync, getAiDiagnosisResultAsync } from '@/http/api/ai';
+  import { resumeJsonToMarkdown, cleanMarkdownForDiagnosis } from '@/utils/jsonToMd';
   // import { useToJobzxAi } from '@/hooks/useToJobzxAi';
 
   const { HJNewJsonStore } = storeToRefs(appStore.useCreateTemplateStore);
@@ -545,14 +567,206 @@
   const modelInfoObj = ref<any>({}); // 选择的模型
   const updateSuccess = (modelInfo: any) => {
     dialogAiOptimizeVisible.value = false;
-    aiDrawer.value = true;
     modelInfoObj.value = modelInfo;
+    // 调用异步诊断方法
+    startAsyncDiagnosis(modelInfo);
   };
 
   // 关闭AI诊断抽屉
   const closeAiDrawer = () => {
     aiDrawer.value = false;
   };
+
+  // 处理诊断完成
+  const handleDiagnosisComplete = (result: any) => {
+    // 可以在这里处理诊断完成后的逻辑，比如刷新历史记录等
+    console.log('诊断完成:', result);
+    ElMessage.success('诊断完成！您可以到个人中心查看详细报告');
+  };
+
+  // 异步诊断相关
+  const showWaitDialog = ref<boolean>(false);
+  const isWaitDialogCompleted = ref<boolean>(false);
+  const isPolling = ref<boolean>(false);
+  const pollInterval = ref<NodeJS.Timeout | null>(null);
+  const serialNumber = ref<string>('');
+  const aiContent = ref<string>('');
+  const reportDrawerVisible = ref<boolean>(false);
+  const diagnosticData = ref<any>(null);
+
+  // 开始异步诊断
+  const startAsyncDiagnosis = async (modelInfo: any) => {
+    try {
+      // 导入resumeJsonToMarkdown和cleanMarkdownForDiagnosis工具
+      const markdownContent = resumeJsonToMarkdown(HJNewJsonStore.value);
+      // 清洗Markdown内容
+      const cleanedMarkdown = cleanMarkdownForDiagnosis(markdownContent, true);
+
+      // 调用异步诊断接口
+      const response = await aiOptimizeResumeByPdfTextAsync({
+        model: modelInfo.selectedModel,
+        pdfText: cleanedMarkdown,
+        resumeType: 'existing',
+        resumeId: id, // 传递简历ID
+        resumeName: HJNewJsonStore.value.config?.title || '在线简历'
+      });
+
+      if (response.data.status === 200) {
+        serialNumber.value = response.data.data.serialNumber;
+        // 显示等待提示
+        showWaitDialog.value = true;
+        // 开始轮询查询结果
+        startPolling();
+        ElMessage.success('诊断任务已提交，请耐心等待');
+      } else {
+        ElMessage.error(response.data.message || '提交诊断任务失败');
+      }
+    } catch (error: any) {
+      console.error('提交诊断任务失败:', error);
+      if (error.response?.data?.message && error.response.data.message.includes('您有正在进行的诊断任务')) {
+        // 显示弹窗提示
+        ElMessageBox.alert(
+          '您有正在进行的诊断任务，请稍等片刻后再提交',
+          '提示',
+          {
+            confirmButtonText: '我知道了',
+            type: 'info'
+          }
+        );
+      } else if (error.response?.data?.message) {
+        ElMessage.error(error.response.data.message);
+      } else {
+        ElMessage.error('提交诊断任务失败，请稍后重试');
+      }
+    }
+  };
+
+  // 开始轮询查询诊断结果
+  const startPolling = () => {
+    if (isPolling.value) return;
+    isPolling.value = true;
+
+    // 清除之前的轮询
+    if (pollInterval.value) {
+      clearInterval(pollInterval.value);
+    }
+
+    // 每5秒查询一次
+    pollInterval.value = setInterval(async () => {
+      try {
+        const response = await getAiDiagnosisResultAsync({
+          serialNumber: serialNumber.value
+        });
+
+        if (response.data.status === 200) {
+          const result = response.data.data;
+
+          // 诊断完成
+          if (result.isComplete) {
+            stopPolling();
+            // 更新等待弹窗状态
+            isWaitDialogCompleted.value = true;
+            // 保存诊断结果
+            aiContent.value = result.result;
+            // 解析诊断数据
+            parseDiagnosticData();
+            // 通知父组件诊断完成
+            handleDiagnosisComplete(result);
+          }
+          // 诊断失败
+          else if (result.isComplete === 'failed') {
+            stopPolling();
+            showWaitDialog.value = false;
+            ElMessage.error(result.error || '诊断失败');
+          }
+          // 诊断中，继续轮询
+        }
+      } catch (error) {
+        console.error('查询诊断结果失败:', error);
+      }
+    }, 5000);
+
+    // 20分钟后自动停止轮询
+    setTimeout(() => {
+      if (isPolling.value) {
+        stopPolling();
+        showWaitDialog.value = false;
+        ElMessage.info('诊断时间较长，请稍后到个人中心查看结果');
+      }
+    }, 20 * 60 * 1000);
+  };
+
+  // 停止轮询
+  const stopPolling = () => {
+    isPolling.value = false;
+    if (pollInterval.value) {
+      clearInterval(pollInterval.value);
+      pollInterval.value = null;
+    }
+  };
+
+  // 处理等待弹窗关闭
+  const handleWaitDialogClose = () => {
+    // 弹窗关闭时停止轮询
+    stopPolling();
+  };
+
+  // 处理查看报告
+  const handleViewReport = () => {
+    reportDrawerVisible.value = true;
+  };
+
+  // 关闭报告抽屉
+  const closeReportDrawer = () => {
+    reportDrawerVisible.value = false;
+  };
+
+  // 清理JSON字符串
+  const cleanJsonString = (str: string): string => {
+    let cleaned = str.replace(/^```json\s*/g, "").replace(/\s*```$/g, "").trim();
+    cleaned = cleaned.replace(/^```+|```+$/g, "").trim();
+    cleaned = cleaned.replace(/^\s*json\s*\n/g, "").trim();
+    cleaned = cleaned.replace(/[\x00-\x1F\x7F]/g, "");
+    return cleaned;
+  };
+
+  // 解析JSON
+  const parseDiagnosticJson = (content: string): any => {
+    const cleaned = cleanJsonString(content);
+    try {
+      return JSON.parse(cleaned);
+    } catch (parseError) {
+      console.warn('[诊断报告] JSON.parse失败，尝试使用eval解析:', parseError);
+      if (cleaned.trim().startsWith('{') && cleaned.trim().endsWith('}')) {
+        try {
+          return eval('(' + cleaned + ')');
+        } catch (evalError) {
+          console.error('[诊断报告] eval解析也失败:', evalError);
+        }
+      }
+      throw parseError;
+    }
+  };
+
+  // 解析诊断数据
+  const parseDiagnosticData = () => {
+    try {
+      diagnosticData.value = parseDiagnosticJson(aiContent.value);
+    } catch (e) {
+      console.error('解析诊断数据失败:', e);
+      diagnosticData.value = null;
+    }
+  };
+
+  // 解析后的诊断数据
+  const parsedDiagnosticData = computed(() => {
+    return diagnosticData.value;
+  });
+
+  // 页面卸载时停止轮询
+  onBeforeUnmount(() => {
+    stopPolling();
+  });
 
   defineExpose({
     saveDataToLocal

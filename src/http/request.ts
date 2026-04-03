@@ -63,10 +63,17 @@ const http: any = new Request({
 
       let errorMessage = '';
       if (status) {
+        // 检查是否是"您有正在进行的诊断任务"错误，如果是则不显示错误提示
+        const serverMessage = error.response?.data?.message;
+        if (serverMessage && serverMessage.includes('您有正在进行的诊断任务')) {
+          // 这个错误由组件自己处理，不显示全局错误提示
+          console.error('请求错误:', error);
+          return Promise.reject(error);
+        }
+
         errorMessage = errorMessages[status as number] || `连接出错(${status || '服务端错误'})!`;
 
         // 添加具体错误信息
-        const serverMessage = error.response?.data?.message;
         if (serverMessage) {
           errorMessage += `: ${serverMessage}`;
         }

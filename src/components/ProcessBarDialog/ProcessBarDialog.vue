@@ -1,6 +1,6 @@
 <template>
   <el-dialog :model-value="dialogVisible" width="600px" :close-on-click-modal="false" class="ai-process-dialog"
-    append-to-body destroy-on-close :custom-class="{ 'export-process-dialog': true }" @close="cancle">
+    append-to-body destroy-on-close :class="{ 'export-process-dialog': true }" @close="cancle">
 
     <!-- AI风格头部 -->
     <template #header>

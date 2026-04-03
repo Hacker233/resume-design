@@ -29,6 +29,8 @@ declare module 'vue' {
     ContentBox: typeof import('./components/packages/components/comment/src/content-box.vue')['default']
     CustomerService: typeof import('./components/CustomerService/CustomerService.vue')['default']
     DateFormItem: typeof import('./components/DateFormItem/DateFormItem.vue')['default']
+    DiagnosisWaitDialog: typeof import('./components/DiagnosisWaitDialog.vue')['default']
+    DiagnosticReportDrawer: typeof import('./components/DiagnosticReportDrawer.vue')['default']
     Editor: typeof import('./components/packages/components/editor/editor.vue')['default']
     EduBackgroundCom: typeof import('./components/ModelComs/EduBackgroundCom.vue')['default']
     ElAlert: typeof import('element-plus/es')['ElAlert']

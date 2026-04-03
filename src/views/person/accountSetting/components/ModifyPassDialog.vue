@@ -6,7 +6,7 @@
     :show-close="false"
     :close-on-click-modal="false"
     append-to-body
-    custom-class="modify-pass-dialog"
+    class="modify-pass-dialog"
   >
     <el-form
       ref="ruleFormRef"

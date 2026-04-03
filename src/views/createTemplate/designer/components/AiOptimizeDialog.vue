@@ -42,7 +42,12 @@
 
       <!-- 模型选择器 -->
       <div class="model-selector">
-        <el-radio-group v-model="selectedModel" @change="handleModelChange">
+        <!-- 加载中状态 -->
+        <div v-if="isLoading" class="model-loading">
+          <el-skeleton :rows="2" animated />
+        </div>
+        <!-- 模型列表 -->
+        <el-radio-group v-else v-model="selectedModel" @change="handleModelChange">
           <template v-if="modelList.length > 0">
             <!-- 该用户是否全站免费 -->
             <template v-if="userInfo.isAllFree">
@@ -97,6 +102,9 @@
               </el-tooltip>
             </template>
           </template>
+          <template v-else>
+            <div class="no-model-data">暂无可用模型</div>
+          </template>
         </el-radio-group>
       </div>
 
@@ -116,6 +124,8 @@
       </span>
     </template>
   </el-dialog>
+
+
 
   <!-- 获取简币弹窗 -->
   <pay-integral-dialog
@@ -140,7 +150,8 @@
   import {
     getOptimizeResumeIntegralAsync,
     getOptimizeResumeModelListAsync,
-    getOptimizeResumeUploadIntegralAsync
+    getOptimizeResumeUploadIntegralAsync,
+    getDiagnoseResumeModelListAsync
   } from '@/http/api/ai';
   import { formatNumberWithCommas } from '@/utils/common';
   import appStore from '@/store';
@@ -187,14 +198,19 @@
   // 弹窗打开
   const handleOpen = async () => {
     try {
-      // 查询简币数量和模型列表
-      await Promise.all([
-        props.type === 'offline' ? getOptimizeResumeUploadIntegral() : getOptimizeResumeCoin(),
-        getOptimizeResumeModelList()
-      ]);
+      console.log('开始加载模型列表和简币消耗');
+      // 设置加载状态
+      isLoading.value = true;
+      // 先调用获取简币消耗的方法
+      await getOptimizeResumeUploadIntegral();
+      // 再调用获取模型列表的方法
+      await getOptimizeResumeModelList();
+      console.log('模型列表加载完成:', modelList.value);
     } catch (error) {
+      console.error('加载失败:', error);
       errorMessage.value = '加载失败，请稍后重试';
     } finally {
+      // 无论成功失败，都设置加载状态为false
       isLoading.value = false;
     }
   };
@@ -229,10 +245,10 @@
     }
   };
 
-  // 查询AI简历优化支持的模型列表
+  // 查询AI简历诊断支持的模型列表
   const getOptimizeResumeModelList = async () => {
     try {
-      const response = await getOptimizeResumeModelListAsync();
+      const response = await getDiagnoseResumeModelListAsync();
       if (response.data.status === 200) {
         modelList.value = response.data.data;
       } else {
@@ -247,7 +263,7 @@
   const { userIntegralInfo } = storeToRefs(appStore.useUserInfoStore);
   const submit = async () => {
     isSubmitting.value = true;
-    console.log('selectedModel:', selectedModel.value); // 打印 selectedModel 的值
+    console.log('selectedModel:', selectedModel.value);
     if (!selectedModel.value) {
       ElMessage.error('请先选择AI模型');
       isSubmitting.value = false;
@@ -311,6 +327,8 @@
     });
     isSubmitting.value = false;
   };
+
+
 
   // 取消
   const cancle = () => {
@@ -812,5 +830,22 @@
         }
       }
     }
+  }
+
+  // 模型加载状态
+  .model-loading {
+    padding: 20px 0;
+    min-height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  // 无模型数据状态
+  .no-model-data {
+    padding: 20px;
+    text-align: center;
+    color: #909399;
+    font-size: 14px;
   }
 </style>

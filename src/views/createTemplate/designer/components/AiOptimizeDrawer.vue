@@ -5,6 +5,8 @@
     class="ai-optimize-drawer"
     direction="rtl"
     title="AI诊断结果"
+    :append-to-body="true"
+    :modal-append-to-body="true"
     @close="handleClose"
     @open="handleOpen"
   >

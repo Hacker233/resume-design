@@ -320,3 +320,156 @@ export const processValue = (value: any, props?: Record<string, any>): Processed
 
   return value;
 };
+
+/**
+ * 清洗Markdown内容
+ * 用于简历诊断前对转换后的Markdown进行数据清洗
+ * @param markdown 原始Markdown内容
+ * @param aggressive 是否使用激进模式（进一步压缩换行）
+ * @returns 清洗后的Markdown内容
+ */
+export const cleanMarkdownForDiagnosis = (markdown: string, aggressive: boolean = true): string => {
+  if (!markdown || typeof markdown !== 'string') {
+    return '';
+  }
+
+  let cleaned = markdown;
+
+  // 1. 移除多余的空行（3个及以上连续换行合并为2个）
+  cleaned = cleaned.replace(/\n{3,}/g, '\n\n');
+
+  // 2. 移除行首行尾的多余空格
+  cleaned = cleaned.split('\n').map(line => line.trim()).join('\n');
+
+  // 3. 移除空的列表项
+  cleaned = cleaned.replace(/^-\s*$/gm, '');
+
+  // 4. 移除空的标题行
+  cleaned = cleaned.replace(/^#{1,6}\s*$/gm, '');
+
+  // 5. 移除重复的换行符
+  cleaned = cleaned.replace(/\n\n\n+/g, '\n\n');
+
+  // 6. 移除特殊控制字符
+  cleaned = cleaned.replace(/[\x00-\x08\x0B-\x0C\x0E-\x1F\x7F]/g, '');
+
+  // 7. 移除HTML注释
+  cleaned = cleaned.replace(/<!--[\s\S]*?-->/g, '');
+
+  // 8. 标准化Markdown标题格式（确保#后有空格）
+  cleaned = cleaned.replace(/^(#{1,6})([^\s#])/gm, '$1 $2');
+
+  // 9. 移除图片链接（诊断不需要图片）
+  cleaned = cleaned.replace(/!\[([^\]]*)\]\([^)]+\)/g, '');
+
+  // 10. 移除纯URL链接，保留文本
+  cleaned = cleaned.replace(/\[([^\]]+)\]\([^)]+\)/g, '$1');
+
+  // 11. 再次清理多余的空行
+  cleaned = cleaned.replace(/\n{3,}/g, '\n\n');
+
+  // 12. 移除首尾空白
+  cleaned = cleaned.trim();
+
+  // 13. 移除包含特定无意义内容的行
+  const meaninglessPatterns = [
+    /^-\s*[:：]\s*$/,  // 空的冒号行
+    /^#{1,6}\s*[:：]\s*$/,  // 空的标题冒号行
+    /^\s*[-—–]\s*$/,  // 只有分隔符的行
+  ];
+  cleaned = cleaned.split('\n').filter(line => {
+    return !meaninglessPatterns.some(pattern => pattern.test(line));
+  }).join('\n');
+
+  // 14. 最后再次清理多余的空行
+  cleaned = cleaned.replace(/\n{3,}/g, '\n\n');
+
+  // 15. 激进模式：进一步压缩换行符，将双换行改为单换行
+  if (aggressive) {
+    // 将双换行改为单换行
+    cleaned = cleaned.replace(/\n\n/g, '\n');
+    // 移除行首的Markdown列表符号后的多余空格
+    cleaned = cleaned.replace(/^-\s+/gm, '- ');
+    // 移除标题后的多余空行
+    cleaned = cleaned.replace(/^(#{1,6}.*)\n+/gm, '$1\n');
+  }
+
+  return cleaned.trim();
+};
+
+/**
+ * 将Markdown转换为纯文本
+ * 去除所有Markdown格式标记，只保留文本内容
+ * @param markdown Markdown内容
+ * @returns 纯文本内容
+ */
+export const markdownToPlainText = (markdown: string): string => {
+  if (!markdown || typeof markdown !== 'string') {
+    return '';
+  }
+
+  let text = markdown;
+
+  // 1. 移除Markdown标题标记 (# ## ### 等)
+  text = text.replace(/^#{1,6}\s+/gm, '');
+
+  // 2. 移除粗体和斜体标记
+  text = text.replace(/\*\*(.*?)\*\*/g, '$1');
+  text = text.replace(/\*(.*?)\*/g, '$1');
+  text = text.replace(/__(.*?)__/g, '$1');
+  text = text.replace(/_(.*?)_/g, '$1');
+
+  // 3. 移除删除线标记
+  text = text.replace(/~~(.*?)~~/g, '$1');
+
+  // 4. 移除行内代码标记
+  text = text.replace(/`([^`]+)`/g, '$1');
+
+  // 5. 移除代码块标记
+  text = text.replace(/```[\s\S]*?```/g, '');
+
+  // 6. 移除链接标记，保留链接文本
+  text = text.replace(/\[([^\]]+)\]\([^)]+\)/g, '$1');
+  text = text.replace(/\[([^\]]+)\]\[[^\]]*\]/g, '$1');
+
+  // 7. 移除图片标记
+  text = text.replace(/!\[([^\]]*)\]\([^)]+\)/g, '');
+
+  // 8. 移除列表标记 (- * + 等)
+  text = text.replace(/^[\s]*[-\*\+]\s+/gm, '');
+  text = text.replace(/^\s*\d+\.\s+/gm, '');
+
+  // 9. 移除引用标记
+  text = text.replace(/^>\s*/gm, '');
+
+  // 10. 移除水平分割线
+  text = text.replace(/^[-*_]{3,}\s*$/gm, '');
+
+  // 11. 移除HTML标签
+  text = text.replace(/<[^>]+>/g, '');
+
+  // 12. 移除HTML实体
+  text = text.replace(/&nbsp;/g, ' ');
+  text = text.replace(/&lt;/g, '<');
+  text = text.replace(/&gt;/g, '>');
+  text = text.replace(/&amp;/g, '&');
+  text = text.replace(/&quot;/g, '"');
+  text = text.replace(/&#39;/g, "'");
+
+  // 13. 移除特殊控制字符
+  text = text.replace(/[\x00-\x08\x0B-\x0C\x0E-\x1F\x7F]/g, '');
+
+  // 14. 合并多个空行为单个空行
+  text = text.replace(/\n{3,}/g, '\n\n');
+
+  // 15. 移除行首行尾空格
+  text = text.split('\n').map(line => line.trim()).join('\n');
+
+  // 16. 移除空行
+  text = text.replace(/^\s*$/gm, '');
+
+  // 17. 最后再次合并空行并去除首尾空白
+  text = text.replace(/\n{2,}/g, '\n');
+
+  return text.trim();
+};

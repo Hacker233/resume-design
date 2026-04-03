@@ -46,6 +46,7 @@
 <script lang="ts" setup>
   import { addIntegralLogByAdminAsync } from '@/http/api/integral';
   import { FormInstance, FormRules } from 'element-plus';
+  import { watch, reactive, ref } from 'vue';
 
   const emit = defineEmits(['cancle', 'updateSuccess']);
   interface TDialog {
@@ -56,18 +57,6 @@
   });
 
   const reasonList = reactive([
-    {
-      value: 1,
-      label: '购买99元套餐获得990简币'
-    },
-    {
-      value: 2,
-      label: '购买399元套餐获得3990简币'
-    },
-    {
-      value: 3,
-      label: '购买699元套餐获得6990简币'
-    },
     {
       value: 4,
       label: '给开源项目GitHub点star获取5简币'
@@ -98,6 +87,29 @@
     integralReason: '',
     addValue: 0
   });
+
+  // 监听记录原因变化，自动填充简币数量
+  watch(
+    () => ruleForm.integralReason,
+    (newReason) => {
+      if (newReason) {
+        const selectedReason = reasonList.find(item => item.label === newReason);
+        if (selectedReason) {
+          // 根据不同的记录原因设置对应的简币数量
+          switch (selectedReason.value) {
+            case 4: // 给开源项目GitHub点star获取5简币
+              ruleForm.addValue = 5;
+              break;
+            case 5: // 分享到朋友圈获取15简币
+              ruleForm.addValue = 15;
+              break;
+            default:
+              ruleForm.addValue = 0;
+          }
+        }
+      }
+    }
+  );
   const rules = reactive<FormRules>({});
 
   // 取消
