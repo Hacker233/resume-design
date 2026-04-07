@@ -7,7 +7,7 @@
           <!-- 动态标题 -->
           <h1 class="dynamic-title">一款开源、免费、专业的AI简历生成制作神器</h1>
           <h2
-            >全面接入Deepseek，AI智能简历生成、AI智能简历诊断、智能润色、修改等，交付源码级JSON；支持导出超高清PDF、Markdown、图片格式。</h2
+            >提供智能简历生成、专业简历评估、智能润色修改等功能，交付源码级JSON格式；支持导出超高清PDF、Markdown和图片等多种格式，满足不同场景需求。</h2
           >
 
           <!-- DeepSeek 提示 -->
@@ -16,11 +16,7 @@
           <!-- 查看更多按钮 -->
           <div class="see-more-box">
             <hj-button-1 text="免费制作专业简历" @click="freeMakeResume"></hj-button-1>
-            <hj-button-1
-              v-if="!websiteConfig.all_free"
-              text="专业简历服务"
-              @click="resumeContact"
-            ></hj-button-1>
+            <hj-button-1 text="AI智能简历评估" @click="goToAiDiagnostic"></hj-button-1>
             <!-- <hj-button-1 text="AI智能生成简历" @click="generateAiResume"></hj-button-1> -->
             <!-- <hj-button-1 v-config:open_jobzx text="AI面试助手" @click="toJobzx"></hj-button-1> -->
             <!-- <hj-button-1 text="私有部署" @click="resumeContact"></hj-button-1> -->
@@ -82,6 +78,8 @@
   import HjButton1 from '@/components/HjButton/HjButton1/index.vue';
   import appStore from '@/store';
   import { storeToRefs } from 'pinia';
+  import { useRouter } from 'vue-router';
+  import { onUnmounted } from 'vue';
   // import { useToJobzxAi } from '@/hooks/useToJobzxAi';
 
   const emit = defineEmits(['freeMake', 'seeMore']);
@@ -100,9 +98,10 @@
   //   });
   // };
 
-  const resumeContact = () => {
+  // 跳转AI简历评估
+  const goToAiDiagnostic = () => {
     router.push({
-      path: '/resumeService'
+      path: '/aiDiagnosticCV'
     });
   };
 

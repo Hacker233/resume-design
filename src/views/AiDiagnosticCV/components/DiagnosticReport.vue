@@ -14,6 +14,33 @@
       </div>
     </div>
 
+    <!-- 诊断上下文 -->
+    <div class="diagnostic-section" id="section-context">
+      <div class="section-header" @click="contextExpanded = !contextExpanded">
+        <h3 class="section-title">🎯 诊断上下文</h3>
+        <el-button
+          type="text"
+          :icon="contextExpanded ? ArrowUp : ArrowDown"
+          class="expand-btn"
+        />
+      </div>
+      <div v-if="contextExpanded" class="section-content">
+        <div class="context-info">
+          <div v-if="diagnosticData.target_job" class="context-item">
+            <h4>目标岗位</h4>
+            <p>{{ diagnosticData.target_job }}</p>
+          </div>
+          <div v-if="diagnosticData.job_description" class="context-item">
+            <h4>岗位JD</h4>
+            <p>{{ diagnosticData.job_description }}</p>
+          </div>
+          <div v-if="!diagnosticData.target_job && !diagnosticData.job_description" class="no-data">
+            未提供目标岗位和岗位JD信息，AI基于通用岗位视角进行诊断
+          </div>
+        </div>
+      </div>
+    </div>
+
     <!-- 总体评分 -->
     <div class="diagnostic-section" id="section-overall">
       <div class="section-header" @click="overallExpanded = !overallExpanded">
@@ -725,7 +752,7 @@
     </div>
 
     <!-- 行业特定建议 -->
-    <div v-if="diagnosticData.industrySpecific" class="diagnostic-section" id="section-industry">
+    <div class="diagnostic-section" id="section-industry">
       <div class="section-header" @click="industryExpanded = !industryExpanded">
         <h3 class="section-title">🏢 行业特定建议</h3>
         <el-button
@@ -736,45 +763,50 @@
       </div>
       <div v-if="industryExpanded" class="section-content">
       <div class="industry-specific">
-        <div class="industry-info">
-          <h4>目标行业：{{ diagnosticData.industrySpecific.industry || '未指定' }}</h4>
+        <div v-if="diagnosticData.industrySpecific">
+          <div class="industry-info">
+            <h4>目标行业：{{ diagnosticData.industrySpecific.industry || '未指定' }}</h4>
+          </div>
+          <div class="industry-section">
+            <h5>📈 行业趋势</h5>
+            <div class="industry-trend-chart">
+              <div ref="industryTrendChartRef" class="chart-container"></div>
+            </div>
+            <div v-if="diagnosticData.industrySpecific.trends && diagnosticData.industrySpecific.trends.length > 0">
+              <ul>
+                <li v-for="(trend, index) in diagnosticData.industrySpecific.trends" :key="index">{{ trend }}</li>
+              </ul>
+            </div>
+            <div v-else class="no-data">暂无行业趋势信息</div>
+          </div>
+          <div class="industry-section">
+            <h5>📋 行业特定要求</h5>
+            <div v-if="diagnosticData.industrySpecific.requirements && diagnosticData.industrySpecific.requirements.length > 0">
+              <ul>
+                <li v-for="(requirement, index) in diagnosticData.industrySpecific.requirements" :key="index">{{ requirement }}</li>
+              </ul>
+            </div>
+            <div v-else class="no-data">暂无行业特定要求信息</div>
+          </div>
+          <div class="industry-section">
+            <h5>💡 行业特定建议</h5>
+            <div v-if="diagnosticData.industrySpecific.recommendations && diagnosticData.industrySpecific.recommendations.length > 0">
+              <ul>
+                <li v-for="(recommendation, index) in diagnosticData.industrySpecific.recommendations" :key="index">{{ recommendation }}</li>
+              </ul>
+            </div>
+            <div v-else class="no-data">暂无行业特定建议信息</div>
+          </div>
         </div>
-        <div class="industry-section">
-          <h5>📈 行业趋势</h5>
-          <div class="industry-trend-chart">
-            <div ref="industryTrendChartRef" class="chart-container"></div>
-          </div>
-          <div v-if="diagnosticData.industrySpecific.trends && diagnosticData.industrySpecific.trends.length > 0">
-            <ul>
-              <li v-for="(trend, index) in diagnosticData.industrySpecific.trends" :key="index">{{ trend }}</li>
-            </ul>
-          </div>
-          <div v-else class="no-data">暂无行业趋势信息</div>
-        </div>
-        <div class="industry-section">
-          <h5>📋 行业特定要求</h5>
-          <div v-if="diagnosticData.industrySpecific.requirements && diagnosticData.industrySpecific.requirements.length > 0">
-            <ul>
-              <li v-for="(requirement, index) in diagnosticData.industrySpecific.requirements" :key="index">{{ requirement }}</li>
-            </ul>
-          </div>
-          <div v-else class="no-data">暂无行业特定要求信息</div>
-        </div>
-        <div class="industry-section">
-          <h5>💡 行业特定建议</h5>
-          <div v-if="diagnosticData.industrySpecific.recommendations && diagnosticData.industrySpecific.recommendations.length > 0">
-            <ul>
-              <li v-for="(recommendation, index) in diagnosticData.industrySpecific.recommendations" :key="index">{{ recommendation }}</li>
-            </ul>
-          </div>
-          <div v-else class="no-data">暂无行业特定建议信息</div>
+        <div v-else class="no-data">
+          暂无行业特定建议信息，AI基于通用行业视角进行诊断
         </div>
       </div>
       </div>
     </div>
 
     <!-- 简历投递建议 -->
-    <div v-if="diagnosticData.applicationTips" class="diagnostic-section" id="section-application">
+    <div class="diagnostic-section" id="section-application">
       <div class="section-header" @click="applicationExpanded = !applicationExpanded">
         <h3 class="section-title">📤 简历投递建议</h3>
         <el-button
@@ -785,43 +817,87 @@
       </div>
       <div v-if="applicationExpanded" class="section-content">
       <div class="application-tips">
-        <div class="tips-section">
-          <h5>📄 格式建议</h5>
-          <div v-if="diagnosticData.applicationTips.formatting && diagnosticData.applicationTips.formatting.length > 0">
-            <ul>
-              <li v-for="(tip, index) in diagnosticData.applicationTips.formatting" :key="index">{{ tip }}</li>
-            </ul>
+        <div style="width: 100%;" v-if="diagnosticData.applicationTips">
+          <div class="tips-section">
+            <h5>📄 格式建议</h5>
+            <div v-if="diagnosticData.applicationTips.formatting && diagnosticData.applicationTips.formatting.length > 0">
+              <ul>
+                <li v-for="(tip, index) in diagnosticData.applicationTips.formatting" :key="index">{{ tip }}</li>
+              </ul>
+            </div>
+            <div v-else class="no-data">暂无格式建议</div>
           </div>
-          <div v-else class="no-data">暂无格式建议</div>
+          <div class="tips-section">
+            <h5>🎯 定制建议</h5>
+            <div v-if="diagnosticData.applicationTips.customization && diagnosticData.applicationTips.customization.length > 0">
+              <ul>
+                <li v-for="(tip, index) in diagnosticData.applicationTips.customization" :key="index">{{ tip }}</li>
+              </ul>
+            </div>
+            <div v-else class="no-data">暂无定制建议</div>
+          </div>
+          <div class="tips-section">
+            <h5>🚀 投递建议</h5>
+            <div v-if="diagnosticData.applicationTips.submission && diagnosticData.applicationTips.submission.length > 0">
+              <ul>
+                <li v-for="(tip, index) in diagnosticData.applicationTips.submission" :key="index">{{ tip }}</li>
+              </ul>
+            </div>
+            <div v-else class="no-data">暂无投递建议</div>
+          </div>
+          <div class="tips-section">
+            <h5>📞 跟进建议</h5>
+            <div v-if="diagnosticData.applicationTips.followUp && diagnosticData.applicationTips.followUp.length > 0">
+              <ul>
+                <li v-for="(tip, index) in diagnosticData.applicationTips.followUp" :key="index">{{ tip }}</li>
+              </ul>
+            </div>
+            <div v-else class="no-data">暂无跟进建议</div>
+          </div>
         </div>
-        <div class="tips-section">
-          <h5>🎯 定制建议</h5>
-          <div v-if="diagnosticData.applicationTips.customization && diagnosticData.applicationTips.customization.length > 0">
-            <ul>
-              <li v-for="(tip, index) in diagnosticData.applicationTips.customization" :key="index">{{ tip }}</li>
-            </ul>
-          </div>
-          <div v-else class="no-data">暂无定制建议</div>
-        </div>
-        <div class="tips-section">
-          <h5>🚀 投递建议</h5>
-          <div v-if="diagnosticData.applicationTips.submission && diagnosticData.applicationTips.submission.length > 0">
-            <ul>
-              <li v-for="(tip, index) in diagnosticData.applicationTips.submission" :key="index">{{ tip }}</li>
-            </ul>
-          </div>
-          <div v-else class="no-data">暂无投递建议</div>
-        </div>
-        <div class="tips-section">
-          <h5>📞 跟进建议</h5>
-          <div v-if="diagnosticData.applicationTips.followUp && diagnosticData.applicationTips.followUp.length > 0">
-            <ul>
-              <li v-for="(tip, index) in diagnosticData.applicationTips.followUp" :key="index">{{ tip }}</li>
-            </ul>
-          </div>
-          <div v-else class="no-data">暂无跟进建议</div>
+        <div v-else class="no-data full-width">
+          暂无简历投递建议信息
         </div>
       </div>
+      </div>
+    </div>
+
+    <!-- 面试准备 -->
+    <div class="diagnostic-section" id="section-interview">
+      <div class="section-header" @click="interviewExpanded = !interviewExpanded">
+        <h3 class="section-title">🎤 面试准备</h3>
+        <el-button
+          type="text"
+          :icon="interviewExpanded ? ArrowUp : ArrowDown"
+          class="expand-btn"
+        />
+      </div>
+      <div v-if="interviewExpanded" class="section-content">
+        <div class="application-tips">
+          <div style="width: 100%;" v-if="diagnosticData.interviewPrep">
+            <div class="tips-section">
+              <h5>❓ 预测面试问题</h5>
+              <div v-if="diagnosticData.interviewPrep.predictedQuestions && diagnosticData.interviewPrep.predictedQuestions.length > 0">
+                <ul>
+                  <li v-for="(question, index) in diagnosticData.interviewPrep.predictedQuestions" :key="index">{{ question }}</li>
+                </ul>
+              </div>
+              <div v-else class="no-data">暂无预测面试问题</div>
+            </div>
+            <div class="tips-section">
+              <h5>⚠️ 潜在硬伤</h5>
+              <div v-if="diagnosticData.interviewPrep.redFlags && diagnosticData.interviewPrep.redFlags.length > 0">
+                <ul>
+                  <li v-for="(flag, index) in diagnosticData.interviewPrep.redFlags" :key="index">{{ flag }}</li>
+                </ul>
+              </div>
+              <div v-else class="no-data">暂无潜在硬伤</div>
+            </div>
+          </div>
+          <div v-else class="no-data full-width">
+            暂无面试准备信息
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -840,23 +916,27 @@ const props = defineProps({
   }
 });
 
-// 展开/折叠状态
+// 展开/收起状态
 const overallExpanded = ref(true);
 const detailedExpanded = ref(true);
 const priorityExpanded = ref(true);
 const keywordsExpanded = ref(true);
 const industryExpanded = ref(true);
 const applicationExpanded = ref(true);
+const interviewExpanded = ref(true);
+const contextExpanded = ref(true);
 
 // 顶部Tab栏
 const activeTab = ref('section-overall');
 const tabs = [
+  { id: 'section-context', name: '诊断上下文', icon: '🎯' },
   { id: 'section-overall', name: '总体评分', icon: '📊' },
   { id: 'section-detailed', name: '详细诊断', icon: '🧠' },
   { id: 'section-priority', name: '优先级优化', icon: '🎯' },
   { id: 'section-keywords', name: '关键词建议', icon: '💡' },
   { id: 'section-industry', name: '行业洞察', icon: '🏢' },
-  { id: 'section-application', name: '投递建议', icon: '📄' }
+  { id: 'section-application', name: '投递建议', icon: '📄' },
+  { id: 'section-interview', name: '面试准备', icon: '🎤' }
 ];
 
 // 滚动到指定部分
@@ -2136,6 +2216,8 @@ onUnmounted(() => {
   .estimated-time {
     font-size: 0.85rem;
     color: #718096;
+    display: flex;
+    align-items: center;
   }
 
   /* 技能匹配分析 */
@@ -2360,6 +2442,8 @@ onUnmounted(() => {
   .task-time {
     font-size: 0.85rem;
     color: #718096;
+    display: flex;
+    align-items: center;
   }
 
   /* 行业关键词建议 */
@@ -2556,6 +2640,7 @@ onUnmounted(() => {
     border: 1px solid rgba(102, 126, 234, 0.15);
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    margin-bottom: 15px;
 
     &:hover {
       box-shadow: 0 8px 24px rgba(102, 126, 234, 0.12);
@@ -2602,7 +2687,7 @@ onUnmounted(() => {
   .application-tips {
     display: flex;
     flex-wrap: wrap;
-    gap: 24px;
+    width: 100%;
   }
   
   .tips-section {
@@ -2617,6 +2702,8 @@ onUnmounted(() => {
     border: 1px solid rgba(102, 126, 234, 0.15);
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    margin-bottom: 15px;
+    width: 100%;
 
     &:hover {
       box-shadow: 0 8px 24px rgba(102, 126, 234, 0.12);
@@ -2665,6 +2752,11 @@ onUnmounted(() => {
     border-radius: 12px;
     border: 1px dashed rgba(102, 126, 234, 0.3);
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  }
+
+  .no-data.full-width {
+    grid-column: 1 / -1;
+    width: 100%;
   }
 
   /* 响应式设计 */

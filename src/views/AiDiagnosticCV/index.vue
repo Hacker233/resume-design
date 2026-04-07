@@ -38,6 +38,31 @@
           </div>
         </div>
 
+        <!-- 目标岗位信息 -->
+        <div class="job-info-section">
+          <h3 class="section-title">目标岗位信息</h3>
+          <el-form class="job-info-form">
+            <el-form-item label="目标岗位">
+              <el-input 
+                v-model="targetJob" 
+                placeholder="请输入目标岗位，例如：前端开发工程师"
+                maxlength="50"
+                show-word-limit
+              />
+            </el-form-item>
+            <el-form-item label="岗位JD">
+              <el-input
+                v-model="jobDescription"
+                type="textarea"
+                :rows="4"
+                placeholder="请粘贴岗位JD内容，以便AI更精准地评估简历匹配度"
+                maxlength="1000"
+                show-word-limit
+              />
+            </el-form-item>
+          </el-form>
+        </div>
+
         <!-- 上传方式选择 -->
         <div class="upload-container">
           <el-tabs v-model="activeTab" class="upload-tabs">
@@ -296,56 +321,11 @@
   </el-dialog>
 
   <!-- 诊断报告抽屉 -->
-  <el-drawer
-    v-model="reportDrawerVisible"
-    title="详细分析报告"
-    direction="rtl"
-    size="50%"
-    :destroy-on-close="false"
-  >
-    <div class="drawer-content">
-      <!-- 等待效果 -->
-      <div v-if="isLoading" class="report-loading">
-        <el-skeleton :rows="6" animated />
-        <div class="loading-tip">
-          <el-icon class="is-loading"><Loading /></el-icon>
-          正在生成诊断报告，请稍候...
-        </div>
-      </div>
-
-      <!-- 诊断内容滚动区域 -->
-      <div v-if="diagnosticData" class="scrollable-content">
-        <div class="report-header">
-        </div>
-        <DiagnosticReport :diagnosticData="diagnosticData" />
-      </div>
-      <div v-else-if="!isLoading" class="no-data">
-        <el-empty description="诊断报告加载失败" />
-        <div class="wechat-contact">
-          <el-divider content-position="center">联系客服</el-divider>
-          <div class="wechat-info">
-            <el-icon class="wechat-icon"><ChatLineSquare /></el-icon>
-            <p class="wechat-text">报告解析失败，请添加客服微信处理</p>
-            <div class="wechat-qrcode" v-if="wechatQrCode">
-              <img :src="wechatQrCode" alt="微信二维码" class="qrcode-image" />
-              <p class="qrcode-hint">扫码添加客服微信</p>
-            </div>
-            <p class="wechat-code">
-              微信：<span class="code" @click="copyWechatId('LHQfighting')">LHQfighting</span>
-              <el-button
-                type="primary"
-                size="small"
-                plain
-                @click="copyWechatId('LHQfighting')"
-              >
-                复制
-              </el-button>
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </el-drawer>
+  <diagnostic-report-drawer
+    v-model:visible="reportDrawerVisible"
+    :diagnostic-data="diagnosticData"
+    @close="handleReportDrawerClose"
+  ></diagnostic-report-drawer>
 </template>
 
 <script lang="ts" setup>
@@ -374,6 +354,7 @@ import { getMyResumeListAsync } from '@/http/api/createTemplate';
 import axios from 'axios';
 import AiOptimizeDialog from '@/views/createTemplate/designer/components/AiOptimizeDialog.vue';
 import DiagnosticReport from './components/DiagnosticReport.vue';
+import DiagnosticReportDrawer from '@/components/DiagnosticReportDrawer.vue';
 import Pagination from '@/components/Pagination/pagination.vue';
 import { resumeJsonToMarkdown, markdownToPlainText } from '@/utils/jsonToMd';
 
@@ -408,6 +389,10 @@ import { resumeJsonToMarkdown, markdownToPlainText } from '@/utils/jsonToMd';
   const statusMessage = ref('');
 
   const pdfText = ref('');
+
+  // 目标岗位信息
+  const targetJob = ref('');
+  const jobDescription = ref('');
 
   // 报告控制
   const showReportArea = ref(false); // 点击“开始AI诊断”后显示
@@ -684,7 +669,9 @@ import { resumeJsonToMarkdown, markdownToPlainText } from '@/utils/jsonToMd';
         model: modelInfoObj.value.selectedModel,
         pdfText: pdfText.value,
         resumeType: 'offline',
-        resumeName: selectedFile.value?.name || ''
+        resumeName: selectedFile.value?.name || '',
+        targetJob: targetJob.value,
+        jobDescription: jobDescription.value
       };
 
       // 使用异步API启动诊断
@@ -765,6 +752,15 @@ import { resumeJsonToMarkdown, markdownToPlainText } from '@/utils/jsonToMd';
             aiContent.value = data.result;
             try {
               parseDiagnosticData();
+              // 保存目标岗位和JD信息
+              if (data.targetJob || data.jobDescription) {
+                diagnosticData.value = {
+                  ...diagnosticData.value,
+                  target_job: data.targetJob || "",
+                  job_description: data.jobDescription || ""
+                };
+              }
+              console.log('诊断数据包含目标岗位信息:', diagnosticData.value);
             } catch (error) {
               console.error('解析诊断数据失败:', error);
               ElMessage.error('解析诊断报告失败，请重试');
@@ -883,7 +879,9 @@ import { resumeJsonToMarkdown, markdownToPlainText } from '@/utils/jsonToMd';
         pdfText: content,
         resumeType: resumeType,
         resumeId: resumeId,
-        resumeName: resumeName
+        resumeName: resumeName,
+        targetJob: targetJob.value,
+        jobDescription: jobDescription.value
       };
 
       // 使用异步API启动诊断
@@ -1001,9 +999,14 @@ import { resumeJsonToMarkdown, markdownToPlainText } from '@/utils/jsonToMd';
 
 
 
-  // 打开诊断报告抽屉
+  // 打开报告抽屉
   const openReportDrawer = () => {
     reportDrawerVisible.value = true;
+  };
+
+  // 处理报告抽屉关闭
+  const handleReportDrawerClose = () => {
+    // 抽屉关闭时的处理逻辑
   };
 
   // 选择简历
@@ -1215,6 +1218,98 @@ import { resumeJsonToMarkdown, markdownToPlainText } from '@/utils/jsonToMd';
     font-size: 0.95rem;
     color: #718096;
     line-height: 1.5;
+  }
+
+  /* 目标岗位信息部分 */
+  .job-info-section {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.98) 0%, rgba(255, 255, 255, 0.9) 100%);
+    border-radius: 20px;
+    padding: 32px;
+    margin-bottom: 24px;
+    border: 1px solid rgba(102, 126, 234, 0.2);
+    backdrop-filter: blur(12px);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .job-info-section:hover {
+    box-shadow: 0 16px 48px rgba(102, 126, 234, 0.15), 0 8px 24px rgba(0, 0, 0, 0.1);
+    transform: translateY(-2px);
+  }
+
+  .section-title {
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin-bottom: 24px;
+    color: #2d3748;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .section-title::before {
+    content: '';
+    width: 4px;
+    height: 24px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 4px;
+  }
+
+  .job-info-form {
+    width: 100%;
+  }
+
+  .job-info-form .el-form-item {
+    margin-bottom: 24px;
+  }
+
+  .job-info-form :deep(.el-form-item__label) {
+    font-size: 1rem !important;
+    font-weight: 500 !important;
+    color: #4a5568 !important;
+    width: 100px !important;
+  }
+
+  .job-info-form .el-input {
+    width: 100%;
+  }
+
+  .job-info-form :deep(.el-input__wrapper) {
+    border-radius: 12px !important;
+    border: 1px solid rgba(102, 126, 234, 0.2) !important;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    background: rgba(255, 255, 255, 0.9) !important;
+  }
+
+  .job-info-form :deep(.el-input__wrapper:hover) {
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1) !important;
+    border-color: rgba(102, 126, 234, 0.4) !important;
+  }
+
+  .job-info-form :deep(.el-input.is-focus .el-input__wrapper) {
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.2) !important;
+    border-color: #667eea !important;
+  }
+
+  .job-info-form :deep(.el-textarea__inner) {
+    border-radius: 12px !important;
+    min-height: 140px !important;
+    border: 1px solid rgba(102, 126, 234, 0.2) !important;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    background: rgba(255, 255, 255, 0.9) !important;
+  }
+
+  .job-info-form :deep(.el-textarea__inner:hover) {
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1) !important;
+    border-color: rgba(102, 126, 234, 0.4) !important;
+  }
+
+  .job-info-form :deep(.el-textarea.is-focus .el-textarea__inner) {
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.2) !important;
+    border-color: #667eea !important;
   }
 
   /* 查看报告按钮 */
