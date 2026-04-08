@@ -142,7 +142,11 @@
   <!-- 新的结构化格式诊断结果抽屉 -->
   <diagnostic-report-drawer
     v-model:visible="showNewDrawer"
-    :diagnostic-data="currentRow?.ai_content"
+    :diagnostic-data="{
+      ...parsedDiagnosticData,
+      target_job: currentRow?.target_job || '',
+      job_description: currentRow?.job_description || ''
+    }"
     @close="closeNewDrawer"
   ></diagnostic-report-drawer>
 </template>
@@ -185,8 +189,10 @@ import { getVXQunListUnauthAsync } from '@/http/api/website';
 
   // 清理JSON字符串中的非法字符
   const cleanJsonString = (str: string): string => {
+    // 移除开头的json前缀（处理json \n{ 这种格式）
+    let cleaned = str.replace(/^json\s*/i, '').trim();
     // 移除代码块标记
-    let cleaned = str.replace(/^```json\s*/g, "").replace(/\s*```$/g, "").trim();
+    cleaned = cleaned.replace(/^```json\s*/g, "").replace(/\s*```$/g, "").trim();
     cleaned = cleaned.replace(/^```+|```+$/g, "").trim();
     // 移除所有控制字符（参考AiDiagnosticCV页面的做法）
     cleaned = cleaned.replace(/[\x00-\x1F\x7F]/g, "");
@@ -260,8 +266,11 @@ import { getVXQunListUnauthAsync } from '@/http/api/website';
       if (!row.ai_content) return false;
       try {
         const data = parseDiagnosticJson(row.ai_content);
-        return !!(data.overallScore || data.detailedDiagnosis || data.priorityList || data.keywords);
+        // 更宽松的判断：只要包含任何一个结构化字段就认为是结构化格式
+        return !!(data.overallScore || data.detailedDiagnosis || data.priorityList || data.keywords || 
+                 data.industrySpecific || data.applicationTips || data.interviewPrep);
       } catch (e) {
+        console.warn('[isNewFormat] 解析失败，判断为Markdown格式:', e);
         return false;
       }
     }
@@ -270,8 +279,11 @@ import { getVXQunListUnauthAsync } from '@/http/api/website';
     if (!row.ai_content) return false;
     try {
       const data = parseDiagnosticJson(row.ai_content);
-      return !!(data.overallScore || data.detailedDiagnosis || data.priorityList || data.keywords);
+      // 更宽松的判断：只要包含任何一个结构化字段就认为是结构化格式
+      return !!(data.overallScore || data.detailedDiagnosis || data.priorityList || data.keywords || 
+               data.industrySpecific || data.applicationTips || data.interviewPrep);
     } catch (e) {
+      console.warn('[isNewFormat] 解析失败，判断为Markdown格式:', e);
       return false;
     }
   };
