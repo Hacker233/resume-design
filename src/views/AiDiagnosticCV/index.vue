@@ -264,6 +264,18 @@
             查看诊断报告
           </el-button>
         </div>
+
+        <!-- 示例诊断报告按钮（右上角） -->
+        <div class="example-report-btn-container">
+          <el-button
+            class="example-report-btn"
+            type="info"
+            :icon="Document"
+            @click="openExampleReport"
+          >
+            查看示例诊断报告
+          </el-button>
+        </div>
       </div>
     </div>
   </div>
@@ -326,6 +338,13 @@
     :diagnostic-data="diagnosticData"
     @close="handleReportDrawerClose"
   ></diagnostic-report-drawer>
+
+  <!-- 示例诊断报告弹窗组件 -->
+  <example-report-modal
+    v-model:visible="exampleReportVisible"
+    :image-url="exampleReportImage"
+    @close="handleExampleReportClose"
+  ></example-report-modal>
 </template>
 
 <script lang="ts" setup>
@@ -355,6 +374,7 @@ import axios from 'axios';
 import AiOptimizeDialog from '@/views/createTemplate/designer/components/AiOptimizeDialog.vue';
 import DiagnosticReport from './components/DiagnosticReport.vue';
 import DiagnosticReportDrawer from '@/components/DiagnosticReportDrawer.vue';
+import ExampleReportModal from '@/components/ExampleReportModal/index.vue';
 import Pagination from '@/components/Pagination/pagination.vue';
 import { resumeJsonToMarkdown, markdownToPlainText } from '@/utils/jsonToMd';
 
@@ -400,6 +420,11 @@ import { resumeJsonToMarkdown, markdownToPlainText } from '@/utils/jsonToMd';
   const aiContent = ref('');
   const diagnosticData = ref<any>(null);
   const reportDrawerVisible = ref(false); // 诊断报告抽屉可见性
+  
+  // 示例诊断报告
+  const exampleReportVisible = ref(false);
+  const exampleReportImage = ref('https://maobucv.com:9000/resume/templatePreview/cv-report.png');
+  const isImageLoading = ref(true);
 
   // 微信二维码
   const wechatQrCode = ref<string>('');
@@ -1007,6 +1032,22 @@ import { resumeJsonToMarkdown, markdownToPlainText } from '@/utils/jsonToMd';
   // 处理报告抽屉关闭
   const handleReportDrawerClose = () => {
     // 抽屉关闭时的处理逻辑
+  };
+
+  // 打开示例诊断报告
+  const openExampleReport = () => {
+    isImageLoading.value = true;
+    exampleReportVisible.value = true;
+  };
+
+  // 处理图片加载完成
+  const handleImageLoad = () => {
+    isImageLoading.value = false;
+  };
+
+  // 处理示例报告弹窗关闭
+  const handleExampleReportClose = () => {
+    // 弹窗关闭时的处理逻辑
   };
 
   // 选择简历
@@ -1668,6 +1709,37 @@ import { resumeJsonToMarkdown, markdownToPlainText } from '@/utils/jsonToMd';
           margin-left: 8px;
         }
       }
+    }
+  }
+
+
+
+  /* 示例诊断报告按钮容器 */
+  .example-report-btn-container {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    z-index: 10;
+  }
+
+  .example-report-btn {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+    border-radius: 8px;
+    font-weight: 600;
+    padding: 8px 16px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    
+    &:hover {
+      transform: translateY(-2px) scale(1.05);
+      box-shadow: 0 8px 24px rgba(102, 126, 234, 0.4);
+      background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+    }
+    
+    &:active {
+      transform: translateY(0) scale(0.98);
     }
   }
 

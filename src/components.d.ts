@@ -92,6 +92,7 @@ declare module 'vue' {
     ElTooltip: typeof import('element-plus/es')['ElTooltip']
     ElUpload: typeof import('element-plus/es')['ElUpload']
     Emoji: typeof import('./components/packages/components/emoji/emoji.vue')['default']
+    ExampleReportModal: typeof import('./components/ExampleReportModal/index.vue')['default']
     Fold: typeof import('./components/packages/components/fold/fold.vue')['default']
     FooterCom: typeof import('./components/FooterCom/FooterCom.vue')['default']
     GetIntegralDialog: typeof import('./components/GetIntegralDialog/GetIntegralDialog.vue')['default']
@@ -143,6 +144,7 @@ declare module 'vue' {
     WorkExperienceCom: typeof import('./components/ModelComs/WorkExperienceCom.vue')['default']
     WorksDisplayCom: typeof import('./components/ModelComs/WorksDisplayCom.vue')['default']
     WXBuyQrcodeDialog: typeof import('./components/WXBuyQrcodeDialog/index.vue')['default']
+    XiaohongshuShareDialog: typeof import('./components/XiaohongshuShareDialog/XiaohongshuShareDialog.vue')['default']
     ZoomAndOut: typeof import('./components/ZoomAndOut/ZoomAndOut.vue')['default']
   }
   export interface GlobalDirectives {

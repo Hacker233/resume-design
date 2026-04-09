@@ -64,6 +64,10 @@
     {
       value: 5,
       label: '分享到朋友圈获取15简币'
+    },
+    {
+      value: 6,
+      label: '分享到小红书获取15简币'
     }
   ]);
 
@@ -101,6 +105,9 @@
               ruleForm.addValue = 5;
               break;
             case 5: // 分享到朋友圈获取15简币
+              ruleForm.addValue = 15;
+              break;
+            case 6: // 分享到小红书获取15简币
               ruleForm.addValue = 15;
               break;
             default:

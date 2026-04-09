@@ -53,6 +53,9 @@
       <el-form-item label="是否开启朋友圈分享得简币:" prop="open_friend_circle_share">
         <el-switch v-model="ruleForm.open_friend_circle_share" />
       </el-form-item>
+      <el-form-item label="是否开启小红书分享得简币:" prop="open_xiaohongshu_share">
+        <el-switch v-model="ruleForm.open_xiaohongshu_share" />
+      </el-form-item>
       <!-- <el-form-item label="是否开启职行AI推广:" prop="open_jobzx">
         <el-switch v-model="ruleForm.open_jobzx" />
       </el-form-item> -->
@@ -97,6 +100,7 @@
     open_homne_menu: boolean;
     open_invite_register: boolean;
     open_friend_circle_share: boolean;
+    open_xiaohongshu_share: boolean;
     open_jobzx: boolean;
     privacy_policy: string;
     service_agreement: string;
@@ -115,6 +119,7 @@
     open_homne_menu: true,
     open_invite_register: false,
     open_friend_circle_share: true,
+    open_xiaohongshu_share: true,
     open_jobzx: false,
     privacy_policy: '',
     service_agreement: ''
@@ -176,6 +181,7 @@
     ruleForm.open_homne_menu = data.open_homne_menu;
     ruleForm.open_invite_register = data.open_invite_register;
     ruleForm.open_friend_circle_share = data.open_friend_circle_share;
+    ruleForm.open_xiaohongshu_share = data.open_xiaohongshu_share;
     ruleForm.open_jobzx = data.open_jobzx;
     ruleForm.privacy_policy = data.privacy_policy;
     ruleForm.service_agreement = data.service_agreement;

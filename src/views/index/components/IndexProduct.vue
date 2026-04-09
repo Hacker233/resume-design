@@ -136,7 +136,7 @@
     justify-content: center;
     padding-top: 65px;
     overflow: hidden;
-    max-height: 1400px;
+    max-height: 1500px;
     position: relative;
     .content {
       height: 100%;

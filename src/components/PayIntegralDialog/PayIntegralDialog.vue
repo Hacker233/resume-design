@@ -89,6 +89,20 @@
             </div>
           </div>
 
+          <div class="method-item" v-config:open_xiaohongshu_share>
+            <div class="method-icon">📕</div>
+            <div class="method-info">
+              <div class="method-header">
+                <div class="method-name">小红书分享</div>
+                <div class="method-reward">+15 <img width="14" height="14" src="@/assets/images/jianB.png" alt="简币" /></div>
+              </div>
+              <div class="method-desc">小红书分享猫步简历，公开权限半小时以上，获得+15个简币。具体分享细节见详细流程</div>
+            </div>
+            <div class="method-action">
+              <span class="action-btn" @click.stop="getXiaohongshuShareProcess">详细流程</span>
+            </div>
+          </div>
+
           <div class="method-item">
             <div class="method-icon">💰</div>
             <div class="method-info">
@@ -175,6 +189,9 @@
 
   <!-- 朋友圈分享猫步简历获取简币操作流程弹窗 -->
   <pyq-share-dialog :dialog-pyq-share-visible="dialogPyqShareVisible" @cancle="canclePyqShareDialog"></pyq-share-dialog>
+  
+  <!-- 小红书分享猫步简历获取简币操作流程弹窗 -->
+  <xiaohongshu-share-dialog :dialog-xiaohongshu-share-visible="dialogXiaohongshuShareVisible" @cancle="cancleXiaohongshuShareDialog"></xiaohongshu-share-dialog>
 </template>
 <script lang="ts" setup>
 import { addIntegralLogAsync } from '@/http/api/integral';
@@ -182,6 +199,7 @@ import appStore from '@/store';
 import { formatNumberWithCommas } from '@/utils/common';
 import GithubStarProcessDialog from '@/components/GithubStarProcessDialog/GithubStarProcessDialog.vue';
 import PyqShareDialog from '@/components/PyqShareDialog/PyqShareDialog.vue';
+import XiaohongshuShareDialog from '@/components/XiaohongshuShareDialog/XiaohongshuShareDialog.vue';
 
 const emit = defineEmits(['cancle', 'confirm']);
 interface TDialog {
@@ -274,6 +292,14 @@ const getPyqShareProcess = () => {
 };
 const canclePyqShareDialog = () => {
   dialogPyqShareVisible.value = false;
+};
+
+const dialogXiaohongshuShareVisible = ref<boolean>(false);
+const getXiaohongshuShareProcess = () => {
+  dialogXiaohongshuShareVisible.value = true;
+};
+const cancleXiaohongshuShareDialog = () => {
+  dialogXiaohongshuShareVisible.value = false;
 };
 
 

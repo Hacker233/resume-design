@@ -1,4 +1,4 @@
-<template>
+ <template>
   <div class="diagnostic-report">
     <!-- 顶部Tab栏 -->
     <div class="report-tabs">
@@ -1615,6 +1615,33 @@ onUnmounted(() => {
 
   // 移除事件监听
   window.removeEventListener('resize', handleResize);
+});
+
+// 暴露一个方法给父组件调用，用于刷新所有图表
+const resizeAllCharts = async () => {
+  await nextTick();
+  
+  // 调用所有图表实例的 resize 方法
+  const charts = [
+    scoreChart,
+    skillsChart,
+    timelineChart,
+    jobMatchChart,
+    contentChart,
+    industryTrendChart,
+    keywordsChart
+  ];
+  
+  charts.forEach(chart => {
+    if (chart && typeof chart.resize === 'function') {
+      chart.resize();
+    }
+  });
+};
+
+// 必须使用 defineExpose 暴露给父组件
+defineExpose({
+  resizeAllCharts
 });
 </script>
 

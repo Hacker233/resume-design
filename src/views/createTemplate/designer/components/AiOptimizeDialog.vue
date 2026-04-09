@@ -108,10 +108,19 @@
         </el-radio-group>
       </div>
 
-      <!-- 历史记录 -->
-      <div class="history-optimize-list" @click="handleOpenLogs" @mouseenter="isHistoryHover = true" @mouseleave="isHistoryHover = false">
-        <svg-icon icon-name="icon-jingji" color="#999999" hover-color="#ffffff" :parent-hover="isHistoryHover" size="16px"></svg-icon>
-        <span>历史诊断记录</span>
+      <!-- 操作按钮组 -->
+      <div class="action-buttons">
+        <!-- 历史记录 -->
+        <div class="history-optimize-list" @click="handleOpenLogs" @mouseenter="isHistoryHover = true" @mouseleave="isHistoryHover = false">
+          <svg-icon icon-name="icon-jingji" color="#999999" hover-color="#ffffff" :parent-hover="isHistoryHover" size="16px"></svg-icon>
+          <span>历史诊断记录</span>
+        </div>
+        
+        <!-- 诊断示例 -->
+        <div class="example-report-btn" @click="openExampleReport" @mouseenter="isExampleHover = true" @mouseleave="isExampleHover = false">
+          <svg-icon icon-name="icon-moban1" color="#999999" hover-color="#ffffff" :parent-hover="isExampleHover" size="16px"></svg-icon>
+          <span>诊断示例</span>
+        </div>
       </div>
     </div>
 
@@ -142,6 +151,11 @@
     :dialog-ai-optimize-visible-logs="dialogAiOptimizeVisibleLogs"
     @cancle="handleCloseLogs"
   />
+  
+  <!-- 诊断示例弹窗 -->
+  <example-report-modal
+    v-model:visible="exampleReportVisible"
+  />
 </template>
 
 <script lang="ts" setup>
@@ -157,7 +171,8 @@
   import appStore from '@/store';
   import jianBImage from '@/assets/images/jianB.png';
   import AiOptimizeDialogLogs from './AiOptimizeDialogLogs.vue';
-  import { storeToRefs } from 'pinia';
+import ExampleReportModal from '@/components/ExampleReportModal/index.vue';
+import { storeToRefs } from 'pinia';
 
   const emit = defineEmits(['cancle', 'updateSuccess']);
 
@@ -183,6 +198,8 @@
   const dialogGetIntegralVisible = ref<boolean>(false);
   const title = ref<string>('');
   const isHistoryHover = ref<boolean>(false);
+  const exampleReportVisible = ref<boolean>(false);
+  const isExampleHover = ref<boolean>(false);
 
   // 模型切换
   const handleModelChange = (value: string) => {
@@ -360,6 +377,11 @@
   // 关闭历史诊断记录弹窗
   const handleCloseLogs = () => {
     dialogAiOptimizeVisibleLogs.value = false;
+  };
+
+  // 打开诊断示例弹窗
+  const openExampleReport = () => {
+    exampleReportVisible.value = true;
   };
 </script>
 
@@ -593,7 +615,15 @@
       }
     }
 
-    .history-optimize-list {
+    .action-buttons {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      margin-top: 16px;
+    }
+
+    .history-optimize-list,
+    .example-report-btn {
       display: flex;
       align-items: center;
       justify-content: center;
