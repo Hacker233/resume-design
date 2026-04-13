@@ -15,11 +15,27 @@ const wordsData = require(path.join(dataDir, 'resume.words.json'));
 const pptData = require(path.join(dataDir, 'resume.ppts.json'));
 
 // 转换数据（使用索引+1作为递增编号）
-const transformedData = originalData.map((item, index) => ({
-  id: item._id.$oid,
-  page: `template-${index + 1}.html`,
-  title: item.template_title
-}));
+const transformedData = originalData.map((item, index) => {
+  const id = item._id.$oid;
+  const title = item.template_title;
+  const pageName = `template-${index + 1}.html`;
+  const description = `${title} - 猫步简历提供的${item.template_style || '专业'}简历模板${item.template_industry ? `，适合${item.template_industry}行业` : ''}${item.template_post ? `，适用于${item.template_post}岗位` : ''}，助力您的求职之路`;
+  const keywords = `${title},${item.template_style || '专业'}简历模板,${item.template_industry || '求职'}简历,${item.template_post || '简历'},猫步简历`;
+  const imageUrl = item.template_cover || 'https://maobucv.com/static/images/logo-maobu-Cs7LMwDk.png';
+  const canonicalUrl = `https://maobucv.com/template/${pageName}`;
+  
+  return {
+    id: id,
+    page: pageName,
+    title: title,
+    seo: {
+      description: description,
+      keywords: keywords,
+      imageUrl: imageUrl,
+      canonicalUrl: canonicalUrl
+    }
+  };
+});
 
 // 转换wordsData
 const transformedWordsData = wordsData.map((item, index) => ({

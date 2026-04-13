@@ -60,10 +60,10 @@ export default defineConfig(async ({ command, mode }: ConfigEnv): Promise<UserCo
             const extType = chunkInfo.name?.match(/\.(png|jpe?g|gif|svg)$/i)
               ? 'images'
               : chunkInfo.name?.match(/\.(woff2?|eot|ttf|otf)$/i)
-              ? 'fonts'
-              : chunkInfo.name?.match(/\.(mp4|webm|ogg|mp3|wav|flac|aac)$/i)
-              ? 'media'
-              : 'static';
+                ? 'fonts'
+                : chunkInfo.name?.match(/\.(mp4|webm|ogg|mp3|wav|flac|aac)$/i)
+                  ? 'media'
+                  : 'static';
             return `static/${extType}/[name]-[hash][extname]`;
           }
         },
@@ -225,6 +225,11 @@ export default defineConfig(async ({ command, mode }: ConfigEnv): Promise<UserCo
             for (let i = 0; i < idList.length; i++) {
               const id = idList[i].id;
               const pageName = idList[i].page;
+              const templateTitle = idList[i].title;
+
+              // 获取当前模板的SEO信息
+              const templateData = idList[i];
+              const seoInfo: any = templateData.seo || {};
 
               const page = await browser.newPage();
 
@@ -262,9 +267,76 @@ export default defineConfig(async ({ command, mode }: ConfigEnv): Promise<UserCo
 
                 // 插入 native-events.js 脚本
                 const injectedScriptTag = '<script src="/static/native-events.js"></script>';
-                const title = `猫步简历 - ${idList[i].title}`;
-                const modifiedHtml = html
+
+                // SEO优化 - 使用预生成的SEO信息
+                const title = `${templateTitle} - 专业简历设计 - 猫步简历`;
+                const description = seoInfo.description || `${templateTitle} - 猫步简历提供的专业简历模板，助力您的求职之路`;
+                const keywords = seoInfo.keywords || `${templateTitle},简历模板,专业简历,求职简历,猫步简历`;
+                const canonicalUrl = seoInfo.canonicalUrl || `https://maobucv.com/template/${id}`;
+                const imageUrl = seoInfo.imageUrl || 'https://maobucv.com/static/images/logo-maobu-Cs7LMwDk.png';
+
+                // 结构化数据
+                const schemaData = {
+                  "@context": "https://schema.org",
+                  "@type": "WebPage",
+                  "name": title,
+                  "description": description,
+                  "mainEntityOfPage": {
+                    "@type": "WebPage",
+                    "@id": canonicalUrl
+                  },
+                  "breadcrumb": {
+                    "@type": "BreadcrumbList",
+                    "itemListElement": [
+                      {
+                        "@type": "ListItem",
+                        "position": 1,
+                        "name": "首页",
+                        "item": "https://maobucv.com/"
+                      },
+                      {
+                        "@type": "ListItem",
+                        "position": 2,
+                        "name": "简历模板",
+                        "item": "https://maobucv.com/resume"
+                      },
+                      {
+                        "@type": "ListItem",
+                        "position": 3,
+                        "name": templateTitle
+                      }
+                    ]
+                  }
+                };
+
+                // 社交分享标签
+                const socialTags = `
+                  <meta property="og:title" content="${title}">
+                  <meta property="og:description" content="${description}">
+                  <meta property="og:url" content="${canonicalUrl}">
+                  <meta property="og:type" content="website">
+                  <meta property="og:image" content="${imageUrl}">
+                  <meta name="twitter:card" content="summary_large_image">
+                  <meta name="twitter:title" content="${title}">
+                  <meta name="twitter:description" content="${description}">
+                  <meta name="twitter:image" content="${imageUrl}">
+                `;
+
+                // 修改HTML
+                let modifiedHtml = html
+                  // 修改标题
                   .replace(/<title>.*<\/title>/, `<title>${title}</title>`)
+                  // 修改描述
+                  .replace(/<meta name="description" content="[^"]*">/, `<meta name="description" content="${description}">`)
+                  // 修改关键词
+                  .replace(/<meta name="keywords" content="[^"]*">/, `<meta name="keywords" content="${keywords}">`)
+                  // 修改规范链接
+                  .replace(/<link rel="canonical" href="[^"]*">/, `<link rel="canonical" href="${canonicalUrl}">`)
+                  // 替换结构化数据
+                  .replace(/<script type="application\/ld\+json">[\s\S]*?<\/script>/, `<script type="application/ld+json">${JSON.stringify(schemaData)}</script>`)
+                  // 添加社交分享标签
+                  .replace('</head>', `${socialTags}</head>`)
+                  // 插入脚本
                   .replace('</body>', `${injectedScriptTag}</body>`);
 
                 // 保存文件
