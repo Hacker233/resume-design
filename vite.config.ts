@@ -378,10 +378,19 @@ export default defineConfig(async ({ command, mode }: ConfigEnv): Promise<UserCo
             if (fs.existsSync(dataPath)) {
               try {
                 const data = JSON.parse(fs.readFileSync(dataPath, 'utf-8'));
-                context.html = context.html.replace(
-                  '<div id="footer"></div>',
-                  `${data.FOOTER_HTML}`
-                );
+                // 尝试替换占位符
+                if (context.html.includes('<div id="footer"></div>')) {
+                  context.html = context.html.replace(
+                    '<div id="footer"></div>',
+                    `${data.FOOTER_HTML}`
+                  );
+                } else if (context.html.includes('<div class="global-footer-box"')) {
+                  // 如果占位符已被替换，尝试替换整个footer部分
+                  context.html = context.html.replace(
+                    /<div class="global-footer-box"[^>]*>[\s\S]*?<\/div>/,
+                    `${data.FOOTER_HTML}`
+                  );
+                }
                 return context;
               } catch (err) {
                 console.error('❌ 解析 prerender-data.json 失败:', err);
