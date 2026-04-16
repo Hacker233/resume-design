@@ -467,6 +467,55 @@ export const extractResumeData = (resumeData: any, filterNotShowModule?: boolean
   return extractedData;
 };
 
+// 优化的模板数据提取函数，确保结构一致性
+export const extractOptimizedResumeData = (resumeData: any) => {
+  const optimizedData: any = {};
+  
+  resumeData.componentsTree.forEach((module: any) => {
+    if (module.customProps?.showModule === false) return;
+    
+    // 保持模块ID不变
+    const moduleKey = module.id.slice(-10);
+    optimizedData[moduleKey] = {
+      moduleTitle: module.title,
+      moduleContent: optimizeModuleContent(module.dataSource)
+    };
+  });
+  
+  return optimizedData;
+};
+
+// 优化模块内容，只保留必要字段
+function optimizeModuleContent(dataSource: any) {
+  if (!dataSource) return {};
+  
+  const optimized: any = {};
+  
+  if (dataSource.list) {
+    optimized.list = {
+      value: dataSource.list.value.map((item: any) => {
+        const optimizedItem: any = {};
+        Object.keys(item).forEach(key => {
+          if (item[key] && typeof item[key] === 'object' && 'value' in item[key]) {
+            // 只保留值，移除其他属性
+            optimizedItem[key] = item[key].value;
+          }
+        });
+        return optimizedItem;
+      })
+    };
+  } else {
+    Object.keys(dataSource).forEach(key => {
+      if (dataSource[key] && typeof dataSource[key] === 'object' && 'value' in dataSource[key]) {
+        // 只保留值，移除其他属性
+        optimized[key] = dataSource[key].value;
+      }
+    });
+  }
+  
+  return optimized;
+};
+
 // 将content中的简历内容提取出来
 export const extractContentData = (contentData: any) => {
   const content: any = {};
@@ -652,6 +701,89 @@ export const restoreDataId = (oldData: any, newData: any) => {
   });
 
   return oldData;
+};
+
+// 增强数据还原函数，确保数据结构一致性
+export const restoreDataWithValidation = (oldData: any, newData: any) => {
+  try {
+    oldData.componentsTree.forEach((item: any) => {
+      const moduleKey = item.id.slice(-10);
+      if (newData.hasOwnProperty(moduleKey)) {
+        // 验证模块结构
+        if (!newData[moduleKey].moduleContent) {
+          console.warn(`模块 ${moduleKey} 缺少 moduleContent`);
+          return;
+        }
+        
+        // 还原模块内容
+        item.dataSource = restoreModuleContentWithValidation(
+          item.dataSource, 
+          newData[moduleKey].moduleContent
+        );
+      }
+    });
+    
+    return oldData;
+  } catch (error) {
+    console.error('数据还原失败:', error);
+    throw new Error('数据还原失败，请重试');
+  }
+};
+
+// 增强模块内容还原
+function restoreModuleContentWithValidation(oldContent: any, newContent: any) {
+  if (!oldContent) return newContent;
+  if (!newContent) return oldContent;
+  
+  // 处理列表类型
+  if (oldContent.list && newContent.list) {
+    if (!Array.isArray(oldContent.list.value)) {
+      console.warn('旧数据 list.value 不是数组');
+      oldContent.list.value = [];
+    }
+    
+    if (!Array.isArray(newContent.list.value)) {
+      console.warn('新数据 list.value 不是数组');
+      newContent.list.value = [];
+    }
+    
+    // 保存原始结构模板
+    const originalTemplate = oldContent.list.value[0] ? JSON.parse(JSON.stringify(oldContent.list.value[0])) : null;
+    
+    // 清空旧数据列表，完全使用新数据
+    oldContent.list.value = [];
+    
+    // 根据新数据重建列表
+    newContent.list.value.forEach((newItem: any) => {
+      // 创建新项，使用旧数据的结构
+      let newListItem: any;
+      if (originalTemplate) {
+        newListItem = JSON.parse(JSON.stringify(originalTemplate));
+      } else {
+        newListItem = {};
+      }
+      
+      // 填充新数据
+      Object.keys(newItem).forEach(key => {
+        if (newListItem[key] && typeof newListItem[key] === 'object' && 'value' in newListItem[key]) {
+          newListItem[key].value = newItem[key];
+        } else {
+          newListItem[key] = { value: newItem[key] };
+        }
+      });
+      
+      oldContent.list.value.push(newListItem);
+    });
+  } else {
+    // 处理普通字段
+    Object.keys(oldContent).forEach(key => {
+      if (newContent.hasOwnProperty(key)) {
+        oldContent[key].value = newContent[key];
+      }
+    });
+  }
+  
+  return oldContent;
 };
 
 // 递归合并数据

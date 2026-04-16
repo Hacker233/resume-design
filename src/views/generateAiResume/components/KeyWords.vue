@@ -50,31 +50,104 @@
           </el-option>
         </el-select>
       </el-form-item>
-      <el-form-item label="其他关键词" prop="otherKeywords">
-        <template #label>
-          <span class="cyber-label">其他关键词（选填）</span>
-        </template>
-        <el-input
-          v-model="ruleForm.otherKeywords"
-          type="textarea"
-          :rows="4"
-          class="cyber-textarea"
-          placeholder="请输入其他相关关键词，列入所学专业、技能特长、工作经验等等，可以详细描述"
-        />
-      </el-form-item>
+      
+      <!-- 选填项折叠区域 -->
+      <div class="optional-section">
+        <div 
+          @click="toggleOptional" 
+          class="toggle-button"
+        >
+          <span class="button-text">{{ isOptionalExpanded ? '收起选填项' : '展开选填项' }}</span>
+          <el-icon class="arrow-icon" v-if="!isOptionalExpanded">
+            <ArrowDown />
+          </el-icon>
+          <el-icon class="arrow-icon" v-else>
+            <ArrowUp />
+          </el-icon>
+        </div>
+        
+        <div v-if="isOptionalExpanded" class="optional-content">
+          <!-- 总字数限制提示 -->
+          <div class="word-count-hint" :class="{ 'warning': totalWordCount > MAX_TOTAL_WORDS * 0.8 }">
+            总字数：{{ totalWordCount }}/{{ MAX_TOTAL_WORDS }}
+            <span v-if="totalWordCount > MAX_TOTAL_WORDS" class="warning-text">（已超过限制，请适当减少内容）</span>
+          </div>
+          <el-form-item label="所学专业" prop="major">
+            <template #label>
+              <span class="cyber-label">所学专业（选填）</span>
+            </template>
+            <el-input
+              v-model="ruleForm.major"
+              :maxlength="50"
+              show-word-limit
+              class="cyber-input"
+              placeholder="请输入您的专业背景，如：计算机科学与技术"
+            />
+          </el-form-item>
+          
+          <el-form-item label="核心技能" prop="skills">
+            <template #label>
+              <span class="cyber-label">核心技能（选填）</span>
+            </template>
+            <el-input
+              v-model="ruleForm.skills"
+              type="textarea"
+              :rows="3"
+              :maxlength="200"
+              show-word-limit
+              class="cyber-textarea"
+              placeholder="请输入您的专业技能、技术栈等，如：JavaScript、React、Node.js"
+            />
+          </el-form-item>
+          
+          <el-form-item label="项目经验" prop="projectExperience">
+            <template #label>
+              <span class="cyber-label">项目经验（选填）</span>
+            </template>
+            <el-input
+              v-model="ruleForm.projectExperience"
+              type="textarea"
+              :rows="3"
+              :maxlength="300"
+              show-word-limit
+              class="cyber-textarea"
+              placeholder="请简要描述您的主要项目经验，如：参与开发企业级管理系统，负责前端开发"
+            />
+          </el-form-item>
+          
+          <el-form-item label="其他补充" prop="otherInfo">
+            <template #label>
+              <span class="cyber-label">其他补充（选填）</span>
+            </template>
+            <el-input
+              v-model="ruleForm.otherInfo"
+              type="textarea"
+              :rows="2"
+              :maxlength="150"
+              show-word-limit
+              class="cyber-textarea"
+              placeholder="请输入其他需要补充的信息"
+            />
+          </el-form-item>
+        </div>
+      </div>
     </el-form>
   </div>
 </template>
 
 <script lang="ts" setup>
-  import { ref, reactive } from 'vue';
-  import { FormInstance, FormRules } from 'element-plus';
+  import { ref, reactive, computed } from 'vue';
+  import { FormInstance, FormRules, ElIcon } from 'element-plus';
+  import { ArrowDown, ArrowUp } from '@element-plus/icons-vue';
 
   interface RuleForm {
     name: string;
     intendedPositions: string;
     workService: number | null;
-    otherKeywords: string;
+    major: string;
+    skills: string;
+    projectExperience: string;
+    otherInfo: string;
   }
 
   const ruleFormRef = ref<FormInstance>();
@@ -82,8 +155,19 @@
     name: '',
     intendedPositions: '',
     workService: null,
-    otherKeywords: ''
+    major: '',
+    skills: '',
+    projectExperience: '',
+    otherInfo: ''
   });
+
+  // 选填项展开状态
+  const isOptionalExpanded = ref(false);
+
+  // 切换选填项展开/收起
+  const toggleOptional = () => {
+    isOptionalExpanded.value = !isOptionalExpanded.value;
+  };
 
   const rules = reactive<FormRules<RuleForm>>({
     name: [{ required: true, message: '请输入您的姓名', trigger: 'blur' }],
@@ -91,8 +175,31 @@
     workService: [{ required: true, message: '请选择您的工作年限', trigger: 'change' }]
   });
 
+  // 计算属性：合并所有选填字段为otherKeywords
+  const otherKeywords = computed(() => {
+    const parts = [];
+    if (ruleForm.major) parts.push(`专业：${ruleForm.major}`);
+    if (ruleForm.skills) parts.push(`技能：${ruleForm.skills}`);
+    if (ruleForm.projectExperience) parts.push(`项目经验：${ruleForm.projectExperience}`);
+    if (ruleForm.otherInfo) parts.push(`其他：${ruleForm.otherInfo}`);
+    return parts.join('；');
+  });
+
+  // 计算属性：总字数
+  const totalWordCount = computed(() => {
+    return otherKeywords.value.length;
+  });
+
+  // 最大总字数限制
+  const MAX_TOTAL_WORDS = 600;
+
   defineExpose({
-    ruleForm,
+    ruleForm: computed(() => ({
+      name: ruleForm.name,
+      intendedPositions: ruleForm.intendedPositions,
+      workService: ruleForm.workService,
+      otherKeywords: otherKeywords.value
+    })),
     ruleFormRef
   });
 </script>
@@ -133,6 +240,7 @@
       mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
       mask-composite: exclude;
       animation: borderGlow 2s infinite alternate;
+      pointer-events: none;
     }
 
     :deep(.el-form-item) {
@@ -180,6 +288,20 @@
       }
     }
 
+    :deep(.el-input__count) {
+      background: transparent;
+      color: #8f66d6;
+      border-radius: 0 8px 8px 0;
+      font-family: 'Roboto Mono', monospace;
+      font-size: 12px;
+    }
+    :deep(.el-input__count-inner) {
+      background: transparent;
+      color: #8f66d6;
+      border-radius: 0 8px 8px 0;
+      font-family: 'Roboto Mono', monospace;
+      font-size: 12px;
+    }
     .cyber-select {
       width: 100%;
       :deep(.el-input__wrapper) {
@@ -218,10 +340,96 @@
           box-shadow: 0 0 0 2px #8f66d6, 0 8px 30px rgba(143, 102, 214, 0.2);
         }
       }
+      
+      :deep(.el-textarea__count) {
+        background: transparent;
+        color: #8f66d6;
+        border-radius: 0 0 8px 8px;
+        font-family: 'Roboto Mono', monospace;
+        font-size: 12px;
+        margin-top: -4px;
+      }
     }
   }
 
+  // 选填项折叠区域样式
+  .optional-section {
+    margin-top: 1.5rem;
+    
+    .toggle-button {
+      width: 100%;
+      margin-bottom: 1rem;
+      background: rgba(143, 102, 214, 0.1);
+      border: 1px solid rgba(143, 102, 214, 0.3);
+      border-radius: 4px;
+      color: #8f66d6;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 12px 24px;
+      cursor: pointer;
+      font-size: 16px;
+      font-weight: 500;
+      
+      &:hover {
+        background: rgba(143, 102, 214, 0.2);
+        border-color: #8f66d6;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(143, 102, 214, 0.2);
+      }
+      
+      .button-text {
+        margin-right: 8px;
+      }
+      
+      .arrow-icon {
+        font-size: 16px;
+        transition: transform 0.3s ease;
+      }
+    }
+    
+    .optional-content {
+      animation: slideDown 0.3s ease-out;
+    }
+  }
+
+  // 展开动画
+  @keyframes slideDown {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  // 字数限制提示样式
+  .word-count-hint {
+    margin-bottom: 1rem;
+    padding: 8px 12px;
+    background: rgba(143, 102, 214, 0.05);
+    border-radius: 4px;
+    font-size: 14px;
+    color: #2d264b;
+    text-align: right;
+    
+    &.warning {
+      background: rgba(255, 193, 7, 0.1);
+      border-left: 4px solid #ffc107;
+    }
+    
+    .warning-text {
+      color: #dc3545;
+      font-weight: 500;
+    }
+  }
+  
+  // 边框动画
   @keyframes borderGlow {
+
     0% {
       opacity: 0.3;
     }

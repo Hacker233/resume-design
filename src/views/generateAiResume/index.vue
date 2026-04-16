@@ -142,11 +142,10 @@
   import AiModelSelect from './components/AiModelSelect.vue';
   import SelectWayDialog from './components/SelectWayDialog.vue';
   import {
-    extractResumeData,
-    formatNumberWithCommas,
-    restoreData,
-    restoreDataId
-  } from '@/utils/common';
+  extractOptimizedResumeData,
+  formatNumberWithCommas,
+  restoreDataWithValidation
+} from '@/utils/common';
   import appStore from '@/store';
   import { storeToRefs } from 'pinia';
   import {
@@ -420,7 +419,7 @@
     // 基于模版生成简历
     if (selectedOption.value === 'template') {
       // 提取 dataSource 数据
-      const dataSource = extractResumeData(cloneDeep(HJNewJsonStore.value));
+      const dataSource = extractOptimizedResumeData(cloneDeep(HJNewJsonStore.value));
       console.log('dataSource', JSON.stringify(dataSource));
       params.template = dataSource;
       const controller = generateResumeStreamAsync(
@@ -439,12 +438,11 @@
             const result = str.value.replace(/```json/g, '');
             const resule2 = result.replace(/```/g, '');
             console.log('转义结果', resule2);
-            console.log('JSON.parse后的数据', JSON.parse(resule2));
-            // 还原label
-            const resetLabel = restoreData(JSON.parse(resule2));
-            console.log('还原label后的数据', resetLabel);
-            // 彻底还原数据
-            const resetData = restoreDataId(cloneDeep(HJNewJsonStore.value), resetLabel);
+            const parsedData = JSON.parse(resule2);
+            console.log('JSON.parse后的数据', parsedData);
+            
+            // 增强数据还原
+            const resetData = restoreDataWithValidation(cloneDeep(HJNewJsonStore.value), parsedData);
             console.log('彻底还原后的数据', resetData);
             HJNewJsonStore.value = resetData;
             ElMessage.success('AI简历生成成功');
@@ -463,7 +461,7 @@
             };
             saveAiResumeDataAsync(aiResumeDataParams);
           } catch (e) {
-            console.log('JSON 转换失败');
+            console.log('JSON 转换失败', e);
             isAiLoading.value = false;
             ElNotification.error({
               title: '错误',

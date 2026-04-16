@@ -384,14 +384,14 @@
   // };
 
   // 保存草稿
-  const saveDraft = () => {
-    setTimeout(() => {
+  const saveDraft = async () => {
+    const result = await saveDataToLocal('manual');
+    if (result) {
       ElMessage({
         message: '保存草稿成功',
         type: 'success'
       });
-    }, 1000);
-    saveDataToLocal('manual');
+    }
   };
 
   // 自动保存草稿
