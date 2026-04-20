@@ -107,18 +107,20 @@
             <el-button
               class="sign-btn"
               type="primary"
-              :disabled="appStore.useUserInfoStore.userIntegralInfo.isattendance"
+              :disabled="appStore.useUserInfoStore.userIntegralInfo.isattendance || isSigning"
               @click="signIn"
               :class="{ 'signed': appStore.useUserInfoStore.userIntegralInfo.isattendance }"
+              :loading="isSigning"
             >
               <img
+                v-if="!isSigning"
                 width="22"
                 src="@/assets/images/jianB.png"
                 alt="简币"
                 title="简币 - 您的专属虚拟货币"
               />
               <span class="tips">{{
-                appStore.useUserInfoStore.userIntegralInfo.isattendance ? '已签到' : '签到'
+                appStore.useUserInfoStore.userIntegralInfo.isattendance ? '已签到' : isSigning ? '签到中...' : '签到'
               }}</span>
             </el-button>
           </el-tooltip>
@@ -493,19 +495,30 @@
   );
 
   // 签到功能
+  const isSigning = ref(false);
   const signIn = async () => {
-    let params = {
-      integralAddType: '1'
-    };
-    const data = await addIntegralLogAsync(params);
-    if (data.data.status === 200) {
-      ElMessage.success('签到成功！简币+1！');
-      fetchAttendanceData();
-      // 更新用户简币信息
-      appStore.useUserInfoStore.getUserIntegralTotal();
-      emit('success');
-    } else {
-      ElMessage.error(data.data.message);
+    if (isSigning.value) return;
+    
+    isSigning.value = true;
+    try {
+      let params = {
+        integralAddType: '1'
+      };
+      const data = await addIntegralLogAsync(params);
+      if (data.data.status === 200) {
+        ElMessage.success('签到成功！简币+1！');
+        fetchAttendanceData();
+        // 更新用户简币信息
+        appStore.useUserInfoStore.getUserIntegralTotal();
+        emit('success');
+      } else {
+        ElMessage.error(data.data.message);
+      }
+    } catch (error) {
+      ElMessage.error('签到失败，请重试');
+      console.error('签到失败:', error);
+    } finally {
+      isSigning.value = false;
     }
   };
 
